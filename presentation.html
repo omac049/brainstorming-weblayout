@@ -1,0 +1,1669 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>UAGC Website Reskin Review</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --bg: #0e0f11;
+    --surface: #16181c;
+    --border: #24272e;
+    --text: #e8e9eb;
+    --text-secondary: #8b8f98;
+    --accent: #e53935;
+    --accent-soft: rgba(229, 57, 53, 0.12);
+    --green: #43a047;
+    --green-soft: rgba(67, 160, 71, 0.12);
+    --amber: #f9a825;
+    --amber-soft: rgba(249, 168, 37, 0.12);
+    --blue: #5c9cf5;
+    --blue-soft: rgba(92, 156, 245, 0.12);
+  }
+
+  html, body {
+    height: 100%;
+    overflow: hidden;
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Inter', -apple-system, system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .deck { position: relative; width: 100%; height: 100%; }
+
+  .slide {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 5vh 8vw;
+    opacity: 0;
+    transform: translateY(12px);
+    pointer-events: none;
+    transition: opacity 0.5s cubic-bezier(0.22, 1, 0.36, 1),
+                transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+    will-change: opacity, transform;
+    overflow-y: auto;
+  }
+
+  .slide.active {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+  }
+
+  .slide.exiting {
+    opacity: 0;
+    transform: translateY(-12px);
+  }
+
+  .progress {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 3px;
+    background: var(--accent);
+    transition: width 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+    z-index: 100;
+  }
+
+  .counter {
+    position: fixed;
+    bottom: 3vh;
+    right: 4vw;
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--text-secondary);
+    letter-spacing: 0.05em;
+    z-index: 100;
+  }
+
+  .nav-hint {
+    position: fixed;
+    bottom: 3vh;
+    left: 4vw;
+    font-size: 12px;
+    color: var(--text-secondary);
+    opacity: 0.5;
+    z-index: 100;
+    letter-spacing: 0.03em;
+  }
+
+  /* Typography */
+  .kicker {
+    font-size: clamp(11px, 1.2vw, 14px);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--accent);
+    margin-bottom: 1.5vh;
+  }
+
+  .kicker.green { color: var(--green); }
+  .kicker.blue { color: var(--blue); }
+  .kicker.amber { color: var(--amber); }
+
+  h1 {
+    font-size: clamp(32px, 5vw, 72px);
+    font-weight: 800;
+    line-height: 1.05;
+    letter-spacing: -0.03em;
+    max-width: 900px;
+  }
+
+  h2 {
+    font-size: clamp(24px, 3.5vw, 52px);
+    font-weight: 700;
+    line-height: 1.1;
+    letter-spacing: -0.025em;
+    max-width: 850px;
+  }
+
+  h3 {
+    font-size: clamp(18px, 2vw, 28px);
+    font-weight: 600;
+    line-height: 1.2;
+    letter-spacing: -0.01em;
+  }
+
+  .subtitle {
+    font-size: clamp(15px, 1.6vw, 22px);
+    font-weight: 400;
+    line-height: 1.5;
+    color: var(--text-secondary);
+    max-width: 680px;
+    margin-top: 2vh;
+  }
+
+  .quip {
+    font-size: clamp(13px, 1.3vw, 18px);
+    font-weight: 400;
+    font-style: italic;
+    color: var(--text-secondary);
+    opacity: 0.7;
+    margin-top: 1.5vh;
+  }
+
+  .big-number {
+    font-size: clamp(48px, 8vw, 120px);
+    font-weight: 900;
+    line-height: 1;
+    letter-spacing: -0.04em;
+    color: var(--accent);
+  }
+
+  .big-number.green { color: var(--green); }
+  .big-number.blue { color: var(--blue); }
+  .big-number.amber { color: var(--amber); }
+
+  .big-label {
+    font-size: clamp(14px, 1.4vw, 20px);
+    font-weight: 500;
+    color: var(--text-secondary);
+    margin-top: 0.5vh;
+  }
+
+  /* Metrics */
+  .metrics-row {
+    display: flex;
+    gap: clamp(24px, 4vw, 64px);
+    margin-top: 5vh;
+    flex-wrap: wrap;
+  }
+
+  .metric-block { min-width: 140px; }
+
+  .metric-value {
+    font-size: clamp(28px, 4vw, 56px);
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    line-height: 1.1;
+  }
+
+  .metric-label {
+    font-size: clamp(12px, 1.1vw, 15px);
+    font-weight: 500;
+    color: var(--text-secondary);
+    margin-top: 4px;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+
+  /* Data table */
+  .data-table {
+    margin-top: 3vh;
+    width: 100%;
+    max-width: 1000px;
+    border-collapse: collapse;
+  }
+
+  .data-table th {
+    font-size: clamp(10px, 1vw, 12px);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--text-secondary);
+    text-align: left;
+    padding: 10px 16px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .data-table th:not(:first-child) { text-align: right; }
+
+  .data-table td {
+    font-size: clamp(13px, 1.2vw, 16px);
+    font-weight: 500;
+    padding: 10px 16px;
+    border-bottom: 1px solid var(--border);
+    vertical-align: middle;
+  }
+
+  .data-table td:not(:first-child) {
+    text-align: right;
+    font-variant-numeric: tabular-nums;
+  }
+
+  .data-table tr:last-child td { border-bottom: none; }
+
+  .data-table .page-path {
+    font-family: 'Inter', monospace;
+    font-size: clamp(12px, 1.1vw, 14px);
+    color: var(--text-secondary);
+    font-weight: 400;
+  }
+
+  .data-table .highlight-bad { color: var(--accent); font-weight: 700; }
+  .data-table .highlight-good { color: var(--green); font-weight: 700; }
+  .data-table .highlight-warn { color: var(--amber); font-weight: 700; }
+
+  /* Compare */
+  .compare-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: clamp(16px, 2vw, 32px);
+    margin-top: 4vh;
+    max-width: 1000px;
+  }
+
+  .compare-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: clamp(20px, 2.5vw, 36px);
+  }
+
+  .compare-card.bad {
+    border-color: rgba(229, 57, 53, 0.3);
+    background: linear-gradient(135deg, var(--surface), rgba(229, 57, 53, 0.04));
+  }
+
+  .compare-card.good {
+    border-color: rgba(67, 160, 71, 0.3);
+    background: linear-gradient(135deg, var(--surface), rgba(67, 160, 71, 0.04));
+  }
+
+  .compare-card h3 {
+    font-size: clamp(13px, 1.2vw, 16px);
+    font-weight: 600;
+    margin-bottom: 2vh;
+  }
+
+  .compare-card .compare-stat {
+    font-size: clamp(36px, 5vw, 64px);
+    font-weight: 900;
+    letter-spacing: -0.04em;
+    line-height: 1;
+  }
+
+  .compare-card .compare-label {
+    font-size: clamp(12px, 1vw, 14px);
+    color: var(--text-secondary);
+    margin-top: 6px;
+    font-weight: 500;
+  }
+
+  .compare-card .compare-sub {
+    font-size: clamp(11px, 0.9vw, 13px);
+    color: var(--text-secondary);
+    margin-top: 2vh;
+    line-height: 1.5;
+    font-weight: 400;
+  }
+
+  /* Tags */
+  .tag {
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    padding: 4px 10px;
+    border-radius: 4px;
+    margin-bottom: 1vh;
+  }
+
+  .tag.red { background: var(--accent-soft); color: var(--accent); }
+  .tag.green { background: var(--green-soft); color: var(--green); }
+  .tag.amber { background: var(--amber-soft); color: var(--amber); }
+  .tag.blue { background: var(--blue-soft); color: var(--blue); }
+
+  /* Case studies */
+  .case-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: clamp(12px, 1.5vw, 24px);
+    margin-top: 2vh;
+    max-width: 1100px;
+  }
+
+  .case-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: clamp(16px, 2vw, 28px);
+  }
+
+  .case-card .case-type {
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--text-secondary);
+    margin-bottom: 1vh;
+  }
+
+  .case-card .case-name {
+    font-size: clamp(15px, 1.4vw, 20px);
+    font-weight: 700;
+    margin-bottom: 1.2vh;
+    line-height: 1.25;
+  }
+
+  .case-stat {
+    display: flex;
+    align-items: baseline;
+    gap: 8px;
+    margin-bottom: 5px;
+  }
+
+  .case-stat .num {
+    font-size: clamp(18px, 2vw, 28px);
+    font-weight: 800;
+    color: var(--green);
+    letter-spacing: -0.02em;
+  }
+
+  .case-stat .desc {
+    font-size: clamp(11px, 1vw, 13px);
+    color: var(--text-secondary);
+    font-weight: 500;
+  }
+
+  .case-takeaway {
+    font-size: clamp(11px, 0.9vw, 13px);
+    color: var(--text-secondary);
+    margin-top: 1.2vh;
+    padding-top: 1.2vh;
+    border-top: 1px solid var(--border);
+    line-height: 1.4;
+    font-weight: 400;
+  }
+
+  /* Priority list */
+  .priority-list {
+    margin-top: 4vh;
+    max-width: 900px;
+    list-style: none;
+  }
+
+  .priority-item {
+    display: flex;
+    align-items: flex-start;
+    gap: clamp(12px, 1.5vw, 20px);
+    padding: clamp(14px, 1.5vh, 20px) 0;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .priority-item:last-child { border-bottom: none; }
+
+  .priority-rank {
+    flex-shrink: 0;
+    width: clamp(32px, 3vw, 40px);
+    height: clamp(32px, 3vw, 40px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 8px;
+    font-size: clamp(14px, 1.3vw, 18px);
+    font-weight: 800;
+  }
+
+  .priority-rank.p1 { background: var(--accent-soft); color: var(--accent); }
+  .priority-rank.p2 { background: var(--amber-soft); color: var(--amber); }
+  .priority-rank.p3 { background: var(--blue-soft); color: var(--blue); }
+
+  .priority-content h4 {
+    font-size: clamp(14px, 1.3vw, 18px);
+    font-weight: 700;
+    margin-bottom: 4px;
+  }
+
+  .priority-content p {
+    font-size: clamp(12px, 1vw, 14px);
+    color: var(--text-secondary);
+    line-height: 1.45;
+    font-weight: 400;
+  }
+
+  /* Insight callout */
+  .insight {
+    background: var(--surface);
+    border-left: 3px solid var(--accent);
+    border-radius: 0 8px 8px 0;
+    padding: clamp(16px, 2vw, 24px);
+    margin-top: 3vh;
+    max-width: 700px;
+  }
+
+  .insight.green { border-left-color: var(--green); }
+
+  .insight p {
+    font-size: clamp(13px, 1.2vw, 16px);
+    color: var(--text-secondary);
+    line-height: 1.55;
+    font-weight: 400;
+  }
+
+  .insight strong { color: var(--text); font-weight: 600; }
+
+  /* Device bars */
+  .bar-chart { margin-top: 4vh; max-width: 600px; }
+
+  .bar-row {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 14px;
+  }
+
+  .bar-label {
+    width: 80px;
+    font-size: clamp(12px, 1.1vw, 14px);
+    font-weight: 600;
+    text-align: right;
+    flex-shrink: 0;
+  }
+
+  .bar-track {
+    flex: 1;
+    height: 28px;
+    background: var(--surface);
+    border-radius: 6px;
+    overflow: hidden;
+    position: relative;
+  }
+
+  .bar-fill {
+    height: 100%;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    padding-left: 10px;
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--bg);
+    transition: width 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .bar-fill.mobile { background: var(--accent); width: 60%; }
+  .bar-fill.desktop { background: var(--blue); width: 38%; }
+  .bar-fill.tablet { background: var(--text-secondary); width: 2%; }
+
+  .bar-meta {
+    width: 100px;
+    font-size: clamp(11px, 1vw, 13px);
+    color: var(--text-secondary);
+    flex-shrink: 0;
+    font-weight: 500;
+    font-variant-numeric: tabular-nums;
+  }
+
+  /* Split layout */
+  .split {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: clamp(24px, 4vw, 64px);
+    align-items: start;
+    margin-top: 4vh;
+    max-width: 1100px;
+  }
+
+  /* Concern grid */
+  .concern-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: clamp(12px, 1.5vw, 20px);
+    margin-top: 4vh;
+    max-width: 1100px;
+  }
+
+  .concern-item {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: clamp(16px, 2vw, 24px);
+  }
+
+  .concern-item .concern-num {
+    font-size: clamp(28px, 3vw, 40px);
+    font-weight: 800;
+    line-height: 1;
+    letter-spacing: -0.03em;
+  }
+
+  .concern-item .concern-title {
+    font-size: clamp(13px, 1.2vw, 16px);
+    font-weight: 700;
+    margin-top: 8px;
+    margin-bottom: 6px;
+  }
+
+  .concern-item .concern-desc {
+    font-size: clamp(11px, 0.95vw, 13px);
+    color: var(--text-secondary);
+    line-height: 1.45;
+    font-weight: 400;
+  }
+
+  /* Screenshot frame */
+  .screenshot-frame {
+    border-radius: 10px;
+    overflow: hidden;
+    border: 1px solid var(--border);
+    box-shadow: 0 8px 32px rgba(0,0,0,0.4);
+    position: relative;
+  }
+
+  .screenshot-frame img {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+
+  .screenshot-badge {
+    position: absolute;
+    bottom: 12px;
+    left: 12px;
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    padding: 5px 10px;
+    border-radius: 6px;
+    backdrop-filter: blur(8px);
+  }
+
+  .screenshot-badge.bad {
+    background: rgba(229, 57, 53, 0.85);
+    color: #fff;
+  }
+
+  .screenshot-badge.good {
+    background: rgba(67, 160, 71, 0.85);
+    color: #fff;
+  }
+
+  .screenshot-badge.neutral {
+    background: rgba(22, 24, 28, 0.85);
+    color: var(--text);
+  }
+
+  /* Page comparison */
+  .page-compare {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: clamp(16px, 2vw, 32px);
+    margin-top: 3vh;
+    max-width: 1100px;
+  }
+
+  .page-compare-item {
+    position: relative;
+  }
+
+  .page-compare-item .page-label {
+    font-size: clamp(12px, 1.1vw, 14px);
+    font-weight: 700;
+    margin-bottom: 1vh;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .page-compare-item .page-stat {
+    font-size: clamp(11px, 1vw, 13px);
+    color: var(--text-secondary);
+    margin-top: 1vh;
+    line-height: 1.5;
+  }
+
+  /* Channel chart */
+  .channel-chart {
+    margin-top: 3vh;
+    max-width: 700px;
+  }
+
+  .channel-bar {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 8px;
+  }
+
+  .channel-name {
+    width: 100px;
+    font-size: clamp(11px, 1vw, 13px);
+    font-weight: 600;
+    text-align: right;
+    flex-shrink: 0;
+  }
+
+  .channel-track {
+    flex: 1;
+    height: 22px;
+    background: var(--surface);
+    border-radius: 4px;
+    overflow: hidden;
+    position: relative;
+  }
+
+  .channel-fill {
+    height: 100%;
+    border-radius: 4px;
+    transition: width 1s cubic-bezier(0.22, 1, 0.36, 1);
+    display: flex;
+    align-items: center;
+    padding-left: 8px;
+    font-size: 10px;
+    font-weight: 700;
+    color: var(--bg);
+  }
+
+  .channel-conv {
+    width: 80px;
+    font-size: clamp(11px, 1vw, 13px);
+    color: var(--text-secondary);
+    flex-shrink: 0;
+    font-weight: 500;
+    font-variant-numeric: tabular-nums;
+    text-align: right;
+  }
+
+  /* Trend chart (SVG) */
+  .chart-container {
+    margin-top: 3vh;
+    max-width: 800px;
+    position: relative;
+  }
+
+  .chart-container svg {
+    width: 100%;
+    height: auto;
+  }
+
+  /* RFI counter */
+  .rfi-counter {
+    display: flex;
+    gap: 6px;
+    margin-top: 2vh;
+    flex-wrap: wrap;
+  }
+
+  .rfi-icon {
+    width: 36px;
+    height: 42px;
+    background: var(--accent-soft);
+    border: 1px solid rgba(229,57,53,0.3);
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+  }
+
+  .watermark {
+    position: fixed;
+    top: 3vh;
+    right: 4vw;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text-secondary);
+    letter-spacing: 0.05em;
+    opacity: 0.4;
+    z-index: 100;
+  }
+
+  .meta-line {
+    font-size: clamp(12px, 1vw, 14px);
+    color: var(--text-secondary);
+    margin-top: 1vh;
+    font-weight: 400;
+  }
+
+  /* Responsive */
+  @media (max-width: 768px) {
+    .slide { padding: 4vh 6vw; }
+    .compare-grid { grid-template-columns: 1fr; }
+    .case-grid { grid-template-columns: 1fr; }
+    .concern-grid { grid-template-columns: 1fr; }
+    .split { grid-template-columns: 1fr; }
+    .page-compare { grid-template-columns: 1fr; }
+    .data-table { font-size: 12px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="progress" id="progress"></div>
+<div class="counter" id="counter"></div>
+<div class="nav-hint">&larr; &rarr; or click to navigate</div>
+<div class="watermark">UAGC</div>
+
+<div class="deck" id="deck">
+
+  <!-- SLIDE 1: Title -->
+  <div class="slide active" data-slide="0">
+    <div class="kicker">Website Reskin & Layout Review</div>
+    <h1>The Data Says<br>Fix the Funnel</h1>
+    <p class="subtitle">12 months of GSC and GA4 data across organic and paid pages. The site engages. It just doesn't convert.</p>
+    <p class="quip">"We have a traffic problem." &mdash; No. We have a 627,000-person bouncing problem.</p>
+    <p class="meta-line">April 8, 2026 &mdash; uagc.edu &mdash; Apr 2025&ndash;Apr 2026</p>
+  </div>
+
+  <!-- SLIDE 2: The Big Number -->
+  <div class="slide" data-slide="1">
+    <div class="kicker">The single biggest finding</div>
+    <div class="big-number">4.5x</div>
+    <h2 style="margin-top: 2vh">conversion gap between paid landing pages</h2>
+    <p class="subtitle">/success/request-info-v5 converts at 3.01% from 1.18M sessions. /success/degree-programs-v7 converts at 13.57%. Same school. Same forms. Different results.</p>
+    <p class="quip">One page is a salesperson. The other is a bouncer.</p>
+    <div class="insight" style="margin-top: 3vh">
+      <p>Meanwhile, blog pages averaging <strong>8&ndash;15 minutes</strong> of engagement produce <strong>21 conversions</strong> from 149K sessions. People are reading. They're just not being asked to do anything.</p>
+    </div>
+  </div>
+
+  <!-- SLIDE 3: Site Performance -->
+  <div class="slide" data-slide="2">
+    <div class="kicker blue">Site-wide performance &mdash; 12 months</div>
+    <h2>The Big Picture</h2>
+    <div class="metrics-row">
+      <div class="metric-block">
+        <div class="metric-value">11.1M</div>
+        <div class="metric-label">Sessions</div>
+      </div>
+      <div class="metric-block">
+        <div class="metric-value">1.73M</div>
+        <div class="metric-label">Organic Clicks</div>
+      </div>
+      <div class="metric-block">
+        <div class="metric-value">348K</div>
+        <div class="metric-label">Conversions</div>
+      </div>
+      <div class="metric-block">
+        <div class="metric-value" style="color: var(--amber)">47.5%</div>
+        <div class="metric-label">Engagement Rate</div>
+      </div>
+    </div>
+    <div class="split" style="margin-top: 4vh">
+      <div>
+        <h3>Device Split</h3>
+        <div class="bar-chart" style="margin-top: 2vh">
+          <div class="bar-row">
+            <div class="bar-label">Mobile</div>
+            <div class="bar-track"><div class="bar-fill mobile">60%</div></div>
+            <div class="bar-meta">45.8% eng.</div>
+          </div>
+          <div class="bar-row">
+            <div class="bar-label">Desktop</div>
+            <div class="bar-track"><div class="bar-fill desktop">38%</div></div>
+            <div class="bar-meta">51.4% eng.</div>
+          </div>
+          <div class="bar-row">
+            <div class="bar-label">Tablet</div>
+            <div class="bar-track"><div class="bar-fill tablet"></div></div>
+            <div class="bar-meta">44.6% eng.</div>
+          </div>
+        </div>
+        <p class="quip" style="margin-top: 1vh">6 out of 10 visitors are on their phone. And they're less impressed than desktop users.</p>
+      </div>
+      <div>
+        <h3>Homepage &mdash; Above the Fold</h3>
+        <div class="screenshot-frame" style="margin-top: 2vh; max-width: 380px;">
+          <img src="screenshots/homepage-desktop.png" alt="UAGC Homepage">
+          <div class="screenshot-badge neutral">uagc.edu</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SLIDE 4: Channel Mix Visual -->
+  <div class="slide" data-slide="3">
+    <div class="kicker blue">Session New Channel Grouping (2025)</div>
+    <h2>Where Traffic Comes From<br>& How It Performs</h2>
+    <div class="channel-chart">
+      <div class="channel-bar">
+        <div class="channel-name">Direct</div>
+        <div class="channel-track"><div class="channel-fill" style="width:100%; background: var(--blue)">2.00M</div></div>
+        <div class="channel-conv">48,139</div>
+      </div>
+      <div class="channel-bar">
+        <div class="channel-name">Paid Social</div>
+        <div class="channel-track"><div class="channel-fill" style="width:95%; background: var(--amber)">1.91M</div></div>
+        <div class="channel-conv" style="color: var(--amber)">53,320</div>
+      </div>
+      <div class="channel-bar">
+        <div class="channel-name">Paid Search</div>
+        <div class="channel-track"><div class="channel-fill" style="width:85%; background: var(--green)">1.69M</div></div>
+        <div class="channel-conv" style="color: var(--green)">77,518</div>
+      </div>
+      <div class="channel-bar">
+        <div class="channel-name">Organic</div>
+        <div class="channel-track"><div class="channel-fill" style="width:79%; background: var(--green)">1.57M</div></div>
+        <div class="channel-conv">27,741</div>
+      </div>
+      <div class="channel-bar">
+        <div class="channel-name">Unassigned</div>
+        <div class="channel-track"><div class="channel-fill" style="width:65%; background: #555">1.29M</div></div>
+        <div class="channel-conv" style="color: var(--accent)">90.6% bounce</div>
+      </div>
+      <div class="channel-bar">
+        <div class="channel-name">Cross-net</div>
+        <div class="channel-track"><div class="channel-fill" style="width:50%; background: var(--amber)">1.01M</div></div>
+        <div class="channel-conv">17,792</div>
+      </div>
+      <div class="channel-bar">
+        <div class="channel-name">Display</div>
+        <div class="channel-track"><div class="channel-fill" style="width:35%; background: var(--green)">707K</div></div>
+        <div class="channel-conv" style="color: var(--green)">59,640</div>
+      </div>
+      <div class="channel-bar">
+        <div class="channel-name">AI Traffic</div>
+        <div class="channel-track"><div class="channel-fill" style="width:2%; background: var(--blue)"></div></div>
+        <div class="channel-conv">21K / 61% eng.</div>
+      </div>
+    </div>
+    <div class="insight" style="margin-top: 2vh">
+      <p><strong>Paid Search is the top converter</strong> (77.5K). <strong>Display secretly overperforms</strong> (59.6K conv, 64% eng). <strong>Paid Social</strong> brings volume (1.91M) but only 42% engagement. <strong>AI Traffic</strong> is tiny but engaged &mdash; the future is watching.</p>
+    </div>
+    <p class="quip">Paid Social: "I brought 1.9 million people!" &mdash; Website: "And 57.9% of them left immediately."</p>
+  </div>
+
+  <!-- SLIDE 5: Seasonality with Chart -->
+  <div class="slide" data-slide="4">
+    <div class="kicker amber">Volume vs. Quality gap</div>
+    <h2>More Traffic, Worse Engagement</h2>
+    <p class="subtitle">Sessions spike during enrollment pushes but engagement craters. The pages break under pressure.</p>
+    <div class="chart-container">
+      <svg viewBox="0 0 800 240" xmlns="http://www.w3.org/2000/svg">
+        <!-- Grid lines -->
+        <line x1="60" y1="20" x2="60" y2="200" stroke="#24272e" stroke-width="1"/>
+        <line x1="60" y1="200" x2="780" y2="200" stroke="#24272e" stroke-width="1"/>
+        <line x1="60" y1="140" x2="780" y2="140" stroke="#24272e" stroke-width="0.5" stroke-dasharray="4"/>
+        <line x1="60" y1="80" x2="780" y2="80" stroke="#24272e" stroke-width="0.5" stroke-dasharray="4"/>
+
+        <!-- Y-axis labels -->
+        <text x="55" y="205" fill="#8b8f98" font-size="10" text-anchor="end" font-family="Inter">0</text>
+        <text x="55" y="145" fill="#8b8f98" font-size="10" text-anchor="end" font-family="Inter">700K</text>
+        <text x="55" y="85" fill="#8b8f98" font-size="10" text-anchor="end" font-family="Inter">1.3M</text>
+
+        <!-- Sessions area -->
+        <polygon points="120,155 180,143 240,133 300,142 360,124 420,97 480,85 540,103 600,154 660,120 720,149 780,107 780,200 120,200"
+                 fill="rgba(92,156,245,0.1)" stroke="none"/>
+        <polyline points="120,155 180,143 240,133 300,142 360,124 420,97 480,85 540,103 600,154 660,120 720,149 780,107"
+                  fill="none" stroke="#5c9cf5" stroke-width="2.5" stroke-linejoin="round"/>
+
+        <!-- Engagement rate line -->
+        <polyline points="120,113 180,78 240,107 300,109 360,112 420,144 480,159 540,160 600,128 660,121 720,108 780,146"
+                  fill="none" stroke="#43a047" stroke-width="2" stroke-dasharray="6 3" stroke-linejoin="round"/>
+
+        <!-- Conversion dots -->
+        <circle cx="420" cy="97" r="5" fill="#e53935" stroke="#0e0f11" stroke-width="2"/>
+        <circle cx="480" cy="85" r="5" fill="#e53935" stroke="#0e0f11" stroke-width="2"/>
+        <circle cx="360" cy="124" r="4" fill="#43a047" stroke="#0e0f11" stroke-width="2"/>
+
+        <!-- Oct label -->
+        <text x="480" y="75" fill="#e53935" font-size="10" font-weight="700" text-anchor="middle" font-family="Inter">Oct: 1.29M / 38% eng</text>
+        <!-- Aug label -->
+        <text x="360" y="115" fill="#43a047" font-size="10" font-weight="700" text-anchor="middle" font-family="Inter">Aug: 45K conv</text>
+
+        <!-- Month labels -->
+        <text x="120" y="220" fill="#8b8f98" font-size="9" text-anchor="middle" font-family="Inter">Apr</text>
+        <text x="180" y="220" fill="#8b8f98" font-size="9" text-anchor="middle" font-family="Inter">May</text>
+        <text x="240" y="220" fill="#8b8f98" font-size="9" text-anchor="middle" font-family="Inter">Jun</text>
+        <text x="300" y="220" fill="#8b8f98" font-size="9" text-anchor="middle" font-family="Inter">Jul</text>
+        <text x="360" y="220" fill="#8b8f98" font-size="9" text-anchor="middle" font-family="Inter">Aug</text>
+        <text x="420" y="220" fill="#8b8f98" font-size="9" text-anchor="middle" font-family="Inter">Sep</text>
+        <text x="480" y="220" fill="#e53935" font-size="9" font-weight="700" text-anchor="middle" font-family="Inter">Oct</text>
+        <text x="540" y="220" fill="#8b8f98" font-size="9" text-anchor="middle" font-family="Inter">Nov</text>
+        <text x="600" y="220" fill="#8b8f98" font-size="9" text-anchor="middle" font-family="Inter">Dec</text>
+        <text x="660" y="220" fill="#8b8f98" font-size="9" text-anchor="middle" font-family="Inter">Jan</text>
+        <text x="720" y="220" fill="#8b8f98" font-size="9" text-anchor="middle" font-family="Inter">Feb</text>
+        <text x="780" y="220" fill="#8b8f98" font-size="9" text-anchor="middle" font-family="Inter">Mar</text>
+
+        <!-- Legend -->
+        <line x1="60" y1="235" x2="80" y2="235" stroke="#5c9cf5" stroke-width="2.5"/>
+        <text x="85" y="238" fill="#8b8f98" font-size="9" font-family="Inter">Sessions</text>
+        <line x1="150" y1="235" x2="170" y2="235" stroke="#43a047" stroke-width="2" stroke-dasharray="6 3"/>
+        <text x="175" y="238" fill="#8b8f98" font-size="9" font-family="Inter">Engagement Rate</text>
+      </svg>
+    </div>
+    <p class="quip">October: "Look at all this traffic!" &mdash; Also October: "...where did everyone go?"</p>
+  </div>
+
+  <!-- SLIDE 6: Frustration Analysis (Contentsquare) -->
+  <div class="slide" data-slide="5">
+    <div class="kicker">Contentsquare &mdash; Frustration Analysis</div>
+    <h2>Users Aren't Just Bouncing.<br>They're Frustrated.</h2>
+    <p class="subtitle">Site-level frustration data from Contentsquare (Apr 2&ndash;8, 2026). Frustration score: 44/100 &mdash; consistently elevated.</p>
+    <div class="split" style="margin-top: 3vh">
+      <div>
+        <h3 style="margin-bottom: 1.5vh">Top Frustration Factors</h3>
+        <div style="margin-top: 1vh;">
+          <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px;">
+            <div style="width:140px;font-size:11px;text-align:right;color:var(--text-secondary)">Page not consumed</div>
+            <div style="flex:1;height:22px;background:var(--surface);border-radius:4px;overflow:hidden;">
+              <div style="width:100%;height:100%;background:var(--accent);border-radius:4px;display:flex;align-items:center;padding-left:6px;font-size:10px;font-weight:700;color:var(--bg)">35,823</div>
+            </div>
+          </div>
+          <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px;">
+            <div style="width:140px;font-size:11px;text-align:right;color:var(--text-secondary)">Page looping</div>
+            <div style="flex:1;height:22px;background:var(--surface);border-radius:4px;overflow:hidden;">
+              <div style="width:61%;height:100%;background:var(--amber);border-radius:4px;display:flex;align-items:center;padding-left:6px;font-size:10px;font-weight:700;color:var(--bg)">21,792</div>
+            </div>
+          </div>
+          <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px;">
+            <div style="width:140px;font-size:11px;text-align:right;color:var(--text-secondary)">Multiple clicks</div>
+            <div style="flex:1;height:22px;background:var(--surface);border-radius:4px;overflow:hidden;">
+              <div style="width:27%;height:100%;background:var(--amber);border-radius:4px;display:flex;align-items:center;padding-left:6px;font-size:10px;font-weight:700;color:var(--bg)">9,748</div>
+            </div>
+          </div>
+          <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px;">
+            <div style="width:140px;font-size:11px;text-align:right;color:var(--text-secondary)">Excessive hover</div>
+            <div style="flex:1;height:22px;background:var(--surface);border-radius:4px;overflow:hidden;">
+              <div style="width:15%;height:100%;background:var(--blue);border-radius:4px;display:flex;align-items:center;padding-left:6px;font-size:10px;font-weight:700;color:var(--bg)">5,274</div>
+            </div>
+          </div>
+          <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px;">
+            <div style="width:140px;font-size:11px;text-align:right;color:var(--text-secondary)">Rage click</div>
+            <div style="flex:1;height:22px;background:var(--surface);border-radius:4px;overflow:hidden;">
+              <div style="width:13%;height:100%;background:var(--accent);border-radius:4px;display:flex;align-items:center;padding-left:6px;font-size:10px;font-weight:700;color:var(--bg)">4,518</div>
+            </div>
+          </div>
+          <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px;">
+            <div style="width:140px;font-size:11px;text-align:right;color:var(--text-secondary)">Button multi-click</div>
+            <div style="flex:1;height:22px;background:var(--surface);border-radius:4px;overflow:hidden;">
+              <div style="width:8%;height:100%;background:var(--blue);border-radius:4px;"></div>
+            </div>
+          </div>
+        </div>
+        <p class="quip" style="margin-top: 1vh">35,823 sessions where users landed and consumed nothing. We already knew the bounce rate. Now we know the emotion behind it.</p>
+      </div>
+      <div>
+        <h3 style="margin-bottom: 1.5vh">Rage Click Hotspots</h3>
+        <table class="data-table" style="margin-top: 1vh">
+          <thead><tr><th>Page</th><th>Rage Clicks</th></tr></thead>
+          <tbody>
+            <tr><td class="page-path">/apply-now</td><td class="highlight-bad">1,839</td></tr>
+            <tr><td class="page-path">/s/enrollment-agreement</td><td class="highlight-bad">887</td></tr>
+            <tr><td class="page-path">/s/</td><td class="highlight-warn">837</td></tr>
+            <tr><td class="page-path">/s/app2a-prior-education</td><td class="highlight-warn">698</td></tr>
+            <tr><td class="page-path">/success/online-programs-v8</td><td>276</td></tr>
+            <tr><td class="page-path">/ (homepage)</td><td>149</td></tr>
+          </tbody>
+        </table>
+        <div class="insight" style="margin-top: 2vh">
+          <p>The <strong>application funnel</strong> (/s/* pages) appears in every frustration category. Users who <em>want</em> to enroll are hitting walls. /apply-now leads in rage clicks <strong>and</strong> excessive hover (3,986 page views). The enrollment agreement page triggers 1,207 button multi-clicks &mdash; people are hammering submit.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SLIDE 7: The Problem Child vs. The Star Student -->
+  <div class="slide" data-slide="6">
+    <div class="kicker">The tale of two pages</div>
+    <h2>Same School. Same Forms.<br>Wildly Different Results.</h2>
+    <div class="page-compare">
+      <div class="page-compare-item">
+        <div class="page-label"><span class="tag red">Problem Child</span> /success/request-info-v5</div>
+        <div class="screenshot-frame">
+          <img src="screenshots/rfi-v5-desktop.png" alt="RFI v5 page" style="max-height: 280px; object-fit: cover; object-position: top;">
+          <div class="screenshot-badge bad">3.01% conv &middot; 53% bounce</div>
+        </div>
+        <div class="page-stat">
+          1.18M sessions &middot; <strong style="color: var(--accent)">7+ RFI forms on one page</strong> &middot; Mostly Paid Social traffic (869K)
+        </div>
+      </div>
+      <div class="page-compare-item">
+        <div class="page-label"><span class="tag green">Star Student</span> /success/degree-programs-v7</div>
+        <div class="screenshot-frame">
+          <img src="screenshots/degree-programs-v7-desktop.png" alt="Degree Programs v7" style="max-height: 280px; object-fit: cover; object-position: top;">
+          <div class="screenshot-badge good">13.57% conv &middot; 25% bounce</div>
+        </div>
+        <div class="page-stat">
+          222K sessions &middot; <strong style="color: var(--green)">Richer content, clear CTA hierarchy</strong> &middot; Mostly Display traffic (220K)
+        </div>
+      </div>
+    </div>
+    <p class="quip">One page says "Here's everything we offer, pick what excites you." The other says "GIVE US YOUR PHONE NUMBER" seven times.</p>
+  </div>
+
+  <!-- SLIDE 7: The Multiple RFIs Problem -->
+  <div class="slide" data-slide="7">
+    <div class="kicker">The form-pocalypse</div>
+    <h2>7+ RFI Forms on One Page</h2>
+    <p class="subtitle">We counted. The primary paid landing page (/success/request-info-v5) has at least 7 separate "Request Info" forms. That's not conversion optimization. That's a cry for help.</p>
+    <div class="split" style="margin-top: 3vh">
+      <div>
+        <div class="rfi-counter">
+          <div class="rfi-icon">1</div>
+          <div class="rfi-icon">2</div>
+          <div class="rfi-icon">3</div>
+          <div class="rfi-icon">4</div>
+          <div class="rfi-icon">5</div>
+          <div class="rfi-icon">6</div>
+          <div class="rfi-icon">7</div>
+        </div>
+        <p style="font-size: clamp(12px,1.1vw,14px); color: var(--text-secondary); margin-top: 2vh; line-height: 1.6;">
+          Each icon = one RFI form found in the DOM of <code style="color: var(--accent)">/success/request-info-v5</code>. These include header forms, inline forms, mid-page forms, multi-step forms, bottom forms, popup forms, and a chat-triggered form.
+        </p>
+        <div class="insight" style="margin-top: 2vh">
+          <p>Empire State University switched to a <strong>two-step RFI</strong> and saw <strong>3x form fills</strong>. Fewer forms. Less friction. More conversions.</p>
+        </div>
+      </div>
+      <div>
+        <h3 style="margin-bottom: 1vh">Conversion by Page</h3>
+        <!-- Mini horizontal bar chart -->
+        <div style="margin-top: 1vh;">
+          <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px;">
+            <div style="width:160px;font-size:11px;text-align:right;color:var(--text-secondary)">/request-info-v5</div>
+            <div style="flex:1;height:22px;background:var(--surface);border-radius:4px;overflow:hidden;">
+              <div style="width:22%;height:100%;background:var(--accent);border-radius:4px;display:flex;align-items:center;padding-left:6px;font-size:10px;font-weight:700;color:var(--bg)">3.01%</div>
+            </div>
+          </div>
+          <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px;">
+            <div style="width:160px;font-size:11px;text-align:right;color:var(--text-secondary)">/online-programs-v7</div>
+            <div style="flex:1;height:22px;background:var(--surface);border-radius:4px;overflow:hidden;">
+              <div style="width:33%;height:100%;background:var(--amber);border-radius:4px;display:flex;align-items:center;padding-left:6px;font-size:10px;font-weight:700;color:var(--bg)">4.53%</div>
+            </div>
+          </div>
+          <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px;">
+            <div style="width:160px;font-size:11px;text-align:right;color:var(--text-secondary)">/college-courses-v5</div>
+            <div style="flex:1;height:22px;background:var(--surface);border-radius:4px;overflow:hidden;">
+              <div style="width:53%;height:100%;background:var(--amber);border-radius:4px;display:flex;align-items:center;padding-left:6px;font-size:10px;font-weight:700;color:var(--bg)">7.25%</div>
+            </div>
+          </div>
+          <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px;">
+            <div style="width:160px;font-size:11px;text-align:right;color:var(--text-secondary)">/degree-programs-v7</div>
+            <div style="flex:1;height:22px;background:var(--surface);border-radius:4px;overflow:hidden;">
+              <div style="width:100%;height:100%;background:var(--green);border-radius:4px;display:flex;align-items:center;padding-left:6px;font-size:10px;font-weight:700;color:var(--bg)">13.57%</div>
+            </div>
+          </div>
+        </div>
+        <p class="quip">Adding more forms doesn't create more leads. It creates more reasons to leave.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- SLIDE 8: Blog Content Gap -->
+  <div class="slide" data-slide="8">
+    <div class="kicker">The content goldmine nobody's mining</div>
+    <h2>Engaged but Not Converting</h2>
+    <div class="page-compare" style="margin-top: 3vh">
+      <div class="page-compare-item">
+        <div class="page-label"><span class="tag amber">PhD vs Doctorate Blog</span></div>
+        <div class="screenshot-frame">
+          <img src="screenshots/blog-phd-desktop.png" alt="PhD Blog" style="max-height: 240px; object-fit: cover; object-position: top;">
+          <div class="screenshot-badge bad">21 conversions from 149K sessions</div>
+        </div>
+        <div class="page-stat" style="margin-top: 1.5vh">
+          <strong>67.8% engagement &middot; 8.1 min avg</strong><br>
+          60,937 GSC clicks &middot; 9.1M impressions &middot; Ranks for "phd meaning" at 3.5
+        </div>
+      </div>
+      <div class="page-compare-item">
+        <div class="page-label"><span class="tag green">Gold Standard: /online-degrees</span></div>
+        <div class="screenshot-frame">
+          <img src="screenshots/online-degrees-desktop.png" alt="Online Degrees page" style="max-height: 240px; object-fit: cover; object-position: top;">
+          <div class="screenshot-badge good">88.8% engagement &middot; 3,428 conversions</div>
+        </div>
+        <div class="page-stat" style="margin-top: 1.5vh">
+          <strong>11.2% bounce &middot; 11.8 min avg</strong><br>
+          135K sessions &middot; This page does everything right
+        </div>
+      </div>
+    </div>
+    <div class="insight" style="margin-top: 2vh">
+      <p>The PhD blog gets people to <strong>stay 8 minutes and read about doctoral programs</strong>. Then it shows them... nothing. No CTA. No link to the doctoral program page. <strong>149K engaged readers, 21 leads.</strong> That's a 0.01% conversion rate on your best content.</p>
+    </div>
+    <p class="quip">Imagine a restaurant where guests stay for hours, love the food, and never see a check.</p>
+  </div>
+
+  <!-- SLIDE 9: Areas of Concern Overview -->
+  <div class="slide" data-slide="9">
+    <div class="kicker">Six areas of concern</div>
+    <h2>What We're Auditing</h2>
+    <div class="concern-grid">
+      <div class="concern-item">
+        <div class="concern-num" style="color: var(--accent)">01</div>
+        <div class="concern-title">White Space</div>
+        <div class="concern-desc">Best pages (88.8% eng.) vs. worst (72.8% bounce). Layout density differs dramatically.</div>
+      </div>
+      <div class="concern-item">
+        <div class="concern-num" style="color: var(--accent)">02</div>
+        <div class="concern-title">Above the Fold</div>
+        <div class="concern-desc">/request-info-v5: 53.2% bounce on 1.18M paid sessions. Is the value proposition visible?</div>
+      </div>
+      <div class="concern-item">
+        <div class="concern-num" style="color: var(--amber)">03</div>
+        <div class="concern-title">Chat Widget</div>
+        <div class="concern-desc">Mobile engagement 6&ndash;12pp lower than desktop. Chat overlap on forms = likely contributor.</div>
+      </div>
+      <div class="concern-item">
+        <div class="concern-num" style="color: var(--amber)">04</div>
+        <div class="concern-title">UAGC in Copy</div>
+        <div class="concern-desc">"UAGC" = 103K clicks. Full name = 53K. People know the brand. Copy should, too.</div>
+      </div>
+      <div class="concern-item">
+        <div class="concern-num" style="color: var(--blue)">05</div>
+        <div class="concern-title">Lightcast Placement</div>
+        <div class="concern-desc">Pages with Lightcast = 7&ndash;12 min sessions. Without it = 3&ndash;5 min. Not a coincidence.</div>
+      </div>
+      <div class="concern-item">
+        <div class="concern-num" style="color: var(--blue)">06</div>
+        <div class="concern-title">Multiple RFIs</div>
+        <div class="concern-desc">7+ forms on one page. Primary RFI converts at 3%. Best page converts at 13.6%. Math.</div>
+      </div>
+    </div>
+    <p class="quip">These aren't opinions. They're what 11.1 million sessions told us.</p>
+  </div>
+
+  <!-- SLIDE 10: Top Organic Pages -->
+  <div class="slide" data-slide="10">
+    <div class="kicker green">Top 5 organic / edu pages</div>
+    <h2>Pages to Review &mdash; Organic</h2>
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th>Page</th>
+          <th>GSC Clicks</th>
+          <th>GA4 Sessions</th>
+          <th>Eng. Rate</th>
+          <th>Bounce</th>
+          <th>Conversions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="page-path">/</td>
+          <td>142,563</td>
+          <td>1,316,750</td>
+          <td class="highlight-warn">56.7%</td>
+          <td class="highlight-warn">43.3%</td>
+          <td>23,133</td>
+        </tr>
+        <tr>
+          <td class="page-path">/blog/phd-vs-doctorate</td>
+          <td>60,937</td>
+          <td>153,299</td>
+          <td class="highlight-good">67.8%</td>
+          <td class="highlight-good">32.2%</td>
+          <td class="highlight-bad">21</td>
+        </tr>
+        <tr>
+          <td class="page-path">/blog/business-plan</td>
+          <td>24,413</td>
+          <td>74,663</td>
+          <td class="highlight-good">63.0%</td>
+          <td class="highlight-good">37.0%</td>
+          <td class="highlight-bad">63</td>
+        </tr>
+        <tr>
+          <td class="page-path">/blog/5-principles-mgmt</td>
+          <td>19,384</td>
+          <td>&mdash;</td>
+          <td>&mdash;</td>
+          <td>&mdash;</td>
+          <td>&mdash;</td>
+        </tr>
+        <tr>
+          <td class="page-path">/online-degrees</td>
+          <td>15,098</td>
+          <td>135,507</td>
+          <td class="highlight-good">88.8%</td>
+          <td class="highlight-good">11.2%</td>
+          <td class="highlight-good">3,428</td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="insight green" style="margin-top: 3vh">
+      <p><strong>/online-degrees is the gold standard.</strong> 88.8% engagement, 11.2% bounce, 12-minute avg sessions. If the PhD blog performed even 1/10th as well on conversions, that's 14,900 more leads a year. Just from one blog post.</p>
+    </div>
+  </div>
+
+  <!-- SLIDE 11: Top Paid Pages -->
+  <div class="slide" data-slide="11">
+    <div class="kicker">Top 5 paid landing pages</div>
+    <h2>Pages to Review &mdash; Paid</h2>
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th>Page</th>
+          <th>Sessions</th>
+          <th>Eng. Rate</th>
+          <th>Conv. Rate</th>
+          <th>Conversions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="page-path">/success/request-info-v5</td>
+          <td>1,177,574</td>
+          <td class="highlight-warn">46.8%</td>
+          <td class="highlight-bad">3.01%</td>
+          <td>35,498</td>
+        </tr>
+        <tr>
+          <td class="page-path">/success/.../bachelors-v5</td>
+          <td>458,070</td>
+          <td class="highlight-warn">43.1%</td>
+          <td class="highlight-warn">3.50%</td>
+          <td>16,013</td>
+        </tr>
+        <tr>
+          <td class="page-path">/success/military-v5</td>
+          <td>310,713</td>
+          <td>52.9%</td>
+          <td>3.07%</td>
+          <td>9,551</td>
+        </tr>
+        <tr>
+          <td class="page-path">/success/.../courses-v5</td>
+          <td>262,257</td>
+          <td class="highlight-good">74.5%</td>
+          <td class="highlight-good">7.25%</td>
+          <td>19,005</td>
+        </tr>
+        <tr>
+          <td class="page-path">/success/degree-programs-v7</td>
+          <td>221,507</td>
+          <td class="highlight-good">74.9%</td>
+          <td class="highlight-good">13.57%</td>
+          <td>30,066</td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="insight green" style="margin-top: 3vh">
+      <p>The bottom two pages have fewer sessions but <strong>nearly equal or more conversions</strong> than the top three combined. <strong>Better pages beat bigger budgets.</strong> If /request-info-v5 converted at even 7%, that's 47K additional leads from existing traffic.</p>
+    </div>
+    <p class="quip">The pages with fewer visitors are outperforming the ones with more. Fix the page, not the budget.</p>
+  </div>
+
+  <!-- SLIDE 12: Brand Queries -->
+  <div class="slide" data-slide="12">
+    <div class="kicker amber">Brand search behavior &mdash; GSC 12 months</div>
+    <h2>How Users Search for UAGC</h2>
+    <div class="metrics-row">
+      <div class="metric-block">
+        <div class="metric-value" style="color: var(--text)">103K</div>
+        <div class="metric-label">"UAGC" clicks</div>
+      </div>
+      <div class="metric-block">
+        <div class="metric-value" style="color: var(--text-secondary)">53K</div>
+        <div class="metric-label">"University of Arizona<br>Global Campus" clicks</div>
+      </div>
+      <div class="metric-block">
+        <div class="metric-value" style="color: var(--text-secondary)">15K</div>
+        <div class="metric-label">"Ashford University"<br>clicks (legacy)</div>
+      </div>
+    </div>
+    <div class="split" style="margin-top: 3vh">
+      <div>
+        <h3>Copy Implications</h3>
+        <div class="insight" style="margin-top: 2vh">
+          <p>"UAGC" is searched <strong>2x more</strong> than the full name. The abbreviation is the brand in search. Lead with it. Introduce the full name for authority.</p>
+        </div>
+      </div>
+      <div>
+        <h3>The Ashford Ghost</h3>
+        <div class="insight" style="margin-top: 2vh">
+          <p><strong>15K people still search "Ashford University."</strong> That's not a problem &mdash; it's free traffic. Make sure redirects are tight and the transition narrative is clear.</p>
+        </div>
+        <p class="quip">Ashford graduated, but people still call it by its maiden name.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- SLIDE 13: Declining Organic -->
+  <div class="slide" data-slide="13">
+    <div class="kicker">Half-year trend &mdash; GSC</div>
+    <h2>Organic Is Declining</h2>
+    <p class="subtitle">H1 (Apr&ndash;Oct 2025) vs. H2 (Oct 2025&ndash;Apr 2026) across key pages.</p>
+    <div class="chart-container" style="max-width: 700px;">
+      <svg viewBox="0 0 700 200" xmlns="http://www.w3.org/2000/svg">
+        <!-- Bars for H1 vs H2 -->
+        <text x="20" y="15" fill="#8b8f98" font-size="9" font-family="Inter" font-weight="600">CLICKS BY HALF-YEAR</text>
+
+        <!-- Homepage -->
+        <text x="170" y="45" fill="#8b8f98" font-size="10" text-anchor="end" font-family="Inter">Homepage</text>
+        <rect x="180" y="32" width="180" height="14" rx="3" fill="#5c9cf5" opacity="0.7"/>
+        <text x="365" y="44" fill="#5c9cf5" font-size="10" font-family="Inter">90,004</text>
+        <rect x="180" y="50" width="105" height="14" rx="3" fill="#e53935" opacity="0.7"/>
+        <text x="290" y="62" fill="#e53935" font-size="10" font-weight="700" font-family="Inter">52,559 (-41.6%)</text>
+
+        <!-- Writing Center -->
+        <text x="170" y="95" fill="#8b8f98" font-size="10" text-anchor="end" font-family="Inter">Writing Center</text>
+        <rect x="180" y="82" width="120" height="14" rx="3" fill="#5c9cf5" opacity="0.7"/>
+        <text x="305" y="94" fill="#5c9cf5" font-size="10" font-family="Inter">61,289</text>
+        <rect x="180" y="100" width="82" height="14" rx="3" fill="#e53935" opacity="0.7"/>
+        <text x="267" y="112" fill="#e53935" font-size="10" font-weight="700" font-family="Inter">41,772 (-31.8%)</text>
+
+        <!-- Blog -->
+        <text x="170" y="145" fill="#8b8f98" font-size="10" text-anchor="end" font-family="Inter">Blog (Mgmt)</text>
+        <rect x="180" y="132" width="52" height="14" rx="3" fill="#5c9cf5" opacity="0.7"/>
+        <text x="237" y="144" fill="#5c9cf5" font-size="10" font-family="Inter">12,901</text>
+        <rect x="180" y="150" width="26" height="14" rx="3" fill="#e53935" opacity="0.7"/>
+        <text x="211" y="162" fill="#e53935" font-size="10" font-weight="700" font-family="Inter">6,483 (-49.7%)</text>
+
+        <!-- Legend -->
+        <rect x="180" y="180" width="12" height="10" rx="2" fill="#5c9cf5" opacity="0.7"/>
+        <text x="197" y="189" fill="#8b8f98" font-size="9" font-family="Inter">H1 (Apr&ndash;Oct 2025)</text>
+        <rect x="330" y="180" width="12" height="10" rx="2" fill="#e53935" opacity="0.7"/>
+        <text x="347" y="189" fill="#8b8f98" font-size="9" font-family="Inter">H2 (Oct 2025&ndash;Apr 2026)</text>
+      </svg>
+    </div>
+    <div class="insight" style="margin-top: 2vh">
+      <p>Homepage organic clicks down <strong>41.6%</strong>, blog content down <strong>49.7%</strong>. Likely causes: <strong>AI overview cannibalization</strong> and increased SERP competition. The login&rarr;myuagc migration is a portal change, not a traffic loss.</p>
+    </div>
+    <p class="quip">Google's AI overviews are answering "what is a PhD" so well that people don't need to click anymore. The site needs to offer what AI can't.</p>
+  </div>
+
+  <!-- SLIDE 14: Case Studies -->
+  <div class="slide" data-slide="14">
+    <div class="kicker green">Benchmarks</div>
+    <h2>Others Have Solved This</h2>
+    <div class="case-grid">
+      <div class="case-card">
+        <div class="case-type">Online University</div>
+        <div class="case-name">Empire State University</div>
+        <div class="case-stat"><span class="num">3x</span><span class="desc">RFI form fills</span></div>
+        <div class="case-stat"><span class="num">+25%</span><span class="desc">UG enrollment</span></div>
+        <div class="case-stat"><span class="num">+41%</span><span class="desc">Grad enrollment</span></div>
+        <div class="case-takeaway"><strong>Key:</strong> Two-step RFI. Step 1 = bare minimum. Step 2 = optional. Personalized by audience.</div>
+      </div>
+      <div class="case-card">
+        <div class="case-type">State University</div>
+        <div class="case-name">UT Tyler</div>
+        <div class="case-stat"><span class="num">+700%</span><span class="desc">RFI conversions</span></div>
+        <div class="case-stat"><span class="num">+64%</span><span class="desc">Apply clicks</span></div>
+        <div class="case-stat"><span class="num">+200%</span><span class="desc">Organic traffic</span></div>
+        <div class="case-takeaway"><strong>Key:</strong> IA overhaul. Program Finder. Student profiles. 150 optimized pages.</div>
+      </div>
+      <div class="case-card">
+        <div class="case-type">E-Commerce</div>
+        <div class="case-name">DTC Gourmet Brand</div>
+        <div class="case-stat"><span class="num">+311%</span><span class="desc">Conversion rate</span></div>
+        <div class="case-stat"><span class="num">4x&rarr;11x</span><span class="desc">Ads ROAS</span></div>
+        <div class="case-stat"><span class="num">+440%</span><span class="desc">YoY revenue</span></div>
+        <div class="case-takeaway"><strong>Key:</strong> CRO audit before redesign. 5-second test. Reduced decision paralysis.</div>
+      </div>
+    </div>
+    <p class="quip">UT Tyler got +700% RFI conversions. They didn't spend more on ads. They fixed the page.</p>
+  </div>
+
+  <!-- SLIDE 15: Priorities -->
+  <div class="slide" data-slide="15">
+    <div class="kicker">Reskin priorities</div>
+    <h2>Where to Focus</h2>
+    <ol class="priority-list">
+      <li class="priority-item">
+        <div class="priority-rank p1">1</div>
+        <div class="priority-content">
+          <h4>Fix /success/request-info-v5</h4>
+          <p>1.18M sessions, 53.2% bounce, 3.01% conv rate, 7+ forms. If this page performed like /degree-programs-v7, that's +124K leads/year. Not a typo.</p>
+        </div>
+      </li>
+      <li class="priority-item">
+        <div class="priority-rank p1">2</div>
+        <div class="priority-content">
+          <h4>Add CTAs to Blog Content</h4>
+          <p>PhD blog: 149K sessions, 68% engagement, 21 conversions. Business plan: 75K sessions, 63% engagement, 63 conversions. The content works. The funnel doesn't.</p>
+        </div>
+      </li>
+      <li class="priority-item">
+        <div class="priority-rank p1">3</div>
+        <div class="priority-content">
+          <h4>Mobile-First Above the Fold</h4>
+          <p>60% of traffic is mobile. Bounce is 6&ndash;12pp higher than desktop everywhere. Chat overlap and form placement are urgent.</p>
+        </div>
+      </li>
+      <li class="priority-item">
+        <div class="priority-rank p2">4</div>
+        <div class="priority-content">
+          <h4>Standardize RFI Strategy</h4>
+          <p>One clear primary RFI per page. Two-step model (Empire State). Kill decision paralysis. 7 forms &rarr; 1 form.</p>
+        </div>
+      </li>
+      <li class="priority-item">
+        <div class="priority-rank p2">5</div>
+        <div class="priority-content">
+          <h4>Clone the Winners</h4>
+          <p>/online-degrees (88.8% eng.) and /degree-programs-v7 (13.6% conv) do it right. Document and apply their patterns to every underperformer.</p>
+        </div>
+      </li>
+      <li class="priority-item">
+        <div class="priority-rank p3">6</div>
+        <div class="priority-content">
+          <h4>Address Declining Organic</h4>
+          <p>Homepage -41.6%, blog -49.7%. AI overviews are eating informational queries. Pivot content strategy toward what AI can't answer.</p>
+        </div>
+      </li>
+    </ol>
+  </div>
+
+  <!-- SLIDE 16: The Math -->
+  <div class="slide" data-slide="16">
+    <div class="kicker green">The bottom line</div>
+    <div class="big-number green" style="font-size: clamp(40px, 6vw, 90px)">+124K</div>
+    <h2 style="margin-top: 2vh">additional leads per year</h2>
+    <p class="subtitle">If /success/request-info-v5 converted at 13.57% (the rate /degree-programs-v7 already achieves), that's 159,754 conversions instead of 35,498.</p>
+    <div class="compare-grid" style="margin-top: 3vh">
+      <div class="compare-card bad">
+        <span class="tag red">Current State</span>
+        <h3>/request-info-v5</h3>
+        <div class="compare-stat" style="color: var(--accent)">35,498</div>
+        <div class="compare-label">conversions from 1.18M sessions</div>
+        <div class="compare-sub">3.01% conv rate &middot; 53.2% bounce &middot; 7+ RFI forms</div>
+      </div>
+      <div class="compare-card good">
+        <span class="tag green">If It Matched the Best</span>
+        <h3>At 13.57% conv rate</h3>
+        <div class="compare-stat" style="color: var(--green)">159,754</div>
+        <div class="compare-label">conversions from the same traffic</div>
+        <div class="compare-sub">Same sessions, same budget, same ads. Just a better page.</div>
+      </div>
+    </div>
+    <p class="quip">The difference between 35K and 160K leads isn't more money. It's a better webpage.</p>
+  </div>
+
+  <!-- SLIDE 17: Next Steps -->
+  <div class="slide" data-slide="17">
+    <div class="kicker green">Three phases, three weeks</div>
+    <h1 style="margin-bottom: 0">Next Steps</h1>
+    <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: clamp(10px, 1.2vw, 20px); margin-top: 1.5vh; max-width: 1100px;">
+
+      <!-- Phase 1 -->
+      <div style="background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: clamp(12px, 1.5vw, 20px);">
+        <span class="tag blue">Phase 1 &mdash; Week of Apr 14</span>
+        <h3 style="margin-top: 0.5vh; font-size: clamp(14px, 1.3vw, 18px);">Audit &amp; Document</h3>
+        <div class="priority-list" style="margin-top: 1vh; font-size: clamp(12px, 1vw, 14px);">
+          <div class="priority-item" style="padding-top: 0; border: none;">
+            <div class="priority-content">
+              <p>Screenshot all 10 pages (desktop + mobile)</p>
+            </div>
+          </div>
+          <div class="priority-item" style="border: none;">
+            <div class="priority-content">
+              <p>Map every RFI form &mdash; count, placement, type</p>
+            </div>
+          </div>
+          <div class="priority-item" style="border: none;">
+            <div class="priority-content">
+              <p>Chat widget occlusion audit on mobile</p>
+            </div>
+          </div>
+          <div class="priority-item" style="border: none;">
+            <div class="priority-content">
+              <p>Side-by-side: /degree-programs-v7 vs /request-info-v5</p>
+            </div>
+          </div>
+          <div class="priority-item" style="border: none;">
+            <div class="priority-content">
+              <p>Contentsquare deep-dive on /s/* funnel rage clicks</p>
+            </div>
+          </div>
+        </div>
+        <p style="font-size: 11px; color: var(--blue); margin-top: 1.5vh; font-weight: 600;">&rarr; Complete picture of where friction lives</p>
+      </div>
+
+      <!-- Phase 2 -->
+      <div style="background: var(--surface); border: 1px solid rgba(67,160,71,0.3); border-radius: 10px; padding: clamp(12px, 1.5vw, 20px);">
+        <span class="tag green">Phase 2 &mdash; Week of Apr 21</span>
+        <h3 style="margin-top: 0.5vh; font-size: clamp(14px, 1.3vw, 18px);">Quick Wins</h3>
+        <div class="priority-list" style="margin-top: 1vh; font-size: clamp(12px, 1vw, 14px);">
+          <div class="priority-item" style="padding-top: 0; border: none;">
+            <div class="priority-content">
+              <p>Cut /request-info-v5 from 7 forms &rarr; 1&ndash;2</p>
+            </div>
+          </div>
+          <div class="priority-item" style="border: none;">
+            <div class="priority-content">
+              <p>Add blog CTAs: PhD &rarr; doctoral programs, business plan &rarr; business degrees</p>
+            </div>
+          </div>
+          <div class="priority-item" style="border: none;">
+            <div class="priority-content">
+              <p>Test two-step RFI on one paid page (Empire State model)</p>
+            </div>
+          </div>
+          <div class="priority-item" style="border: none;">
+            <div class="priority-content">
+              <p>Fix rage-click elements on /apply-now</p>
+            </div>
+          </div>
+        </div>
+        <p style="font-size: 11px; color: var(--green); margin-top: 1.5vh; font-weight: 600;">&rarr; Measurable lifts before the full reskin</p>
+      </div>
+
+      <!-- Phase 3 -->
+      <div style="background: var(--surface); border: 1px solid rgba(249,168,37,0.3); border-radius: 10px; padding: clamp(12px, 1.5vw, 20px);">
+        <span class="tag amber">Phase 3 &mdash; Week of Apr 28</span>
+        <h3 style="margin-top: 0.5vh; font-size: clamp(14px, 1.3vw, 18px);">Reskin Requirements</h3>
+        <div class="priority-list" style="margin-top: 1vh; font-size: clamp(12px, 1vw, 14px);">
+          <div class="priority-item" style="padding-top: 0; border: none;">
+            <div class="priority-content">
+              <p>Reskin requirements doc with P0/P1/P2 tiers</p>
+            </div>
+          </div>
+          <div class="priority-item" style="border: none;">
+            <div class="priority-content">
+              <p>Layout patterns from /online-degrees + /degree-programs-v7</p>
+            </div>
+          </div>
+          <div class="priority-item" style="border: none;">
+            <div class="priority-content">
+              <p>Mobile-first viewport spec (375px requirements)</p>
+            </div>
+          </div>
+          <div class="priority-item" style="border: none;">
+            <div class="priority-content">
+              <p>RFI strategy: one form, two steps, placement rules</p>
+            </div>
+          </div>
+          <div class="priority-item" style="border: none;">
+            <div class="priority-content">
+              <p>Present quick-win results to validate approach</p>
+            </div>
+          </div>
+        </div>
+        <p style="font-size: 11px; color: var(--amber); margin-top: 1.5vh; font-weight: 600;">&rarr; Build-ready reskin brief backed by test data</p>
+      </div>
+
+    </div>
+
+    <!-- Success metrics row -->
+    <div style="margin-top: 1.5vh; display: flex; gap: clamp(10px, 1.5vw, 24px); flex-wrap: wrap; max-width: 1100px;">
+      <div style="background: var(--surface); border-radius: 8px; padding: 8px 16px; display: flex; align-items: baseline; gap: 6px;">
+        <span style="font-size: clamp(16px, 1.6vw, 24px); font-weight: 800; color: var(--accent);">3%</span>
+        <span style="font-size: 10px; color: var(--text-secondary);">&rarr;</span>
+        <span style="font-size: clamp(16px, 1.6vw, 24px); font-weight: 800; color: var(--green);">7%+</span>
+        <span style="font-size: 10px; color: var(--text-secondary);">RFI conv</span>
+      </div>
+      <div style="background: var(--surface); border-radius: 8px; padding: 8px 16px; display: flex; align-items: baseline; gap: 6px;">
+        <span style="font-size: clamp(16px, 1.6vw, 24px); font-weight: 800; color: var(--accent);">53%</span>
+        <span style="font-size: 10px; color: var(--text-secondary);">&rarr;</span>
+        <span style="font-size: clamp(16px, 1.6vw, 24px); font-weight: 800; color: var(--green);">&lt;40%</span>
+        <span style="font-size: 10px; color: var(--text-secondary);">bounce</span>
+      </div>
+      <div style="background: var(--surface); border-radius: 8px; padding: 8px 16px; display: flex; align-items: baseline; gap: 6px;">
+        <span style="font-size: clamp(16px, 1.6vw, 24px); font-weight: 800; color: var(--accent);">21</span>
+        <span style="font-size: 10px; color: var(--text-secondary);">&rarr;</span>
+        <span style="font-size: clamp(16px, 1.6vw, 24px); font-weight: 800; color: var(--green);">1,490+</span>
+        <span style="font-size: 10px; color: var(--text-secondary);">blog leads</span>
+      </div>
+      <div style="background: var(--surface); border-radius: 8px; padding: 8px 16px; display: flex; align-items: baseline; gap: 6px;">
+        <span style="font-size: clamp(16px, 1.6vw, 24px); font-weight: 800; color: var(--accent);">44</span>
+        <span style="font-size: 10px; color: var(--text-secondary);">&rarr;</span>
+        <span style="font-size: clamp(16px, 1.6vw, 24px); font-weight: 800; color: var(--green);">&lt;30</span>
+        <span style="font-size: 10px; color: var(--text-secondary);">frustration</span>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<script>
+  const slides = document.querySelectorAll('.slide');
+  const progress = document.getElementById('progress');
+  const counter = document.getElementById('counter');
+  const total = slides.length;
+  let current = 0;
+
+  function updateUI() {
+    progress.style.width = ((current + 1) / total * 100) + '%';
+    counter.textContent = (current + 1) + ' / ' + total;
+  }
+
+  function goTo(index) {
+    if (index < 0 || index >= total || index === current) return;
+    const prev = slides[current];
+    const next = slides[index];
+    prev.classList.remove('active');
+    prev.classList.add('exiting');
+    setTimeout(() => prev.classList.remove('exiting'), 500);
+    next.classList.add('active');
+    current = index;
+    updateUI();
+  }
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'ArrowRight' || e.key === 'ArrowDown' || e.key === ' ') {
+      e.preventDefault();
+      goTo(current + 1);
+    }
+    if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') {
+      e.preventDefault();
+      goTo(current - 1);
+    }
+    if (e.key === 'Home') {
+      e.preventDefault();
+      goTo(0);
+    }
+    if (e.key === 'End') {
+      e.preventDefault();
+      goTo(total - 1);
+    }
+  });
+
+  document.addEventListener('click', (e) => {
+    if (e.target.closest('a, button, input, select, textarea')) return;
+    const x = e.clientX;
+    if (x > window.innerWidth * 0.5) {
+      goTo(current + 1);
+    } else {
+      goTo(current - 1);
+    }
+  });
+
+  let touchStartX = 0;
+  document.addEventListener('touchstart', (e) => {
+    touchStartX = e.touches[0].clientX;
+  });
+  document.addEventListener('touchend', (e) => {
+    const dx = e.changedTouches[0].clientX - touchStartX;
+    if (Math.abs(dx) > 50) {
+      if (dx < 0) goTo(current + 1);
+      else goTo(current - 1);
+    }
+  });
+
+  updateUI();
+</script>
+
+</body>
+</html>
