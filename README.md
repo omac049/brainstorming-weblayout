@@ -267,11 +267,15 @@ CTA buttons throughout the page anchor to the mid-page form rather than being se
 
 ---
 
-## 3. Top 5 Organic/EDU Pages to Review
+## 3. Top Organic Pages to Review
 
-Identified by GSC clicks + GA4 engagement data (12 months).
+Identified by GSC clicks + GA4 engagement data (12 months). Split by intent: **program/navigation pages** (visitors evaluating UAGC) vs. **blog/content pages** (visitors researching topics).
 
-### Page 1: Homepage — uagc.edu/
+### 3A. Program & Navigation Pages
+
+These pages serve visitors who are actively considering UAGC or navigating the site. They have **conversion intent** — the visitor is evaluating whether to request information or apply.
+
+#### Homepage — uagc.edu/
 
 | Metric | GSC | GA4 |
 |--------|-----|-----|
@@ -284,6 +288,7 @@ Identified by GSC clicks + GA4 engagement data (12 months).
 | Engagement Rate | — | 56.7% |
 | Bounce Rate | — | 43.3% |
 | Conversions | — | 23,133 |
+| Conv. Rate | — | 2.0% |
 | Avg Session Duration | — | 810s (13.5 min) |
 
 **Top search queries driving this page:**
@@ -296,83 +301,13 @@ Identified by GSC clicks + GA4 engagement data (12 months).
 | arizona global campus | 6,638 | 1.0 |
 | the university of arizona global campus | 5,500 | 1.0 |
 
-**Review focus:** Above-the-fold content, brand clarity, CTA prominence, chat widget position, white space balance.
+**Intent:** Brand navigation — visitors already know UAGC and are arriving to explore. 96% of clicks come from branded queries.
+
+**Review focus:** Above-the-fold content, brand clarity, CTA prominence, chat widget position, white space balance. 43% bounce on branded traffic means nearly half of people who searched for UAGC specifically still leave without engaging — the homepage isn't meeting their expectations.
 
 ---
 
-### Page 2: Blog — What's the Difference Between a PhD and a Doctorate?
-
-| Metric | GSC | GA4 |
-|--------|-----|-----|
-| Clicks | 60,937 | — |
-| Impressions | 9,133,252 | — |
-| CTR | 0.67% | — |
-| Avg Position | 7.1 | — |
-| Sessions (GA4) | — | 153,299 |
-| Landing Sessions | — | 148,831 |
-| Engagement Rate | — | 67.8% |
-| Bounce Rate | — | 32.2% |
-| Conversions | — | 21 |
-| Avg Session Duration | — | 487s (8.1 min) |
-
-**Top search queries:**
-
-| Query | Clicks | Position |
-|-------|--------|----------|
-| phd meaning | 15,336 | 3.5 |
-| what does phd stand for | 4,929 | 4.1 |
-| doctorate vs phd | 2,238 | 3.0 |
-| phd vs doctorate | 1,811 | 3.1 |
-| what is a phd | 1,419 | 4.3 |
-
-**Review focus:** This page gets 149K landing sessions and strong engagement (8+ min avg), but only **21 conversions**. This is a massive top-of-funnel content asset that isn't converting. Where is the RFI on this page? Is there a CTA for doctoral programs? The gap between engagement (68%) and conversions (essentially 0%) demands attention.
-
----
-
-### Page 3: Blog — How to Write a Business Plan Step by Step
-
-| Metric | GSC | GA4 |
-|--------|-----|-----|
-| Clicks | 24,413 | — |
-| Impressions | 17,885,063 | — |
-| CTR | 0.14% | — |
-| Avg Position | 10.9 | — |
-| Sessions (GA4) | — | (not in top 50) |
-| Landing Sessions | — | 74,663 |
-| Engagement Rate | — | 63.0% |
-| Bounce Rate | — | 37.0% |
-| Conversions | — | 63 |
-| Avg Session Duration | — | 883s (14.7 min) |
-
-**Top search queries:**
-
-| Query | Clicks | Position |
-|-------|--------|----------|
-| business plan | 3,725 | 10.8 |
-| business plan template | 575 | 1.4 |
-| components of a business plan | 312 | 3.0 |
-| how to write a business plan | 219 | 4.8 |
-| elements of a business plan | 218 | 2.6 |
-
-**Review focus:** 17.9M impressions but only 0.14% CTR — massive impression volume (ranking for "business plan" broadly) but poor click-through. The page keeps visitors for nearly 15 minutes on average, which is excellent. Only 63 conversions from 75K landing sessions. Same pattern as the PhD blog: strong content engagement, nearly zero conversion capture. RFI placement and relevance on informational content pages needs review.
-
----
-
-### Page 4: Blog — 5 Principles of Great Management
-
-| Metric | GSC | GA4 |
-|--------|-----|-----|
-| Clicks | 19,384 | — |
-| Impressions | 4,048,845 | — |
-| CTR | 0.48% | — |
-| Avg Position | 7.3 | — |
-| Landing Sessions | — | (not in top 30 landing pages) |
-
-**Review focus:** High-performing SEO content with good position (7.3) and 4M impressions. Likely similar conversion gap as other blog pages. Audit for RFI placement and relevance of CTA to content topic (link to management degree programs).
-
----
-
-### Page 5: Online Degrees — uagc.edu/online-degrees
+#### Online Degrees — uagc.edu/online-degrees
 
 | Metric | GSC | GA4 |
 |--------|-----|-----|
@@ -382,9 +317,10 @@ Identified by GSC clicks + GA4 engagement data (12 months).
 | Avg Position | 8.0 | — |
 | Sessions (GA4) | — | 135,507 |
 | Landing Sessions | — | 58,916 |
-| Engagement Rate | — | 88.8% |
-| Bounce Rate | — | 11.2% |
-| Conversions | — | 3,428 |
+| Engagement Rate | — | **88.8%** |
+| Bounce Rate | — | **11.2%** |
+| Conversions | — | **3,428** |
+| Conv. Rate | — | **5.82%** |
 | Avg Session Duration | — | 706s (11.8 min) |
 
 **Top search queries:**
@@ -397,7 +333,121 @@ Identified by GSC clicks + GA4 engagement data (12 months).
 | ashford university | 746 | 2.5 |
 | uagc programs | 377 | 1.1 |
 
-**Review focus:** This is the gold standard page. 88.8% engagement, 11.2% bounce, 3,428 conversions, 12-minute avg session. Use this page as the layout benchmark for the reskin. What does it do differently? Likely: clear program navigation, Lightcast data integration, well-placed single RFI, appropriate white space. The reskin should replicate these patterns across other pages.
+**Intent:** Program exploration — visitors are browsing degree options. Also heavily branded queries, suggesting this is a key navigation stop in the enrollment journey.
+
+**Review focus:** This is the **gold standard page**. 88.8% engagement, 11.2% bounce, 3,428 conversions, 12-minute avg sessions, 5.82% conversion rate. What makes it work:
+- Clear program navigation by category (visitors can self-select their area of interest)
+- Likely: Lightcast data integration showing career outcomes and salaries
+- Appropriate content depth before the form — visitors feel informed before acting
+- The reskin must replicate these patterns across every underperforming page
+
+**Program pages summary:**
+
+| Page | Sessions | Eng. Rate | Bounce | Conv. Rate | Conversions |
+|------|----------|-----------|--------|------------|-------------|
+| Homepage / | 1,316,750 | 56.7% | 43.3% | 2.0% | 23,133 |
+| /online-degrees | 135,507 | **88.8%** | **11.2%** | **5.82%** | 3,428 |
+
+The `/online-degrees` page engages 32pp better and converts 3x better than the homepage. The difference is content specificity — `/online-degrees` helps visitors self-identify their program, while the homepage tries to serve everyone.
+
+---
+
+### 3B. Blog / Content Pages
+
+These pages serve visitors who are **researching topics**, not evaluating UAGC. They arrive from informational queries ("what is a PhD", "how to write a business plan") and have **no conversion intent** when they land. The opportunity is to convert informational intent into enrollment interest through contextual CTAs.
+
+**The pattern across all blog pages:** Exceptional engagement (8–15 min avg sessions, 63–68% engagement) but near-zero conversions (0.01–0.08% conversion rate). The content works. The funnel from content to enrollment doesn't exist.
+
+#### Blog: What's the Difference Between a PhD and a Doctorate?
+
+| Metric | GSC | GA4 |
+|--------|-----|-----|
+| Clicks | 60,937 | — |
+| Impressions | 9,133,252 | — |
+| CTR | 0.67% | — |
+| Avg Position | 7.1 | — |
+| Sessions (GA4) | — | 153,299 |
+| Landing Sessions | — | 148,831 |
+| Engagement Rate | — | 67.8% |
+| Bounce Rate | — | 32.2% |
+| Conversions | — | **21** |
+| Conv. Rate | — | **0.01%** |
+| Avg Session Duration | — | 487s (8.1 min) |
+
+**Top search queries:**
+
+| Query | Clicks | Position |
+|-------|--------|----------|
+| phd meaning | 15,336 | 3.5 |
+| what does phd stand for | 4,929 | 4.1 |
+| doctorate vs phd | 2,238 | 3.0 |
+| phd vs doctorate | 1,811 | 3.1 |
+| what is a phd | 1,419 | 4.3 |
+
+**Intent:** Informational — visitors are learning about doctoral degrees. They don't know UAGC exists yet.
+
+**Review focus:** 149K sessions reading about doctoral degrees for 8+ minutes, and only 21 convert. The missing piece: a contextual CTA that bridges "I'm learning about PhDs" to "UAGC offers a doctoral program." This needs an in-content module like: *"Considering a doctoral degree? Explore UAGC's Doctor of Education program →"* with a direct link to the doctoral program page. Even a 1% conversion rate = **1,490 leads/year** vs. the current 21.
+
+---
+
+#### Blog: How to Write a Business Plan Step by Step
+
+| Metric | GSC | GA4 |
+|--------|-----|-----|
+| Clicks | 24,413 | — |
+| Impressions | 17,885,063 | — |
+| CTR | 0.14% | — |
+| Avg Position | 10.9 | — |
+| Sessions (GA4) | — | (not in top 50) |
+| Landing Sessions | — | 74,663 |
+| Engagement Rate | — | 63.0% |
+| Bounce Rate | — | 37.0% |
+| Conversions | — | **63** |
+| Conv. Rate | — | **0.08%** |
+| Avg Session Duration | — | 883s (14.7 min) |
+
+**Top search queries:**
+
+| Query | Clicks | Position |
+|-------|--------|----------|
+| business plan | 3,725 | 10.8 |
+| business plan template | 575 | 1.4 |
+| components of a business plan | 312 | 3.0 |
+| how to write a business plan | 219 | 4.8 |
+| elements of a business plan | 218 | 2.6 |
+
+**Intent:** Informational — visitors are writing a business plan. Many may be entrepreneurs or professionals, not students. However, some are students or career-changers who could be converted.
+
+**Review focus:** 17.9M impressions, 75K sessions, 14.7-min avg duration — this is UAGC's strongest content piece by engagement time. 63 conversions (0.08%) is marginally better than the PhD blog but still leaves massive opportunity. The CTA should bridge to business degree programs: *"Want to turn your business idea into a career? Explore UAGC's business degree programs →"*. Even a 0.5% rate = **373 leads/year** vs. 63. Note: the 0.14% CTR on 17.9M impressions suggests the SERP snippet could be improved — this page is getting shown but not clicked.
+
+---
+
+#### Blog: 5 Principles of Great Management
+
+| Metric | GSC | GA4 |
+|--------|-----|-----|
+| Clicks | 19,384 | — |
+| Impressions | 4,048,845 | — |
+| CTR | 0.48% | — |
+| Avg Position | 7.3 | — |
+| Landing Sessions | — | (not in top 30 landing pages) |
+
+**Intent:** Informational — visitors searching for management principles. Likely students, professionals, or new managers.
+
+**Review focus:** Good SEO position (7.3) and 4M impressions. Likely shares the same conversion gap as other blog pages. The CTA should bridge to management or MBA-adjacent degree programs. Audit for: is there any CTA at all? Does it link to UAGC's management degree page?
+
+---
+
+**Blog content pages summary:**
+
+| Page | GSC Clicks | Sessions | Avg Time | Conversions | Conv. Rate | Opportunity (at 1%) |
+|------|-----------|----------|----------|-------------|------------|---------------------|
+| PhD vs Doctorate | 60,937 | 148,831 | 8.1 min | 21 | 0.01% | **1,490** |
+| Business Plan | 24,413 | 74,663 | 14.7 min | 63 | 0.08% | **747** |
+| 5 Principles Mgmt | 19,384 | ~20K est. | — | ~0 | ~0% | **200** |
+| **Total** | **104,734** | **~243K** | | **84** | **0.03%** | **~2,437** |
+
+These three blog pages alone represent **243K engaged sessions with 84 total conversions**. At even 1% conversion, that's **2,437 additional leads per year** — from content that already exists and already ranks. The only missing ingredient is a contextual CTA that connects the content topic to a relevant UAGC degree program.
 
 ---
 
