@@ -229,7 +229,7 @@
 
 **Audit directive:** If Lightcast modules are only on organic program pages, consider adding them to paid `/success/` landing pages where engagement is lower. The data suggests Lightcast content correlates with significantly higher time-on-page and conversion rates.
 
-### 2F. Multiple RFIs
+### 2F. RFI Page Experience & Conversion Gap
 
 **What the data says:**
 
@@ -245,14 +245,25 @@
 | /s/app7-enrollment-agreement-intro | 105,216 | 68,745 | 65.3% | 27.4% | Deep funnel |
 | /request-information-processing | 96,053 | 12,381 | 12.89% | 45.2% | Funnel mid-step |
 
+**RFI Form Structure (verified manually, Apr 2026):**
+
+`/success/request-info-v5` has **3 visible RFI touchpoints:**
+1. **Sticky CTA bar** — persistent "Request information →" button at bottom of viewport
+2. **Above-fold multi-step form** — already uses a two-step model (Step 1: Area of Interest → Step 2: full fields)
+3. **Mid-page form** — full RFI form appearing after content sections
+
+CTA buttons throughout the page anchor to the mid-page form rather than being separate forms. The form count and structure are reasonable — the conversion problem lies elsewhere.
+
 **Key Findings:**
-- **4.5x conversion gap** between the primary RFI page (`/success/request-info-v5` at 3.01%) and the best-performing page (`/success/degree-programs-v7` at 13.57%).
-- The primary RFI page gets 1.18M sessions (mostly Paid Social) but 53% bounce — that's ~627K paid visitors leaving immediately.
-- `/success/degree-programs-v7` (Display traffic) converts 4.5x better with 75% engagement — proving that higher-intent landing pages with richer content dramatically outperform generic RFI pages.
-- `/success/online-college-courses-v5` (Paid Search traffic) converts at 7.25% with 74.5% engagement — another strong performer.
+- **4.5x conversion gap** between the primary RFI page (`/success/request-info-v5` at 3.01%) and the best-performing page (`/success/degree-programs-v7` at 13.57%) despite similar form structures.
+- The primary RFI page gets 1.18M sessions (mostly Paid Social) but 53% bounce — that's ~627K paid visitors leaving immediately. The page already uses a two-step form, so the problem isn't form friction — it's **page content and intent matching**.
+- `/success/degree-programs-v7` (Display traffic) converts 4.5x better with 75% engagement — this page offers richer program content, clearer CTA hierarchy, and program-specific value propositions that the generic RFI page lacks.
+- `/success/online-college-courses-v5` (Paid Search traffic) converts at 7.25% with 74.5% engagement — another content-rich page outperforming the generic RFI approach.
 - The enrollment agreement page (`/s/app7-enrollment-agreement-intro`) at 65.3% conversion confirms deep-funnel visitors are committed.
 
-**Audit directive:** Map every RFI form across the top 10 pages by session volume. Identify which forms are redundant, which compete, and whether the primary conversion path is clear. The `/success/request-info-v5` page needs attention — its 53.2% bounce on 1.18M sessions from paid channels means ~627K wasted paid impressions.
+**Root cause hypothesis:** The 4.5x conversion gap isn't about form count — it's about what surrounds the forms. `/degree-programs-v7` gives visitors program-specific content, outcomes data, and reasons to believe before asking for information. `/request-info-v5` leads with a generic form and generic copy, creating a mismatch with the ad creative that drove the click (especially from Paid Social).
+
+**Audit directive:** Side-by-side structural comparison of `/success/request-info-v5` vs. `/success/degree-programs-v7` — document differences in content depth, value proposition placement, social proof, above-the-fold experience, and program specificity. The form structure is similar; the page experience is the variable.
 
 ---
 
@@ -515,7 +526,7 @@ Period 2: Oct 8, 2025 – Apr 8, 2026
 - **Personalized content:** Triggered by location and browsing behavior. Military, union, and adult learner messaging tailored per audience.
 - **Responsive design:** Adapts across device sizes with easy CMS editing.
 
-**UAGC Application:** The two-step RFI model directly addresses the multiple-RFI concern. The personalization approach could help segment military vs. civilian vs. transfer student experiences. The no-motion-by-default approach is worth considering for accessibility.
+**UAGC Application:** UAGC already uses a two-step form on `/success/request-info-v5`, so the form structure itself isn't the gap. The more applicable Empire State lesson is **personalization** — tailoring content by audience segment (military, civilian, transfer). The personalization approach could help segment landing page experiences by intent. The no-motion-by-default approach is worth considering for accessibility.
 
 ---
 
@@ -538,7 +549,7 @@ Period 2: Oct 8, 2025 – Apr 8, 2026
 - **Content strategy:** 150 optimized pages at launch. Structured program pages with outcomes and alumni stories.
 - **dotCOMM Gold Award winner.**
 
-**UAGC Application:** The IA restructuring and Program Finder concept directly address white space and above-the-fold concerns. UAGC's `/online-degrees` page (88.8% engagement) already does some of this well — the reskin should expand this pattern. The +700% RFI conversion improvement shows what's possible with form strategy changes alone.
+**UAGC Application:** The IA restructuring and Program Finder concept directly address white space and above-the-fold concerns. UAGC's `/online-degrees` page (88.8% engagement) already does some of this well — the reskin should expand this pattern. The +700% RFI conversion improvement shows what's possible with page content and experience changes — the same lever UAGC needs to pull on `/request-info-v5`.
 
 ---
 
@@ -558,11 +569,11 @@ Period 2: Oct 8, 2025 – Apr 8, 2026
 - **5-second test:** Can a visitor answer "Where am I? What can I do here? Why should I do it?" in the first viewport? UAGC's `/success/request-info-v5` page (53.2% bounce on 1.18M paid sessions) may fail this test for Paid Social traffic.
 - **Above-the-fold CTA visibility:** The e-commerce site's add-to-cart button was hidden below the fold. UAGC's RFI forms may have the same problem on mobile.
 - **Value proposition placement:** Differentiators existed but weren't communicated at conversion points. UAGC's strengths (UA brand, accreditation, tuition promise) may be similarly buried.
-- **Reducing decision paralysis:** 12 shipping options → 3. UAGC's multiple RFI paths (/success/request-info-v5 vs. /success/degree-programs-v7 vs. various program pages) may create similar paralysis.
+- **Reducing decision paralysis:** 12 shipping options → 3. UAGC's multiple landing page paths (/success/request-info-v5 vs. /success/degree-programs-v7 vs. various program pages) may create similar paralysis in ad routing strategy.
 - **Design contrast:** Product photography blended into the background. UAGC should ensure CTAs and forms have strong visual contrast against the page.
 - **Every channel multiplied:** When the website converts better, every traffic source (paid, organic, email, social) becomes more profitable without changing spend.
 
-**UAGC Application:** The CRO-first approach (audit before redesign) should be adopted. The 5-second test should be applied to every page in review — particularly `/success/request-info-v5` (53% bounce on 1.18M paid sessions). The principle that multiple competing CTAs create paralysis directly maps to the multiple-RFI concern.
+**UAGC Application:** The CRO-first approach (audit before redesign) should be adopted. The 5-second test should be applied to every page in review — particularly `/success/request-info-v5` (53% bounce on 1.18M paid sessions). The principle that generic pages underperform content-rich pages directly maps to the 4.5x conversion gap between the generic RFI page and the program-specific pages.
 
 ---
 
@@ -584,11 +595,11 @@ Period 2: Oct 8, 2025 – Apr 8, 2026
 - Mobile bounce is consistently 6–12pp higher than desktop
 - Chat widget overlap, RFI form placement, and viewport utilization on mobile are urgent
 
-### Priority 4: Standardize RFI Strategy
-- `/success/degree-programs-v7` converts at 13.6% — model this
-- `/success/request-info-v5` converts at 3.0% — 4.5x worse
-- Reduce to one clear primary RFI per page
-- Consider Empire State's two-step approach
+### Priority 4: Enrich RFI Page Content
+- `/success/degree-programs-v7` converts at 13.6% with program-specific content — model this
+- `/success/request-info-v5` converts at 3.0% with generic content — 4.5x worse despite similar form structure
+- Add program-specific value propositions, outcomes data, and social proof around existing forms
+- The page already uses a two-step form — the gap is the content between the forms, not the forms themselves
 
 ### Priority 5: Replicate Best-Performing Layouts
 - `/online-degrees` (organic): 88.8% engagement, 11.2% bounce
@@ -630,11 +641,11 @@ Period 2: Oct 8, 2025 – Apr 8, 2026
 - [ ] No filler or repeated messaging
 
 ### RFI / Conversion Points
-- [ ] Number of RFI forms on page: ___
-- [ ] Primary RFI visually dominant
-- [ ] No competing forms visible simultaneously
+- [ ] Number of RFI touchpoints on page: ___ (verified: /request-info-v5 has 3 — sticky bar, above-fold 2-step form, mid-page form)
+- [ ] Primary RFI visually dominant with clear value proposition above it
+- [ ] Program-specific content surrounds forms (not generic copy)
+- [ ] Social proof visible near primary form (testimonials, outcomes data, accreditation)
 - [ ] Form placement aligns with user intent at scroll depth
-- [ ] Consider two-step RFI (Empire State model)
 - [ ] RFI present on blog/content pages (currently nearly absent)
 
 ### Lightcast Integration
@@ -659,9 +670,9 @@ Period 2: Oct 8, 2025 – Apr 8, 2026
 | # | Action | Owner | Deliverable |
 |---|--------|-------|-------------|
 | 1 | Full-page screenshots of all 10 pages (desktop 1440px + mobile 375px) | S | Screenshot library in shared folder |
-| 2 | Map every RFI form across top 10 pages — count, placement, type, and which form fires the conversion event | UX / Dev | RFI audit spreadsheet |
+| 2 | Audit RFI page content across top 10 pages — what content surrounds the forms, is it program-specific or generic, where is social proof placed | UX / Dev | RFI content audit spreadsheet |
 | 3 | Document chat widget position per page — screenshot overlays showing occlusion on mobile viewports (375×667, 390×844) | UX | Annotated screenshot deck |
-| 4 | Side-by-side structural comparison: `/success/degree-programs-v7` (13.57% conv) vs. `/success/request-info-v5` (3.01% conv) — what's different in layout, copy, form count, content depth | UX / Content | Comparison document |
+| 4 | Side-by-side structural comparison: `/success/degree-programs-v7` (13.57% conv) vs. `/success/request-info-v5` (3.01% conv) — what's different in content depth, program specificity, social proof, and value prop placement (form structure is similar) | UX / Content | Comparison document |
 | 5 | Review Contentsquare frustration data for `/s/*` application funnel pages — identify specific rage-click elements and broken interactions | UX / Analytics | Frustration findings report |
 
 **Phase 1 outcome:** Complete picture of what each page looks like, where friction lives, and what the best-performing pages do differently.
@@ -670,10 +681,10 @@ Period 2: Oct 8, 2025 – Apr 8, 2026
 
 | # | Action | Expected Impact | Effort |
 |---|--------|-----------------|--------|
-| 1 | Reduce RFI forms on `/success/request-info-v5` from 7+ to 1–2 (primary + footer) | Reduce decision paralysis; target: bounce from 53% → 40% | Low |
+| 1 | Enrich `/success/request-info-v5` with program-specific content, social proof, and value props (model after /degree-programs-v7) | Close the 4.5x conversion gap; target: bounce from 53% → 40% | Medium |
 | 2 | Add contextual CTA to PhD blog linking to doctoral programs page | Capture even 1% of 149K sessions = 1,490 leads vs. current 21 | Low |
 | 3 | Add contextual CTA to business plan blog linking to business degree page | Capture even 1% of 75K sessions = 750 leads vs. current 63 | Low |
-| 4 | Test two-step RFI on one paid landing page (Empire State model: Step 1 = email + area of interest only) | Benchmark: Empire State saw 3x form fills | Medium |
+| 4 | A/B test enriched vs. current /request-info-v5 page content (forms stay the same, page content changes) | Isolate content vs. form as the conversion variable | Medium |
 | 5 | Audit `/apply-now` for rage-click causes — identify non-responsive elements and slow interactions | Reduce 1,839 rage-click sessions; improve application completion rate | Medium |
 
 **Phase 2 outcome:** Measurable improvements on highest-impact pages before the full reskin begins. These are changes that don't require a redesign — they require removing friction.
@@ -685,7 +696,7 @@ Period 2: Oct 8, 2025 – Apr 8, 2026
 | 1 | Synthesize Phase 1 audit findings into reskin requirements document with priority tiers (P0/P1/P2) | Requirements doc |
 | 2 | Define layout patterns to replicate from `/online-degrees` (88.8% eng.) and `/degree-programs-v7` (13.57% conv) | Pattern library / wireframes |
 | 3 | Establish mobile-first above-the-fold requirements: what must be visible before scroll on 375px viewport | Mobile viewport spec |
-| 4 | Define RFI strategy for the reskin: one primary form per page, two-step model, form placement rules | RFI strategy doc |
+| 4 | Define RFI page content strategy: what program content, social proof, and value props must surround the existing form structure | RFI content strategy doc |
 | 5 | Propose Lightcast module integration for paid `/success/` pages (currently only on organic program pages; correlated with 7–12 min sessions) | Lightcast integration plan |
 | 6 | Address Paid Social landing page experience — 1.91M sessions at 42% engagement; define ad-to-page intent matching rules | Paid landing page brief |
 | 7 | Present Phase 2 quick-win results to validate approach before full reskin investment | Results readout |
@@ -702,4 +713,4 @@ Period 2: Oct 8, 2025 – Apr 8, 2026
 | Mobile engagement gap vs. desktop | -12pp | <5pp | GA4 |
 | Frustration score (Contentsquare) | 44/100 | <30/100 | Contentsquare |
 | Application funnel rage clicks | 4,518 sessions/week | <1,000 sessions/week | Contentsquare |
-| RFI forms per page (avg) | 7+ on primary page | 1–2 per page | Manual audit |
+| RFI page content score | Generic copy, no program-specific content | Program-specific value props + social proof on every RFI page | Manual audit |

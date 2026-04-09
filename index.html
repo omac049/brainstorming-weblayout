@@ -1006,7 +1006,7 @@
           <div class="screenshot-badge bad">3.01% conv &middot; 53% bounce</div>
         </div>
         <div class="page-stat">
-          1.18M sessions &middot; <strong style="color: var(--accent)">7+ RFI forms on one page</strong> &middot; Mostly Paid Social traffic (869K)
+          1.18M sessions &middot; <strong style="color: var(--accent)">53.2% bounce rate</strong> &middot; Mostly Paid Social traffic (869K)
         </div>
       </div>
       <div class="page-compare-item">
@@ -1020,35 +1020,37 @@
         </div>
       </div>
     </div>
-    <p class="quip">One page says "Here's everything we offer, pick what excites you." The other says "GIVE US YOUR PHONE NUMBER" seven times.</p>
+    <p class="quip">One page says "Here's everything we offer, pick what excites you." The other drops you on a generic form with no context.</p>
   </div>
 
-  <!-- SLIDE 7: The Multiple RFIs Problem -->
+  <!-- SLIDE 8: The RFI Experience Problem -->
   <div class="slide" data-slide="7">
-    <div class="kicker">The form-pocalypse</div>
-    <h2>7+ RFI Forms on One Page</h2>
-    <p class="subtitle">We counted. The primary paid landing page (/success/request-info-v5) has at least 7 separate "Request Info" forms. That's not conversion optimization. That's a cry for help.</p>
+    <div class="kicker">The real conversion problem</div>
+    <h2>Same Form Structure.<br>4.5x Conversion Gap.</h2>
+    <p class="subtitle">/request-info-v5 has 3 RFI touchpoints: a sticky CTA bar, an above-fold multi-step form, and a mid-page form. The form count isn't the problem &mdash; the page experience is.</p>
     <div class="split" style="margin-top: 3vh">
       <div>
-        <div class="rfi-counter">
-          <div class="rfi-icon">1</div>
-          <div class="rfi-icon">2</div>
-          <div class="rfi-icon">3</div>
-          <div class="rfi-icon">4</div>
-          <div class="rfi-icon">5</div>
-          <div class="rfi-icon">6</div>
-          <div class="rfi-icon">7</div>
+        <h3 style="margin-bottom: 1.5vh">What Users Actually See</h3>
+        <div style="display: flex; gap: clamp(8px,1vw,16px); margin-bottom: 2vh;">
+          <div class="rfi-icon" style="flex: 1; display: flex; flex-direction: column; align-items: center; gap: 4px; font-size: 10px; color: var(--text-secondary);">
+            <div style="width: 48px; height: 48px; border-radius: 8px; background: var(--surface); border: 2px solid var(--accent); display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 18px; color: var(--accent);">1</div>
+            Sticky CTA bar
+          </div>
+          <div class="rfi-icon" style="flex: 1; display: flex; flex-direction: column; align-items: center; gap: 4px; font-size: 10px; color: var(--text-secondary);">
+            <div style="width: 48px; height: 48px; border-radius: 8px; background: var(--surface); border: 2px solid var(--amber); display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 18px; color: var(--amber);">2</div>
+            Above-fold form (2-step)
+          </div>
+          <div class="rfi-icon" style="flex: 1; display: flex; flex-direction: column; align-items: center; gap: 4px; font-size: 10px; color: var(--text-secondary);">
+            <div style="width: 48px; height: 48px; border-radius: 8px; background: var(--surface); border: 2px solid var(--blue); display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 18px; color: var(--blue);">3</div>
+            Mid-page form
+          </div>
         </div>
-        <p style="font-size: clamp(12px,1.1vw,14px); color: var(--text-secondary); margin-top: 2vh; line-height: 1.6;">
-          Each icon = one RFI form found in the DOM of <code style="color: var(--accent)">/success/request-info-v5</code>. These include header forms, inline forms, mid-page forms, multi-step forms, bottom forms, popup forms, and a chat-triggered form.
-        </p>
-        <div class="insight" style="margin-top: 2vh">
-          <p>Empire State University switched to a <strong>two-step RFI</strong> and saw <strong>3x form fills</strong>. Fewer forms. Less friction. More conversions.</p>
+        <div class="insight" style="margin-top: 1vh">
+          <p>The page already uses a <strong>two-step form</strong>. The problem isn't the number of forms &mdash; it's the <strong>page content between them</strong>. Generic copy, no program-specific value props, no social proof above the fold. 53% of visitors leave before engaging.</p>
         </div>
       </div>
       <div>
         <h3 style="margin-bottom: 1vh">Conversion by Page</h3>
-        <!-- Mini horizontal bar chart -->
         <div style="margin-top: 1vh;">
           <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px;">
             <div style="width:160px;font-size:11px;text-align:right;color:var(--text-secondary)">/request-info-v5</div>
@@ -1075,7 +1077,7 @@
             </div>
           </div>
         </div>
-        <p class="quip">Adding more forms doesn't create more leads. It creates more reasons to leave.</p>
+        <p class="quip">The winning page doesn't have more forms. It has better content around them.</p>
       </div>
     </div>
   </div>
@@ -1146,8 +1148,8 @@
       </div>
       <div class="concern-item">
         <div class="concern-num" style="color: var(--blue)">06</div>
-        <div class="concern-title">Multiple RFIs</div>
-        <div class="concern-desc">7+ forms on one page. Primary RFI converts at 3%. Best page converts at 13.6%. Math.</div>
+        <div class="concern-title">RFI Page Experience</div>
+        <div class="concern-desc">Same form structure, 4.5x conversion gap. Primary RFI page converts at 3%. Best page converts at 13.6%. It's the page, not the forms.</div>
       </div>
     </div>
     <p class="quip">These aren't opinions. They're what 11.1 million sessions told us.</p>
@@ -1395,7 +1397,7 @@
         <div class="priority-rank p1">1</div>
         <div class="priority-content">
           <h4>Fix /success/request-info-v5</h4>
-          <p>1.18M sessions, 53.2% bounce, 3.01% conv rate, 7+ forms. If this page performed like /degree-programs-v7, that's +124K leads/year. Not a typo.</p>
+          <p>1.18M sessions, 53.2% bounce, 3.01% conv rate. If this page performed like /degree-programs-v7, that's +124K leads/year. Not a typo.</p>
         </div>
       </li>
       <li class="priority-item">
@@ -1415,8 +1417,8 @@
       <li class="priority-item">
         <div class="priority-rank p2">4</div>
         <div class="priority-content">
-          <h4>Standardize RFI Strategy</h4>
-          <p>One clear primary RFI per page. Two-step model (Empire State). Kill decision paralysis. 7 forms &rarr; 1 form.</p>
+          <h4>Improve RFI Page Experience</h4>
+          <p>Add program-specific content, social proof, and value props around the existing forms. The form structure is fine &mdash; the page content is the gap.</p>
         </div>
       </li>
       <li class="priority-item">
@@ -1448,7 +1450,7 @@
         <h3>/request-info-v5</h3>
         <div class="compare-stat" style="color: var(--accent)">35,498</div>
         <div class="compare-label">conversions from 1.18M sessions</div>
-        <div class="compare-sub">3.01% conv rate &middot; 53.2% bounce &middot; 7+ RFI forms</div>
+        <div class="compare-sub">3.01% conv rate &middot; 53.2% bounce &middot; generic page content</div>
       </div>
       <div class="compare-card good">
         <span class="tag green">If It Matched the Best</span>
@@ -1479,7 +1481,7 @@
           </div>
           <div class="priority-item" style="border: none;">
             <div class="priority-content">
-              <p>Map every RFI form &mdash; count, placement, type</p>
+              <p>Audit RFI page content &mdash; generic vs. program-specific</p>
             </div>
           </div>
           <div class="priority-item" style="border: none;">
@@ -1489,7 +1491,7 @@
           </div>
           <div class="priority-item" style="border: none;">
             <div class="priority-content">
-              <p>Side-by-side: /degree-programs-v7 vs /request-info-v5</p>
+              <p>Side-by-side: why /degree-programs-v7 converts 4.5x better</p>
             </div>
           </div>
           <div class="priority-item" style="border: none;">
@@ -1508,7 +1510,7 @@
         <div class="priority-list" style="margin-top: 1vh; font-size: clamp(12px, 1vw, 14px);">
           <div class="priority-item" style="padding-top: 0; border: none;">
             <div class="priority-content">
-              <p>Cut /request-info-v5 from 7 forms &rarr; 1&ndash;2</p>
+              <p>Enrich /request-info-v5 with program content + social proof</p>
             </div>
           </div>
           <div class="priority-item" style="border: none;">
@@ -1552,7 +1554,7 @@
           </div>
           <div class="priority-item" style="border: none;">
             <div class="priority-content">
-              <p>RFI strategy: one form, two steps, placement rules</p>
+              <p>RFI content strategy: what surrounds each form</p>
             </div>
           </div>
           <div class="priority-item" style="border: none;">
