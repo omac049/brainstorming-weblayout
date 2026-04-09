@@ -403,85 +403,159 @@ Identified by GSC clicks + GA4 engagement data (12 months).
 
 ## 4. Top 5 Paid Landing Pages to Review
 
-Identified by GA4 landing page sessions for `/success/` pages (12 months).
+Identified by GA4 landing page sessions for `/success/` pages (12 months). **Now enriched with Google Ads spend data** (8 accounts: Search, Display, DemandGen, plus vertical accounts for Education, Business Tech, Liberal Arts, HHS, Doctoral Studies, and General).
+
+### Google Ads Account Structure
+
+| Account | Type | 12-Month Spend | Top Channel |
+|---------|------|---------------|-------------|
+| UAGC - Search | Paid Search | $7.29M | Search, Performance Max |
+| UAGC - Display | Display/DemandGen/Video | $1.59M | DemandGen, Display, YouTube, CTV |
+| UAGC – Business Tech | Vertical Search | Vertical | Search |
+| UAGC – Education | Vertical Search | Vertical | Search |
+| UAGC – Liberal Arts | Vertical Search | Vertical | Search |
+| UAGC – HHS | Vertical Search | Vertical | Search |
+| UAGC – Doctoral Studies | Vertical Search | Vertical | Search |
+| UAGC – General | General | General | Search |
+
+### Awareness Spend — $243K with 0 Conversions
+
+**Critical context for /success/request-info-v5 session counts:** A significant portion of traffic to this page comes from awareness campaigns that are not designed to convert:
+
+| Campaign | Channel | Impressions | Spend | Conversions |
+|----------|---------|-------------|-------|-------------|
+| YouTube TV Prospecting 2026 | Video | 1.6M | $89,084 | 0 |
+| Premier CTV Prospecting 2026 | Video | 17.5M | $101,741 | 0 |
+| YouTube Audio Prospecting | Video | 46.4M | $52,459 | 0 |
+| **Total Awareness** | | **65.5M impressions** | **$243,284** | **0** |
+
+This inflates the session count and deflates the conversion rate for `/request-info-v5` in GA4. When evaluating this page's 3.01% conversion rate, the awareness-driven traffic must be considered separately.
+
+---
 
 ### Paid Page 1: /success/request-info-v5
 
-| Metric | Value |
-|--------|-------|
-| Landing Sessions | 1,177,574 |
-| Total Users | 1,032,501 |
-| Engagement Rate | 46.8% |
-| Bounce Rate | 53.2% |
-| Conversions | 35,498 |
-| Conv. Rate (from landing) | 3.01% |
-| Avg Session Duration | 204s (3.4 min) |
+| Metric | GA4 Value | Google Ads Value |
+|--------|-----------|-----------------|
+| Landing Sessions (GA4) | 1,177,574 | — |
+| Clicks (Google Ads – DemandGen) | — | 165,351 |
+| Impressions (Google Ads – DemandGen) | — | 6.6M |
+| **Ad Spend (DemandGen Prospecting)** | — | **$563,803** |
+| **Ad Spend (Awareness: YT/CTV/Audio)** | — | **$243,284** |
+| **Total Display Account Spend to this page** | — | **~$807K** |
+| Engagement Rate | 46.8% | — |
+| Bounce Rate | 53.2% | — |
+| Conversions (GA4) | 35,498 | — |
+| Conversions (Google Ads – DemandGen) | — | 3,228 |
+| Conv. Rate (from landing) | 3.01% | — |
+| CTR (Google Ads) | — | 2.49% |
+| Avg CPC (Google Ads) | — | $3.41 |
+| Cost per Conversion (Google Ads) | — | $174.68 |
 
 **Device Split:**
 - Mobile: 720K sessions (landing), 45.7% engagement, 30,042 conversions
 - Desktop: (remainder), higher engagement
 
-**Review focus:** Primary RFI landing page. 53% bounce means over half of paid traffic leaves without engaging. Mobile performance is worse. Above-the-fold content and form placement are critical. Is the value proposition clear before the form? Is there social proof?
+**Review focus:** Primary RFI landing page. 53% bounce means over half of paid traffic leaves without engaging. The Google Ads data reveals ~$807K in Display/DemandGen/Awareness spend is directed here, with $243K producing zero conversions (awareness channels). The DemandGen prospecting campaigns convert at $174.68/lead — reasonable for higher ed — but the page itself underperforms vs. content-rich alternatives. Mobile performance is worse. Above-the-fold content must match the ad creative that drove the click.
 
 ---
 
 ### Paid Page 2: /success/degree-types/bachelors-degrees-v5
 
-| Metric | Value |
-|--------|-------|
-| Landing Sessions | 458,070 |
-| Engagement Rate | 43.1% |
-| Bounce Rate | 56.9% |
-| Conversions | 16,013 |
-| Conv. Rate (from landing) | 3.50% |
-| Avg Session Duration | 394s (6.6 min) |
+| Metric | GA4 Value | Google Ads Value |
+|--------|-----------|-----------------|
+| Landing Sessions (GA4) | 458,070 | — |
+| Clicks (Google Ads – Search) | — | 131,277 |
+| Impressions (Google Ads – Search) | — | 5.15M |
+| **Ad Spend (Search)** | — | **$1,407,229** |
+| Engagement Rate | 43.1% | — |
+| Bounce Rate | 56.9% | — |
+| Conversions (GA4) | 16,013 | — |
+| Conversions (Google Ads – Search) | — | 2,739 |
+| Conv. Rate (from landing) | 3.50% | — |
+| CTR (Google Ads) | — | 2.55% |
+| Avg CPC (Google Ads) | — | $10.72 |
+| Cost per Conversion (Google Ads) | — | **$513.71** |
 
-**Review focus:** 57% bounce. This page is about bachelors degrees broadly — does it match the ad copy driving traffic? Is there program-specific content, or is it too generic? Compare layout to `/online-degrees` (which has 88.8% engagement for similar content).
+**Review focus:** **$1.4M in search spend** with only 2,739 Google Ads conversions = $513.71/conversion. This is the second-highest spend landing page in the Search account. 57% bounce rate and $514 cost per conversion demand urgent attention. The page is about bachelor's degrees broadly — does it match the ad copy? Compare layout to `/online-degrees` (88.8% engagement for similar content at zero ad cost).
 
 ---
 
 ### Paid Page 3: /success/military-v5
 
-| Metric | Value |
-|--------|-------|
-| Landing Sessions | 310,713 |
-| Engagement Rate | 52.9% |
-| Bounce Rate | 47.1% |
-| Conversions | 9,551 |
-| Conv. Rate (from landing) | 3.07% |
-| Avg Session Duration | 276s (4.6 min) |
+| Metric | GA4 Value | Google Ads Value |
+|--------|-----------|-----------------|
+| Landing Sessions (GA4) | 310,713 | — |
+| Clicks (Google Ads – Display) | — | 98,531 (prospecting) + 12,051 (remarketing) |
+| **Ad Spend (Display Prospecting)** | — | **$254,142** |
+| **Ad Spend (DemandGen Prospecting)** | — | **$243,255** |
+| **Ad Spend (Display Remarketing)** | — | **$47,658** |
+| **Total Spend to this page** | — | **~$545K** |
+| Engagement Rate | 52.9% | — |
+| Bounce Rate | 47.1% | — |
+| Conversions (GA4) | 9,551 | — |
+| Conversions (Google Ads – Display prospecting) | — | 8,752 |
+| Cost per Conversion (Display prospecting) | — | **$29.04** |
+| Cost per Conversion (Display remarketing) | — | $87.44 |
+| CTR (Display prospecting) | — | 29.28% |
 
-**Review focus:** Military audience page. Better than average engagement (53%). Is the military-specific value proposition (tuition benefits, TA, etc.) above the fold? Is Lightcast data showing military-relevant career outcomes?
+**Review focus:** **The military page is the efficiency champion.** Display prospecting converts at $29.04/lead — 14x cheaper than the general RFI page ($174.68) and 18x cheaper than bachelor's search ($513.71). The 29.28% CTR on Display prospecting suggests highly targeted audience matching. This page proves that audience-specific content + targeted ads = dramatically lower costs. The reskin should study what this page does for military visitors and replicate the pattern for other audience segments.
 
 ---
 
 ### Paid Page 4: /success/online-college-courses-v5
 
-| Metric | Value |
-|--------|-------|
-| Landing Sessions | 262,257 |
-| Engagement Rate | 74.5% |
-| Bounce Rate | 25.5% |
-| Conversions | 19,005 |
-| Conv. Rate (from landing) | 7.25% |
-| Avg Session Duration | 741s (12.4 min) |
+| Metric | GA4 Value | Google Ads Value |
+|--------|-----------|-----------------|
+| Landing Sessions (GA4) | 262,257 | — |
+| Clicks (Google Ads – Search) | — | 129,306 |
+| Impressions (Google Ads – Search) | — | 3.06M |
+| **Ad Spend (Search)** | — | **$1,640,681** |
+| Engagement Rate | 74.5% | — |
+| Bounce Rate | 25.5% | — |
+| Conversions (GA4) | 19,005 | — |
+| Conversions (Google Ads – Search) | — | 3,901 |
+| Conv. Rate (from landing) | 7.25% | — |
+| CTR (Google Ads) | — | 4.22% |
+| Avg CPC (Google Ads) | — | $12.69 |
+| Cost per Conversion (Google Ads) | — | **$420.62** |
 
-**Review focus:** Best-performing paid page. 74.5% engagement, 7.25% conversion rate, 12-minute avg sessions. Whatever this page does is working — use as the paid page benchmark alongside `/online-degrees` for organic. Replicate its patterns.
+**Review focus:** **Highest search spend at $1.64M** but also one of the best-performing pages (7.25% conv, 74.5% engagement). $420.62/conversion is high but manageable given the engagement quality. This page proves content-rich landing pages justify higher CPCs through better conversion rates. Use as the paid page benchmark alongside `/online-degrees` for organic.
 
 ---
 
 ### Paid Page 5: /success/degree-programs-v7
 
-| Metric | Value |
-|--------|-------|
-| Landing Sessions | 221,507 |
-| Engagement Rate | 74.9% |
-| Bounce Rate | 25.1% |
-| Conversions | 30,066 |
-| Conv. Rate (from landing) | 13.57% |
-| Avg Session Duration | 536s (8.9 min) |
+| Metric | GA4 Value | Google Ads Value |
+|--------|-----------|-----------------|
+| Landing Sessions (GA4) | 221,507 | — |
+| Clicks (Google Ads – Search) | — | Primarily Display (220K sessions via GA4) |
+| Engagement Rate | 74.9% | — |
+| Bounce Rate | 25.1% | — |
+| Conversions (GA4) | 30,066 | — |
+| Conv. Rate (from landing) | 13.57% | — |
+| Avg Session Duration | 536s (8.9 min) | — |
 
-**Review focus:** Highest converting paid page at 13.6% — nearly 5x the average. 30,066 conversions from 222K sessions. This is the conversion powerhouse. Must document what it does right: form placement, content structure, CTA hierarchy, Lightcast presence, number of RFI forms. This is the model for the reskin.
+**Review focus:** Highest converting paid page at 13.6% — nearly 5x the average. 30,066 conversions from 222K sessions. This page has a **program category browser** that lets visitors explore specific degrees before filling out the form. This is the model for the reskin — the content between the forms is the differentiator.
+
+---
+
+### Google Ads — Top Search Campaigns by Spend
+
+| Campaign | Type | Clicks | Spend | Conversions | Cost/Conv |
+|----------|------|--------|-------|-------------|-----------|
+| Non-Brand USP General | Search | 78,057 | $1,679,157 | 2,988 | $561.92 |
+| Non-Brand Bachelor's | Search | 86,138 | $1,344,039 | 2,743 | $490.01 |
+| Non-Brand General | Search | 46,980 | $953,016 | 1,510 | $631.01 |
+| Performance Max General | PMax | 482,735 | $734,128 | 477 | **$1,539.11** |
+| Business Tech Master's | Search | 33,772 | $589,136 | 925 | $636.56 |
+| Brand (UAGC Core) | Search | 79,244 | $447,547 | 2,968 | **$150.81** |
+
+**Key findings from Google Ads data:**
+- **Brand search is 4x more efficient** than non-brand ($150.81 vs. $490–$632/conversion). Brand protection is working.
+- **Performance Max is extremely expensive**: 482K clicks, $734K spend, only 477 conversions = **$1,539/conversion**. This needs immediate review — it's generating massive impression volume (73M) with near-zero conversion efficiency.
+- **Military Display is the standout**: $29.04/conversion vs. $420–$514 for search landing pages. Audience-specific content + targeted ads = 14–18x better efficiency.
+- **DemandGen Gen Prospecting** (Display account): $712K spend, 3,329 conversions, $214/conv — reasonable for top-of-funnel, but the video/awareness extensions ($243K) produce nothing.
 
 ---
 
