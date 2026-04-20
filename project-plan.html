@@ -1,0 +1,1490 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>UAGC Website Reskin — Project Plan</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --bg: #0e0f11;
+    --surface: #16181c;
+    --surface-2: #1c1e23;
+    --border: #24272e;
+    --border-light: #2e323a;
+    --text: #e8e9eb;
+    --text-secondary: #8b8f98;
+    --text-tertiary: #5f636b;
+    --accent: #e53935;
+    --accent-soft: rgba(229, 57, 53, 0.12);
+    --green: #43a047;
+    --green-soft: rgba(67, 160, 71, 0.12);
+    --amber: #f9a825;
+    --amber-soft: rgba(249, 168, 37, 0.12);
+    --blue: #5c9cf5;
+    --blue-soft: rgba(92, 156, 245, 0.12);
+  }
+
+  html {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Inter', -apple-system, system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    scroll-behavior: smooth;
+  }
+
+  body {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 48px 40px 80px;
+  }
+
+  @media (max-width: 768px) {
+    body { padding: 24px 20px 60px; }
+  }
+
+  /* Typography */
+  h1 {
+    font-size: 36px;
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    line-height: 1.1;
+    margin-bottom: 8px;
+  }
+
+  h2 {
+    font-size: 24px;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    line-height: 1.2;
+    margin-top: 48px;
+    margin-bottom: 16px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  h3 {
+    font-size: 17px;
+    font-weight: 700;
+    line-height: 1.3;
+    margin-bottom: 10px;
+  }
+
+  h4 {
+    font-size: 14px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--text-secondary);
+    margin-bottom: 8px;
+  }
+
+  p {
+    font-size: 14px;
+    line-height: 1.6;
+    color: var(--text-secondary);
+  }
+
+  .subtitle {
+    font-size: 15px;
+    color: var(--text-secondary);
+    max-width: 720px;
+    margin-bottom: 4px;
+  }
+
+  .meta {
+    font-size: 12px;
+    color: var(--text-tertiary);
+  }
+
+  a { color: var(--blue); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+
+  /* Nav */
+  .toc {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 20px 24px;
+    margin: 32px 0;
+  }
+
+  .toc h4 { margin-bottom: 12px; }
+
+  .toc-list {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+
+  .toc-list a {
+    display: inline-block;
+    font-size: 12px;
+    font-weight: 600;
+    padding: 5px 12px;
+    border-radius: 6px;
+    border: 1px solid var(--border);
+    color: var(--text-secondary);
+    transition: all 0.2s;
+  }
+
+  .toc-list a:hover {
+    border-color: var(--blue);
+    color: var(--blue);
+    text-decoration: none;
+    background: var(--blue-soft);
+  }
+
+  /* Stats grid */
+  .stats-row {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+    margin: 24px 0;
+  }
+
+  @media (max-width: 640px) {
+    .stats-row { grid-template-columns: repeat(2, 1fr); }
+  }
+
+  .stat-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 16px 18px;
+  }
+
+  .stat-value {
+    font-size: 28px;
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    line-height: 1.1;
+  }
+
+  .stat-label {
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--text-secondary);
+    margin-top: 4px;
+  }
+
+  /* Pill */
+  .pill {
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    padding: 4px 10px;
+    border-radius: 5px;
+  }
+
+  .pill.blue { background: var(--blue-soft); color: var(--blue); }
+  .pill.green { background: var(--green-soft); color: var(--green); }
+  .pill.amber { background: var(--amber-soft); color: var(--amber); }
+  .pill.red { background: var(--accent-soft); color: var(--accent); }
+
+  /* Phase header */
+  .phase-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+
+  .phase-header h2 {
+    margin-top: 0;
+    border-bottom: none;
+    padding-bottom: 0;
+  }
+
+  .phase-section {
+    margin-top: 48px;
+    padding-top: 8px;
+  }
+
+  /* Callout */
+  .callout {
+    border-radius: 8px;
+    padding: 16px 20px;
+    margin: 16px 0 24px;
+    border-left: 3px solid;
+  }
+
+  .callout.blue {
+    background: var(--blue-soft);
+    border-left-color: var(--blue);
+  }
+
+  .callout.green {
+    background: var(--green-soft);
+    border-left-color: var(--green);
+  }
+
+  .callout.amber {
+    background: var(--amber-soft);
+    border-left-color: var(--amber);
+  }
+
+  .callout-title {
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    margin-bottom: 6px;
+  }
+
+  .callout.blue .callout-title { color: var(--blue); }
+  .callout.green .callout-title { color: var(--green); }
+  .callout.amber .callout-title { color: var(--amber); }
+
+  .callout p {
+    font-size: 13px;
+    color: var(--text);
+    line-height: 1.5;
+  }
+
+  /* Checklist */
+  .checklist {
+    list-style: none;
+    margin: 16px 0;
+  }
+
+  .checklist li {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 8px 0;
+    border-bottom: 1px solid var(--border);
+    font-size: 13px;
+    color: var(--text);
+    line-height: 1.4;
+  }
+
+  .checklist li:last-child { border-bottom: none; }
+
+  .check-box {
+    flex-shrink: 0;
+    width: 18px;
+    height: 18px;
+    border: 2px solid var(--border-light);
+    border-radius: 4px;
+    margin-top: 1px;
+  }
+
+  /* Tables */
+  .table-wrap {
+    overflow-x: auto;
+    margin: 16px 0;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+  }
+
+  thead th {
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--text-secondary);
+    text-align: left;
+    padding: 10px 14px;
+    background: var(--surface);
+    border-bottom: 1px solid var(--border);
+    white-space: nowrap;
+    position: sticky;
+    top: 0;
+  }
+
+  tbody td {
+    padding: 10px 14px;
+    border-bottom: 1px solid var(--border);
+    vertical-align: top;
+    line-height: 1.45;
+    color: var(--text);
+  }
+
+  tbody tr:last-child td { border-bottom: none; }
+  tbody tr:nth-child(even) td { background: rgba(255,255,255,0.015); }
+
+  .task-id {
+    font-weight: 800;
+    color: var(--text-secondary);
+    white-space: nowrap;
+    font-variant-numeric: tabular-nums;
+  }
+
+  .col-narrow { max-width: 80px; }
+
+  .text-right { text-align: right; }
+  .text-center { text-align: center; }
+  .text-green { color: var(--green); font-weight: 700; }
+  .text-amber { color: var(--amber); font-weight: 700; }
+  .text-red { color: var(--accent); font-weight: 700; }
+  .text-blue { color: var(--blue); font-weight: 700; }
+  .text-bold { font-weight: 700; color: var(--text); }
+
+  /* 3-col summary cards */
+  .card-row {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    margin: 20px 0;
+  }
+
+  @media (max-width: 640px) {
+    .card-row { grid-template-columns: 1fr; }
+  }
+
+  .info-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    overflow: hidden;
+  }
+
+  .info-card-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 16px;
+    border-bottom: 1px solid var(--border);
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--text-secondary);
+    letter-spacing: 0.02em;
+    background: var(--surface-2);
+  }
+
+  .info-card-body {
+    padding: 12px 16px;
+  }
+
+  .info-card-body p {
+    font-size: 12px;
+    line-height: 1.5;
+    margin-bottom: 4px;
+  }
+
+  .info-card-body p:last-child { margin-bottom: 0; }
+
+  /* Divider */
+  hr {
+    border: none;
+    border-top: 1px solid var(--border);
+    margin: 40px 0;
+  }
+
+  /* RACI legend */
+  .raci-legend {
+    font-size: 12px;
+    color: var(--text-tertiary);
+    margin-bottom: 12px;
+  }
+
+  .raci-cell {
+    text-align: center;
+    font-weight: 700;
+    font-size: 12px;
+  }
+
+  .raci-R { color: var(--green); }
+  .raci-A { color: var(--blue); }
+  .raci-C { color: var(--amber); }
+  .raci-I { color: var(--text-tertiary); }
+
+  /* Dependency arrow */
+  .dep-arrow {
+    color: var(--text-tertiary);
+    font-size: 11px;
+    margin: 0 4px;
+  }
+
+  /* Print */
+  @media print {
+    body { background: #fff; color: #111; max-width: 100%; padding: 24px; }
+    .toc { break-inside: avoid; }
+    .phase-section { break-before: page; }
+    .stat-card, .info-card { border-color: #ccc; }
+    .stat-value { color: #111; }
+    h2 { border-bottom-color: #ccc; }
+    table { font-size: 11px; }
+    tbody td, thead th { padding: 6px 8px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ═══════════════════════ HEADER ═══════════════════════ -->
+<header>
+  <a href="index.html" style="display: inline-flex; align-items: center; gap: 6px; font-size: 12px; font-weight: 600; color: var(--text-secondary); text-decoration: none; margin-bottom: 20px; padding: 6px 14px; border: 1px solid var(--border); border-radius: 6px; transition: border-color 0.2s, color 0.2s;" onmouseover="this.style.borderColor='#5c9cf5'; this.style.color='#5c9cf5'" onmouseout="this.style.borderColor=''; this.style.color='';">&larr; Back to Presentation</a>
+  <div class="pill blue" style="margin-bottom: 12px;">Project Plan — For Project Manager</div>
+  <h1>UAGC Website Reskin</h1>
+  <p class="subtitle">Three phases, three weeks. Detailed task breakdown with owners, effort estimates, dependencies, acceptance criteria, RACI, and risk register.</p>
+  <p class="meta" style="margin-top: 8px;">Prepared: April 20, 2026 &nbsp;|&nbsp; Property: uagc.edu &nbsp;|&nbsp; Data Window: Apr 2025 – Apr 2026</p>
+</header>
+
+<!-- ═══════════════════════ KEY METRICS ═══════════════════════ -->
+<div class="stats-row" style="margin-top: 32px;">
+  <div class="stat-card">
+    <div class="stat-value" style="color: var(--text)">3 Weeks</div>
+    <div class="stat-label">Total Timeline</div>
+  </div>
+  <div class="stat-card">
+    <div class="stat-value" style="color: var(--text)">16 Tasks</div>
+    <div class="stat-label">Total Deliverables</div>
+  </div>
+  <div class="stat-card">
+    <div class="stat-value" style="color: var(--green)">+124K</div>
+    <div class="stat-label">Potential Leads/yr</div>
+  </div>
+  <div class="stat-card">
+    <div class="stat-value" style="color: var(--accent)">4.5x</div>
+    <div class="stat-label">Conversion Gap to Close</div>
+  </div>
+</div>
+
+<div class="stats-row">
+  <div class="stat-card">
+    <div class="stat-value" style="color: var(--green)">3%&rarr;7%+</div>
+    <div class="stat-label">RFI Conv. Target</div>
+  </div>
+  <div class="stat-card">
+    <div class="stat-value" style="color: var(--amber)">53%&rarr;&lt;40%</div>
+    <div class="stat-label">Bounce Target</div>
+  </div>
+  <div class="stat-card">
+    <div class="stat-value" style="color: var(--green)">21&rarr;1,490+</div>
+    <div class="stat-label">Blog Leads Target</div>
+  </div>
+  <div class="stat-card">
+    <div class="stat-value" style="color: var(--amber)">44&rarr;&lt;30</div>
+    <div class="stat-label">Frustration Score</div>
+  </div>
+</div>
+
+<!-- ═══════════════════════ TOC ═══════════════════════ -->
+<nav class="toc">
+  <h4>Contents</h4>
+  <ul class="toc-list">
+    <li><a href="#phase1">Phase 1 — Audit &amp; Document</a></li>
+    <li><a href="#phase2">Phase 2 — Quick Wins</a></li>
+    <li><a href="#phase3">Phase 3 — Reskin Requirements</a></li>
+    <li><a href="#timeline">Timeline</a></li>
+    <li><a href="#effort">Effort Summary</a></li>
+    <li><a href="#raci">RACI Matrix</a></li>
+    <li><a href="#dependencies">Dependencies</a></li>
+    <li><a href="#risks">Risk Register</a></li>
+    <li><a href="#metrics">Success Metrics</a></li>
+  </ul>
+</nav>
+
+
+<!-- ═══════════════════════ PHASE 1 ═══════════════════════ -->
+<section class="phase-section" id="phase1">
+  <div class="phase-header">
+    <h2 style="margin-top: 0;">Phase 1 — Audit &amp; Document</h2>
+    <span class="pill blue">Week of Apr 14</span>
+    <span class="pill blue" style="opacity: 0.7;">28 hours</span>
+  </div>
+
+  <p>Establish the complete picture of where friction lives. Every subsequent decision depends on this phase.</p>
+
+  <div class="callout blue">
+    <div class="callout-title">Phase Outcome</div>
+    <p>Complete picture of what each page looks like, where friction lives, and what the best-performing pages do differently. All findings documented in shared folder.</p>
+  </div>
+
+  <h3>Checklist</h3>
+  <ul class="checklist">
+    <li><div class="check-box"></div>Screenshot all 10 pages — desktop (1440px) + mobile (375px)</li>
+    <li><div class="check-box"></div>Audit RFI content across top 10 pages (generic vs. program-specific)</li>
+    <li><div class="check-box"></div>Chat widget occlusion audit on 3 mobile viewports</li>
+    <li><div class="check-box"></div>Side-by-side: /degree-programs-v7 vs /request-info-v5</li>
+    <li><div class="check-box"></div>Contentsquare deep-dive on /s/* funnel rage clicks</li>
+  </ul>
+
+  <h3>Detailed Task Breakdown</h3>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th style="width:40px">#</th>
+          <th>Task</th>
+          <th>Owner</th>
+          <th>Effort</th>
+          <th>Dependencies</th>
+          <th>Deliverable</th>
+          <th>Acceptance Criteria</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="task-id">1.1</td>
+          <td>Full-page screenshots of all 10 pages (desktop 1440px + mobile 375px). Include: homepage, /online-degrees, /request-info-v5, /degree-programs-v7, /bachelors-degrees-v5, /military-v5, /college-courses-v5, /online-programs-v7, /online-programs-v8, /apply-now</td>
+          <td class="text-bold">Web Dev</td>
+          <td>4 hrs</td>
+          <td>None — start immediately</td>
+          <td>Screenshot library in shared folder, organized by page + device</td>
+          <td>20 screenshots (10 pages &times; 2 viewports). Each shows full above-the-fold content. Named consistently.</td>
+        </tr>
+        <tr>
+          <td class="task-id">1.2</td>
+          <td>Audit RFI page content across top 10 pages. For each: document what content surrounds the form, whether it's program-specific or generic, where social proof appears, form field count, CTA copy.</td>
+          <td class="text-bold">UX / Content</td>
+          <td>8 hrs</td>
+          <td>Task 1.1 (screenshots for reference)</td>
+          <td>RFI content audit spreadsheet with columns per page</td>
+          <td>Spreadsheet covers all 10 pages. Each page scored: generic vs. specific content, social proof presence, value prop placement.</td>
+        </tr>
+        <tr>
+          <td class="task-id">1.3</td>
+          <td>Chat widget position audit on mobile. Screenshot overlays showing chat placement at 375&times;667, 390&times;844, 414&times;896. Document any CTA/form occlusion.</td>
+          <td class="text-bold">UX / QA</td>
+          <td>4 hrs</td>
+          <td>Task 1.1 (mobile screenshots)</td>
+          <td>Annotated screenshot deck with occlusion callouts</td>
+          <td>Top 5 paid landing pages audited. Each shows chat widget position relative to primary CTA and form fields. Occlusion issues flagged.</td>
+        </tr>
+        <tr>
+          <td class="task-id">1.4</td>
+          <td>Side-by-side structural comparison: <strong>/degree-programs-v7</strong> (13.57% conv) vs <strong>/request-info-v5</strong> (3.01% conv). Document differences in content depth, program specificity, social proof, value prop placement, CTA hierarchy. Form structure is similar — isolate what's different.</td>
+          <td class="text-bold">UX / Analytics</td>
+          <td>6 hrs</td>
+          <td>Tasks 1.1, 1.2</td>
+          <td>Comparison document with annotated screenshots and data overlay</td>
+          <td>Document identifies 5+ specific differences. Each difference tied to a data point. Actionable recommendations for closing the 4.5x gap.</td>
+        </tr>
+        <tr>
+          <td class="task-id">1.5</td>
+          <td>Contentsquare deep-dive on /s/* application funnel. Identify specific rage-click elements on /apply-now (1,839 sessions), /s/enrollment-agreement (887), /s/ (837). Map button multi-click patterns. Identify slow or non-responsive elements.</td>
+          <td class="text-bold">Analytics / UX</td>
+          <td>6 hrs</td>
+          <td>Contentsquare access</td>
+          <td>Frustration findings report with element-level detail</td>
+          <td>Report covers top 5 frustration pages. Each has: specific elements causing rage clicks, heatmap screenshots, recommended fixes. Priority-ranked.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="card-row">
+    <div class="info-card">
+      <div class="info-card-header">Effort Breakdown <span class="pill blue" style="font-size:10px; padding: 2px 6px;">28 hrs</span></div>
+      <div class="info-card-body">
+        <p>Web Dev: 4 hrs</p>
+        <p>UX / Content: 14 hrs</p>
+        <p>Analytics: 10 hrs</p>
+      </div>
+    </div>
+    <div class="info-card">
+      <div class="info-card-header">Blockers <span class="pill amber" style="font-size:10px; padding: 2px 6px;">Critical</span></div>
+      <div class="info-card-body">
+        <p>Contentsquare access (Task 1.5)</p>
+        <p>Shared folder setup</p>
+        <p>Page list finalization</p>
+      </div>
+    </div>
+    <div class="info-card">
+      <div class="info-card-header">Milestone <span class="pill green" style="font-size:10px; padding: 2px 6px;">Apr 18</span></div>
+      <div class="info-card-body">
+        <p>All 5 deliverables complete and in shared folder. Phase 1 review meeting scheduled for end of week.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr>
+
+<!-- ═══════════════════════ PHASE 2 ═══════════════════════ -->
+<section class="phase-section" id="phase2">
+  <div class="phase-header">
+    <h2 style="margin-top: 0;">Phase 2 — Quick Wins</h2>
+    <span class="pill green">Week of Apr 21</span>
+    <span class="pill green" style="opacity: 0.7;">41 hours</span>
+  </div>
+
+  <p>Implement measurable improvements on highest-impact pages before the full reskin. These changes don't require a redesign — they require removing friction.</p>
+
+  <div class="callout green">
+    <div class="callout-title">Phase Outcome</div>
+    <p>Measurable conversion lifts on the primary RFI page and blog content. A/B test running to validate content-enrichment approach before committing to full reskin.</p>
+  </div>
+
+  <h3>Checklist</h3>
+  <ul class="checklist">
+    <li><div class="check-box"></div>Enrich /request-info-v5 with program content + social proof</li>
+    <li><div class="check-box"></div>Add contextual CTA to PhD blog &rarr; doctoral programs</li>
+    <li><div class="check-box"></div>Add contextual CTA to business plan blog &rarr; business degrees</li>
+    <li><div class="check-box"></div>A/B test enriched vs. current /request-info-v5</li>
+    <li><div class="check-box"></div>Fix rage-click elements on /apply-now</li>
+  </ul>
+
+  <h3>Detailed Task Breakdown</h3>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th style="width:40px">#</th>
+          <th>Task</th>
+          <th>Owner</th>
+          <th>Effort</th>
+          <th>Dependencies</th>
+          <th>Deliverable</th>
+          <th>Acceptance Criteria</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="task-id">2.1</td>
+          <td>Enrich <strong>/success/request-info-v5</strong> with program-specific content, social proof, and value propositions. Model after /degree-programs-v7. Add: program category browser, outcome/salary data, student testimonials, accreditation badges. <em>Keep existing form structure unchanged.</em></td>
+          <td class="text-bold">Content / Dev</td>
+          <td>16 hrs</td>
+          <td>Phase 1 comparison doc (Task 1.4)</td>
+          <td>Updated page live OR staging version ready for A/B test</td>
+          <td>Page includes 3+ program-specific content modules. Social proof above the fold. Value prop visible before scroll. Form structure unchanged.</td>
+        </tr>
+        <tr>
+          <td class="task-id">2.2</td>
+          <td>Add contextual CTA module to <strong>PhD vs Doctorate blog</strong>. Link to UAGC Doctor of Education page. Copy: "Considering a doctoral degree? Explore UAGC's Doctor of Education program." In-content placement (not sidebar, not pop-up). One module per post.</td>
+          <td class="text-bold">Content / Dev</td>
+          <td>3 hrs</td>
+          <td>None</td>
+          <td>CTA module live on PhD blog</td>
+          <td>CTA is contextual (topic-matched, not generic RFI). Placed within content flow. Links to correct program page. Trackable in GA4.</td>
+        </tr>
+        <tr>
+          <td class="task-id">2.3</td>
+          <td>Add contextual CTA module to <strong>Business Plan blog</strong>. Link to UAGC business degree programs. Copy: "Want to turn your business idea into a career? Explore UAGC's business degree programs." Same module pattern as Task 2.2.</td>
+          <td class="text-bold">Content / Dev</td>
+          <td>2 hrs</td>
+          <td>Task 2.2 (reuse module pattern)</td>
+          <td>CTA module live on business plan blog</td>
+          <td>Same criteria as Task 2.2. Module pattern reusable for future blog posts.</td>
+        </tr>
+        <tr>
+          <td class="task-id">2.4</td>
+          <td>Set up <strong>A/B test</strong>: enriched /request-info-v5 (Task 2.1) vs. current version. Test variables: page content only — forms stay identical. Track: conversion rate, bounce rate, engagement rate, avg session duration. Run minimum 2 weeks or until statistical significance.</td>
+          <td class="text-bold">Analytics / Dev</td>
+          <td>8 hrs</td>
+          <td>Task 2.1 (enriched page ready)</td>
+          <td>A/B test running with dashboard</td>
+          <td>Test configured in Google Optimize or equivalent. 50/50 split. Primary metric: conversion rate. Secondary: bounce rate. Dashboard shared.</td>
+        </tr>
+        <tr>
+          <td class="task-id">2.5</td>
+          <td>Fix rage-click elements on <strong>/apply-now</strong> based on Contentsquare findings (Task 1.5). Address: non-responsive elements, slow-loading interactions, unclear button states. Focus on the 1,839 rage-click sessions and 1,187 button multi-click sessions.</td>
+          <td class="text-bold">Dev / UX</td>
+          <td>12 hrs</td>
+          <td>Phase 1 frustration report (Task 1.5)</td>
+          <td>Fixes deployed to /apply-now</td>
+          <td>Rage-click count reduced by 50%+ within 1 week post-deploy. Button multi-clicks reduced. Verified via Contentsquare post-deploy check.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="card-row">
+    <div class="info-card">
+      <div class="info-card-header">Effort Breakdown <span class="pill green" style="font-size:10px; padding: 2px 6px;">41 hrs</span></div>
+      <div class="info-card-body">
+        <p>Content: 16 hrs</p>
+        <p>Dev: 20 hrs</p>
+        <p>Analytics: 5 hrs</p>
+      </div>
+    </div>
+    <div class="info-card">
+      <div class="info-card-header">Key Risks <span class="pill amber" style="font-size:10px; padding: 2px 6px;">Monitor</span></div>
+      <div class="info-card-body">
+        <p>CMS limitations for blog CTA modules</p>
+        <p>A/B test tool access / setup time</p>
+        <p>Dev sprint capacity for /apply-now fixes</p>
+      </div>
+    </div>
+    <div class="info-card">
+      <div class="info-card-header">Milestone <span class="pill green" style="font-size:10px; padding: 2px 6px;">Apr 25</span></div>
+      <div class="info-card-body">
+        <p>Blog CTAs live. RFI page enriched and A/B test running. /apply-now fixes deployed. Initial lift data available by end of week.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr>
+
+<!-- ═══════════════════════ PHASE 3 ═══════════════════════ -->
+<section class="phase-section" id="phase3">
+  <div class="phase-header">
+    <h2 style="margin-top: 0;">Phase 3 — Reskin Requirements</h2>
+    <span class="pill amber">Week of Apr 28</span>
+    <span class="pill amber" style="opacity: 0.7;">44 hours</span>
+  </div>
+
+  <p>Synthesize all findings into a build-ready requirements document. Validate approach with Phase 2 quick-win data before committing to full investment.</p>
+
+  <div class="callout amber">
+    <div class="callout-title">Phase Outcome</div>
+    <p>A prioritized, data-backed requirements document that design and dev teams can build from — informed by quick-win test results from Phase 2.</p>
+  </div>
+
+  <h3>Checklist</h3>
+  <ul class="checklist">
+    <li><div class="check-box"></div>Synthesize audit into reskin requirements (P0/P1/P2)</li>
+    <li><div class="check-box"></div>Document layout patterns from /online-degrees + /degree-programs-v7</li>
+    <li><div class="check-box"></div>Mobile-first viewport spec (375px)</li>
+    <li><div class="check-box"></div>RFI content strategy doc</li>
+    <li><div class="check-box"></div>Lightcast integration plan for /success/ pages</li>
+    <li><div class="check-box"></div>Present Phase 2 quick-win results</li>
+  </ul>
+
+  <h3>Detailed Task Breakdown</h3>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th style="width:40px">#</th>
+          <th>Task</th>
+          <th>Owner</th>
+          <th>Effort</th>
+          <th>Dependencies</th>
+          <th>Deliverable</th>
+          <th>Acceptance Criteria</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="task-id">3.1</td>
+          <td>Synthesize Phase 1 audit + Phase 2 early results into <strong>reskin requirements document</strong>. Tier every requirement: <strong>P0</strong> (must-have for launch), <strong>P1</strong> (high-impact, ship within 30 days), <strong>P2</strong> (optimize post-launch). Cover: layout, content, mobile, forms, navigation, Lightcast, chat widget.</td>
+          <td class="text-bold">UX / PM</td>
+          <td>12 hrs</td>
+          <td>Phase 1 complete + Phase 2 early data</td>
+          <td>Reskin requirements doc with P0/P1/P2 tiers</td>
+          <td>Every requirement has: description, data justification, priority tier, affected pages, estimated effort. Stakeholder-reviewed.</td>
+        </tr>
+        <tr>
+          <td class="task-id">3.2</td>
+          <td>Document layout patterns from <strong>/online-degrees</strong> (88.8% eng) and <strong>/degree-programs-v7</strong> (13.57% conv). Create wireframe templates showing: content block sequencing, CTA placement rhythm, program-specific content zones, social proof placement, Lightcast module position.</td>
+          <td class="text-bold">UX / Design</td>
+          <td>10 hrs</td>
+          <td>Tasks 1.2, 1.4 (audit data)</td>
+          <td>Pattern library or wireframe kit</td>
+          <td>Wireframes cover: program landing page, general RFI page, blog content page, homepage. Each annotated with data-backed rationale.</td>
+        </tr>
+        <tr>
+          <td class="task-id">3.3</td>
+          <td>Define <strong>mobile-first above-the-fold requirements</strong> for 375px viewport. Spec: what must be visible before scroll, maximum header + hero height, CTA size/placement, form visibility, chat widget position rules, touch target sizes.</td>
+          <td class="text-bold">UX / Design</td>
+          <td>6 hrs</td>
+          <td>Tasks 1.1, 1.3 (screenshots + chat audit)</td>
+          <td>Mobile viewport spec document</td>
+          <td>Spec defines pixel-level requirements for 375px viewport. Includes mockups for top 5 page templates. Chat widget rules specified.</td>
+        </tr>
+        <tr>
+          <td class="task-id">3.4</td>
+          <td>Define <strong>RFI content strategy</strong>: what program-specific content, social proof, and value propositions must surround each form on each page type. Create content brief for: generic RFI pages, program-specific pages, blog posts, homepage.</td>
+          <td class="text-bold">Content / UX</td>
+          <td>8 hrs</td>
+          <td>Tasks 1.2, 1.4, 2.1 results</td>
+          <td>RFI content strategy document</td>
+          <td>Content brief for each page type. Each includes: required content modules, copy framework, social proof requirements, CTA copy guidelines.</td>
+        </tr>
+        <tr>
+          <td class="task-id">3.5</td>
+          <td>Plan <strong>Lightcast module integration</strong> for paid /success/ pages. Currently only on organic program pages where it correlates with 7–12 min sessions. Define: which pages get Lightcast, module placement, data fields shown, fallback for pages without program-specific data.</td>
+          <td class="text-bold">Analytics / Dev</td>
+          <td>4 hrs</td>
+          <td>Task 1.2 (content audit)</td>
+          <td>Lightcast integration plan</td>
+          <td>Plan covers top 5 paid pages. Each specifies: module position, data fields, implementation approach. Dev effort estimated.</td>
+        </tr>
+        <tr>
+          <td class="task-id">3.6</td>
+          <td><strong>Present Phase 2 quick-win results</strong> to stakeholders. Prepare: A/B test data (even if preliminary), blog CTA conversion counts, /apply-now rage-click reduction metrics. Frame as validation of content-enrichment approach before full reskin investment.</td>
+          <td class="text-bold">Analytics / PM</td>
+          <td>4 hrs</td>
+          <td>Phase 2 tasks live for 5–7 days</td>
+          <td>Results readout presentation</td>
+          <td>Presentation shows before/after metrics for each Phase 2 change. Includes recommendation: proceed with reskin, adjust approach, or extend testing.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="card-row">
+    <div class="info-card">
+      <div class="info-card-header">Effort Breakdown <span class="pill amber" style="font-size:10px; padding: 2px 6px;">44 hrs</span></div>
+      <div class="info-card-body">
+        <p>UX / Design: 24 hrs</p>
+        <p>Content: 8 hrs</p>
+        <p>Analytics / PM: 12 hrs</p>
+      </div>
+    </div>
+    <div class="info-card">
+      <div class="info-card-header">Key Risks <span class="pill amber" style="font-size:10px; padding: 2px 6px;">Monitor</span></div>
+      <div class="info-card-body">
+        <p>Phase 2 A/B test may not reach significance</p>
+        <p>Stakeholder alignment on P0/P1/P2 tiers</p>
+        <p>Design resource availability for wireframes</p>
+      </div>
+    </div>
+    <div class="info-card">
+      <div class="info-card-header">Milestone <span class="pill green" style="font-size:10px; padding: 2px 6px;">May 2</span></div>
+      <div class="info-card-body">
+        <p>Reskin requirements doc approved. Quick-win results presented. Go/no-go decision on full reskin. Design team has everything needed to begin.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr>
+
+<!-- ═══════════════════════ TIMELINE ═══════════════════════ -->
+<section id="timeline">
+  <h2>Week-by-Week Timeline</h2>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>Week</th>
+          <th>Phase</th>
+          <th>Key Activities</th>
+          <th>Milestone</th>
+          <th>Status Gate</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="text-bold">Apr 14–18</td>
+          <td><span class="pill blue">Phase 1: Audit</span></td>
+          <td>Screenshots, RFI audit, chat audit, side-by-side comparison, Contentsquare deep-dive</td>
+          <td>All audit deliverables in shared folder</td>
+          <td>PM reviews all 5 deliverables before Phase 2 starts</td>
+        </tr>
+        <tr>
+          <td class="text-bold">Apr 21–25</td>
+          <td><span class="pill green">Phase 2: Quick Wins</span></td>
+          <td>Enrich RFI page, add blog CTAs, launch A/B test, fix /apply-now rage clicks</td>
+          <td>Changes deployed, A/B test running</td>
+          <td>Blog CTAs trackable in GA4. A/B test configured and splitting traffic.</td>
+        </tr>
+        <tr>
+          <td class="text-bold">Apr 28–May 2</td>
+          <td><span class="pill amber">Phase 3: Requirements</span></td>
+          <td>Reskin requirements doc, layout patterns, mobile spec, content strategy, results readout</td>
+          <td>Requirements doc approved, go/no-go on reskin</td>
+          <td>Stakeholder sign-off on requirements. Design team briefed.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<hr>
+
+<!-- ═══════════════════════ EFFORT SUMMARY ═══════════════════════ -->
+<section id="effort">
+  <h2>Total Effort Summary</h2>
+
+  <div class="stats-row">
+    <div class="stat-card">
+      <div class="stat-value" style="color: var(--text)">113 hrs</div>
+      <div class="stat-label">Total Estimated Effort</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-value" style="color: var(--blue)">28 hrs</div>
+      <div class="stat-label">Phase 1</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-value" style="color: var(--green)">41 hrs</div>
+      <div class="stat-label">Phase 2</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-value" style="color: var(--amber)">44 hrs</div>
+      <div class="stat-label">Phase 3</div>
+    </div>
+  </div>
+
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>Role</th>
+          <th class="text-right">Phase 1</th>
+          <th class="text-right">Phase 2</th>
+          <th class="text-right">Phase 3</th>
+          <th class="text-right">Total</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="text-bold">Web Dev / Engineering</td>
+          <td class="text-right">4 hrs</td>
+          <td class="text-right">20 hrs</td>
+          <td class="text-right">4 hrs</td>
+          <td class="text-right text-bold">28 hrs</td>
+        </tr>
+        <tr>
+          <td class="text-bold">UX / Design</td>
+          <td class="text-right">14 hrs</td>
+          <td class="text-right">&mdash;</td>
+          <td class="text-right">24 hrs</td>
+          <td class="text-right text-bold">38 hrs</td>
+        </tr>
+        <tr>
+          <td class="text-bold">Content</td>
+          <td class="text-right">&mdash;</td>
+          <td class="text-right">16 hrs</td>
+          <td class="text-right">8 hrs</td>
+          <td class="text-right text-bold">24 hrs</td>
+        </tr>
+        <tr>
+          <td class="text-bold">Analytics</td>
+          <td class="text-right">10 hrs</td>
+          <td class="text-right">5 hrs</td>
+          <td class="text-right">8 hrs</td>
+          <td class="text-right text-bold">23 hrs</td>
+        </tr>
+        <tr style="border-top: 2px solid var(--border-light);">
+          <td class="text-bold" style="color: var(--text)">Total</td>
+          <td class="text-right text-blue">28 hrs</td>
+          <td class="text-right text-green">41 hrs</td>
+          <td class="text-right text-amber">44 hrs</td>
+          <td class="text-right" style="color: var(--text); font-weight: 800; font-size: 15px;">113 hrs</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<hr>
+
+<!-- ═══════════════════════ RACI ═══════════════════════ -->
+<section id="raci">
+  <h2>RACI Matrix</h2>
+  <p class="raci-legend"><strong style="color: var(--green)">R</strong> = Responsible &nbsp;&nbsp; <strong style="color: var(--blue)">A</strong> = Accountable &nbsp;&nbsp; <strong style="color: var(--amber)">C</strong> = Consulted &nbsp;&nbsp; <strong style="color: var(--text-tertiary)">I</strong> = Informed</p>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>Activity</th>
+          <th class="text-center">PM</th>
+          <th class="text-center">UX / Design</th>
+          <th class="text-center">Dev</th>
+          <th class="text-center">Content</th>
+          <th class="text-center">Analytics</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>1.1 Screenshots</td>
+          <td class="raci-cell raci-A">A</td>
+          <td class="raci-cell raci-C">C</td>
+          <td class="raci-cell raci-R">R</td>
+          <td class="raci-cell raci-I">I</td>
+          <td class="raci-cell raci-I">I</td>
+        </tr>
+        <tr>
+          <td>1.2 RFI Content Audit</td>
+          <td class="raci-cell raci-A">A</td>
+          <td class="raci-cell raci-R">R</td>
+          <td class="raci-cell raci-C">C</td>
+          <td class="raci-cell raci-R">R</td>
+          <td class="raci-cell raci-C">C</td>
+        </tr>
+        <tr>
+          <td>1.3 Chat Widget Audit</td>
+          <td class="raci-cell raci-A">A</td>
+          <td class="raci-cell raci-R">R</td>
+          <td class="raci-cell raci-C">C</td>
+          <td class="raci-cell raci-I">I</td>
+          <td class="raci-cell raci-I">I</td>
+        </tr>
+        <tr>
+          <td>1.4 Side-by-Side Comparison</td>
+          <td class="raci-cell raci-A">A</td>
+          <td class="raci-cell raci-R">R</td>
+          <td class="raci-cell raci-I">I</td>
+          <td class="raci-cell raci-C">C</td>
+          <td class="raci-cell raci-R">R</td>
+        </tr>
+        <tr>
+          <td>1.5 Contentsquare Deep-Dive</td>
+          <td class="raci-cell raci-A">A</td>
+          <td class="raci-cell raci-C">C</td>
+          <td class="raci-cell raci-I">I</td>
+          <td class="raci-cell raci-I">I</td>
+          <td class="raci-cell raci-R">R</td>
+        </tr>
+        <tr>
+          <td>2.1 Enrich RFI Page</td>
+          <td class="raci-cell raci-A">A</td>
+          <td class="raci-cell raci-C">C</td>
+          <td class="raci-cell raci-R">R</td>
+          <td class="raci-cell raci-R">R</td>
+          <td class="raci-cell raci-C">C</td>
+        </tr>
+        <tr>
+          <td>2.2 PhD Blog CTA</td>
+          <td class="raci-cell raci-A">A</td>
+          <td class="raci-cell raci-I">I</td>
+          <td class="raci-cell raci-R">R</td>
+          <td class="raci-cell raci-R">R</td>
+          <td class="raci-cell raci-I">I</td>
+        </tr>
+        <tr>
+          <td>2.3 Business Plan Blog CTA</td>
+          <td class="raci-cell raci-A">A</td>
+          <td class="raci-cell raci-I">I</td>
+          <td class="raci-cell raci-R">R</td>
+          <td class="raci-cell raci-R">R</td>
+          <td class="raci-cell raci-I">I</td>
+        </tr>
+        <tr>
+          <td>2.4 A/B Test Setup</td>
+          <td class="raci-cell raci-A">A</td>
+          <td class="raci-cell raci-C">C</td>
+          <td class="raci-cell raci-R">R</td>
+          <td class="raci-cell raci-I">I</td>
+          <td class="raci-cell raci-R">R</td>
+        </tr>
+        <tr>
+          <td>2.5 Fix Rage Clicks</td>
+          <td class="raci-cell raci-A">A</td>
+          <td class="raci-cell raci-R">R</td>
+          <td class="raci-cell raci-R">R</td>
+          <td class="raci-cell raci-I">I</td>
+          <td class="raci-cell raci-C">C</td>
+        </tr>
+        <tr>
+          <td>3.1 Requirements Doc</td>
+          <td class="raci-cell raci-R">R</td>
+          <td class="raci-cell raci-R">R</td>
+          <td class="raci-cell raci-C">C</td>
+          <td class="raci-cell raci-C">C</td>
+          <td class="raci-cell raci-C">C</td>
+        </tr>
+        <tr>
+          <td>3.2 Layout Patterns</td>
+          <td class="raci-cell raci-A">A</td>
+          <td class="raci-cell raci-R">R</td>
+          <td class="raci-cell raci-C">C</td>
+          <td class="raci-cell raci-C">C</td>
+          <td class="raci-cell raci-I">I</td>
+        </tr>
+        <tr>
+          <td>3.3 Mobile Viewport Spec</td>
+          <td class="raci-cell raci-A">A</td>
+          <td class="raci-cell raci-R">R</td>
+          <td class="raci-cell raci-C">C</td>
+          <td class="raci-cell raci-I">I</td>
+          <td class="raci-cell raci-I">I</td>
+        </tr>
+        <tr>
+          <td>3.4 RFI Content Strategy</td>
+          <td class="raci-cell raci-A">A</td>
+          <td class="raci-cell raci-C">C</td>
+          <td class="raci-cell raci-I">I</td>
+          <td class="raci-cell raci-R">R</td>
+          <td class="raci-cell raci-C">C</td>
+        </tr>
+        <tr>
+          <td>3.5 Lightcast Integration Plan</td>
+          <td class="raci-cell raci-A">A</td>
+          <td class="raci-cell raci-C">C</td>
+          <td class="raci-cell raci-R">R</td>
+          <td class="raci-cell raci-I">I</td>
+          <td class="raci-cell raci-R">R</td>
+        </tr>
+        <tr>
+          <td>3.6 Results Readout</td>
+          <td class="raci-cell raci-R">R</td>
+          <td class="raci-cell raci-I">I</td>
+          <td class="raci-cell raci-I">I</td>
+          <td class="raci-cell raci-I">I</td>
+          <td class="raci-cell raci-R">R</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<hr>
+
+<!-- ═══════════════════════ DEPENDENCIES ═══════════════════════ -->
+<section id="dependencies">
+  <h2>Cross-Phase Dependencies</h2>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>Downstream Task</th>
+          <th>Depends On</th>
+          <th>Type</th>
+          <th>Notes</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="text-bold">1.4 Side-by-side comparison</td>
+          <td>1.1 Screenshots + 1.2 RFI audit</td>
+          <td><span class="pill red" style="font-size:9px; padding: 2px 6px;">Hard</span></td>
+          <td>Cannot start without reference materials</td>
+        </tr>
+        <tr>
+          <td class="text-bold">2.1 Enrich RFI page</td>
+          <td>1.4 Side-by-side comparison</td>
+          <td><span class="pill red" style="font-size:9px; padding: 2px 6px;">Hard</span></td>
+          <td>Needs comparison findings to know what to add</td>
+        </tr>
+        <tr>
+          <td class="text-bold">2.3 Business plan blog CTA</td>
+          <td>2.2 PhD blog CTA</td>
+          <td><span class="pill blue" style="font-size:9px; padding: 2px 6px;">Soft</span></td>
+          <td>Reuse module pattern; can parallelize if pattern is defined upfront</td>
+        </tr>
+        <tr>
+          <td class="text-bold">2.4 A/B test</td>
+          <td>2.1 Enriched page ready</td>
+          <td><span class="pill red" style="font-size:9px; padding: 2px 6px;">Hard</span></td>
+          <td>Test requires enriched variant to be built</td>
+        </tr>
+        <tr>
+          <td class="text-bold">2.5 Fix rage clicks</td>
+          <td>1.5 Contentsquare deep-dive</td>
+          <td><span class="pill red" style="font-size:9px; padding: 2px 6px;">Hard</span></td>
+          <td>Fixes depend on element-level findings</td>
+        </tr>
+        <tr>
+          <td class="text-bold">3.1 Requirements doc</td>
+          <td>Phase 1 complete + Phase 2 early data</td>
+          <td><span class="pill red" style="font-size:9px; padding: 2px 6px;">Hard</span></td>
+          <td>Synthesis requires all inputs</td>
+        </tr>
+        <tr>
+          <td class="text-bold">3.6 Results readout</td>
+          <td>Phase 2 changes live 5–7 days</td>
+          <td><span class="pill red" style="font-size:9px; padding: 2px 6px;">Hard</span></td>
+          <td>Need minimum data collection window</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3 style="margin-top: 24px;">Dependency Flow</h3>
+  <div style="background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 24px; margin-top: 12px; overflow-x: auto;">
+    <svg viewBox="0 0 960 340" xmlns="http://www.w3.org/2000/svg" style="width: 100%; max-width: 960px; height: auto;">
+      <defs>
+        <marker id="arrow" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+          <path d="M0,0 L8,3 L0,6" fill="#5f636b"/>
+        </marker>
+        <marker id="arrow-green" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+          <path d="M0,0 L8,3 L0,6" fill="#43a047"/>
+        </marker>
+      </defs>
+
+      <!-- Phase labels -->
+      <text x="160" y="20" fill="#5c9cf5" font-size="11" font-weight="700" text-anchor="middle" font-family="Inter" letter-spacing="0.08em">PHASE 1</text>
+      <text x="500" y="20" fill="#43a047" font-size="11" font-weight="700" text-anchor="middle" font-family="Inter" letter-spacing="0.08em">PHASE 2</text>
+      <text x="820" y="20" fill="#f9a825" font-size="11" font-weight="700" text-anchor="middle" font-family="Inter" letter-spacing="0.08em">PHASE 3</text>
+
+      <!-- Vertical phase dividers -->
+      <line x1="330" y1="10" x2="330" y2="330" stroke="#24272e" stroke-width="1" stroke-dasharray="4"/>
+      <line x1="660" y1="10" x2="660" y2="330" stroke="#24272e" stroke-width="1" stroke-dasharray="4"/>
+
+      <!-- Phase 1 boxes -->
+      <rect x="30" y="40" width="120" height="36" rx="6" fill="#16181c" stroke="#5c9cf5" stroke-width="1.5"/>
+      <text x="90" y="63" fill="#e8e9eb" font-size="11" font-weight="600" text-anchor="middle" font-family="Inter">1.1 Screenshots</text>
+
+      <rect x="170" y="40" width="140" height="36" rx="6" fill="#16181c" stroke="#5c9cf5" stroke-width="1.5"/>
+      <text x="240" y="63" fill="#e8e9eb" font-size="11" font-weight="600" text-anchor="middle" font-family="Inter">1.2 RFI Audit</text>
+
+      <rect x="30" y="100" width="140" height="36" rx="6" fill="#16181c" stroke="#5c9cf5" stroke-width="1.5"/>
+      <text x="100" y="123" fill="#e8e9eb" font-size="11" font-weight="600" text-anchor="middle" font-family="Inter">1.3 Chat Audit</text>
+
+      <rect x="30" y="160" width="280" height="36" rx="6" fill="#16181c" stroke="#5c9cf5" stroke-width="2"/>
+      <text x="170" y="183" fill="#e8e9eb" font-size="11" font-weight="700" text-anchor="middle" font-family="Inter">1.4 Side-by-Side Comparison</text>
+
+      <rect x="30" y="220" width="280" height="36" rx="6" fill="#16181c" stroke="#5c9cf5" stroke-width="1.5"/>
+      <text x="170" y="243" fill="#e8e9eb" font-size="11" font-weight="600" text-anchor="middle" font-family="Inter">1.5 Contentsquare Deep-Dive</text>
+
+      <!-- Phase 1 arrows -->
+      <line x1="90" y1="76" x2="90" y2="96" stroke="#5f636b" stroke-width="1.5" marker-end="url(#arrow)"/>
+      <line x1="150" y1="58" x2="168" y2="58" stroke="#5f636b" stroke-width="1.5" marker-end="url(#arrow)"/>
+      <path d="M 150 63 Q 160 100, 170 160 L 170 158" fill="none" stroke="#5f636b" stroke-width="1.5" marker-end="url(#arrow)"/>
+      <path d="M 240 76 Q 240 120, 220 158" fill="none" stroke="#5f636b" stroke-width="1.5" marker-end="url(#arrow)"/>
+
+      <!-- Phase 2 boxes -->
+      <rect x="360" y="40" width="260" height="36" rx="6" fill="#16181c" stroke="#43a047" stroke-width="2"/>
+      <text x="490" y="63" fill="#e8e9eb" font-size="11" font-weight="700" text-anchor="middle" font-family="Inter">2.1 Enrich RFI Page</text>
+
+      <rect x="360" y="100" width="140" height="36" rx="6" fill="#16181c" stroke="#43a047" stroke-width="1.5"/>
+      <text x="430" y="123" fill="#e8e9eb" font-size="11" font-weight="600" text-anchor="middle" font-family="Inter">2.2 PhD CTA</text>
+
+      <rect x="510" y="100" width="140" height="36" rx="6" fill="#16181c" stroke="#43a047" stroke-width="1.5"/>
+      <text x="580" y="123" fill="#e8e9eb" font-size="11" font-weight="600" text-anchor="middle" font-family="Inter">2.3 Biz Plan CTA</text>
+
+      <rect x="360" y="160" width="140" height="36" rx="6" fill="#16181c" stroke="#43a047" stroke-width="1.5"/>
+      <text x="430" y="183" fill="#e8e9eb" font-size="11" font-weight="600" text-anchor="middle" font-family="Inter">2.4 A/B Test</text>
+
+      <rect x="360" y="220" width="260" height="36" rx="6" fill="#16181c" stroke="#43a047" stroke-width="1.5"/>
+      <text x="490" y="243" fill="#e8e9eb" font-size="11" font-weight="600" text-anchor="middle" font-family="Inter">2.5 Fix Rage Clicks</text>
+
+      <!-- Phase 1 → Phase 2 arrows (cross-phase) -->
+      <line x1="310" y1="178" x2="358" y2="58" stroke="#43a047" stroke-width="1.5" marker-end="url(#arrow-green)"/>
+      <line x1="310" y1="238" x2="358" y2="238" stroke="#43a047" stroke-width="1.5" marker-end="url(#arrow-green)"/>
+
+      <!-- Phase 2 internal arrows -->
+      <line x1="500" y1="118" x2="508" y2="118" stroke="#5f636b" stroke-width="1.5" marker-end="url(#arrow)"/>
+      <line x1="490" y1="76" x2="430" y2="158" stroke="#5f636b" stroke-width="1.5" marker-end="url(#arrow)"/>
+
+      <!-- Phase 3 boxes -->
+      <rect x="690" y="40" width="250" height="36" rx="6" fill="#16181c" stroke="#f9a825" stroke-width="2"/>
+      <text x="815" y="63" fill="#e8e9eb" font-size="11" font-weight="700" text-anchor="middle" font-family="Inter">3.1 Requirements Doc</text>
+
+      <rect x="690" y="100" width="120" height="36" rx="6" fill="#16181c" stroke="#f9a825" stroke-width="1.5"/>
+      <text x="750" y="123" fill="#e8e9eb" font-size="11" font-weight="600" text-anchor="middle" font-family="Inter">3.2 Patterns</text>
+
+      <rect x="820" y="100" width="120" height="36" rx="6" fill="#16181c" stroke="#f9a825" stroke-width="1.5"/>
+      <text x="880" y="123" fill="#e8e9eb" font-size="11" font-weight="600" text-anchor="middle" font-family="Inter">3.3 Mobile Spec</text>
+
+      <rect x="690" y="160" width="120" height="36" rx="6" fill="#16181c" stroke="#f9a825" stroke-width="1.5"/>
+      <text x="750" y="183" fill="#e8e9eb" font-size="11" font-weight="600" text-anchor="middle" font-family="Inter">3.4 Content</text>
+
+      <rect x="820" y="160" width="120" height="36" rx="6" fill="#16181c" stroke="#f9a825" stroke-width="1.5"/>
+      <text x="880" y="183" fill="#e8e9eb" font-size="11" font-weight="600" text-anchor="middle" font-family="Inter">3.5 Lightcast</text>
+
+      <rect x="690" y="280" width="250" height="36" rx="6" fill="#16181c" stroke="#f9a825" stroke-width="2"/>
+      <text x="815" y="303" fill="#e8e9eb" font-size="11" font-weight="700" text-anchor="middle" font-family="Inter">3.6 Results Readout</text>
+
+      <!-- Phase 2 → Phase 3 arrows -->
+      <line x1="620" y1="58" x2="688" y2="58" stroke="#f9a825" stroke-width="1.5" marker-end="url(#arrow)"/>
+      <path d="M 500 196 Q 600 270, 688 298" fill="none" stroke="#f9a825" stroke-width="1.5" marker-end="url(#arrow)"/>
+
+      <!-- Legend -->
+      <rect x="30" y="290" width="10" height="10" rx="2" fill="#5c9cf5"/>
+      <text x="46" y="299" fill="#8b8f98" font-size="9" font-family="Inter">Phase 1</text>
+      <rect x="100" y="290" width="10" height="10" rx="2" fill="#43a047"/>
+      <text x="116" y="299" fill="#8b8f98" font-size="9" font-family="Inter">Phase 2</text>
+      <rect x="170" y="290" width="10" height="10" rx="2" fill="#f9a825"/>
+      <text x="186" y="299" fill="#8b8f98" font-size="9" font-family="Inter">Phase 3</text>
+      <line x1="240" y1="295" x2="265" y2="295" stroke="#5f636b" stroke-width="1.5" marker-end="url(#arrow)"/>
+      <text x="272" y="299" fill="#8b8f98" font-size="9" font-family="Inter">Dependency</text>
+    </svg>
+  </div>
+</section>
+
+<hr>
+
+<!-- ═══════════════════════ RISK REGISTER ═══════════════════════ -->
+<section id="risks">
+  <h2>Risk Register</h2>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>Risk</th>
+          <th>Impact</th>
+          <th>Likelihood</th>
+          <th>Mitigation</th>
+          <th>Owner</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="text-bold">Contentsquare access not available for Phase 1</td>
+          <td class="text-red">High — Task 1.5 blocked, Task 2.5 delayed</td>
+          <td class="text-amber">Medium</td>
+          <td>Request access immediately. Fallback: use GA4 event data + manual testing</td>
+          <td>Analytics Lead</td>
+        </tr>
+        <tr>
+          <td class="text-bold">CMS doesn't support in-content blog CTA modules</td>
+          <td class="text-amber">Medium — Tasks 2.2, 2.3 need workaround</td>
+          <td class="text-amber">Medium</td>
+          <td>Evaluate: custom HTML block, plugin, or hardcoded module. Identify CMS constraints in Phase 1.</td>
+          <td>Dev Lead</td>
+        </tr>
+        <tr>
+          <td class="text-bold">A/B test tool not configured or available</td>
+          <td class="text-red">High — Task 2.4 blocked, Phase 3 validation weakened</td>
+          <td>Low</td>
+          <td>Confirm tool access (Google Optimize, VWO, etc.) in Phase 1. Fallback: sequential deploy with before/after comparison.</td>
+          <td>Analytics Lead</td>
+        </tr>
+        <tr>
+          <td class="text-bold">Phase 2 A/B test doesn't reach statistical significance in 1 week</td>
+          <td class="text-amber">Medium — Phase 3 readout has preliminary data only</td>
+          <td class="text-red">High</td>
+          <td>Present directional data with confidence intervals. Extend test. Don't gate reskin decision on test alone — use alongside Phase 1 audit findings.</td>
+          <td>PM / Analytics</td>
+        </tr>
+        <tr>
+          <td class="text-bold">Dev sprint capacity unavailable for /apply-now fixes</td>
+          <td class="text-amber">Medium — Task 2.5 delayed</td>
+          <td class="text-amber">Medium</td>
+          <td>Scope rage-click fixes to highest-impact elements only. Defer lower-priority fixes to reskin backlog.</td>
+          <td>Dev Lead / PM</td>
+        </tr>
+        <tr>
+          <td class="text-bold">Stakeholder disagreement on P0/P1/P2 tiers</td>
+          <td class="text-red">High — Phase 3 requirements doc delayed</td>
+          <td class="text-amber">Medium</td>
+          <td>Pre-align with key stakeholders during Phase 1. Use data to justify every tier decision. Schedule review meeting before final doc.</td>
+          <td>PM</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<hr>
+
+<!-- ═══════════════════════ SUCCESS METRICS ═══════════════════════ -->
+<section id="metrics">
+  <h2>Success Metrics &amp; Measurement Plan</h2>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>Metric</th>
+          <th>Current</th>
+          <th>Phase 2 Target</th>
+          <th>Post-Reskin Target</th>
+          <th>Source</th>
+          <th>Cadence</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="text-bold">/request-info-v5 conversion rate</td>
+          <td class="text-red">3.01%</td>
+          <td class="text-amber">5%+ (A/B test)</td>
+          <td class="text-green">7%+ (matching /college-courses-v5)</td>
+          <td>GA4</td>
+          <td>Weekly during test, monthly post</td>
+        </tr>
+        <tr>
+          <td class="text-bold">/request-info-v5 bounce rate</td>
+          <td class="text-red">53.2%</td>
+          <td class="text-amber">&lt;48%</td>
+          <td class="text-green">&lt;40%</td>
+          <td>GA4</td>
+          <td>Weekly during test, monthly post</td>
+        </tr>
+        <tr>
+          <td class="text-bold">Blog-to-lead conversion rate</td>
+          <td class="text-red">0.01% (21 conv / 149K)</td>
+          <td class="text-amber">0.5%+ (745 leads)</td>
+          <td class="text-green">1%+ (1,490 leads)</td>
+          <td>GA4</td>
+          <td>Weekly for first month</td>
+        </tr>
+        <tr>
+          <td class="text-bold">Mobile engagement gap vs desktop</td>
+          <td class="text-red">-12pp</td>
+          <td class="text-amber">-8pp</td>
+          <td class="text-green">&lt;5pp</td>
+          <td>GA4</td>
+          <td>Monthly</td>
+        </tr>
+        <tr>
+          <td class="text-bold">Frustration score (Contentsquare)</td>
+          <td class="text-red">44/100</td>
+          <td class="text-amber">&lt;38</td>
+          <td class="text-green">&lt;30</td>
+          <td>Contentsquare</td>
+          <td>Weekly</td>
+        </tr>
+        <tr>
+          <td class="text-bold">/apply-now rage clicks</td>
+          <td class="text-red">1,839 sessions/wk</td>
+          <td class="text-amber">&lt;900</td>
+          <td class="text-green">&lt;500</td>
+          <td>Contentsquare</td>
+          <td>Weekly for first month</td>
+        </tr>
+        <tr>
+          <td class="text-bold">Blog CTA click-through rate</td>
+          <td class="text-red">N/A (no CTAs)</td>
+          <td class="text-amber">2%+</td>
+          <td class="text-green">3%+</td>
+          <td>GA4 events</td>
+          <td>Weekly for first month</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<hr>
+
+<!-- ═══════════════════════ DATA CONTEXT ═══════════════════════ -->
+<section style="margin-top: 32px;">
+  <h2>Data Context — Why This Plan Exists</h2>
+  <p style="margin-bottom: 16px;">Every task in this plan traces back to one of these findings from 12 months of GSC, GA4, Contentsquare, and Google Ads data (8 accounts):</p>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>Finding</th>
+          <th>Data Point</th>
+          <th>Tasks Addressing It</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="text-bold">4.5x conversion gap between paid landing pages</td>
+          <td>/request-info-v5 at 3.01% vs /degree-programs-v7 at 13.57% — same forms, different page content</td>
+          <td>1.4, 2.1, 2.4, 3.1, 3.2, 3.4</td>
+        </tr>
+        <tr>
+          <td class="text-bold">Blog content engages but doesn't convert</td>
+          <td>PhD blog: 149K sessions, 8 min avg, 21 conversions (0.01%). No CTAs exist.</td>
+          <td>2.2, 2.3, 3.4</td>
+        </tr>
+        <tr>
+          <td class="text-bold">Mobile bounce consistently worse</td>
+          <td>60% of traffic is mobile. Engagement 6–12pp lower than desktop across all pages.</td>
+          <td>1.1, 1.3, 3.3</td>
+        </tr>
+        <tr>
+          <td class="text-bold">Application funnel frustration</td>
+          <td>/apply-now: 1,839 rage clicks + 3,986 excessive hovers. /s/* pages in every frustration category.</td>
+          <td>1.5, 2.5</td>
+        </tr>
+        <tr>
+          <td class="text-bold">High-performing pages exist but aren't replicated</td>
+          <td>/online-degrees: 88.8% engagement. /degree-programs-v7: 13.57% conversion. Patterns not applied elsewhere.</td>
+          <td>1.2, 1.4, 3.2, 3.5</td>
+        </tr>
+        <tr>
+          <td class="text-bold">Declining organic performance</td>
+          <td>Homepage -41.6%, blog -49.7% H1→H2. AI overview cannibalization likely.</td>
+          <td>3.1, 3.4</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<hr>
+
+<footer style="text-align: center; padding: 24px 0;">
+  <a href="index.html" style="display: inline-flex; align-items: center; gap: 6px; font-size: 12px; font-weight: 600; color: var(--text-secondary); text-decoration: none; margin-bottom: 16px; padding: 6px 14px; border: 1px solid var(--border); border-radius: 6px; transition: border-color 0.2s, color 0.2s;" onmouseover="this.style.borderColor='#5c9cf5'; this.style.color='#5c9cf5'" onmouseout="this.style.borderColor=''; this.style.color='';">&larr; Back to Presentation</a>
+  <p class="meta">UAGC Website Reskin Project Plan v1.0 &nbsp;|&nbsp; Prepared April 20, 2026 &nbsp;|&nbsp; Data: GSC, GA4, Contentsquare, Google Ads</p>
+  <p class="meta" style="margin-top: 4px;">Property: uagc.edu &nbsp;|&nbsp; Data Window: April 2025 – April 2026 &nbsp;|&nbsp; 11.1M sessions analyzed</p>
+</footer>
+
+</body>
+</html>
