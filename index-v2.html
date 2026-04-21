@@ -1,0 +1,1156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>UAGC Website Reskin — ELT Briefing</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --bg: #0e0f11;
+    --surface: #16181c;
+    --border: #24272e;
+    --text: #e8e9eb;
+    --text-secondary: #8b8f98;
+    --accent: #e53935;
+    --accent-soft: rgba(229, 57, 53, 0.12);
+    --green: #43a047;
+    --green-soft: rgba(67, 160, 71, 0.12);
+    --amber: #f9a825;
+    --amber-soft: rgba(249, 168, 37, 0.12);
+    --blue: #5c9cf5;
+    --blue-soft: rgba(92, 156, 245, 0.12);
+  }
+
+  html, body {
+    height: 100%;
+    overflow: hidden;
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Inter', -apple-system, system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .deck { position: relative; width: 100%; height: 100%; }
+
+  .slide {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 5vh 8vw;
+    opacity: 0;
+    transform: translateY(12px);
+    pointer-events: none;
+    transition: opacity 0.5s cubic-bezier(0.22, 1, 0.36, 1),
+                transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+    will-change: opacity, transform;
+    overflow-y: auto;
+  }
+
+  .slide.active {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+  }
+
+  .slide.exiting {
+    opacity: 0;
+    transform: translateY(-12px);
+  }
+
+  .progress {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 3px;
+    background: var(--accent);
+    transition: width 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+    z-index: 100;
+  }
+
+  .counter {
+    position: fixed;
+    bottom: 3vh;
+    right: 4vw;
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--text-secondary);
+    letter-spacing: 0.05em;
+    z-index: 100;
+  }
+
+  .nav-hint {
+    position: fixed;
+    bottom: 3vh;
+    left: 4vw;
+    font-size: 12px;
+    color: var(--text-secondary);
+    opacity: 0.5;
+    z-index: 100;
+    letter-spacing: 0.03em;
+  }
+
+  /* Typography */
+  .kicker {
+    font-size: clamp(11px, 1.2vw, 14px);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--accent);
+    margin-bottom: 1.5vh;
+  }
+
+  .kicker.green { color: var(--green); }
+  .kicker.blue { color: var(--blue); }
+  .kicker.amber { color: var(--amber); }
+
+  h1 {
+    font-size: clamp(32px, 5vw, 72px);
+    font-weight: 800;
+    line-height: 1.05;
+    letter-spacing: -0.03em;
+    max-width: 900px;
+  }
+
+  h2 {
+    font-size: clamp(24px, 3.5vw, 52px);
+    font-weight: 700;
+    line-height: 1.1;
+    letter-spacing: -0.025em;
+    max-width: 850px;
+  }
+
+  h3 {
+    font-size: clamp(18px, 2vw, 28px);
+    font-weight: 600;
+    line-height: 1.2;
+    letter-spacing: -0.01em;
+  }
+
+  .subtitle {
+    font-size: clamp(15px, 1.6vw, 22px);
+    font-weight: 400;
+    line-height: 1.5;
+    color: var(--text-secondary);
+    max-width: 680px;
+    margin-top: 2vh;
+  }
+
+  .quip {
+    font-size: clamp(13px, 1.3vw, 18px);
+    font-weight: 400;
+    font-style: italic;
+    color: var(--text-secondary);
+    opacity: 0.7;
+    margin-top: 1.5vh;
+  }
+
+  .big-number {
+    font-size: clamp(48px, 8vw, 120px);
+    font-weight: 900;
+    line-height: 1;
+    letter-spacing: -0.04em;
+    color: var(--accent);
+  }
+
+  .big-number.green { color: var(--green); }
+  .big-number.blue { color: var(--blue); }
+  .big-number.amber { color: var(--amber); }
+
+  .big-label {
+    font-size: clamp(14px, 1.4vw, 20px);
+    font-weight: 500;
+    color: var(--text-secondary);
+    margin-top: 0.5vh;
+  }
+
+  /* Metrics */
+  .metrics-row {
+    display: flex;
+    gap: clamp(24px, 4vw, 64px);
+    margin-top: 5vh;
+    flex-wrap: wrap;
+  }
+
+  .metric-block { min-width: 140px; }
+
+  .metric-value {
+    font-size: clamp(28px, 4vw, 56px);
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    line-height: 1.1;
+  }
+
+  .metric-label {
+    font-size: clamp(12px, 1.1vw, 15px);
+    font-weight: 500;
+    color: var(--text-secondary);
+    margin-top: 4px;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+
+  /* Data table */
+  .data-table {
+    margin-top: 3vh;
+    width: 100%;
+    max-width: 1000px;
+    border-collapse: collapse;
+  }
+
+  .data-table th {
+    font-size: clamp(10px, 1vw, 12px);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--text-secondary);
+    text-align: left;
+    padding: 10px 16px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .data-table th:not(:first-child) { text-align: right; }
+
+  .data-table td {
+    font-size: clamp(13px, 1.2vw, 16px);
+    font-weight: 500;
+    padding: 10px 16px;
+    border-bottom: 1px solid var(--border);
+    vertical-align: middle;
+  }
+
+  .data-table td:not(:first-child) {
+    text-align: right;
+    font-variant-numeric: tabular-nums;
+  }
+
+  .data-table tr:last-child td { border-bottom: none; }
+
+  .data-table .page-path {
+    font-family: 'Inter', monospace;
+    font-size: clamp(12px, 1.1vw, 14px);
+    color: var(--text-secondary);
+    font-weight: 400;
+  }
+
+  .data-table .highlight-bad { color: var(--accent); font-weight: 700; }
+  .data-table .highlight-good { color: var(--green); font-weight: 700; }
+  .data-table .highlight-warn { color: var(--amber); font-weight: 700; }
+
+  /* Compare */
+  .compare-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: clamp(16px, 2vw, 32px);
+    margin-top: 4vh;
+    max-width: 1000px;
+  }
+
+  .compare-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: clamp(20px, 2.5vw, 36px);
+  }
+
+  .compare-card.bad {
+    border-color: rgba(229, 57, 53, 0.3);
+    background: linear-gradient(135deg, var(--surface), rgba(229, 57, 53, 0.04));
+  }
+
+  .compare-card.good {
+    border-color: rgba(67, 160, 71, 0.3);
+    background: linear-gradient(135deg, var(--surface), rgba(67, 160, 71, 0.04));
+  }
+
+  .compare-card h3 {
+    font-size: clamp(13px, 1.2vw, 16px);
+    font-weight: 600;
+    margin-bottom: 2vh;
+  }
+
+  .compare-card .compare-stat {
+    font-size: clamp(36px, 5vw, 64px);
+    font-weight: 900;
+    letter-spacing: -0.04em;
+    line-height: 1;
+  }
+
+  .compare-card .compare-label {
+    font-size: clamp(12px, 1vw, 14px);
+    color: var(--text-secondary);
+    margin-top: 6px;
+    font-weight: 500;
+  }
+
+  .compare-card .compare-sub {
+    font-size: clamp(11px, 0.9vw, 13px);
+    color: var(--text-secondary);
+    margin-top: 2vh;
+    line-height: 1.5;
+    font-weight: 400;
+  }
+
+  /* Tags */
+  .tag {
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    padding: 4px 10px;
+    border-radius: 4px;
+    margin-bottom: 1vh;
+  }
+
+  .tag.red { background: var(--accent-soft); color: var(--accent); }
+  .tag.green { background: var(--green-soft); color: var(--green); }
+  .tag.amber { background: var(--amber-soft); color: var(--amber); }
+  .tag.blue { background: var(--blue-soft); color: var(--blue); }
+
+  /* Case studies */
+  .case-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: clamp(12px, 1.5vw, 24px);
+    margin-top: 2vh;
+    max-width: 1100px;
+  }
+
+  .case-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: clamp(16px, 2vw, 28px);
+  }
+
+  .case-card .case-type {
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--text-secondary);
+    margin-bottom: 1vh;
+  }
+
+  .case-card .case-name {
+    font-size: clamp(15px, 1.4vw, 20px);
+    font-weight: 700;
+    margin-bottom: 1.2vh;
+    line-height: 1.25;
+  }
+
+  .case-stat {
+    display: flex;
+    align-items: baseline;
+    gap: 8px;
+    margin-bottom: 5px;
+  }
+
+  .case-stat .num {
+    font-size: clamp(18px, 2vw, 28px);
+    font-weight: 800;
+    color: var(--green);
+    letter-spacing: -0.02em;
+  }
+
+  .case-stat .desc {
+    font-size: clamp(11px, 1vw, 13px);
+    color: var(--text-secondary);
+    font-weight: 500;
+  }
+
+  .case-takeaway {
+    font-size: clamp(11px, 0.9vw, 13px);
+    color: var(--text-secondary);
+    margin-top: 1.2vh;
+    padding-top: 1.2vh;
+    border-top: 1px solid var(--border);
+    line-height: 1.4;
+    font-weight: 400;
+  }
+
+  /* Priority list */
+  .priority-list {
+    margin-top: 4vh;
+    max-width: 900px;
+    list-style: none;
+  }
+
+  .priority-item {
+    display: flex;
+    align-items: flex-start;
+    gap: clamp(12px, 1.5vw, 20px);
+    padding: clamp(14px, 1.5vh, 20px) 0;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .priority-item:last-child { border-bottom: none; }
+
+  .priority-rank {
+    flex-shrink: 0;
+    width: clamp(32px, 3vw, 40px);
+    height: clamp(32px, 3vw, 40px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 8px;
+    font-size: clamp(14px, 1.3vw, 18px);
+    font-weight: 800;
+  }
+
+  .priority-rank.p1 { background: var(--accent-soft); color: var(--accent); }
+  .priority-rank.p2 { background: var(--amber-soft); color: var(--amber); }
+  .priority-rank.p3 { background: var(--blue-soft); color: var(--blue); }
+
+  .priority-content h4 {
+    font-size: clamp(14px, 1.3vw, 18px);
+    font-weight: 700;
+    margin-bottom: 4px;
+  }
+
+  .priority-content p {
+    font-size: clamp(12px, 1vw, 14px);
+    color: var(--text-secondary);
+    line-height: 1.45;
+    font-weight: 400;
+  }
+
+  /* Insight callout */
+  .insight {
+    background: var(--surface);
+    border-left: 3px solid var(--accent);
+    border-radius: 0 8px 8px 0;
+    padding: clamp(16px, 2vw, 24px);
+    margin-top: 3vh;
+    max-width: 700px;
+  }
+
+  .insight.green { border-left-color: var(--green); }
+
+  .insight p {
+    font-size: clamp(13px, 1.2vw, 16px);
+    color: var(--text-secondary);
+    line-height: 1.55;
+    font-weight: 400;
+  }
+
+  .insight strong { color: var(--text); font-weight: 600; }
+
+  /* Device bars */
+  .bar-chart { margin-top: 4vh; max-width: 600px; }
+
+  .bar-row {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 14px;
+  }
+
+  .bar-label {
+    width: 80px;
+    font-size: clamp(12px, 1.1vw, 14px);
+    font-weight: 600;
+    text-align: right;
+    flex-shrink: 0;
+  }
+
+  .bar-track {
+    flex: 1;
+    height: 28px;
+    background: var(--surface);
+    border-radius: 6px;
+    overflow: hidden;
+    position: relative;
+  }
+
+  .bar-fill {
+    height: 100%;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    padding-left: 10px;
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--bg);
+    transition: width 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .bar-fill.mobile { background: var(--accent); width: 60%; }
+  .bar-fill.desktop { background: var(--blue); width: 38%; }
+  .bar-fill.tablet { background: var(--text-secondary); width: 2%; }
+
+  .bar-meta {
+    width: 100px;
+    font-size: clamp(11px, 1vw, 13px);
+    color: var(--text-secondary);
+    flex-shrink: 0;
+    font-weight: 500;
+    font-variant-numeric: tabular-nums;
+  }
+
+  /* Split layout */
+  .split {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: clamp(24px, 4vw, 64px);
+    align-items: start;
+    margin-top: 4vh;
+    max-width: 1100px;
+  }
+
+  /* Screenshot frame */
+  .screenshot-frame {
+    border-radius: 10px;
+    overflow: hidden;
+    border: 1px solid var(--border);
+    box-shadow: 0 8px 32px rgba(0,0,0,0.4);
+    position: relative;
+  }
+
+  .screenshot-frame img {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+
+  .screenshot-badge {
+    position: absolute;
+    bottom: 12px;
+    left: 12px;
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    padding: 5px 10px;
+    border-radius: 6px;
+    backdrop-filter: blur(8px);
+  }
+
+  .screenshot-badge.bad {
+    background: rgba(229, 57, 53, 0.85);
+    color: #fff;
+  }
+
+  .screenshot-badge.good {
+    background: rgba(67, 160, 71, 0.85);
+    color: #fff;
+  }
+
+  .screenshot-badge.neutral {
+    background: rgba(22, 24, 28, 0.85);
+    color: var(--text);
+  }
+
+  /* Page comparison */
+  .page-compare {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: clamp(16px, 2vw, 32px);
+    margin-top: 3vh;
+    max-width: 1100px;
+  }
+
+  .page-compare-item {
+    position: relative;
+  }
+
+  .page-compare-item .page-label {
+    font-size: clamp(12px, 1.1vw, 14px);
+    font-weight: 700;
+    margin-bottom: 1vh;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .page-compare-item .page-stat {
+    font-size: clamp(11px, 1vw, 13px);
+    color: var(--text-secondary);
+    margin-top: 1vh;
+    line-height: 1.5;
+  }
+
+  .watermark {
+    position: fixed;
+    top: 3vh;
+    right: 4vw;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text-secondary);
+    letter-spacing: 0.05em;
+    opacity: 0.4;
+    z-index: 100;
+  }
+
+  .meta-line {
+    font-size: clamp(12px, 1vw, 14px);
+    color: var(--text-secondary);
+    margin-top: 1vh;
+    font-weight: 400;
+  }
+
+  /* Responsive */
+  @media (max-width: 768px) {
+    .slide { padding: 4vh 6vw; }
+    .compare-grid { grid-template-columns: 1fr; }
+    .case-grid { grid-template-columns: 1fr; }
+    .split { grid-template-columns: 1fr; }
+    .page-compare { grid-template-columns: 1fr; }
+    .data-table { font-size: 12px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="progress" id="progress"></div>
+<div class="counter" id="counter"></div>
+<div class="nav-hint">&larr; &rarr; or click to navigate</div>
+<div class="watermark">UAGC &middot; ELT Briefing</div>
+
+<div class="deck" id="deck">
+
+  <!-- SLIDE 1: Title -->
+  <div class="slide active" data-slide="0">
+    <div class="kicker">Website Reskin & Layout Review</div>
+    <h1>The Data Says<br>Fix the Funnel</h1>
+    <p class="subtitle">12 months of GSC, GA4, Contentsquare, and Google Ads data across organic and paid pages. The site gets traffic. It just doesn't convert.</p>
+    <p class="quip">"We have a traffic problem." &mdash; No. We have a 627,000-person bouncing problem.</p>
+    <p class="meta-line">April 2026 &mdash; uagc.edu &mdash; 11.1M sessions &middot; $8.9M ad spend &middot; 348K conversions</p>
+  </div>
+
+  <!-- SLIDE 2: The Big Number -->
+  <div class="slide" data-slide="1">
+    <div class="kicker">The single biggest finding</div>
+    <div class="big-number">4.5x</div>
+    <h2 style="margin-top: 2vh">conversion gap between our own paid landing pages</h2>
+    <p class="subtitle">Our primary RFI page converts at 3.01% from 1.18M sessions. Another page with the same forms converts at 13.57%. Same school. Same forms. Different page content.</p>
+    <div class="insight" style="margin-top: 3vh">
+      <p>Meanwhile, blog pages averaging <strong>8&ndash;15 minutes</strong> of engagement produce <strong>21 conversions</strong> from 149K sessions. People are reading. They're just not being asked to do anything.</p>
+    </div>
+    <p class="quip">One page is a salesperson. The other is a bouncer.</p>
+  </div>
+
+  <!-- SLIDE 3: Site Performance -->
+  <div class="slide" data-slide="2">
+    <div class="kicker blue">Site-wide performance &mdash; 12 months</div>
+    <h2>The Scale of the Opportunity</h2>
+    <div class="metrics-row">
+      <div class="metric-block">
+        <div class="metric-value">11.1M</div>
+        <div class="metric-label">Sessions</div>
+      </div>
+      <div class="metric-block">
+        <div class="metric-value">1.73M</div>
+        <div class="metric-label">Organic Clicks</div>
+      </div>
+      <div class="metric-block">
+        <div class="metric-value">348K</div>
+        <div class="metric-label">Conversions</div>
+      </div>
+      <div class="metric-block">
+        <div class="metric-value" style="color: var(--amber)">47.5%</div>
+        <div class="metric-label">Engagement Rate</div>
+      </div>
+    </div>
+    <div class="split" style="margin-top: 4vh">
+      <div>
+        <h3>Device Split</h3>
+        <div class="bar-chart" style="margin-top: 2vh">
+          <div class="bar-row">
+            <div class="bar-label">Mobile</div>
+            <div class="bar-track"><div class="bar-fill mobile">60%</div></div>
+            <div class="bar-meta">45.8% eng.</div>
+          </div>
+          <div class="bar-row">
+            <div class="bar-label">Desktop</div>
+            <div class="bar-track"><div class="bar-fill desktop">38%</div></div>
+            <div class="bar-meta">51.4% eng.</div>
+          </div>
+          <div class="bar-row">
+            <div class="bar-label">Tablet</div>
+            <div class="bar-track"><div class="bar-fill tablet"></div></div>
+            <div class="bar-meta">44.6% eng.</div>
+          </div>
+        </div>
+        <div class="insight" style="margin-top: 2vh">
+          <p><strong>60% of visitors are on mobile</strong> but mobile engagement is 6&ndash;12pp lower than desktop across every page. Paid Social alone brings <strong>1.91M sessions at 42% engagement</strong> and 58% bounce.</p>
+        </div>
+      </div>
+      <div>
+        <h3>Key Channel Insight</h3>
+        <div style="margin-top: 2vh;">
+          <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px;">
+            <div style="width:100px;font-size:11px;text-align:right;color:var(--text-secondary)">Paid Search</div>
+            <div style="flex:1;height:22px;background:var(--surface);border-radius:4px;overflow:hidden;">
+              <div style="width:100%;height:100%;background:var(--green);border-radius:4px;display:flex;align-items:center;padding-left:6px;font-size:10px;font-weight:700;color:var(--bg)">77.5K conv &middot; 61% eng.</div>
+            </div>
+          </div>
+          <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px;">
+            <div style="width:100px;font-size:11px;text-align:right;color:var(--text-secondary)">Display</div>
+            <div style="flex:1;height:22px;background:var(--surface);border-radius:4px;overflow:hidden;">
+              <div style="width:77%;height:100%;background:var(--green);border-radius:4px;display:flex;align-items:center;padding-left:6px;font-size:10px;font-weight:700;color:var(--bg)">59.6K conv &middot; 64% eng.</div>
+            </div>
+          </div>
+          <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px;">
+            <div style="width:100px;font-size:11px;text-align:right;color:var(--text-secondary)">Paid Social</div>
+            <div style="flex:1;height:22px;background:var(--surface);border-radius:4px;overflow:hidden;">
+              <div style="width:69%;height:100%;background:var(--amber);border-radius:4px;display:flex;align-items:center;padding-left:6px;font-size:10px;font-weight:700;color:var(--bg)">53.3K conv &middot; 42% eng.</div>
+            </div>
+          </div>
+          <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px;">
+            <div style="width:100px;font-size:11px;text-align:right;color:var(--text-secondary)">Organic</div>
+            <div style="flex:1;height:22px;background:var(--surface);border-radius:4px;overflow:hidden;">
+              <div style="width:36%;height:100%;background:var(--blue);border-radius:4px;display:flex;align-items:center;padding-left:6px;font-size:10px;font-weight:700;color:var(--bg)">27.7K &middot; 64% eng.</div>
+            </div>
+          </div>
+        </div>
+        <p class="quip" style="margin-top: 1vh">Paid Social brings the most volume but the worst engagement. The website breaks under that traffic.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- SLIDE 4: The Problem Child vs. The Star Student -->
+  <div class="slide" data-slide="3">
+    <div class="kicker">The tale of two pages</div>
+    <h2>Same School. Same Forms.<br>Wildly Different Results.</h2>
+    <div class="page-compare">
+      <div class="page-compare-item">
+        <div class="page-label"><span class="tag red">Problem Child</span> /success/request-info-v5</div>
+        <div class="screenshot-frame">
+          <img src="screenshots/rfi-v5-desktop.png" alt="RFI v5 page" style="max-height: 280px; object-fit: cover; object-position: top;">
+          <div class="screenshot-badge bad">3.01% conv &middot; 53% bounce</div>
+        </div>
+        <div class="page-stat">
+          1.18M sessions &middot; <strong style="color: var(--accent)">53.2% bounce</strong> &middot; Generic copy, no program-specific content
+        </div>
+      </div>
+      <div class="page-compare-item">
+        <div class="page-label"><span class="tag green">Star Student</span> /success/degree-programs-v7</div>
+        <div class="screenshot-frame">
+          <img src="screenshots/degree-programs-v7-desktop.png" alt="Degree Programs v7" style="max-height: 280px; object-fit: cover; object-position: top;">
+          <div class="screenshot-badge good">13.57% conv &middot; 25% bounce</div>
+        </div>
+        <div class="page-stat">
+          222K sessions &middot; <strong style="color: var(--green)">Program browser, outcomes data, clear CTA hierarchy</strong>
+        </div>
+      </div>
+    </div>
+    <div class="insight" style="margin-top: 2vh; max-width: 900px;">
+      <p>Both pages use the same form structure. The difference is what surrounds the forms: <strong>/degree-programs-v7</strong> gives visitors program-specific content, salary data, and reasons to believe before asking for information. <strong>/request-info-v5</strong> leads with a generic form and generic copy. The page content is the variable &mdash; not the forms.</p>
+    </div>
+  </div>
+
+  <!-- SLIDE 5: Blog Content Gap -->
+  <div class="slide" data-slide="4">
+    <div class="kicker amber">The content goldmine nobody's mining</div>
+    <h2>149K Engaged Readers.<br>21 Conversions.</h2>
+    <div class="page-compare" style="margin-top: 3vh">
+      <div class="page-compare-item">
+        <div class="page-label"><span class="tag amber">PhD vs Doctorate Blog</span></div>
+        <div class="screenshot-frame">
+          <img src="screenshots/blog-phd-desktop.png" alt="PhD Blog" style="max-height: 240px; object-fit: cover; object-position: top;">
+          <div class="screenshot-badge bad">21 conversions from 149K sessions</div>
+        </div>
+        <div class="page-stat" style="margin-top: 1.5vh">
+          <strong>67.8% engagement &middot; 8.1 min avg session</strong><br>
+          60,937 GSC clicks &middot; Ranks for "phd meaning" at position 3.5
+        </div>
+      </div>
+      <div class="page-compare-item">
+        <div class="page-label"><span class="tag green">Gold Standard: /online-degrees</span></div>
+        <div class="screenshot-frame">
+          <img src="screenshots/online-degrees-desktop.png" alt="Online Degrees page" style="max-height: 240px; object-fit: cover; object-position: top;">
+          <div class="screenshot-badge good">88.8% engagement &middot; 3,428 conversions</div>
+        </div>
+        <div class="page-stat" style="margin-top: 1.5vh">
+          <strong>11.2% bounce &middot; 11.8 min avg session</strong><br>
+          135K sessions &middot; This page does everything right
+        </div>
+      </div>
+    </div>
+    <div class="split" style="margin-top: 2vh; gap: clamp(16px, 2vw, 32px);">
+      <div class="insight">
+        <p>The PhD blog gets people to <strong>stay 8 minutes reading about doctoral programs</strong>. Then it shows them nothing. No CTA. No link to the doctoral program page. <strong>149K engaged readers, 21 leads.</strong> A single contextual CTA could turn 0.01% into 1% &mdash; <strong>that's 1,490 leads from content that already exists.</strong></p>
+      </div>
+      <div style="background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: clamp(16px,2vw,24px);">
+        <div style="display: flex; align-items: baseline; gap: 8px; margin-bottom: 8px;">
+          <span style="font-size: clamp(32px,4vw,56px); font-weight: 900; color: var(--accent);">2,437</span>
+          <span style="font-size: 14px; color: var(--text-secondary);">leads/year at just 1%</span>
+        </div>
+        <div style="display: flex; align-items: baseline; gap: 8px;">
+          <span style="font-size: clamp(18px,2vw,28px); font-weight: 700; color: var(--text-secondary); text-decoration: line-through;">84</span>
+          <span style="font-size: 13px; color: var(--text-secondary);">current annual conversions across 3 blog posts</span>
+        </div>
+        <div style="margin-top: 12px; font-size: 13px; color: var(--amber); font-weight: 600;">29x improvement possible &mdash; no new traffic needed</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SLIDE 6: Google Ads Spend Reality -->
+  <div class="slide" data-slide="5">
+    <div class="kicker">Google Ads &mdash; 12 months, 8 accounts</div>
+    <h2>Where the Ad Budget<br>Actually Goes</h2>
+    <div class="split" style="margin-top: 2vh">
+      <div>
+        <h3 style="margin-bottom: 1.5vh; font-size: clamp(14px,1.3vw,18px);">Cost per Conversion by Page</h3>
+        <div style="margin-top: 1vh;">
+          <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
+            <div style="width:140px;font-size:11px;text-align:right;color:var(--text-secondary)">Military (Display)</div>
+            <div style="flex:1;height:20px;background:var(--surface);border-radius:4px;overflow:hidden;">
+              <div style="width:6%;min-width:50px;height:100%;background:var(--green);border-radius:4px;display:flex;align-items:center;padding-left:6px;font-size:10px;font-weight:700;color:#fff">$29</div>
+            </div>
+          </div>
+          <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
+            <div style="width:140px;font-size:11px;text-align:right;color:var(--text-secondary)">Brand Search</div>
+            <div style="flex:1;height:20px;background:var(--surface);border-radius:4px;overflow:hidden;">
+              <div style="width:10%;min-width:50px;height:100%;background:var(--green);border-radius:4px;display:flex;align-items:center;padding-left:6px;font-size:10px;font-weight:700;color:#fff">$151</div>
+            </div>
+          </div>
+          <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
+            <div style="width:140px;font-size:11px;text-align:right;color:var(--text-secondary)">RFI (DemandGen)</div>
+            <div style="flex:1;height:20px;background:var(--surface);border-radius:4px;overflow:hidden;">
+              <div style="width:11%;min-width:50px;height:100%;background:var(--amber);border-radius:4px;display:flex;align-items:center;padding-left:6px;font-size:10px;font-weight:700;color:#fff">$175</div>
+            </div>
+          </div>
+          <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
+            <div style="width:140px;font-size:11px;text-align:right;color:var(--text-secondary)">Courses (Search)</div>
+            <div style="flex:1;height:20px;background:var(--surface);border-radius:4px;overflow:hidden;">
+              <div style="width:27%;height:100%;background:var(--amber);border-radius:4px;display:flex;align-items:center;padding-left:6px;font-size:10px;font-weight:700;color:#fff">$421</div>
+            </div>
+          </div>
+          <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
+            <div style="width:140px;font-size:11px;text-align:right;color:var(--text-secondary)">Bachelor's (Search)</div>
+            <div style="flex:1;height:20px;background:var(--surface);border-radius:4px;overflow:hidden;">
+              <div style="width:33%;height:100%;background:var(--accent);border-radius:4px;display:flex;align-items:center;padding-left:6px;font-size:10px;font-weight:700;color:#fff">$514</div>
+            </div>
+          </div>
+          <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
+            <div style="width:140px;font-size:11px;text-align:right;color:var(--text-secondary)">PMax General</div>
+            <div style="flex:1;height:20px;background:var(--surface);border-radius:4px;overflow:hidden;">
+              <div style="width:100%;height:100%;background:var(--accent);border-radius:4px;display:flex;align-items:center;padding-left:6px;font-size:10px;font-weight:700;color:#fff">$1,539</div>
+            </div>
+          </div>
+        </div>
+        <div class="insight" style="margin-top: 1.5vh">
+          <p><strong>Military Display</strong> converts at <strong>$29/lead</strong> &mdash; 18x cheaper than bachelor's search. Why? Audience-specific content matched to a targeted audience. That's the model.</p>
+        </div>
+      </div>
+      <div>
+        <h3 style="margin-bottom: 1.5vh; font-size: clamp(14px,1.3vw,18px);">Spend Breakdown</h3>
+        <table class="data-table" style="margin-top: 1vh; font-size: clamp(11px,0.9vw,13px);">
+          <thead><tr><th>Page / Campaign</th><th>Spend</th><th>Conv.</th><th>$/Conv</th></tr></thead>
+          <tbody>
+            <tr><td class="page-path">Courses (Search)</td><td>$1.64M</td><td>3,901</td><td>$421</td></tr>
+            <tr><td class="page-path">Bachelor's (Search)</td><td>$1.41M</td><td>2,739</td><td class="highlight-bad">$514</td></tr>
+            <tr><td class="page-path">PMax General</td><td>$734K</td><td>477</td><td class="highlight-bad">$1,539</td></tr>
+            <tr><td class="page-path">RFI-v5 (DemandGen)</td><td>$564K</td><td>3,228</td><td>$175</td></tr>
+            <tr><td class="page-path">Military (Display)</td><td>$254K</td><td>8,752</td><td class="highlight-good">$29</td></tr>
+            <tr><td class="page-path" style="color:var(--accent)">Awareness (YT/CTV)</td><td style="color:var(--accent)">$243K</td><td style="color:var(--accent)">0</td><td style="color:var(--accent)">&mdash;</td></tr>
+          </tbody>
+        </table>
+        <div style="background: var(--surface); border: 1px solid rgba(229,57,53,0.3); border-radius: 8px; padding: 12px 16px; margin-top: 1.5vh;">
+          <p style="font-size: 12px; color: var(--accent); font-weight: 700; margin-bottom: 4px;">Performance Max: Immediate Review Needed</p>
+          <p style="font-size: 11px; color: var(--text-secondary); line-height: 1.5;">$734K spend &middot; 482K clicks &middot; 477 conversions &middot; <strong style="color: var(--accent)">$1,539/conversion</strong>. Generating 73M impressions with near-zero conversion efficiency.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SLIDE 7: Case Studies -->
+  <div class="slide" data-slide="6">
+    <div class="kicker green">Benchmarks &mdash; others have solved this</div>
+    <h2>This Isn't Speculative.<br>It's Proven.</h2>
+    <div class="case-grid">
+      <div class="case-card">
+        <div class="case-type">Online University</div>
+        <div class="case-name">Empire State University</div>
+        <div class="case-stat"><span class="num">3x</span><span class="desc">RFI form fills</span></div>
+        <div class="case-stat"><span class="num">+25%</span><span class="desc">UG enrollment</span></div>
+        <div class="case-stat"><span class="num">+41%</span><span class="desc">Grad enrollment</span></div>
+        <div class="case-takeaway"><strong>Key:</strong> Two-step RFI, audience personalization (military, union, adult learners), accessibility-first UX.</div>
+        <a href="https://www.ifactory.com/higher-education-web-design/empire-state-university/" target="_blank" rel="noopener" style="display:block;margin-top:8px;font-size:10px;color:var(--blue);text-decoration:none;opacity:0.8;">Source: iFactory, 2025 &nearr;</a>
+      </div>
+      <div class="case-card">
+        <div class="case-type">State University</div>
+        <div class="case-name">UT Tyler</div>
+        <div class="case-stat"><span class="num">+700%</span><span class="desc">RFI conversions</span></div>
+        <div class="case-stat"><span class="num">+64%</span><span class="desc">Apply clicks</span></div>
+        <div class="case-stat"><span class="num">+200%</span><span class="desc">Organic traffic</span></div>
+        <div class="case-takeaway"><strong>Key:</strong> IA overhaul, Program Finder tool, 150 optimized pages at launch, student profiles.</div>
+        <a href="https://www.carnegiehighered.com/case-studies/university-of-texas-tyler/" target="_blank" rel="noopener" style="display:block;margin-top:8px;font-size:10px;color:var(--blue);text-decoration:none;opacity:0.8;">Source: Carnegie Higher Ed, dotCOMM Gold &nearr;</a>
+      </div>
+      <div class="case-card">
+        <div class="case-type">E-Commerce CRO</div>
+        <div class="case-name">DTC Gourmet Brand</div>
+        <div class="case-stat"><span class="num">+311%</span><span class="desc">Conversion rate</span></div>
+        <div class="case-stat"><span class="num">4x&rarr;11x</span><span class="desc">Ads ROAS</span></div>
+        <div class="case-stat"><span class="num">+440%</span><span class="desc">YoY revenue</span></div>
+        <div class="case-takeaway"><strong>Key:</strong> CRO audit before redesign. 5-second test. No ad changes &mdash; only page changes.</div>
+        <a href="https://www.radiantelephant.com/e-commerce-cro-seo-case-study/" target="_blank" rel="noopener" style="display:block;margin-top:8px;font-size:10px;color:var(--blue);text-decoration:none;opacity:0.8;">Source: Radiant Elephant &nearr;</a>
+      </div>
+    </div>
+    <div class="insight green" style="margin-top: 2vh; max-width: 900px;">
+      <p>The common thread: <strong>they didn't increase ad spend</strong>. They fixed the page experience. UT Tyler got +700% RFI conversions. The DTC brand went from 4x to 11x ROAS. When the website converts better, every channel becomes more profitable.</p>
+    </div>
+  </div>
+
+  <!-- SLIDE 8: Priorities -->
+  <div class="slide" data-slide="7">
+    <div class="kicker">Reskin priorities</div>
+    <h2>Where to Focus</h2>
+    <ol class="priority-list">
+      <li class="priority-item">
+        <div class="priority-rank p1">1</div>
+        <div class="priority-content">
+          <h4>Fix /success/request-info-v5</h4>
+          <p>1.18M sessions, 53.2% bounce, 3.01% conv rate. Enrich with program-specific content and social proof. If it matched our best page, that's +124K leads/year from existing traffic.</p>
+        </div>
+      </li>
+      <li class="priority-item">
+        <div class="priority-rank p1">2</div>
+        <div class="priority-content">
+          <h4>Add CTAs to Blog Content</h4>
+          <p>PhD blog: 149K sessions, 21 conversions. Business plan: 75K sessions, 63 conversions. One contextual CTA per post = 2,400+ leads/year. Low effort, high upside.</p>
+        </div>
+      </li>
+      <li class="priority-item">
+        <div class="priority-rank p1">3</div>
+        <div class="priority-content">
+          <h4>Mobile-First Above the Fold</h4>
+          <p>60% of traffic is mobile. Bounce is 6&ndash;12pp higher than desktop everywhere. Chat widget overlap, form placement, and viewport utilization need immediate attention.</p>
+        </div>
+      </li>
+      <li class="priority-item">
+        <div class="priority-rank p2">4</div>
+        <div class="priority-content">
+          <h4>Replicate Best-Performing Layouts</h4>
+          <p>/online-degrees (88.8% engagement) and /degree-programs-v7 (13.6% conv) are the models. Document what works and apply to every underperforming page.</p>
+        </div>
+      </li>
+      <li class="priority-item">
+        <div class="priority-rank p3">5</div>
+        <div class="priority-content">
+          <h4>Address Declining Organic &amp; PMax Spend</h4>
+          <p>Organic down 42&ndash;50%. PMax at $1,539/conversion. Both need strategic review alongside the reskin.</p>
+        </div>
+      </li>
+    </ol>
+  </div>
+
+  <!-- SLIDE 9: The Math -->
+  <div class="slide" data-slide="8">
+    <div class="kicker green">The bottom line</div>
+    <div class="big-number green" style="font-size: clamp(40px, 6vw, 90px)">+124K</div>
+    <h2 style="margin-top: 2vh">additional leads per year</h2>
+    <p class="subtitle">If /success/request-info-v5 converted at 13.57% (the rate /degree-programs-v7 already achieves), that's 159,754 conversions instead of 35,498. From the same traffic.</p>
+    <div class="compare-grid" style="margin-top: 3vh">
+      <div class="compare-card bad">
+        <span class="tag red">Current State</span>
+        <h3>/request-info-v5</h3>
+        <div class="compare-stat" style="color: var(--accent)">35,498</div>
+        <div class="compare-label">conversions from 1.18M sessions</div>
+        <div class="compare-sub">3.01% conv rate &middot; 53.2% bounce &middot; generic page content</div>
+      </div>
+      <div class="compare-card good">
+        <span class="tag green">If It Matched the Best</span>
+        <h3>At 13.57% conv rate</h3>
+        <div class="compare-stat" style="color: var(--green)">159,754</div>
+        <div class="compare-label">conversions from the same traffic</div>
+        <div class="compare-sub">Same sessions, same budget, same ads. Just a better page.</div>
+      </div>
+    </div>
+    <p class="quip">The difference between 35K and 160K leads isn't more money. It's a better webpage.</p>
+  </div>
+
+  <!-- SLIDE 10: Next Steps -->
+  <div class="slide" data-slide="9">
+    <div class="kicker green">Three phases, three months</div>
+    <h1 style="margin-bottom: 0">Next Steps</h1>
+    <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: clamp(10px, 1.2vw, 20px); margin-top: 1.5vh; max-width: 1100px;">
+
+      <!-- Phase 1 -->
+      <div style="background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: clamp(12px, 1.5vw, 20px);">
+        <span class="tag blue">Phase 1 &mdash; May 2026</span>
+        <h3 style="margin-top: 0.5vh; font-size: clamp(14px, 1.3vw, 18px);">Audit &amp; Document</h3>
+        <div class="priority-list" style="margin-top: 1vh; font-size: clamp(12px, 1vw, 14px);">
+          <div class="priority-item" style="padding-top: 0; border: none;">
+            <div class="priority-content">
+              <p>Screenshot all 10 pages (desktop + mobile)</p>
+            </div>
+          </div>
+          <div class="priority-item" style="border: none;">
+            <div class="priority-content">
+              <p>Side-by-side: why /degree-programs-v7 converts 4.5x better</p>
+            </div>
+          </div>
+          <div class="priority-item" style="border: none;">
+            <div class="priority-content">
+              <p>Chat widget + mobile UX audit</p>
+            </div>
+          </div>
+        </div>
+        <p style="font-size: 11px; color: var(--blue); margin-top: 1.5vh; font-weight: 600;">&rarr; Complete picture of where friction lives</p>
+      </div>
+
+      <!-- Phase 2 -->
+      <div style="background: var(--surface); border: 1px solid rgba(67,160,71,0.3); border-radius: 10px; padding: clamp(12px, 1.5vw, 20px);">
+        <span class="tag green">Phase 2 &mdash; June 2026</span>
+        <h3 style="margin-top: 0.5vh; font-size: clamp(14px, 1.3vw, 18px);">Quick Wins</h3>
+        <div class="priority-list" style="margin-top: 1vh; font-size: clamp(12px, 1vw, 14px);">
+          <div class="priority-item" style="padding-top: 0; border: none;">
+            <div class="priority-content">
+              <p>Enrich /request-info-v5 with program content + social proof</p>
+            </div>
+          </div>
+          <div class="priority-item" style="border: none;">
+            <div class="priority-content">
+              <p>Add contextual CTAs to top blog posts</p>
+            </div>
+          </div>
+          <div class="priority-item" style="border: none;">
+            <div class="priority-content">
+              <p>A/B test enriched vs. current RFI page</p>
+            </div>
+          </div>
+        </div>
+        <p style="font-size: 11px; color: var(--green); margin-top: 1.5vh; font-weight: 600;">&rarr; Measurable lifts before the full reskin</p>
+      </div>
+
+      <!-- Phase 3 -->
+      <div style="background: var(--surface); border: 1px solid rgba(249,168,37,0.3); border-radius: 10px; padding: clamp(12px, 1.5vw, 20px);">
+        <span class="tag amber">Phase 3 &mdash; July 2026</span>
+        <h3 style="margin-top: 0.5vh; font-size: clamp(14px, 1.3vw, 18px);">Reskin Requirements</h3>
+        <div class="priority-list" style="margin-top: 1vh; font-size: clamp(12px, 1vw, 14px);">
+          <div class="priority-item" style="padding-top: 0; border: none;">
+            <div class="priority-content">
+              <p>Prioritized requirements doc (P0/P1/P2)</p>
+            </div>
+          </div>
+          <div class="priority-item" style="border: none;">
+            <div class="priority-content">
+              <p>Layout patterns from top-performing pages</p>
+            </div>
+          </div>
+          <div class="priority-item" style="border: none;">
+            <div class="priority-content">
+              <p>Present quick-win results &rarr; go/no-go on full reskin</p>
+            </div>
+          </div>
+        </div>
+        <p style="font-size: 11px; color: var(--amber); margin-top: 1.5vh; font-weight: 600;">&rarr; Build-ready reskin brief backed by test data</p>
+      </div>
+
+    </div>
+
+    <!-- Success metrics row -->
+    <div style="margin-top: 1.5vh; display: flex; gap: clamp(10px, 1.5vw, 24px); flex-wrap: wrap; max-width: 1100px;">
+      <div style="background: var(--surface); border-radius: 8px; padding: 8px 16px; display: flex; align-items: baseline; gap: 6px;">
+        <span style="font-size: clamp(16px, 1.6vw, 24px); font-weight: 800; color: var(--accent);">3%</span>
+        <span style="font-size: 10px; color: var(--text-secondary);">&rarr;</span>
+        <span style="font-size: clamp(16px, 1.6vw, 24px); font-weight: 800; color: var(--green);">7%+</span>
+        <span style="font-size: 10px; color: var(--text-secondary);">RFI conv</span>
+      </div>
+      <div style="background: var(--surface); border-radius: 8px; padding: 8px 16px; display: flex; align-items: baseline; gap: 6px;">
+        <span style="font-size: clamp(16px, 1.6vw, 24px); font-weight: 800; color: var(--accent);">53%</span>
+        <span style="font-size: 10px; color: var(--text-secondary);">&rarr;</span>
+        <span style="font-size: clamp(16px, 1.6vw, 24px); font-weight: 800; color: var(--green);">&lt;40%</span>
+        <span style="font-size: 10px; color: var(--text-secondary);">bounce</span>
+      </div>
+      <div style="background: var(--surface); border-radius: 8px; padding: 8px 16px; display: flex; align-items: baseline; gap: 6px;">
+        <span style="font-size: clamp(16px, 1.6vw, 24px); font-weight: 800; color: var(--accent);">21</span>
+        <span style="font-size: 10px; color: var(--text-secondary);">&rarr;</span>
+        <span style="font-size: clamp(16px, 1.6vw, 24px); font-weight: 800; color: var(--green);">1,490+</span>
+        <span style="font-size: 10px; color: var(--text-secondary);">blog leads</span>
+      </div>
+      <div style="background: var(--surface); border-radius: 8px; padding: 8px 16px; display: flex; align-items: baseline; gap: 6px;">
+        <span style="font-size: clamp(16px, 1.6vw, 24px); font-weight: 800; color: var(--accent);">$1,539</span>
+        <span style="font-size: 10px; color: var(--text-secondary);">&rarr;</span>
+        <span style="font-size: clamp(16px, 1.6vw, 24px); font-weight: 800; color: var(--green);">Review</span>
+        <span style="font-size: 10px; color: var(--text-secondary);">PMax $/conv</span>
+      </div>
+    </div>
+
+    <div style="margin-top: 1.5vh; display: flex; gap: 12px; flex-wrap: wrap;">
+      <a href="index.html" style="display: inline-flex; align-items: center; gap: 8px; padding: 10px 20px; background: var(--surface); border: 1px solid var(--border); border-radius: 8px; color: var(--blue); font-size: clamp(12px, 1.1vw, 14px); font-weight: 600; text-decoration: none; transition: border-color 0.2s, background 0.2s;" onmouseover="this.style.borderColor='#5c9cf5'; this.style.background='rgba(92,156,245,0.08)'" onmouseout="this.style.borderColor=''; this.style.background='var(--surface)'">Full Data Deck &rarr;</a>
+      <a href="project-plan.html" style="display: inline-flex; align-items: center; gap: 8px; padding: 10px 20px; background: var(--surface); border: 1px solid var(--border); border-radius: 8px; color: var(--blue); font-size: clamp(12px, 1.1vw, 14px); font-weight: 600; text-decoration: none; transition: border-color 0.2s, background 0.2s;" onmouseover="this.style.borderColor='#5c9cf5'; this.style.background='rgba(92,156,245,0.08)'" onmouseout="this.style.borderColor=''; this.style.background='var(--surface)'">Full Project Plan &rarr;</a>
+    </div>
+  </div>
+
+</div>
+
+<script>
+  const slides = document.querySelectorAll('.slide');
+  const progress = document.getElementById('progress');
+  const counter = document.getElementById('counter');
+  const total = slides.length;
+  let current = 0;
+
+  function updateUI() {
+    progress.style.width = ((current + 1) / total * 100) + '%';
+    counter.textContent = (current + 1) + ' / ' + total;
+  }
+
+  function goTo(index) {
+    if (index < 0 || index >= total || index === current) return;
+    const prev = slides[current];
+    const next = slides[index];
+    prev.classList.remove('active');
+    prev.classList.add('exiting');
+    setTimeout(() => prev.classList.remove('exiting'), 500);
+    next.classList.add('active');
+    current = index;
+    updateUI();
+  }
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'ArrowRight' || e.key === 'ArrowDown' || e.key === ' ') {
+      e.preventDefault();
+      goTo(current + 1);
+    }
+    if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') {
+      e.preventDefault();
+      goTo(current - 1);
+    }
+    if (e.key === 'Home') {
+      e.preventDefault();
+      goTo(0);
+    }
+    if (e.key === 'End') {
+      e.preventDefault();
+      goTo(total - 1);
+    }
+  });
+
+  document.addEventListener('click', (e) => {
+    if (e.target.closest('a, button, input, select, textarea')) return;
+    const x = e.clientX;
+    if (x > window.innerWidth * 0.5) {
+      goTo(current + 1);
+    } else {
+      goTo(current - 1);
+    }
+  });
+
+  let touchStartX = 0;
+  document.addEventListener('touchstart', (e) => {
+    touchStartX = e.touches[0].clientX;
+  });
+  document.addEventListener('touchend', (e) => {
+    const dx = e.changedTouches[0].clientX - touchStartX;
+    if (Math.abs(dx) > 50) {
+      if (dx < 0) goTo(current + 1);
+      else goTo(current - 1);
+    }
+  });
+
+  updateUI();
+</script>
+
+</body>
+</html>
