@@ -852,88 +852,200 @@
 
   <!-- SLIDE 7: Declining Organic -->
   <div class="slide" data-slide="6">
-    <div class="kicker">Half-year trend &mdash; GSC</div>
+    <div class="kicker">Half-year trend &mdash; Google Search Console</div>
     <h2>Organic Is Declining.<br>Every Visit Matters More.</h2>
-    <p class="subtitle">H1 (Apr&ndash;Oct 2025) vs. H2 (Oct 2025&ndash;Apr 2026) across key pages.</p>
-    <div class="chart-container" style="max-width: 700px;">
-      <svg viewBox="0 0 700 200" xmlns="http://www.w3.org/2000/svg">
-        <text x="20" y="15" fill="#8b8f98" font-size="9" font-family="Inter" font-weight="600">CLICKS BY HALF-YEAR</text>
-        <!-- Homepage -->
-        <text x="170" y="45" fill="#8b8f98" font-size="10" text-anchor="end" font-family="Inter">Homepage</text>
-        <rect x="180" y="32" width="180" height="14" rx="3" fill="#5c9cf5" opacity="0.7"/>
-        <text x="365" y="44" fill="#5c9cf5" font-size="10" font-family="Inter">90,004</text>
-        <rect x="180" y="50" width="105" height="14" rx="3" fill="#e53935" opacity="0.7"/>
-        <text x="290" y="62" fill="#e53935" font-size="10" font-weight="700" font-family="Inter">52,559 (-41.6%)</text>
-        <!-- Writing Center -->
-        <text x="170" y="95" fill="#8b8f98" font-size="10" text-anchor="end" font-family="Inter">Writing Center</text>
-        <rect x="180" y="82" width="120" height="14" rx="3" fill="#5c9cf5" opacity="0.7"/>
-        <text x="305" y="94" fill="#5c9cf5" font-size="10" font-family="Inter">61,289</text>
-        <rect x="180" y="100" width="82" height="14" rx="3" fill="#e53935" opacity="0.7"/>
-        <text x="267" y="112" fill="#e53935" font-size="10" font-weight="700" font-family="Inter">41,772 (-31.8%)</text>
-        <!-- Blog -->
-        <text x="170" y="145" fill="#8b8f98" font-size="10" text-anchor="end" font-family="Inter">Blog (Mgmt)</text>
-        <rect x="180" y="132" width="52" height="14" rx="3" fill="#5c9cf5" opacity="0.7"/>
-        <text x="237" y="144" fill="#5c9cf5" font-size="10" font-family="Inter">12,901</text>
-        <rect x="180" y="150" width="26" height="14" rx="3" fill="#e53935" opacity="0.7"/>
-        <text x="211" y="162" fill="#e53935" font-size="10" font-weight="700" font-family="Inter">6,483 (-49.7%)</text>
-        <!-- Legend -->
-        <rect x="180" y="180" width="12" height="10" rx="2" fill="#5c9cf5" opacity="0.7"/>
-        <text x="197" y="189" fill="#8b8f98" font-size="9" font-family="Inter">H1 (Apr&ndash;Oct 2025)</text>
-        <rect x="330" y="180" width="12" height="10" rx="2" fill="#e53935" opacity="0.7"/>
-        <text x="347" y="189" fill="#8b8f98" font-size="9" font-family="Inter">H2 (Oct 2025&ndash;Apr 2026)</text>
-      </svg>
+    <p class="subtitle">H1 (Apr&ndash;Oct 2025) vs. H2 (Oct 2025&ndash;Apr 2026)</p>
+
+    <div class="split" style="margin-top: 2vh; gap: clamp(16px, 2vw, 32px); align-items: start;">
+      <!-- Left: stat cards + chart -->
+      <div>
+        <!-- Big decline stat cards -->
+        <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: clamp(8px, 1vw, 16px); margin-bottom: 2.5vh;">
+          <div style="background: linear-gradient(135deg, var(--surface), rgba(229,57,53,0.06)); border: 1px solid rgba(229,57,53,0.25); border-radius: 10px; padding: clamp(12px, 1.5vw, 20px); text-align: center;">
+            <div style="font-size: clamp(28px, 3.5vw, 48px); font-weight: 900; color: var(--accent); letter-spacing: -0.03em; line-height: 1;">-41.6%</div>
+            <div style="font-size: clamp(11px, 1vw, 13px); color: var(--text-secondary); margin-top: 6px; font-weight: 500;">Homepage</div>
+            <div style="font-size: clamp(10px, 0.8vw, 11px); color: var(--text-secondary); opacity: 0.7; margin-top: 2px;">90K &rarr; 52K clicks</div>
+          </div>
+          <div style="background: linear-gradient(135deg, var(--surface), rgba(229,57,53,0.06)); border: 1px solid rgba(229,57,53,0.25); border-radius: 10px; padding: clamp(12px, 1.5vw, 20px); text-align: center;">
+            <div style="font-size: clamp(28px, 3.5vw, 48px); font-weight: 900; color: var(--accent); letter-spacing: -0.03em; line-height: 1;">-31.8%</div>
+            <div style="font-size: clamp(11px, 1vw, 13px); color: var(--text-secondary); margin-top: 6px; font-weight: 500;">Writing Center</div>
+            <div style="font-size: clamp(10px, 0.8vw, 11px); color: var(--text-secondary); opacity: 0.7; margin-top: 2px;">61K &rarr; 42K clicks</div>
+          </div>
+          <div style="background: linear-gradient(135deg, var(--surface), rgba(229,57,53,0.08)); border: 1px solid rgba(229,57,53,0.35); border-radius: 10px; padding: clamp(12px, 1.5vw, 20px); text-align: center;">
+            <div style="font-size: clamp(28px, 3.5vw, 48px); font-weight: 900; color: var(--accent); letter-spacing: -0.03em; line-height: 1;">-49.7%</div>
+            <div style="font-size: clamp(11px, 1vw, 13px); color: var(--text-secondary); margin-top: 6px; font-weight: 500;">Blog (Mgmt)</div>
+            <div style="font-size: clamp(10px, 0.8vw, 11px); color: var(--text-secondary); opacity: 0.7; margin-top: 2px;">12.9K &rarr; 6.5K clicks</div>
+          </div>
+        </div>
+
+        <!-- Improved bar chart -->
+        <div style="background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: clamp(16px, 2vw, 24px);">
+          <div style="font-size: 10px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; color: var(--text-secondary); margin-bottom: 16px;">Clicks by half-year</div>
+
+          <!-- Homepage bars -->
+          <div style="margin-bottom: 16px;">
+            <div style="font-size: 12px; font-weight: 600; color: var(--text); margin-bottom: 6px;">Homepage</div>
+            <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 4px;">
+              <div style="width: 50px; font-size: 10px; color: var(--blue); text-align: right;">H1</div>
+              <div style="flex: 1; height: 18px; background: rgba(92,156,245,0.12); border-radius: 4px; overflow: hidden;">
+                <div style="width: 100%; height: 100%; background: var(--blue); border-radius: 4px; opacity: 0.7;"></div>
+              </div>
+              <div style="width: 60px; font-size: 11px; color: var(--blue); font-weight: 600;">90,004</div>
+            </div>
+            <div style="display: flex; align-items: center; gap: 8px;">
+              <div style="width: 50px; font-size: 10px; color: var(--accent); text-align: right;">H2</div>
+              <div style="flex: 1; height: 18px; background: rgba(229,57,53,0.08); border-radius: 4px; overflow: hidden;">
+                <div style="width: 58%; height: 100%; background: var(--accent); border-radius: 4px; opacity: 0.7;"></div>
+              </div>
+              <div style="width: 60px; font-size: 11px; color: var(--accent); font-weight: 700;">52,559</div>
+            </div>
+          </div>
+
+          <!-- Writing Center bars -->
+          <div style="margin-bottom: 16px;">
+            <div style="font-size: 12px; font-weight: 600; color: var(--text); margin-bottom: 6px;">Writing Center</div>
+            <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 4px;">
+              <div style="width: 50px; font-size: 10px; color: var(--blue); text-align: right;">H1</div>
+              <div style="flex: 1; height: 18px; background: rgba(92,156,245,0.12); border-radius: 4px; overflow: hidden;">
+                <div style="width: 68%; height: 100%; background: var(--blue); border-radius: 4px; opacity: 0.7;"></div>
+              </div>
+              <div style="width: 60px; font-size: 11px; color: var(--blue); font-weight: 600;">61,289</div>
+            </div>
+            <div style="display: flex; align-items: center; gap: 8px;">
+              <div style="width: 50px; font-size: 10px; color: var(--accent); text-align: right;">H2</div>
+              <div style="flex: 1; height: 18px; background: rgba(229,57,53,0.08); border-radius: 4px; overflow: hidden;">
+                <div style="width: 46%; height: 100%; background: var(--accent); border-radius: 4px; opacity: 0.7;"></div>
+              </div>
+              <div style="width: 60px; font-size: 11px; color: var(--accent); font-weight: 700;">41,772</div>
+            </div>
+          </div>
+
+          <!-- Blog bars -->
+          <div>
+            <div style="font-size: 12px; font-weight: 600; color: var(--text); margin-bottom: 6px;">Blog (Mgmt)</div>
+            <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 4px;">
+              <div style="width: 50px; font-size: 10px; color: var(--blue); text-align: right;">H1</div>
+              <div style="flex: 1; height: 18px; background: rgba(92,156,245,0.12); border-radius: 4px; overflow: hidden;">
+                <div style="width: 14%; height: 100%; background: var(--blue); border-radius: 4px; opacity: 0.7;"></div>
+              </div>
+              <div style="width: 60px; font-size: 11px; color: var(--blue); font-weight: 600;">12,901</div>
+            </div>
+            <div style="display: flex; align-items: center; gap: 8px;">
+              <div style="width: 50px; font-size: 10px; color: var(--accent); text-align: right;">H2</div>
+              <div style="flex: 1; height: 18px; background: rgba(229,57,53,0.08); border-radius: 4px; overflow: hidden;">
+                <div style="width: 7%; height: 100%; background: var(--accent); border-radius: 4px; opacity: 0.7;"></div>
+              </div>
+              <div style="width: 60px; font-size: 11px; color: var(--accent); font-weight: 700;">6,483</div>
+            </div>
+          </div>
+
+          <div style="display: flex; gap: 16px; margin-top: 14px; padding-top: 10px; border-top: 1px solid var(--border);">
+            <div style="display: flex; align-items: center; gap: 6px;"><div style="width: 10px; height: 10px; border-radius: 2px; background: var(--blue); opacity: 0.7;"></div><span style="font-size: 10px; color: var(--text-secondary);">H1 (Apr&ndash;Oct 2025)</span></div>
+            <div style="display: flex; align-items: center; gap: 6px;"><div style="width: 10px; height: 10px; border-radius: 2px; background: var(--accent); opacity: 0.7;"></div><span style="font-size: 10px; color: var(--text-secondary);">H2 (Oct 2025&ndash;Apr 2026)</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right: homepage screenshot + context -->
+      <div>
+        <div style="font-size: clamp(11px, 1vw, 13px); font-weight: 600; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 1vh;">The homepage losing 42% of organic</div>
+        <div class="screenshot-frame">
+          <img src="screenshots/homepage-desktop.png" alt="UAGC Homepage" style="max-height: 260px; object-fit: cover; object-position: top;">
+          <div class="screenshot-badge bad">-41.6% organic clicks &middot; H2 vs H1</div>
+        </div>
+        <div class="insight" style="margin-top: 2vh;">
+          <p style="font-size: clamp(12px, 1.1vw, 14px);"><strong>AI overview cannibalization.</strong> Google answers &ldquo;what is a PhD&rdquo; and &ldquo;how to write a business plan&rdquo; before anyone clicks. The site needs to offer what AI overviews can't &mdash; and convert the visitors it does get.</p>
+        </div>
+        <div style="background: var(--surface); border: 1px solid rgba(249,168,37,0.3); border-radius: 8px; padding: 12px 16px; margin-top: 1.5vh;">
+          <p style="font-size: 12px; color: var(--amber); font-weight: 700; margin-bottom: 4px;">Why this matters now</p>
+          <p style="font-size: 11px; color: var(--text-secondary); line-height: 1.5;">With fewer organic visitors arriving, every session is more valuable. Conversion efficiency goes from &ldquo;nice to have&rdquo; to &ldquo;survival mode.&rdquo;</p>
+        </div>
+      </div>
     </div>
-    <div class="insight" style="margin-top: 2vh">
-      <p>Homepage organic clicks down <strong>41.6%</strong>, blog content down <strong>49.7%</strong>. Likely cause: <strong>AI overview cannibalization</strong>. Google is answering queries before anyone clicks. The site needs to offer what AI overviews can't &mdash; and convert the visitors it does get.</p>
-    </div>
-    <p class="quip">If organic traffic is shrinking, conversion efficiency isn't optional. It's survival.</p>
   </div>
 
   <!-- SLIDE 8: Ad Efficiency Overview -->
   <div class="slide" data-slide="7">
     <div class="kicker">Google Ads efficiency &mdash; 12 months</div>
     <h2>Audience-Specific Content<br>Converts 18x Better</h2>
-    <div style="max-width: 700px; margin: 3vh auto 0;">
-      <div style="display:flex;align-items:center;gap:8px;margin-bottom:12px;">
-        <div style="width:160px;font-size:12px;text-align:right;color:var(--text-secondary);font-weight:600">Military (Display)</div>
-        <div style="flex:1;height:28px;background:var(--surface);border-radius:4px;overflow:hidden;">
-          <div style="width:6%;min-width:70px;height:100%;background:var(--green);border-radius:4px;display:flex;align-items:center;padding-left:8px;font-size:12px;font-weight:700;color:#fff">$29</div>
+
+    <div class="split" style="margin-top: 2vh; gap: clamp(16px, 2vw, 32px); align-items: start;">
+      <!-- Left: cost per conversion bars -->
+      <div>
+        <div style="font-size: 10px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; color: var(--text-secondary); margin-bottom: 1.5vh;">Cost per conversion</div>
+
+        <!-- Hero comparison: $29 vs $1,539 -->
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: clamp(8px, 1vw, 16px); margin-bottom: 2vh;">
+          <div style="background: linear-gradient(135deg, var(--surface), rgba(67,160,71,0.06)); border: 1px solid rgba(67,160,71,0.3); border-radius: 10px; padding: clamp(14px, 1.5vw, 20px); text-align: center;">
+            <div style="font-size: clamp(32px, 4vw, 52px); font-weight: 900; color: var(--green); letter-spacing: -0.03em; line-height: 1;">$29</div>
+            <div style="font-size: clamp(11px, 1vw, 13px); color: var(--text-secondary); margin-top: 6px; font-weight: 600;">Military (Display)</div>
+            <div style="font-size: clamp(10px, 0.8vw, 11px); color: var(--green); margin-top: 4px; font-weight: 500;">8,752 conversions</div>
+          </div>
+          <div style="background: linear-gradient(135deg, var(--surface), rgba(229,57,53,0.06)); border: 1px solid rgba(229,57,53,0.3); border-radius: 10px; padding: clamp(14px, 1.5vw, 20px); text-align: center;">
+            <div style="font-size: clamp(32px, 4vw, 52px); font-weight: 900; color: var(--accent); letter-spacing: -0.03em; line-height: 1;">$1,539</div>
+            <div style="font-size: clamp(11px, 1vw, 13px); color: var(--text-secondary); margin-top: 6px; font-weight: 600;">PMax General</div>
+            <div style="font-size: clamp(10px, 0.8vw, 11px); color: var(--accent); margin-top: 4px; font-weight: 500;">477 conversions</div>
+          </div>
+        </div>
+
+        <!-- Remaining bars -->
+        <div style="background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: clamp(12px, 1.5vw, 20px);">
+          <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
+            <div style="width:120px;font-size:11px;text-align:right;color:var(--text-secondary);font-weight:500">Brand Search</div>
+            <div style="flex:1;height:22px;background:rgba(67,160,71,0.08);border-radius:4px;overflow:hidden;">
+              <div style="width:10%;min-width:55px;height:100%;background:var(--green);border-radius:4px;display:flex;align-items:center;padding-left:6px;font-size:11px;font-weight:700;color:#fff">$151</div>
+            </div>
+          </div>
+          <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
+            <div style="width:120px;font-size:11px;text-align:right;color:var(--text-secondary);font-weight:500">RFI (DemandGen)</div>
+            <div style="flex:1;height:22px;background:rgba(249,168,37,0.08);border-radius:4px;overflow:hidden;">
+              <div style="width:12%;min-width:55px;height:100%;background:var(--amber);border-radius:4px;display:flex;align-items:center;padding-left:6px;font-size:11px;font-weight:700;color:#fff">$175</div>
+            </div>
+          </div>
+          <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
+            <div style="width:120px;font-size:11px;text-align:right;color:var(--text-secondary);font-weight:500">Courses (Search)</div>
+            <div style="flex:1;height:22px;background:rgba(249,168,37,0.08);border-radius:4px;overflow:hidden;">
+              <div style="width:27%;height:100%;background:var(--amber);border-radius:4px;display:flex;align-items:center;padding-left:6px;font-size:11px;font-weight:700;color:#fff">$421</div>
+            </div>
+          </div>
+          <div style="display:flex;align-items:center;gap:8px;">
+            <div style="width:120px;font-size:11px;text-align:right;color:var(--text-secondary);font-weight:500">Bachelor's (Search)</div>
+            <div style="flex:1;height:22px;background:rgba(229,57,53,0.08);border-radius:4px;overflow:hidden;">
+              <div style="width:33%;height:100%;background:var(--accent);border-radius:4px;display:flex;align-items:center;padding-left:6px;font-size:11px;font-weight:700;color:#fff">$514</div>
+            </div>
+          </div>
         </div>
       </div>
-      <div style="display:flex;align-items:center;gap:8px;margin-bottom:12px;">
-        <div style="width:160px;font-size:12px;text-align:right;color:var(--text-secondary);font-weight:600">Brand Search</div>
-        <div style="flex:1;height:28px;background:var(--surface);border-radius:4px;overflow:hidden;">
-          <div style="width:10%;min-width:70px;height:100%;background:var(--green);border-radius:4px;display:flex;align-items:center;padding-left:8px;font-size:12px;font-weight:700;color:#fff">$151</div>
+
+      <!-- Right: visual proof — why the gap exists -->
+      <div>
+        <div style="font-size: 10px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; color: var(--text-secondary); margin-bottom: 1.5vh;">Why the gap exists</div>
+
+        <!-- Generic page -->
+        <div style="margin-bottom: 1.5vh;">
+          <div class="page-label"><span class="tag red">Generic Landing Page</span> /request-info-v5</div>
+          <div class="screenshot-frame">
+            <img src="screenshots/rfi-v5-desktop.png" alt="Generic RFI page" style="max-height: 160px; object-fit: cover; object-position: top;">
+            <div class="screenshot-badge bad">$175&ndash;$1,539 / lead</div>
+          </div>
+          <div style="font-size: 11px; color: var(--text-secondary); margin-top: 6px; line-height: 1.4;">Form-first. No program content. No audience match. Broad traffic bounces.</div>
         </div>
-      </div>
-      <div style="display:flex;align-items:center;gap:8px;margin-bottom:12px;">
-        <div style="width:160px;font-size:12px;text-align:right;color:var(--text-secondary);font-weight:600">RFI (DemandGen)</div>
-        <div style="flex:1;height:28px;background:var(--surface);border-radius:4px;overflow:hidden;">
-          <div style="width:12%;min-width:70px;height:100%;background:var(--amber);border-radius:4px;display:flex;align-items:center;padding-left:8px;font-size:12px;font-weight:700;color:#fff">$175</div>
-        </div>
-      </div>
-      <div style="display:flex;align-items:center;gap:8px;margin-bottom:12px;">
-        <div style="width:160px;font-size:12px;text-align:right;color:var(--text-secondary);font-weight:600">Bachelor's (Search)</div>
-        <div style="flex:1;height:28px;background:var(--surface);border-radius:4px;overflow:hidden;">
-          <div style="width:33%;height:100%;background:var(--accent);border-radius:4px;display:flex;align-items:center;padding-left:8px;font-size:12px;font-weight:700;color:#fff">$514</div>
-        </div>
-      </div>
-      <div style="display:flex;align-items:center;gap:8px;margin-bottom:12px;">
-        <div style="width:160px;font-size:12px;text-align:right;color:var(--text-secondary);font-weight:600">PMax General</div>
-        <div style="flex:1;height:28px;background:var(--surface);border-radius:4px;overflow:hidden;">
-          <div style="width:100%;height:100%;background:var(--accent);border-radius:4px;display:flex;align-items:center;padding-left:8px;font-size:12px;font-weight:700;color:#fff">$1,539</div>
+
+        <!-- Content-rich page -->
+        <div>
+          <div class="page-label"><span class="tag green">Audience-Specific Content</span> /degree-programs-v7</div>
+          <div class="screenshot-frame">
+            <img src="screenshots/degree-programs-v7-desktop.png" alt="Audience-specific page" style="max-height: 160px; object-fit: cover; object-position: top;">
+            <div class="screenshot-badge good">$29 / lead &middot; The model</div>
+          </div>
+          <div style="font-size: 11px; color: var(--text-secondary); margin-top: 6px; line-height: 1.4;">Program browser, salary data, outcomes. Visitors self-select, then convert.</div>
         </div>
       </div>
     </div>
-    <div class="split" style="margin-top: 3vh; gap: clamp(16px, 2vw, 32px);">
-      <div class="insight green">
-        <p><strong>Military Display at $29/lead</strong> &mdash; audience-specific landing pages with content tailored to military learners. That's the model: match the page content to the audience, and conversion costs collapse.</p>
-      </div>
-      <div class="insight" style="border-color: rgba(229,57,53,0.3);">
-        <p><strong>PMax General at $1,539/lead</strong> &mdash; 73M impressions, 477 conversions. Generic landing pages receiving broad traffic. This is a page problem, not a media problem.</p>
-      </div>
+
+    <div class="insight green" style="margin-top: 2vh; max-width: 1100px;">
+      <p>The takeaway: <strong>better pages make every ad dollar work harder</strong>. Military Display at $29/lead uses audience-specific landing pages. PMax at $1,539/lead sends broad traffic to generic pages. That's a website fix, not a media fix.</p>
     </div>
-    <p class="quip">The takeaway for this room: better pages make every ad dollar work harder. That's a website fix, not a media fix.</p>
   </div>
 
   <!-- SLIDE 9: Case Studies -->
