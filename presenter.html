@@ -1,0 +1,1178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Presenter Notes — UAGC ELT Briefing</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --bg: #0e0f11;
+    --surface: #16181c;
+    --surface-2: #1c1e23;
+    --border: #24272e;
+    --border-light: #2e323a;
+    --text: #e8e9eb;
+    --text-secondary: #8b8f98;
+    --text-tertiary: #5f636b;
+    --accent: #e53935;
+    --accent-soft: rgba(229, 57, 53, 0.10);
+    --green: #43a047;
+    --green-soft: rgba(67, 160, 71, 0.10);
+    --amber: #f9a825;
+    --amber-soft: rgba(249, 168, 37, 0.10);
+    --blue: #5c9cf5;
+    --blue-soft: rgba(92, 156, 245, 0.10);
+    --purple: #ab47bc;
+    --purple-soft: rgba(171, 71, 188, 0.10);
+    --say: #5c9cf5;
+    --say-soft: rgba(92, 156, 245, 0.08);
+    --do: #ab47bc;
+    --do-soft: rgba(171, 71, 188, 0.08);
+    --tip: #8b8f98;
+  }
+
+  html {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Inter', -apple-system, system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    scroll-behavior: smooth;
+  }
+
+  body {
+    max-width: 880px;
+    margin: 0 auto;
+    padding: 24px 24px 80px;
+  }
+
+  /* ── Sticky nav ── */
+  .sticky-nav {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    background: var(--bg);
+    border-bottom: 1px solid var(--border);
+    padding: 10px 0;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    flex-wrap: wrap;
+  }
+
+  .sticky-nav a {
+    font-size: 11px;
+    font-weight: 700;
+    width: 28px;
+    height: 28px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 6px;
+    border: 1px solid var(--border);
+    color: var(--text-secondary);
+    text-decoration: none;
+    transition: all 0.15s;
+    flex-shrink: 0;
+  }
+
+  .sticky-nav a:hover,
+  .sticky-nav a.active {
+    border-color: var(--accent);
+    color: var(--accent);
+    background: var(--accent-soft);
+  }
+
+  .sticky-nav .nav-title {
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--text-tertiary);
+    margin-right: 4px;
+    flex-shrink: 0;
+  }
+
+  .nav-spacer { flex: 1; }
+
+  .mode-btn {
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    padding: 5px 10px;
+    border-radius: 5px;
+    border: 1px solid var(--border);
+    background: transparent;
+    color: var(--text-secondary);
+    cursor: pointer;
+    transition: all 0.15s;
+    flex-shrink: 0;
+  }
+
+  .mode-btn:hover { border-color: var(--text-secondary); color: var(--text); }
+
+  .mode-btn.active {
+    background: var(--accent-soft);
+    border-color: var(--accent);
+    color: var(--accent);
+  }
+
+  /* ── Legend ── */
+  .legend {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px 16px;
+    padding: 12px 16px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    margin-bottom: 20px;
+  }
+
+  .legend-item {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--text-secondary);
+  }
+
+  .legend-icon {
+    width: 20px;
+    height: 20px;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 11px;
+    flex-shrink: 0;
+  }
+
+  /* ── Slide card ── */
+  .slide-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    margin-bottom: 20px;
+    overflow: hidden;
+    scroll-margin-top: 60px;
+  }
+
+  .slide-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 16px;
+    background: var(--surface-2);
+    border-bottom: 1px solid var(--border);
+    gap: 8px;
+  }
+
+  .slide-num {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 30px;
+    height: 30px;
+    border-radius: 6px;
+    font-size: 14px;
+    font-weight: 800;
+    background: var(--accent-soft);
+    color: var(--accent);
+    flex-shrink: 0;
+  }
+
+  .slide-title {
+    font-size: 15px;
+    font-weight: 700;
+    margin-left: 10px;
+    flex: 1;
+  }
+
+  .slide-time {
+    font-size: 10px;
+    font-weight: 700;
+    color: var(--text-tertiary);
+    padding: 3px 8px;
+    border-radius: 4px;
+    background: var(--bg);
+    flex-shrink: 0;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+  }
+
+  .slide-body { padding: 16px; }
+
+  /* ── Content blocks ── */
+  .block {
+    border-radius: 8px;
+    padding: 10px 12px;
+    margin-bottom: 8px;
+    display: flex;
+    gap: 10px;
+    align-items: flex-start;
+    line-height: 1.5;
+  }
+
+  .block-icon {
+    width: 22px;
+    height: 22px;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 11px;
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+
+  .block-content {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .block-content p {
+    font-size: 13px;
+    line-height: 1.55;
+    color: var(--text);
+  }
+
+  .block-content p + p {
+    margin-top: 6px;
+  }
+
+  .block-content strong {
+    font-weight: 700;
+  }
+
+  /* SAY — what to speak out loud */
+  .block.say {
+    background: var(--say-soft);
+    border-left: 3px solid var(--say);
+  }
+
+  .block.say .block-icon {
+    background: rgba(92, 156, 245, 0.2);
+    color: var(--say);
+  }
+
+  .block.say .block-content p {
+    color: var(--text);
+  }
+
+  .block.say.punchline {
+    background: rgba(229, 57, 53, 0.06);
+    border-left-color: var(--accent);
+  }
+
+  .block.say.punchline .block-icon {
+    background: var(--accent-soft);
+    color: var(--accent);
+  }
+
+  .block.say.punchline .block-content p {
+    font-weight: 600;
+  }
+
+  /* DO — physical delivery action */
+  .block.do {
+    background: var(--do-soft);
+    border-left: 3px solid var(--do);
+  }
+
+  .block.do .block-icon {
+    background: rgba(171, 71, 188, 0.2);
+    color: var(--purple);
+  }
+
+  .block.do .block-content p {
+    color: var(--purple);
+    font-weight: 600;
+    font-size: 12px;
+  }
+
+  /* TIP — delivery guidance */
+  .block.tip {
+    background: rgba(255,255,255,0.02);
+    border-left: 3px solid var(--border-light);
+  }
+
+  .block.tip .block-icon {
+    background: rgba(139, 143, 152, 0.15);
+    color: var(--text-secondary);
+  }
+
+  .block.tip .block-content p {
+    color: var(--text-secondary);
+    font-size: 12px;
+    font-style: italic;
+  }
+
+  /* TRANSITION — bridge to next slide */
+  .block.transition {
+    background: var(--green-soft);
+    border-left: 3px solid var(--green);
+    margin-top: 12px;
+  }
+
+  .block.transition .block-icon {
+    background: rgba(67, 160, 71, 0.2);
+    color: var(--green);
+  }
+
+  .block.transition .block-content p {
+    color: var(--green);
+    font-weight: 600;
+    font-style: italic;
+  }
+
+  /* ── Collapsible sections ── */
+  .collapsible {
+    margin-top: 8px;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    overflow: hidden;
+  }
+
+  .collapsible-toggle {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 12px;
+    background: var(--surface-2);
+    border: none;
+    color: var(--text-secondary);
+    font-family: inherit;
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    cursor: pointer;
+    transition: background 0.15s, color 0.15s;
+    text-align: left;
+  }
+
+  .collapsible-toggle:hover {
+    background: var(--border);
+    color: var(--text);
+  }
+
+  .collapsible-toggle .c-icon {
+    width: 18px;
+    height: 18px;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 10px;
+    flex-shrink: 0;
+  }
+
+  .collapsible-toggle .chevron {
+    margin-left: auto;
+    font-size: 10px;
+    transition: transform 0.2s;
+    flex-shrink: 0;
+  }
+
+  .collapsible.open .collapsible-toggle .chevron {
+    transform: rotate(90deg);
+  }
+
+  .collapsible-body {
+    display: none;
+    padding: 10px 12px;
+    background: var(--surface);
+  }
+
+  .collapsible.open .collapsible-body {
+    display: block;
+  }
+
+  .collapsible-body p {
+    font-size: 13px;
+    line-height: 1.55;
+    color: var(--text);
+  }
+
+  /* Objection style */
+  .collapsible.objection .collapsible-toggle { color: var(--amber); }
+  .collapsible.objection .collapsible-toggle:hover { color: var(--amber); }
+  .collapsible.objection .c-icon { background: var(--amber-soft); color: var(--amber); }
+
+  /* Back-pocket style */
+  .collapsible.pocket .collapsible-toggle { color: var(--text-tertiary); }
+  .collapsible.pocket .c-icon { background: rgba(255,255,255,0.05); color: var(--text-tertiary); }
+
+  /* ── Section divider inside slide ── */
+  .section-divider {
+    font-size: 9px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--text-tertiary);
+    padding: 10px 0 4px;
+    margin-top: 4px;
+  }
+
+  /* ── Focus mode ── */
+  body.focus-mode .block.tip,
+  body.focus-mode .block.do,
+  body.focus-mode .collapsible,
+  body.focus-mode .section-divider {
+    display: none;
+  }
+
+  body.focus-mode .block.say {
+    margin-bottom: 4px;
+    padding: 8px 12px;
+  }
+
+  body.focus-mode .block.transition {
+    margin-top: 6px;
+  }
+
+  /* ── Header ── */
+  .page-header {
+    text-align: center;
+    padding-bottom: 20px;
+    margin-bottom: 4px;
+  }
+
+  .page-header h1 {
+    font-size: 24px;
+    font-weight: 800;
+    letter-spacing: -0.03em;
+  }
+
+  .page-header p {
+    font-size: 12px;
+    color: var(--text-secondary);
+    margin-top: 4px;
+  }
+
+  .timing-bar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    margin-top: 12px;
+    flex-wrap: wrap;
+  }
+
+  .timing-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 11px;
+    font-weight: 600;
+    padding: 4px 10px;
+    border-radius: 5px;
+    border: 1px solid var(--border);
+    color: var(--text-secondary);
+  }
+
+  .timing-pill .t-num { font-weight: 800; color: var(--text); }
+
+  /* ── Print ── */
+  @media print {
+    .sticky-nav, .mode-btn, .legend { display: none; }
+    body { background: #fff; color: #111; padding: 12px; max-width: 100%; }
+    .slide-card { break-inside: avoid; border-color: #ddd; }
+    .slide-header { background: #f5f5f5; }
+    .block { border-left-width: 2px; }
+    .collapsible-body { display: block !important; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ═══════ HEADER ═══════ -->
+<div class="page-header">
+  <h1>Presenter Notes</h1>
+  <p>UAGC Website Reskin &mdash; ELT Briefing &mdash; 12 slides</p>
+  <div class="timing-bar">
+    <div class="timing-pill"><span class="t-num">18&ndash;22 min</span> talk</div>
+    <div class="timing-pill"><span class="t-num">5&ndash;7 min</span> Q&amp;A</div>
+    <div class="timing-pill"><span class="t-num">~1.5 min</span> per slide</div>
+  </div>
+</div>
+
+<!-- ═══════ STICKY NAV ═══════ -->
+<nav class="sticky-nav" id="stickyNav">
+  <span class="nav-title">Slide</span>
+  <a href="#s1">1</a><a href="#s2">2</a><a href="#s3">3</a><a href="#s4">4</a><a href="#s5">5</a><a href="#s6">6</a>
+  <a href="#s7">7</a><a href="#s8">8</a><a href="#s9">9</a><a href="#s10">10</a><a href="#s11">11</a><a href="#s12">12</a>
+  <div class="nav-spacer"></div>
+  <button class="mode-btn" id="focusBtn" title="Show only what to SAY and transitions">Focus Mode</button>
+</nav>
+
+<!-- ═══════ LEGEND ═══════ -->
+<div class="legend" id="legend">
+  <div class="legend-item"><div class="legend-icon" style="background: rgba(92,156,245,0.2); color: var(--say);">&#x1f5e3;</div> Say this</div>
+  <div class="legend-item"><div class="legend-icon" style="background: var(--accent-soft); color: var(--accent);">&#x1f4a5;</div> Punchline</div>
+  <div class="legend-item"><div class="legend-icon" style="background: rgba(171,71,188,0.2); color: var(--purple);">&#x1f3af;</div> Do this</div>
+  <div class="legend-item"><div class="legend-icon" style="background: rgba(139,143,152,0.15); color: var(--text-secondary);">&#x1f4a1;</div> Tip</div>
+  <div class="legend-item"><div class="legend-icon" style="background: rgba(67,160,71,0.2); color: var(--green);">&#x27a1;</div> Transition</div>
+  <div class="legend-item"><div class="legend-icon" style="background: var(--amber-soft); color: var(--amber);">&#x1f6e1;</div> If asked</div>
+  <div class="legend-item"><div class="legend-icon" style="background: rgba(255,255,255,0.05); color: var(--text-tertiary);">&#x1f4cb;</div> Back pocket</div>
+</div>
+
+
+<!-- ═══════════════════════ SLIDE 1 ═══════════════════════ -->
+<div class="slide-card" id="s1">
+  <div class="slide-header">
+    <div style="display:flex;align-items:center;"><div class="slide-num">1</div><div class="slide-title">The Data Says Fix the Funnel</div></div>
+    <div class="slide-time">~1 min</div>
+  </div>
+  <div class="slide-body">
+
+    <div class="block say punchline">
+      <div class="block-icon">&#x1f4a5;</div>
+      <div class="block-content"><p>"We've been talking about this as a traffic problem. It's not. We have 11.1 million sessions and $8.9 million in ad spend driving people to the site. The traffic is there."</p></div>
+    </div>
+
+    <div class="block say">
+      <div class="block-icon">&#x1f5e3;</div>
+      <div class="block-content"><p>"The problem is what happens when they arrive. Over 627,000 paid visitors bounced from our primary landing page last year. They came, they saw the page, and they left."</p></div>
+    </div>
+
+    <div class="block say">
+      <div class="block-icon">&#x1f5e3;</div>
+      <div class="block-content"><p>"What I'm going to show you is 12 months of data from GSC, GA4, Contentsquare, and Google Ads &mdash; and a clear, phased plan to fix it."</p></div>
+    </div>
+
+    <div class="block tip">
+      <div class="block-icon">&#x1f4a1;</div>
+      <div class="block-content"><p>Confident, not alarmist. Opportunity framing, not blame. Don't linger &mdash; this slide sets up the punchline on slide 2.</p></div>
+    </div>
+
+    <div class="block transition">
+      <div class="block-icon">&#x27a1;</div>
+      <div class="block-content"><p>"Let me show you the single most important finding in the data."</p></div>
+    </div>
+
+  </div>
+</div>
+
+
+<!-- ═══════════════════════ SLIDE 2 ═══════════════════════ -->
+<div class="slide-card" id="s2">
+  <div class="slide-header">
+    <div style="display:flex;align-items:center;"><div class="slide-num">2</div><div class="slide-title">4.5x Conversion Gap</div></div>
+    <div class="slide-time">~1.5 min</div>
+  </div>
+  <div class="slide-body">
+
+    <div class="block do">
+      <div class="block-icon">&#x1f3af;</div>
+      <div class="block-content"><p>Pause 2&ndash;3 seconds after clicking. Let the room read "4.5x" before you speak.</p></div>
+    </div>
+
+    <div class="block say">
+      <div class="block-icon">&#x1f5e3;</div>
+      <div class="block-content"><p>"Our primary paid landing page &mdash; the one that gets 1.18 million sessions &mdash; converts at 3%. Another page on the same site, with similar form elements, converts at 13.6%. That's a 4.5x gap between our own pages."</p></div>
+    </div>
+
+    <div class="block say punchline">
+      <div class="block-icon">&#x1f4a5;</div>
+      <div class="block-content"><p>"Same school. Similar form elements. The difference is the content layout &mdash; what visitors see and do before they ever reach a form."</p></div>
+    </div>
+
+    <div class="section-divider">Blog tease</div>
+
+    <div class="block say">
+      <div class="block-icon">&#x1f5e3;</div>
+      <div class="block-content"><p>"And it's not just paid pages. We have a blog post about PhD programs that gets 149,000 engaged readers a year &mdash; people spending 8 minutes reading. It produces 21 conversions. Twenty-one. Because there's no CTA on the page."</p></div>
+    </div>
+
+    <div class="collapsible objection">
+      <button class="collapsible-toggle" onclick="this.parentElement.classList.toggle('open')">
+        <span class="c-icon">&#x1f6e1;</span> "Is 13.57% realistic for all pages?" <span class="chevron">&#x25b6;</span>
+      </button>
+      <div class="collapsible-body">
+        <p>No &mdash; and we're not targeting that for every page. But if we can move the primary RFI page from 3% to even 7% (half the best page's rate), that's still a doubling. I'll show you the math on slide 9.</p>
+      </div>
+    </div>
+
+    <div class="block transition">
+      <div class="block-icon">&#x27a1;</div>
+      <div class="block-content"><p>"Let me give you a quick sense of the scale we're working with."</p></div>
+    </div>
+
+  </div>
+</div>
+
+
+<!-- ═══════════════════════ SLIDE 3 ═══════════════════════ -->
+<div class="slide-card" id="s3">
+  <div class="slide-header">
+    <div style="display:flex;align-items:center;"><div class="slide-num">3</div><div class="slide-title">The Scale of the Opportunity</div></div>
+    <div class="slide-time">~2 min</div>
+  </div>
+  <div class="slide-body">
+
+    <div class="section-divider">Top-line numbers (left side of slide)</div>
+
+    <div class="block say">
+      <div class="block-icon">&#x1f5e3;</div>
+      <div class="block-content"><p>"11.1 million sessions, 1.73 million organic clicks, 348,000 conversions. This isn't a small site."</p></div>
+    </div>
+
+    <div class="block do">
+      <div class="block-icon">&#x1f3af;</div>
+      <div class="block-content"><p>Point to the engagement rate metric.</p></div>
+    </div>
+
+    <div class="block say punchline">
+      <div class="block-icon">&#x1f4a5;</div>
+      <div class="block-content"><p>"But our engagement rate is only 47.5%. More than half of all visitors leave without meaningfully interacting. And 60% of our traffic is mobile &mdash; where engagement is 6 points lower than desktop. That gap represents hundreds of thousands of failed sessions."</p></div>
+    </div>
+
+    <div class="section-divider">Channel insight (right side of slide)</div>
+
+    <div class="block say">
+      <div class="block-icon">&#x1f5e3;</div>
+      <div class="block-content"><p>"Quick channel view: Paid Search is our top converter &mdash; 77,500 conversions, 61% engagement. Display overperforms at 59,600 conversions and 64% engagement."</p></div>
+    </div>
+
+    <div class="block say punchline">
+      <div class="block-icon">&#x1f4a5;</div>
+      <div class="block-content"><p>"But Paid Social brings 1.91 million sessions &mdash; our largest paid channel &mdash; at only 42% engagement and 58% bounce. That traffic is landing on pages that aren't built for it."</p></div>
+    </div>
+
+    <div class="collapsible pocket">
+      <button class="collapsible-toggle" onclick="this.parentElement.classList.toggle('open')">
+        <span class="c-icon">&#x1f4cb;</span> If asked about organic decline <span class="chevron">&#x25b6;</span>
+      </button>
+      <div class="collapsible-body">
+        <p>Homepage organic clicks are down 41.6% half-over-half. Blog content down 49.7%. Likely AI overview cannibalization. This makes conversion efficiency even more urgent &mdash; fewer free visits means each one has to work harder.</p>
+      </div>
+    </div>
+
+    <div class="block transition">
+      <div class="block-icon">&#x27a1;</div>
+      <div class="block-content"><p>"Let me show you exactly what I mean. Here are two of our pages side by side."</p></div>
+    </div>
+
+  </div>
+</div>
+
+
+<!-- ═══════════════════════ SLIDE 4 ═══════════════════════ -->
+<div class="slide-card" id="s4">
+  <div class="slide-header">
+    <div style="display:flex;align-items:center;"><div class="slide-num">4</div><div class="slide-title">Tale of Two Pages</div></div>
+    <div class="slide-time">~2 min</div>
+  </div>
+  <div class="slide-body">
+
+    <div class="block do">
+      <div class="block-icon">&#x1f3af;</div>
+      <div class="block-content"><p>Point to the LEFT screenshot as you describe the bad page.</p></div>
+    </div>
+
+    <div class="block say">
+      <div class="block-icon">&#x1f5e3;</div>
+      <div class="block-content"><p>"This is our primary RFI landing page. 1.18 million sessions, mostly Paid Social. 53% bounce. 3% conversion. Look at what greets visitors: a generic form with generic copy. No program specifics. No reason to believe."</p></div>
+    </div>
+
+    <div class="block do">
+      <div class="block-icon">&#x1f3af;</div>
+      <div class="block-content"><p>Point to the RIGHT screenshot.</p></div>
+    </div>
+
+    <div class="block say">
+      <div class="block-icon">&#x1f5e3;</div>
+      <div class="block-content"><p>"This is degree-programs-v7. 222,000 sessions, mostly Display. 25% bounce. 13.57% conversion. What's different? The layout. This page leads with a program category browser. Visitors explore degrees, see salary data, read outcomes &mdash; then they reach the form already informed and motivated."</p></div>
+    </div>
+
+    <div class="block say punchline">
+      <div class="block-icon">&#x1f4a5;</div>
+      <div class="block-content"><p>"The forms are similar. The layout is completely different. One page earns attention before it asks for information. The other asks first and earns nothing."</p></div>
+    </div>
+
+    <div class="block tip">
+      <div class="block-icon">&#x1f4a1;</div>
+      <div class="block-content"><p>If you have time, add the visitor perspective: "You click a social ad about education. You land on a page that immediately asks for your info with no context. 53% of people leave."</p></div>
+    </div>
+
+    <div class="collapsible objection">
+      <button class="collapsible-toggle" onclick="this.parentElement.classList.toggle('open')">
+        <span class="c-icon">&#x1f6e1;</span> "But these are different traffic sources &mdash; isn't that the difference?" <span class="chevron">&#x25b6;</span>
+      </button>
+      <div class="collapsible-body">
+        <p>Traffic source matters, but it doesn't explain a 4.5x gap. Paid Search visitors (highest intent) still convert at only 3.5% on the bachelor's page. Content-rich pages outperform regardless of source. Organic shows the same: /online-degrees has 88.8% engagement vs. homepage at 56.7%.</p>
+      </div>
+    </div>
+
+    <div class="block transition">
+      <div class="block-icon">&#x27a1;</div>
+      <div class="block-content"><p>"That's two pages. Let me show you it's not an anomaly &mdash; it's a pattern across all five paid landing pages."</p></div>
+    </div>
+
+  </div>
+</div>
+
+
+<!-- ═══════════════════════ SLIDE 5 ═══════════════════════ -->
+<div class="slide-card" id="s5">
+  <div class="slide-header">
+    <div style="display:flex;align-items:center;"><div class="slide-num">5</div><div class="slide-title">It's a System-Wide Gap</div></div>
+    <div class="slide-time">~1.5 min</div>
+  </div>
+  <div class="slide-body">
+
+    <div class="block do">
+      <div class="block-icon">&#x1f3af;</div>
+      <div class="block-content"><p>Walk through the table top to bottom. Let the green highlights on the bottom two rows do the work.</p></div>
+    </div>
+
+    <div class="block say">
+      <div class="block-icon">&#x1f5e3;</div>
+      <div class="block-content"><p>"Here are all five paid landing pages. The top three &mdash; request-info, bachelor's, military &mdash; have the most traffic. Engagement rates in the 40s and 50s. Conversion rates around 3%."</p></div>
+    </div>
+
+    <div class="block do">
+      <div class="block-icon">&#x1f3af;</div>
+      <div class="block-content"><p>Point to the bottom two rows &mdash; courses-v5 and degree-programs-v7.</p></div>
+    </div>
+
+    <div class="block say punchline">
+      <div class="block-icon">&#x1f4a5;</div>
+      <div class="block-content"><p>"Now look at the bottom two. Fewer sessions &mdash; but 75% engagement, 7 to 13% conversion. These two pages, with less traffic, produce nearly as many or more conversions than the top three combined."</p></div>
+    </div>
+
+    <div class="block say punchline">
+      <div class="block-icon">&#x1f4a5;</div>
+      <div class="block-content"><p>"Better pages beat bigger traffic. If request-info-v5 converted at even 7%, that's 47,000 additional leads from existing traffic. No new ad spend required."</p></div>
+    </div>
+
+    <div class="collapsible objection">
+      <button class="collapsible-toggle" onclick="this.parentElement.classList.toggle('open')">
+        <span class="c-icon">&#x1f6e1;</span> "Aren't courses and degree-programs just higher-intent audiences?" <span class="chevron">&#x25b6;</span>
+      </button>
+      <div class="collapsible-body">
+        <p>Intent is part of it, but both /request-info and /degree-programs receive paid traffic from similar campaigns. The engagement rates tell the story: 74% vs. 46%. Visitors on the content-rich pages stay, explore, and convert. Visitors on the generic pages bounce.</p>
+      </div>
+    </div>
+
+    <div class="block transition">
+      <div class="block-icon">&#x27a1;</div>
+      <div class="block-content"><p>"It's not just paid pages where we're leaving money on the table. Let me show you what's happening with our blog content."</p></div>
+    </div>
+
+  </div>
+</div>
+
+
+<!-- ═══════════════════════ SLIDE 6 ═══════════════════════ -->
+<div class="slide-card" id="s6">
+  <div class="slide-header">
+    <div style="display:flex;align-items:center;"><div class="slide-num">6</div><div class="slide-title">149K Readers. 21 Conversions.</div></div>
+    <div class="slide-time">~1.5 min</div>
+  </div>
+  <div class="slide-body">
+
+    <div class="block say punchline">
+      <div class="block-icon">&#x1f4a5;</div>
+      <div class="block-content"><p>"We have a blog post about PhD vs. doctorate degrees. It ranks number 3 on Google. 149,000 people read it last year. They spend 8 minutes on the page. 68% engagement. And it produced 21 leads. Twenty-one."</p></div>
+    </div>
+
+    <div class="block say">
+      <div class="block-icon">&#x1f5e3;</div>
+      <div class="block-content"><p>"Why? Because the page doesn't tell them we're a university. There's no link to our doctoral program. No CTA. Nothing. They read about PhDs for 8 minutes and then leave."</p></div>
+    </div>
+
+    <div class="block do">
+      <div class="block-icon">&#x1f3af;</div>
+      <div class="block-content"><p>Point to the 2,437 number on the right side of the slide.</p></div>
+    </div>
+
+    <div class="block say">
+      <div class="block-icon">&#x1f5e3;</div>
+      <div class="block-content"><p>"Across just three blog posts: 243,000 sessions, 84 total conversions. If we add one contextual CTA per post and get to just 1%, that's 2,437 leads per year. A 29x improvement from content that already exists."</p></div>
+    </div>
+
+    <div class="block say punchline">
+      <div class="block-icon">&#x1f4a5;</div>
+      <div class="block-content"><p>"This is the lowest-effort, highest-upside item on the list. The content already ranks. Already engages. We just need to add one link."</p></div>
+    </div>
+
+    <div class="collapsible objection">
+      <button class="collapsible-toggle" onclick="this.parentElement.classList.toggle('open')">
+        <span class="c-icon">&#x1f6e1;</span> "Is 1% realistic for informational traffic?" <span class="chevron">&#x25b6;</span>
+      </button>
+      <div class="collapsible-body">
+        <p>Informational traffic converts lower than branded, yes. But 0.01% isn't a floor &mdash; it's the absence of any conversion path. Even 0.5% gets us 1,200 leads. The current 21 is a rounding error.</p>
+      </div>
+    </div>
+
+    <div class="block transition">
+      <div class="block-icon">&#x27a1;</div>
+      <div class="block-content"><p>"And it's getting more urgent. Let me show you what's happening with organic."</p></div>
+    </div>
+
+  </div>
+</div>
+
+
+<!-- ═══════════════════════ SLIDE 7 ═══════════════════════ -->
+<div class="slide-card" id="s7">
+  <div class="slide-header">
+    <div style="display:flex;align-items:center;"><div class="slide-num">7</div><div class="slide-title">Organic Is Declining</div></div>
+    <div class="slide-time">~1 min</div>
+  </div>
+  <div class="slide-body">
+
+    <div class="block do">
+      <div class="block-icon">&#x1f3af;</div>
+      <div class="block-content"><p>Let the red bars speak. Point to the percentage drops one by one.</p></div>
+    </div>
+
+    <div class="block say">
+      <div class="block-icon">&#x1f5e3;</div>
+      <div class="block-content"><p>"In the last six months, homepage organic clicks dropped 42%. Our blog content dropped nearly 50%. Writing center down 32%."</p></div>
+    </div>
+
+    <div class="block say punchline">
+      <div class="block-icon">&#x1f4a5;</div>
+      <div class="block-content"><p>"This is AI overview cannibalization. Google is answering 'what is a PhD' and 'how to write a business plan' before anyone clicks. The site needs to offer what AI overviews can't &mdash; and convert the visitors it does get."</p></div>
+    </div>
+
+    <div class="block say punchline">
+      <div class="block-icon">&#x1f4a5;</div>
+      <div class="block-content"><p>"If organic traffic is shrinking, conversion efficiency isn't optional. It's survival."</p></div>
+    </div>
+
+    <div class="collapsible objection">
+      <button class="collapsible-toggle" onclick="this.parentElement.classList.toggle('open')">
+        <span class="c-icon">&#x1f6e1;</span> "Could the login/myuagc migration explain the homepage drop?" <span class="chevron">&#x25b6;</span>
+      </button>
+      <div class="collapsible-body">
+        <p>The login&rarr;myuagc migration is a portal change that affects existing students. It doesn't explain the blog or writing center drops, and those pages serve prospective students. The pattern is consistent with AI overview cannibalization across informational queries.</p>
+      </div>
+    </div>
+
+    <div class="block transition">
+      <div class="block-icon">&#x27a1;</div>
+      <div class="block-content"><p>"So with that context, here's what the ad efficiency data tells us about what works."</p></div>
+    </div>
+
+  </div>
+</div>
+
+
+<!-- ═══════════════════════ SLIDE 8 ═══════════════════════ -->
+<div class="slide-card" id="s8">
+  <div class="slide-header">
+    <div style="display:flex;align-items:center;"><div class="slide-num">8</div><div class="slide-title">Audience-Specific Content Converts 18x Better</div></div>
+    <div class="slide-time">~1.5 min</div>
+  </div>
+  <div class="slide-body">
+
+    <div class="block tip">
+      <div class="block-icon">&#x1f4a1;</div>
+      <div class="block-content"><p>This is reframed as a "what works" slide, not a budget review. Stay on the page/content angle.</p></div>
+    </div>
+
+    <div class="block do">
+      <div class="block-icon">&#x1f3af;</div>
+      <div class="block-content"><p>Point to the top bar (Military at $29), then the bottom bar (PMax at $1,539). Let the visual gap do the work.</p></div>
+    </div>
+
+    <div class="block say">
+      <div class="block-icon">&#x1f5e3;</div>
+      <div class="block-content"><p>"The military landing page converts at $29 per lead. It's audience-specific: built for military learners, their benefits, their path. PMax General sends broad traffic to generic pages &mdash; $1,539 per lead."</p></div>
+    </div>
+
+    <div class="block say punchline">
+      <div class="block-icon">&#x1f4a5;</div>
+      <div class="block-content"><p>"That's an 18x efficiency gap between two campaigns at the same school. The difference isn't the media buy. It's the landing page."</p></div>
+    </div>
+
+    <div class="block say">
+      <div class="block-icon">&#x1f5e3;</div>
+      <div class="block-content"><p>"The takeaway for this room: better pages make every ad dollar work harder. That's a website fix, not a media fix."</p></div>
+    </div>
+
+    <div class="collapsible objection">
+      <button class="collapsible-toggle" onclick="this.parentElement.classList.toggle('open')">
+        <span class="c-icon">&#x1f6e1;</span> "Isn't that the media team's problem?" <span class="chevron">&#x25b6;</span>
+      </button>
+      <div class="collapsible-body">
+        <p>The media team controls the targeting and spend. We control the landing experience. Right now, even well-targeted campaigns underperform because the page doesn't match the audience. Fixing the page is the fastest lever we can pull &mdash; and it makes every campaign more efficient.</p>
+      </div>
+    </div>
+
+    <div class="block transition">
+      <div class="block-icon">&#x27a1;</div>
+      <div class="block-content"><p>"This isn't just theory. Other schools have done exactly this and the results are dramatic."</p></div>
+    </div>
+
+  </div>
+</div>
+
+
+<!-- ═══════════════════════ SLIDE 9 ═══════════════════════ -->
+<div class="slide-card" id="s9">
+  <div class="slide-header">
+    <div style="display:flex;align-items:center;"><div class="slide-num">9</div><div class="slide-title">Benchmarks &mdash; Others Have Solved This</div></div>
+    <div class="slide-time">~1.5 min</div>
+  </div>
+  <div class="slide-body">
+
+    <div class="block tip">
+      <div class="block-icon">&#x1f4a1;</div>
+      <div class="block-content"><p>Hit highlights only. Don't read the cards &mdash; the room will scan them while you talk.</p></div>
+    </div>
+
+    <div class="block do">
+      <div class="block-icon">&#x1f3af;</div>
+      <div class="block-content"><p>Point to the left card.</p></div>
+    </div>
+
+    <div class="block say">
+      <div class="block-icon">&#x1f5e3;</div>
+      <div class="block-content"><p>"Empire State University &mdash; fully online like us. Redesigned and got 3x RFI form fills, 25% more undergrad, 41% more grad students. Key move: audience personalization."</p></div>
+    </div>
+
+    <div class="block do">
+      <div class="block-icon">&#x1f3af;</div>
+      <div class="block-content"><p>Point to the middle card.</p></div>
+    </div>
+
+    <div class="block say punchline">
+      <div class="block-icon">&#x1f4a5;</div>
+      <div class="block-content"><p>"UT Tyler rebuilt their IA and Program Finder. 700% increase in RFI conversions. Not a typo."</p></div>
+    </div>
+
+    <div class="block say">
+      <div class="block-icon">&#x1f5e3;</div>
+      <div class="block-content"><p>"And a DTC e-commerce brand did a CRO audit &mdash; no redesign, just page fixes. Ad ROAS went from 4x to 11x. Zero changes to ad spend. When the page converts better, every channel gets more efficient."</p></div>
+    </div>
+
+    <div class="block say punchline">
+      <div class="block-icon">&#x1f4a5;</div>
+      <div class="block-content"><p>"The common thread: they didn't spend more on ads. They fixed the page experience. That's exactly what we're proposing."</p></div>
+    </div>
+
+    <div class="block transition">
+      <div class="block-icon">&#x27a1;</div>
+      <div class="block-content"><p>"So here's where we focus."</p></div>
+    </div>
+
+  </div>
+</div>
+
+
+<!-- ═══════════════════════ SLIDE 10 ═══════════════════════ -->
+<div class="slide-card" id="s10">
+  <div class="slide-header">
+    <div style="display:flex;align-items:center;"><div class="slide-num">10</div><div class="slide-title">Where to Focus</div></div>
+    <div class="slide-time">~2 min</div>
+  </div>
+  <div class="slide-body">
+
+    <div class="block say punchline">
+      <div class="block-icon">&#x1f4a5;</div>
+      <div class="block-content"><p><strong>P1:</strong> "Fix the primary RFI page. 1.18M sessions, 53% bounce. Enrich with program-specific content. If it matched our best page, that's +124K leads/year."</p></div>
+    </div>
+
+    <div class="block say punchline">
+      <div class="block-icon">&#x1f4a5;</div>
+      <div class="block-content"><p><strong>P2:</strong> "Add CTAs to top blog content. PhD, business plan. One module per post. The content already works &mdash; we just need to connect it to our programs."</p></div>
+    </div>
+
+    <div class="block say">
+      <div class="block-icon">&#x1f5e3;</div>
+      <div class="block-content"><p><strong>P3:</strong> "Mobile-first above the fold. 60% of traffic, underperforms everywhere. Chat widget, form placement, viewport."</p></div>
+    </div>
+
+    <div class="block say">
+      <div class="block-icon">&#x1f5e3;</div>
+      <div class="block-content"><p><strong>P4:</strong> "Replicate winning layouts from /online-degrees and /degree-programs-v7 across all underperformers."</p></div>
+    </div>
+
+    <div class="block say">
+      <div class="block-icon">&#x1f5e3;</div>
+      <div class="block-content"><p><strong>P5:</strong> "Strategic review of declining organic and PMax efficiency &mdash; longer-term but need attention."</p></div>
+    </div>
+
+    <div class="block tip">
+      <div class="block-icon">&#x1f4a1;</div>
+      <div class="block-content"><p>Note: P1 and P2 are quick wins before the full reskin. They're also the test cases &mdash; if enriching the RFI page works, it validates the full redesign approach.</p></div>
+    </div>
+
+    <div class="block transition">
+      <div class="block-icon">&#x27a1;</div>
+      <div class="block-content"><p>"Let me put a number on what this means."</p></div>
+    </div>
+
+  </div>
+</div>
+
+
+<!-- ═══════════════════════ SLIDE 11 ═══════════════════════ -->
+<div class="slide-card" id="s11">
+  <div class="slide-header">
+    <div style="display:flex;align-items:center;"><div class="slide-num">11</div><div class="slide-title">+124K Additional Leads Per Year</div></div>
+    <div class="slide-time">~1.5 min</div>
+  </div>
+  <div class="slide-body">
+
+    <div class="block do">
+      <div class="block-icon">&#x1f3af;</div>
+      <div class="block-content"><p>Pause when slide appears. Let the room absorb "+124K" in big green text. 3 seconds of silence.</p></div>
+    </div>
+
+    <div class="block say">
+      <div class="block-icon">&#x1f5e3;</div>
+      <div class="block-content"><p>"If our primary RFI page converted at the rate our best page already achieves &mdash; 13.57% &mdash; that's 159,754 conversions instead of 35,498. Same traffic. Same budget. Same ads."</p></div>
+    </div>
+
+    <div class="block say punchline">
+      <div class="block-icon">&#x1f4a5;</div>
+      <div class="block-content"><p>"Now, I want to be honest &mdash; 13.57% may not be realistic for the generic RFI page. That's the ceiling. But even halfway there &mdash; 3% to 7% &mdash; doubles our conversions. That's 47,000 additional leads with zero incremental ad spend."</p></div>
+    </div>
+
+    <div class="block say punchline">
+      <div class="block-icon">&#x1f4a5;</div>
+      <div class="block-content"><p>"The gap between where we are and where we could be is enormous. And the lever is the page experience, not the budget."</p></div>
+    </div>
+
+    <div class="collapsible objection">
+      <button class="collapsible-toggle" onclick="this.parentElement.classList.toggle('open')">
+        <span class="c-icon">&#x1f6e1;</span> If someone pushes back on the 124K number <span class="chevron">&#x25b6;</span>
+      </button>
+      <div class="collapsible-body">
+        <p>Acknowledge it's a theoretical max. Pivot: "Our working target is 7% conversion and sub-40% bounce. We'll validate with A/B testing in Phase 2 before committing to the full reskin."</p>
+      </div>
+    </div>
+
+    <div class="block transition">
+      <div class="block-icon">&#x27a1;</div>
+      <div class="block-content"><p>"Here's how we get there."</p></div>
+    </div>
+
+  </div>
+</div>
+
+
+<!-- ═══════════════════════ SLIDE 12 ═══════════════════════ -->
+<div class="slide-card" id="s12">
+  <div class="slide-header">
+    <div style="display:flex;align-items:center;"><div class="slide-num">12</div><div class="slide-title">Next Steps &mdash; Three Phases</div></div>
+    <div class="slide-time">~2 min</div>
+  </div>
+  <div class="slide-body">
+
+    <div class="block say">
+      <div class="block-icon">&#x1f5e3;</div>
+      <div class="block-content"><p><strong>Phase 1 &mdash; May:</strong> "Audit and document. Screenshot every key page, side-by-side analysis of why winning pages work, chat widget and mobile UX audit. This gives us the complete picture."</p></div>
+    </div>
+
+    <div class="block say">
+      <div class="block-icon">&#x1f5e3;</div>
+      <div class="block-content"><p><strong>Phase 2 &mdash; June:</strong> "Quick wins. Enrich the RFI page, add blog CTAs, launch an A/B test. Changes we can make before a redesign &mdash; and they give us real data on whether the approach works."</p></div>
+    </div>
+
+    <div class="block say">
+      <div class="block-icon">&#x1f5e3;</div>
+      <div class="block-content"><p><strong>Phase 3 &mdash; July:</strong> "Compile everything into a build-ready requirements doc. Present Phase 2 results. Go/no-go on the full reskin based on test data, not assumptions."</p></div>
+    </div>
+
+    <div class="block do">
+      <div class="block-icon">&#x1f3af;</div>
+      <div class="block-content"><p>Point to the success metrics row at the bottom of the slide.</p></div>
+    </div>
+
+    <div class="block say">
+      <div class="block-icon">&#x1f5e3;</div>
+      <div class="block-content"><p>"We're measuring four things: RFI conversion from 3% to 7-plus. Bounce from 53% to under 40. Blog leads from 21 to 1,490-plus. And PMax spend review."</p></div>
+    </div>
+
+    <div class="section-divider">The close</div>
+
+    <div class="block say punchline">
+      <div class="block-icon">&#x1f4a5;</div>
+      <div class="block-content"><p>"We don't have a traffic problem. We have a page experience problem. The data is clear, the benchmarks are proven, and the plan is phased to validate before we invest. We're asking for alignment to start Phase 1 in May."</p></div>
+    </div>
+
+    <div class="collapsible pocket">
+      <button class="collapsible-toggle" onclick="this.parentElement.classList.toggle('open')">
+        <span class="c-icon">&#x1f4cb;</span> "What resources do you need?" <span class="chevron">&#x25b6;</span>
+      </button>
+      <div class="collapsible-body">
+        <p>Phase 1: ~110 hours (web dev, UX, analytics). Phase 2: ~160 hours. Phase 3: ~170 hours. Total: ~440 hours over 3 months across 5 roles. Detailed project plan with RACI, dependencies, and risk register is ready to share.</p>
+      </div>
+    </div>
+
+    <div class="collapsible pocket">
+      <button class="collapsible-toggle" onclick="this.parentElement.classList.toggle('open')">
+        <span class="c-icon">&#x1f4cb;</span> "What's the risk of not doing this?" <span class="chevron">&#x25b6;</span>
+      </button>
+      <div class="collapsible-body">
+        <p>We continue paying $8.9M/year in ad spend to drive traffic to pages that bounce 53% of visitors. Organic declining 40-50%, AI overviews accelerating it. Every month of delay = same budget, same conversion gap. The cost of inaction is measurable.</p>
+      </div>
+    </div>
+
+    <div class="collapsible pocket">
+      <button class="collapsible-toggle" onclick="this.parentElement.classList.toggle('open')">
+        <span class="c-icon">&#x1f4cb;</span> "Where's the full data?" <span class="chevron">&#x25b6;</span>
+      </button>
+      <div class="collapsible-body">
+        <p>The full 20-slide data deck and detailed project plan are linked from this slide. This briefing focused on key findings and the ask. Happy to walk through any area in detail.</p>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+
+<!-- ═══════ FOOTER ═══════ -->
+<footer style="text-align: center; padding-top: 32px; border-top: 1px solid var(--border); margin-top: 12px;">
+  <p style="font-size: 11px; color: var(--text-tertiary);">Presenter Notes &middot; UAGC ELT Briefing v2 &middot; April 2026</p>
+  <div style="display: flex; gap: 8px; justify-content: center; margin-top: 10px;">
+    <a href="index-v2.html" style="font-size: 11px; font-weight: 600; padding: 5px 14px; border-radius: 6px; border: 1px solid var(--border); color: var(--text-secondary); text-decoration: none;">Open ELT Deck</a>
+    <a href="index.html" style="font-size: 11px; font-weight: 600; padding: 5px 14px; border-radius: 6px; border: 1px solid var(--border); color: var(--text-secondary); text-decoration: none;">Full Data Deck</a>
+    <a href="project-plan.html" style="font-size: 11px; font-weight: 600; padding: 5px 14px; border-radius: 6px; border: 1px solid var(--border); color: var(--text-secondary); text-decoration: none;">Project Plan</a>
+  </div>
+</footer>
+
+<script>
+  const focusBtn = document.getElementById('focusBtn');
+  const legend = document.getElementById('legend');
+
+  focusBtn.addEventListener('click', () => {
+    document.body.classList.toggle('focus-mode');
+    focusBtn.classList.toggle('active');
+    focusBtn.textContent = document.body.classList.contains('focus-mode') ? 'Full Notes' : 'Focus Mode';
+    legend.style.display = document.body.classList.contains('focus-mode') ? 'none' : '';
+  });
+
+  const navLinks = document.querySelectorAll('.sticky-nav a');
+  const cards = document.querySelectorAll('.slide-card');
+
+  function updateActiveNav() {
+    let current = '';
+    cards.forEach(card => {
+      const top = card.getBoundingClientRect().top;
+      if (top < 120) current = card.id;
+    });
+    navLinks.forEach(link => {
+      link.classList.toggle('active', link.getAttribute('href') === '#' + current);
+    });
+  }
+
+  window.addEventListener('scroll', updateActiveNav, { passive: true });
+  updateActiveNav();
+</script>
+
+</body>
+</html>

@@ -629,7 +629,7 @@
     <div class="kicker">The single biggest finding</div>
     <div class="big-number">4.5x</div>
     <h2 style="margin-top: 2vh">conversion gap between our own paid landing pages</h2>
-    <p class="subtitle">Our primary RFI page converts at 3.01% from 1.18M sessions. Another page with the same forms converts at 13.57%. Same school. Same forms. Different page content.</p>
+    <p class="subtitle">Our primary RFI page converts at 3.01% from 1.18M sessions. Another page with similar form elements converts at 13.57%. Same school. Similar forms. Completely different content layout.</p>
     <div class="insight" style="margin-top: 3vh">
       <p>Meanwhile, blog pages averaging <strong>8&ndash;15 minutes</strong> of engagement produce <strong>21 conversions</strong> from 149K sessions. People are reading. They're just not being asked to do anything.</p>
     </div>
@@ -718,7 +718,7 @@
   <!-- SLIDE 4: The Problem Child vs. The Star Student -->
   <div class="slide" data-slide="3">
     <div class="kicker">The tale of two pages</div>
-    <h2>Same School. Same Forms.<br>Wildly Different Results.</h2>
+    <h2>Same School. Similar Forms.<br>Wildly Different Layout.</h2>
     <div class="page-compare">
       <div class="page-compare-item">
         <div class="page-label"><span class="tag red">Problem Child</span> /success/request-info-v5</div>
@@ -742,12 +742,70 @@
       </div>
     </div>
     <div class="insight" style="margin-top: 2vh; max-width: 900px;">
-      <p>Both pages use the same form structure. The difference is what surrounds the forms: <strong>/degree-programs-v7</strong> gives visitors program-specific content, salary data, and reasons to believe before asking for information. <strong>/request-info-v5</strong> leads with a generic form and generic copy. The page content is the variable &mdash; not the forms.</p>
+      <p>Both pages share similar form elements, but the content layout is completely different. <strong>/degree-programs-v7</strong> leads with a program category browser, salary data, and reasons to believe &mdash; visitors explore and self-select before the form. <strong>/request-info-v5</strong> leads with a generic form and generic copy. The layout and content surrounding the forms is the variable.</p>
     </div>
   </div>
 
-  <!-- SLIDE 5: Blog Content Gap -->
+  <!-- SLIDE 5: Top 5 Paid Landing Pages -->
   <div class="slide" data-slide="4">
+    <div class="kicker">The pattern across all paid pages</div>
+    <h2>It's Not Just Two Pages.<br>It's a System-Wide Gap.</h2>
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th>Page</th>
+          <th>Sessions</th>
+          <th>Eng. Rate</th>
+          <th>Conv. Rate</th>
+          <th>Conversions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="page-path">/success/request-info-v5</td>
+          <td>1,177,574</td>
+          <td class="highlight-warn">46.8%</td>
+          <td class="highlight-bad">3.01%</td>
+          <td>35,498</td>
+        </tr>
+        <tr>
+          <td class="page-path">/success/.../bachelors-v5</td>
+          <td>458,070</td>
+          <td class="highlight-warn">43.1%</td>
+          <td class="highlight-warn">3.50%</td>
+          <td>16,013</td>
+        </tr>
+        <tr>
+          <td class="page-path">/success/military-v5</td>
+          <td>310,713</td>
+          <td>52.9%</td>
+          <td>3.07%</td>
+          <td>9,551</td>
+        </tr>
+        <tr>
+          <td class="page-path">/success/.../courses-v5</td>
+          <td>262,257</td>
+          <td class="highlight-good">74.5%</td>
+          <td class="highlight-good">7.25%</td>
+          <td>19,005</td>
+        </tr>
+        <tr>
+          <td class="page-path">/success/degree-programs-v7</td>
+          <td>221,507</td>
+          <td class="highlight-good">74.9%</td>
+          <td class="highlight-good">13.57%</td>
+          <td>30,066</td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="insight green" style="margin-top: 2vh">
+      <p>The bottom two pages have fewer sessions but <strong>nearly equal or more conversions</strong> than the top three combined. <strong>Better pages beat bigger traffic.</strong> If /request-info-v5 converted at even 7%, that's 47K additional leads from existing traffic.</p>
+    </div>
+    <p class="quip">The pages with fewer visitors are outperforming the ones with more. Fix the page, not the volume.</p>
+  </div>
+
+  <!-- SLIDE 6: Blog Content Gap -->
+  <div class="slide" data-slide="5">
     <div class="kicker amber">The content goldmine nobody's mining</div>
     <h2>149K Engaged Readers.<br>21 Conversions.</h2>
     <div class="page-compare" style="margin-top: 3vh">
@@ -792,78 +850,94 @@
     </div>
   </div>
 
-  <!-- SLIDE 6: Google Ads Spend Reality -->
-  <div class="slide" data-slide="5">
-    <div class="kicker">Google Ads &mdash; 12 months, 8 accounts</div>
-    <h2>Where the Ad Budget<br>Actually Goes</h2>
-    <div class="split" style="margin-top: 2vh">
-      <div>
-        <h3 style="margin-bottom: 1.5vh; font-size: clamp(14px,1.3vw,18px);">Cost per Conversion by Page</h3>
-        <div style="margin-top: 1vh;">
-          <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
-            <div style="width:140px;font-size:11px;text-align:right;color:var(--text-secondary)">Military (Display)</div>
-            <div style="flex:1;height:20px;background:var(--surface);border-radius:4px;overflow:hidden;">
-              <div style="width:6%;min-width:50px;height:100%;background:var(--green);border-radius:4px;display:flex;align-items:center;padding-left:6px;font-size:10px;font-weight:700;color:#fff">$29</div>
-            </div>
-          </div>
-          <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
-            <div style="width:140px;font-size:11px;text-align:right;color:var(--text-secondary)">Brand Search</div>
-            <div style="flex:1;height:20px;background:var(--surface);border-radius:4px;overflow:hidden;">
-              <div style="width:10%;min-width:50px;height:100%;background:var(--green);border-radius:4px;display:flex;align-items:center;padding-left:6px;font-size:10px;font-weight:700;color:#fff">$151</div>
-            </div>
-          </div>
-          <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
-            <div style="width:140px;font-size:11px;text-align:right;color:var(--text-secondary)">RFI (DemandGen)</div>
-            <div style="flex:1;height:20px;background:var(--surface);border-radius:4px;overflow:hidden;">
-              <div style="width:11%;min-width:50px;height:100%;background:var(--amber);border-radius:4px;display:flex;align-items:center;padding-left:6px;font-size:10px;font-weight:700;color:#fff">$175</div>
-            </div>
-          </div>
-          <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
-            <div style="width:140px;font-size:11px;text-align:right;color:var(--text-secondary)">Courses (Search)</div>
-            <div style="flex:1;height:20px;background:var(--surface);border-radius:4px;overflow:hidden;">
-              <div style="width:27%;height:100%;background:var(--amber);border-radius:4px;display:flex;align-items:center;padding-left:6px;font-size:10px;font-weight:700;color:#fff">$421</div>
-            </div>
-          </div>
-          <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
-            <div style="width:140px;font-size:11px;text-align:right;color:var(--text-secondary)">Bachelor's (Search)</div>
-            <div style="flex:1;height:20px;background:var(--surface);border-radius:4px;overflow:hidden;">
-              <div style="width:33%;height:100%;background:var(--accent);border-radius:4px;display:flex;align-items:center;padding-left:6px;font-size:10px;font-weight:700;color:#fff">$514</div>
-            </div>
-          </div>
-          <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
-            <div style="width:140px;font-size:11px;text-align:right;color:var(--text-secondary)">PMax General</div>
-            <div style="flex:1;height:20px;background:var(--surface);border-radius:4px;overflow:hidden;">
-              <div style="width:100%;height:100%;background:var(--accent);border-radius:4px;display:flex;align-items:center;padding-left:6px;font-size:10px;font-weight:700;color:#fff">$1,539</div>
-            </div>
-          </div>
-        </div>
-        <div class="insight" style="margin-top: 1.5vh">
-          <p><strong>Military Display</strong> converts at <strong>$29/lead</strong> &mdash; 18x cheaper than bachelor's search. Why? Audience-specific content matched to a targeted audience. That's the model.</p>
+  <!-- SLIDE 7: Declining Organic -->
+  <div class="slide" data-slide="6">
+    <div class="kicker">Half-year trend &mdash; GSC</div>
+    <h2>Organic Is Declining.<br>Every Visit Matters More.</h2>
+    <p class="subtitle">H1 (Apr&ndash;Oct 2025) vs. H2 (Oct 2025&ndash;Apr 2026) across key pages.</p>
+    <div class="chart-container" style="max-width: 700px;">
+      <svg viewBox="0 0 700 200" xmlns="http://www.w3.org/2000/svg">
+        <text x="20" y="15" fill="#8b8f98" font-size="9" font-family="Inter" font-weight="600">CLICKS BY HALF-YEAR</text>
+        <!-- Homepage -->
+        <text x="170" y="45" fill="#8b8f98" font-size="10" text-anchor="end" font-family="Inter">Homepage</text>
+        <rect x="180" y="32" width="180" height="14" rx="3" fill="#5c9cf5" opacity="0.7"/>
+        <text x="365" y="44" fill="#5c9cf5" font-size="10" font-family="Inter">90,004</text>
+        <rect x="180" y="50" width="105" height="14" rx="3" fill="#e53935" opacity="0.7"/>
+        <text x="290" y="62" fill="#e53935" font-size="10" font-weight="700" font-family="Inter">52,559 (-41.6%)</text>
+        <!-- Writing Center -->
+        <text x="170" y="95" fill="#8b8f98" font-size="10" text-anchor="end" font-family="Inter">Writing Center</text>
+        <rect x="180" y="82" width="120" height="14" rx="3" fill="#5c9cf5" opacity="0.7"/>
+        <text x="305" y="94" fill="#5c9cf5" font-size="10" font-family="Inter">61,289</text>
+        <rect x="180" y="100" width="82" height="14" rx="3" fill="#e53935" opacity="0.7"/>
+        <text x="267" y="112" fill="#e53935" font-size="10" font-weight="700" font-family="Inter">41,772 (-31.8%)</text>
+        <!-- Blog -->
+        <text x="170" y="145" fill="#8b8f98" font-size="10" text-anchor="end" font-family="Inter">Blog (Mgmt)</text>
+        <rect x="180" y="132" width="52" height="14" rx="3" fill="#5c9cf5" opacity="0.7"/>
+        <text x="237" y="144" fill="#5c9cf5" font-size="10" font-family="Inter">12,901</text>
+        <rect x="180" y="150" width="26" height="14" rx="3" fill="#e53935" opacity="0.7"/>
+        <text x="211" y="162" fill="#e53935" font-size="10" font-weight="700" font-family="Inter">6,483 (-49.7%)</text>
+        <!-- Legend -->
+        <rect x="180" y="180" width="12" height="10" rx="2" fill="#5c9cf5" opacity="0.7"/>
+        <text x="197" y="189" fill="#8b8f98" font-size="9" font-family="Inter">H1 (Apr&ndash;Oct 2025)</text>
+        <rect x="330" y="180" width="12" height="10" rx="2" fill="#e53935" opacity="0.7"/>
+        <text x="347" y="189" fill="#8b8f98" font-size="9" font-family="Inter">H2 (Oct 2025&ndash;Apr 2026)</text>
+      </svg>
+    </div>
+    <div class="insight" style="margin-top: 2vh">
+      <p>Homepage organic clicks down <strong>41.6%</strong>, blog content down <strong>49.7%</strong>. Likely cause: <strong>AI overview cannibalization</strong>. Google is answering queries before anyone clicks. The site needs to offer what AI overviews can't &mdash; and convert the visitors it does get.</p>
+    </div>
+    <p class="quip">If organic traffic is shrinking, conversion efficiency isn't optional. It's survival.</p>
+  </div>
+
+  <!-- SLIDE 8: Ad Efficiency Overview -->
+  <div class="slide" data-slide="7">
+    <div class="kicker">Google Ads efficiency &mdash; 12 months</div>
+    <h2>Audience-Specific Content<br>Converts 18x Better</h2>
+    <div style="max-width: 700px; margin: 3vh auto 0;">
+      <div style="display:flex;align-items:center;gap:8px;margin-bottom:12px;">
+        <div style="width:160px;font-size:12px;text-align:right;color:var(--text-secondary);font-weight:600">Military (Display)</div>
+        <div style="flex:1;height:28px;background:var(--surface);border-radius:4px;overflow:hidden;">
+          <div style="width:6%;min-width:70px;height:100%;background:var(--green);border-radius:4px;display:flex;align-items:center;padding-left:8px;font-size:12px;font-weight:700;color:#fff">$29</div>
         </div>
       </div>
-      <div>
-        <h3 style="margin-bottom: 1.5vh; font-size: clamp(14px,1.3vw,18px);">Spend Breakdown</h3>
-        <table class="data-table" style="margin-top: 1vh; font-size: clamp(11px,0.9vw,13px);">
-          <thead><tr><th>Page / Campaign</th><th>Spend</th><th>Conv.</th><th>$/Conv</th></tr></thead>
-          <tbody>
-            <tr><td class="page-path">Courses (Search)</td><td>$1.64M</td><td>3,901</td><td>$421</td></tr>
-            <tr><td class="page-path">Bachelor's (Search)</td><td>$1.41M</td><td>2,739</td><td class="highlight-bad">$514</td></tr>
-            <tr><td class="page-path">PMax General</td><td>$734K</td><td>477</td><td class="highlight-bad">$1,539</td></tr>
-            <tr><td class="page-path">RFI-v5 (DemandGen)</td><td>$564K</td><td>3,228</td><td>$175</td></tr>
-            <tr><td class="page-path">Military (Display)</td><td>$254K</td><td>8,752</td><td class="highlight-good">$29</td></tr>
-            <tr><td class="page-path" style="color:var(--accent)">Awareness (YT/CTV)</td><td style="color:var(--accent)">$243K</td><td style="color:var(--accent)">0</td><td style="color:var(--accent)">&mdash;</td></tr>
-          </tbody>
-        </table>
-        <div style="background: var(--surface); border: 1px solid rgba(229,57,53,0.3); border-radius: 8px; padding: 12px 16px; margin-top: 1.5vh;">
-          <p style="font-size: 12px; color: var(--accent); font-weight: 700; margin-bottom: 4px;">Performance Max: Immediate Review Needed</p>
-          <p style="font-size: 11px; color: var(--text-secondary); line-height: 1.5;">$734K spend &middot; 482K clicks &middot; 477 conversions &middot; <strong style="color: var(--accent)">$1,539/conversion</strong>. Generating 73M impressions with near-zero conversion efficiency.</p>
+      <div style="display:flex;align-items:center;gap:8px;margin-bottom:12px;">
+        <div style="width:160px;font-size:12px;text-align:right;color:var(--text-secondary);font-weight:600">Brand Search</div>
+        <div style="flex:1;height:28px;background:var(--surface);border-radius:4px;overflow:hidden;">
+          <div style="width:10%;min-width:70px;height:100%;background:var(--green);border-radius:4px;display:flex;align-items:center;padding-left:8px;font-size:12px;font-weight:700;color:#fff">$151</div>
+        </div>
+      </div>
+      <div style="display:flex;align-items:center;gap:8px;margin-bottom:12px;">
+        <div style="width:160px;font-size:12px;text-align:right;color:var(--text-secondary);font-weight:600">RFI (DemandGen)</div>
+        <div style="flex:1;height:28px;background:var(--surface);border-radius:4px;overflow:hidden;">
+          <div style="width:12%;min-width:70px;height:100%;background:var(--amber);border-radius:4px;display:flex;align-items:center;padding-left:8px;font-size:12px;font-weight:700;color:#fff">$175</div>
+        </div>
+      </div>
+      <div style="display:flex;align-items:center;gap:8px;margin-bottom:12px;">
+        <div style="width:160px;font-size:12px;text-align:right;color:var(--text-secondary);font-weight:600">Bachelor's (Search)</div>
+        <div style="flex:1;height:28px;background:var(--surface);border-radius:4px;overflow:hidden;">
+          <div style="width:33%;height:100%;background:var(--accent);border-radius:4px;display:flex;align-items:center;padding-left:8px;font-size:12px;font-weight:700;color:#fff">$514</div>
+        </div>
+      </div>
+      <div style="display:flex;align-items:center;gap:8px;margin-bottom:12px;">
+        <div style="width:160px;font-size:12px;text-align:right;color:var(--text-secondary);font-weight:600">PMax General</div>
+        <div style="flex:1;height:28px;background:var(--surface);border-radius:4px;overflow:hidden;">
+          <div style="width:100%;height:100%;background:var(--accent);border-radius:4px;display:flex;align-items:center;padding-left:8px;font-size:12px;font-weight:700;color:#fff">$1,539</div>
         </div>
       </div>
     </div>
+    <div class="split" style="margin-top: 3vh; gap: clamp(16px, 2vw, 32px);">
+      <div class="insight green">
+        <p><strong>Military Display at $29/lead</strong> &mdash; audience-specific landing pages with content tailored to military learners. That's the model: match the page content to the audience, and conversion costs collapse.</p>
+      </div>
+      <div class="insight" style="border-color: rgba(229,57,53,0.3);">
+        <p><strong>PMax General at $1,539/lead</strong> &mdash; 73M impressions, 477 conversions. Generic landing pages receiving broad traffic. This is a page problem, not a media problem.</p>
+      </div>
+    </div>
+    <p class="quip">The takeaway for this room: better pages make every ad dollar work harder. That's a website fix, not a media fix.</p>
   </div>
 
-  <!-- SLIDE 7: Case Studies -->
-  <div class="slide" data-slide="6">
+  <!-- SLIDE 9: Case Studies -->
+  <div class="slide" data-slide="8">
     <div class="kicker green">Benchmarks &mdash; others have solved this</div>
     <h2>This Isn't Speculative.<br>It's Proven.</h2>
     <div class="case-grid">
@@ -900,8 +974,8 @@
     </div>
   </div>
 
-  <!-- SLIDE 8: Priorities -->
-  <div class="slide" data-slide="7">
+  <!-- SLIDE 10: Priorities -->
+  <div class="slide" data-slide="9">
     <div class="kicker">Reskin priorities</div>
     <h2>Where to Focus</h2>
     <ol class="priority-list">
@@ -943,8 +1017,8 @@
     </ol>
   </div>
 
-  <!-- SLIDE 9: The Math -->
-  <div class="slide" data-slide="8">
+  <!-- SLIDE 11: The Math -->
+  <div class="slide" data-slide="10">
     <div class="kicker green">The bottom line</div>
     <div class="big-number green" style="font-size: clamp(40px, 6vw, 90px)">+124K</div>
     <h2 style="margin-top: 2vh">additional leads per year</h2>
@@ -968,8 +1042,8 @@
     <p class="quip">The difference between 35K and 160K leads isn't more money. It's a better webpage.</p>
   </div>
 
-  <!-- SLIDE 10: Next Steps -->
-  <div class="slide" data-slide="9">
+  <!-- SLIDE 12: Next Steps -->
+  <div class="slide" data-slide="11">
     <div class="kicker green">Three phases, three months</div>
     <h1 style="margin-bottom: 0">Next Steps</h1>
     <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: clamp(10px, 1.2vw, 20px); margin-top: 1.5vh; max-width: 1100px;">
