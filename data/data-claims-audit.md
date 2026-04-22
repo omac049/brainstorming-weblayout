@@ -29,7 +29,7 @@ See `claims-checklist.csv` for a filterable spreadsheet version.
 | from 1.18M sessions | GA4: 1,177,574 | ROUNDED |
 | /degree-programs-v7 at 13.57% | GA4 Page 5: 13.57% | MATCH |
 | 8–15 min blog engagement | PhD 8.1 min, Business Plan 15.2 min | MATCH |
-| 21 conversions from 149K sessions | PhD blog: 149,085 / 21 | MATCH |
+| 21 conversions from 149K sessions | PhD blog: 148,831 landing sessions / 21 | ROUNDED |
 
 ---
 
@@ -84,12 +84,12 @@ Additional claim: "47K additional leads" ← 1,177,574 × (7% − 3.01%) = 46,99
 
 | Claim | Source | Status |
 |-------|--------|--------|
-| 149K sessions, 21 conv (PhD blog) | GA4: 149,085 / 21 | MATCH |
+| 149K sessions, 21 conv (PhD blog) | GA4: 148,831 landing sessions / 21 | ROUNDED |
 | 67.8% eng, 8.1 min avg | GA4 PhD blog | MATCH |
 | 60,937 GSC clicks, position 3.5 | GSC PhD blog | MATCH |
 | /online-degrees: 88.8% eng, 3,428 conv | GA4 | MATCH |
 | 11.2% bounce, 11.8 min avg | GA4 /online-degrees | MATCH |
-| 135K sessions | GA4: 134,889 | ROUNDED |
+| 135K sessions | GA4: 135,507 | ROUNDED |
 | 2,437 leads at 1% | 243,700 × 1% = 2,437 | MATCH |
 | 84 current conversions (3 blogs) | PhD 21 + Business Plan 63 = 84 | MATCH |
 | 29x improvement | 2,437 / 84 = 29.01x | MATCH |
@@ -137,7 +137,7 @@ Additional claim: "47K additional leads" ← 1,177,574 × (7% − 3.01%) = 46,99
 | 1.18M sessions, 53.2% bounce, 3.01% conv | GA4 Page 1 | MATCH |
 | +124K leads/year | 1,177,574 × (13.57% − 3.01%) = 124,256 | MATCH |
 | 149K sessions, 21 conv (PhD blog) | GA4 | MATCH |
-| 75K sessions, 63 conv (business plan) | GA4: 75,025 / 63 | MATCH |
+| 75K sessions, 63 conv (business plan) | GA4: 74,663 landing sessions / 63 | ROUNDED |
 | 2,400+ leads/year | 243K × 1% = 2,430 | ROUNDED |
 | 60% mobile | GA4: 59.9% | ROUNDED |
 | 88.8% eng (/online-degrees) | GA4 | MATCH |

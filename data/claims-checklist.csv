@@ -9,7 +9,7 @@ Slide,File,Claim,Source_Section,Source_Value,Status,Flag_Number,Risk,Notes
 2,index-v2.html,"from 1.18M sessions",GA4 §4 Page 1,"1,177,574",ROUNDED,,,"1,177,574 rounded to 1.18M"
 2,index-v2.html,"/degree-programs-v7 at 13.57%",GA4 §4 Page 5,13.57%,MATCH,,,
 2,index-v2.html,"8-15 min blog engagement",GA4 §3,"PhD 8.1 min, Business Plan 15.2 min",MATCH,,,
-2,index-v2.html,"21 conversions from 149K sessions",GA4 §3,"149,085 sessions / 21 conversions",MATCH,,,
+2,index-v2.html,"21 conversions from 149K sessions",GA4 §3,"148,831 landing sessions / 21 conversions",ROUNDED,,,"148,831 rounded to 149K"
 3,index-v2.html,"47.5% engagement rate",GA4 §1,~47.5%,MATCH,,,
 3,index-v2.html,"60% mobile",GA4 §1 Device,59.9%,ROUNDED,,,"59.9% rounded to 60%"
 3,index-v2.html,"45.8% mobile eng",GA4 §1 Device,45.8%,MATCH,,,
@@ -30,12 +30,12 @@ Slide,File,Claim,Source_Section,Source_Value,Status,Flag_Number,Risk,Notes
 5,index-v2.html,"courses-v5: 262,257 / 74.5% / 7.25% / 19,005",GA4 §4 Page 4,Exact values,MATCH,,,
 5,index-v2.html,"degree-programs-v7: 221,507 / 74.9% / 13.57% / 30,066",GA4 §4 Page 5,Exact values,MATCH,,,
 5,index-v2.html,"47K additional leads at 7%",Calculated,"1,177,574 × (7% - 3.01%) = 46,993",ROUNDED,,,"46,993 rounded to 47K"
-6,index-v2.html,"149K sessions / 21 conversions (PhD blog)",GA4 §3,"149,085 / 21",MATCH,,,
+6,index-v2.html,"149K sessions / 21 conversions (PhD blog)",GA4 §3,"148,831 / 21",ROUNDED,,,"148,831 rounded to 149K"
 6,index-v2.html,"67.8% engagement / 8.1 min avg",GA4 §3,"67.8% / 8.1 min",MATCH,,,
 6,index-v2.html,"60,937 GSC clicks / position 3.5",GSC §3,"60,937 / 3.5",MATCH,,,
 6,index-v2.html,"/online-degrees: 88.8% eng / 3,428 conv",GA4 §2,"88.8% / 3,428",MATCH,,,
 6,index-v2.html,"11.2% bounce / 11.8 min avg",GA4 §2,"11.2% / 11.8 min",MATCH,,,
-6,index-v2.html,"135K sessions (/online-degrees)",GA4 §2,"134,889",ROUNDED,,,
+6,index-v2.html,"135K sessions (/online-degrees)",GA4 §2,"135,507",ROUNDED,,,"135,507 rounded to 135K"
 6,index-v2.html,"2,437 leads/year at 1%",Calculated,"243,700 × 1% = 2,437",MATCH,,,
 6,index-v2.html,"84 current conversions (3 blogs)",GA4 §3,"PhD 21 + Business Plan 63 = 84",MATCH,,,
 6,index-v2.html,"29x improvement",Calculated,"2,437 / 84 = 29.01x",MATCH,,,
@@ -56,7 +56,7 @@ Slide,File,Claim,Source_Section,Source_Value,Status,Flag_Number,Risk,Notes
 8,index-v2.html,"53x compares two specific campaigns",Google Ads §4,"PMax General vs Military Display Prospecting",FLAG,4,Medium,"Valid but narrow comparison"
 10,index-v2.html,"1.18M sessions / 53.2% bounce / 3.01% conv",GA4 §4 Page 1,Exact,MATCH,,,
 10,index-v2.html,"+124K leads/year",Calculated,"1,177,574 × (13.57% - 3.01%) = 124,256",MATCH,,,
-10,index-v2.html,"149K sessions / 21 conv (PhD blog)",GA4 §3,"149,085 / 21",MATCH,,,
+10,index-v2.html,"149K sessions / 21 conv (PhD blog)",GA4 §3,"148,831 / 21",ROUNDED,,,"148,831 rounded to 149K"
 10,index-v2.html,"2,400+ leads/year",Calculated,"243K × 1% = 2,430",ROUNDED,,,
 10,index-v2.html,"PMax at $1,539/conversion",Google Ads §4 Campaigns,"$1,539.11",MATCH,,,
 11,index-v2.html,"+124K additional leads",Calculated,"159,754 - 35,498 = 124,256",ROUNDED,,,"Rounded to 124K"
