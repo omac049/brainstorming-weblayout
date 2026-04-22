@@ -629,7 +629,7 @@
     <div class="kicker">The single biggest finding</div>
     <div class="big-number">4.5x</div>
     <h2 style="margin-top: 2vh">conversion gap between our own paid landing pages</h2>
-    <p class="subtitle">Our primary RFI page converts at 3.01% from 1.18M sessions. Another page with similar form elements converts at 13.57%. Same school. Similar forms. Completely different content layout.</p>
+    <p class="subtitle">/success/request-info-v5 converts at 3.01% from 1.18M sessions. /success/degree-programs-v7 converts at 13.57%. Same school. Similar RFI forms. Completely different content layout.</p>
     <div class="insight" style="margin-top: 3vh">
       <p>Meanwhile, blog pages averaging <strong>8&ndash;15 minutes</strong> of engagement produce <strong>21 conversions</strong> from 149K sessions. People are reading. They're just not being asked to do anything.</p>
     </div>
@@ -1201,7 +1201,7 @@
           </div>
           <div class="priority-item" style="border: none;">
             <div class="priority-content">
-              <p>A/B test enriched vs. current RFI page</p>
+              <p>A/B test enriched vs. current /request-info-v5</p>
             </div>
           </div>
         </div>
@@ -1315,24 +1315,6 @@
 
   document.addEventListener('click', (e) => {
     if (e.target.closest('a, button, input, select, textarea')) return;
-    const x = e.clientX;
-    if (x > window.innerWidth * 0.5) {
-      goTo(current + 1);
-    } else {
-      goTo(current - 1);
-    }
-  });
-
-  let touchStartX = 0;
-  document.addEventListener('touchstart', (e) => {
-    touchStartX = e.touches[0].clientX;
-  });
-  document.addEventListener('touchend', (e) => {
-    const dx = e.changedTouches[0].clientX - touchStartX;
-    if (Math.abs(dx) > 50) {
-      if (dx < 0) goTo(current + 1);
-      else goTo(current - 1);
-    }
   });
 
   updateUI();
