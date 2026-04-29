@@ -716,6 +716,26 @@
     font-weight: 400;
   }
 
+  /* Revision badge */
+  .revision-badge {
+    position: absolute;
+    top: 2vh;
+    left: 8vw;
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--amber);
+    background: var(--amber-soft);
+    border: 1px solid rgba(249, 168, 37, 0.3);
+    padding: 3px 10px;
+    border-radius: 4px;
+    z-index: 10;
+  }
+
   /* Responsive */
   @media (max-width: 768px) {
     .slide { padding: 4vh 6vw; }
@@ -743,11 +763,12 @@
     <h1>The Data Says<br>Fix the Funnel</h1>
     <p class="subtitle">12 months of GSC and GA4 data across organic and paid pages. The site engages. It just doesn't convert.</p>
     <p class="quip">"We have a traffic problem." &mdash; No. We have a 627,000-person bouncing problem.</p>
-    <p class="meta-line">April 8, 2026 &mdash; uagc.edu &mdash; Apr 2025&ndash;Apr 2026</p>
+    <p class="meta-line">April 8, 2026 &mdash; uagc.edu &mdash; Apr 2025&ndash;Apr 2026<br><span style="color: var(--amber); font-weight: 600;">Revised Apr 29, 2026 &mdash; incorporates A/B test results (Nov 2025) and Performance Marketing data corrections</span></p>
   </div>
 
   <!-- SLIDE 2: The Big Number -->
   <div class="slide" data-slide="1">
+    <div class="revision-badge">&#x270e; Revised</div>
     <div class="kicker">The opportunity</div>
     <div class="big-number">53%</div>
     <h2 style="margin-top: 2vh">of visitors to our biggest landing page bounce immediately</h2>
@@ -999,6 +1020,7 @@
 
   <!-- SLIDE 7: The Problem Child vs. The Star Student -->
   <div class="slide" data-slide="6">
+    <div class="revision-badge">&#x270e; Revised</div>
     <div class="kicker">What we already tested &mdash; and what it tells us</div>
     <h2>We Tested This Premise.<br>The Answer Is a Hybrid.</h2>
     <div class="page-compare">
@@ -1053,6 +1075,7 @@
 
   <!-- SLIDE 8: The RFI Experience Problem -->
   <div class="slide" data-slide="7">
+    <div class="revision-badge">&#x270e; Revised</div>
     <div class="kicker">The real conversion problem</div>
     <h2>The Form Isn&rsquo;t the Problem.<br>The Content Around It Is.</h2>
     <p class="subtitle">/request-info-v5 has 3 RFI touchpoints. The form structure works. But 53% of visitors leave without engaging because the page doesn&rsquo;t answer their questions before the ask. The fix: add trust elements, not more forms.</p>
@@ -1408,6 +1431,7 @@
 
   <!-- SLIDE 13: Google Ads Spend Reality -->
   <div class="slide" data-slide="13">
+    <div class="revision-badge">&#x270e; Revised</div>
     <div class="kicker red">Google Ads data &mdash; 12 months, 8 accounts</div>
     <h2>Where the Ad Budget<br>Actually Goes</h2>
     <div class="split" style="margin-top: 2vh">
@@ -1468,6 +1492,7 @@
 
   <!-- SLIDE 14: Brand Queries -->
   <div class="slide" data-slide="14">
+    <div class="revision-badge">&#x270e; Revised</div>
     <div class="kicker amber">Brand search behavior &mdash; GSC 12 months</div>
     <h2>How Users Search for UAGC</h2>
     <div class="metrics-row">
@@ -1583,6 +1608,7 @@
 
   <!-- SLIDE 17: Priorities -->
   <div class="slide" data-slide="17">
+    <div class="revision-badge">&#x270e; Revised</div>
     <div class="kicker">Reskin priorities</div>
     <h2>Where to Focus</h2>
     <ol class="priority-list">
@@ -1633,6 +1659,7 @@
 
   <!-- SLIDE 18: The Math -->
   <div class="slide" data-slide="18">
+    <div class="revision-badge">&#x270e; Revised</div>
     <div class="kicker green">The bottom line</div>
     <div class="big-number green" style="font-size: clamp(32px, 4.5vw, 72px)">The Pages Need to Sell</div>
     <h2 style="margin-top: 2vh">Every channel performs better when visitors see what they came for</h2>

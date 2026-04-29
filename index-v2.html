@@ -595,6 +595,26 @@
     font-weight: 400;
   }
 
+  /* Revision badge */
+  .revision-badge {
+    position: absolute;
+    top: 2vh;
+    left: 8vw;
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--amber);
+    background: var(--amber-soft);
+    border: 1px solid rgba(249, 168, 37, 0.3);
+    padding: 3px 10px;
+    border-radius: 4px;
+    z-index: 10;
+  }
+
   /* Responsive */
   @media (max-width: 768px) {
     .slide { padding: 4vh 6vw; }
@@ -621,11 +641,12 @@
     <h1>The Data Says<br>Fix the Funnel</h1>
     <p class="subtitle">The reskin is improving how the site looks. Now let's also fix how it works. 12 months of GSC, GA4, Contentsquare, and Google Ads data reveal where layout, content structure, and conversion paths are breaking down.</p>
     <p class="quip">"We have a traffic problem." &mdash; No. We have a 627,000-person bouncing problem.</p>
-    <p class="meta-line">April 2026 &mdash; uagc.edu &mdash; 11.1M sessions &middot; $8.9M ad spend &middot; 348K conversions</p>
+    <p class="meta-line">April 2026 &mdash; uagc.edu &mdash; 11.1M sessions &middot; $8.9M ad spend &middot; 348K conversions<br><span style="color: var(--amber); font-weight: 600;">Revised Apr 29, 2026 &mdash; incorporates A/B test results (Nov 2025) and Performance Marketing data corrections</span></p>
   </div>
 
   <!-- SLIDE 2: The Big Number -->
   <div class="slide" data-slide="1">
+    <div class="revision-badge">&#x270e; Revised</div>
     <div class="kicker">The opportunity</div>
     <div class="big-number">53%</div>
     <h2 style="margin-top: 2vh">of visitors to our biggest landing page bounce immediately</h2>
@@ -717,6 +738,7 @@
 
   <!-- SLIDE 4: The Problem Child vs. The Star Student -->
   <div class="slide" data-slide="3">
+    <div class="revision-badge">&#x270e; Revised</div>
     <div class="kicker">What we already tested &mdash; and what it tells us</div>
     <h2>We Tested This Premise.<br>The Answer Is a Hybrid.</h2>
     <div class="page-compare">
@@ -983,6 +1005,7 @@
 
   <!-- SLIDE 8: Page Content Gap -->
   <div class="slide" data-slide="7">
+    <div class="revision-badge">&#x270e; Revised</div>
     <div class="kicker">What the best-performing pages have in common</div>
     <h2>What High-Converting Pages<br>Show That Ours Don&rsquo;t</h2>
 
@@ -1107,6 +1130,7 @@
 
   <!-- SLIDE 10: Priorities -->
   <div class="slide" data-slide="9">
+    <div class="revision-badge">&#x270e; Revised</div>
     <div class="kicker">Reskin priorities</div>
     <h2>Where to Focus</h2>
     <ol class="priority-list">
@@ -1150,6 +1174,7 @@
 
   <!-- SLIDE 11: The Math -->
   <div class="slide" data-slide="10">
+    <div class="revision-badge">&#x270e; Revised</div>
     <div class="kicker green">The bottom line</div>
     <div class="big-number green" style="font-size: clamp(40px, 6vw, 90px)">The Pages Need to Sell</div>
     <h2 style="margin-top: 2vh">Every channel performs better when visitors see what they came for</h2>
