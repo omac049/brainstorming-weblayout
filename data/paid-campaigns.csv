@@ -2,11 +2,11 @@ Account,Campaign,Type,Channel,Clicks,Impressions,Spend,Conversions,Cost_Per_Conv
 Search,Non-Brand USP General,Search,Search,78057,,1679157,2988,561.92,,,,"Top spend campaign"
 Search,Non-Brand Bachelor's,Search,Search,86138,,1344039,2743,490.01,,,,
 Search,Non-Brand General,Search,Search,46980,,953016,1510,631.01,,,,
-Search,Performance Max General,PMax,PMax,482735,,734128,477,1539.11,,,,"73M impressions; extremely low conversion efficiency"
+Search,Performance Max General,PMax,PMax,482735,,734128,477,1539.11,,,,"73M impressions; ⚠️ conversion action definitions may differ from other campaigns — per Kevin VP Perf Mktg Apr 2026"
 Search,Business Tech Master's,Search,Search,33772,,589136,925,636.56,,,,
 Search,Brand (UAGC Core),Search,Search,79244,,447547,2968,150.81,,,,"4x more efficient than non-brand"
 Display,DemandGen Prospecting (RFI),DemandGen,DemandGen,165351,6600000,563803,3228,174.68,3.41,2.49%,/request-info-v5,
-Display,Military Display Prospecting,Display,Display,98531,,254142,8752,29.04,,29.28%,/military-v5,"Efficiency champion"
+Display,Military Display Prospecting,Display,Display,98531,,254142,8752,29.04,,29.28%,/military-v5,"⚠️ SPAM CONVERSIONS — shut down per Kevin VP Perf Mktg Apr 2026. Do NOT cite $29 CPL."
 Display,Military DemandGen Prospecting,DemandGen,DemandGen,,,243255,,,,/military-v5,
 Display,YouTube TV Prospecting 2026,Video,Video,,1600000,89084,0,,,,/request-info-v5,"Awareness — 0 conversions"
 Display,Premier CTV Prospecting 2026,Video,Video,,17500000,101741,0,,,,/request-info-v5,"Awareness — 0 conversions"

@@ -43,27 +43,23 @@ Slide,File,Claim,Source_Section,Source_Value,Status,Flag_Number,Risk,Notes
 7,index-v2.html,"-31.8% Writing Center",GSC §5,"61,289 → 41,772 = -31.8%",MATCH,,,
 7,index-v2.html,"-49.7% Blog (Mgmt)",GSC §5,"12,901 → 6,483 = -49.7%",MATCH,,,
 7,index-v2.html,"Bar chart values (90,004/52,559 etc.)",GSC §5,Exact values,MATCH,,,
-8,index-v2.html,"$29 Military Display",Google Ads §4 Page 3,"$254,142 / 8,752 = $29.04",ROUNDED,,,
-8,index-v2.html,"8,752 conversions",Google Ads §4 Page 3,"8,752",MATCH,,,
-8,index-v2.html,"$1,539 PMax General",Google Ads §4 Campaigns,"$734,128 / 477 = $1,539.11",ROUNDED,,,
-8,index-v2.html,"477 conversions",Google Ads §4 Campaigns,477,MATCH,,,
-8,index-v2.html,"53x (title)",Calculated,"$1,539.11 / $29.04 = 53.01x",MATCH,,,
-8,index-v2.html,"$151 Brand Search",Google Ads §4 Campaigns,"$447,547 / 2,968 = $150.81",ROUNDED,,,
-8,index-v2.html,"$175 RFI DemandGen",Google Ads §4 Page 1,"$563,803 / 3,228 = $174.68",ROUNDED,,,
-8,index-v2.html,"$421 Courses Search",Google Ads §4 Page 4,"$1,640,681 / 3,901 = $420.62",ROUNDED,,,
-8,index-v2.html,"$514 Bachelor's Search",Google Ads §4 Page 2,"$1,407,229 / 2,739 = $513.71",ROUNDED,,,
-8,index-v2.html,"$29 is one campaign only",Google Ads §4,Total military spend ~$545K,FLAG,4,Medium,"Display Prospecting only. Blended cost would be higher."
-8,index-v2.html,"53x compares two specific campaigns",Google Ads §4,"PMax General vs Military Display Prospecting",FLAG,4,Medium,"Valid but narrow comparison"
+8,index-v2.html,"3.01% conv / 53% bounce (request-info-v5)",GA4 §4 Page 1,Exact,MATCH,,,"REVISED slide — now uses conv rates not CPL"
+8,index-v2.html,"13.57% conv / 25% bounce (degree-programs-v7)",GA4 §4 Page 5,Exact,MATCH,,,
+8,index-v2.html,"1.18M sessions (v5)",GA4 §4 Page 1,"1,177,574",ROUNDED,,,
+8,index-v2.html,"222K sessions (v7)",GA4 §4 Page 5,"221,507",ROUNDED,,,
+8,index-v2.html,"Content checklist (tuition/outcomes/dates/testimonials/program)",Manual audit,Verified on live pages,MATCH,,,
+8,index-v2.html,"REMOVED: $29 Military Display",Google Ads §4 Page 3,SPAM — per Kevin VP Perf Mktg Apr 2026,REMOVED,,,"Campaigns shut down"
+8,index-v2.html,"REMOVED: $1,539 PMax General",Google Ads §4 Campaigns,Conv action definitions unclear,REMOVED,,,"Deferred to Perf Mktg"
+8,index-v2.html,"REMOVED: 53x comparison",Calculated,Based on invalid $29 figure,REMOVED,,,
 10,index-v2.html,"1.18M sessions / 53.2% bounce / 3.01% conv",GA4 §4 Page 1,Exact,MATCH,,,
-10,index-v2.html,"+124K leads/year",Calculated,"1,177,574 × (13.57% - 3.01%) = 124,256",MATCH,,,
 10,index-v2.html,"149K sessions / 21 conv (PhD blog)",GA4 §3,"148,831 / 21",ROUNDED,,,"148,831 rounded to 149K"
 10,index-v2.html,"2,400+ leads/year",Calculated,"243K × 1% = 2,430",ROUNDED,,,
-10,index-v2.html,"PMax at $1,539/conversion",Google Ads §4 Campaigns,"$1,539.11",MATCH,,,
-11,index-v2.html,"+124K additional leads",Calculated,"159,754 - 35,498 = 124,256",ROUNDED,,,"Rounded to 124K"
-11,index-v2.html,"159,754 conversions",Calculated,"1,177,574 × 13.57% = 159,799",FLAG,2,Very Low,"Delta of 45 — immaterial rounding"
-11,index-v2.html,"35,498 current conversions",GA4 §4 Page 1,"35,498",MATCH,,,
-11,presenter.html,"3% to 7% doubles… 47,000 more leads",Calculated,"82,430 - 35,498 = 46,932",ROUNDED,,,"46,932 rounded to 47K"
+10,index-v2.html,"Organic down 42-50%",GSC §5,"-41.6% to -49.7%",MATCH,,,
+11,index-v2.html,"13.57% is the ceiling (different channel)",GA4 §4 Page 5,"Display traffic",MATCH,,,"REVISED — no longer claims +124K"
+11,index-v2.html,"7% working target",GA4 §4 Page 4,"online-college-courses at 7.25%",MATCH,,,
+11,index-v2.html,"3% to 7% doubles conversions",Calculated,"1,177,574 × (7% - 3.01%) = ~47K",MATCH,,,
+11,presenter.html,"3% to 7% doubles… existing traffic",Calculated,"82,430 - 35,498 = 46,932",ROUNDED,,,"46,932 — consistent"
 12,index-v2.html,"53% → <40% bounce (target)",GA4 §4 Page 1,53.2% is current,MATCH,,,"Target not a data claim"
 12,index-v2.html,"21 → 1,490+ blog leads",Calculated,"149K × 1% = 1,490",MATCH,,,
-12,index-v2.html,"$1,539 → Review PMax",Google Ads §4 Campaigns,"$1,539.11",MATCH,,,
+12,index-v2.html,"-12pp → <5pp mobile gap",GA4 device split,"mobile eng 45.8% vs desktop 51.4%",MATCH,,,"Replaced PMax metric"
 12,presenter.html,"$8.9M to pages that bounce 53%",Google Ads §4 + GA4,"$8.9M is total spend; only ~$807K goes to the 53% bounce page",FLAG,3,Medium,"Overstates scope — $8.9M is all campaigns not just /request-info-v5"

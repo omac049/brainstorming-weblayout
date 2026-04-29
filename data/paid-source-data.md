@@ -48,7 +48,7 @@ The remaining ~$1.54M is in campaigns not listed.
     Campaign                       Channel      Spend       Conv    $/Conv    Landing Page
     ────────────────────────────────────────────────────────────────────────────────────────
     DemandGen Prospecting (RFI)    DemandGen    $563,803    3,228   $174.68   /request-info-v5
-    Military Display Prospecting   Display      $254,142    8,752    $29.04   /military-v5
+    Military Display Prospecting   Display      $254,142    8,752    $29.04   /military-v5  ⚠️ SPAM — SEE CORRECTION
     Military DemandGen Prosp.      DemandGen    $243,255       —        —     /military-v5
     YouTube TV Prospecting 2026    Video         $89,084       0        —     /request-info-v5
     Premier CTV Prospecting 2026   Video        $101,741       0        —     /request-info-v5
@@ -152,7 +152,7 @@ Source: GA4 landing page report. Includes **all traffic** to each page, not just
     Sessions, bounce, engagement, conv rate           GA4           Page experience, all visitors
     Spend, cost/conv, CPC                             Google Ads    Campaign cost efficiency
     Top 5 page table                                  GA4           Apples-to-apples page comparison
-    $29 vs $1,539 comparison                          Google Ads    Campaign efficiency comparison
+    3.01% vs 13.57% conversion gap                     GA4           Page experience comparison (replaced $29 vs $1,539 in ELT deck)
     $8.9M total spend                                 Google Ads    Account-level totals
     Channel bars (77.5K, 59.6K, etc.)                 GA4           Channel-level view
 
@@ -165,10 +165,10 @@ Source: GA4 landing page report. Includes **all traffic** to each page, not just
 > The campaign table shows top campaigns (~$5.6M). The $8.9M comes from account totals: Search $7.29M + Display $1.59M. Remaining spend is in smaller campaigns and vertical accounts.
 
 **"Military Display at $29/conv doesn't account for all spend to that page."**
-> Correct. The $29 is Display Prospecting specifically ($254K / 8,752 conv). Total military page spend is ~$545K across three campaigns. The $29 highlights what audience-specific targeting achieves.
+> ⚠️ **CORRECTED (Apr 29, 2026):** Per Kevin (VP, Performance Marketing), the Military Display / Google Discovery $29.04 CPL was based on **spam conversions**. These campaigns have been shut down. The 8,752 "conversions" were not legitimate leads. **Do NOT cite this figure.**
 
 **"PMax at $1,539 might include different conversion actions."**
-> Worth verifying. The $1,539.11 = $734,128 / 477 conversions from Google Ads. If a different PMax report shows different counts, the conversion actions may be configured differently.
+> ⚠️ **FLAGGED (Apr 29, 2026):** Per Kevin, PMax "Conversions" may track only deeper-funnel conversion actions, not form fills. The $1,539.11 = $734,128 / 477 from Google Ads, but the conversion action definitions may differ from other campaign types. Defer to Performance Marketing for the accurate read on PMax efficiency. Removed from ELT deck as a direct claim.
 
 ---
 
@@ -200,13 +200,16 @@ Source: GA4 landing page report. Includes **all traffic** to each page, not just
 - −31.8% Writing Center ← GSC: 61,289 → 41,772
 - −49.7% Blog (Mgmt) ← GSC: 12,901 → 6,483
 
-**Slide 8 — Ad Efficiency**
-- $29 / 8,752 conv ← Military Display Prospecting (Section B)
-- $1,539 / 477 conv ← PMax General (Section B)
-- 53x ← $1,539.11 / $29.04 = 53.01x
-- $151, $175, $421, $514 ← respective campaigns (Section B)
+**Slide 8 — Page Content Gap (REVISED Apr 29, 2026)**
+- 3.01% conv / 53% bounce ← /request-info-v5 GA4 (Section C)
+- 13.57% conv / 25% bounce ← /degree-programs-v7 GA4 (Section C)
+- Content checklist: tuition, outcomes/Lightcast, start dates, testimonials, program info
+- ~~$29 / 8,752 conv~~ ← REMOVED: spam (per Kevin, VP Perf. Marketing)
+- ~~$1,539 / 477 conv~~ ← REMOVED: conversion action definitions unclear
+- ~~53x~~ ← REMOVED: based on invalid comparison
 
-**Slide 11 — The Math**
-- 35,498 ← /request-info-v5 GA4 conversions (Section C)
-- 159,754 ← 1,177,574 × 13.57% = 159,799 (presentation uses 159,754)
-- +124K ← 159,754 − 35,498 = 124,256
+**Slide 11 — The Pages Need to Sell (REVISED Apr 29, 2026)**
+- 13.57% ceiling ← /degree-programs-v7 GA4 (different channel — Display)
+- 7% working target ← matches /online-college-courses-v5 Paid Search (7.25%)
+- "3% to 7% doubles conversions" ← 1,177,574 × (7% − 3.01%) = ~47K more
+- ~~+124K~~ ← REMOVED from ELT deck (assumed 13.57% achievable; unrealistic given channel mix)

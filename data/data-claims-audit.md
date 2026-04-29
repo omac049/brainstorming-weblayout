@@ -107,26 +107,26 @@ Additional claim: "47K additional leads" ← 1,177,574 × (7% − 3.01%) = 46,99
 
 ---
 
-## Slide 8 — Ad Efficiency (53x)
+## Slide 8 — Page Content Gap (REVISED Apr 29, 2026)
 
-| Claim | Source | Status |
+> **⚠️ MAJOR REVISION:** This slide was completely reworked. The original $29 vs $1,539 cost comparison has been replaced with a GA4 conversion rate comparison (3.01% vs 13.57%) and a content checklist. Reason: $29 Military Display was spam (per Kevin, VP Performance Marketing); PMax conversion action definitions are unclear.
+
+| Claim (REVISED) | Source | Status |
 |-------|--------|--------|
-| $29 Military Display | $254,142 / 8,752 = $29.04 | ROUNDED |
-| 8,752 conversions | Google Ads Display Prospecting | MATCH |
-| $1,539 PMax General | $734,128 / 477 = $1,539.11 | ROUNDED |
-| 477 conversions | Google Ads PMax | MATCH |
-| 53x (title) | $1,539.11 / $29.04 = 53.01x | MATCH |
-| $151 Brand Search | $447,547 / 2,968 = $150.81 | ROUNDED |
-| $175 RFI DemandGen | $563,803 / 3,228 = $174.68 | ROUNDED |
-| $421 Courses Search | $1,640,681 / 3,901 = $420.62 | ROUNDED |
-| $514 Bachelor's Search | $1,407,229 / 2,739 = $513.71 | ROUNDED |
+| 3.01% conv / 53% bounce (/request-info-v5) | GA4 Landing Page data | MATCH |
+| 13.57% conv / 25% bounce (/degree-programs-v7) | GA4 Landing Page data | MATCH |
+| 1.18M sessions (v5) | GA4 | MATCH |
+| 222K sessions (v7) | GA4: 221,507 | ROUNDED |
+| Content checklist (tuition, outcomes, start dates, testimonials, program info) | Manual audit of page content | VERIFIED |
+| ~~$29 Military Display~~ | ~~$254,142 / 8,752~~ | **REMOVED — SPAM** |
+| ~~$1,539 PMax General~~ | ~~$734,128 / 477~~ | **REMOVED — CONV ACTION UNCLEAR** |
+| ~~53x~~ | ~~$1,539.11 / $29.04~~ | **REMOVED** |
 
-**Accuracy notes for this slide:**
+**Notes on removed claims:**
 
-1. **$29 is one campaign only.** Display Prospecting ($254K). Total military page spend is ~$545K across 3 campaigns. Blended cost would be higher.
-2. **53x compares two specific campaigns.** PMax General vs. Military Display Prospecting. Valid but narrow.
-3. **PMax conversions may use different actions.** If a different report shows different counts, check conversion action configuration.
-4. **All cost/conv use Google Ads conversions** (not GA4). Comparing to GA4 numbers would produce different figures.
+1. **$29 was spam.** Per Kevin (VP, Performance Marketing, Apr 29 2026), the Military Display / Google Discovery "conversions" were fraudulent leads. Campaigns have been shut down.
+2. **PMax $1,539 has unclear conversion actions.** The "Conversions" column in PMax may track deeper-funnel actions, not form fills. Cannot be compared to other campaign CPLs without matching action definitions.
+3. **Replacement framing uses GA4 conversion rates** — these are owned by the web/UX team and do not require Performance Marketing data validation.
 
 ---
 
@@ -143,19 +143,21 @@ Additional claim: "47K additional leads" ← 1,177,574 × (7% − 3.01%) = 46,99
 | 88.8% eng (/online-degrees) | GA4 | MATCH |
 | 13.6% conv (/degree-programs-v7) | GA4: 13.57% | ROUNDED |
 | Organic down 42–50% | GSC: −41.6% to −49.7% | MATCH |
-| PMax $1,539/conv | Google Ads | MATCH |
+| ~~PMax $1,539/conv~~ | ~~Google Ads~~ | **REMOVED from ELT deck** |
+| Organic down 42–50% | GSC: −41.6% to −49.7% | MATCH (kept) |
 
 ---
 
-## Slide 11 — The Math (+124K)
+## Slide 11 — The Pages Need to Sell (REVISED Apr 29, 2026)
 
-| Claim | Source | Status |
+> **REVISED:** No longer claims +124K leads. Now frames around content gap (what pages show vs. what they should show) with 7% as working target.
+
+| Claim (REVISED) | Source | Status |
 |-------|--------|--------|
-| +124K additional leads | 159,754 − 35,498 = 124,256 | ROUNDED |
-| 159,754 conversions | 1,177,574 × 13.57% = 159,799 | FLAG — see Flag 2 |
-| 35,498 current conversions | GA4 Page 1 | MATCH |
-| 13.57% conv rate | GA4 Page 5 | MATCH |
-| "3% to 7% doubles… 47,000 more leads" | 82,430 − 35,498 = 46,932 | ROUNDED |
+| 13.57% is the ceiling (different channel) | GA4: Display traffic to /degree-programs-v7 | MATCH |
+| 7% is the working target | Matches Paid Search pages (online-college-courses at 7.25%) | MATCH |
+| "3% to 7% doubles conversions" | 1,177,574 × (7% − 3.01%) = ~47K more | MATCH |
+| Content checklist items | Manual page audit | VERIFIED |
 
 ---
 
@@ -166,16 +168,18 @@ Additional claim: "47K additional leads" ← 1,177,574 × (7% − 3.01%) = 46,99
 | 3% → 7%+ RFI conv | Target (not a data claim) | — |
 | 53% → <40% bounce | 53.2% is current | MATCH |
 | 21 → 1,490+ blog leads | 149K × 1% = 1,490 | MATCH |
-| $1,539 → Review | Google Ads PMax | MATCH |
+| -12pp → <5pp mobile gap | GA4: mobile eng gap (paid) | MATCH |
 | "$8.9M to pages that bounce 53%" (notes) | See Flag 3 | FLAG |
 
 ---
 
 ## Cross-Reference: index.html vs index-v2.html
 
-All shared data points are **internally consistent** across the three files.
-The only difference: index.html uses "18x" (Military $29 vs Bachelor's $514 = 17.7x),
-while index-v2.html uses "53x" (Military $29 vs PMax $1,539). Different valid comparisons.
+> **Updated Apr 29, 2026:** index-v2.html (ELT deck) no longer uses CPL comparisons.
+> index.html (long-form deck) retains the original data but with correction annotations.
+
+The ELT deck (index-v2.html) now uses **GA4 conversion rate comparisons** (3.01% vs 13.57%) instead of Google Ads CPL.
+The long-form deck (index.html) retains the original spend table with **strikethrough and correction notes** on the Military Display and PMax rows.
 
 ---
 
@@ -196,10 +200,9 @@ while index-v2.html uses "53x" (Military $29 vs PMax $1,539). Different valid co
 **Issue:** $8.9M is total spend. Only ~$807K goes to /request-info-v5 (the 53% bounce page).
 **Clarification:** More precise framing: "Our highest-traffic paid landing page bounces 53% of visitors." Cite the ~$807K specific spend.
 
-### Flag 4 · MEDIUM RISK — $29 and 53x are single-campaign comparisons
-**Where:** Slide 8
-**Issue:** Military Display Prospecting ($254K / 8,752) vs PMax General ($734K / 477). Total military page spend is ~$545K across 3 campaigns.
-**Clarification:** $29 is the Display Prospecting campaign specifically. Total military spend is ~$545K. The $29 shows what audience-specific targeting achieves.
+### Flag 4 · ~~MEDIUM RISK~~ **RESOLVED** — $29 and 53x removed from ELT deck
+**Where:** Formerly Slide 8 (now completely rewritten)
+**Resolution (Apr 29, 2026):** Per Kevin (VP, Performance Marketing), the $29 Military Display CPL was based on spam conversions. Campaigns have been shut down. PMax conversion action definitions are also unclear. Both figures removed from index-v2.html. index.html retains them with correction annotations. ELT deck now uses GA4 conversion rates (3.01% vs 13.57%) which are owned data.
 
 ### Flag 5 · MEDIUM RISK — Campaign table is a spend subset
 **Where:** index.html spend table; implied in index-v2.html

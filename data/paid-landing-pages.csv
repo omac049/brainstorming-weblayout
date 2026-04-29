@@ -1,6 +1,6 @@
 Page,GA4_Sessions,GA4_Eng_Rate,GA4_Bounce_Rate,GA4_Conv_Rate,GA4_Conversions,GA4_Avg_Session_Duration,Google_Ads_Campaign,Google_Ads_Spend,Google_Ads_Conversions,Google_Ads_Cost_Per_Conv,Conversion_Gap,Total_Identified_Ad_Spend,Notes
 /success/request-info-v5,1177574,46.8%,53.2%,3.01%,35498,,DemandGen Prospecting,563803,3228,174.68,32270,807000,"GA4 includes Paid Social (869K sessions), Cross-network, Direct, etc. Awareness spend ($243K) produces 0 conv"
 /success/degree-types/bachelors-degrees-v5,458070,43.1%,56.9%,3.50%,16013,,Non-Brand Bachelor's Search,1407229,2739,513.71,13274,1407000,"Cross-network adds 203K sessions in GA4"
-/success/military-v5,310713,52.9%,47.1%,3.07%,9551,,Military Display Prospecting,254142,8752,29.04,799,545000,"Closest GA4/Ads match — Display dominates traffic. Total spend includes DemandGen $243K + Remarketing $48K"
+/success/military-v5,310713,52.9%,47.1%,3.07%,9551,,Military Display Prospecting,254142,8752,29.04*SPAM,799,545000,"⚠️ CORRECTED: $29.04 CPL based on spam conversions (per Kevin VP Perf Mktg Apr 2026). Campaigns shut down. 8752 'conversions' were not legitimate leads. GA4 engagement (52.9%) still valid."
 /success/online-college-courses-v5,262257,74.5%,25.5%,7.25%,19005,,Courses Search,1640681,3901,420.62,15104,1641000,"Highest search spend but also best performing"
 /success/degree-programs-v7,221507,74.9%,25.1%,13.57%,30066,536s,Not broken out,767000,,,,767000,"Highest converting page at 13.57%. Program browser is the differentiator"

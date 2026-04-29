@@ -203,7 +203,7 @@
 
 ### 2D. "UAGC" Usage in Page Copy
 
-**What the data says (GSC query analysis):**
+**What the data says (GSC query analysis — organic):**
 
 | Query Pattern | Clicks (12mo) | Impressions |
 |---------------|---------------|-------------|
@@ -212,12 +212,29 @@
 | "ashford university" (legacy) | 15,052 | 121,451 |
 | "arizona global campus" | 10,549 | 40,601 |
 
-- "UAGC" as a search term drives 103K clicks — it is the established brand abbreviation in search behavior.
-- "University of Arizona Global Campus" drives 53K clicks — the full name is searched roughly half as often.
+- "UAGC" as a search term drives 103K organic clicks — it is the established brand abbreviation in search behavior.
+- "University of Arizona Global Campus" drives 53K organic clicks — the full name is searched roughly half as often organically.
 - "Ashford University" still drives 15K clicks — legacy brand awareness persists.
 - The homepage ranks #1 for "uagc" with 53,467 clicks.
 
-**Audit directive:** Review how "UAGC" vs. "University of Arizona Global Campus" is used in H1s, meta titles, and body copy. Given that users search "UAGC" 2x more than the full name, the abbreviation should be prominent — but copy should still introduce the full name for SEO authority. Check for over-repetition that hurts readability without adding SEO value.
+**Important counterpoint — Paid Search tells a different story (source: Kevin, VP Performance Marketing, Jan–Mar 2026):**
+
+| Campaign (Brand) | Spend | Leads | CPL | Apps | CPA |
+|------------------|-------|-------|-----|------|-----|
+| university of arizona global campus | $139,607 | 1,859 | **$75** | 409 | $342 |
+| uagc | $104,199 | 738 | $141 | 240 | $434 |
+| ashford university | $39,691 | 394 | $101 | 45 | $890 |
+| **Totals** | **$283,497** | **2,991** | **$95** | **693** | **$409** |
+
+- In paid search, "University of Arizona Global Campus" delivers **2.5x more leads at half the CPL** ($75 vs $141) compared to "UAGC."
+- The organic GSC data showing "UAGC" as the top brand term likely reflects **student/staff navigational searches** (portal logins, returning users), not prospective student behavior.
+- Performance Marketing has been deliberately emphasizing "University of Arizona" in advertising — the parent brand carries trust and authority with prospects who don't yet know UAGC.
+- The paid data is more representative of **prospective student** behavior; the organic data reflects **existing community** behavior.
+
+**Revised audit directive:** The organic vs. paid distinction matters for copy strategy:
+- **Prospect-facing copy** (landing pages, ads, above-the-fold): Lead with "University of Arizona Global Campus" — the parent brand sells. The paid data ($75 CPL vs $141) validates this approach.
+- **Returning/enrolled audience copy** (navigation, student portal, SEO meta): "UAGC" is fine as the familiar shorthand — that's how existing students and staff navigate.
+- **SEO strategy:** Use the full "University of Arizona Global Campus" in H1s and meta titles for authority. "UAGC" can appear in body copy for readability. Do not over-index on the organic volume of "UAGC" — that volume is largely navigational, not conversion-intent.
 
 ### 2E. Lightcast Placement
 
@@ -255,15 +272,26 @@
 CTA buttons throughout the page anchor to the mid-page form rather than being separate forms. The form count and structure are reasonable — the conversion problem lies elsewhere.
 
 **Key Findings:**
-- **4.5x conversion gap** between the primary RFI page (`/success/request-info-v5` at 3.01%) and the best-performing page (`/success/degree-programs-v7` at 13.57%) despite similar form structures.
-- The primary RFI page gets 1.18M sessions (mostly Paid Social) but 53% bounce — that's ~627K paid visitors leaving immediately. The page already uses a two-step form, so the problem isn't form friction — it's **page content and intent matching**.
-- `/success/degree-programs-v7` (Display traffic) converts 4.5x better with 75% engagement — this page offers richer program content, clearer CTA hierarchy, and program-specific value propositions that the generic RFI page lacks.
-- `/success/online-college-courses-v5` (Paid Search traffic) converts at 7.25% with 74.5% engagement — another content-rich page outperforming the generic RFI approach.
+- **4.5x conversion gap** between `/success/request-info-v5` (3.01%) and `/success/degree-programs-v7` (13.57%) — but **most of this gap is explained by channel mix** (Paid Social vs. Display), not page quality alone.
+- The primary RFI page gets 1.18M sessions (mostly Paid Social) but 53% bounce — that's ~627K paid visitors leaving immediately.
+- `/success/online-college-courses-v5` (Paid Search traffic) converts at 7.25% with 74.5% engagement — this is a more realistic benchmark for what enriched pages can achieve from intent-based traffic.
 - The enrollment agreement page (`/s/app7-enrollment-agreement-intro`) at 65.3% conversion confirms deep-funnel visitors are committed.
 
-**Root cause hypothesis:** The 4.5x conversion gap isn't about form count — it's about what surrounds the forms. `/degree-programs-v7` gives visitors program-specific content, outcomes data, and reasons to believe before asking for information. `/request-info-v5` leads with a generic form and generic copy, creating a mismatch with the ad creative that drove the click (especially from Paid Social).
+> **⚠️ A/B TEST RESULT (Nov 2025, source: Kevin / Kanahoma):**
+> Performance Marketing tested the exact premise of sending Meta traffic to the content-rich page instead of request-info-v5:
+> - **Old LP** (request-info-v5): **$37 CPI**, 234 inquiries
+> - **New LP** (online-programs-v7): **$40 CPI**, 194 inquiries
+>
+> Result: The simpler, form-forward page won on Meta traffic (8% lower CPI, not statistically significant). Key learnings:
+> - Meta audiences responded better to a page built for **one action** rather than browsing
+> - The old LP's strengths: emotional hero imagery, early form visibility, minimal distractions, shorter length
+> - The new LP's strengths: modern layout, scannable value props, credibility elements
+>
+> **Recommendation (Kanahoma):** A **hybrid page** that keeps v5's conversion focus (emotional hero, visible form, single CTA, minimal exits) while adding v7's trust elements (3–4 scannable value props, credibility callouts, brief testimonial). Not more content — better content placed strategically.
 
-**Audit directive:** Side-by-side structural comparison of `/success/request-info-v5` vs. `/success/degree-programs-v7` — document differences in content depth, value proposition placement, social proof, above-the-fold experience, and program specificity. The form structure is similar; the page experience is the variable.
+**Revised root cause hypothesis:** The 4.5x gap is primarily channel mix (cold Paid Social vs warmer Display). For Meta traffic specifically, form prominence and emotional simplicity outperform content depth. The opportunity is not "replace v5 with v7" — it's a hybrid that reduces the 53% bounce through trust and credibility elements without adding the browsing friction that hurt v7 on Meta.
+
+**Revised audit directive:** Design a hybrid landing page per the Kanahoma recommendation. Validate with A/B test on Meta traffic (primary source). Success = lower bounce AND maintained/improved CPI. The 7% target (matching Paid Search pages) may be achievable for Search/Display traffic, but Meta traffic may have a lower ceiling due to intent differences.
 
 ---
 
@@ -545,11 +573,16 @@ This inflates the session count and deflates the conversion rate for `/request-i
 | Bounce Rate | 47.1% | — |
 | Conversions (GA4) | 9,551 | — |
 | Conversions (Google Ads – Display prospecting) | — | 8,752 |
-| Cost per Conversion (Display prospecting) | — | **$29.04** |
+| Cost per Conversion (Display prospecting) | — | ~~**$29.04**~~ **DATA CORRECTION BELOW** |
 | Cost per Conversion (Display remarketing) | — | $87.44 |
 | CTR (Display prospecting) | — | 29.28% |
 
-**Review focus:** **The military page is the efficiency champion.** Display prospecting converts at $29.04/lead — 14x cheaper than the general RFI page ($174.68) and 18x cheaper than bachelor's search ($513.71). The 29.28% CTR on Display prospecting suggests highly targeted audience matching. This page proves that audience-specific content + targeted ads = dramatically lower costs. The reskin should study what this page does for military visitors and replicate the pattern for other audience segments.
+> **⚠️ DATA CORRECTION (Apr 29, 2026 — source: Kevin, VP Performance Marketing):**
+> The $29.04 CPL figure for Military Display / Google Discovery prospecting was based on **spam conversions** that have since been identified and the campaigns shut down. This number should NOT be used as a benchmark or cited in presentations. The 8,752 "conversions" were not legitimate leads.
+>
+> The military page still shows strong engagement (52.9%) and GA4 conversion metrics (9,551 conversions in GA4), suggesting the page content and audience targeting are sound — but the Google Ads CPL figure is invalid.
+
+**Review focus:** The military page demonstrates strong audience-specific engagement (52.9% engagement rate, well above the generic RFI page's 47%). The audience-specific content + targeted ads approach is directionally correct, but the cost-per-lead claims require validation with clean data from Performance Marketing. Do NOT cite the $29 figure.
 
 ---
 
@@ -603,9 +636,11 @@ This inflates the session count and deflates the conversion rate for `/request-i
 
 **Key findings from Google Ads data:**
 - **Brand search is 4x more efficient** than non-brand ($150.81 vs. $490–$632/conversion). Brand protection is working.
-- **Performance Max is extremely expensive**: 482K clicks, $734K spend, only 477 conversions = **$1,539/conversion**. This needs immediate review — it's generating massive impression volume (73M) with near-zero conversion efficiency.
-- **Military Display is the standout**: $29.04/conversion vs. $420–$514 for search landing pages. Audience-specific content + targeted ads = 14–18x better efficiency.
+- **Performance Max shows high cost per conversion**: 482K clicks, $734K spend, 477 conversions = $1,539/conversion. However, **context is needed** — PMax "Conversions" may include only deeper-funnel conversion actions (not form fills), and the metric definition may differ from other campaign types. Defer to Performance Marketing for the accurate read on PMax efficiency.
+- ~~**Military Display is the standout**: $29.04/conversion~~ — **CORRECTED: These were spam conversions (source: Kevin, VP Performance Marketing, Apr 2026). Campaigns shut down. Do not cite.**
 - **DemandGen Gen Prospecting** (Display account): $712K spend, 3,329 conversions, $214/conv — reasonable for top-of-funnel, but the video/awareness extensions ($243K) produce nothing.
+
+> **⚠️ NOTE ON CPL FIGURES:** Per Kevin (VP, Performance Marketing), headline "Conversions" in Google Ads include only conversion actions marked for that metric. For lead counts and cost-per-lead, use per-conversion-action data (e.g., LFS/LSF Leads) or agreed CRM/lead definitions. Do not treat headline conversions ÷ spend as CPL without confirming which actions are in the column.
 
 ---
 
