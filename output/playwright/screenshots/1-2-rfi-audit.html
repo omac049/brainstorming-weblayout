@@ -1,0 +1,1048 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Task 1.2 — RFI Content Audit | UAGC Phase 1</title>
+<style>
+  :root {
+    --navy: #0C234B;
+    --red: #AB0520;
+    --light: #F7F8FA;
+    --border: #E2E5EA;
+    --muted: #6B7280;
+    --green: #059669;
+    --amber: #D97706;
+    --danger: #DC2626;
+    --bg: #FAFBFC;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; scroll-padding-top: 24px; }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Inter', 'Segoe UI', sans-serif; background: var(--light); color: #1a1a1a; line-height: 1.5; }
+
+  .header { background: var(--navy); color: white; padding: 40px 48px; position: relative; margin-left: 260px; }
+  .header::after { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 4px; background: var(--red); }
+  .header h1 { font-size: 26px; font-weight: 700; letter-spacing: -0.4px; margin-bottom: 8px; }
+  .header p { font-size: 14px; opacity: 0.78; max-width: 720px; }
+  .header .meta { display: flex; flex-wrap: wrap; gap: 20px 28px; margin-top: 14px; font-size: 12px; opacity: 0.55; }
+
+  .sidebar {
+    position: fixed; top: 0; left: 0; bottom: 0; width: 260px; z-index: 200;
+    background: white; border-right: 1px solid var(--border);
+    overflow-y: auto; padding: 20px 0;
+    scrollbar-width: thin; scrollbar-color: var(--border) transparent;
+  }
+  .sidebar::-webkit-scrollbar { width: 4px; }
+  .sidebar::-webkit-scrollbar-thumb { background: var(--border); border-radius: 4px; }
+  .sidebar .back-link {
+    display: block; padding: 8px 20px 16px; font-size: 13px; font-weight: 600; color: var(--navy);
+    text-decoration: none; border-bottom: 1px solid var(--border); margin-bottom: 12px;
+  }
+  .sidebar .back-link:hover { color: var(--red); }
+  .sidebar .sb-title {
+    font-size: 12px; font-weight: 700; color: var(--navy); padding: 0 20px 12px;
+    letter-spacing: 0.5px;
+  }
+  .sidebar .sb-group { margin-bottom: 6px; }
+  .sidebar .sb-group-label {
+    font-size: 10px; font-weight: 700; letter-spacing: 1.2px; text-transform: uppercase;
+    padding: 10px 20px 6px; color: var(--muted);
+  }
+  .sidebar .sb-group-label.paid { color: var(--amber); }
+  .sidebar .sb-group-label.organic { color: #2563EB; }
+  .sidebar a.nav-item {
+    display: flex; align-items: center; gap: 10px;
+    padding: 6px 20px; font-size: 12px; font-weight: 400; color: #4B5563;
+    text-decoration: none; transition: all 0.12s; border-left: 3px solid transparent;
+  }
+  .sidebar a.nav-item:hover { background: #F9FAFB; color: var(--navy); }
+  .sidebar a.nav-item .num {
+    display: inline-flex; align-items: center; justify-content: center;
+    width: 20px; height: 20px; border-radius: 5px; font-size: 10px; font-weight: 600;
+    background: #F3F4F6; color: var(--muted); flex-shrink: 0;
+  }
+
+  .sidebar-toggle {
+    display: none; position: fixed; top: 12px; left: 12px; z-index: 300;
+    width: 40px; height: 40px; border-radius: 10px; border: 1px solid var(--border);
+    background: white; cursor: pointer; align-items: center; justify-content: center;
+    font-size: 18px; box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  }
+
+  .content { max-width: 1100px; margin: 0 auto; padding: 0 40px 100px; margin-left: 260px; }
+
+  @media (max-width: 1100px) {
+    .sidebar { transform: translateX(-100%); transition: transform 0.25s; }
+    .sidebar.open { transform: translateX(0); box-shadow: 4px 0 24px rgba(0,0,0,0.12); }
+    .sidebar-toggle { display: flex; }
+    .content, .header { margin-left: 0; }
+  }
+
+  .exec-summary {
+    background: white; border: 1px solid var(--border); border-radius: 12px;
+    padding: 24px 28px; margin: 36px 0 40px; border-left: 4px solid var(--navy);
+  }
+  .exec-summary h2 { font-size: 14px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: var(--navy); margin-bottom: 14px; }
+  .exec-summary ul { margin: 0; padding-left: 1.15rem; font-size: 14px; color: #374151; }
+  .exec-summary li { margin-bottom: 10px; }
+  .exec-summary li:last-child { margin-bottom: 0; }
+
+  .section-header { padding: 32px 0 20px; }
+  .section-label { font-size: 11px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: var(--red); margin-bottom: 4px; }
+  .section-title { font-size: 22px; font-weight: 700; letter-spacing: -0.3px; }
+  .section-desc { font-size: 13px; color: var(--muted); margin-top: 4px; }
+
+  .page-card { background: white; border: 1px solid var(--border); border-radius: 12px; margin-bottom: 36px; overflow: hidden; }
+  .page-card-header { padding: 16px 24px; border-bottom: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
+  .page-card-header h3 { font-size: 16px; font-weight: 700; }
+  .page-card-header .url { font-size: 11px; color: var(--muted); font-family: 'SF Mono', 'Fira Code', monospace; display: block; margin-top: 2px; }
+  .badges { display: flex; gap: 6px; flex-wrap: wrap; }
+  .badge { display: inline-flex; align-items: center; padding: 3px 9px; border-radius: 5px; font-size: 10px; font-weight: 600; }
+  .badge--green { background: #ECFDF5; color: var(--green); }
+  .badge--amber { background: #FFFBEB; color: var(--amber); }
+  .badge--red { background: #FEF2F2; color: var(--danger); }
+  .badge--blue { background: #EFF6FF; color: #2563EB; }
+  .badge--gray { background: #F3F4F6; color: #4B5563; }
+
+  .thumb-wrap { padding: 16px 24px; background: var(--bg); border-bottom: 1px solid var(--border); display: flex; gap: 16px; align-items: flex-start; flex-wrap: wrap; }
+  .thumb-wrap a { display: inline-block; line-height: 0; border-radius: 8px; overflow: hidden; border: 1px solid var(--border); transition: box-shadow 0.15s; flex-shrink: 0; }
+  .thumb-wrap a:hover { box-shadow: 0 4px 16px rgba(12,35,75,0.12); }
+  .thumb-wrap a:focus-visible { outline: 2px solid var(--red); outline-offset: 3px; }
+  .thumb-wrap a.desk img { width: 340px; max-width: 100%; height: auto; display: block; }
+  .thumb-wrap a.mob img { width: 120px; max-width: 100%; height: auto; display: block; }
+  .thumb-wrap img { width: 340px; max-width: 100%; height: auto; display: block; }
+  .vp-tag { font-size: 9px; font-weight: 700; letter-spacing: 0.5px; text-transform: uppercase; color: var(--muted); text-align: center; margin-top: 4px; }
+
+  .audit-block { padding: 20px 24px; border-top: 2px solid var(--navy); background: linear-gradient(135deg, #F8FAFC, #EFF6FF); }
+  .audit-block h4 { font-size: 11px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: var(--navy); margin-bottom: 12px; }
+  .audit-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px; margin-bottom: 12px; }
+  .audit-item { background: white; border: 1px solid var(--border); border-radius: 8px; padding: 10px 12px; }
+  .audit-item .al { font-size: 9px; font-weight: 700; letter-spacing: 0.5px; text-transform: uppercase; color: var(--muted); margin-bottom: 4px; }
+  .audit-item .av { font-size: 12px; font-weight: 600; }
+  .audit-item .av.good { color: var(--green); }
+  .audit-item .av.warn { color: var(--amber); }
+  .audit-item .av.bad { color: var(--danger); }
+  .audit-note { font-size: 12px; color: #374151; line-height: 1.5; padding: 10px 14px; background: white; border-left: 3px solid var(--navy); border-radius: 0 8px 8px 0; }
+  .audit-note strong { color: var(--navy); }
+  .cs-callout { margin-top: 10px; background: #F5F3FF; border: 1px solid #DDD6FE; border-radius: 8px; padding: 10px 14px; }
+  .cs-callout .cs-label { font-size: 9px; font-weight: 700; letter-spacing: 0.8px; text-transform: uppercase; color: #7C3AED; margin-bottom: 6px; }
+  .cs-callout .cs-row { display: flex; gap: 16px; flex-wrap: wrap; }
+  .cs-callout .cs-metric { font-size: 12px; }
+  .cs-callout .cs-metric strong { font-weight: 700; }
+  .cs-callout .cs-metric .rage { color: #DC2626; font-weight: 800; }
+  .cs-callout .cs-metric .warn { color: #D97706; font-weight: 700; }
+
+  table.dimension-matrix {
+    width: 100%; border-collapse: collapse; background: white; border: 1px solid var(--border); border-radius: 12px; overflow: hidden; margin: 32px 0 48px; font-size: 11px;
+  }
+  table.dimension-matrix thead { background: var(--navy); color: white; }
+  table.dimension-matrix th { padding: 11px 8px; font-size: 9px; font-weight: 600; letter-spacing: 0.5px; text-transform: uppercase; text-align: center; vertical-align: bottom; }
+  table.dimension-matrix th:first-child { text-align: left; padding-left: 14px; min-width: 140px; }
+  table.dimension-matrix td { padding: 9px 8px; text-align: center; border-bottom: 1px solid var(--border); font-weight: 600; }
+  table.dimension-matrix td:first-child { text-align: left; font-weight: 600; padding-left: 14px; font-size: 12px; color: #1f2937; }
+  table.dimension-matrix tbody tr:last-child td { border-bottom: none; }
+  table.dimension-matrix tbody tr:hover td { filter: brightness(0.98); }
+  .cell-g { background: #D1FAE5; color: #065F46; }
+  .cell-a { background: #FEF3C7; color: #92400E; }
+  .cell-r { background: #FEE2E2; color: #991B1B; }
+  .cell-n { background: #F3F4F6; color: #6B7280; font-weight: 500; }
+
+  .matrix-legend { display: flex; flex-wrap: wrap; gap: 16px; font-size: 11px; color: var(--muted); margin: -20px 0 40px; }
+  .matrix-legend span { display: inline-flex; align-items: center; gap: 6px; }
+  .swatch { width: 14px; height: 14px; border-radius: 3px; border: 1px solid var(--border); }
+  .swatch.g { background: #D1FAE5; }
+  .swatch.a { background: #FEF3C7; }
+  .swatch.r { background: #FEE2E2; }
+
+  @media (max-width: 900px) {
+    table.dimension-matrix { display: block; overflow-x: auto; white-space: nowrap; }
+  }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>1.2 — RFI Content Audit</h1>
+  <p>What content surrounds the forms — program-specific vs generic, social proof placement, above-fold analysis</p>
+  <div class="meta">
+    <span>UAGC Phase 1 Audit</span>
+    <span>20 pages — 10 Paid + 10 Organic</span>
+    <span>Data window: 12 months (Apr 2025 – Apr 2026)</span>
+  </div>
+</div>
+
+<button class="sidebar-toggle" onclick="document.getElementById('sidebar').classList.toggle('open')" aria-label="Toggle navigation">☰</button>
+
+<nav class="sidebar" id="sidebar">
+  <a class="back-link" href="index.html">← Back to Phase 1 Hub</a>
+  <div class="sb-title">Jump to audit</div>
+
+  <div class="sb-group">
+    <div class="sb-group-label paid">Paid</div>
+    <a class="nav-item" href="#paid-01"><span class="num">1</span> Request Info v5</a>
+    <a class="nav-item" href="#paid-02"><span class="num">2</span> Bachelor's v5</a>
+    <a class="nav-item" href="#paid-03"><span class="num">3</span> Military v5</a>
+    <a class="nav-item" href="#paid-04"><span class="num">4</span> College Courses v5</a>
+    <a class="nav-item" href="#paid-05"><span class="num">5</span> Degree Programs v7</a>
+    <a class="nav-item" href="#paid-06"><span class="num">6</span> Online Programs v7</a>
+    <a class="nav-item" href="#paid-07"><span class="num">7</span> Online Programs v8</a>
+    <a class="nav-item" href="#paid-08"><span class="num">8</span> Liberal Arts v6</a>
+    <a class="nav-item" href="#paid-09"><span class="num">9</span> Criminal Justice v6</a>
+    <a class="nav-item" href="#paid-10"><span class="num">10</span> Business v6</a>
+  </div>
+
+  <div class="sb-group">
+    <div class="sb-group-label organic">Organic</div>
+    <a class="nav-item" href="#org-01"><span class="num">1</span> Homepage</a>
+    <a class="nav-item" href="#org-02"><span class="num">2</span> Online Degrees</a>
+    <a class="nav-item" href="#org-03"><span class="num">3</span> Business Degrees</a>
+    <a class="nav-item" href="#org-04"><span class="num">4</span> Masters</a>
+    <a class="nav-item" href="#org-05"><span class="num">5</span> Education</a>
+    <a class="nav-item" href="#org-06"><span class="num">6</span> Tuition &amp; Aid</a>
+    <a class="nav-item" href="#org-07"><span class="num">7</span> Blog: PhD</a>
+    <a class="nav-item" href="#org-08"><span class="num">8</span> Blog: Biz Plan</a>
+    <a class="nav-item" href="#org-09"><span class="num">9</span> Bachelor's Hub</a>
+    <a class="nav-item" href="#org-10"><span class="num">10</span> Criminal Justice</a>
+  </div>
+</nav>
+
+<div class="content">
+
+<section class="exec-summary" aria-labelledby="exec-heading">
+  <h2 id="exec-heading">Executive summary</h2>
+  <ul>
+    <li>Pages that expose <strong>program discovery</strong> content before pushing the RFI consistently convert roughly <strong>3–5×</strong> better than thin, form-first layouts with the same template family.</li>
+    <li>The top paid landing by volume (<strong>request-info-v5</strong>, ~<strong>1.18M</strong> sessions) <strong>fails the 5-second test</strong>: generic headline, no program grid, accreditation and proof far from the form.</li>
+    <li><strong>Best paid pattern:</strong> <strong>degree-programs-v7</strong> front-loads the <strong>program category grid</strong> and deep program list so visitors self-select before the ask — #1 paid conversion rate in the set.</li>
+    <li><strong>Organic <code style="font-size:0.9em">/online-degrees</code></strong> (~<strong>88.8%</strong> engaged sessions, strong conv) validates a <strong>content-first</strong> hub pattern at essentially <strong>zero media cost</strong>.</li>
+    <li><strong>Blog templates</strong> (~<strong>243K</strong> sessions across high-traffic posts in this audit) pair strong readership with <strong>near-zero conversion</strong>: generic <strong>sidebar RFI</strong> and disconnected in-article CTAs.</li>
+  </ul>
+</section>
+
+<div id="paid-section" class="section-header">
+  <div class="section-label">Paid landing pages</div>
+  <div class="section-title">RFI surround — /success routes</div>
+  <div class="section-desc">Full six-field audit grid per page.</div>
+</div>
+
+<!-- PAID 01 -->
+<div id="paid-01" class="page-card">
+  <div class="page-card-header">
+    <div><h3>1. Request Info v5</h3><span class="url">/success/request-info-v5</span></div>
+    <div class="badges"><span class="badge badge--red">53.2% Bounce</span><span class="badge badge--gray">Paid Social</span><span class="badge badge--amber">~$807K spend</span></div>
+  </div>
+  <div class="thumb-wrap">
+    <div><a class="desk" href="paid-01-request-info-v5_desktop-1440.png" target="_blank" rel="noopener" title="Open full desktop screenshot"><img src="paid-01-request-info-v5_desktop-1440.png" alt="Desktop: Request Info v5" loading="lazy"></a><div class="vp-tag">Desktop 1440px</div></div>
+    <div><a class="mob" href="paid-01-request-info-v5_mobile-375.png" target="_blank" rel="noopener" title="Open full mobile screenshot"><img src="paid-01-request-info-v5_mobile-375.png" alt="Mobile: Request Info v5" loading="lazy"></a><div class="vp-tag">Mobile 375px</div></div>
+  </div>
+  <div class="audit-block">
+    <h4>1.2 — RFI Content Audit</h4>
+    <div class="audit-grid">
+      <div class="audit-item"><div class="al">Content Specificity</div><div class="av bad">Generic</div></div>
+      <div class="audit-item"><div class="al">Above-Fold Content</div><div class="av warn">Hero image + "Earn Your Degree" + RFI form</div></div>
+      <div class="audit-item"><div class="al">Social Proof Near Form</div><div class="av bad">None — accreditation buried at page bottom</div></div>
+      <div class="audit-item"><div class="al">Program Discovery</div><div class="av bad">None — no program grid, no program list</div></div>
+      <div class="audit-item"><div class="al">Forms on Page</div><div class="av warn">2 — hero overlay + mid-page band</div></div>
+      <div class="audit-item"><div class="al">5-Second Test</div><div class="av bad">Fails — "Where am I? What can I do?" not answered</div></div>
+    </div>
+    <div class="audit-note"><strong>Key Issue:</strong> This is the #1 paid traffic destination (1.18M sessions) but the page is content-thin. The hero says "Earn Your Degree 100% Online at UAGC" — too vague for someone arriving from a specific ad. No program categories, no outcomes data, no student proof above the fold. The form asks "Area of Interest" but the page gives zero context to help visitors choose one. Compare to P5 (degree-programs-v7) which converts 4.5x better by front-loading program discovery content.</div>
+    <div class="cs-callout">
+      <div class="cs-label">Contentsquare · Paid Success Zoning · 30 days</div>
+      <div class="cs-row">
+        <div class="cs-metric">Form Rage: <strong class="rage">3.23× recurrence</strong> (118K clicks)</div>
+        <div class="cs-metric">Conv/Click: <strong class="rage">0.04%</strong></div>
+        <div class="cs-metric">Form Exposure: <strong>89.2%</strong></div>
+        <div class="cs-metric">Scroll Depth: <strong>23.2%</strong></div>
+        <div class="cs-metric">Load: <strong class="warn">6.70s</strong></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- PAID 02 -->
+<div id="paid-02" class="page-card">
+  <div class="page-card-header">
+    <div><h3>2. Bachelor's Degrees v5</h3><span class="url">/success/degree-types/bachelors-degrees-v5</span></div>
+    <div class="badges"><span class="badge badge--red">56.9% Bounce</span><span class="badge badge--gray">Paid Search</span><span class="badge badge--red">$1.41M spend</span></div>
+  </div>
+  <div class="thumb-wrap">
+    <div><a class="desk" href="paid-02-bachelors-degrees-v5_desktop-1440.png" target="_blank" rel="noopener" title="Open full desktop screenshot"><img src="paid-02-bachelors-degrees-v5_desktop-1440.png" alt="Desktop: Bachelor's v5" loading="lazy"></a><div class="vp-tag">Desktop 1440px</div></div>
+    <div><a class="mob" href="paid-02-bachelors-degrees-v5_mobile-375.png" target="_blank" rel="noopener" title="Open full mobile screenshot"><img src="paid-02-bachelors-degrees-v5_mobile-375.png" alt="Mobile: Bachelor's v5" loading="lazy"></a><div class="vp-tag">Mobile 375px</div></div>
+  </div>
+  <div class="audit-block">
+    <h4>1.2 — RFI Content Audit</h4>
+    <div class="audit-grid">
+      <div class="audit-item"><div class="al">Content Specificity</div><div class="av warn">Degree-Level (Bachelor's)</div></div>
+      <div class="audit-item"><div class="al">Above-Fold Content</div><div class="av warn">Hero image + "Earn Your Bachelor's Degree Online" + RFI form</div></div>
+      <div class="audit-item"><div class="al">Social Proof Near Form</div><div class="av bad">None above fold — accreditation far below</div></div>
+      <div class="audit-item"><div class="al">Program Discovery</div><div class="av good">Yes — category grid + full program accordion</div></div>
+      <div class="audit-item"><div class="al">Forms on Page</div><div class="av">1 — hero overlay only (no mid-page repeat)</div></div>
+      <div class="audit-item"><div class="al">5-Second Test</div><div class="av warn">Partial — bachelor's is clear, but no outcomes or differentiators visible</div></div>
+    </div>
+    <div class="audit-note"><strong>Key Issue:</strong> $1.41M in search spend, $513/conversion. The hero is degree-level specific ("Bachelor's") which is better than P1's generic approach, and the program grid appears quickly. But the form is the only conversion path above the fold — no social proof, no outcomes data, no "why UAGC" before asking for personal info. At 57% bounce from Cross-network traffic, the first viewport isn't earning trust fast enough.</div>
+    <div class="cs-callout">
+      <div class="cs-label">Contentsquare · Paid Success Zoning · 30 days</div>
+      <div class="cs-row">
+        <div class="cs-metric">Form Rage: <strong class="rage">3.23× recurrence</strong> (118K clicks)</div>
+        <div class="cs-metric">Conv/Click: <strong class="rage">0.04%</strong></div>
+        <div class="cs-metric">Form Exposure: <strong>89.2%</strong></div>
+        <div class="cs-metric">Scroll Depth: <strong>23.2%</strong></div>
+        <div class="cs-metric">Load: <strong class="warn">6.70s</strong></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- PAID 03 -->
+<div id="paid-03" class="page-card">
+  <div class="page-card-header">
+    <div><h3>3. Military v5</h3><span class="url">/success/military-v5</span></div>
+    <div class="badges"><span class="badge badge--blue">Audience-Specific</span><span class="badge badge--gray">Display</span><span class="badge badge--amber">~$545K spend</span></div>
+  </div>
+  <div class="thumb-wrap">
+    <div><a class="desk" href="paid-03-military-v5_desktop-1440.png" target="_blank" rel="noopener" title="Open full desktop screenshot"><img src="paid-03-military-v5_desktop-1440.png" alt="Desktop: Military v5" loading="lazy"></a><div class="vp-tag">Desktop 1440px</div></div>
+    <div><a class="mob" href="paid-03-military-v5_mobile-375.png" target="_blank" rel="noopener" title="Open full mobile screenshot"><img src="paid-03-military-v5_mobile-375.png" alt="Mobile: Military v5" loading="lazy"></a><div class="vp-tag">Mobile 375px</div></div>
+  </div>
+  <div class="audit-block">
+    <h4>1.2 — RFI Content Audit</h4>
+    <div class="audit-grid">
+      <div class="audit-item"><div class="al">Content Specificity</div><div class="av warn">Audience-Specific (Military)</div></div>
+      <div class="audit-item"><div class="al">Above-Fold Content</div><div class="av warn">"An Education Worthy of Your Service" + hero + RFI form</div></div>
+      <div class="audit-item"><div class="al">Social Proof Near Form</div><div class="av bad">None — military benefits section is mid-page</div></div>
+      <div class="audit-item"><div class="al">Program Discovery</div><div class="av bad">None — no programs shown, just value props</div></div>
+      <div class="audit-item"><div class="al">Forms on Page</div><div class="av">2 — hero overlay + mid-page band</div></div>
+      <div class="audit-item"><div class="al">5-Second Test</div><div class="av warn">Partial — audience is clear, but TA/Yellow Ribbon not visible before scroll</div></div>
+    </div>
+    <div class="audit-note"><strong>Key Issue:</strong> Military audience knows they want education benefits — TA, Yellow Ribbon, GI Bill. None of those concrete benefits appear above the fold. The hero earns emotional resonance ("Worthy of Your Service") but doesn't lead with the tangible: "Tuition Assistance accepted, Yellow Ribbon participant." Financial Aid and Military Education Benefits sections are buried mid-page, past the fold.</div>
+    <div class="cs-callout">
+      <div class="cs-label">Contentsquare · Paid Success Zoning · 30 days</div>
+      <div class="cs-row">
+        <div class="cs-metric">Form Rage: <strong class="rage">3.23× recurrence</strong> (118K clicks)</div>
+        <div class="cs-metric">Conv/Click: <strong class="rage">0.04%</strong></div>
+        <div class="cs-metric">Form Exposure: <strong>89.2%</strong></div>
+        <div class="cs-metric">Scroll Depth: <strong>23.2%</strong></div>
+        <div class="cs-metric">Load: <strong class="warn">6.70s</strong></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- PAID 04 -->
+<div id="paid-04" class="page-card">
+  <div class="page-card-header">
+    <div><h3>4. College Courses v5</h3><span class="url">/success/online-college-courses-v5</span></div>
+    <div class="badges"><span class="badge badge--green">7.25% Conv</span><span class="badge badge--gray">Paid Search</span><span class="badge badge--amber">$1.64M spend</span></div>
+  </div>
+  <div class="thumb-wrap">
+    <div><a class="desk" href="paid-04-college-courses-v5_desktop-1440.png" target="_blank" rel="noopener" title="Open full desktop screenshot"><img src="paid-04-college-courses-v5_desktop-1440.png" alt="Desktop: College Courses v5" loading="lazy"></a><div class="vp-tag">Desktop 1440px</div></div>
+    <div><a class="mob" href="paid-04-college-courses-v5_mobile-375.png" target="_blank" rel="noopener" title="Open full mobile screenshot"><img src="paid-04-college-courses-v5_mobile-375.png" alt="Mobile: College Courses v5" loading="lazy"></a><div class="vp-tag">Mobile 375px</div></div>
+  </div>
+  <div class="audit-block">
+    <h4>1.2 — RFI Content Audit</h4>
+    <div class="audit-grid">
+      <div class="audit-item"><div class="al">Content Specificity</div><div class="av warn">Degree-Level (Courses)</div></div>
+      <div class="audit-item"><div class="al">Above-Fold Content</div><div class="av warn">Hero + "Degree Programs" headline + RFI form</div></div>
+      <div class="audit-item"><div class="al">Social Proof Near Form</div><div class="av bad">None above fold</div></div>
+      <div class="audit-item"><div class="al">Program Discovery</div><div class="av good">Strong — 2-column program list + category grid below</div></div>
+      <div class="audit-item"><div class="al">Forms on Page</div><div class="av">2 — hero overlay + mid-page band</div></div>
+      <div class="audit-item"><div class="al">5-Second Test</div><div class="av warn">Partial — "online college courses" is clear, program list loads fast</div></div>
+    </div>
+    <div class="audit-note"><strong>Strength:</strong> 7.25% conversion (2nd best paid page) driven by Paid Search traffic with high intent. The program list appears early and gives visitors something to browse. 74.5% engagement confirms visitors are exploring. <strong>Opportunity:</strong> Adding outcomes data (salary, career paths) next to the program list — similar to what makes /online-degrees the organic gold standard — could push conversion higher.</div>
+    <div class="cs-callout">
+      <div class="cs-label">Contentsquare · Paid Success Zoning · 30 days</div>
+      <div class="cs-row">
+        <div class="cs-metric">Form Rage: <strong class="rage">3.23× recurrence</strong> (118K clicks)</div>
+        <div class="cs-metric">Conv/Click: <strong class="rage">0.04%</strong></div>
+        <div class="cs-metric">Form Exposure: <strong>89.2%</strong></div>
+        <div class="cs-metric">Scroll Depth: <strong>23.2%</strong></div>
+        <div class="cs-metric">Load: <strong class="warn">6.70s</strong></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- PAID 05 -->
+<div id="paid-05" class="page-card">
+  <div class="page-card-header">
+    <div><h3>5. Degree Programs v7</h3><span class="url">/success/degree-programs-v7</span></div>
+    <div class="badges"><span class="badge badge--green">13.57% Conv — #1 Paid</span><span class="badge badge--gray">Display</span></div>
+  </div>
+  <div class="thumb-wrap">
+    <div><a class="desk" href="paid-05-degree-programs-v7_desktop-1440.png" target="_blank" rel="noopener" title="Open full desktop screenshot"><img src="paid-05-degree-programs-v7_desktop-1440.png" alt="Desktop: Degree Programs v7" loading="lazy"></a><div class="vp-tag">Desktop 1440px</div></div>
+    <div><a class="mob" href="paid-05-degree-programs-v7_mobile-375.png" target="_blank" rel="noopener" title="Open full mobile screenshot"><img src="paid-05-degree-programs-v7_mobile-375.png" alt="Mobile: Degree Programs v7" loading="lazy"></a><div class="vp-tag">Mobile 375px</div></div>
+  </div>
+  <div class="audit-block">
+    <h4>1.2 — RFI Content Audit</h4>
+    <div class="audit-grid">
+      <div class="audit-item"><div class="al">Content Specificity</div><div class="av good">High — program category grid + full accordion + accreditation</div></div>
+      <div class="audit-item"><div class="al">Above-Fold Content</div><div class="av good">Hero + "Degree Programs" headline + RFI form + intro copy</div></div>
+      <div class="audit-item"><div class="al">Social Proof Near Form</div><div class="av warn">Accreditation logos mid-page, no testimonials near form</div></div>
+      <div class="audit-item"><div class="al">Program Discovery</div><div class="av good">Excellent — 8-category grid + 30+ programs in accordion</div></div>
+      <div class="audit-item"><div class="al">Forms on Page</div><div class="av">2 — hero overlay + mid-page band</div></div>
+      <div class="audit-item"><div class="al">5-Second Test</div><div class="av good">Passes — "Choose from 50+ degree programs" answers what and why</div></div>
+    </div>
+    <div class="audit-note"><strong>#1 Paid Converter (13.57%).</strong> This page works because it gives visitors a reason to engage before asking for info. The category grid ("Discover the Program That's Right for You") immediately after the hero lets visitors self-select. The full program accordion creates browsing depth (8.9 min avg session, 74.9% engagement). The form feels earned — visitors have explored and are ready to commit. <strong>This is the pattern to replicate across other paid pages.</strong></div>
+    <div class="cs-callout">
+      <div class="cs-label">Contentsquare · Paid Success Zoning · 30 days</div>
+      <div class="cs-row">
+        <div class="cs-metric">Form Rage: <strong class="rage">3.23× recurrence</strong> (118K clicks)</div>
+        <div class="cs-metric">Conv/Click: <strong class="rage">0.04%</strong></div>
+        <div class="cs-metric">Form Exposure: <strong>89.2%</strong></div>
+        <div class="cs-metric">Scroll Depth: <strong>23.2%</strong></div>
+        <div class="cs-metric">Load: <strong class="warn">6.70s</strong></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- PAID 06 -->
+<div id="paid-06" class="page-card">
+  <div class="page-card-header">
+    <div><h3>6. Online Programs v7</h3><span class="url">/success/online-programs-v7</span></div>
+    <div class="badges"><span class="badge badge--amber">4.53% Conv</span><span class="badge badge--gray">Paid Search</span></div>
+  </div>
+  <div class="thumb-wrap">
+    <div><a class="desk" href="paid-06-online-programs-v7_desktop-1440.png" target="_blank" rel="noopener" title="Open full desktop screenshot"><img src="paid-06-online-programs-v7_desktop-1440.png" alt="Desktop: Online Programs v7" loading="lazy"></a><div class="vp-tag">Desktop 1440px</div></div>
+    <div><a class="mob" href="paid-06-online-programs-v7_mobile-375.png" target="_blank" rel="noopener" title="Open full mobile screenshot"><img src="paid-06-online-programs-v7_mobile-375.png" alt="Mobile: Online Programs v7" loading="lazy"></a><div class="vp-tag">Mobile 375px</div></div>
+  </div>
+  <div class="audit-block">
+    <h4>1.2 — RFI Content Audit</h4>
+    <div class="audit-grid">
+      <div class="audit-item"><div class="al">Content Specificity</div><div class="av warn">Moderate — "Flexible, WASC-Accredited" messaging</div></div>
+      <div class="audit-item"><div class="al">Above-Fold Content</div><div class="av warn">Hero + institutional value props + RFI form</div></div>
+      <div class="audit-item"><div class="al">Social Proof Near Form</div><div class="av warn">Student testimonials mid-page ("Praise for UAGC")</div></div>
+      <div class="audit-item"><div class="al">Program Discovery</div><div class="av warn">Program list exists but below fold — no category grid</div></div>
+      <div class="audit-item"><div class="al">Forms on Page</div><div class="av">1 — hero overlay only</div></div>
+      <div class="audit-item"><div class="al">5-Second Test</div><div class="av warn">Partial — "flexible online degrees" is clear, but no specific programs shown</div></div>
+    </div>
+    <div class="audit-note"><strong>Context:</strong> Lost A/B test against v5 on Meta. Has student testimonials ("Praise for UAGC") which P1 and P2 lack, plus accreditation logos. The testimonial placement is mid-page — moving social proof closer to the form could improve trust at the decision point. No category grid means visitors must scroll to find their program.</div>
+    <div class="cs-callout">
+      <div class="cs-label">Contentsquare · Paid Success Zoning · 30 days</div>
+      <div class="cs-row">
+        <div class="cs-metric">Form Rage: <strong class="rage">3.23× recurrence</strong> (118K clicks)</div>
+        <div class="cs-metric">Conv/Click: <strong class="rage">0.04%</strong></div>
+        <div class="cs-metric">Form Exposure: <strong>89.2%</strong></div>
+        <div class="cs-metric">Scroll Depth: <strong>23.2%</strong></div>
+        <div class="cs-metric">Load: <strong class="warn">6.70s</strong></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- PAID 07 -->
+<div id="paid-07" class="page-card">
+  <div class="page-card-header">
+    <div><h3>7. Online Programs v8</h3><span class="url">/success/online-programs-v8</span></div>
+    <div class="badges"><span class="badge badge--amber">4.92% Conv</span><span class="badge badge--gray">Display</span></div>
+  </div>
+  <div class="thumb-wrap">
+    <div><a class="desk" href="paid-07-online-programs-v8_desktop-1440.png" target="_blank" rel="noopener" title="Open full desktop screenshot"><img src="paid-07-online-programs-v8_desktop-1440.png" alt="Desktop: Online Programs v8" loading="lazy"></a><div class="vp-tag">Desktop 1440px</div></div>
+    <div><a class="mob" href="paid-07-online-programs-v8_mobile-375.png" target="_blank" rel="noopener" title="Open full mobile screenshot"><img src="paid-07-online-programs-v8_mobile-375.png" alt="Mobile: Online Programs v8" loading="lazy"></a><div class="vp-tag">Mobile 375px</div></div>
+  </div>
+  <div class="audit-block">
+    <h4>1.2 — RFI Content Audit</h4>
+    <div class="audit-grid">
+      <div class="audit-item"><div class="al">Content Specificity</div><div class="av warn">Moderate — similar to v7 with testimonials + accreditation</div></div>
+      <div class="audit-item"><div class="al">Above-Fold Content</div><div class="av warn">Same hero pattern as v7</div></div>
+      <div class="audit-item"><div class="al">Social Proof Near Form</div><div class="av warn">Testimonials mid-page, accreditation below</div></div>
+      <div class="audit-item"><div class="al">Program Discovery</div><div class="av warn">Program list but no category grid</div></div>
+      <div class="audit-item"><div class="al">Forms on Page</div><div class="av">1 — hero overlay only</div></div>
+      <div class="audit-item"><div class="al">5-Second Test</div><div class="av warn">Partial — same as v7</div></div>
+    </div>
+    <div class="audit-note"><strong>Context:</strong> v8 edges v7 slightly (4.92% vs 4.53%) — both are Display traffic. Near-identical layout with minor copy/image variations. The "Partner with Your Admissions Specialist" CTA module and "Try Your First Course Free" 3-week trial messaging are unique to v7/v8 and could be tested on other pages.</div>
+    <div class="cs-callout">
+      <div class="cs-label">Contentsquare · Paid Success Zoning · 30 days</div>
+      <div class="cs-row">
+        <div class="cs-metric">Form Rage: <strong class="rage">3.23× recurrence</strong> (118K clicks)</div>
+        <div class="cs-metric">Conv/Click: <strong class="rage">0.04%</strong></div>
+        <div class="cs-metric">Form Exposure: <strong>89.2%</strong></div>
+        <div class="cs-metric">Scroll Depth: <strong>23.2%</strong></div>
+        <div class="cs-metric">Load: <strong class="warn">6.70s</strong></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- PAID 08 -->
+<div id="paid-08" class="page-card">
+  <div class="page-card-header">
+    <div><h3>8. Liberal Arts v6</h3><span class="url">/success/programs/liberal-arts-v6</span></div>
+    <div class="badges"><span class="badge badge--red">High Bounce (Paid Social)</span><span class="badge badge--gray">Program LP</span></div>
+  </div>
+  <div class="thumb-wrap">
+    <div><a class="desk" href="paid-08-liberal-arts-v6_desktop-1440.png" target="_blank" rel="noopener" title="Open full desktop screenshot"><img src="paid-08-liberal-arts-v6_desktop-1440.png" alt="Desktop: Liberal Arts v6" loading="lazy"></a><div class="vp-tag">Desktop 1440px</div></div>
+    <div><a class="mob" href="paid-08-liberal-arts-v6_mobile-375.png" target="_blank" rel="noopener" title="Open full mobile screenshot"><img src="paid-08-liberal-arts-v6_mobile-375.png" alt="Mobile: Liberal Arts v6" loading="lazy"></a><div class="vp-tag">Mobile 375px</div></div>
+  </div>
+  <div class="audit-block">
+    <h4>1.2 — RFI Content Audit</h4>
+    <div class="audit-grid">
+      <div class="audit-item"><div class="al">Content Specificity</div><div class="av good">Program-Specific (Liberal Arts)</div></div>
+      <div class="audit-item"><div class="al">Above-Fold Content</div><div class="av warn">"Earn a Liberal Arts Degree" + hero + RFI — no career outcomes</div></div>
+      <div class="audit-item"><div class="al">Social Proof Near Form</div><div class="av warn">"Our Students are Going Places" testimonial mid-page</div></div>
+      <div class="audit-item"><div class="al">Program Discovery</div><div class="av warn">Program list for liberal arts sub-degrees</div></div>
+      <div class="audit-item"><div class="al">Forms on Page</div><div class="av">2 — hero overlay + mid-page band</div></div>
+      <div class="audit-item"><div class="al">5-Second Test</div><div class="av warn">Partial — program clear, but "why liberal arts" not answered</div></div>
+    </div>
+    <div class="audit-note"><strong>Key Issue:</strong> 68.4% bounce from Paid Social. Program-specific is the right strategy, but the above-fold content doesn't bridge the gap between a social ad impression and a form fill. Social traffic is low-intent — the page needs to sell "why a liberal arts degree" with career outcomes and salary data before asking for personal info. The testimonial section exists but sits too far below the fold to influence the bounce decision.</div>
+    <div class="cs-callout">
+      <div class="cs-label">Contentsquare · Paid Success Zoning · 30 days</div>
+      <div class="cs-row">
+        <div class="cs-metric">Form Rage: <strong class="rage">3.23× recurrence</strong> (118K clicks)</div>
+        <div class="cs-metric">Conv/Click: <strong class="rage">0.04%</strong></div>
+        <div class="cs-metric">Form Exposure: <strong>89.2%</strong></div>
+        <div class="cs-metric">Scroll Depth: <strong>23.2%</strong></div>
+        <div class="cs-metric">Load: <strong class="warn">6.70s</strong></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- PAID 09 -->
+<div id="paid-09" class="page-card">
+  <div class="page-card-header">
+    <div><h3>9. Criminal Justice v6</h3><span class="url">/success/programs/criminal-justice-v6</span></div>
+    <div class="badges"><span class="badge badge--red">72.8% Bounce</span><span class="badge badge--gray">Program LP</span></div>
+  </div>
+  <div class="thumb-wrap">
+    <div><a class="desk" href="paid-09-criminal-justice-v6_desktop-1440.png" target="_blank" rel="noopener" title="Open full desktop screenshot"><img src="paid-09-criminal-justice-v6_desktop-1440.png" alt="Desktop: Criminal Justice v6" loading="lazy"></a><div class="vp-tag">Desktop 1440px</div></div>
+    <div><a class="mob" href="paid-09-criminal-justice-v6_mobile-375.png" target="_blank" rel="noopener" title="Open full mobile screenshot"><img src="paid-09-criminal-justice-v6_mobile-375.png" alt="Mobile: Criminal Justice v6" loading="lazy"></a><div class="vp-tag">Mobile 375px</div></div>
+  </div>
+  <div class="audit-block">
+    <h4>1.2 — RFI Content Audit</h4>
+    <div class="audit-grid">
+      <div class="audit-item"><div class="al">Content Specificity</div><div class="av good">Program-Specific (Criminal Justice)</div></div>
+      <div class="audit-item"><div class="al">Above-Fold Content</div><div class="av warn">"Earn Your Degree in Criminal Justice" + RFI form</div></div>
+      <div class="audit-item"><div class="al">Social Proof Near Form</div><div class="av warn">Testimonial mid-page</div></div>
+      <div class="audit-item"><div class="al">Program Discovery</div><div class="av good">3 CJ sub-programs (Homeland Security, Youth &amp; Criminal, BS)</div></div>
+      <div class="audit-item"><div class="al">Forms on Page</div><div class="av">2 — hero overlay + mid-page band</div></div>
+      <div class="audit-item"><div class="al">5-Second Test</div><div class="av warn">Partial — program is clear, career paths not shown</div></div>
+    </div>
+    <div class="audit-note"><strong>Worst bounce (72.8%).</strong> Paid Social traffic with low intent hits a form-first page. The 3 CJ sub-programs are a strength but below the fold. Moving specialization options and career outcome data above the mid-page RFI could let visitors self-select before being asked for personal info.</div>
+    <div class="cs-callout">
+      <div class="cs-label">Contentsquare · Paid Success Zoning · 30 days</div>
+      <div class="cs-row">
+        <div class="cs-metric">Form Rage: <strong class="rage">3.23× recurrence</strong> (118K clicks)</div>
+        <div class="cs-metric">Conv/Click: <strong class="rage">0.04%</strong></div>
+        <div class="cs-metric">Form Exposure: <strong>89.2%</strong></div>
+        <div class="cs-metric">Scroll Depth: <strong>23.2%</strong></div>
+        <div class="cs-metric">Load: <strong class="warn">6.70s</strong></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- PAID 10 -->
+<div id="paid-10" class="page-card">
+  <div class="page-card-header">
+    <div><h3>10. Business v6</h3><span class="url">/success/programs/business-v6</span></div>
+    <div class="badges"><span class="badge badge--gray">Program LP</span></div>
+  </div>
+  <div class="thumb-wrap">
+    <div><a class="desk" href="paid-10-business-v6_desktop-1440.png" target="_blank" rel="noopener" title="Open full desktop screenshot"><img src="paid-10-business-v6_desktop-1440.png" alt="Desktop: Business v6" loading="lazy"></a><div class="vp-tag">Desktop 1440px</div></div>
+    <div><a class="mob" href="paid-10-business-v6_mobile-375.png" target="_blank" rel="noopener" title="Open full mobile screenshot"><img src="paid-10-business-v6_mobile-375.png" alt="Mobile: Business v6" loading="lazy"></a><div class="vp-tag">Mobile 375px</div></div>
+  </div>
+  <div class="audit-block">
+    <h4>1.2 — RFI Content Audit</h4>
+    <div class="audit-grid">
+      <div class="audit-item"><div class="al">Content Specificity</div><div class="av good">Program-Specific (Business)</div></div>
+      <div class="audit-item"><div class="al">Above-Fold Content</div><div class="av warn">"Earn Your Degree in Business" + RFI form</div></div>
+      <div class="audit-item"><div class="al">Social Proof Near Form</div><div class="av warn">"Our Students are Going Places" testimonial mid-page</div></div>
+      <div class="audit-item"><div class="al">Program Discovery</div><div class="av good">10+ business sub-programs shown (MBA, BS, Operations, etc.)</div></div>
+      <div class="audit-item"><div class="al">Forms on Page</div><div class="av">2 — hero overlay + mid-page band</div></div>
+      <div class="audit-item"><div class="al">5-Second Test</div><div class="av warn">Partial — "business degree" clear, but no salary/career outcomes above fold</div></div>
+    </div>
+    <div class="audit-note"><strong>Pattern match with P8/P9:</strong> Same template — program-specific hero, sub-program list, testimonial, mid-page RFI. The business vertical has more sub-programs (10+) than CJ (3) or Liberal Arts, which should help visitors self-select. Compare with the organic /online-degrees/business page (O3, 85.8% engagement) which uses WASC accreditation + faculty section + related articles — content depth the paid version lacks.</div>
+    <div class="cs-callout">
+      <div class="cs-label">Contentsquare · Paid Success Zoning · 30 days</div>
+      <div class="cs-row">
+        <div class="cs-metric">Form Rage: <strong class="rage">3.23× recurrence</strong> (118K clicks)</div>
+        <div class="cs-metric">Conv/Click: <strong class="rage">0.04%</strong></div>
+        <div class="cs-metric">Form Exposure: <strong>89.2%</strong></div>
+        <div class="cs-metric">Scroll Depth: <strong>23.2%</strong></div>
+        <div class="cs-metric">Load: <strong class="warn">6.70s</strong></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ORGANIC -->
+<div id="organic-section" class="section-header">
+  <div class="section-label">Organic pages</div>
+  <div class="section-title">RFI surround — hubs &amp; blog</div>
+  <div class="section-desc">Structured notes; fuller grids where they exist in source documentation.</div>
+</div>
+
+<!-- ORG 01 -->
+<div id="org-01" class="page-card">
+  <div class="page-card-header">
+    <div><h3>1. Homepage</h3><span class="url">uagc.edu/</span></div>
+    <div class="badges"><span class="badge badge--blue">Brand Navigation</span><span class="badge badge--amber">43.3% Bounce</span></div>
+  </div>
+  <div class="thumb-wrap">
+    <div><a class="desk" href="organic-01-homepage_desktop-1440.png" target="_blank" rel="noopener" title="Open full desktop screenshot"><img src="organic-01-homepage_desktop-1440.png" alt="Desktop: Homepage" loading="lazy"></a><div class="vp-tag">Desktop 1440px</div></div>
+    <div><a class="mob" href="organic-01-homepage_mobile-375.png" target="_blank" rel="noopener" title="Open full mobile screenshot"><img src="organic-01-homepage_mobile-375.png" alt="Mobile: Homepage" loading="lazy"></a><div class="vp-tag">Mobile 375px</div></div>
+  </div>
+  <div class="audit-block">
+    <h4>1.2 — RFI Content Audit</h4>
+    <div class="audit-grid">
+      <div class="audit-item"><div class="al">RFI Placement</div><div class="av warn">No dedicated RFI form — sticky bar only</div></div>
+      <div class="audit-item"><div class="al">Content Specificity</div><div class="av bad">Generic — serves all audiences</div></div>
+      <div class="audit-item"><div class="al">Social Proof</div><div class="av good">Student testimonials + outcomes data mid-page</div></div>
+    </div>
+    <div class="audit-note"><strong>Context:</strong> Navigation hub, not a conversion page. 2.0% conv rate is acceptable for a homepage — most visitors are routing to sub-pages. The -41.6% H2 traffic trend is the concern, not conversion rate. No static RFI form; the sticky bar is the only conversion path, which is appropriate for a wayfinding page.</div>
+    <div class="cs-callout">
+      <div class="cs-label">Contentsquare · Homepage · 30 days</div>
+      <div class="cs-row">
+        <div class="cs-metric">Scroll Depth: <strong class="warn">11.7%</strong> (lowest non-success page)</div>
+        <div class="cs-metric">Activity: <strong>14.2%</strong></div>
+        <div class="cs-metric">Bounce: <strong>20.5%</strong></div>
+        <div class="cs-metric">Load: <strong class="warn">6.83s</strong></div>
+        <div class="cs-metric">Find-Your-Path CTA: <strong class="warn">1.96× recurrence</strong></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ORG 02 -->
+<div id="org-02" class="page-card">
+  <div class="page-card-header">
+    <div><h3>2. Online Degrees (Hub)</h3><span class="url">uagc.edu/online-degrees</span></div>
+    <div class="badges"><span class="badge badge--green">88.8% Engagement — Gold Standard</span></div>
+  </div>
+  <div class="thumb-wrap">
+    <div><a class="desk" href="organic-02-online-degrees_desktop-1440.png" target="_blank" rel="noopener" title="Open full desktop screenshot"><img src="organic-02-online-degrees_desktop-1440.png" alt="Desktop: Online Degrees hub" loading="lazy"></a><div class="vp-tag">Desktop 1440px</div></div>
+    <div><a class="mob" href="organic-02-online-degrees_mobile-375.png" target="_blank" rel="noopener" title="Open full mobile screenshot"><img src="organic-02-online-degrees_mobile-375.png" alt="Mobile: Online Degrees hub" loading="lazy"></a><div class="vp-tag">Mobile 375px</div></div>
+  </div>
+  <div class="audit-block">
+    <h4>1.2 — RFI Content Audit</h4>
+    <div class="audit-grid">
+      <div class="audit-item"><div class="al">RFI Placement</div><div class="av good">Immediately below hero — high visibility</div></div>
+      <div class="audit-item"><div class="al">Content Specificity</div><div class="av good">High — Top 3 Requested Degrees + full program list</div></div>
+      <div class="audit-item"><div class="al">Social Proof</div><div class="av good">Student testimonial + FAQ + "Start Your Journey" timeline</div></div>
+    </div>
+    <div class="audit-note"><strong>Gold Standard (88.8% engagement, 5.82% conv).</strong> This page earns the right to ask for info: RFI form sits immediately below the hero, then the page delivers Top 3 Requested Degrees, full program list, "Not Sure What to Study?" helper, testimonials, and FAQ. Visitors explore (11.8 min avg session) before converting. <strong>This is the organic layout to replicate on paid pages.</strong></div>
+    <div class="cs-callout">
+      <div class="cs-label">Contentsquare · Online Degrees · 30 days</div>
+      <div class="cs-row">
+        <div class="cs-metric">Sticky RFI Rage: <strong class="rage">2.41× recurrence</strong> (1,691 clicks)</div>
+        <div class="cs-metric">Two-Step Form: <strong class="rage">2.41×</strong> (8,765 clicks)</div>
+        <div class="cs-metric">Scroll: <strong>33.4%</strong></div>
+        <div class="cs-metric">Activity: <strong>42.3%</strong> (high)</div>
+        <div class="cs-metric">Load: <strong class="warn">5.92s</strong></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ORG 03 -->
+<div id="org-03" class="page-card">
+  <div class="page-card-header">
+    <div><h3>3. Business Degrees</h3><span class="url">uagc.edu/online-degrees/business</span></div>
+    <div class="badges"><span class="badge badge--green">85.8% Engagement</span></div>
+  </div>
+  <div class="thumb-wrap">
+    <div><a class="desk" href="organic-03-degrees-business_desktop-1440.png" target="_blank" rel="noopener" title="Open full desktop screenshot"><img src="organic-03-degrees-business_desktop-1440.png" alt="Desktop: Business degrees" loading="lazy"></a><div class="vp-tag">Desktop 1440px</div></div>
+    <div><a class="mob" href="organic-03-degrees-business_mobile-375.png" target="_blank" rel="noopener" title="Open full mobile screenshot"><img src="organic-03-degrees-business_mobile-375.png" alt="Mobile: Business degrees" loading="lazy"></a><div class="vp-tag">Mobile 375px</div></div>
+  </div>
+  <div class="audit-block">
+    <h4>1.2 — RFI Content Audit</h4>
+    <div class="audit-note"><strong>Vertical hub pattern</strong> — RFI below hero, WASC accreditation early, faculty section with photos/credentials, career path content, related articles. 85.8% engagement. Has content depth that paid business v6 (P10) lacks: faculty section, career outcomes, and related articles create trust before the form.</div>
+    <div class="cs-callout">
+      <div class="cs-label">Contentsquare · Business Degrees · 30 days</div>
+      <div class="cs-row">
+        <div class="cs-metric">Scroll: <strong>26.3%</strong></div>
+        <div class="cs-metric">Activity: <strong>36.0%</strong></div>
+        <div class="cs-metric">Bounce: <strong>24.5%</strong></div>
+        <div class="cs-metric">Load: <strong class="warn">6.06s</strong></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ORG 04 -->
+<div id="org-04" class="page-card">
+  <div class="page-card-header">
+    <div><h3>4. Masters Programs</h3><span class="url">uagc.edu/online-degrees/masters</span></div>
+    <div class="badges"><span class="badge badge--green">89.9% Engagement</span></div>
+  </div>
+  <div class="thumb-wrap">
+    <div><a class="desk" href="organic-04-degrees-masters_desktop-1440.png" target="_blank" rel="noopener" title="Open full desktop screenshot"><img src="organic-04-degrees-masters_desktop-1440.png" alt="Desktop: Masters hub" loading="lazy"></a><div class="vp-tag">Desktop 1440px</div></div>
+    <div><a class="mob" href="organic-04-degrees-masters_mobile-375.png" target="_blank" rel="noopener" title="Open full mobile screenshot"><img src="organic-04-degrees-masters_mobile-375.png" alt="Mobile: Masters hub" loading="lazy"></a><div class="vp-tag">Mobile 375px</div></div>
+  </div>
+  <div class="audit-block">
+    <h4>1.2 — RFI Content Audit</h4>
+    <div class="audit-note"><strong>Degree-level hub</strong> — 89.9% engagement. RFI below hero, Top 3 Requested master's degrees, program list with accordion, "Not Sure?" helper. Strong accreditation placement. Same high-performing pattern as /online-degrees (O2).</div>
+    <div class="cs-callout">
+      <div class="cs-label">Contentsquare · Masters Programs · 30 days</div>
+      <div class="cs-row">
+        <div class="cs-metric">Scroll: <strong>24.3%</strong></div>
+        <div class="cs-metric">Activity: <strong>35.9%</strong></div>
+        <div class="cs-metric">Bounce: <strong>22.3%</strong></div>
+        <div class="cs-metric">Load: <strong class="warn">6.28s</strong></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ORG 05 -->
+<div id="org-05" class="page-card">
+  <div class="page-card-header">
+    <div><h3>5. Education Degrees</h3><span class="url">uagc.edu/online-degrees/education</span></div>
+    <div class="badges"><span class="badge badge--blue">Program Hub</span></div>
+  </div>
+  <div class="thumb-wrap">
+    <div><a class="desk" href="organic-05-degrees-education_desktop-1440.png" target="_blank" rel="noopener" title="Open full desktop screenshot"><img src="organic-05-degrees-education_desktop-1440.png" alt="Desktop: Education hub" loading="lazy"></a><div class="vp-tag">Desktop 1440px</div></div>
+    <div><a class="mob" href="organic-05-degrees-education_mobile-375.png" target="_blank" rel="noopener" title="Open full mobile screenshot"><img src="organic-05-degrees-education_mobile-375.png" alt="Mobile: Education hub" loading="lazy"></a><div class="vp-tag">Mobile 375px</div></div>
+  </div>
+  <div class="audit-block">
+    <h4>1.2 — RFI Content Audit</h4>
+    <div class="audit-note"><strong>Vertical hub pattern</strong> — same structure as O3 (Business). Faculty section, accreditation, related articles, "Not Sure?" helper. The consistent organic hub template is a strength — visitors on any vertical hub get the same high-quality experience.</div>
+    <div class="cs-callout">
+      <div class="cs-label">Contentsquare · Education Degrees · 30 days</div>
+      <div class="cs-row">
+        <div class="cs-metric">Scroll: <strong>26.3%</strong></div>
+        <div class="cs-metric">Activity: <strong>38.1%</strong></div>
+        <div class="cs-metric">Bounce: <strong>23.7%</strong></div>
+        <div class="cs-metric">Load: <strong class="warn">5.86s</strong></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ORG 06 -->
+<div id="org-06" class="page-card">
+  <div class="page-card-header">
+    <div><h3>6. Tuition &amp; Financial Aid</h3><span class="url">uagc.edu/tuition-financial-aid</span></div>
+    <div class="badges"><span class="badge badge--green">88.0% Engagement</span></div>
+  </div>
+  <div class="thumb-wrap">
+    <div><a class="desk" href="organic-06-tuition-financial-aid_desktop-1440.png" target="_blank" rel="noopener" title="Open full desktop screenshot"><img src="organic-06-tuition-financial-aid_desktop-1440.png" alt="Desktop: Tuition and aid" loading="lazy"></a><div class="vp-tag">Desktop 1440px</div></div>
+    <div><a class="mob" href="organic-06-tuition-financial-aid_mobile-375.png" target="_blank" rel="noopener" title="Open full mobile screenshot"><img src="organic-06-tuition-financial-aid_mobile-375.png" alt="Mobile: Tuition and aid" loading="lazy"></a><div class="vp-tag">Mobile 375px</div></div>
+  </div>
+  <div class="audit-block">
+    <h4>1.2 — RFI Content Audit</h4>
+    <div class="audit-note"><strong>Financial info page (88% engagement).</strong> RFI form framed as "Request Information about Payment Options" — contextual and relevant. Unique modules: Program Cost Table, Funding Options Grid, Net Price Calculator, UAGC Promise. The RFI framing matches the page context (financial questions), unlike paid pages where the form is generic.</div>
+    <div class="cs-callout">
+      <div class="cs-label">Contentsquare · Tuition &amp; Financial Aid · 30 days</div>
+      <div class="cs-row">
+        <div class="cs-metric">Scroll: <strong>40.1%</strong></div>
+        <div class="cs-metric">Activity: <strong>37.9%</strong></div>
+        <div class="cs-metric">Bounce: <strong>21.6%</strong></div>
+        <div class="cs-metric">Load: <strong class="warn">5.19s</strong></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ORG 07 -->
+<div id="org-07" class="page-card">
+  <div class="page-card-header">
+    <div><h3>7. Blog: PhD vs Doctorate</h3><span class="url">uagc.edu/blog/what-difference-between-phd-and-doctorate</span></div>
+    <div class="badges"><span class="badge badge--red">0.01% Conv</span><span class="badge badge--green">67.8% Engagement</span></div>
+  </div>
+  <div class="thumb-wrap">
+    <div><a class="desk" href="organic-07-blog-phd-doctorate_desktop-1440.png" target="_blank" rel="noopener" title="Open full desktop screenshot"><img src="organic-07-blog-phd-doctorate_desktop-1440.png" alt="Desktop: Blog PhD vs Doctorate" loading="lazy"></a><div class="vp-tag">Desktop 1440px</div></div>
+    <div><a class="mob" href="organic-07-blog-phd-doctorate_mobile-375.png" target="_blank" rel="noopener" title="Open full mobile screenshot"><img src="organic-07-blog-phd-doctorate_mobile-375.png" alt="Mobile: Blog PhD vs Doctorate" loading="lazy"></a><div class="vp-tag">Mobile 375px</div></div>
+  </div>
+  <div class="audit-block">
+    <h4>1.2 — RFI Content Audit</h4>
+    <div class="audit-note"><strong>148K sessions, 21 conversions (0.01%).</strong> RFI form is in sidebar — visible but disconnected from article content. The in-article CTA banner links to degree programs but is generic. Opportunity: contextual CTAs tied to "PhD vs Doctorate" content (e.g. "Explore Our Doctoral Programs") could bridge informational intent to enrollment intent. At 1% conversion = +1,490 leads/year.</div>
+    <div class="cs-callout">
+      <div class="cs-label">Contentsquare · Blog · 30 days</div>
+      <div class="cs-row">
+        <div class="cs-metric">Sidebar RFI: <strong class="rage">2.58× recurrence</strong> — 0% conversion</div>
+        <div class="cs-metric">Scroll: <strong>33.7%</strong></div>
+        <div class="cs-metric">Activity: <strong>29.3%</strong></div>
+        <div class="cs-metric">Bounce: <strong>17.3%</strong> (lowest)</div>
+        <div class="cs-metric">Load: <strong>4.12s</strong> (fastest)</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ORG 08 -->
+<div id="org-08" class="page-card">
+  <div class="page-card-header">
+    <div><h3>8. Blog: Business Plan</h3><span class="url">uagc.edu/blog/how-write-business-plan-step-by-step</span></div>
+    <div class="badges"><span class="badge badge--red">0.08% Conv</span><span class="badge badge--green">63.0% Engagement</span></div>
+  </div>
+  <div class="thumb-wrap">
+    <div><a class="desk" href="organic-08-blog-business-plan_desktop-1440.png" target="_blank" rel="noopener" title="Open full desktop screenshot"><img src="organic-08-blog-business-plan_desktop-1440.png" alt="Desktop: Blog business plan" loading="lazy"></a><div class="vp-tag">Desktop 1440px</div></div>
+    <div><a class="mob" href="organic-08-blog-business-plan_mobile-375.png" target="_blank" rel="noopener" title="Open full mobile screenshot"><img src="organic-08-blog-business-plan_mobile-375.png" alt="Mobile: Blog business plan" loading="lazy"></a><div class="vp-tag">Mobile 375px</div></div>
+  </div>
+  <div class="audit-block">
+    <h4>1.2 — RFI Content Audit</h4>
+    <div class="audit-note"><strong>74K sessions, 63 conversions (0.08%).</strong> Has rich infographic content (charts, diagrams, statistics) which drives long sessions (14.7 min). Same sidebar RFI + generic in-article CTA pattern as O7. The business plan content could link to "Business Degrees" or "MBA Programs" with a contextual CTA instead of a generic RFI ask.</div>
+    <div class="cs-callout">
+      <div class="cs-label">Contentsquare · Blog · 30 days</div>
+      <div class="cs-row">
+        <div class="cs-metric">Sidebar RFI: <strong class="rage">2.58× recurrence</strong> — 0% conversion</div>
+        <div class="cs-metric">Scroll: <strong>33.7%</strong></div>
+        <div class="cs-metric">Activity: <strong>29.3%</strong></div>
+        <div class="cs-metric">Bounce: <strong>17.3%</strong> (lowest)</div>
+        <div class="cs-metric">Load: <strong>4.12s</strong> (fastest)</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ORG 09 -->
+<div id="org-09" class="page-card">
+  <div class="page-card-header">
+    <div><h3>9. Bachelor's Degrees (Hub)</h3><span class="url">uagc.edu/online-degrees/bachelors</span></div>
+    <div class="badges"><span class="badge badge--blue">Degree Level Hub</span></div>
+  </div>
+  <div class="thumb-wrap">
+    <div><a class="desk" href="organic-09-degrees-bachelors_desktop-1440.png" target="_blank" rel="noopener" title="Open full desktop screenshot"><img src="organic-09-degrees-bachelors_desktop-1440.png" alt="Desktop: Bachelor's hub" loading="lazy"></a><div class="vp-tag">Desktop 1440px</div></div>
+    <div><a class="mob" href="organic-09-degrees-bachelors_mobile-375.png" target="_blank" rel="noopener" title="Open full mobile screenshot"><img src="organic-09-degrees-bachelors_mobile-375.png" alt="Mobile: Bachelor's hub" loading="lazy"></a><div class="vp-tag">Mobile 375px</div></div>
+  </div>
+  <div class="audit-block">
+    <h4>1.2 — RFI Content Audit</h4>
+    <div class="audit-note"><strong>Degree-level hub pattern</strong> — same template as O4 (Masters). Top Requested degrees, program list, "Not Sure?" helper. Compare with paid /bachelors-degrees-v5 (P2): the organic version has richer program discovery content and no above-fold form pressure.</div>
+    <div class="cs-callout">
+      <div class="cs-label">Contentsquare · Bachelor's Hub · 30 days</div>
+      <div class="cs-row">
+        <div class="cs-metric">Scroll: <strong>24.8%</strong></div>
+        <div class="cs-metric">Activity: <strong>34.3%</strong></div>
+        <div class="cs-metric">Bounce: <strong>23.4%</strong></div>
+        <div class="cs-metric">Load: <strong class="warn">6.04s</strong></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ORG 10 -->
+<div id="org-10" class="page-card">
+  <div class="page-card-header">
+    <div><h3>10. Criminal Justice Degrees</h3><span class="url">uagc.edu/online-degrees/criminal-justice</span></div>
+    <div class="badges"><span class="badge badge--blue">Program Hub</span></div>
+  </div>
+  <div class="thumb-wrap">
+    <div><a class="desk" href="organic-10-degrees-criminal-justice_desktop-1440.png" target="_blank" rel="noopener" title="Open full desktop screenshot"><img src="organic-10-degrees-criminal-justice_desktop-1440.png" alt="Desktop: Criminal justice organic hub" loading="lazy"></a><div class="vp-tag">Desktop 1440px</div></div>
+    <div><a class="mob" href="organic-10-degrees-criminal-justice_mobile-375.png" target="_blank" rel="noopener" title="Open full mobile screenshot"><img src="organic-10-degrees-criminal-justice_mobile-375.png" alt="Mobile: Criminal justice organic hub" loading="lazy"></a><div class="vp-tag">Mobile 375px</div></div>
+  </div>
+  <div class="audit-block">
+    <h4>1.2 — RFI Content Audit</h4>
+    <div class="audit-note"><strong>Vertical hub pattern</strong> — matches O3 (Business) and O5 (Education) template. Faculty section, "Not Sure?" helper, related articles. Compare with paid /criminal-justice-v6 (P9, 72.8% bounce): the organic version has faculty credibility, career path content, and accreditation — all missing from the paid LP.</div>
+    <div class="cs-callout">
+      <div class="cs-label">Contentsquare · Criminal Justice · 30 days</div>
+      <div class="cs-row">
+        <div class="cs-metric">Scroll: <strong>26.5%</strong></div>
+        <div class="cs-metric">Activity: <strong>37.4%</strong></div>
+        <div class="cs-metric">Bounce: <strong>18.7%</strong></div>
+        <div class="cs-metric">Load: <strong class="warn">5.92s</strong></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Summary matrix -->
+<div id="dimension-summary" class="section-header">
+  <div class="section-label">Synthesis</div>
+  <div class="section-title">Dimension ratings — all 20 pages</div>
+  <div class="section-desc">Qualitative rollup aligned to per-page audits. Green = strong · Amber = partial or mixed · Red = weak or fails · Grey = not scored (insufficient headline metric).</div>
+</div>
+
+<div class="matrix-legend">
+  <span><span class="swatch g" aria-hidden="true"></span> Strong</span>
+  <span><span class="swatch a" aria-hidden="true"></span> Partial / mixed</span>
+  <span><span class="swatch r" aria-hidden="true"></span> Weak / fail</span>
+  <span><span class="swatch" style="background:#F3F4F6;" aria-hidden="true"></span> Not scored</span>
+</div>
+
+<table class="dimension-matrix">
+  <thead>
+    <tr>
+      <th>Page</th>
+      <th>Content<br>specificity</th>
+      <th>Social<br>proof</th>
+      <th>Program<br>discovery</th>
+      <th>5-second<br>test</th>
+      <th>Conv<br>rate</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>P1 Request Info v5</td>
+      <td class="cell-r">Poor</td>
+      <td class="cell-r">Poor</td>
+      <td class="cell-r">Poor</td>
+      <td class="cell-r">Fails</td>
+      <td class="cell-r">3.01%</td>
+    </tr>
+    <tr>
+      <td>P2 Bachelor's v5</td>
+      <td class="cell-a">Mixed</td>
+      <td class="cell-r">Poor</td>
+      <td class="cell-g">Strong</td>
+      <td class="cell-a">Partial</td>
+      <td class="cell-a">3.50%</td>
+    </tr>
+    <tr>
+      <td>P3 Military v5</td>
+      <td class="cell-a">Mixed</td>
+      <td class="cell-r">Poor</td>
+      <td class="cell-r">Poor</td>
+      <td class="cell-a">Partial</td>
+      <td class="cell-a">3.07%</td>
+    </tr>
+    <tr>
+      <td>P4 College Courses v5</td>
+      <td class="cell-a">Mixed</td>
+      <td class="cell-r">Poor</td>
+      <td class="cell-g">Strong</td>
+      <td class="cell-a">Partial</td>
+      <td class="cell-g">7.25%</td>
+    </tr>
+    <tr>
+      <td>P5 Degree Programs v7</td>
+      <td class="cell-g">Strong</td>
+      <td class="cell-a">Partial</td>
+      <td class="cell-g">Strong</td>
+      <td class="cell-g">Passes</td>
+      <td class="cell-g">13.57%</td>
+    </tr>
+    <tr>
+      <td>P6 Online Programs v7</td>
+      <td class="cell-a">Mixed</td>
+      <td class="cell-a">Partial</td>
+      <td class="cell-a">Mixed</td>
+      <td class="cell-a">Partial</td>
+      <td class="cell-a">4.53%</td>
+    </tr>
+    <tr>
+      <td>P7 Online Programs v8</td>
+      <td class="cell-a">Mixed</td>
+      <td class="cell-a">Partial</td>
+      <td class="cell-a">Mixed</td>
+      <td class="cell-a">Partial</td>
+      <td class="cell-a">4.92%</td>
+    </tr>
+    <tr>
+      <td>P8 Liberal Arts v6</td>
+      <td class="cell-g">Strong</td>
+      <td class="cell-a">Partial</td>
+      <td class="cell-a">Mixed</td>
+      <td class="cell-a">Partial</td>
+      <td class="cell-n">—</td>
+    </tr>
+    <tr>
+      <td>P9 Criminal Justice v6</td>
+      <td class="cell-g">Strong</td>
+      <td class="cell-a">Partial</td>
+      <td class="cell-g">Strong</td>
+      <td class="cell-a">Partial</td>
+      <td class="cell-n">—</td>
+    </tr>
+    <tr>
+      <td>P10 Business v6</td>
+      <td class="cell-g">Strong</td>
+      <td class="cell-a">Partial</td>
+      <td class="cell-g">Strong</td>
+      <td class="cell-a">Partial</td>
+      <td class="cell-n">—</td>
+    </tr>
+    <tr>
+      <td>O1 Homepage</td>
+      <td class="cell-r">Generic</td>
+      <td class="cell-g">Strong</td>
+      <td class="cell-a">Mixed</td>
+      <td class="cell-a">Hub</td>
+      <td class="cell-a">2.00%</td>
+    </tr>
+    <tr>
+      <td>O2 /online-degrees</td>
+      <td class="cell-g">Strong</td>
+      <td class="cell-g">Strong</td>
+      <td class="cell-g">Strong</td>
+      <td class="cell-g">Strong</td>
+      <td class="cell-g">5.82%</td>
+    </tr>
+    <tr>
+      <td>O3 /…/business</td>
+      <td class="cell-g">Strong</td>
+      <td class="cell-g">Strong</td>
+      <td class="cell-g">Strong</td>
+      <td class="cell-g">Strong</td>
+      <td class="cell-g">~5.5%</td>
+    </tr>
+    <tr>
+      <td>O4 /…/masters</td>
+      <td class="cell-g">Strong</td>
+      <td class="cell-g">Strong</td>
+      <td class="cell-g">Strong</td>
+      <td class="cell-g">Strong</td>
+      <td class="cell-g">~4.8%</td>
+    </tr>
+    <tr>
+      <td>O5 /…/education</td>
+      <td class="cell-g">Strong</td>
+      <td class="cell-g">Strong</td>
+      <td class="cell-g">Strong</td>
+      <td class="cell-g">Strong</td>
+      <td class="cell-n">—</td>
+    </tr>
+    <tr>
+      <td>O6 Tuition &amp; Aid</td>
+      <td class="cell-g">Contextual</td>
+      <td class="cell-g">Strong</td>
+      <td class="cell-a">N/A</td>
+      <td class="cell-g">Strong</td>
+      <td class="cell-n">—</td>
+    </tr>
+    <tr>
+      <td>O7 Blog PhD</td>
+      <td class="cell-r">Generic RFI</td>
+      <td class="cell-r">Disconnected</td>
+      <td class="cell-r">Sidebar only</td>
+      <td class="cell-r">Weak path</td>
+      <td class="cell-r">0.01%</td>
+    </tr>
+    <tr>
+      <td>O8 Blog Biz Plan</td>
+      <td class="cell-r">Generic RFI</td>
+      <td class="cell-r">Disconnected</td>
+      <td class="cell-r">Sidebar only</td>
+      <td class="cell-r">Weak path</td>
+      <td class="cell-r">0.08%</td>
+    </tr>
+    <tr>
+      <td>O9 /…/bachelors</td>
+      <td class="cell-g">Strong</td>
+      <td class="cell-g">Strong</td>
+      <td class="cell-g">Strong</td>
+      <td class="cell-g">Strong</td>
+      <td class="cell-n">—</td>
+    </tr>
+    <tr>
+      <td>O10 /…/criminal justice</td>
+      <td class="cell-g">Strong</td>
+      <td class="cell-g">Strong</td>
+      <td class="cell-g">Strong</td>
+      <td class="cell-g">Strong</td>
+      <td class="cell-n">—</td>
+    </tr>
+  </tbody>
+</table>
+
+  <div style="background:#F5F3FF;border:1px solid #DDD6FE;border-radius:12px;padding:20px 24px;margin-top:24px;">
+    <h4 style="font-size:13px;font-weight:700;color:#7C3AED;margin-bottom:10px;">Contentsquare Form Frustration — Cross-Reference</h4>
+    <p style="font-size:13px;color:#4C1D95;line-height:1.6;margin-bottom:12px;">The RFI content audit above examines <em>what surrounds the forms</em>. Contentsquare zoning data shows <em>how users interact with the forms themselves</em>:</p>
+    <table style="width:100%;border-collapse:collapse;font-size:12px;">
+      <thead><tr style="background:#EDE9FE;"><th style="padding:8px 12px;text-align:left;font-size:10px;font-weight:700;letter-spacing:0.5px;">Zone</th><th style="padding:8px 12px;text-align:right;">Clicks</th><th style="padding:8px 12px;text-align:right;">Recurrence</th><th style="padding:8px 12px;text-align:right;">Conv/Click</th><th style="padding:8px 12px;text-align:left;">Context</th></tr></thead>
+      <tbody>
+        <tr><td style="padding:6px 12px;border-bottom:1px solid #DDD6FE;font-weight:600;">form-twostep__form</td><td style="padding:6px 12px;border-bottom:1px solid #DDD6FE;text-align:right;">118,138</td><td style="padding:6px 12px;border-bottom:1px solid #DDD6FE;text-align:right;color:#DC2626;font-weight:700;">3.23×</td><td style="padding:6px 12px;border-bottom:1px solid #DDD6FE;text-align:right;color:#DC2626;">0.04%</td><td style="padding:6px 12px;border-bottom:1px solid #DDD6FE;">Paid Success pages — FORM-01 Hero</td></tr>
+        <tr><td style="padding:6px 12px;border-bottom:1px solid #DDD6FE;font-weight:600;">RFI pop-up form</td><td style="padding:6px 12px;border-bottom:1px solid #DDD6FE;text-align:right;">54,090</td><td style="padding:6px 12px;border-bottom:1px solid #DDD6FE;text-align:right;color:#DC2626;font-weight:700;">2.78×</td><td style="padding:6px 12px;border-bottom:1px solid #DDD6FE;text-align:right;color:#DC2626;">0.01%</td><td style="padding:6px 12px;border-bottom:1px solid #DDD6FE;">Global pop-up — FORM-04</td></tr>
+        <tr><td style="padding:6px 12px;border-bottom:1px solid #DDD6FE;font-weight:600;">header-sticky-rfi-forms</td><td style="padding:6px 12px;border-bottom:1px solid #DDD6FE;text-align:right;">1,691</td><td style="padding:6px 12px;border-bottom:1px solid #DDD6FE;text-align:right;color:#DC2626;font-weight:700;">2.41×</td><td style="padding:6px 12px;border-bottom:1px solid #DDD6FE;text-align:right;color:#DC2626;">0.08%</td><td style="padding:6px 12px;border-bottom:1px solid #DDD6FE;">Online Degrees — FORM-05 Sticky</td></tr>
+        <tr><td style="padding:6px 12px;border-bottom:1px solid #DDD6FE;font-weight:600;">paid-twostep__form</td><td style="padding:6px 12px;border-bottom:1px solid #DDD6FE;text-align:right;">8,765</td><td style="padding:6px 12px;border-bottom:1px solid #DDD6FE;text-align:right;color:#DC2626;font-weight:700;">2.41×</td><td style="padding:6px 12px;border-bottom:1px solid #DDD6FE;text-align:right;color:#DC2626;">0.28%</td><td style="padding:6px 12px;border-bottom:1px solid #DDD6FE;">Online Degrees — FORM-01 two-step</td></tr>
+        <tr><td style="padding:6px 12px;font-weight:600;">blog-sidebar-form</td><td style="padding:6px 12px;text-align:right;">297</td><td style="padding:6px 12px;text-align:right;color:#DC2626;font-weight:700;">2.58×</td><td style="padding:6px 12px;text-align:right;color:#DC2626;">0.00%</td><td style="padding:6px 12px;">Blog pages — FORM-03 Sidebar</td></tr>
+      </tbody>
+    </table>
+    <p style="font-size:12px;color:#6B21A8;margin-top:10px;line-height:1.5;"><strong>Key insight:</strong> Pages rated "Good" for content specificity (org-02, org-03) still show 2.41× form rage-clicks — the form UX itself is a bottleneck independent of surrounding content quality. The blog sidebar form (2.58× recurrence, 0% conversion) is the clearest example: excellent content engagement (17.3% bounce, 33.7% scroll) does not translate through a broken form mechanism.</p>
+  </div>
+
+<p style="font-size:12px;color:var(--muted);max-width:720px;line-height:1.5;margin-bottom:48px;"><strong>Note:</strong> Conversion rates follow the same GA4-style session-scoped labeling as the screenshot library index. Paid program-LP rows (P8–P10) omit headline conv % where those pages were not surfaced in the primary paid ranking slice. Matrix cells are interpretive summaries for stakeholder review, not a separate data pull.</p>
+
+</div>
+</body>
+</html>

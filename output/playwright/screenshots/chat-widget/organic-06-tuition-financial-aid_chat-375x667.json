@@ -1,0 +1,83 @@
+{
+  "chatElements": [
+    {
+      "selector": "[id*=\"chat\"]",
+      "tag": "DIV",
+      "id": "chatImage-wrapper",
+      "classes": "",
+      "rect": {
+        "top": -1407,
+        "left": 151,
+        "width": 32,
+        "height": 32
+      },
+      "position": "static",
+      "zIndex": "auto",
+      "display": "flex",
+      "visible": true
+    },
+    {
+      "selector": "[id*=\"chat\"]",
+      "tag": "IMG",
+      "id": "chatImage",
+      "classes": "",
+      "rect": {
+        "top": -1403,
+        "left": 154,
+        "width": 25,
+        "height": 25
+      },
+      "position": "static",
+      "zIndex": "auto",
+      "display": "block",
+      "visible": true
+    },
+    {
+      "selector": "iframe[title*=\"chat\" i]",
+      "tag": "IFRAME",
+      "id": "esw_storage_iframe",
+      "classes": "",
+      "rect": {
+        "top": 0,
+        "left": 0,
+        "width": 0,
+        "height": 0
+      },
+      "position": "static",
+      "zIndex": "auto",
+      "display": "none",
+      "visible": false
+    },
+    {
+      "selector": "iframe[title*=\"Chat\" i]",
+      "tag": "IFRAME",
+      "id": "esw_storage_iframe",
+      "classes": "",
+      "rect": {
+        "top": 0,
+        "left": 0,
+        "width": 0,
+        "height": 0
+      },
+      "position": "static",
+      "zIndex": "auto",
+      "display": "none",
+      "visible": false
+    }
+  ],
+  "fixedBottomElements": [
+    {
+      "tag": "DIV",
+      "id": "",
+      "classes": "stickyrfi-mobile --init-cta",
+      "rect": {
+        "top": 595,
+        "left": 0,
+        "width": 375,
+        "height": 72
+      },
+      "position": "fixed",
+      "zIndex": "98"
+    }
+  ]
+}

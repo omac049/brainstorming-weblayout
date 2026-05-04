@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>1.3 Chat Widget & Sticky Element Audit — UAGC Phase 1</title>
+<style>
+  :root {
+    --navy: #0C234B;
+    --red: #AB0520;
+    --light: #F7F8FA;
+    --border: #E2E5EA;
+    --muted: #6B7280;
+    --green: #059669;
+    --amber: #D97706;
+    --danger: #DC2626;
+    --pink: #BE185D;
+    --pinkbg: #FCE7F3;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; scroll-padding-top: 24px; }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Inter', 'Segoe UI', sans-serif; background: var(--light); color: #1a1a1a; line-height: 1.6; }
+
+  .header { background: var(--navy); color: white; padding: 40px 64px; position: relative; }
+  .header::after { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 4px; background: var(--red); }
+  .header .back { color: rgba(255,255,255,0.5); text-decoration: none; font-size: 13px; display: inline-block; margin-bottom: 16px; }
+  .header .back:hover { color: white; }
+  .header h1 { font-size: 30px; font-weight: 700; letter-spacing: -0.5px; margin-bottom: 6px; }
+  .header p { font-size: 15px; opacity: 0.65; max-width: 720px; }
+  .header .meta { display: flex; gap: 24px; margin-top: 16px; font-size: 12px; opacity: 0.45; flex-wrap: wrap; }
+
+  .layout { display: flex; min-height: 100vh; }
+
+  .sidebar {
+    width: 240px; flex-shrink: 0; background: white; border-right: 1px solid var(--border);
+    padding: 24px 16px; position: sticky; top: 0; height: 100vh; overflow-y: auto; font-size: 12px;
+  }
+  .sidebar .nav-group { margin-bottom: 20px; }
+  .sidebar .nav-label { font-size: 10px; font-weight: 700; letter-spacing: 1.2px; text-transform: uppercase; color: var(--muted); margin-bottom: 8px; }
+  .sidebar a { display: block; padding: 5px 10px; border-radius: 6px; color: #374151; text-decoration: none; margin-bottom: 2px; transition: all 0.15s; }
+  .sidebar a:hover { background: var(--light); color: var(--navy); }
+  .sidebar a.active { background: var(--pinkbg); color: var(--pink); font-weight: 600; }
+
+  .main { flex: 1; padding: 40px 48px 120px; max-width: 1000px; }
+
+  h2 { font-size: 22px; font-weight: 700; color: var(--navy); margin: 48px 0 16px; letter-spacing: -0.3px; padding-top: 16px; }
+  h2:first-of-type { margin-top: 0; }
+  h3 { font-size: 17px; font-weight: 700; color: #1a1a1a; margin: 28px 0 12px; }
+
+  .exec-summary {
+    background: white; border: 1px solid var(--border); border-radius: 14px;
+    padding: 28px; margin-bottom: 40px;
+  }
+  .exec-summary h3 { margin-top: 0; font-size: 16px; color: var(--navy); }
+  .exec-summary ul { padding-left: 20px; margin-top: 12px; }
+  .exec-summary li { font-size: 14px; margin-bottom: 8px; line-height: 1.5; }
+  .exec-summary .stat-row { display: flex; gap: 16px; flex-wrap: wrap; margin-top: 16px; }
+  .exec-summary .stat { flex: 1; min-width: 140px; background: var(--light); border-radius: 10px; padding: 16px; text-align: center; }
+  .exec-summary .stat .val { font-size: 28px; font-weight: 800; color: var(--navy); }
+  .exec-summary .stat .lbl { font-size: 11px; color: var(--muted); margin-top: 4px; }
+
+  table { width: 100%; border-collapse: collapse; background: white; border: 1px solid var(--border); border-radius: 12px; overflow: hidden; margin: 16px 0 32px; }
+  thead { background: var(--navy); color: white; }
+  th { padding: 10px 14px; font-size: 10px; font-weight: 600; letter-spacing: 0.8px; text-transform: uppercase; text-align: left; white-space: nowrap; }
+  td { padding: 10px 14px; font-size: 13px; border-bottom: 1px solid var(--border); }
+  tr:last-child td { border-bottom: none; }
+  tr:hover td { background: #FAFAFB; }
+  .num { text-align: right; font-variant-numeric: tabular-nums; }
+  .warn-row { background: #FFFBEB; }
+  .warn-row td:first-child { border-left: 3px solid var(--amber); }
+  .danger-row { background: #FEF2F2; }
+  .danger-row td:first-child { border-left: 3px solid var(--danger); }
+
+  .badge { display: inline-block; padding: 2px 8px; border-radius: 4px; font-size: 10px; font-weight: 700; letter-spacing: 0.3px; }
+  .badge-danger { background: #FEE2E2; color: #991B1B; }
+  .badge-warn { background: #FEF3C7; color: #92400E; }
+  .badge-ok { background: #D1FAE5; color: #065F46; }
+  .badge-info { background: #DBEAFE; color: #1E40AF; }
+
+  .page-card { background: white; border: 1px solid var(--border); border-radius: 14px; margin: 20px 0; overflow: hidden; }
+  .page-card-head { padding: 16px 24px; border-bottom: 1px solid var(--border); display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+  .page-card-head h4 { font-size: 15px; font-weight: 700; }
+  .page-card-head .url { font-size: 11px; color: var(--muted); font-family: monospace; }
+
+  .vp-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; padding: 16px 24px; }
+  .vp-col { text-align: center; }
+  .vp-col img { width: 100%; border-radius: 8px; border: 1px solid var(--border); }
+  .vp-label { font-size: 10px; font-weight: 700; color: var(--muted); letter-spacing: 0.5px; text-transform: uppercase; margin-bottom: 6px; }
+  .vp-note { font-size: 10px; color: var(--pink); margin-top: 4px; font-weight: 600; }
+
+  .occlusion-strip { padding: 12px 24px; border-top: 1px solid var(--border); background: var(--pinkbg); display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 10px; }
+  .occlusion-strip .oc-item { text-align: center; }
+  .occlusion-strip .oc-item .oc-val { font-size: 18px; font-weight: 800; color: var(--pink); }
+  .occlusion-strip .oc-item .oc-lbl { font-size: 9px; font-weight: 600; color: var(--pink); opacity: 0.7; text-transform: uppercase; letter-spacing: 0.5px; }
+
+  .finding { background: white; border: 1px solid var(--border); border-radius: 12px; padding: 20px 24px; margin: 12px 0; display: flex; gap: 16px; align-items: flex-start; }
+  .finding .icon { width: 36px; height: 36px; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 18px; flex-shrink: 0; }
+  .finding .icon.warn-icon { background: #FEF3C7; }
+  .finding .icon.danger-icon { background: #FEE2E2; }
+  .finding .icon.info-icon { background: #DBEAFE; }
+  .finding .body { flex: 1; }
+  .finding .body strong { font-size: 14px; display: block; margin-bottom: 4px; }
+  .finding .body p { font-size: 13px; color: var(--muted); line-height: 1.5; }
+
+  .diagram { background: white; border: 1px solid var(--border); border-radius: 14px; padding: 24px; margin: 20px 0; overflow-x: auto; }
+  .diagram h4 { font-size: 14px; font-weight: 700; color: var(--navy); margin-bottom: 16px; }
+
+  .phone-mock { display: inline-block; width: 180px; border: 3px solid #1a1a1a; border-radius: 20px; padding: 8px; background: white; position: relative; margin: 0 16px; vertical-align: top; }
+  .phone-mock .pm-screen { background: #F3F4F6; border-radius: 12px; height: 320px; position: relative; overflow: hidden; }
+  .phone-mock .pm-label { text-align: center; font-size: 10px; font-weight: 700; color: var(--muted); margin-top: 8px; }
+  .pm-zone { position: absolute; left: 0; right: 0; display: flex; align-items: center; justify-content: center; font-size: 9px; font-weight: 700; letter-spacing: 0.3px; }
+  .pm-content { background: #E5E7EB; top: 0; bottom: 72px; }
+  .pm-sticky { background: var(--red); color: white; bottom: 0; height: 34px; z-index: 2; }
+  .pm-sticky.homepage { height: 145px; }
+  .pm-tracking { background: #7C3AED; color: white; bottom: 34px; height: 111px; z-index: 1; opacity: 0.85; }
+
+  .insight-box { background: linear-gradient(135deg, var(--pinkbg) 0%, #FDF2F8 100%); border: 1px solid #FBCFE8; border-radius: 14px; padding: 24px; margin: 24px 0; }
+  .insight-box h4 { font-size: 14px; font-weight: 700; color: var(--pink); margin-bottom: 8px; }
+  .insight-box p { font-size: 13px; color: #831843; line-height: 1.6; }
+
+  @media (max-width: 800px) {
+    .sidebar { display: none; }
+    .header { padding: 32px 20px; }
+    .main { padding: 24px 16px 80px; }
+    .vp-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <a class="back" href="index.html">&larr; Back to Phase 1 Hub</a>
+  <h1>1.3 Chat Widget & Sticky Element Audit</h1>
+  <p>Mobile viewport analysis of fixed/sticky elements — sticky RFI bar, tracking footer, and chat affordances — across 3 device sizes and 10 representative pages.</p>
+  <div class="meta">
+    <span>UAGC &middot; uagc.edu</span>
+    <span>Viewports: 375&times;667 &middot; 390&times;844 &middot; 414&times;896</span>
+    <span>10 pages &middot; 60 viewport captures</span>
+    <span>Playwright automated detection</span>
+  </div>
+</div>
+
+<div class="layout">
+
+<nav class="sidebar">
+  <div class="nav-group">
+    <div class="nav-label">Overview</div>
+    <a href="#exec">Executive Summary</a>
+    <a href="#elements">Detected Elements</a>
+    <a href="#occlusion">Occlusion Math</a>
+    <a href="#diagram">Visual Diagram</a>
+  </div>
+  <div class="nav-group">
+    <div class="nav-label">Paid Pages</div>
+    <a href="#p-paid-01">P1 Request Info v5</a>
+    <a href="#p-paid-02">P2 Bachelors v5</a>
+    <a href="#p-paid-03">P3 Military v5</a>
+    <a href="#p-paid-04">P4 Courses v5</a>
+    <a href="#p-paid-05">P5 Degree Programs v7</a>
+  </div>
+  <div class="nav-group">
+    <div class="nav-label">Organic Pages</div>
+    <a href="#p-org-01">O1 Homepage</a>
+    <a href="#p-org-02">O2 Online Degrees</a>
+    <a href="#p-org-06">O6 Tuition &amp; Aid</a>
+    <a href="#p-org-07">O7 Blog PhD</a>
+    <a href="#p-org-09">O9 Bachelors Hub</a>
+  </div>
+  <div class="nav-group">
+    <div class="nav-label">Analysis</div>
+    <a href="#findings">Key Findings</a>
+    <a href="#recs">Recommendations</a>
+  </div>
+</nav>
+
+<div class="main">
+
+<!-- ===== EXEC SUMMARY ===== -->
+<h2 id="exec">Executive Summary</h2>
+<div class="exec-summary">
+  <h3>No Traditional Chat Widget &mdash; But a Critical Sticky Bar Problem</h3>
+  <ul>
+    <li><strong>No HubSpot, Drift, Intercom, or LiveChat widget detected on any page.</strong> Automated detection scanned 16 chat-specific selectors across all 10 pages and 3 viewports. The only "chat" elements found are static <code>chatImage</code> icons embedded in the organic site footer (not a floating widget).</li>
+    <li><strong>The <code>stickyrfi-mobile</code> bar is the dominant fixed element</strong> &mdash; present on ALL pages, ALL viewports. It's a full-width, 72px-tall sticky CTA bar fixed to the bottom of every mobile viewport at z-index 98.</li>
+    <li><strong>Homepage has a double-stacking problem:</strong> a 232px <code>tracking-footer-block</code> (z-index 99) sits ON TOP of the sticky RFI bar, consuming up to <strong>45.6% of the iPhone SE viewport</strong> on first load.</li>
+    <li><strong>On iPhone SE (375&times;667), the sticky RFI bar alone consumes 10.8%</strong> of the visible viewport &mdash; 72px of 667px. Content area shrinks to ~595px effective height.</li>
+  </ul>
+  <div class="stat-row">
+    <div class="stat"><div class="val">72px</div><div class="lbl">Sticky RFI Bar Height</div></div>
+    <div class="stat"><div class="val">10.8%</div><div class="lbl">Viewport Loss (SE)</div></div>
+    <div class="stat"><div class="val">z-98</div><div class="lbl">Sticky RFI z-index</div></div>
+    <div class="stat"><div class="val">45.6%</div><div class="lbl">Homepage Occlusion (SE)</div></div>
+    <div class="stat"><div class="val">0</div><div class="lbl">Chat Widgets Found</div></div>
+  </div>
+</div>
+
+<!-- ===== DETECTED ELEMENTS ===== -->
+<h2 id="elements">Detected Fixed/Sticky Elements</h2>
+<table>
+  <thead><tr><th>Element</th><th>Class / ID</th><th>z-index</th><th>Height</th><th>Pages</th><th>Type</th></tr></thead>
+  <tbody>
+    <tr class="warn-row"><td><strong>Sticky RFI Mobile Bar</strong></td><td><code>stickyrfi-mobile --init-cta</code></td><td class="num">98</td><td class="num">72px</td><td>All 10 pages</td><td><span class="badge badge-warn">FIXED</span></td></tr>
+    <tr class="danger-row"><td><strong>Tracking Footer Block</strong></td><td><code>block--tracking-footer-block</code></td><td class="num">99</td><td class="num">232px</td><td>Homepage only</td><td><span class="badge badge-danger">FIXED</span></td></tr>
+    <tr><td>Chat Image (static)</td><td><code>#chatImage-wrapper</code></td><td class="num">auto</td><td class="num">32px</td><td>Organic pages</td><td><span class="badge badge-info">STATIC</span></td></tr>
+  </tbody>
+</table>
+
+<!-- ===== OCCLUSION MATH ===== -->
+<h2 id="occlusion">Viewport Occlusion by Device</h2>
+<p style="font-size:13px;color:var(--muted);margin-bottom:16px;">How much visible content area is consumed by fixed bottom elements on each device.</p>
+
+<h3>Standard Pages (Sticky RFI Bar Only)</h3>
+<table>
+  <thead><tr><th>Device</th><th>Viewport</th><th class="num">Sticky Bar</th><th class="num">Bar Top (px)</th><th class="num">Content Area</th><th class="num">% Occluded</th><th>Risk</th></tr></thead>
+  <tbody>
+    <tr class="warn-row"><td>iPhone SE / 8</td><td>375&times;667</td><td class="num">72px</td><td class="num">595</td><td class="num">595px</td><td class="num">10.8%</td><td><span class="badge badge-warn">HIGH</span></td></tr>
+    <tr><td>iPhone 14</td><td>390&times;844</td><td class="num">72px</td><td class="num">772</td><td class="num">772px</td><td class="num">8.5%</td><td><span class="badge badge-ok">MED</span></td></tr>
+    <tr><td>iPhone 11 Pro Max</td><td>414&times;896</td><td class="num">72px</td><td class="num">824</td><td class="num">824px</td><td class="num">8.0%</td><td><span class="badge badge-ok">MED</span></td></tr>
+  </tbody>
+</table>
+
+<h3>Homepage (Sticky RFI + Tracking Footer Stack)</h3>
+<table>
+  <thead><tr><th>Device</th><th>Viewport</th><th class="num">Tracking (232px)</th><th class="num">Sticky (72px)</th><th class="num">Total Occluded</th><th class="num">Content Area</th><th class="num">% Occluded</th><th>Risk</th></tr></thead>
+  <tbody>
+    <tr class="danger-row"><td>iPhone SE / 8</td><td>375&times;667</td><td class="num">232px</td><td class="num">72px</td><td class="num">304px</td><td class="num">363px</td><td class="num">45.6%</td><td><span class="badge badge-danger">CRITICAL</span></td></tr>
+    <tr class="warn-row"><td>iPhone 14</td><td>390&times;844</td><td class="num">232px</td><td class="num">72px</td><td class="num">304px</td><td class="num">540px</td><td class="num">36.0%</td><td><span class="badge badge-warn">HIGH</span></td></tr>
+    <tr class="warn-row"><td>iPhone 11 Pro Max</td><td>414&times;896</td><td class="num">232px</td><td class="num">72px</td><td class="num">304px</td><td class="num">592px</td><td class="num">33.9%</td><td><span class="badge badge-warn">HIGH</span></td></tr>
+  </tbody>
+</table>
+
+<div class="insight-box">
+  <h4>Homepage Is Losing Nearly Half Its Viewport</h4>
+  <p>On iPhone SE, users see only <strong>363px of actual content</strong> on first load &mdash; the tracking footer (232px) and sticky RFI bar (72px) consume the rest. This aligns with Contentsquare data showing the homepage has <strong>only 11.7% scroll depth</strong> &mdash; users may not realize there's content to scroll to because the viewport feels "full" of overlays. Combined with the 47.9% mobile traffic split, this is an immediate fix opportunity.</p>
+</div>
+
+<!-- ===== VISUAL DIAGRAM ===== -->
+<h2 id="diagram">Visual Occlusion Diagram</h2>
+<div class="diagram">
+  <h4>iPhone SE (375&times;667) &mdash; Viewport Breakdown</h4>
+  <div style="display:flex;gap:32px;justify-content:center;flex-wrap:wrap;padding:16px 0;">
+
+    <div class="phone-mock">
+      <div class="pm-screen">
+        <div class="pm-zone pm-content" style="font-size:11px;color:var(--muted);">Content<br>595px (89.2%)</div>
+        <div class="pm-zone pm-sticky">Sticky RFI · 72px</div>
+      </div>
+      <div class="pm-label">Standard Page</div>
+    </div>
+
+    <div class="phone-mock">
+      <div class="pm-screen">
+        <div class="pm-zone pm-content" style="bottom:145px;font-size:11px;color:var(--muted);">Content<br>363px (54.4%)</div>
+        <div class="pm-zone pm-tracking">Tracking Footer<br>232px</div>
+        <div class="pm-zone pm-sticky homepage" style="height:34px;">Sticky RFI<br>72px</div>
+      </div>
+      <div class="pm-label">Homepage (stacked)</div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ===== PAGE CARDS ===== -->
+<h2 id="paid-pages">Paid Pages — Viewport Captures</h2>
+<p style="font-size:13px;color:var(--muted);margin-bottom:16px;">Each card shows the initial viewport (above-fold) at 3 device sizes. Pink strip shows occlusion metrics.</p>
+
+<div id="p-paid-01" class="page-card">
+  <div class="page-card-head"><h4>P1 — Request Info v5</h4><span class="url">/success/request-info-v5</span></div>
+  <div class="vp-grid">
+    <div class="vp-col"><div class="vp-label">375&times;667</div><img src="chat-widget/paid-01-request-info-v5_vp-375x667.png" loading="lazy"><div class="vp-note">72px bar at bottom</div></div>
+    <div class="vp-col"><div class="vp-label">390&times;844</div><img src="chat-widget/paid-01-request-info-v5_vp-390x844.png" loading="lazy"></div>
+    <div class="vp-col"><div class="vp-label">414&times;896</div><img src="chat-widget/paid-01-request-info-v5_vp-414x896.png" loading="lazy"></div>
+  </div>
+  <div class="occlusion-strip">
+    <div class="oc-item"><div class="oc-val">10.8%</div><div class="oc-lbl">SE Occluded</div></div>
+    <div class="oc-item"><div class="oc-val">8.5%</div><div class="oc-lbl">14 Occluded</div></div>
+    <div class="oc-item"><div class="oc-val">8.0%</div><div class="oc-lbl">11PM Occluded</div></div>
+    <div class="oc-item"><div class="oc-val">z-98</div><div class="oc-lbl">Bar z-index</div></div>
+    <div class="oc-item"><div class="oc-val">0</div><div class="oc-lbl">Chat Widgets</div></div>
+  </div>
+</div>
+
+<div id="p-paid-02" class="page-card">
+  <div class="page-card-head"><h4>P2 — Bachelor's v5</h4><span class="url">/success/degree-types/bachelors-degrees-v5</span></div>
+  <div class="vp-grid">
+    <div class="vp-col"><div class="vp-label">375&times;667</div><img src="chat-widget/paid-02-bachelors-degrees-v5_vp-375x667.png" loading="lazy"><div class="vp-note">72px bar at bottom</div></div>
+    <div class="vp-col"><div class="vp-label">390&times;844</div><img src="chat-widget/paid-02-bachelors-degrees-v5_vp-390x844.png" loading="lazy"></div>
+    <div class="vp-col"><div class="vp-label">414&times;896</div><img src="chat-widget/paid-02-bachelors-degrees-v5_vp-414x896.png" loading="lazy"></div>
+  </div>
+  <div class="occlusion-strip">
+    <div class="oc-item"><div class="oc-val">10.8%</div><div class="oc-lbl">SE Occluded</div></div>
+    <div class="oc-item"><div class="oc-val">8.5%</div><div class="oc-lbl">14 Occluded</div></div>
+    <div class="oc-item"><div class="oc-val">8.0%</div><div class="oc-lbl">11PM Occluded</div></div>
+    <div class="oc-item"><div class="oc-val">z-98</div><div class="oc-lbl">Bar z-index</div></div>
+    <div class="oc-item"><div class="oc-val">0</div><div class="oc-lbl">Chat Widgets</div></div>
+  </div>
+</div>
+
+<div id="p-paid-03" class="page-card">
+  <div class="page-card-head"><h4>P3 — Military v5</h4><span class="url">/success/military-v5</span></div>
+  <div class="vp-grid">
+    <div class="vp-col"><div class="vp-label">375&times;667</div><img src="chat-widget/paid-03-military-v5_vp-375x667.png" loading="lazy"><div class="vp-note">72px bar at bottom</div></div>
+    <div class="vp-col"><div class="vp-label">390&times;844</div><img src="chat-widget/paid-03-military-v5_vp-390x844.png" loading="lazy"></div>
+    <div class="vp-col"><div class="vp-label">414&times;896</div><img src="chat-widget/paid-03-military-v5_vp-414x896.png" loading="lazy"></div>
+  </div>
+  <div class="occlusion-strip">
+    <div class="oc-item"><div class="oc-val">10.8%</div><div class="oc-lbl">SE Occluded</div></div>
+    <div class="oc-item"><div class="oc-val">8.5%</div><div class="oc-lbl">14 Occluded</div></div>
+    <div class="oc-item"><div class="oc-val">8.0%</div><div class="oc-lbl">11PM Occluded</div></div>
+    <div class="oc-item"><div class="oc-val">z-98</div><div class="oc-lbl">Bar z-index</div></div>
+    <div class="oc-item"><div class="oc-val">0</div><div class="oc-lbl">Chat Widgets</div></div>
+  </div>
+</div>
+
+<div id="p-paid-04" class="page-card">
+  <div class="page-card-head"><h4>P4 — College Courses v5</h4><span class="url">/success/online-college-courses-v5</span></div>
+  <div class="vp-grid">
+    <div class="vp-col"><div class="vp-label">375&times;667</div><img src="chat-widget/paid-04-college-courses-v5_vp-375x667.png" loading="lazy"><div class="vp-note">72px bar at bottom</div></div>
+    <div class="vp-col"><div class="vp-label">390&times;844</div><img src="chat-widget/paid-04-college-courses-v5_vp-390x844.png" loading="lazy"></div>
+    <div class="vp-col"><div class="vp-label">414&times;896</div><img src="chat-widget/paid-04-college-courses-v5_vp-414x896.png" loading="lazy"></div>
+  </div>
+  <div class="occlusion-strip">
+    <div class="oc-item"><div class="oc-val">10.8%</div><div class="oc-lbl">SE Occluded</div></div>
+    <div class="oc-item"><div class="oc-val">8.5%</div><div class="oc-lbl">14 Occluded</div></div>
+    <div class="oc-item"><div class="oc-val">8.0%</div><div class="oc-lbl">11PM Occluded</div></div>
+    <div class="oc-item"><div class="oc-val">z-98</div><div class="oc-lbl">Bar z-index</div></div>
+    <div class="oc-item"><div class="oc-val">0</div><div class="oc-lbl">Chat Widgets</div></div>
+  </div>
+</div>
+
+<div id="p-paid-05" class="page-card">
+  <div class="page-card-head"><h4>P5 — Degree Programs v7</h4><span class="url">/success/degree-programs-v7</span></div>
+  <div class="vp-grid">
+    <div class="vp-col"><div class="vp-label">375&times;667</div><img src="chat-widget/paid-05-degree-programs-v7_vp-375x667.png" loading="lazy"><div class="vp-note">72px bar at bottom</div></div>
+    <div class="vp-col"><div class="vp-label">390&times;844</div><img src="chat-widget/paid-05-degree-programs-v7_vp-390x844.png" loading="lazy"></div>
+    <div class="vp-col"><div class="vp-label">414&times;896</div><img src="chat-widget/paid-05-degree-programs-v7_vp-414x896.png" loading="lazy"></div>
+  </div>
+  <div class="occlusion-strip">
+    <div class="oc-item"><div class="oc-val">10.8%</div><div class="oc-lbl">SE Occluded</div></div>
+    <div class="oc-item"><div class="oc-val">8.5%</div><div class="oc-lbl">14 Occluded</div></div>
+    <div class="oc-item"><div class="oc-val">8.0%</div><div class="oc-lbl">11PM Occluded</div></div>
+    <div class="oc-item"><div class="oc-val">z-98</div><div class="oc-lbl">Bar z-index</div></div>
+    <div class="oc-item"><div class="oc-val">0</div><div class="oc-lbl">Chat Widgets</div></div>
+  </div>
+</div>
+
+<!-- ===== ORGANIC PAGES ===== -->
+<h2 id="organic-pages">Organic Pages — Viewport Captures</h2>
+
+<div id="p-org-01" class="page-card">
+  <div class="page-card-head"><h4>O1 — Homepage</h4><span class="url">/</span><span class="badge badge-danger" style="margin-left:auto">45.6% occluded on SE</span></div>
+  <div class="vp-grid">
+    <div class="vp-col"><div class="vp-label">375&times;667</div><img src="chat-widget/organic-01-homepage_vp-375x667.png" loading="lazy"><div class="vp-note">304px occluded (sticky + tracking)</div></div>
+    <div class="vp-col"><div class="vp-label">390&times;844</div><img src="chat-widget/organic-01-homepage_vp-390x844.png" loading="lazy" onerror="this.parentElement.innerHTML='<div style=padding:40px;color:var(--muted);font-size:12px>Capture timed out</div>'"></div>
+    <div class="vp-col"><div class="vp-label">414&times;896</div><img src="chat-widget/organic-01-homepage_vp-414x896.png" loading="lazy"></div>
+  </div>
+  <div class="occlusion-strip">
+    <div class="oc-item"><div class="oc-val">45.6%</div><div class="oc-lbl">SE Occluded</div></div>
+    <div class="oc-item"><div class="oc-val">36.0%</div><div class="oc-lbl">14 Occluded</div></div>
+    <div class="oc-item"><div class="oc-val">33.9%</div><div class="oc-lbl">11PM Occluded</div></div>
+    <div class="oc-item"><div class="oc-val">z-99</div><div class="oc-lbl">Tracking z-index</div></div>
+    <div class="oc-item"><div class="oc-val">2</div><div class="oc-lbl">Fixed Elements</div></div>
+  </div>
+</div>
+
+<div id="p-org-02" class="page-card">
+  <div class="page-card-head"><h4>O2 — Online Degrees</h4><span class="url">/online-degrees</span></div>
+  <div class="vp-grid">
+    <div class="vp-col"><div class="vp-label">375&times;667</div><img src="chat-widget/organic-02-online-degrees_vp-375x667.png" loading="lazy" onerror="this.parentElement.innerHTML='<div style=padding:40px;color:var(--muted);font-size:12px>Capture timed out</div>'"><div class="vp-note">72px bar at bottom</div></div>
+    <div class="vp-col"><div class="vp-label">390&times;844</div><img src="chat-widget/organic-02-online-degrees_vp-390x844.png" loading="lazy"></div>
+    <div class="vp-col"><div class="vp-label">414&times;896</div><img src="chat-widget/organic-02-online-degrees_vp-414x896.png" loading="lazy"></div>
+  </div>
+  <div class="occlusion-strip">
+    <div class="oc-item"><div class="oc-val">10.8%</div><div class="oc-lbl">SE Occluded</div></div>
+    <div class="oc-item"><div class="oc-val">8.5%</div><div class="oc-lbl">14 Occluded</div></div>
+    <div class="oc-item"><div class="oc-val">8.0%</div><div class="oc-lbl">11PM Occluded</div></div>
+    <div class="oc-item"><div class="oc-val">z-98</div><div class="oc-lbl">Bar z-index</div></div>
+    <div class="oc-item"><div class="oc-val">0</div><div class="oc-lbl">Chat Widgets</div></div>
+  </div>
+</div>
+
+<div id="p-org-06" class="page-card">
+  <div class="page-card-head"><h4>O6 — Tuition &amp; Financial Aid</h4><span class="url">/tuition-financial-aid</span></div>
+  <div class="vp-grid">
+    <div class="vp-col"><div class="vp-label">375&times;667</div><img src="chat-widget/organic-06-tuition-financial-aid_vp-375x667.png" loading="lazy"><div class="vp-note">72px bar at bottom</div></div>
+    <div class="vp-col"><div class="vp-label">390&times;844</div><img src="chat-widget/organic-06-tuition-financial-aid_vp-390x844.png" loading="lazy"></div>
+    <div class="vp-col"><div class="vp-label">414&times;896</div><img src="chat-widget/organic-06-tuition-financial-aid_vp-414x896.png" loading="lazy" onerror="this.parentElement.innerHTML='<div style=padding:40px;color:var(--muted);font-size:12px>Capture timed out</div>'"></div>
+  </div>
+  <div class="occlusion-strip">
+    <div class="oc-item"><div class="oc-val">10.8%</div><div class="oc-lbl">SE Occluded</div></div>
+    <div class="oc-item"><div class="oc-val">8.5%</div><div class="oc-lbl">14 Occluded</div></div>
+    <div class="oc-item"><div class="oc-val">8.0%</div><div class="oc-lbl">11PM Occluded</div></div>
+    <div class="oc-item"><div class="oc-val">z-98</div><div class="oc-lbl">Bar z-index</div></div>
+    <div class="oc-item"><div class="oc-val">0</div><div class="oc-lbl">Chat Widgets</div></div>
+  </div>
+</div>
+
+<div id="p-org-07" class="page-card">
+  <div class="page-card-head"><h4>O7 — Blog: PhD vs Doctorate</h4><span class="url">/blog/what-difference-between-phd-and-doctorate</span></div>
+  <div class="vp-grid">
+    <div class="vp-col"><div class="vp-label">375&times;667</div><img src="chat-widget/organic-07-blog-phd-doctorate_vp-375x667.png" loading="lazy"><div class="vp-note">72px bar at bottom</div></div>
+    <div class="vp-col"><div class="vp-label">390&times;844</div><img src="chat-widget/organic-07-blog-phd-doctorate_vp-390x844.png" loading="lazy"></div>
+    <div class="vp-col"><div class="vp-label">414&times;896</div><img src="chat-widget/organic-07-blog-phd-doctorate_vp-414x896.png" loading="lazy"></div>
+  </div>
+  <div class="occlusion-strip">
+    <div class="oc-item"><div class="oc-val">10.8%</div><div class="oc-lbl">SE Occluded</div></div>
+    <div class="oc-item"><div class="oc-val">8.5%</div><div class="oc-lbl">14 Occluded</div></div>
+    <div class="oc-item"><div class="oc-val">8.0%</div><div class="oc-lbl">11PM Occluded</div></div>
+    <div class="oc-item"><div class="oc-val">z-98</div><div class="oc-lbl">Bar z-index</div></div>
+    <div class="oc-item"><div class="oc-val">0</div><div class="oc-lbl">Chat Widgets</div></div>
+  </div>
+</div>
+
+<div id="p-org-09" class="page-card">
+  <div class="page-card-head"><h4>O9 — Bachelor's Hub</h4><span class="url">/online-degrees/bachelors</span></div>
+  <div class="vp-grid">
+    <div class="vp-col"><div class="vp-label">375&times;667</div><img src="chat-widget/organic-09-degrees-bachelors_vp-375x667.png" loading="lazy"><div class="vp-note">72px bar at bottom</div></div>
+    <div class="vp-col"><div class="vp-label">390&times;844</div><img src="chat-widget/organic-09-degrees-bachelors_vp-390x844.png" loading="lazy"></div>
+    <div class="vp-col"><div class="vp-label">414&times;896</div><img src="chat-widget/organic-09-degrees-bachelors_vp-414x896.png" loading="lazy"></div>
+  </div>
+  <div class="occlusion-strip">
+    <div class="oc-item"><div class="oc-val">10.8%</div><div class="oc-lbl">SE Occluded</div></div>
+    <div class="oc-item"><div class="oc-val">8.5%</div><div class="oc-lbl">14 Occluded</div></div>
+    <div class="oc-item"><div class="oc-val">8.0%</div><div class="oc-lbl">11PM Occluded</div></div>
+    <div class="oc-item"><div class="oc-val">z-98</div><div class="oc-lbl">Bar z-index</div></div>
+    <div class="oc-item"><div class="oc-val">0</div><div class="oc-lbl">Chat Widgets</div></div>
+  </div>
+</div>
+
+<!-- ===== KEY FINDINGS ===== -->
+<h2 id="findings">Key Findings</h2>
+
+<div class="finding">
+  <div class="icon danger-icon">1</div>
+  <div class="body">
+    <strong>Homepage Tracking Footer Steals 45% of Mobile Viewport</strong>
+    <p>The <code>tracking-footer-block</code> (232px, z-99) stacks on top of the sticky RFI bar (72px, z-98) on the homepage. On iPhone SE, this leaves only 363px for content &mdash; less than the height of a typical hero image. This likely contributes to the 11.7% Contentsquare scroll depth: users may not perceive there's more content below.</p>
+  </div>
+</div>
+
+<div class="finding">
+  <div class="icon warn-icon">2</div>
+  <div class="body">
+    <strong>Sticky RFI Bar Competes with Hero RFI Form</strong>
+    <p>On paid landing pages, the hero section already contains an RFI form (FORM-01). The sticky RFI bar (FORM-05) appears simultaneously, creating <strong>two competing CTAs</strong> in the same viewport. Combined with the 3.23&times; form rage-click data from Contentsquare, this dual-form pattern may be confusing users about where to interact.</p>
+  </div>
+</div>
+
+<div class="finding">
+  <div class="icon warn-icon">3</div>
+  <div class="body">
+    <strong>No Chat Widget &mdash; Potential Support Gap</strong>
+    <p>No floating chat widget (HubSpot, Drift, Intercom, LiveChat) was detected on any page. The only chat-related element is a static <code>#chatImage</code> (32&times;32px) embedded in the organic site footer &mdash; not visible until users scroll to the very bottom. For a site with 47.9% mobile traffic and 1.07M monthly pageviews, this may represent a missed live-support opportunity, especially on high-intent pages like tuition/aid and application funnel.</p>
+  </div>
+</div>
+
+<div class="finding">
+  <div class="icon info-icon">4</div>
+  <div class="body">
+    <strong>Sticky RFI Bar Height Is Consistent but Not Responsive</strong>
+    <p>The 72px bar height is identical across all three viewports. On the smallest device (375&times;667), it consumes 10.8%; on the largest (414&times;896), 8.0%. A responsive approach &mdash; reducing bar height to ~56px on small screens &mdash; would recover 16px of content area, improving the above-fold experience for the ~15% of mobile users on SE-class devices.</p>
+  </div>
+</div>
+
+<!-- ===== RECOMMENDATIONS ===== -->
+<h2 id="recs">Recommendations</h2>
+<table>
+  <thead><tr><th>#</th><th>Action</th><th>Impact</th><th>Priority</th></tr></thead>
+  <tbody>
+    <tr class="danger-row"><td>1</td><td><strong>Dismiss or collapse the tracking footer on homepage after interaction</strong> &mdash; 232px at z-99 is aggressively large; auto-dismiss after 5s or reduce to a slim banner</td><td>Recover 232px on homepage &mdash; from 363px to 595px visible content on SE</td><td><span class="badge badge-danger">P0</span></td></tr>
+    <tr class="warn-row"><td>2</td><td><strong>Evaluate dual-form pattern on paid pages</strong> &mdash; hero RFI + sticky RFI compete; consider hiding sticky bar while hero form is in viewport</td><td>Reduce form confusion; may improve the 3.23&times; rage-click signal</td><td><span class="badge badge-warn">P1</span></td></tr>
+    <tr class="warn-row"><td>3</td><td><strong>Make sticky RFI height responsive</strong> &mdash; reduce to 56px on viewports &lt; 700px</td><td>Recover 16px on small devices; 24% reduction in bar footprint</td><td><span class="badge badge-warn">P1</span></td></tr>
+    <tr><td>4</td><td><strong>Consider adding a lightweight chat widget on high-intent organic pages</strong> (tuition, admissions, application)</td><td>Live support for 510K monthly mobile visitors on decision-stage pages</td><td><span class="badge badge-ok">P2</span></td></tr>
+    <tr><td>5</td><td><strong>Surface the footer chat icon as a floating FAB</strong> &mdash; the existing <code>#chatImage</code> is buried in the footer; promote to a fixed mini-button if chat is available</td><td>Makes existing chat capability accessible without footer scroll</td><td><span class="badge badge-ok">P2</span></td></tr>
+  </tbody>
+</table>
+
+</div><!-- .main -->
+</div><!-- .layout -->
+
+<script>
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      document.querySelectorAll('.sidebar a').forEach(a => a.classList.remove('active'));
+      const link = document.querySelector(`.sidebar a[href="#${e.target.id}"]`);
+      if (link) link.classList.add('active');
+    }
+  });
+}, { rootMargin: '-20% 0px -70% 0px' });
+document.querySelectorAll('h2[id], [id^="p-"]').forEach(h => observer.observe(h));
+</script>
+
+</body>
+</html>

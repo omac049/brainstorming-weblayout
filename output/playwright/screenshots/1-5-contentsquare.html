@@ -1,0 +1,699 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>1.5 Contentsquare Frustration Review — UAGC Phase 1</title>
+<style>
+  :root {
+    --navy: #0C234B;
+    --red: #AB0520;
+    --light: #F7F8FA;
+    --border: #E2E5EA;
+    --muted: #6B7280;
+    --green: #059669;
+    --amber: #D97706;
+    --danger: #DC2626;
+    --bg: #FAFBFC;
+    --purple: #7C3AED;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Inter', 'Segoe UI', sans-serif; background: var(--light); color: #1a1a1a; line-height: 1.6; }
+
+  .header { background: var(--navy); color: white; padding: 40px 64px; position: relative; }
+  .header::after { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 4px; background: var(--red); }
+  .header .back { color: rgba(255,255,255,0.5); text-decoration: none; font-size: 13px; display: inline-block; margin-bottom: 16px; }
+  .header .back:hover { color: white; }
+  .header h1 { font-size: 30px; font-weight: 700; letter-spacing: -0.5px; margin-bottom: 6px; }
+  .header p { font-size: 15px; opacity: 0.65; max-width: 720px; }
+  .header .meta { display: flex; gap: 24px; margin-top: 16px; font-size: 12px; opacity: 0.45; flex-wrap: wrap; }
+
+  .layout { display: flex; min-height: 100vh; }
+
+  .sidebar {
+    width: 240px; flex-shrink: 0; background: white; border-right: 1px solid var(--border);
+    padding: 24px 16px; position: sticky; top: 0; height: 100vh; overflow-y: auto;
+    font-size: 12px;
+  }
+  .sidebar .nav-group { margin-bottom: 20px; }
+  .sidebar .nav-label { font-size: 10px; font-weight: 700; letter-spacing: 1.2px; text-transform: uppercase; color: var(--muted); margin-bottom: 8px; }
+  .sidebar a { display: block; padding: 5px 10px; border-radius: 6px; color: #374151; text-decoration: none; margin-bottom: 2px; transition: all 0.15s; }
+  .sidebar a:hover { background: var(--light); color: var(--navy); }
+  .sidebar a.active { background: #EDE9FE; color: var(--purple); font-weight: 600; }
+
+  .main { flex: 1; padding: 40px 48px 120px; max-width: 960px; }
+
+  h2 { font-size: 22px; font-weight: 700; color: var(--navy); margin: 48px 0 16px; letter-spacing: -0.3px; padding-top: 16px; }
+  h2:first-of-type { margin-top: 0; }
+  h3 { font-size: 17px; font-weight: 700; color: #1a1a1a; margin: 28px 0 12px; }
+
+  .exec-summary {
+    background: white; border: 1px solid var(--border); border-radius: 14px;
+    padding: 28px; margin-bottom: 40px;
+  }
+  .exec-summary h3 { margin-top: 0; font-size: 16px; color: var(--navy); }
+  .exec-summary ul { padding-left: 20px; margin-top: 12px; }
+  .exec-summary li { font-size: 14px; margin-bottom: 8px; line-height: 1.5; }
+  .exec-summary .stat-row { display: flex; gap: 16px; flex-wrap: wrap; margin-top: 16px; }
+  .exec-summary .stat {
+    flex: 1; min-width: 140px; background: var(--light); border-radius: 10px; padding: 16px; text-align: center;
+  }
+  .exec-summary .stat .val { font-size: 28px; font-weight: 800; color: var(--navy); }
+  .exec-summary .stat .lbl { font-size: 11px; color: var(--muted); margin-top: 4px; }
+
+  .kpi-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; margin: 24px 0 32px; }
+  .kpi {
+    background: white; border: 1px solid var(--border); border-radius: 12px; padding: 20px; text-align: center;
+  }
+  .kpi .val { font-size: 26px; font-weight: 800; color: var(--navy); }
+  .kpi .lbl { font-size: 11px; color: var(--muted); margin-top: 4px; text-transform: uppercase; letter-spacing: 0.5px; }
+  .kpi.warn .val { color: var(--amber); }
+  .kpi.danger .val { color: var(--danger); }
+  .kpi.good .val { color: var(--green); }
+
+  table { width: 100%; border-collapse: collapse; background: white; border: 1px solid var(--border); border-radius: 12px; overflow: hidden; margin: 16px 0 32px; }
+  thead { background: var(--navy); color: white; }
+  th { padding: 10px 14px; font-size: 10px; font-weight: 600; letter-spacing: 0.8px; text-transform: uppercase; text-align: left; white-space: nowrap; }
+  td { padding: 10px 14px; font-size: 13px; border-bottom: 1px solid var(--border); }
+  tr:last-child td { border-bottom: none; }
+  tr:hover td { background: #FAFAFB; }
+  .num { text-align: right; font-variant-numeric: tabular-nums; }
+
+  .rage { background: #FEF2F2; }
+  .rage td:first-child { border-left: 3px solid var(--danger); }
+  .caution { background: #FFFBEB; }
+  .caution td:first-child { border-left: 3px solid var(--amber); }
+
+  .badge {
+    display: inline-block; padding: 2px 8px; border-radius: 4px;
+    font-size: 10px; font-weight: 700; letter-spacing: 0.3px;
+  }
+  .badge-rage { background: #FEE2E2; color: #991B1B; }
+  .badge-caution { background: #FEF3C7; color: #92400E; }
+  .badge-ok { background: #D1FAE5; color: #065F46; }
+
+  .zone-card {
+    background: white; border: 1px solid var(--border); border-radius: 14px;
+    padding: 24px; margin: 20px 0;
+  }
+  .zone-card h4 { font-size: 15px; font-weight: 700; margin-bottom: 4px; }
+  .zone-card .zone-sub { font-size: 12px; color: var(--muted); margin-bottom: 16px; }
+  .zone-card .zone-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 10px;
+  }
+  .zone-card .zone-metric { background: var(--light); border-radius: 8px; padding: 10px; text-align: center; }
+  .zone-card .zone-metric .zm-val { font-size: 18px; font-weight: 700; color: var(--navy); }
+  .zone-card .zone-metric .zm-lbl { font-size: 10px; color: var(--muted); }
+
+  .finding {
+    background: white; border: 1px solid var(--border); border-radius: 12px;
+    padding: 20px 24px; margin: 12px 0; display: flex; gap: 16px; align-items: flex-start;
+  }
+  .finding .icon { width: 36px; height: 36px; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 18px; flex-shrink: 0; }
+  .finding .icon.rage-icon { background: #FEE2E2; }
+  .finding .icon.warn-icon { background: #FEF3C7; }
+  .finding .icon.info-icon { background: #DBEAFE; }
+  .finding .body { flex: 1; }
+  .finding .body strong { font-size: 14px; display: block; margin-bottom: 4px; }
+  .finding .body p { font-size: 13px; color: var(--muted); line-height: 1.5; }
+
+  .device-bar { display: flex; height: 32px; border-radius: 8px; overflow: hidden; margin: 16px 0; }
+  .device-bar div { display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 600; color: white; }
+  .device-bar .desk { background: var(--navy); }
+  .device-bar .mob { background: var(--red); }
+  .device-bar .tab { background: var(--muted); }
+
+  .insight-box {
+    background: linear-gradient(135deg, #EDE9FE 0%, #F3E8FF 100%);
+    border: 1px solid #DDD6FE; border-radius: 14px; padding: 24px; margin: 24px 0;
+  }
+  .insight-box h4 { font-size: 14px; font-weight: 700; color: var(--purple); margin-bottom: 8px; }
+  .insight-box p { font-size: 13px; color: #4C1D95; line-height: 1.6; }
+
+  .goal-row { display: flex; gap: 16px; flex-wrap: wrap; margin: 16px 0 32px; }
+  .goal-item {
+    flex: 1; min-width: 160px; background: white; border: 1px solid var(--border);
+    border-radius: 10px; padding: 16px; text-align: center;
+  }
+  .goal-item .g-val { font-size: 24px; font-weight: 800; color: var(--navy); }
+  .goal-item .g-name { font-size: 11px; color: var(--muted); margin-top: 4px; }
+
+  .trend-mini {
+    background: white; border: 1px solid var(--border); border-radius: 12px;
+    padding: 20px; margin: 16px 0 32px; overflow-x: auto;
+  }
+  .trend-mini table { margin: 0; border: none; }
+  .trend-mini th { background: var(--light); color: var(--navy); font-size: 9px; }
+  .trend-mini td { font-size: 11px; padding: 6px 10px; text-align: center; }
+
+  @media (max-width: 800px) {
+    .sidebar { display: none; }
+    .header { padding: 32px 20px; }
+    .main { padding: 24px 16px 80px; }
+    .kpi-grid { grid-template-columns: repeat(2, 1fr); }
+    .exec-summary .stat-row { flex-direction: column; }
+  }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <a class="back" href="index.html">← Back to Phase 1 Hub</a>
+  <h1>1.5 Contentsquare Frustration Review</h1>
+  <p>UX behavior data from the Contentsquare Metrics + Zoning APIs — rage-click zones, engagement friction, and conversion bottlenecks across the UAGC site.</p>
+  <div class="meta">
+    <span>UAGC · uagc.edu</span>
+    <span>Data: 30 days (Apr 4 – May 4, 2026)</span>
+    <span>48 page groups · 8 zonings analyzed</span>
+    <span>Source: Contentsquare API (project 39856)</span>
+  </div>
+</div>
+
+<div class="layout">
+
+<nav class="sidebar">
+  <div class="nav-group">
+    <div class="nav-label">Overview</div>
+    <a href="#exec">Executive Summary</a>
+    <a href="#kpis">Site-Wide KPIs</a>
+    <a href="#devices">Device Split</a>
+    <a href="#goals">Goal Conversions</a>
+  </div>
+  <div class="nav-group">
+    <div class="nav-label">Page Groups</div>
+    <a href="#pg-top">Top Pages by Volume</a>
+    <a href="#pg-friction">High-Friction Pages</a>
+    <a href="#pg-full">Full Page Group Table</a>
+  </div>
+  <div class="nav-group">
+    <div class="nav-label">Zoning / Frustration</div>
+    <a href="#zone-all">All Pages (Global)</a>
+    <a href="#zone-home">Homepage</a>
+    <a href="#zone-degrees">Online Degrees</a>
+    <a href="#zone-blog">Blog</a>
+    <a href="#zone-rfi-popup">RFI Pop-Up</a>
+    <a href="#zone-rfi-success">RFI Success</a>
+    <a href="#zone-paid">Paid Success Pages</a>
+  </div>
+  <div class="nav-group">
+    <div class="nav-label">Analysis</div>
+    <a href="#key-findings">Key Findings</a>
+    <a href="#recs">Recommendations</a>
+    <a href="#trends">Daily Trends</a>
+  </div>
+</nav>
+
+<div class="main">
+
+<!-- ===== EXECUTIVE SUMMARY ===== -->
+<h2 id="exec">Executive Summary</h2>
+<div class="exec-summary">
+  <h3>Contentsquare UX Intelligence — 30-Day Window</h3>
+  <ul>
+    <li><strong>RFI forms are the #1 rage-click zone site-wide.</strong> The two-step RFI form (<code>form-twostep__form</code>) on Paid Success pages logged 118,138 clicks with a 3.23× recurrence rate — users are repeatedly clicking/tapping the same form elements, signaling confusion or broken interactions.</li>
+    <li><strong>Quote slider is the most-clicked frustration element globally.</strong> With 67,792 clicks at 3.55× recurrence, the <code>quote-slider</code> module triggers repeated taps likely from non-responsive carousel controls.</li>
+    <li><strong>RFI Pop-Up form has a 2.78× click recurrence</strong> across 54,090 clicks — the form's submit or field interactions are confusing users at massive scale.</li>
+    <li><strong>Application Pages have 71.7% bounce rate</strong> — the highest of any page group — with only 32.3% scroll depth, suggesting the Salesforce intake flow loses users immediately.</li>
+    <li><strong>Paid Success pages load in 6.70s</strong> (nearly 2× the blog's 4.12s), contributing to the 11.7% bounce rate and reducing the value of paid traffic investments.</li>
+  </ul>
+  <div class="stat-row">
+    <div class="stat"><div class="val">1.07M</div><div class="lbl">Total Pageviews</div></div>
+    <div class="stat"><div class="val">48.2%</div><div class="lbl">Avg Scroll Depth</div></div>
+    <div class="stat"><div class="val">26.2%</div><div class="lbl">Site Bounce Rate</div></div>
+    <div class="stat"><div class="val">3.68s</div><div class="lbl">Avg Load Time</div></div>
+    <div class="stat"><div class="val">7.45%</div><div class="lbl">RFI Success Rate</div></div>
+  </div>
+</div>
+
+<!-- ===== SITE-WIDE KPIs ===== -->
+<h2 id="kpis">Site-Wide KPIs (All Pages — 30 Days)</h2>
+<div class="kpi-grid">
+  <div class="kpi"><div class="val">1,069,628</div><div class="lbl">Pageviews</div></div>
+  <div class="kpi"><div class="val">452,116</div><div class="lbl">Visits</div></div>
+  <div class="kpi"><div class="val">48.2%</div><div class="lbl">Scroll Rate</div></div>
+  <div class="kpi warn"><div class="val">26.2%</div><div class="lbl">Bounce Rate</div></div>
+  <div class="kpi"><div class="val">28.3%</div><div class="lbl">Exit Rate</div></div>
+  <div class="kpi danger"><div class="val">3.68s</div><div class="lbl">Avg Load Time</div></div>
+  <div class="kpi"><div class="val">32.8%</div><div class="lbl">Activity Rate</div></div>
+  <div class="kpi"><div class="val">2.37</div><div class="lbl">Pages / Visit</div></div>
+</div>
+
+<!-- ===== DEVICE SPLIT ===== -->
+<h2 id="devices">Device Breakdown</h2>
+<div class="device-bar">
+  <div class="desk" style="width:51%">Desktop 51.0%</div>
+  <div class="mob" style="width:47.9%">Mobile 47.9%</div>
+  <div class="tab" style="width:1.1%"></div>
+</div>
+<p style="font-size:13px;color:var(--muted);margin-bottom:32px;">Desktop: 543,556 · Mobile: 509,924 · Tablet: 11,838 — near-even split means mobile UX friction has outsized impact on overall conversion.</p>
+
+<!-- ===== GOALS ===== -->
+<h2 id="goals">Goal Conversions</h2>
+<div class="goal-row">
+  <div class="goal-item"><div class="g-val">7.45%</div><div class="g-name">Information — Success<br>(RFI Complete)</div></div>
+  <div class="goal-item"><div class="g-val">1.68%</div><div class="g-name">OAP Review/Submit<br>(Application Complete)</div></div>
+</div>
+<p style="font-size:13px;color:var(--muted);margin-bottom:32px;">The remaining three click-based goals (Form CTA clicks) returned 0% — these goals may no longer match the current page structure or are tracking legacy form patterns.</p>
+
+<!-- ===== TOP PAGE GROUPS ===== -->
+<h2 id="pg-top">Top Page Groups by Volume</h2>
+<table>
+  <thead><tr><th>Page Group</th><th>Mapping</th><th class="num">Views</th><th class="num">Bounce</th><th class="num">Scroll</th><th class="num">Exit</th><th class="num">Load (s)</th><th class="num">Activity</th></tr></thead>
+  <tbody>
+    <tr><td>All Pages</td><td>All Pages</td><td class="num">1,069,628</td><td class="num">26.2%</td><td class="num">48.2%</td><td class="num">28.3%</td><td class="num">3.68</td><td class="num">32.8%</td></tr>
+    <tr><td>Application Pages</td><td>Site Structure</td><td class="num">485,835</td><td class="num">71.7%</td><td class="num">32.3%</td><td class="num">47.9%</td><td class="num">3.39</td><td class="num">35.3%</td></tr>
+    <tr><td>Success Pages</td><td>Site Structure</td><td class="num">256,707</td><td class="num">12.0%</td><td class="num">24.1%</td><td class="num">15.3%</td><td class="num">6.86</td><td class="num">15.1%</td></tr>
+    <tr><td>Paid Success</td><td>CS - High Level</td><td class="num">174,641</td><td class="num">11.7%</td><td class="num">23.2%</td><td class="num">11.2%</td><td class="num">6.70</td><td class="num">12.2%</td></tr>
+    <tr><td>Online Degree Programs</td><td>Site Structure</td><td class="num">118,678</td><td class="num">23.7%</td><td class="num">32.0%</td><td class="num">6.9%</td><td class="num">5.94</td><td class="num">43.5%</td></tr>
+    <tr><td>RFI - Pop Up</td><td>CS - High Level</td><td class="num">108,260</td><td class="num">29.8%</td><td class="num">26.6%</td><td class="num">22.8%</td><td class="num">6.75</td><td class="num">28.0%</td></tr>
+    <tr><td>Online Degrees</td><td>CS - High Level</td><td class="num">107,325</td><td class="num">23.7%</td><td class="num">33.4%</td><td class="num">6.0%</td><td class="num">5.92</td><td class="num">42.3%</td></tr>
+    <tr><td>Homepage</td><td>CS - High Level</td><td class="num">47,684</td><td class="num">20.5%</td><td class="num">11.7%</td><td class="num">16.4%</td><td class="num">6.83</td><td class="num">14.2%</td></tr>
+    <tr><td>Blog Pages</td><td>Site Structure</td><td class="num">45,037</td><td class="num">17.3%</td><td class="num">34.1%</td><td class="num">15.0%</td><td class="num">4.14</td><td class="num">29.1%</td></tr>
+    <tr><td>Bachelors</td><td>Site Structure</td><td class="num">41,832</td><td class="num">23.4%</td><td class="num">24.8%</td><td class="num">7.4%</td><td class="num">6.04</td><td class="num">34.3%</td></tr>
+  </tbody>
+</table>
+
+<!-- ===== HIGH FRICTION PAGES ===== -->
+<h2 id="pg-friction">High-Friction Page Groups</h2>
+<p style="font-size:13px;color:var(--muted);margin-bottom:16px;">Pages sorted by bounce rate — these represent the biggest drop-off points in the user journey.</p>
+<table>
+  <thead><tr><th>Page Group</th><th class="num">Views</th><th class="num">Bounce</th><th class="num">Scroll</th><th class="num">Load (s)</th><th>Severity</th></tr></thead>
+  <tbody>
+    <tr class="rage"><td>Application Pages</td><td class="num">485,835</td><td class="num">71.7%</td><td class="num">32.3%</td><td class="num">3.39</td><td><span class="badge badge-rage">CRITICAL</span></td></tr>
+    <tr class="caution"><td>Thank You</td><td class="num">26,598</td><td class="num">34.9%</td><td class="num">12.7%</td><td class="num">4.05</td><td><span class="badge badge-caution">WATCH</span></td></tr>
+    <tr class="caution"><td>RFI - Pop Up</td><td class="num">108,260</td><td class="num">29.8%</td><td class="num">26.6%</td><td class="num">6.75</td><td><span class="badge badge-caution">HIGH</span></td></tr>
+    <tr class="caution"><td>All Pages (site avg)</td><td class="num">1,069,628</td><td class="num">26.2%</td><td class="num">48.2%</td><td class="num">3.68</td><td><span class="badge badge-ok">BASELINE</span></td></tr>
+    <tr><td>Online Degrees</td><td class="num">107,325</td><td class="num">23.7%</td><td class="num">33.4%</td><td class="num">5.92</td><td><span class="badge badge-ok">OK</span></td></tr>
+    <tr><td>Homepage</td><td class="num">47,684</td><td class="num">20.5%</td><td class="num">11.7%</td><td class="num">6.83</td><td><span class="badge badge-caution">SLOW</span></td></tr>
+    <tr><td>Partnership</td><td class="num">34,314</td><td class="num">19.0%</td><td class="num">30.8%</td><td class="num">5.17</td><td><span class="badge badge-ok">OK</span></td></tr>
+    <tr><td>Paid Success</td><td class="num">174,641</td><td class="num">11.7%</td><td class="num">23.2%</td><td class="num">6.70</td><td><span class="badge badge-caution">SLOW</span></td></tr>
+    <tr><td>Success Pages</td><td class="num">256,707</td><td class="num">12.0%</td><td class="num">24.1%</td><td class="num">6.86</td><td><span class="badge badge-caution">SLOW</span></td></tr>
+  </tbody>
+</table>
+
+<div class="insight-box">
+  <h4>Load Time vs Bounce Correlation</h4>
+  <p>Pages loading under 4.2s (Blog, Application) average 44.5% bounce while pages above 6.5s (Success, Homepage, Paid, RFI Pop-Up) average 18.5% bounce. The inverse correlation is because high-bounce Application Pages are Salesforce-hosted (fast but immediately abandoned), while slow-but-sticky pages like Paid Success hold users with form interactions despite load times. <strong>Load time is a friction factor on marketing pages but not the primary bounce driver — content relevance and form UX matter more.</strong></p>
+</div>
+
+<!-- ===== FULL TABLE ===== -->
+<h2 id="pg-full">Full Page Group Table</h2>
+<p style="font-size:13px;color:var(--muted);margin-bottom:16px;">All 48 tracked page groups across 4 targeted mappings, sorted by view volume.</p>
+<div style="overflow-x:auto;">
+<table>
+  <thead><tr><th>Page Group</th><th>Mapping</th><th class="num">Views</th><th class="num">Visits</th><th class="num">Bounce</th><th class="num">Scroll</th><th class="num">Exit</th><th class="num">Load</th><th class="num">Activity</th><th class="num">Land %</th></tr></thead>
+  <tbody id="pg-table-body"></tbody>
+</table>
+</div>
+
+<!-- ===== ZONING SECTIONS ===== -->
+
+<h2 id="zone-all">Zoning: All Pages (Global)</h2>
+<p style="font-size:13px;color:var(--muted);margin-bottom:16px;">Global zoning from A/B test "RFI Pop-Up Removal" — 25 zones tracked across the entire site.</p>
+
+<div class="zone-card">
+  <h4>🔴 #1 Rage Zone: Quote Slider</h4>
+  <div class="zone-sub">Zone: <code>quote-slider-105731</code> · 67,792 clicks</div>
+  <div class="zone-grid">
+    <div class="zone-metric"><div class="zm-val" style="color:var(--danger)">3.55×</div><div class="zm-lbl">Click Recurrence</div></div>
+    <div class="zone-metric"><div class="zm-val">24.4%</div><div class="zm-lbl">Click Rate</div></div>
+    <div class="zone-metric"><div class="zm-val">0.55s</div><div class="zm-lbl">Hesitation</div></div>
+    <div class="zone-metric"><div class="zm-val">13.2%</div><div class="zm-lbl">Engagement</div></div>
+    <div class="zone-metric"><div class="zm-val">0.11%</div><div class="zm-lbl">Conv After Click</div></div>
+    <div class="zone-metric"><div class="zm-val">61.9%</div><div class="zm-lbl">Exposure Rate</div></div>
+  </div>
+</div>
+
+<div class="zone-card">
+  <h4>🟡 #2 Frustration Zone: Paid Cards</h4>
+  <div class="zone-sub">Zone: <code>paid-cards-105796</code> · 9,308 clicks</div>
+  <div class="zone-grid">
+    <div class="zone-metric"><div class="zm-val" style="color:var(--amber)">2.93×</div><div class="zm-lbl">Click Recurrence</div></div>
+    <div class="zone-metric"><div class="zm-val">12.1%</div><div class="zm-lbl">Click Rate</div></div>
+    <div class="zone-metric"><div class="zm-val">0.09s</div><div class="zm-lbl">Hesitation</div></div>
+    <div class="zone-metric"><div class="zm-val">7.6%</div><div class="zm-lbl">Engagement</div></div>
+    <div class="zone-metric"><div class="zm-val">0.05%</div><div class="zm-lbl">Conv After Click</div></div>
+    <div class="zone-metric"><div class="zm-val">68.1%</div><div class="zm-lbl">Exposure Rate</div></div>
+  </div>
+</div>
+
+<div class="zone-card">
+  <h4>🟡 #3: Area of Interest Selector</h4>
+  <div class="zone-sub">Zone: <code>Select Area of Interest*</code> · 529 clicks</div>
+  <div class="zone-grid">
+    <div class="zone-metric"><div class="zm-val" style="color:var(--amber)">2.58×</div><div class="zm-lbl">Click Recurrence</div></div>
+    <div class="zone-metric"><div class="zm-val">3.3%</div><div class="zm-lbl">Click Rate</div></div>
+    <div class="zone-metric"><div class="zm-val">0.52s</div><div class="zm-lbl">Hesitation</div></div>
+    <div class="zone-metric"><div class="zm-val">4.3%</div><div class="zm-lbl">Engagement</div></div>
+    <div class="zone-metric"><div class="zm-val">0.27%</div><div class="zm-lbl">Conv After Click</div></div>
+    <div class="zone-metric"><div class="zm-val">19.1%</div><div class="zm-lbl">Exposure Rate</div></div>
+  </div>
+</div>
+
+<table>
+  <thead><tr><th>Zone</th><th class="num">Clicks</th><th class="num">Recurrence</th><th class="num">Click Rate</th><th class="num">Hesitation</th><th class="num">Exposure</th><th class="num">Conv/Click</th><th>Flag</th></tr></thead>
+  <tbody>
+    <tr class="rage"><td>quote-slider-105731</td><td class="num">67,792</td><td class="num">3.55×</td><td class="num">24.4%</td><td class="num">0.55s</td><td class="num">61.9%</td><td class="num">0.11%</td><td><span class="badge badge-rage">RAGE</span></td></tr>
+    <tr class="rage"><td>paid-cards-105796</td><td class="num">9,308</td><td class="num">2.93×</td><td class="num">12.1%</td><td class="num">0.09s</td><td class="num">68.1%</td><td class="num">0.05%</td><td><span class="badge badge-rage">RAGE</span></td></tr>
+    <tr class="caution"><td>Select Area of Interest*</td><td class="num">529</td><td class="num">2.58×</td><td class="num">3.3%</td><td class="num">0.52s</td><td class="num">19.1%</td><td class="num">0.27%</td><td><span class="badge badge-caution">CAUTION</span></td></tr>
+    <tr class="caution"><td>zes-partner-divider-105611</td><td class="num">13,510</td><td class="num">2.29×</td><td class="num">10.9%</td><td class="num">0.13s</td><td class="num">92.3%</td><td class="num">0.16%</td><td><span class="badge badge-caution">CAUTION</span></td></tr>
+    <tr class="caution"><td>FAQ: Online Degrees</td><td class="num">13,656</td><td class="num">2.09×</td><td class="num">11.0%</td><td class="num">0.38s</td><td class="num">62.1%</td><td class="num">0.06%</td><td><span class="badge badge-caution">CAUTION</span></td></tr>
+  </tbody>
+</table>
+
+<!-- HOMEPAGE ZONING -->
+<h2 id="zone-home">Zoning: Homepage</h2>
+<div class="zone-card">
+  <h4>Homepage Desktop — 25 Zones</h4>
+  <div class="zone-sub">Zoning: <code>4/13/23 - Home Page - Desktop</code></div>
+</div>
+<table>
+  <thead><tr><th>Zone</th><th class="num">Clicks</th><th class="num">Recurrence</th><th class="num">Click Rate</th><th class="num">Hesitation</th><th class="num">Conv/Click</th><th>Flag</th></tr></thead>
+  <tbody>
+    <tr class="caution"><td>site-layout__article-header</td><td class="num">2</td><td class="num">2.00×</td><td class="num">0.0%</td><td class="num">0.00s</td><td class="num">0.00%</td><td><span class="badge badge-caution">LOW VOL</span></td></tr>
+    <tr class="caution"><td>find-your-path-98551</td><td class="num">86</td><td class="num">1.96×</td><td class="num">0.3%</td><td class="num">0.40s</td><td class="num">0.68%</td><td><span class="badge badge-caution">CAUTION</span></td></tr>
+    <tr><td>site-layout__article-content</td><td class="num">2,843</td><td class="num">1.50×</td><td class="num">9.6%</td><td class="num">0.17s</td><td class="num">0.12%</td><td><span class="badge badge-ok">OK</span></td></tr>
+    <tr><td>blog-tools-102926</td><td class="num">35</td><td class="num">1.67×</td><td class="num">0.2%</td><td class="num">0.27s</td><td class="num">0.00%</td><td><span class="badge badge-ok">OK</span></td></tr>
+  </tbody>
+</table>
+<div class="insight-box">
+  <h4>Homepage Insight</h4>
+  <p>Homepage has only <strong>11.7% scroll depth</strong> — the lowest of any non-success page. Users engage with above-the-fold content but rarely scroll. The "find-your-path" module (1.96× recurrence) suggests the degree-finder CTA is clicked repeatedly without resolving, possibly due to expectation mismatch. Given 47,684 monthly views, even incremental scroll improvement could significantly increase RFI exposure.</p>
+</div>
+
+<!-- ONLINE DEGREES ZONING -->
+<h2 id="zone-degrees">Zoning: Online Degrees</h2>
+<div class="zone-card">
+  <h4>🔴 Sticky RFI Form: High Recurrence</h4>
+  <div class="zone-sub">Zone: <code>header-sticky-rfi-forms</code> · 1,691 clicks</div>
+  <div class="zone-grid">
+    <div class="zone-metric"><div class="zm-val" style="color:var(--danger)">2.41×</div><div class="zm-lbl">Click Recurrence</div></div>
+    <div class="zone-metric"><div class="zm-val">2.2%</div><div class="zm-lbl">Click Rate</div></div>
+    <div class="zone-metric"><div class="zm-val">0.46s</div><div class="zm-lbl">Hesitation</div></div>
+    <div class="zone-metric"><div class="zm-val">9.2%</div><div class="zm-lbl">Engagement</div></div>
+    <div class="zone-metric"><div class="zm-val">0.08%</div><div class="zm-lbl">Conv After Click</div></div>
+  </div>
+</div>
+
+<div class="zone-card">
+  <h4>🔴 Two-Step RFI Form: High Recurrence</h4>
+  <div class="zone-sub">Zone: <code>paid-twostep__form</code> · 8,765 clicks</div>
+  <div class="zone-grid">
+    <div class="zone-metric"><div class="zm-val" style="color:var(--danger)">2.41×</div><div class="zm-lbl">Click Recurrence</div></div>
+    <div class="zone-metric"><div class="zm-val">11.2%</div><div class="zm-lbl">Click Rate</div></div>
+    <div class="zone-metric"><div class="zm-val">0.38s</div><div class="zm-lbl">Hesitation</div></div>
+    <div class="zone-metric"><div class="zm-val">28.3%</div><div class="zm-lbl">Engagement</div></div>
+    <div class="zone-metric"><div class="zm-val">0.28%</div><div class="zm-lbl">Conv After Click</div></div>
+  </div>
+</div>
+
+<table>
+  <thead><tr><th>Zone</th><th class="num">Clicks</th><th class="num">Recurrence</th><th class="num">Click Rate</th><th class="num">Hesitation</th><th class="num">Conv/Click</th><th>Flag</th></tr></thead>
+  <tbody>
+    <tr class="rage"><td>paid-twostep__form</td><td class="num">8,765</td><td class="num">2.41×</td><td class="num">11.2%</td><td class="num">0.38s</td><td class="num">0.28%</td><td><span class="badge badge-rage">RAGE</span></td></tr>
+    <tr class="rage"><td>header-sticky-rfi-forms</td><td class="num">1,691</td><td class="num">2.41×</td><td class="num">2.2%</td><td class="num">0.46s</td><td class="num">0.08%</td><td><span class="badge badge-rage">RAGE</span></td></tr>
+    <tr class="caution"><td>icon-text-block__content-block</td><td class="num">877</td><td class="num">2.35×</td><td class="num">1.2%</td><td class="num">0.05s</td><td class="num">0.08%</td><td><span class="badge badge-caution">CAUTION</span></td></tr>
+    <tr class="caution"><td>site-footer__top-group</td><td class="num">29</td><td class="num">2.23×</td><td class="num">0.1%</td><td class="num">0.00s</td><td class="num">0.00%</td><td><span class="badge badge-caution">LOW VOL</span></td></tr>
+    <tr><td>zes-two-column-tabs__credit-content</td><td class="num">9</td><td class="num">9.00×</td><td class="num">0.0%</td><td class="num">0.00s</td><td class="num">0.00%</td><td><span class="badge badge-caution">ANOMALY</span></td></tr>
+  </tbody>
+</table>
+
+<!-- BLOG ZONING -->
+<h2 id="zone-blog">Zoning: Blog</h2>
+<table>
+  <thead><tr><th>Zone</th><th class="num">Clicks</th><th class="num">Recurrence</th><th class="num">Click Rate</th><th class="num">Hesitation</th><th class="num">Conv/Click</th><th>Flag</th></tr></thead>
+  <tbody>
+    <tr class="caution"><td>blog-sidebar-form</td><td class="num">297</td><td class="num">2.58×</td><td class="num">1.3%</td><td class="num">0.19s</td><td class="num">0.00%</td><td><span class="badge badge-rage">RAGE</span></td></tr>
+    <tr><td>site-layout__header</td><td class="num">1,069</td><td class="num">1.98×</td><td class="num">4.8%</td><td class="num">0.34s</td><td class="num">0.07%</td><td><span class="badge badge-caution">CAUTION</span></td></tr>
+  </tbody>
+</table>
+<div class="insight-box">
+  <h4>Blog Form Friction</h4>
+  <p>The <code>blog-sidebar-form</code> has 2.58× click recurrence with <strong>0.00% conversion after click</strong> — users tap the form repeatedly but never convert. With 44,598 blog views per month and only 17.3% bounce, blog visitors are engaged readers but the sidebar RFI form is failing to capture intent. Consider replacing with a contextual CTA or inline form that matches the content topic.</p>
+</div>
+
+<!-- RFI POP-UP ZONING -->
+<h2 id="zone-rfi-popup">Zoning: RFI Pop-Up</h2>
+<div class="zone-card">
+  <h4>🔴 Pop-Up RFI Form: Massive Volume Rage Clicks</h4>
+  <div class="zone-sub">Zone: <code>webform-submission-lead-flow-system-node-14996-add-form--4</code> · 54,090 clicks</div>
+  <div class="zone-grid">
+    <div class="zone-metric"><div class="zm-val" style="color:var(--danger)">2.78×</div><div class="zm-lbl">Click Recurrence</div></div>
+    <div class="zone-metric"><div class="zm-val">31.3%</div><div class="zm-lbl">Click Rate</div></div>
+    <div class="zone-metric"><div class="zm-val">0.03s</div><div class="zm-lbl">Hesitation</div></div>
+    <div class="zone-metric"><div class="zm-val">48.1%</div><div class="zm-lbl">Engagement</div></div>
+    <div class="zone-metric"><div class="zm-val">0.01%</div><div class="zm-lbl">Conv After Click</div></div>
+    <div class="zone-metric"><div class="zm-val">75.2%</div><div class="zm-lbl">Exposure Rate</div></div>
+  </div>
+</div>
+<p style="font-size:13px;color:var(--muted);margin:12px 0 32px;">108,260 pop-up views, 54,090 form clicks, 2.78× recurrence, and only <strong>0.01% conversion after click</strong>. This is the single highest-volume frustration signal on the site. Users are interacting with the form but unable to complete — likely field validation issues, confusing dropdown interactions, or submit failures.</p>
+
+<!-- RFI SUCCESS -->
+<h2 id="zone-rfi-success">Zoning: RFI Success Page</h2>
+<table>
+  <thead><tr><th>Zone</th><th class="num">Clicks</th><th class="num">Recurrence</th><th class="num">Click Rate</th><th class="num">Hesitation</th><th class="num">Conv/Click</th><th>Flag</th></tr></thead>
+  <tbody>
+    <tr class="caution"><td>partner-divider__logo-container</td><td class="num">101</td><td class="num">2.06×</td><td class="num">0.2%</td><td class="num">0.00s</td><td class="num">0.00%</td><td><span class="badge badge-caution">CAUTION</span></td></tr>
+  </tbody>
+</table>
+<p style="font-size:13px;color:var(--muted);margin:0 0 32px;">Low-severity — users tapping partner logos on the success/thank-you page, likely expecting clickable links. Minor fix: make logos link to partner pages or remove click affordance.</p>
+
+<!-- PAID SUCCESS ZONING -->
+<h2 id="zone-paid">Zoning: Paid Success (Landing Pages)</h2>
+<div class="zone-card">
+  <h4>🔴 #1 Rage Zone: Two-Step RFI Form</h4>
+  <div class="zone-sub">Zone: <code>form-twostep__form</code> · 118,138 clicks — THE highest-volume zone on the entire site</div>
+  <div class="zone-grid">
+    <div class="zone-metric"><div class="zm-val" style="color:var(--danger)">3.23×</div><div class="zm-lbl">Click Recurrence</div></div>
+    <div class="zone-metric"><div class="zm-val">53.8%</div><div class="zm-lbl">Click Rate</div></div>
+    <div class="zone-metric"><div class="zm-val">0.22s</div><div class="zm-lbl">Hesitation</div></div>
+    <div class="zone-metric"><div class="zm-val">62.1%</div><div class="zm-lbl">Engagement</div></div>
+    <div class="zone-metric"><div class="zm-val">0.04%</div><div class="zm-lbl">Conv After Click</div></div>
+    <div class="zone-metric"><div class="zm-val">89.2%</div><div class="zm-lbl">Exposure Rate</div></div>
+  </div>
+</div>
+
+<table>
+  <thead><tr><th>Zone</th><th class="num">Clicks</th><th class="num">Recurrence</th><th class="num">Click Rate</th><th class="num">Exposure</th><th class="num">Conv/Click</th><th>Flag</th></tr></thead>
+  <tbody>
+    <tr class="rage"><td>form-twostep__form</td><td class="num">118,138</td><td class="num">3.23×</td><td class="num">53.8%</td><td class="num">89.2%</td><td class="num">0.04%</td><td><span class="badge badge-rage">RAGE</span></td></tr>
+    <tr class="caution"><td>paid-two-column-plain__heading</td><td class="num">318</td><td class="num">2.01×</td><td class="num">0.3%</td><td class="num">73.3%</td><td class="num">0.00%</td><td><span class="badge badge-caution">CAUTION</span></td></tr>
+    <tr><td>site-header__logo</td><td class="num">3,202</td><td class="num">1.78×</td><td class="num">2.8%</td><td class="num">96.2%</td><td class="num">0.00%</td><td><span class="badge badge-caution">ESCAPE</span></td></tr>
+    <tr><td>paid-reasons__icon-container</td><td class="num">344</td><td class="num">1.69×</td><td class="num">0.4%</td><td class="num">68.2%</td><td class="num">0.00%</td><td><span class="badge badge-ok">OK</span></td></tr>
+  </tbody>
+</table>
+
+<div class="insight-box">
+  <h4>Critical: Paid Landing Page Form Friction</h4>
+  <p>The two-step form on paid success pages is the <strong>most interacted-with element on the entire site</strong> (118,138 clicks, 89.2% exposure, 53.8% click rate) but converts at only <strong>0.04% per click</strong> with a <strong>3.23× recurrence rate</strong>. Users click the form 3+ times on average before abandoning. This is the #1 opportunity on the site: every 1% improvement in form conversion from these clicks would translate to ~1,181 additional leads per month. Investigate: field validation errors, dropdown usability, mobile tap targets, and step-2 abandonment.</p>
+</div>
+
+<!-- ===== KEY FINDINGS ===== -->
+<h2 id="key-findings">Key Findings</h2>
+
+<div class="finding">
+  <div class="icon rage-icon">1</div>
+  <div class="body">
+    <strong>Form Rage Clicks Are the #1 Issue Site-Wide</strong>
+    <p>Three form zones — <code>form-twostep__form</code> (3.23×), <code>webform-submission RFI pop-up</code> (2.78×), and <code>paid-twostep__form</code> (2.41×) — collectively generate 181,000+ frustrated clicks per month. All share click recurrence above 2.4× with conversion rates under 0.3%. The form experience is the single biggest conversion bottleneck.</p>
+  </div>
+</div>
+
+<div class="finding">
+  <div class="icon rage-icon">2</div>
+  <div class="body">
+    <strong>Application Pages: 71.7% Bounce, 485K Views</strong>
+    <p>The Salesforce-hosted application flow has the highest bounce rate of any page group, with nearly half a million monthly views bleeding out. Only 32.3% scroll depth suggests users either can't find what they need or immediately disengage from the application form. This is a massive funnel leak between RFI completion and application start.</p>
+  </div>
+</div>
+
+<div class="finding">
+  <div class="icon warn-icon">3</div>
+  <div class="body">
+    <strong>Quote Slider Generates False Engagement</strong>
+    <p>The testimonial/quote slider is the most-clicked non-form element (67,792 clicks, 3.55× recurrence) but has only 0.11% conversion after click. Users tap repeatedly trying to advance slides — likely because carousel controls aren't responsive or obvious. This creates noise in engagement metrics without driving conversions.</p>
+  </div>
+</div>
+
+<div class="finding">
+  <div class="icon warn-icon">4</div>
+  <div class="body">
+    <strong>Blog Sidebar Form: High Engagement, Zero Conversion</strong>
+    <p>The blog draws 44,598 views with only 17.3% bounce (best engagement tier), but the sidebar RFI form has 2.58× rage clicks and literally 0.00% conversion after click. Blog readers are primed but the form mechanism is broken or misaligned with their intent.</p>
+  </div>
+</div>
+
+<div class="finding">
+  <div class="icon info-icon">5</div>
+  <div class="body">
+    <strong>Mobile Parity Risk</strong>
+    <p>With 47.9% of traffic on mobile (509,924 views), every form usability issue is amplified. The 2.41× recurrence on the sticky RFI header form on degree pages and the pop-up form friction are likely worse on smaller viewports where tap targets are compressed. Mobile-specific zoning data would quantify the gap.</p>
+  </div>
+</div>
+
+<!-- ===== RECOMMENDATIONS ===== -->
+<h2 id="recs">Recommendations</h2>
+
+<table>
+  <thead><tr><th>#</th><th>Action</th><th>Impact Zone</th><th>Priority</th><th>Est. Impact</th></tr></thead>
+  <tbody>
+    <tr class="rage"><td>1</td><td><strong>Audit two-step form field validation</strong> — check for silent validation errors, focus traps, and submit button state management on paid landing pages</td><td>Paid Success (form-twostep)</td><td><span class="badge badge-rage">P0</span></td><td>118K clicks → even 1% fix = 1.2K leads/mo</td></tr>
+    <tr class="rage"><td>2</td><td><strong>Fix RFI pop-up form interaction</strong> — 54K clicks at 2.78× recurrence with 0.01% conv suggests form submit failure or field confusion</td><td>RFI Pop-Up (global)</td><td><span class="badge badge-rage">P0</span></td><td>108K monthly pop-up views at risk</td></tr>
+    <tr class="caution"><td>3</td><td><strong>Replace or fix quote slider controls</strong> — make carousel navigation buttons larger, more visible, or replace with static testimonials</td><td>All Pages (quote-slider)</td><td><span class="badge badge-caution">P1</span></td><td>Reduces false engagement, improves UX clarity</td></tr>
+    <tr class="caution"><td>4</td><td><strong>Redesign blog sidebar CTA</strong> — replace failing sidebar form with contextual inline CTA or topic-matched lead magnet</td><td>Blog pages</td><td><span class="badge badge-caution">P1</span></td><td>44.6K engaged readers, currently zero form conversions</td></tr>
+    <tr><td>5</td><td><strong>Investigate application flow abandonment</strong> — 71.7% bounce on Salesforce intake needs session replay or CS zoning on that domain</td><td>Application Pages</td><td><span class="badge badge-caution">P1</span></td><td>485K views with 72% drop = 349K lost sessions</td></tr>
+    <tr><td>6</td><td><strong>Improve homepage scroll engagement</strong> — only 11.7% scroll depth despite 47K views; content below fold is invisible to users</td><td>Homepage</td><td><span class="badge badge-ok">P2</span></td><td>Better RFI/program exposure for navigational visitors</td></tr>
+    <tr><td>7</td><td><strong>Run mobile-specific zoning analysis</strong> — separate desktop vs mobile recurrence data to quantify form friction per device</td><td>All form zones</td><td><span class="badge badge-ok">P2</span></td><td>Prioritize mobile-first fixes for 48% of traffic</td></tr>
+    <tr><td>8</td><td><strong>Fix broken goal tracking</strong> — 3 of 5 CS goals return 0%, likely stale selectors or removed CTAs</td><td>CS configuration</td><td><span class="badge badge-ok">P2</span></td><td>Better data quality for ongoing optimization</td></tr>
+  </tbody>
+</table>
+
+<!-- ===== DAILY TRENDS ===== -->
+<h2 id="trends">Daily Trends (30 Days)</h2>
+<div class="trend-mini">
+<table>
+  <thead><tr><th>Date</th><th>Views</th><th>Scroll %</th><th>Bounce %</th></tr></thead>
+  <tbody id="trends-body"></tbody>
+</table>
+</div>
+
+</div><!-- .main -->
+</div><!-- .layout -->
+
+<script>
+const CS_DATA = {
+  page_groups: [
+    {name:"All Pages",mapping:"All Pages",views:1069628,visits:452116,bounce_rate:26.2,scroll_rate:48.2,exit_rate:28.3,loading_time_s:3.68,activity_rate:32.8,landing_rate:11.1},
+    {name:"Application Pages",mapping:"Site Structure",views:485835,visits:344587,bounce_rate:71.7,scroll_rate:32.3,exit_rate:47.9,loading_time_s:3.39,activity_rate:35.3,landing_rate:57.2},
+    {name:"Success Pages",mapping:"Site Structure",views:256707,visits:111990,bounce_rate:12.0,scroll_rate:24.1,exit_rate:15.3,loading_time_s:6.86,activity_rate:15.1,landing_rate:38.5},
+    {name:"Paid Success",mapping:"CS - High Level",views:174641,visits:97637,bounce_rate:11.7,scroll_rate:23.2,exit_rate:11.2,loading_time_s:6.70,activity_rate:12.2,landing_rate:48.5},
+    {name:"Online Degree Programs",mapping:"Site Structure",views:118678,visits:57925,bounce_rate:23.7,scroll_rate:32.0,exit_rate:6.9,loading_time_s:5.94,activity_rate:43.5,landing_rate:7.2},
+    {name:"RFI - Pop Up",mapping:"CS - High Level",views:108260,visits:47963,bounce_rate:29.8,scroll_rate:26.6,exit_rate:22.8,loading_time_s:6.75,activity_rate:28.0,landing_rate:4.1},
+    {name:"Online Degrees",mapping:"CS - High Level",views:107325,visits:53044,bounce_rate:23.7,scroll_rate:33.4,exit_rate:6.0,loading_time_s:5.92,activity_rate:42.3,landing_rate:7.0},
+    {name:"Home-APV",mapping:"APVs tracked",views:51346,visits:38254,bounce_rate:20.5,scroll_rate:12.2,exit_rate:16.4,loading_time_s:6.87,activity_rate:14.2,landing_rate:55.1},
+    {name:"Homepage",mapping:"CS - High Level",views:47684,visits:37028,bounce_rate:20.5,scroll_rate:11.7,exit_rate:16.4,loading_time_s:6.83,activity_rate:14.2,landing_rate:57.2},
+    {name:"Blog Pages",mapping:"Site Structure",views:45037,visits:30854,bounce_rate:17.3,scroll_rate:34.1,exit_rate:15.0,loading_time_s:4.14,activity_rate:29.1,landing_rate:48.2},
+    {name:"Blog",mapping:"CS - High Level",views:44598,visits:30557,bounce_rate:17.3,scroll_rate:33.7,exit_rate:14.8,loading_time_s:4.12,activity_rate:29.3,landing_rate:48.6},
+    {name:"Bachelors",mapping:"Site Structure",views:41832,visits:18775,bounce_rate:23.4,scroll_rate:24.8,exit_rate:7.4,loading_time_s:6.04,activity_rate:34.3,landing_rate:6.3},
+    {name:"Partnership",mapping:"CS - High Level",views:34314,visits:21723,bounce_rate:19.0,scroll_rate:30.8,exit_rate:15.5,loading_time_s:5.17,activity_rate:29.3,landing_rate:24.1},
+    {name:"Partnerships - Corporate",mapping:"Site Structure",views:26916,visits:17988,bounce_rate:14.0,scroll_rate:35.0,exit_rate:16.2,loading_time_s:5.11,activity_rate:30.6,landing_rate:30.1},
+    {name:"Thank You",mapping:"Site Structure",views:26598,visits:24068,bounce_rate:34.9,scroll_rate:12.7,exit_rate:6.1,loading_time_s:4.05,activity_rate:9.9,landing_rate:0.5},
+    {name:"Request Information - Success",mapping:"CS - High Level",views:26597,visits:24067,bounce_rate:34.9,scroll_rate:12.7,exit_rate:6.1,loading_time_s:4.05,activity_rate:9.9,landing_rate:0.5},
+    {name:"Masters",mapping:"Site Structure",views:24736,visits:13102,bounce_rate:22.3,scroll_rate:24.3,exit_rate:9.5,loading_time_s:6.28,activity_rate:35.9,landing_rate:7.2},
+    {name:"Student Success Stories",mapping:"Site Structure",views:23058,visits:11888,bounce_rate:12.0,scroll_rate:43.6,exit_rate:14.9,loading_time_s:5.79,activity_rate:33.2,landing_rate:3.6},
+    {name:"Student Experience",mapping:"CS - High Level",views:22221,visits:11455,bounce_rate:12.0,scroll_rate:44.1,exit_rate:14.5,loading_time_s:5.81,activity_rate:33.2,landing_rate:3.5},
+    {name:"Tuition and Financial Aid",mapping:"Site Structure",views:21163,visits:12576,bounce_rate:21.2,scroll_rate:40.3,exit_rate:17.1,loading_time_s:5.23,activity_rate:38.9,landing_rate:10.5},
+    {name:"Tuition Financial Aid",mapping:"CS - High Level",views:21018,visits:12522,bounce_rate:21.6,scroll_rate:40.1,exit_rate:17.1,loading_time_s:5.19,activity_rate:37.9,landing_rate:10.2},
+    {name:"Catalog",mapping:"CS - High Level",views:12511,visits:6822,bounce_rate:6.3,scroll_rate:39.1,exit_rate:3.3,loading_time_s:5.98,activity_rate:42.3,landing_rate:0.1},
+    {name:"Admissions",mapping:"CS - High Level",views:10447,visits:7032,bounce_rate:18.9,scroll_rate:37.2,exit_rate:18.1,loading_time_s:5.18,activity_rate:32.9,landing_rate:11.3},
+    {name:"Admission Pages",mapping:"Site Structure",views:10781,visits:7242,bounce_rate:18.7,scroll_rate:37.3,exit_rate:17.8,loading_time_s:5.20,activity_rate:32.8,landing_rate:11.6},
+    {name:"Account",mapping:"CS - High Level",views:8497,visits:5316,bounce_rate:18.4,scroll_rate:26.9,exit_rate:17.2,loading_time_s:5.92,activity_rate:15.0,landing_rate:5.4},
+    {name:"About Pages",mapping:"Site Structure",views:7590,visits:5086,bounce_rate:13.5,scroll_rate:36.1,exit_rate:15.0,loading_time_s:4.58,activity_rate:30.3,landing_rate:12.2},
+    {name:"Information",mapping:"CS - High Level",views:7466,visits:5013,bounce_rate:13.5,scroll_rate:36.0,exit_rate:14.9,loading_time_s:4.57,activity_rate:30.3,landing_rate:12.3},
+    {name:"Course Description",mapping:"CS - High Level",views:7481,visits:4193,bounce_rate:6.3,scroll_rate:38.3,exit_rate:6.3,loading_time_s:5.76,activity_rate:42.6,landing_rate:1.3},
+    {name:"Business",mapping:"Site Structure",views:7029,visits:3437,bounce_rate:24.5,scroll_rate:26.3,exit_rate:6.5,loading_time_s:6.06,activity_rate:36.0,landing_rate:6.7},
+    {name:"Associate",mapping:"Site Structure",views:6964,visits:3503,bounce_rate:20.0,scroll_rate:23.1,exit_rate:7.1,loading_time_s:5.84,activity_rate:31.1,landing_rate:6.3},
+    {name:"Doctoral",mapping:"Site Structure",views:6251,visits:3476,bounce_rate:20.1,scroll_rate:25.2,exit_rate:10.1,loading_time_s:6.46,activity_rate:33.2,landing_rate:8.1},
+    {name:"Military",mapping:"CS - High Level",views:5129,visits:3264,bounce_rate:14.2,scroll_rate:29.3,exit_rate:11.2,loading_time_s:5.47,activity_rate:30.1,landing_rate:14.4},
+    {name:"Health Care",mapping:"Site Structure",views:3519,visits:1782,bounce_rate:21.2,scroll_rate:26.1,exit_rate:5.8,loading_time_s:5.89,activity_rate:36.5,landing_rate:4.3},
+    {name:"Social Behavioral Science",mapping:"Site Structure",views:3706,visits:1819,bounce_rate:25.1,scroll_rate:25.3,exit_rate:6.2,loading_time_s:5.71,activity_rate:34.1,landing_rate:4.2},
+    {name:"Partnerships - Academic",mapping:"Site Structure",views:2741,visits:1803,bounce_rate:19.2,scroll_rate:27.8,exit_rate:13.2,loading_time_s:4.64,activity_rate:29.3,landing_rate:4.3},
+    {name:"Emphases",mapping:"Site Structure",views:2628,visits:1434,bounce_rate:12.4,scroll_rate:32.1,exit_rate:6.4,loading_time_s:5.92,activity_rate:42.4,landing_rate:1.8},
+    {name:"Education",mapping:"Site Structure",views:2415,visits:1336,bounce_rate:23.7,scroll_rate:26.3,exit_rate:6.1,loading_time_s:5.86,activity_rate:38.1,landing_rate:7.1},
+    {name:"IT",mapping:"Site Structure",views:2263,visits:1162,bounce_rate:20.4,scroll_rate:24.8,exit_rate:5.5,loading_time_s:6.01,activity_rate:35.1,landing_rate:4.1},
+    {name:"Search",mapping:"CS - High Level",views:2186,visits:1606,bounce_rate:9.0,scroll_rate:41.1,exit_rate:14.1,loading_time_s:5.92,activity_rate:30.0,landing_rate:4.8},
+    {name:"rfi-popup",mapping:"APVs tracked",views:1887,visits:1099,bounce_rate:30.5,scroll_rate:3.1,exit_rate:30.0,loading_time_s:5.81,activity_rate:56.8,landing_rate:1.5},
+    {name:"Criminal Justice",mapping:"Site Structure",views:1658,visits:895,bounce_rate:18.7,scroll_rate:26.5,exit_rate:6.1,loading_time_s:5.92,activity_rate:37.4,landing_rate:6.2},
+    {name:"Tour",mapping:"CS - High Level",views:1351,visits:820,bounce_rate:10.0,scroll_rate:43.5,exit_rate:21.9,loading_time_s:4.97,activity_rate:32.0,landing_rate:6.5},
+    {name:"Nodes",mapping:"CS - High Level",views:876,visits:544,bounce_rate:12.0,scroll_rate:33.1,exit_rate:15.0,loading_time_s:5.19,activity_rate:25.5,landing_rate:3.1},
+    {name:"Returning Student",mapping:"Site Structure",views:466,visits:377,bounce_rate:6.1,scroll_rate:47.1,exit_rate:16.0,loading_time_s:6.52,activity_rate:38.7,landing_rate:47.5},
+    {name:"Request Information",mapping:"CS - High Level",views:181,visits:107,bounce_rate:14.7,scroll_rate:53.3,exit_rate:4.0,loading_time_s:6.19,activity_rate:47.2,landing_rate:1.5},
+    {name:"Application Highlevel",mapping:"All Pages",views:187,visits:143,bounce_rate:72.0,scroll_rate:30.0,exit_rate:43.3,loading_time_s:2.28,activity_rate:39.3,landing_rate:67.6},
+    {name:"/success/",mapping:"APVs tracked",views:40,visits:37,bounce_rate:10.0,scroll_rate:16.2,exit_rate:10.0,loading_time_s:7.05,activity_rate:7.1,landing_rate:90.0},
+    {name:"RFI - Step 2",mapping:"CS - High Level",views:6,visits:5,bounce_rate:0.0,scroll_rate:91.7,exit_rate:0.0,loading_time_s:4.32,activity_rate:75.2,landing_rate:0.0},
+  ],
+  daily: [
+    {date:"2026-04-05",views:32907,scroll_rate:48.5,bounce_rate:26.0},
+    {date:"2026-04-06",views:24277,scroll_rate:47.1,bounce_rate:28.3},
+    {date:"2026-04-07",views:37917,scroll_rate:49.6,bounce_rate:25.8},
+    {date:"2026-04-08",views:38508,scroll_rate:48.5,bounce_rate:26.1},
+    {date:"2026-04-09",views:37476,scroll_rate:47.5,bounce_rate:25.9},
+    {date:"2026-04-10",views:36648,scroll_rate:47.8,bounce_rate:26.1},
+    {date:"2026-04-11",views:34949,scroll_rate:47.9,bounce_rate:25.9},
+    {date:"2026-04-12",views:28834,scroll_rate:47.9,bounce_rate:26.1},
+    {date:"2026-04-13",views:23825,scroll_rate:47.3,bounce_rate:27.3},
+    {date:"2026-04-14",views:38051,scroll_rate:48.8,bounce_rate:25.5},
+    {date:"2026-04-15",views:38281,scroll_rate:48.5,bounce_rate:26.0},
+    {date:"2026-04-16",views:37093,scroll_rate:47.5,bounce_rate:26.2},
+    {date:"2026-04-17",views:36652,scroll_rate:47.9,bounce_rate:26.0},
+    {date:"2026-04-18",views:34792,scroll_rate:47.9,bounce_rate:26.1},
+    {date:"2026-04-19",views:27987,scroll_rate:47.2,bounce_rate:27.4},
+    {date:"2026-04-20",views:22680,scroll_rate:47.3,bounce_rate:28.4},
+    {date:"2026-04-21",views:37153,scroll_rate:49.0,bounce_rate:25.7},
+    {date:"2026-04-22",views:37652,scroll_rate:48.2,bounce_rate:26.3},
+    {date:"2026-04-23",views:38106,scroll_rate:48.4,bounce_rate:26.2},
+    {date:"2026-04-24",views:37153,scroll_rate:47.9,bounce_rate:25.9},
+    {date:"2026-04-25",views:34671,scroll_rate:47.5,bounce_rate:26.3},
+    {date:"2026-04-26",views:28266,scroll_rate:47.6,bounce_rate:27.0},
+    {date:"2026-04-27",views:22984,scroll_rate:47.4,bounce_rate:28.4},
+    {date:"2026-04-28",views:37584,scroll_rate:48.9,bounce_rate:25.4},
+    {date:"2026-04-29",views:38131,scroll_rate:48.6,bounce_rate:26.0},
+    {date:"2026-04-30",views:37052,scroll_rate:48.1,bounce_rate:25.9},
+    {date:"2026-05-01",views:36068,scroll_rate:48.4,bounce_rate:25.8},
+    {date:"2026-05-02",views:33924,scroll_rate:47.7,bounce_rate:25.7},
+    {date:"2026-05-03",views:26762,scroll_rate:47.1,bounce_rate:27.4},
+    {date:"2026-05-04",views:11506,scroll_rate:48.4,bounce_rate:25.7},
+  ]
+};
+
+// Render page group table
+const pgBody = document.getElementById('pg-table-body');
+CS_DATA.page_groups.forEach(pg => {
+  const tr = document.createElement('tr');
+  const bounceClass = pg.bounce_rate > 50 ? ' class="rage"' : pg.bounce_rate > 25 ? ' class="caution"' : '';
+  tr.innerHTML = `
+    <td>${pg.name}</td>
+    <td style="font-size:11px;color:var(--muted)">${pg.mapping}</td>
+    <td class="num">${pg.views.toLocaleString()}</td>
+    <td class="num">${pg.visits.toLocaleString()}</td>
+    <td class="num">${pg.bounce_rate}%</td>
+    <td class="num">${pg.scroll_rate}%</td>
+    <td class="num">${pg.exit_rate}%</td>
+    <td class="num">${pg.loading_time_s}s</td>
+    <td class="num">${pg.activity_rate}%</td>
+    <td class="num">${pg.landing_rate}%</td>
+  `;
+  if (pg.bounce_rate > 50) tr.classList.add('rage');
+  else if (pg.bounce_rate > 28) tr.classList.add('caution');
+  pgBody.appendChild(tr);
+});
+
+// Render daily trends
+const trendsBody = document.getElementById('trends-body');
+CS_DATA.daily.forEach(d => {
+  const tr = document.createElement('tr');
+  tr.innerHTML = `
+    <td>${d.date}</td>
+    <td>${d.views.toLocaleString()}</td>
+    <td>${d.scroll_rate}%</td>
+    <td>${d.bounce_rate}%</td>
+  `;
+  trendsBody.appendChild(tr);
+});
+
+// Active nav highlighting
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      document.querySelectorAll('.sidebar a').forEach(a => a.classList.remove('active'));
+      const link = document.querySelector(`.sidebar a[href="#${e.target.id}"]`);
+      if (link) link.classList.add('active');
+    }
+  });
+}, { rootMargin: '-20% 0px -70% 0px' });
+document.querySelectorAll('h2[id]').forEach(h => observer.observe(h));
+</script>
+
+</body>
+</html>

@@ -1,0 +1,1145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Task 1.4 — Structural Comparison — UAGC Phase 1 Audit</title>
+<style>
+  :root {
+    --navy: #0C234B;
+    --red: #AB0520;
+    --light: #F7F8FA;
+    --border: #E2E5EA;
+    --muted: #6B7280;
+    --green: #059669;
+    --amber: #D97706;
+    --danger: #DC2626;
+    --bg: #FAFBFC;
+    --tier1: #064E3B;
+    --tier1bg: #ECFDF5;
+    --tier2bg: #FFFBEB;
+    --tier3bg: #FEF2F2;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; scroll-padding-top: 72px; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Inter', 'Segoe UI', sans-serif;
+    background: var(--light);
+    color: #1a1a1a;
+    line-height: 1.5;
+  }
+
+  .header {
+    background: var(--navy);
+    color: white;
+    padding: 44px 48px;
+    position: relative;
+    margin-left: 280px;
+  }
+  .header::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: var(--red);
+  }
+  .header .eyebrow {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1.4px;
+    text-transform: uppercase;
+    opacity: 0.55;
+    margin-bottom: 8px;
+  }
+  .header h1 {
+    font-size: 28px;
+    font-weight: 700;
+    letter-spacing: -0.4px;
+    margin-bottom: 8px;
+  }
+  .header p.sub {
+    font-size: 15px;
+    opacity: 0.82;
+    max-width: 720px;
+    line-height: 1.45;
+  }
+  .header .meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px 28px;
+    margin-top: 18px;
+    font-size: 12px;
+    opacity: 0.5;
+  }
+
+  .sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: 280px;
+    z-index: 200;
+    background: white;
+    border-right: 1px solid var(--border);
+    overflow-y: auto;
+    padding: 22px 0 32px;
+    scrollbar-width: thin;
+    scrollbar-color: var(--border) transparent;
+  }
+  .sidebar::-webkit-scrollbar { width: 4px; }
+  .sidebar::-webkit-scrollbar-thumb { background: var(--border); border-radius: 4px; }
+  .sidebar .sb-back {
+    display: block;
+    margin: 0 18px 20px;
+    padding: 10px 14px;
+    border-radius: 10px;
+    background: var(--navy);
+    color: white;
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 600;
+    text-align: center;
+    transition: opacity 0.15s;
+  }
+  .sidebar .sb-back:hover { opacity: 0.92; }
+  .sidebar .sb-title {
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--navy);
+    padding: 0 20px 14px;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 12px;
+  }
+  .sidebar .sb-group-label {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 1.1px;
+    text-transform: uppercase;
+    padding: 12px 20px 6px;
+    color: var(--muted);
+  }
+  .sidebar a.nav {
+    display: block;
+    padding: 6px 20px;
+    font-size: 13px;
+    color: #4B5563;
+    text-decoration: none;
+    border-left: 3px solid transparent;
+    transition: background 0.12s, color 0.12s;
+  }
+  .sidebar a.nav:hover { background: #F9FAFB; color: var(--navy); }
+  .sidebar a.nav.sub { padding-left: 28px; font-size: 12px; color: var(--muted); }
+
+  .sidebar-toggle {
+    display: none;
+    position: fixed;
+    top: 12px;
+    left: 12px;
+    z-index: 300;
+    width: 42px;
+    height: 42px;
+    border-radius: 10px;
+    border: 1px solid var(--border);
+    background: white;
+    cursor: pointer;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  }
+
+  .content {
+    max-width: 1480px;
+    margin: 0 auto;
+    padding: 0 40px 100px;
+    margin-left: 280px;
+  }
+
+  .section-header { padding: 40px 0 20px; }
+  .section-label {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1.4px;
+    text-transform: uppercase;
+    color: var(--red);
+    margin-bottom: 4px;
+  }
+  .section-title {
+    font-size: 22px;
+    font-weight: 700;
+    letter-spacing: -0.3px;
+    color: var(--navy);
+  }
+  .section-desc {
+    font-size: 13px;
+    color: var(--muted);
+    margin-top: 6px;
+    max-width: 800px;
+  }
+
+  .card {
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    margin-bottom: 32px;
+    overflow: hidden;
+  }
+  .card-head {
+    padding: 16px 22px;
+    border-bottom: 1px solid var(--border);
+    background: linear-gradient(180deg, #FAFBFC, white);
+  }
+  .card-head h3 { font-size: 15px; font-weight: 700; color: var(--navy); }
+  .card-body { padding: 20px 22px 24px; }
+
+  table.ranking {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+  }
+  table.ranking thead { background: var(--navy); color: white; }
+  table.ranking th {
+    padding: 11px 10px;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    text-align: left;
+    cursor: pointer;
+    user-select: none;
+    white-space: nowrap;
+  }
+  table.ranking th:hover { background: #152a55; }
+  table.ranking th .hint { font-weight: 400; opacity: 0.65; font-size: 9px; }
+  table.ranking td {
+    padding: 10px 10px;
+    border-bottom: 1px solid var(--border);
+    vertical-align: middle;
+  }
+  table.ranking tbody tr:hover td { background: #F9FAFB; }
+  table.ranking tbody tr:last-child td { border-bottom: none; }
+  table.ranking .mono { font-family: 'SF Mono', 'Fira Code', monospace; font-size: 12px; }
+  table.ranking .page-name { font-weight: 600; color: #111827; }
+  table.ranking .page-sub { font-size: 11px; color: var(--muted); font-weight: 400; }
+
+  .heat-best { background: #D1FAE5; color: #065F46; font-weight: 700; }
+  .heat-good { background: #ECFDF5; color: var(--green); font-weight: 600; }
+  .heat-mid { background: #FFFBEB; color: #92400E; font-weight: 600; }
+  .heat-warn { background: #FEF3C7; color: #B45309; font-weight: 600; }
+  .heat-bad { background: #FEE2E2; color: #B91C1C; font-weight: 600; }
+  .heat-na { background: #F3F4F6; color: var(--muted); font-weight: 500; }
+
+  .heat-rage { background: #FEE2E2; color: #991B1B; font-weight: 700; }
+  .cs-insight { background: #F5F3FF; border: 1px solid #DDD6FE; border-radius: 12px; padding: 20px 24px; margin: 20px 0; }
+  .cs-insight h4 { font-size: 13px; font-weight: 700; color: #7C3AED; margin-bottom: 8px; }
+  .cs-insight p { font-size: 13px; color: #4C1D95; line-height: 1.6; }
+
+  .tier-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 4px 10px;
+    border-radius: 6px;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    margin-right: 8px;
+    margin-bottom: 6px;
+  }
+  .tier-badge.t1 { background: var(--tier1bg); color: var(--tier1); border: 1px solid #A7F3D0; }
+  .tier-badge.t2 { background: var(--tier2bg); color: #92400E; border: 1px solid #FDE68A; }
+  .tier-badge.t3 { background: var(--tier3bg); color: var(--danger); border: 1px solid #FECACA; }
+
+  .tier-strip {
+    padding: 14px 18px;
+    font-size: 13px;
+    border-bottom: 1px solid var(--border);
+  }
+  .tier-strip.tier1-bg { background: var(--tier1bg); border-left: 4px solid var(--green); }
+  .tier-strip.tier2-bg { background: #FFFBEB; border-left: 4px solid var(--amber); }
+  .tier-strip.tier3-bg { background: var(--tier3bg); border-left: 4px solid var(--danger); }
+  .tier-strip strong { color: var(--navy); }
+
+  .thumb-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    padding: 16px 18px 8px;
+  }
+  .thumb {
+    flex: 1 1 140px;
+    min-width: 120px;
+    max-width: 200px;
+  }
+  .thumb label {
+    display: block;
+    font-size: 10px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.4px;
+    color: var(--muted);
+    margin-bottom: 6px;
+    line-height: 1.3;
+  }
+  .thumb img {
+    width: 100%;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    display: block;
+    box-shadow: 0 1px 4px rgba(12,35,75,0.06);
+  }
+  .tier-bullets {
+    padding: 0 18px 20px;
+    font-size: 13px;
+    color: #374151;
+    display: grid;
+    gap: 14px;
+  }
+  .tier-bullets h4 {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.6px;
+    text-transform: uppercase;
+    color: var(--navy);
+    margin-bottom: 6px;
+  }
+  .tier-bullets ul {
+    padding-left: 18px;
+    margin: 0;
+  }
+  .tier-bullets li { margin-bottom: 4px; }
+
+  table.matrix {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 11px;
+  }
+  table.matrix thead { background: var(--navy); color: white; }
+  table.matrix th {
+    padding: 10px 6px;
+    font-weight: 600;
+    text-align: center;
+    font-size: 9px;
+    letter-spacing: 0.2px;
+    line-height: 1.35;
+    vertical-align: bottom;
+    border-left: 1px solid rgba(255,255,255,0.12);
+  }
+  table.matrix th:first-child {
+    text-align: left;
+    padding-left: 12px;
+    border-left: none;
+    font-size: 10px;
+  }
+  table.matrix td {
+    padding: 8px 6px;
+    text-align: center;
+    border-bottom: 1px solid var(--border);
+    border-left: 1px solid var(--border);
+  }
+  table.matrix td:first-child {
+    text-align: left;
+    font-weight: 600;
+    padding-left: 12px;
+    border-left: none;
+    font-size: 12px;
+  }
+  table.matrix tbody tr:hover td { background: #F9FAFB; }
+  .ck {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 18px;
+    height: 18px;
+    border-radius: 4px;
+    background: var(--green);
+    color: white;
+    font-size: 11px;
+    font-weight: 700;
+    line-height: 1;
+  }
+  .ck-n {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 18px;
+    height: 18px;
+    border-radius: 4px;
+    background: #E5E7EB;
+    color: #9CA3AF;
+    font-size: 11px;
+    font-weight: 700;
+  }
+  .mc { font-family: monospace; font-weight: 700; color: var(--navy); }
+
+  .depth-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 12px;
+  }
+  .depth-table th {
+    background: #F3F4F6;
+    padding: 10px 12px;
+    text-align: left;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: var(--navy);
+    border-bottom: 1px solid var(--border);
+  }
+  .depth-table td {
+    padding: 10px 12px;
+    border-bottom: 1px solid var(--border);
+    vertical-align: top;
+  }
+  .depth-table tr:last-child td { border-bottom: none; }
+
+  .rating {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: 11px;
+    font-weight: 600;
+  }
+  .rating.r-strong { background: #D1FAE5; color: #065F46; }
+  .rating.r-mod { background: #E0E7FF; color: #3730A3; }
+  .rating.r-weak { background: #FEE2E2; color: #991B1B; }
+  .rating.r-low { background: #FEF3C7; color: #92400E; }
+
+  .compare-wrap {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin-bottom: 16px;
+  }
+  .compare-wrap.tri {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+  @media (max-width: 1000px) {
+    .compare-wrap { grid-template-columns: 1fr; }
+    .compare-wrap.tri { grid-template-columns: 1fr; }
+  }
+  .compare-col {
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    overflow: hidden;
+    background: white;
+  }
+  .compare-col .cc-head {
+    padding: 12px 14px;
+    border-bottom: 1px solid var(--border);
+    background: #FAFBFC;
+  }
+  .compare-col .cc-head h4 { font-size: 14px; font-weight: 700; }
+  .compare-col .cc-head span { font-size: 11px; color: var(--muted); }
+  .compare-col img { width: 100%; display: block; }
+
+  .compare-diff table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 12px;
+  }
+  .compare-diff th {
+    padding: 9px 12px;
+    text-align: left;
+    background: var(--navy);
+    color: white;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.4px;
+  }
+  .compare-diff td {
+    padding: 9px 12px;
+    border-bottom: 1px solid var(--border);
+    vertical-align: top;
+  }
+  .compare-diff tr:hover td { background: #F9FAFB; }
+  .compare-diff .w { background: #ECFDF5; font-weight: 600; }
+
+  .findings {
+    background: linear-gradient(135deg, #F8FAFC, #EFF6FF);
+    border: 1px solid #BFDBFE;
+    border-radius: 12px;
+    padding: 22px 24px;
+    margin-top: 8px;
+  }
+  .findings h3 {
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.8px;
+    text-transform: uppercase;
+    color: var(--navy);
+    margin-bottom: 14px;
+  }
+  .findings ul {
+    padding-left: 18px;
+    margin: 0;
+    font-size: 13px;
+    color: #1f2937;
+    line-height: 1.55;
+  }
+  .findings li { margin-bottom: 8px; }
+  .findings li strong { color: var(--navy); }
+
+  .footnote {
+    font-size: 11px;
+    color: var(--muted);
+    margin-top: 16px;
+    padding-top: 16px;
+    border-top: 1px solid var(--border);
+    line-height: 1.5;
+  }
+
+  @media (max-width: 1100px) {
+    .sidebar { transform: translateX(-100%); transition: transform 0.25s; }
+    .sidebar.open { transform: translateX(0); box-shadow: 4px 0 24px rgba(0,0,0,0.12); }
+    .sidebar-toggle { display: flex; }
+    .content, .header { margin-left: 0; }
+    .header { padding-left: 56px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="eyebrow">UAGC Phase 1 Audit</div>
+  <h1>1.4 — Structural Comparison</h1>
+  <p class="sub">Side-by-side analysis of all 10 paid landing pages — what high-performers do differently. Data and module inventory align with the <a href="index.html" style="color:#93C5FD;">screenshot library hub</a> (12&nbsp;months, Apr&nbsp;2025–Apr&nbsp;2026).</p>
+  <div class="meta">
+    <span>Paid routes: /success/…</span>
+    <span>Module IDs: NAV / HERO / FORM / PROG / VP / TRUST</span>
+    <span>Screenshots: desktop 1440px</span>
+  </div>
+</div>
+
+<button class="sidebar-toggle" type="button" onclick="document.getElementById('sidebar').classList.toggle('open')" aria-label="Toggle navigation">☰</button>
+
+<nav class="sidebar" id="sidebar">
+  <a class="sb-back" href="index.html">← Back to Phase 1 Hub</a>
+  <div class="sb-title">On this page</div>
+  <div class="sb-group-label">Sections</div>
+  <a class="nav" href="#overview">Performance Overview</a>
+  <a class="nav" href="#tiers">Tier Analysis</a>
+  <a class="nav sub" href="#tier1">Tier 1 — High performers</a>
+  <a class="nav sub" href="#tier2">Tier 2 — Mid performers</a>
+  <a class="nav sub" href="#tier3">Tier 3 — Underperformers</a>
+  <a class="nav" href="#module-matrix">Module Comparison Matrix</a>
+  <a class="nav" href="#depth">Content Depth Analysis</a>
+  <a class="nav" href="#head-to-head">Head-to-Head Comparisons</a>
+  <a class="nav" href="#findings">Key Findings &amp; Recommendations</a>
+</nav>
+
+<div class="content">
+
+  <div id="overview" class="section-header">
+    <div class="section-label">Baseline</div>
+    <div class="section-title">Performance Overview — All 10 Paid Pages</div>
+    <div class="section-desc">Click column headers to sort (numeric columns use <code>data-conv</code>, <code>data-eng</code>, etc. on each row). Color heat maps relative performance within this set: green = stronger, red = weaker. Tier 3 pages lack reliable GA4 conversion rates in the hub — focus on bounce and qualitative structure.</div>
+  </div>
+
+  <div class="card">
+    <div class="card-body" style="padding:0;">
+      <table class="ranking" id="perf-table">
+        <thead>
+          <tr>
+            <th data-key="slug" data-type="str">Landing page</th>
+            <th data-key="conv" data-type="num">Conv&nbsp;rate <span class="hint">↓</span></th>
+            <th data-key="eng" data-type="num">Engagement</th>
+            <th data-key="bounce" data-type="num">Bounce</th>
+            <th data-key="scroll" data-type="num">CS Scroll</th>
+            <th data-key="activity" data-type="num">CS Activity</th>
+            <th data-key="load" data-type="num">CS Load</th>
+            <th data-key="sess" data-type="num">Sessions</th>
+            <th data-key="spend" data-type="num">Ad spend</th>
+            <th data-key="ch" data-type="str">Channel</th>
+          </tr>
+        </thead>
+        <tbody id="perf-body">
+          <tr data-slug="degree-programs-v7" data-conv="13.57" data-eng="74.9" data-bounce="25.1" data-scroll="23.2" data-activity="12.2" data-load="6.70" data-sess="222" data-spend="" data-ch="display">
+            <td><span class="page-name">degree-programs-v7</span><br><span class="page-sub">P5 • /success/degree-programs-v7</span></td>
+            <td class="cell-conv mono heat-best">13.57%</td>
+            <td class="mono heat-best">74.9%</td>
+            <td class="mono heat-best">25.1%</td>
+            <td class="mono">23.2%</td>
+            <td class="mono">12.2%</td>
+            <td class="mono heat-warn">6.70s</td>
+            <td class="mono">222K</td>
+            <td class="mono heat-na">—</td>
+            <td>Display</td>
+          </tr>
+          <tr data-slug="college-courses-v5" data-conv="7.25" data-eng="74.5" data-bounce="25.5" data-scroll="23.2" data-activity="12.2" data-load="6.70" data-sess="262" data-spend="1640" data-ch="search">
+            <td><span class="page-name">college-courses-v5</span><br><span class="page-sub">P4 • courses intent</span></td>
+            <td class="cell-conv mono heat-good">7.25%</td>
+            <td class="mono heat-good">74.5%</td>
+            <td class="mono heat-good">25.5%</td>
+            <td class="mono">23.2%</td>
+            <td class="mono">12.2%</td>
+            <td class="mono heat-warn">6.70s</td>
+            <td class="mono">262K</td>
+            <td class="mono">$1.64M</td>
+            <td>Paid Search</td>
+          </tr>
+          <tr data-slug="online-programs-v8" data-conv="4.92" data-eng="68.1" data-bounce="31.9" data-scroll="23.2" data-activity="12.2" data-load="6.70" data-sess="192" data-spend="" data-ch="display">
+            <td><span class="page-name">online-programs-v8</span><br><span class="page-sub">P7 • A/B variant</span></td>
+            <td class="cell-conv mono heat-mid">4.92%</td>
+            <td class="mono heat-mid">68.1%</td>
+            <td class="mono heat-mid">31.9%</td>
+            <td class="mono">23.2%</td>
+            <td class="mono">12.2%</td>
+            <td class="mono heat-warn">6.70s</td>
+            <td class="mono">192K</td>
+            <td class="mono heat-na">—</td>
+            <td>Display</td>
+          </tr>
+          <tr data-slug="online-programs-v7" data-conv="4.53" data-eng="71.3" data-bounce="28.7" data-scroll="23.2" data-activity="12.2" data-load="6.70" data-sess="193" data-spend="" data-ch="search">
+            <td><span class="page-name">online-programs-v7</span><br><span class="page-sub">P6 • A/B variant</span></td>
+            <td class="cell-conv mono heat-mid">4.53%</td>
+            <td class="mono heat-good">71.3%</td>
+            <td class="mono heat-mid">28.7%</td>
+            <td class="mono">23.2%</td>
+            <td class="mono">12.2%</td>
+            <td class="mono heat-warn">6.70s</td>
+            <td class="mono">193K</td>
+            <td class="mono heat-na">—</td>
+            <td>Paid Search</td>
+          </tr>
+          <tr data-slug="bachelors-degrees-v5" data-conv="3.5" data-eng="43.1" data-bounce="56.9" data-scroll="23.2" data-activity="12.2" data-load="6.70" data-sess="458" data-spend="1410" data-ch="search">
+            <td><span class="page-name">bachelors-degrees-v5</span><br><span class="page-sub">P2 • degree-level</span></td>
+            <td class="cell-conv mono heat-warn">3.50%</td>
+            <td class="mono heat-bad">43.1%</td>
+            <td class="mono heat-warn">56.9%</td>
+            <td class="mono">23.2%</td>
+            <td class="mono">12.2%</td>
+            <td class="mono heat-warn">6.70s</td>
+            <td class="mono">458K</td>
+            <td class="mono heat-warn">$1.41M</td>
+            <td>Paid Search</td>
+          </tr>
+          <tr data-slug="request-info-v5" data-conv="3.01" data-eng="46.8" data-bounce="53.2" data-scroll="23.2" data-activity="12.2" data-load="6.70" data-sess="1180" data-spend="807" data-ch="social">
+            <td><span class="page-name">request-info-v5</span><br><span class="page-sub">P1 • highest volume</span></td>
+            <td class="cell-conv mono heat-warn">3.01%</td>
+            <td class="mono heat-bad">46.8%</td>
+            <td class="mono heat-warn">53.2%</td>
+            <td class="mono">23.2%</td>
+            <td class="mono">12.2%</td>
+            <td class="mono heat-warn">6.70s</td>
+            <td class="mono">1.18M</td>
+            <td class="mono">~$807K</td>
+            <td>Paid Social</td>
+          </tr>
+          <tr data-slug="military-v5" data-conv="3.07" data-eng="52.9" data-bounce="47.1" data-scroll="23.2" data-activity="12.2" data-load="6.70" data-sess="311" data-spend="545" data-ch="display">
+            <td><span class="page-name">military-v5</span><br><span class="page-sub">P3 • audience LP</span></td>
+            <td class="cell-conv mono heat-warn">3.07%</td>
+            <td class="mono heat-mid">52.9%</td>
+            <td class="mono heat-mid">47.1%</td>
+            <td class="mono">23.2%</td>
+            <td class="mono">12.2%</td>
+            <td class="mono heat-warn">6.70s</td>
+            <td class="mono">311K</td>
+            <td class="mono">~$545K</td>
+            <td>Display</td>
+          </tr>
+          <tr data-slug="liberal-arts-v6" data-conv="" data-eng="" data-bounce="68.4" data-scroll="23.2" data-activity="12.2" data-load="6.70" data-sess="72" data-spend="" data-ch="social">
+            <td><span class="page-name">liberal-arts-v6</span><br><span class="page-sub">P8 • program LP</span></td>
+            <td class="mono heat-na">N/A*</td>
+            <td class="mono heat-na">—</td>
+            <td class="mono heat-bad">68.4%</td>
+            <td class="mono">23.2%</td>
+            <td class="mono">12.2%</td>
+            <td class="mono heat-warn">6.70s</td>
+            <td class="mono">~72K</td>
+            <td class="mono heat-na">—</td>
+            <td>Paid Social</td>
+          </tr>
+          <tr data-slug="criminal-justice-v6" data-conv="" data-eng="" data-bounce="72.8" data-scroll="23.2" data-activity="12.2" data-load="6.70" data-sess="" data-spend="" data-ch="social">
+            <td><span class="page-name">criminal-justice-v6</span><br><span class="page-sub">P9 • program LP</span></td>
+            <td class="mono heat-na">N/A*</td>
+            <td class="mono heat-na">—</td>
+            <td class="mono heat-bad">72.8%</td>
+            <td class="mono">23.2%</td>
+            <td class="mono">12.2%</td>
+            <td class="mono heat-warn">6.70s</td>
+            <td class="mono heat-na">—</td>
+            <td class="mono heat-na">—</td>
+            <td>Paid Social</td>
+          </tr>
+          <tr data-slug="business-v6" data-conv="" data-eng="" data-bounce="" data-scroll="23.2" data-activity="12.2" data-load="6.70" data-sess="" data-spend="" data-ch="social">
+            <td><span class="page-name">business-v6</span><br><span class="page-sub">P10 • program LP</span></td>
+            <td class="mono heat-na">N/A*</td>
+            <td class="mono heat-na">—</td>
+            <td class="mono heat-na">—</td>
+            <td class="mono">23.2%</td>
+            <td class="mono">12.2%</td>
+            <td class="mono heat-warn">6.70s</td>
+            <td class="mono heat-na">—</td>
+            <td class="mono heat-na">—</td>
+            <td>Paid Social <span style="font-size:10px;color:var(--muted)">(as P8/P9)</span></td>
+          </tr>
+        </tbody>
+      </table>
+      <p class="footnote" style="margin:0 16px 16px;">* Tier 3 program LPs are tagged in the hub with bounce/session notes where available; GA4 conversion not surfaced consistently for apples-to-apples ranking alongside P1–P7.</p>
+    <div class="cs-insight">
+      <h4>Contentsquare UX Layer — Paid Success Pages</h4>
+      <p>All 10 paid pages share the same CS "Paid Success" page group. Key behavioral signals: <strong>23.2% scroll depth</strong> (users rarely reach below-fold content), <strong>12.2% activity rate</strong> (low engagement despite 89.2% form exposure), and <strong>6.70s average load time</strong> (nearly 2× the blog's 4.12s). The two-step RFI form shows <strong style="color:#DC2626">3.23× click recurrence</strong> with only <strong style="color:#DC2626">0.04% conversion per click</strong> — the single largest frustration signal site-wide. This form friction is <em>shared across all 10 pages</em>, meaning the tier differences above reflect content/structure quality around a universally struggling form.</p>
+    </div>
+    </div>
+  </div>
+
+  <div id="tiers" class="section-header">
+    <div class="section-label">Clustering</div>
+    <div class="section-title">Tier Analysis</div>
+    <div class="section-desc">Grouping by measurable conversion tiers (where available) plus structural underperformance signals for program-specific Paid Social pages.</div>
+  </div>
+
+  <div class="tier-badge t1">Tier 1</div><span style="font-size:13px;color:var(--muted)">&gt;7% conv • strongest program-discovery + engagement pattern</span>
+  <div class="card" id="tier1">
+    <div class="tier-strip tier1-bg">
+      <strong>Tier 1 — High performers (&gt;7% conv)</strong><br>
+      <code style="font-size:12px;">degree-programs-v7</code>, <code style="font-size:12px;">college-courses-v5</code>
+    </div>
+    <div class="thumb-grid">
+      <div class="thumb"><label>P5 • degree-programs-v7<br>13.57% • 74.9% eng</label><img src="paid-05-degree-programs-v7_desktop-1440.png" alt="degree-programs-v7 desktop" loading="lazy"></div>
+      <div class="thumb"><label>P4 • college-courses-v5<br>7.25% • 74.5% eng</label><img src="paid-04-college-courses-v5_desktop-1440.png" alt="college-courses-v5 desktop" loading="lazy"></div>
+    </div>
+    <div class="tier-bullets">
+      <div>
+        <h4>Shared modules</h4>
+        <ul>
+          <li><strong>PROG-01</strong> + <strong>PROG-02</strong>: category grid paired with expandable program inventory — lets visitors self-select before the mid-page ask.</li>
+          <li><strong>FORM-02</strong> mid-page RFI band (alongside hero <strong>FORM-01</strong> / sticky <strong>FORM-05</strong>).</li>
+          <li><strong>HERO-01</strong> Split+RFI with explicit “degree / program” framing (not generic “earn your degree”).</li>
+        </ul>
+      </div>
+      <div>
+        <h4>What distinguishes Tier 1 from others</h4>
+        <ul>
+          <li><strong>vs Tier 2:</strong> Both pages score top-quartile engagement (~74%+) and the lowest bounce in the paid set; mid performers often drop <strong>PROG-01</strong> or bury <strong>PROG-02</strong>.</li>
+          <li><strong>vs Tier 3:</strong> Uses <strong>HERO-01</strong> “general LP” scaffolding with immediate browse depth — not isolated <strong>HERO-02</strong> program-only narratives tuned to cold social clicks.</li>
+          <li><strong>Audience fit:</strong> P4 leans Paid Search intent; P5 earns similar depth on Display — proving structure can overcome channel friction when discovery is unmistakable.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="tier-badge t2">Tier 2</div><span style="font-size:13px;color:var(--muted)">3–5% conv • mixed discovery + channel effects</span>
+  <div class="card" id="tier2">
+    <div class="tier-strip tier2-bg">
+      <strong>Tier 2 — Mid performers (3–5% conv)</strong><br>
+      online-programs-v8, online-programs-v7, bachelors-degrees-v5, request-info-v5, military-v5
+    </div>
+    <div class="thumb-grid">
+      <div class="thumb"><label>P7 online-programs-v8 • 4.92%</label><img src="paid-07-online-programs-v8_desktop-1440.png" alt="" loading="lazy"></div>
+      <div class="thumb"><label>P6 online-programs-v7 • 4.53%</label><img src="paid-06-online-programs-v7_desktop-1440.png" alt="" loading="lazy"></div>
+      <div class="thumb"><label>P2 bachelors • 3.50%</label><img src="paid-02-bachelors-degrees-v5_desktop-1440.png" alt="" loading="lazy"></div>
+      <div class="thumb"><label>P1 request-info • 3.01%</label><img src="paid-01-request-info-v5_desktop-1440.png" alt="" loading="lazy"></div>
+      <div class="thumb"><label>P3 military • 3.07%</label><img src="paid-03-military-v5_desktop-1440.png" alt="" loading="lazy"></div>
+    </div>
+    <div class="tier-bullets">
+      <div>
+        <h4>Shared modules</h4>
+        <ul>
+          <li>P2 / P6 / P7 share <strong>NAV</strong>, <strong>HERO-01</strong>, <strong>FORM-01</strong>, <strong>FORM-05</strong>, VP stack <strong>VP-01</strong>/<strong>VP-02</strong>, tuition / trial CTAs.</li>
+          <li>P6 / P7 add <strong>TRUST-01</strong> testimonial rails — absent on the highest-volume P1 hero.</li>
+          <li>P1 + P3 repeat <strong>FORM-02</strong> mid-page like Tier 1, but omit full program scaffolding (audit: thin or hero-only funnel).</li>
+        </ul>
+      </div>
+      <div>
+        <h4>What distinguishes Tier 2</h4>
+        <ul>
+          <li><strong>Partial PROG stacks:</strong> <code>bachelors-degrees-v5</code> has PROG-01+02 but weakest engagement (~43%); <code>online-programs-v*</code> often has only PROG-02.</li>
+          <li><strong>Channel skew:</strong> Paid Social on P1 pairs with highest bounce (~53%); Display military page improves bounce (~47%) but still lacks Tier 1 program grid.</li>
+          <li><strong>Hero clarity vs depth:</strong> Several pass the “degree level” sniff test yet fail Tier 1’s “what can I pick right now?” moment.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="tier-badge t3">Tier 3</div><span style="font-size:13px;color:var(--muted)">Structural / Paid Social mismatch — bounce-led</span>
+  <div class="card" id="tier3">
+    <div class="tier-strip tier3-bg">
+      <strong>Tier 3 — Underperformers (high bounce, low / not reported conv)</strong><br>
+      liberal-arts-v6 • criminal-justice-v6 • business-v6 — program-specific Paid Social landing pattern
+    </div>
+    <div class="thumb-grid">
+      <div class="thumb"><label>P8 liberal-arts • ~68.4% bounce</label><img src="paid-08-liberal-arts-v6_desktop-1440.png" alt="" loading="lazy"></div>
+      <div class="thumb"><label>P9 criminal-justice • 72.8% bounce</label><img src="paid-09-criminal-justice-v6_desktop-1440.png" alt="" loading="lazy"></div>
+      <div class="thumb"><label>P10 business • program LP</label><img src="paid-10-business-v6_desktop-1440.png" alt="" loading="lazy"></div>
+    </div>
+    <div class="tier-bullets">
+      <div>
+        <h4>Shared modules (template fingerprint)</h4>
+        <ul>
+          <li><strong>HERO-02 Program LP</strong> + same RFI stack (<strong>FORM-01</strong>, <strong>FORM-05</strong>, commonly <strong>FORM-02</strong>).</li>
+          <li><strong>PROG-02</strong> always; <strong>PROG-01</strong> on P9/P10, absent on P8 per hub inventory.</li>
+          <li><strong>TRUST-01</strong> testimonials mid-page; <strong>TRUST-02</strong> accreditation often missing versus Tier 1 (see matrix).</li>
+        </ul>
+      </div>
+      <div>
+        <h4>What distinguishes Tier 3</h4>
+        <ul>
+          <li>Cold Paid Social journeys hit a narrow program headline + immediate RFI — audit notes call out missing career/outcome bridges above the fold.</li>
+          <li>Highest bounce rates in the corpus (Liberal Arts 68.4%, Criminal Justice 72.8%); same hero template across verticals amplifies systemic risk vs message-market fit tweaks alone.</li>
+          <li>Despite some program lists, lacking Tier 1’s “browse-first” choreography leaves low-intent users without a scrolling reason to stay.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div id="module-matrix" class="section-header">
+    <div class="section-label">Structure</div>
+    <div class="section-title">Module Comparison Matrix</div>
+    <div class="section-desc">Checkmarks wired to module tags documented in <code>index.html</code> for each paid card. TRUST-/FORM-/PROG-/VP codes match Phase 1 inventory.</div>
+  </div>
+
+  <div class="card">
+    <div class="card-body" style="padding:0; overflow-x:auto;">
+      <table class="matrix">
+        <thead>
+          <tr>
+            <th>Landing page</th>
+            <th>PROG-01<br>Category Grid</th>
+            <th>PROG-02<br>Program List</th>
+            <th>TRUST-01<br>Testimonial</th>
+            <th>TRUST-02<br>Accreditation</th>
+            <th>FORM-02<br>Mid-Page RFI</th>
+            <th>VP-03<br>Benefits</th>
+            <th>Module<br>count</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>request-info-v5</td>
+            <td><span class="ck-n">✕</span></td><td><span class="ck-n">✕</span></td><td><span class="ck-n">✕</span></td><td><span class="ck">✓</span></td><td><span class="ck">✓</span></td><td><span class="ck">✓</span></td><td class="mc">3</td>
+          </tr>
+          <tr>
+            <td>bachelors-degrees-v5</td>
+            <td><span class="ck">✓</span></td><td><span class="ck">✓</span></td><td><span class="ck-n">✕</span></td><td><span class="ck-n">✕</span></td><td><span class="ck-n">✕</span></td><td><span class="ck">✓</span></td><td class="mc">3</td>
+          </tr>
+          <tr>
+            <td>military-v5</td>
+            <td><span class="ck-n">✕</span></td><td><span class="ck-n">✕</span></td><td><span class="ck-n">✕</span></td><td><span class="ck">✓</span></td><td><span class="ck">✓</span></td><td><span class="ck-n">✕</span></td><td class="mc">3</td>
+          </tr>
+          <tr>
+            <td>college-courses-v5</td>
+            <td><span class="ck">✓</span></td><td><span class="ck">✓</span></td><td><span class="ck-n">✕</span></td><td><span class="ck-n">✕</span></td><td><span class="ck">✓</span></td><td><span class="ck">✓</span></td><td class="mc">4</td>
+          </tr>
+          <tr>
+            <td>degree-programs-v7</td>
+            <td><span class="ck">✓</span></td><td><span class="ck">✓</span></td><td><span class="ck-n">✕</span></td><td><span class="ck">✓</span></td><td><span class="ck">✓</span></td><td><span class="ck-n">✕</span></td><td class="mc">4</td>
+          </tr>
+          <tr>
+            <td>online-programs-v7</td>
+            <td><span class="ck-n">✕</span></td><td><span class="ck">✓</span></td><td><span class="ck">✓</span></td><td><span class="ck">✓</span></td><td><span class="ck-n">✕</span></td><td><span class="ck-n">✕</span></td><td class="mc">3</td>
+          </tr>
+          <tr>
+            <td>online-programs-v8</td>
+            <td><span class="ck-n">✕</span></td><td><span class="ck">✓</span></td><td><span class="ck">✓</span></td><td><span class="ck">✓</span></td><td><span class="ck-n">✕</span></td><td><span class="ck-n">✕</span></td><td class="mc">3</td>
+          </tr>
+          <tr>
+            <td>liberal-arts-v6</td>
+            <td><span class="ck-n">✕</span></td><td><span class="ck">✓</span></td><td><span class="ck">✓</span></td><td><span class="ck-n">✕</span></td><td><span class="ck">✓</span></td><td><span class="ck">✓</span></td><td class="mc">4</td>
+          </tr>
+          <tr>
+            <td>criminal-justice-v6</td>
+            <td><span class="ck">✓</span></td><td><span class="ck">✓</span></td><td><span class="ck">✓</span></td><td><span class="ck-n">✕</span></td><td><span class="ck">✓</span></td><td><span class="ck">✓</span></td><td class="mc">5</td>
+          </tr>
+          <tr>
+            <td>business-v6</td>
+            <td><span class="ck">✓</span></td><td><span class="ck">✓</span></td><td><span class="ck">✓</span></td><td><span class="ck-n">✕</span></td><td><span class="ck">✓</span></td><td><span class="ck">✓</span></td><td class="mc">5</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="card-body footnote">
+      “Module count” = ✓ cells in the six key columns (not total tags on page). Both Tier 1 leaders score 4/6 with complementary patterns: P4 keeps VP-03 without TRUST-02; P5 inverts (TRUST-02, no VP-03). Raw module lists per URL live in the hub cards.
+    </div>
+  </div>
+
+  <div id="depth" class="section-header">
+    <div class="section-label">Qualitative</div>
+    <div class="section-title">Content Depth Analysis</div>
+    <div class="section-desc">Ratings summarize the 1.2 RFI content audit fields in <code>index.html</code> (above-fold value prop, discovery path, social proof proximity, overall density).</div>
+  </div>
+
+  <div class="card">
+    <div class="card-body" style="padding:0; overflow-x:auto;">
+      <table class="depth-table">
+        <thead>
+          <tr>
+            <th>Page</th>
+            <th>Above-fold value proposition</th>
+            <th>Program discovery depth</th>
+            <th>Social proof placement</th>
+            <th>Content density</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>request-info-v5</strong></td>
+            <td><span class="rating r-weak">Weak</span> — generic “earn degree online”; fails 5-second clarity test in audit.</td>
+            <td><span class="rating r-weak">None</span></td>
+            <td><span class="rating r-weak">None at form</span> — accredits bottom only.</td>
+            <td><span class="rating r-weak">Thin</span></td>
+          </tr>
+          <tr>
+            <td><strong>bachelors-degrees-v5</strong></td>
+            <td><span class="rating r-mod">Moderate</span> — bachelor’s-specific headline.</td>
+            <td><span class="rating r-strong">Grid + list</span></td>
+            <td><span class="rating r-weak">None near form</span></td>
+            <td><span class="rating r-mod">Moderate</span></td>
+          </tr>
+          <tr>
+            <td><strong>military-v5</strong></td>
+            <td><span class="rating r-mod">Moderate</span> — emotional service framing; concrete benefits below fold.</td>
+            <td><span class="rating r-weak">None</span></td>
+            <td><span class="rating r-weak">None at form</span></td>
+            <td><span class="rating r-mod">Moderate</span></td>
+          </tr>
+          <tr>
+            <td><strong>college-courses-v5</strong></td>
+            <td><span class="rating r-mod">Moderate</span> — clear courses/programs hook.</td>
+            <td><span class="rating r-strong">Grid + list</span> (strong list early)</td>
+            <td><span class="rating r-weak">Not above fold</span></td>
+            <td><span class="rating r-strong">Rich</span> engagement path</td>
+          </tr>
+          <tr>
+            <td><strong>degree-programs-v7</strong></td>
+            <td><span class="rating r-strong">Strong</span> — passes 5-second test; explicit program breadth.</td>
+            <td><span class="rating r-strong">Grid + list</span> (deep accordion)</td>
+            <td><span class="rating r-low">Mid-page</span> accred (no testimonial near form)</td>
+            <td><span class="rating r-strong">Rich</span></td>
+          </tr>
+          <tr>
+            <td><strong>online-programs-v7</strong></td>
+            <td><span class="rating r-mod">Moderate</span> — institutional flexibility story.</td>
+            <td><span class="rating r-low">List only</span> (below fold)</td>
+            <td><span class="rating r-low">Mid-page</span> testimonials</td>
+            <td><span class="rating r-mod">Moderate</span></td>
+          </tr>
+          <tr>
+            <td><strong>online-programs-v8</strong></td>
+            <td><span class="rating r-mod">Moderate</span> — mirrors v7.</td>
+            <td><span class="rating r-low">List only</span></td>
+            <td><span class="rating r-low">Mid-page</span></td>
+            <td><span class="rating r-mod">Moderate</span></td>
+          </tr>
+          <tr>
+            <td><strong>liberal-arts-v6</strong></td>
+            <td><span class="rating r-mod">Moderate</span> — program label clear; “why” thin.</td>
+            <td><span class="rating r-low">List only</span> (sub-programs)</td>
+            <td><span class="rating r-low">Mid-page</span></td>
+            <td><span class="rating r-mod">Moderate</span> template, social-thin for cold traffic</td>
+          </tr>
+          <tr>
+            <td><strong>criminal-justice-v6</strong></td>
+            <td><span class="rating r-mod">Moderate</span> — vertical clear; outcomes missing above fold.</td>
+            <td><span class="rating r-strong">Grid + list</span> (3 CJ tracks)</td>
+            <td><span class="rating r-low">Mid-page</span></td>
+            <td><span class="rating r-mod">Moderate</span> structure, misaligned to intent</td>
+          </tr>
+          <tr>
+            <td><strong>business-v6</strong></td>
+            <td><span class="rating r-mod">Moderate</span> — business vertical stated; outcomes absent above fold.</td>
+            <td><span class="rating r-strong">Grid + list</span> (10+ subs)</td>
+            <td><span class="rating r-low">Mid-page</span></td>
+            <td><span class="rating r-mod">Moderate</span> vs organic business hub depth</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div id="head-to-head" class="section-header">
+    <div class="section-label">Pairs &amp; triples</div>
+    <div class="section-title">Head-to-Head Comparisons</div>
+    <div class="section-desc">Each subsection pairs desktop captures with a focused diff table. Metrics are the same 12-month window referenced in the hub.</div>
+  </div>
+
+  <div class="card">
+    <div class="card-head"><h3>P5 vs P1 — ~4.5× conversion gap</h3></div>
+    <div class="card-body">
+      <div class="compare-wrap">
+        <div class="compare-col">
+          <div class="cc-head"><h4>degree-programs-v7</h4><span>13.57% conv • 74.9% eng • 25.1% bounce • Display</span></div>
+          <img src="paid-05-degree-programs-v7_desktop-1440.png" alt="" loading="lazy">
+        </div>
+        <div class="compare-col">
+          <div class="cc-head"><h4>request-info-v5</h4><span>3.01% conv • 46.8% eng • 53.2% bounce • Paid Social</span></div>
+          <img src="paid-01-request-info-v5_desktop-1440.png" alt="" loading="lazy">
+        </div>
+      </div>
+      <div class="compare-diff">
+        <table>
+          <thead><tr><th>Dimension</th><th>degree-programs-v7</th><th>request-info-v5</th></tr></thead>
+          <tbody>
+            <tr><td>Program discovery</td><td class="w">PROG-01 + PROG-02 immediately after hero</td><td>No program grid or list</td></tr>
+            <tr><td>Above-fold story</td><td class="w">Specific program breadth + self-selection</td><td>Generic online degree statement</td></tr>
+            <tr><td>Mid-page RFI</td><td>FORM-02 after browse context</td><td>FORM-02 without supporting catalog</td></tr>
+            <tr><td>Accreditation / trust</td><td>TRUST-02 present</td><td>TRUST-02 only at footer</td></tr>
+            <tr><td>Channel context</td><td>Display with deep page</td><td>Paid Social + thin page = higher bounce</td></tr>
+            <tr><td>CS Form Rage</td><td colspan="2" style="text-align:center;color:#7C3AED;font-style:italic;">Shared: 3.23× recurrence (118K clicks) · 0.04% conv/click — form UX bottleneck is identical across all paid pages</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="footnote">Ratio check: 13.57 ÷ 3.01 ≈ 4.5× — aligns with stakeholder framing of structural + intent gap, not merely form differences.</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-head"><h3>P4 vs P2 — similar scale, ~2× conv gap</h3></div>
+    <div class="card-body">
+      <div class="compare-wrap">
+        <div class="compare-col">
+          <div class="cc-head"><h4>college-courses-v5</h4><span>7.25% conv • 262K sessions • $1.64M spend • Paid Search</span></div>
+          <img src="paid-04-college-courses-v5_desktop-1440.png" alt="" loading="lazy">
+        </div>
+        <div class="compare-col">
+          <div class="cc-head"><h4>bachelors-degrees-v5</h4><span>3.50% conv • 458K sessions • $1.41M spend • Paid Search</span></div>
+          <img src="paid-02-bachelors-degrees-v5_desktop-1440.png" alt="" loading="lazy">
+        </div>
+      </div>
+      <div class="compare-diff">
+        <table>
+          <thead><tr><th>Dimension</th><th>college-courses-v5</th><th>bachelors-degrees-v5</th></tr></thead>
+          <tbody>
+            <tr><td>Intent match (audit)</td><td class="w">Courses / catalog language matches exploration</td><td>Degree-level only; weaker “what’s available now” cue</td></tr>
+            <tr><td>Engagement</td><td class="w">74.5%</td><td>43.1%</td></tr>
+            <tr><td>Bounce</td><td class="w">25.5%</td><td>56.9%</td></tr>
+            <tr><td>Program modules</td><td>PROG-01 + PROG-02 + FORM-02 + VP-03</td><td>PROG-01 + PROG-02 + VP-03 (no mid RFI)</td></tr>
+            <tr><td>Economics signal</td><td>Higher conv on lower session count</td><td>Higher spend efficiency drag from bounce + CPC stack</td></tr>
+            <tr><td>CS Form Rage</td><td colspan="2" style="text-align:center;color:#7C3AED;font-style:italic;">Shared: 3.23× recurrence (118K clicks) · 0.04% conv/click — form UX bottleneck is identical across all paid pages</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="footnote">7.25 ÷ 3.50 ≈ 2.1× — both Search, so channel mix is more controlled than P5 vs P1; structural engagement explains most of the delta.</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-head"><h3>P8 vs P10 vs P9 — shared template, shared underperformance</h3></div>
+    <div class="card-body">
+      <div class="compare-wrap tri">
+        <div class="compare-col">
+          <div class="cc-head"><h4>liberal-arts-v6</h4><span>Paid Social • ~68.4% bounce</span></div>
+          <img src="paid-08-liberal-arts-v6_desktop-1440.png" alt="" loading="lazy">
+        </div>
+        <div class="compare-col">
+          <div class="cc-head"><h4>business-v6</h4><span>Program LP • breadth of 10+ subs</span></div>
+          <img src="paid-10-business-v6_desktop-1440.png" alt="" loading="lazy">
+        </div>
+        <div class="compare-col">
+          <div class="cc-head"><h4>criminal-justice-v6</h4><span>72.8% bounce</span></div>
+          <img src="paid-09-criminal-justice-v6_desktop-1440.png" alt="" loading="lazy">
+        </div>
+      </div>
+      <div class="compare-diff">
+        <table>
+          <thead><tr><th>Dimension</th><th>Liberal Arts</th><th>Business</th><th>Criminal Justice</th></tr></thead>
+          <tbody>
+            <tr><td>Hero pattern</td><td colspan="3">HERO-02 Program LP + immediate RFI (all three)</td></tr>
+            <tr><td>PROG-01 grid</td><td>Missing</td><td>Present</td><td>Present</td></tr>
+            <tr><td>Accreditation module</td><td colspan="3">TRUST-02 absent on all three per hub tags</td></tr>
+            <tr><td>Social proof</td><td colspan="3">TRUST-01 mid-page — too late for bounce decision</td></tr>
+            <tr><td>Traffic context</td><td colspan="3" class="w">Paid Social low intent + narrow program headline = exits before depth</td></tr>
+            <tr><td>Relative nuance</td><td>Single vertical list</td><td>More sub-programs (should help) still underperforms</td><td>Smallest set of tracks, highest bounce</td></tr>
+            <tr><td>CS Form Rage</td><td colspan="3" style="text-align:center;color:#7C3AED;font-style:italic;">Shared: 3.23× recurrence (118K clicks) · 0.04% conv/click — form UX bottleneck is identical across all paid pages</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-head"><h3>P6 vs P7 — online-programs v7 (Search) vs v8 (Display)</h3></div>
+    <div class="card-body">
+      <div class="compare-wrap">
+        <div class="compare-col">
+          <div class="cc-head"><h4>online-programs-v7</h4><span>4.53% • 71.3% eng • 28.7% bounce • Paid Search</span></div>
+          <img src="paid-06-online-programs-v7_desktop-1440.png" alt="" loading="lazy">
+        </div>
+        <div class="compare-col">
+          <div class="cc-head"><h4>online-programs-v8</h4><span>4.92% • 68.1% eng • 31.9% bounce • Display</span></div>
+          <img src="paid-07-online-programs-v8_desktop-1440.png" alt="" loading="lazy">
+        </div>
+      </div>
+      <div class="compare-diff">
+        <table>
+          <thead><tr><th>Dimension</th><th>v7</th><th>v8</th></tr></thead>
+          <tbody>
+            <tr><td>Module parity</td><td colspan="2">Same PROG-02 + TRUST-01/02 stack; no PROG-01; no FORM-02; no VP-03</td></tr>
+            <tr><td>Conversion</td><td>4.53%</td><td class="w">4.92% (+0.39 pts)</td></tr>
+            <tr><td>Engagement / bounce</td><td class="w">Higher engagement / lower bounce</td><td>Slightly looser engagement</td></tr>
+            <tr><td>Channel</td><td>Paid Search</td><td>Display</td></tr>
+            <tr><td>Notable copy/modules</td><td>FIN-02 trial absent</td><td class="w">Adds FIN-02 “3-week trial” module</td></tr>
+            <tr><td>Interpretation</td><td colspan="2">Near tie — treat as variant + channel pair, not proof of a large structural win; both trail Tier 1 until PROG-01 + mid-form context land.</td></tr>
+            <tr><td>CS Form Rage</td><td colspan="2" style="text-align:center;color:#7C3AED;font-style:italic;">Shared: 3.23× recurrence (118K clicks) · 0.04% conv/click — form UX bottleneck is identical across all paid pages</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <div id="findings" class="section-header">
+    <div class="section-label">Synthesis</div>
+    <div class="section-title">Key Findings &amp; Recommendations</div>
+  </div>
+
+  <div class="findings">
+    <h3>Executive takeaways</h3>
+    <div class="cs-insight" style="margin-bottom:24px;">
+      <h4>Contentsquare Adds a Behavioral Layer</h4>
+      <p>The structural comparison above uses GA4 metrics (engagement, bounce, sessions). Contentsquare zoning data reveals that while page <em>structure</em> explains the tier spread, the <strong>form itself is the universal bottleneck</strong>. The two-step RFI form's 3.23× click recurrence and 0.04% conversion per click is identical across all 10 paid pages regardless of tier — meaning even Tier 1 pages (v7, courses v5) are leaving conversions on the table due to form friction, not content gaps.</p>
+    </div>
+    <ul>
+      <li><strong>The form isn’t the problem — content surrounding it is.</strong> Every high-traffic page repeats FORM-01 / FORM-05 (and many add FORM-02); divergence in performance maps to whether visitors get program context, not to the field layout itself.</li>
+      <li><strong>Program discovery (PROG-01 + PROG-02) is the strongest predictor of conversion</strong> among these ten URLs. The two &gt;7% pages both pair category grids with deep lists; mid-tier pages typically drop the grid or bury the list.</li>
+      <li><strong>Channel mix matters.</strong> Paid Social–first destinations (especially P1 and the P8–P10 program LPs) show higher bounce in this dataset regardless of duplicated forms — calibration of expectations and landing strategy per channel is required before blaming “RFI fatigue.”</li>
+      <li><strong>The three program-specific LPs (P8–P10) share a template but underperform because Paid Social traffic doesn’t match their intent level.</strong> Cold prospects need career outcomes, proof, and browse paths above the fold — not only a vertical headline and RFI.</li>
+    </ul>
+  </div>
+
+  <p class="footnote" style="margin-top:28px;">
+    Source artifacts: module tags and audits from <code>output/playwright/screenshots/index.html</code>; imagery uses relative paths in this folder (e.g. <code>paid-01-request-info-v5_desktop-1440.png</code>). For paid metrics definitions and conversion-action scope, follow finance/paid-data guardrails in project documentation.
+  </p>
+</div>
+
+<script>
+(function () {
+  var table = document.getElementById('perf-table');
+  if (!table) return;
+  var tbody = document.getElementById('perf-body');
+  var headers = table.querySelectorAll('thead th[data-key]');
+  headers.forEach(function (th) {
+    th.addEventListener('click', function () {
+      var key = th.getAttribute('data-key');
+      var type = th.getAttribute('data-type') || 'str';
+      var rows = Array.prototype.slice.call(tbody.querySelectorAll('tr'));
+      var asc = th.dataset.sortAsc !== '0';
+      th.dataset.sortAsc = asc ? '0' : '1';
+      var mult = asc ? 1 : -1;
+      headers.forEach(function (h) { if (h !== th) delete h.dataset.sortAsc; });
+      rows.sort(function (a, b) {
+        var av = a.getAttribute('data-' + key) || '';
+        var bv = b.getAttribute('data-' + key) || '';
+        if (type === 'num') {
+          var an = av === '' ? -Infinity : parseFloat(av);
+          var bn = bv === '' ? -Infinity : parseFloat(bv);
+          if (an !== bn) return mult * (an - bn);
+        }
+        return mult * String(av).localeCompare(String(bv), undefined, { numeric: true });
+      });
+      rows.forEach(function (r) { tbody.appendChild(r); });
+    });
+  });
+  var convTh = table.querySelector('thead th[data-key="conv"]');
+  if (convTh) {
+    convTh.dataset.sortAsc = '0';
+    convTh.click();
+    delete convTh.dataset.sortAsc;
+  }
+})();
+</script>
+</body>
+</html>
