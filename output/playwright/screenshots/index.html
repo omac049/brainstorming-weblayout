@@ -1,0 +1,1012 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>UAGC Screenshot Library — May 2026</title>
+<style>
+  :root {
+    --navy: #0C234B;
+    --red: #AB0520;
+    --light: #F7F8FA;
+    --border: #E2E5EA;
+    --muted: #6B7280;
+    --green: #059669;
+    --amber: #D97706;
+    --danger: #DC2626;
+    --bg: #FAFBFC;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; scroll-padding-top: 24px; }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Inter', 'Segoe UI', sans-serif; background: var(--light); color: #1a1a1a; line-height: 1.5; }
+
+  .header { background: var(--navy); color: white; padding: 48px 64px; position: relative; }
+  .header::after { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 4px; background: var(--red); }
+  .header h1 { font-size: 32px; font-weight: 700; letter-spacing: -0.5px; margin-bottom: 6px; }
+  .header p { font-size: 15px; opacity: 0.7; }
+  .header .meta { display: flex; gap: 32px; margin-top: 16px; font-size: 13px; opacity: 0.5; }
+
+  .sidebar {
+    position: fixed; top: 0; left: 0; bottom: 0; width: 260px; z-index: 200;
+    background: white; border-right: 1px solid var(--border);
+    overflow-y: auto; padding: 20px 0;
+    scrollbar-width: thin; scrollbar-color: var(--border) transparent;
+  }
+  .sidebar::-webkit-scrollbar { width: 4px; }
+  .sidebar::-webkit-scrollbar-thumb { background: var(--border); border-radius: 4px; }
+  .sidebar .sb-title {
+    font-size: 13px; font-weight: 700; color: var(--navy); padding: 0 20px; margin-bottom: 16px;
+    display: flex; align-items: center; gap: 8px;
+  }
+  .sidebar .sb-title::before {
+    content: ''; display: block; width: 20px; height: 3px; background: var(--red); border-radius: 2px; flex-shrink: 0;
+  }
+  .sidebar .sb-group { margin-bottom: 8px; }
+  .sidebar .sb-group-label {
+    font-size: 10px; font-weight: 700; letter-spacing: 1.2px; text-transform: uppercase;
+    padding: 10px 20px 6px; color: var(--muted);
+  }
+  .sidebar .sb-group-label.paid { color: var(--amber); }
+  .sidebar .sb-group-label.organic { color: #2563EB; }
+  .sidebar .sb-group-label.tables { color: var(--red); }
+  .sidebar .sb-group-label.inventory { color: var(--green); }
+  .sidebar a {
+    display: flex; align-items: center; gap: 10px;
+    padding: 7px 20px; font-size: 13px; font-weight: 400; color: #4B5563;
+    text-decoration: none; transition: all 0.12s; border-left: 3px solid transparent;
+  }
+  .sidebar a:hover { background: #F9FAFB; color: var(--navy); }
+  .sidebar a.active { background: #FEF2F2; color: var(--red); border-left-color: var(--red); font-weight: 600; }
+  .sidebar a .num {
+    display: inline-flex; align-items: center; justify-content: center;
+    width: 22px; height: 22px; border-radius: 6px; font-size: 11px; font-weight: 600;
+    background: #F3F4F6; color: var(--muted); flex-shrink: 0;
+  }
+  .sidebar a.active .num { background: var(--red); color: white; }
+  .sidebar a .conv-pill {
+    margin-left: auto; font-size: 10px; font-weight: 600; padding: 1px 6px; border-radius: 4px;
+    flex-shrink: 0;
+  }
+  .sidebar a .conv-pill.g { background: #ECFDF5; color: var(--green); }
+  .sidebar a .conv-pill.a { background: #FFFBEB; color: var(--amber); }
+  .sidebar a .conv-pill.r { background: #FEF2F2; color: var(--danger); }
+
+  .sidebar-toggle {
+    display: none; position: fixed; top: 12px; left: 12px; z-index: 300;
+    width: 40px; height: 40px; border-radius: 10px; border: 1px solid var(--border);
+    background: white; cursor: pointer; align-items: center; justify-content: center;
+    font-size: 18px; box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  }
+
+  .content { max-width: 1600px; margin: 0 auto; padding: 0 48px 120px; margin-left: 260px; }
+  .header { margin-left: 260px; }
+
+  @media (max-width: 1100px) {
+    .sidebar { transform: translateX(-100%); transition: transform 0.25s; box-shadow: none; }
+    .sidebar.open { transform: translateX(0); box-shadow: 4px 0 24px rgba(0,0,0,0.12); }
+    .sidebar-toggle { display: flex; }
+    .content, .header { margin-left: 0; }
+  }
+
+  .section-header { padding: 48px 0 24px; }
+  .section-label { font-size: 11px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: var(--red); margin-bottom: 4px; }
+  .section-title { font-size: 26px; font-weight: 700; letter-spacing: -0.3px; }
+  .section-desc { font-size: 14px; color: var(--muted); margin-top: 4px; }
+
+  .page-card { background: white; border: 1px solid var(--border); border-radius: 12px; margin-bottom: 40px; overflow: hidden; }
+  .page-card-header { padding: 20px 28px; border-bottom: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
+  .page-card-header h3 { font-size: 17px; font-weight: 700; }
+  .page-card-header .url { font-size: 12px; color: var(--muted); font-family: 'SF Mono', 'Fira Code', monospace; }
+  .badges { display: flex; gap: 6px; flex-wrap: wrap; }
+  .badge { display: inline-flex; align-items: center; padding: 3px 9px; border-radius: 5px; font-size: 11px; font-weight: 600; }
+  .badge--green { background: #ECFDF5; color: var(--green); }
+  .badge--amber { background: #FFFBEB; color: var(--amber); }
+  .badge--red { background: #FEF2F2; color: var(--danger); }
+  .badge--blue { background: #EFF6FF; color: #2563EB; }
+  .badge--gray { background: #F3F4F6; color: #4B5563; }
+
+  .screenshots-row { display: grid; grid-template-columns: 3fr 1fr; gap: 0; }
+  .screenshot-pane { padding: 20px; position: relative; }
+  .screenshot-pane + .screenshot-pane { border-left: 1px solid var(--border); }
+  .screenshot-pane .vp-label { font-size: 10px; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; color: var(--muted); margin-bottom: 10px; }
+  .screenshot-pane img { width: 100%; border: 1px solid var(--border); border-radius: 6px; display: block; }
+  .screenshot-pane.mobile img { max-width: 375px; margin: 0 auto; }
+
+  .data-strip { padding: 16px 28px; border-top: 1px solid var(--border); background: var(--bg); display: grid; grid-template-columns: repeat(auto-fit, minmax(110px, 1fr)); gap: 12px; }
+  .data-item { text-align: center; }
+  .data-item .label { font-size: 10px; font-weight: 500; color: var(--muted); text-transform: uppercase; letter-spacing: 0.4px; }
+  .data-item .value { font-size: 18px; font-weight: 700; letter-spacing: -0.2px; margin-top: 1px; }
+  .data-item .value.g { color: var(--green); }
+  .data-item .value.a { color: var(--amber); }
+  .data-item .value.r { color: var(--danger); }
+
+  table.ranking { width: 100%; border-collapse: collapse; background: white; border: 1px solid var(--border); border-radius: 12px; overflow: hidden; margin-bottom: 40px; }
+  table.ranking thead { background: var(--navy); color: white; }
+  table.ranking th { padding: 12px 14px; font-size: 10px; font-weight: 600; letter-spacing: 0.8px; text-transform: uppercase; text-align: left; }
+  table.ranking td { padding: 12px 14px; font-size: 13px; border-bottom: 1px solid var(--border); }
+  table.ranking tr:last-child td { border-bottom: none; }
+  table.ranking tr:hover td { background: #F9FAFB; }
+  table.ranking .num { font-family: 'SF Mono', 'Fira Code', monospace; font-size: 12px; font-weight: 600; text-align: right; }
+  .rank-badge { display: inline-flex; align-items: center; justify-content: center; width: 26px; height: 26px; border-radius: 6px; font-size: 12px; font-weight: 700; }
+  .rk1 { background: #FEF3C7; color: #92400E; }
+  .rk2 { background: #E5E7EB; color: #374151; }
+  .rk3 { background: #FDE68A; color: #78350F; }
+  .rk { background: #F3F4F6; color: #6B7280; }
+
+  .module-tags { display: flex; flex-wrap: wrap; gap: 5px; padding: 12px 28px; border-top: 1px solid var(--border); background: white; }
+  .mtag {
+    display: inline-flex; align-items: center; gap: 4px; padding: 3px 8px; border-radius: 4px;
+    font-size: 10px; font-weight: 600; letter-spacing: 0.2px; border: 1px solid var(--border); color: #4B5563; background: #F9FAFB;
+  }
+  .mtag::before { content: ''; display: inline-block; width: 7px; height: 7px; border-radius: 2px; flex-shrink: 0; }
+  .mtag[data-cat="nav"]::before { background: #6366F1; }
+  .mtag[data-cat="hero"]::before { background: #EC4899; }
+  .mtag[data-cat="form"]::before { background: var(--red); }
+  .mtag[data-cat="content"]::before { background: #2563EB; }
+  .mtag[data-cat="social"]::before { background: #8B5CF6; }
+  .mtag[data-cat="cta"]::before { background: var(--amber); }
+  .mtag[data-cat="footer"]::before { background: #64748B; }
+  .mtag[data-cat="program"]::before { background: var(--green); }
+  .mtag[data-cat="blog"]::before { background: #F97316; }
+
+  .inv-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 12px; margin-bottom: 40px; }
+  .inv-card { background: white; border: 1px solid var(--border); border-radius: 10px; padding: 16px 18px; display: flex; flex-direction: column; gap: 6px; }
+  .inv-card .inv-name { font-size: 14px; font-weight: 700; display: flex; align-items: center; gap: 8px; }
+  .inv-card .inv-name .dot { width: 10px; height: 10px; border-radius: 3px; flex-shrink: 0; }
+  .inv-card .inv-id { font-size: 11px; font-family: 'SF Mono', 'Fira Code', monospace; color: var(--muted); }
+  .inv-card .inv-desc { font-size: 12px; color: #4B5563; line-height: 1.4; }
+  .inv-card .inv-count { font-size: 11px; font-weight: 600; color: var(--navy); margin-top: auto; padding-top: 6px; border-top: 1px solid var(--border); }
+
+  table.matrix { width: 100%; border-collapse: collapse; background: white; border: 1px solid var(--border); border-radius: 12px; overflow: hidden; margin-bottom: 40px; font-size: 11px; }
+  table.matrix th { padding: 8px 4px; font-size: 8px; font-weight: 600; letter-spacing: 0.2px; text-transform: uppercase; text-align: center; background: var(--navy); color: white; white-space: nowrap; }
+  table.matrix th.rotate { writing-mode: vertical-lr; transform: rotate(180deg); min-width: 28px; padding: 10px 4px; }
+  table.matrix th:first-child { text-align: left; min-width: 170px; padding-left: 12px; writing-mode: horizontal-tb; transform: none; }
+  table.matrix td { padding: 5px 4px; text-align: center; border-bottom: 1px solid var(--border); }
+  table.matrix td:first-child { text-align: left; font-weight: 500; padding-left: 12px; font-size: 11px; }
+  table.matrix tr:hover td { background: #F9FAFB; }
+  .ck { display: inline-block; width: 14px; height: 14px; border-radius: 3px; background: var(--green); color: white; font-size: 10px; text-align: center; line-height: 14px; }
+  .ck-n { display: inline-block; width: 14px; height: 14px; border-radius: 3px; background: #F3F4F6; }
+
+  @media (max-width: 1100px) {
+    .screenshots-row { grid-template-columns: 1fr; }
+    .screenshot-pane + .screenshot-pane { border-left: none; border-top: 1px solid var(--border); }
+    .header, .content { padding-left: 20px; padding-right: 20px; margin-left: 0; }
+  }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>UAGC Screenshot Library</h1>
+  <p>20 pages — 10 Paid + 10 Organic — Desktop (1440px) + Mobile (375px)</p>
+  <div class="meta">
+    <span>May 4, 2026</span>
+    <span>uagc.edu</span>
+    <span>Data: 12 months (Apr 2025 – Apr 2026)</span>
+    <span>40 screenshots total</span>
+  </div>
+</div>
+
+<button class="sidebar-toggle" onclick="document.getElementById('sidebar').classList.toggle('open')" aria-label="Toggle navigation">☰</button>
+
+<nav class="sidebar" id="sidebar">
+  <div class="sb-title">UAGC Screenshots</div>
+
+  <div class="sb-group">
+    <div class="sb-group-label paid">Paid Landing Pages</div>
+    <a href="#paid-01"><span class="num">1</span> Request Info v5 <span class="conv-pill r">3.0%</span></a>
+    <a href="#paid-02"><span class="num">2</span> Bachelor's v5 <span class="conv-pill r">3.5%</span></a>
+    <a href="#paid-03"><span class="num">3</span> Military v5 <span class="conv-pill a">3.1%</span></a>
+    <a href="#paid-04"><span class="num">4</span> Courses v5 <span class="conv-pill g">7.3%</span></a>
+    <a href="#paid-05"><span class="num">5</span> Degree Prog v7 <span class="conv-pill g">13.6%</span></a>
+    <a href="#paid-06"><span class="num">6</span> Programs v7 <span class="conv-pill a">4.5%</span></a>
+    <a href="#paid-07"><span class="num">7</span> Programs v8 <span class="conv-pill a">4.9%</span></a>
+    <a href="#paid-08"><span class="num">8</span> Liberal Arts v6</a>
+    <a href="#paid-09"><span class="num">9</span> Criminal Justice v6</a>
+    <a href="#paid-10"><span class="num">10</span> Business v6</a>
+  </div>
+
+  <div class="sb-group">
+    <div class="sb-group-label organic">Organic Pages</div>
+    <a href="#org-01"><span class="num">1</span> Homepage <span class="conv-pill a">2.0%</span></a>
+    <a href="#org-02"><span class="num">2</span> Online Degrees <span class="conv-pill g">5.8%</span></a>
+    <a href="#org-03"><span class="num">3</span> Business Degrees <span class="conv-pill g">5.5%</span></a>
+    <a href="#org-04"><span class="num">4</span> Masters <span class="conv-pill g">4.8%</span></a>
+    <a href="#org-05"><span class="num">5</span> Education</a>
+    <a href="#org-06"><span class="num">6</span> Tuition & Aid</a>
+    <a href="#org-07"><span class="num">7</span> Blog: PhD <span class="conv-pill r">0.01%</span></a>
+    <a href="#org-08"><span class="num">8</span> Blog: Biz Plan <span class="conv-pill r">0.08%</span></a>
+    <a href="#org-09"><span class="num">9</span> Bachelors Hub</a>
+    <a href="#org-10"><span class="num">10</span> Criminal Justice</a>
+  </div>
+
+  <div class="sb-group">
+    <div class="sb-group-label tables">Ranking Tables</div>
+    <a href="#paid-ranking">Paid Conversion Rank</a>
+    <a href="#organic-ranking">Organic Conversion Rank</a>
+  </div>
+
+  <div class="sb-group">
+    <div class="sb-group-label inventory">Component Inventory</div>
+    <a href="#comp-inventory">Module Catalog</a>
+    <a href="#comp-matrix">Page x Module Matrix</a>
+  </div>
+</nav>
+
+<div class="content">
+
+<!-- ═══════════════════════════ PAID SECTION ═══════════════════════════ -->
+<div id="paid-section" class="section-header">
+  <div class="section-label">Paid Landing Pages</div>
+  <div class="section-title">10 Top Paid Pages — /success/ Routes</div>
+  <div class="section-desc">Pages receiving paid traffic (Paid Search, Display, DemandGen, Paid Social). Sorted by session volume.</div>
+</div>
+
+<!-- PAID 01 -->
+<div id="paid-01" class="page-card">
+  <div class="page-card-header">
+    <div><h3>1. Request Info v5</h3><span class="url">/success/request-info-v5</span></div>
+    <div class="badges"><span class="badge badge--red">53.2% Bounce</span><span class="badge badge--gray">Paid Social</span><span class="badge badge--amber">~$807K spend</span></div>
+  </div>
+  <div class="screenshots-row">
+    <div class="screenshot-pane"><div class="vp-label">Desktop — 1440px</div><img src="paid-01-request-info-v5_desktop-1440.png" loading="lazy"></div>
+    <div class="screenshot-pane mobile"><div class="vp-label">Mobile — 375px</div><img src="paid-01-request-info-v5_mobile-375.png" loading="lazy"></div>
+  </div>
+  <div class="data-strip">
+    <div class="data-item"><div class="label">Sessions</div><div class="value">1.18M</div></div>
+    <div class="data-item"><div class="label">Conv Rate</div><div class="value r">3.01%</div></div>
+    <div class="data-item"><div class="label">Conversions</div><div class="value">35,498</div></div>
+    <div class="data-item"><div class="label">Engagement</div><div class="value r">46.8%</div></div>
+    <div class="data-item"><div class="label">Bounce</div><div class="value r">53.2%</div></div>
+    <div class="data-item"><div class="label">Ad Spend</div><div class="value">~$807K</div></div>
+    <div class="data-item"><div class="label">CPC (Ads)</div><div class="value">$3.41</div></div>
+    <div class="data-item"><div class="label">Cost/Conv</div><div class="value">$174.68</div></div>
+  </div>
+  <div class="module-tags">
+    <span class="mtag" data-cat="nav">NAV-01 Header</span><span class="mtag" data-cat="nav">NAV-02 Phone</span><span class="mtag" data-cat="hero">HERO-01 Split+RFI</span><span class="mtag" data-cat="form">FORM-01 RFI Hero</span><span class="mtag" data-cat="form">FORM-05 Sticky RFI</span><span class="mtag" data-cat="content">VP-01 Reasons</span><span class="mtag" data-cat="content">VP-02 Value Props</span><span class="mtag" data-cat="form">FORM-02 RFI Mid</span><span class="mtag" data-cat="content">VP-03 Benefits</span><span class="mtag" data-cat="cta">FIN-01 Tuition</span><span class="mtag" data-cat="cta">FIN-02 3-Wk Trial</span><span class="mtag" data-cat="cta">CTA-01 Bottom</span><span class="mtag" data-cat="social">TRUST-02 Accred</span><span class="mtag" data-cat="footer">FOOT-01 Footer</span>
+  </div>
+</div>
+
+<!-- PAID 02 -->
+<div id="paid-02" class="page-card">
+  <div class="page-card-header">
+    <div><h3>2. Bachelor's Degrees v5</h3><span class="url">/success/degree-types/bachelors-degrees-v5</span></div>
+    <div class="badges"><span class="badge badge--red">56.9% Bounce</span><span class="badge badge--gray">Paid Search</span><span class="badge badge--red">$1.41M spend</span></div>
+  </div>
+  <div class="screenshots-row">
+    <div class="screenshot-pane"><div class="vp-label">Desktop — 1440px</div><img src="paid-02-bachelors-degrees-v5_desktop-1440.png" loading="lazy"></div>
+    <div class="screenshot-pane mobile"><div class="vp-label">Mobile — 375px</div><img src="paid-02-bachelors-degrees-v5_mobile-375.png" loading="lazy"></div>
+  </div>
+  <div class="data-strip">
+    <div class="data-item"><div class="label">Sessions</div><div class="value">458,070</div></div>
+    <div class="data-item"><div class="label">Conv Rate</div><div class="value a">3.50%</div></div>
+    <div class="data-item"><div class="label">Conversions</div><div class="value">16,013</div></div>
+    <div class="data-item"><div class="label">Engagement</div><div class="value r">43.1%</div></div>
+    <div class="data-item"><div class="label">Bounce</div><div class="value r">56.9%</div></div>
+    <div class="data-item"><div class="label">Ad Spend</div><div class="value r">$1.41M</div></div>
+    <div class="data-item"><div class="label">CPC</div><div class="value">$10.72</div></div>
+    <div class="data-item"><div class="label">Cost/Conv</div><div class="value r">$513.71</div></div>
+  </div>
+  <div class="module-tags">
+    <span class="mtag" data-cat="nav">NAV-01 Header</span><span class="mtag" data-cat="nav">NAV-02 Phone</span><span class="mtag" data-cat="hero">HERO-01 Split+RFI</span><span class="mtag" data-cat="form">FORM-01 RFI Hero</span><span class="mtag" data-cat="form">FORM-05 Sticky RFI</span><span class="mtag" data-cat="program">PROG-01 Category Grid</span><span class="mtag" data-cat="program">PROG-02 Program List</span><span class="mtag" data-cat="content">VP-01 Reasons</span><span class="mtag" data-cat="content">VP-02 Value Props</span><span class="mtag" data-cat="content">VP-03 Benefits</span><span class="mtag" data-cat="cta">FIN-01 Tuition</span><span class="mtag" data-cat="cta">FIN-02 3-Wk Trial</span><span class="mtag" data-cat="cta">CTA-01 Bottom</span><span class="mtag" data-cat="footer">FOOT-01 Footer</span>
+  </div>
+</div>
+
+<!-- PAID 03 -->
+<div id="paid-03" class="page-card">
+  <div class="page-card-header">
+    <div><h3>3. Military v5</h3><span class="url">/success/military-v5</span></div>
+    <div class="badges"><span class="badge badge--blue">Audience-Specific</span><span class="badge badge--gray">Display</span><span class="badge badge--amber">~$545K spend</span></div>
+  </div>
+  <div class="screenshots-row">
+    <div class="screenshot-pane"><div class="vp-label">Desktop — 1440px</div><img src="paid-03-military-v5_desktop-1440.png" loading="lazy"></div>
+    <div class="screenshot-pane mobile"><div class="vp-label">Mobile — 375px</div><img src="paid-03-military-v5_mobile-375.png" loading="lazy"></div>
+  </div>
+  <div class="data-strip">
+    <div class="data-item"><div class="label">Sessions</div><div class="value">310,713</div></div>
+    <div class="data-item"><div class="label">Conv Rate</div><div class="value a">3.07%</div></div>
+    <div class="data-item"><div class="label">Conversions</div><div class="value">9,551</div></div>
+    <div class="data-item"><div class="label">Engagement</div><div class="value a">52.9%</div></div>
+    <div class="data-item"><div class="label">Bounce</div><div class="value a">47.1%</div></div>
+    <div class="data-item"><div class="label">Ad Spend</div><div class="value">~$545K</div></div>
+    <div class="data-item"><div class="label">CPL Note</div><div class="value" style="font-size:11px;color:var(--danger)">Corrected — spam</div></div>
+  </div>
+  <div class="module-tags">
+    <span class="mtag" data-cat="nav">NAV-01 Header</span><span class="mtag" data-cat="nav">NAV-02 Phone</span><span class="mtag" data-cat="hero">HERO-01 Split+RFI</span><span class="mtag" data-cat="form">FORM-01 RFI Hero</span><span class="mtag" data-cat="form">FORM-05 Sticky RFI</span><span class="mtag" data-cat="content">VP-01 Reasons</span><span class="mtag" data-cat="content">VP-02 Value Props</span><span class="mtag" data-cat="form">FORM-02 RFI Mid</span><span class="mtag" data-cat="cta">FIN-01 Tuition</span><span class="mtag" data-cat="cta">FIN-02 3-Wk Trial</span><span class="mtag" data-cat="social">TRUST-02 Accred</span><span class="mtag" data-cat="cta">CTA-01 Bottom</span><span class="mtag" data-cat="footer">FOOT-01 Footer</span>
+  </div>
+</div>
+
+<!-- PAID 04 -->
+<div id="paid-04" class="page-card">
+  <div class="page-card-header">
+    <div><h3>4. College Courses v5</h3><span class="url">/success/online-college-courses-v5</span></div>
+    <div class="badges"><span class="badge badge--green">7.25% Conv</span><span class="badge badge--gray">Paid Search</span><span class="badge badge--amber">$1.64M spend</span></div>
+  </div>
+  <div class="screenshots-row">
+    <div class="screenshot-pane"><div class="vp-label">Desktop — 1440px</div><img src="paid-04-college-courses-v5_desktop-1440.png" loading="lazy"></div>
+    <div class="screenshot-pane mobile"><div class="vp-label">Mobile — 375px</div><img src="paid-04-college-courses-v5_mobile-375.png" loading="lazy"></div>
+  </div>
+  <div class="data-strip">
+    <div class="data-item"><div class="label">Sessions</div><div class="value">262,257</div></div>
+    <div class="data-item"><div class="label">Conv Rate</div><div class="value g">7.25%</div></div>
+    <div class="data-item"><div class="label">Conversions</div><div class="value">19,005</div></div>
+    <div class="data-item"><div class="label">Engagement</div><div class="value g">74.5%</div></div>
+    <div class="data-item"><div class="label">Bounce</div><div class="value g">25.5%</div></div>
+    <div class="data-item"><div class="label">Ad Spend</div><div class="value">$1.64M</div></div>
+    <div class="data-item"><div class="label">CPC</div><div class="value">$12.69</div></div>
+    <div class="data-item"><div class="label">Cost/Conv</div><div class="value a">$420.62</div></div>
+  </div>
+  <div class="module-tags">
+    <span class="mtag" data-cat="nav">NAV-01 Header</span><span class="mtag" data-cat="nav">NAV-02 Phone</span><span class="mtag" data-cat="hero">HERO-01 Split+RFI</span><span class="mtag" data-cat="form">FORM-01 RFI Hero</span><span class="mtag" data-cat="form">FORM-05 Sticky RFI</span><span class="mtag" data-cat="program">PROG-01 Category Grid</span><span class="mtag" data-cat="program">PROG-02 Program List</span><span class="mtag" data-cat="content">VP-01 Reasons</span><span class="mtag" data-cat="content">VP-02 Value Props</span><span class="mtag" data-cat="form">FORM-02 RFI Mid</span><span class="mtag" data-cat="content">VP-03 Benefits</span><span class="mtag" data-cat="cta">FIN-01 Tuition</span><span class="mtag" data-cat="cta">FIN-02 3-Wk Trial</span><span class="mtag" data-cat="cta">CTA-01 Bottom</span><span class="mtag" data-cat="footer">FOOT-01 Footer</span>
+  </div>
+</div>
+
+<!-- PAID 05 -->
+<div id="paid-05" class="page-card">
+  <div class="page-card-header">
+    <div><h3>5. Degree Programs v7</h3><span class="url">/success/degree-programs-v7</span></div>
+    <div class="badges"><span class="badge badge--green">13.57% Conv — #1 Paid</span><span class="badge badge--gray">Display</span></div>
+  </div>
+  <div class="screenshots-row">
+    <div class="screenshot-pane"><div class="vp-label">Desktop — 1440px</div><img src="paid-05-degree-programs-v7_desktop-1440.png" loading="lazy"></div>
+    <div class="screenshot-pane mobile"><div class="vp-label">Mobile — 375px</div><img src="paid-05-degree-programs-v7_mobile-375.png" loading="lazy"></div>
+  </div>
+  <div class="data-strip">
+    <div class="data-item"><div class="label">Sessions</div><div class="value">221,507</div></div>
+    <div class="data-item"><div class="label">Conv Rate</div><div class="value g">13.57%</div></div>
+    <div class="data-item"><div class="label">Conversions</div><div class="value">30,066</div></div>
+    <div class="data-item"><div class="label">Engagement</div><div class="value g">74.9%</div></div>
+    <div class="data-item"><div class="label">Bounce</div><div class="value g">25.1%</div></div>
+    <div class="data-item"><div class="label">Avg Session</div><div class="value">8.9 min</div></div>
+    <div class="data-item"><div class="label">Paid Rank</div><div class="value g">#1</div></div>
+  </div>
+  <div class="module-tags">
+    <span class="mtag" data-cat="nav">NAV-01 Header</span><span class="mtag" data-cat="nav">NAV-02 Phone</span><span class="mtag" data-cat="hero">HERO-01 Split+RFI</span><span class="mtag" data-cat="form">FORM-01 RFI Hero</span><span class="mtag" data-cat="form">FORM-05 Sticky RFI</span><span class="mtag" data-cat="program">PROG-01 Category Grid</span><span class="mtag" data-cat="program">PROG-02 Program List</span><span class="mtag" data-cat="content">VP-01 Reasons</span><span class="mtag" data-cat="content">VP-02 Value Props</span><span class="mtag" data-cat="form">FORM-02 RFI Mid</span><span class="mtag" data-cat="social">TRUST-02 Accred</span><span class="mtag" data-cat="cta">FIN-01 Tuition</span><span class="mtag" data-cat="cta">FIN-02 3-Wk Trial</span><span class="mtag" data-cat="cta">CTA-01 Bottom</span><span class="mtag" data-cat="footer">FOOT-01 Footer</span>
+  </div>
+</div>
+
+<!-- PAID 06 -->
+<div id="paid-06" class="page-card">
+  <div class="page-card-header">
+    <div><h3>6. Online Programs v7</h3><span class="url">/success/online-programs-v7</span></div>
+    <div class="badges"><span class="badge badge--amber">4.53% Conv</span><span class="badge badge--gray">Paid Search</span></div>
+  </div>
+  <div class="screenshots-row">
+    <div class="screenshot-pane"><div class="vp-label">Desktop — 1440px</div><img src="paid-06-online-programs-v7_desktop-1440.png" loading="lazy"></div>
+    <div class="screenshot-pane mobile"><div class="vp-label">Mobile — 375px</div><img src="paid-06-online-programs-v7_mobile-375.png" loading="lazy"></div>
+  </div>
+  <div class="data-strip">
+    <div class="data-item"><div class="label">Sessions</div><div class="value">192,742</div></div>
+    <div class="data-item"><div class="label">Conv Rate</div><div class="value a">4.53%</div></div>
+    <div class="data-item"><div class="label">Conversions</div><div class="value">8,725</div></div>
+    <div class="data-item"><div class="label">Engagement</div><div class="value g">71.3%</div></div>
+    <div class="data-item"><div class="label">Bounce</div><div class="value">28.7%</div></div>
+    <div class="data-item"><div class="label">A/B Note</div><div class="value" style="font-size:11px;color:var(--muted)">Lost to v5 on Meta</div></div>
+  </div>
+  <div class="module-tags">
+    <span class="mtag" data-cat="nav">NAV-01 Header</span><span class="mtag" data-cat="nav">NAV-02 Phone</span><span class="mtag" data-cat="hero">HERO-01 Split+RFI</span><span class="mtag" data-cat="form">FORM-01 RFI Hero</span><span class="mtag" data-cat="form">FORM-05 Sticky RFI</span><span class="mtag" data-cat="program">PROG-02 Program List</span><span class="mtag" data-cat="content">VP-01 Reasons</span><span class="mtag" data-cat="content">VP-02 Value Props</span><span class="mtag" data-cat="social">TRUST-01 Testimonial</span><span class="mtag" data-cat="social">TRUST-02 Accred</span><span class="mtag" data-cat="cta">FIN-01 Tuition</span><span class="mtag" data-cat="cta">CTA-01 Bottom</span><span class="mtag" data-cat="footer">FOOT-01 Footer</span>
+  </div>
+</div>
+
+<!-- PAID 07 -->
+<div id="paid-07" class="page-card">
+  <div class="page-card-header">
+    <div><h3>7. Online Programs v8</h3><span class="url">/success/online-programs-v8</span></div>
+    <div class="badges"><span class="badge badge--amber">4.92% Conv</span><span class="badge badge--gray">Display</span></div>
+  </div>
+  <div class="screenshots-row">
+    <div class="screenshot-pane"><div class="vp-label">Desktop — 1440px</div><img src="paid-07-online-programs-v8_desktop-1440.png" loading="lazy"></div>
+    <div class="screenshot-pane mobile"><div class="vp-label">Mobile — 375px</div><img src="paid-07-online-programs-v8_mobile-375.png" loading="lazy"></div>
+  </div>
+  <div class="data-strip">
+    <div class="data-item"><div class="label">Sessions</div><div class="value">191,658</div></div>
+    <div class="data-item"><div class="label">Conv Rate</div><div class="value a">4.92%</div></div>
+    <div class="data-item"><div class="label">Conversions</div><div class="value">9,437</div></div>
+    <div class="data-item"><div class="label">Engagement</div><div class="value">68.1%</div></div>
+    <div class="data-item"><div class="label">Bounce</div><div class="value">31.9%</div></div>
+    <div class="data-item"><div class="label">Channel</div><div class="value" style="font-size:13px">Display</div></div>
+  </div>
+  <div class="module-tags">
+    <span class="mtag" data-cat="nav">NAV-01 Header</span><span class="mtag" data-cat="nav">NAV-02 Phone</span><span class="mtag" data-cat="hero">HERO-01 Split+RFI</span><span class="mtag" data-cat="form">FORM-01 RFI Hero</span><span class="mtag" data-cat="form">FORM-05 Sticky RFI</span><span class="mtag" data-cat="program">PROG-02 Program List</span><span class="mtag" data-cat="content">VP-01 Reasons</span><span class="mtag" data-cat="content">VP-02 Value Props</span><span class="mtag" data-cat="social">TRUST-01 Testimonial</span><span class="mtag" data-cat="social">TRUST-02 Accred</span><span class="mtag" data-cat="cta">FIN-01 Tuition</span><span class="mtag" data-cat="cta">FIN-02 3-Wk Trial</span><span class="mtag" data-cat="cta">CTA-01 Bottom</span><span class="mtag" data-cat="footer">FOOT-01 Footer</span>
+  </div>
+</div>
+
+<!-- PAID 08 -->
+<div id="paid-08" class="page-card">
+  <div class="page-card-header">
+    <div><h3>8. Liberal Arts v6</h3><span class="url">/success/programs/liberal-arts-v6</span></div>
+    <div class="badges"><span class="badge badge--red">High Bounce (Paid Social)</span><span class="badge badge--gray">Program LP</span></div>
+  </div>
+  <div class="screenshots-row">
+    <div class="screenshot-pane"><div class="vp-label">Desktop — 1440px</div><img src="paid-08-liberal-arts-v6_desktop-1440.png" loading="lazy"></div>
+    <div class="screenshot-pane mobile"><div class="vp-label">Mobile — 375px</div><img src="paid-08-liberal-arts-v6_mobile-375.png" loading="lazy"></div>
+  </div>
+  <div class="data-strip">
+    <div class="data-item"><div class="label">Sessions (Social)</div><div class="value">~72K</div></div>
+    <div class="data-item"><div class="label">Bounce (Social)</div><div class="value r">68.4%</div></div>
+    <div class="data-item"><div class="label">Note</div><div class="value" style="font-size:12px;color:var(--muted)">Program-specific paid LP — Paid Social traffic</div></div>
+  </div>
+  <div class="module-tags">
+    <span class="mtag" data-cat="nav">NAV-01 Header</span><span class="mtag" data-cat="nav">NAV-02 Phone</span><span class="mtag" data-cat="hero">HERO-02 Program LP</span><span class="mtag" data-cat="form">FORM-01 RFI Hero</span><span class="mtag" data-cat="form">FORM-05 Sticky RFI</span><span class="mtag" data-cat="program">PROG-02 Program List</span><span class="mtag" data-cat="content">VP-01 Reasons</span><span class="mtag" data-cat="content">VP-02 Value Props</span><span class="mtag" data-cat="form">FORM-02 RFI Mid</span><span class="mtag" data-cat="content">VP-03 Benefits</span><span class="mtag" data-cat="social">TRUST-01 Testimonial</span><span class="mtag" data-cat="cta">FIN-01 Tuition</span><span class="mtag" data-cat="cta">FIN-02 3-Wk Trial</span><span class="mtag" data-cat="cta">CTA-01 Bottom</span><span class="mtag" data-cat="footer">FOOT-01 Footer</span>
+  </div>
+</div>
+
+<!-- PAID 09 -->
+<div id="paid-09" class="page-card">
+  <div class="page-card-header">
+    <div><h3>9. Criminal Justice v6</h3><span class="url">/success/programs/criminal-justice-v6</span></div>
+    <div class="badges"><span class="badge badge--red">72.8% Bounce</span><span class="badge badge--gray">Program LP</span></div>
+  </div>
+  <div class="screenshots-row">
+    <div class="screenshot-pane"><div class="vp-label">Desktop — 1440px</div><img src="paid-09-criminal-justice-v6_desktop-1440.png" loading="lazy"></div>
+    <div class="screenshot-pane mobile"><div class="vp-label">Mobile — 375px</div><img src="paid-09-criminal-justice-v6_mobile-375.png" loading="lazy"></div>
+  </div>
+  <div class="data-strip">
+    <div class="data-item"><div class="label">Bounce</div><div class="value r">72.8%</div></div>
+    <div class="data-item"><div class="label">Note</div><div class="value" style="font-size:12px;color:var(--muted)">Program-specific paid LP — high bounce from paid social</div></div>
+  </div>
+  <div class="module-tags">
+    <span class="mtag" data-cat="nav">NAV-01 Header</span><span class="mtag" data-cat="nav">NAV-02 Phone</span><span class="mtag" data-cat="hero">HERO-02 Program LP</span><span class="mtag" data-cat="form">FORM-01 RFI Hero</span><span class="mtag" data-cat="form">FORM-05 Sticky RFI</span><span class="mtag" data-cat="program">PROG-01 Category Grid</span><span class="mtag" data-cat="program">PROG-02 Program List</span><span class="mtag" data-cat="content">VP-01 Reasons</span><span class="mtag" data-cat="content">VP-02 Value Props</span><span class="mtag" data-cat="form">FORM-02 RFI Mid</span><span class="mtag" data-cat="content">VP-03 Benefits</span><span class="mtag" data-cat="social">TRUST-01 Testimonial</span><span class="mtag" data-cat="cta">FIN-01 Tuition</span><span class="mtag" data-cat="cta">FIN-02 3-Wk Trial</span><span class="mtag" data-cat="cta">CTA-01 Bottom</span><span class="mtag" data-cat="footer">FOOT-01 Footer</span>
+  </div>
+</div>
+
+<!-- PAID 10 -->
+<div id="paid-10" class="page-card">
+  <div class="page-card-header">
+    <div><h3>10. Business v6</h3><span class="url">/success/programs/business-v6</span></div>
+    <div class="badges"><span class="badge badge--gray">Program LP</span></div>
+  </div>
+  <div class="screenshots-row">
+    <div class="screenshot-pane"><div class="vp-label">Desktop — 1440px</div><img src="paid-10-business-v6_desktop-1440.png" loading="lazy"></div>
+    <div class="screenshot-pane mobile"><div class="vp-label">Mobile — 375px</div><img src="paid-10-business-v6_mobile-375.png" loading="lazy"></div>
+  </div>
+  <div class="data-strip">
+    <div class="data-item"><div class="label">Note</div><div class="value" style="font-size:12px;color:var(--muted)">Program-specific paid landing page — business vertical</div></div>
+  </div>
+  <div class="module-tags">
+    <span class="mtag" data-cat="nav">NAV-01 Header</span><span class="mtag" data-cat="nav">NAV-02 Phone</span><span class="mtag" data-cat="hero">HERO-02 Program LP</span><span class="mtag" data-cat="form">FORM-01 RFI Hero</span><span class="mtag" data-cat="form">FORM-05 Sticky RFI</span><span class="mtag" data-cat="program">PROG-01 Category Grid</span><span class="mtag" data-cat="program">PROG-02 Program List</span><span class="mtag" data-cat="content">VP-01 Reasons</span><span class="mtag" data-cat="content">VP-02 Value Props</span><span class="mtag" data-cat="form">FORM-02 RFI Mid</span><span class="mtag" data-cat="content">VP-03 Benefits</span><span class="mtag" data-cat="social">TRUST-01 Testimonial</span><span class="mtag" data-cat="cta">FIN-01 Tuition</span><span class="mtag" data-cat="cta">FIN-02 3-Wk Trial</span><span class="mtag" data-cat="cta">CTA-01 Bottom</span><span class="mtag" data-cat="footer">FOOT-01 Footer</span>
+  </div>
+</div>
+
+<!-- ═══════════════════════════ ORGANIC SECTION ═══════════════════════════ -->
+<div id="organic-section" class="section-header">
+  <div class="section-label">Organic Pages</div>
+  <div class="section-title">10 Top Organic Pages — Site & Blog</div>
+  <div class="section-desc">Pages receiving organic search, direct, and referral traffic. Includes program hubs and blog content.</div>
+</div>
+
+<!-- ORG 01 -->
+<div id="org-01" class="page-card">
+  <div class="page-card-header">
+    <div><h3>1. Homepage</h3><span class="url">uagc.edu/</span></div>
+    <div class="badges"><span class="badge badge--blue">Brand Navigation</span><span class="badge badge--amber">43.3% Bounce</span></div>
+  </div>
+  <div class="screenshots-row">
+    <div class="screenshot-pane"><div class="vp-label">Desktop — 1440px</div><img src="organic-01-homepage_desktop-1440.png" loading="lazy"></div>
+    <div class="screenshot-pane mobile"><div class="vp-label">Mobile — 375px</div><img src="organic-01-homepage_mobile-375.png" loading="lazy"></div>
+  </div>
+  <div class="data-strip">
+    <div class="data-item"><div class="label">Sessions</div><div class="value">1.32M</div></div>
+    <div class="data-item"><div class="label">Conv Rate</div><div class="value a">2.0%</div></div>
+    <div class="data-item"><div class="label">Conversions</div><div class="value">23,133</div></div>
+    <div class="data-item"><div class="label">Engagement</div><div class="value a">56.7%</div></div>
+    <div class="data-item"><div class="label">Bounce</div><div class="value a">43.3%</div></div>
+    <div class="data-item"><div class="label">GSC Clicks</div><div class="value">142,563</div></div>
+    <div class="data-item"><div class="label">Avg Session</div><div class="value">13.5 min</div></div>
+    <div class="data-item"><div class="label">H2 Trend</div><div class="value r">-41.6%</div></div>
+  </div>
+  <div class="module-tags">
+    <span class="mtag" data-cat="nav">NAV-01 Header</span><span class="mtag" data-cat="hero">HERO-04 Homepage</span><span class="mtag" data-cat="form">FORM-05 Sticky RFI</span><span class="mtag" data-cat="program">PROG-01 Category Grid</span><span class="mtag" data-cat="social">TRUST-01 Testimonial</span><span class="mtag" data-cat="cta">CTA-01 Bottom</span><span class="mtag" data-cat="footer">FOOT-01 Footer</span>
+  </div>
+</div>
+
+<!-- ORG 02 -->
+<div id="org-02" class="page-card">
+  <div class="page-card-header">
+    <div><h3>2. Online Degrees (Hub)</h3><span class="url">uagc.edu/online-degrees</span></div>
+    <div class="badges"><span class="badge badge--green">88.8% Engagement — Gold Standard</span></div>
+  </div>
+  <div class="screenshots-row">
+    <div class="screenshot-pane"><div class="vp-label">Desktop — 1440px</div><img src="organic-02-online-degrees_desktop-1440.png" loading="lazy"></div>
+    <div class="screenshot-pane mobile"><div class="vp-label">Mobile — 375px</div><img src="organic-02-online-degrees_mobile-375.png" loading="lazy"></div>
+  </div>
+  <div class="data-strip">
+    <div class="data-item"><div class="label">Sessions</div><div class="value">135,507</div></div>
+    <div class="data-item"><div class="label">Conv Rate</div><div class="value g">5.82%</div></div>
+    <div class="data-item"><div class="label">Conversions</div><div class="value">3,428</div></div>
+    <div class="data-item"><div class="label">Engagement</div><div class="value g">88.8%</div></div>
+    <div class="data-item"><div class="label">Bounce</div><div class="value g">11.2%</div></div>
+    <div class="data-item"><div class="label">GSC Clicks</div><div class="value">15,098</div></div>
+    <div class="data-item"><div class="label">Avg Session</div><div class="value">11.8 min</div></div>
+  </div>
+  <div class="module-tags">
+    <span class="mtag" data-cat="nav">NAV-01 Header</span><span class="mtag" data-cat="nav">NAV-03 Breadcrumb</span><span class="mtag" data-cat="hero">HERO-03 Organic Banner</span><span class="mtag" data-cat="form">FORM-03 RFI Below Hero</span><span class="mtag" data-cat="form">FORM-05 Sticky RFI</span><span class="mtag" data-cat="program">PROG-03 Top Requested</span><span class="mtag" data-cat="program">PROG-02 Program List</span><span class="mtag" data-cat="program">PROG-04 Not Sure?</span><span class="mtag" data-cat="social">TRUST-01 Testimonial</span><span class="mtag" data-cat="footer">FOOT-01 Footer</span>
+  </div>
+</div>
+
+<!-- ORG 03 -->
+<div id="org-03" class="page-card">
+  <div class="page-card-header">
+    <div><h3>3. Business Degrees</h3><span class="url">uagc.edu/online-degrees/business</span></div>
+    <div class="badges"><span class="badge badge--green">85.8% Engagement</span></div>
+  </div>
+  <div class="screenshots-row">
+    <div class="screenshot-pane"><div class="vp-label">Desktop — 1440px</div><img src="organic-03-degrees-business_desktop-1440.png" loading="lazy"></div>
+    <div class="screenshot-pane mobile"><div class="vp-label">Mobile — 375px</div><img src="organic-03-degrees-business_mobile-375.png" loading="lazy"></div>
+  </div>
+  <div class="data-strip">
+    <div class="data-item"><div class="label">Sessions</div><div class="value">~140K</div></div>
+    <div class="data-item"><div class="label">Conv Rate</div><div class="value g">~5.5%</div></div>
+    <div class="data-item"><div class="label">Conversions</div><div class="value">7,709</div></div>
+    <div class="data-item"><div class="label">Engagement</div><div class="value g">85.8%</div></div>
+    <div class="data-item"><div class="label">Bounce</div><div class="value g">14.2%</div></div>
+    <div class="data-item"><div class="label">Avg Session</div><div class="value">7.5 min</div></div>
+  </div>
+  <div class="module-tags">
+    <span class="mtag" data-cat="nav">NAV-01 Header</span><span class="mtag" data-cat="nav">NAV-03 Breadcrumb</span><span class="mtag" data-cat="hero">HERO-03 Organic Banner</span><span class="mtag" data-cat="form">FORM-03 RFI Below Hero</span><span class="mtag" data-cat="form">FORM-05 Sticky RFI</span><span class="mtag" data-cat="social">TRUST-02 Accred</span><span class="mtag" data-cat="program">PROG-04 Not Sure?</span><span class="mtag" data-cat="content">VP-02 Value Props</span><span class="mtag" data-cat="social">TRUST-03 Faculty</span><span class="mtag" data-cat="content">VP-03 Benefits</span><span class="mtag" data-cat="content">Related Articles</span><span class="mtag" data-cat="footer">FOOT-01 Footer</span>
+  </div>
+</div>
+
+<!-- ORG 04 -->
+<div id="org-04" class="page-card">
+  <div class="page-card-header">
+    <div><h3>4. Masters Programs</h3><span class="url">uagc.edu/online-degrees/masters</span></div>
+    <div class="badges"><span class="badge badge--green">89.9% Engagement</span></div>
+  </div>
+  <div class="screenshots-row">
+    <div class="screenshot-pane"><div class="vp-label">Desktop — 1440px</div><img src="organic-04-degrees-masters_desktop-1440.png" loading="lazy"></div>
+    <div class="screenshot-pane mobile"><div class="vp-label">Mobile — 375px</div><img src="organic-04-degrees-masters_mobile-375.png" loading="lazy"></div>
+  </div>
+  <div class="data-strip">
+    <div class="data-item"><div class="label">Sessions</div><div class="value">~46K</div></div>
+    <div class="data-item"><div class="label">Conv Rate</div><div class="value g">~4.8%</div></div>
+    <div class="data-item"><div class="label">Conversions</div><div class="value">2,206</div></div>
+    <div class="data-item"><div class="label">Engagement</div><div class="value g">89.9%</div></div>
+    <div class="data-item"><div class="label">Bounce</div><div class="value g">10.1%</div></div>
+    <div class="data-item"><div class="label">Avg Session</div><div class="value">8.2 min</div></div>
+  </div>
+  <div class="module-tags">
+    <span class="mtag" data-cat="nav">NAV-01 Header</span><span class="mtag" data-cat="nav">NAV-03 Breadcrumb</span><span class="mtag" data-cat="hero">HERO-03 Organic Banner</span><span class="mtag" data-cat="form">FORM-03 RFI Below Hero</span><span class="mtag" data-cat="form">FORM-05 Sticky RFI</span><span class="mtag" data-cat="social">TRUST-02 Accred</span><span class="mtag" data-cat="program">PROG-03 Top Requested</span><span class="mtag" data-cat="program">PROG-02 Program List</span><span class="mtag" data-cat="program">PROG-04 Not Sure?</span><span class="mtag" data-cat="content">Related Articles</span><span class="mtag" data-cat="footer">FOOT-01 Footer</span>
+  </div>
+</div>
+
+<!-- ORG 05 -->
+<div id="org-05" class="page-card">
+  <div class="page-card-header">
+    <div><h3>5. Education Degrees</h3><span class="url">uagc.edu/online-degrees/education</span></div>
+    <div class="badges"><span class="badge badge--blue">Program Hub</span></div>
+  </div>
+  <div class="screenshots-row">
+    <div class="screenshot-pane"><div class="vp-label">Desktop — 1440px</div><img src="organic-05-degrees-education_desktop-1440.png" loading="lazy"></div>
+    <div class="screenshot-pane mobile"><div class="vp-label">Mobile — 375px</div><img src="organic-05-degrees-education_mobile-375.png" loading="lazy"></div>
+  </div>
+  <div class="data-strip">
+    <div class="data-item"><div class="label">Note</div><div class="value" style="font-size:12px;color:var(--muted)">Education vertical hub — pattern match to /online-degrees/business</div></div>
+  </div>
+  <div class="module-tags">
+    <span class="mtag" data-cat="nav">NAV-01 Header</span><span class="mtag" data-cat="nav">NAV-03 Breadcrumb</span><span class="mtag" data-cat="hero">HERO-03 Organic Banner</span><span class="mtag" data-cat="form">FORM-03 RFI Below Hero</span><span class="mtag" data-cat="form">FORM-05 Sticky RFI</span><span class="mtag" data-cat="social">TRUST-02 Accred</span><span class="mtag" data-cat="program">PROG-04 Not Sure?</span><span class="mtag" data-cat="content">VP-02 Value Props</span><span class="mtag" data-cat="social">TRUST-03 Faculty</span><span class="mtag" data-cat="content">VP-03 Benefits</span><span class="mtag" data-cat="content">Related Articles</span><span class="mtag" data-cat="footer">FOOT-01 Footer</span>
+  </div>
+</div>
+
+<!-- ORG 06 -->
+<div id="org-06" class="page-card">
+  <div class="page-card-header">
+    <div><h3>6. Tuition & Financial Aid</h3><span class="url">uagc.edu/tuition-financial-aid</span></div>
+    <div class="badges"><span class="badge badge--green">88.0% Engagement</span></div>
+  </div>
+  <div class="screenshots-row">
+    <div class="screenshot-pane"><div class="vp-label">Desktop — 1440px</div><img src="organic-06-tuition-financial-aid_desktop-1440.png" loading="lazy"></div>
+    <div class="screenshot-pane mobile"><div class="vp-label">Mobile — 375px</div><img src="organic-06-tuition-financial-aid_mobile-375.png" loading="lazy"></div>
+  </div>
+  <div class="data-strip">
+    <div class="data-item"><div class="label">Engagement</div><div class="value g">88.0%</div></div>
+    <div class="data-item"><div class="label">Bounce</div><div class="value g">12.0%</div></div>
+    <div class="data-item"><div class="label">Note</div><div class="value" style="font-size:12px;color:var(--muted)">Strong performer — layout benchmark alongside /online-degrees</div></div>
+  </div>
+  <div class="module-tags">
+    <span class="mtag" data-cat="nav">NAV-01 Header</span><span class="mtag" data-cat="nav">NAV-03 Breadcrumb</span><span class="mtag" data-cat="hero">HERO-03 Organic Banner</span><span class="mtag" data-cat="form">FORM-03 RFI Below Hero</span><span class="mtag" data-cat="form">FORM-05 Sticky RFI</span><span class="mtag" data-cat="cta">FIN-01 Tuition</span><span class="mtag" data-cat="cta">FIN-02 3-Wk Trial</span><span class="mtag" data-cat="footer">FOOT-01 Footer</span>
+  </div>
+</div>
+
+<!-- ORG 07 -->
+<div id="org-07" class="page-card">
+  <div class="page-card-header">
+    <div><h3>7. Blog: PhD vs Doctorate</h3><span class="url">uagc.edu/blog/what-difference-between-phd-and-doctorate</span></div>
+    <div class="badges"><span class="badge badge--red">0.01% Conv</span><span class="badge badge--green">67.8% Engagement</span></div>
+  </div>
+  <div class="screenshots-row">
+    <div class="screenshot-pane"><div class="vp-label">Desktop — 1440px</div><img src="organic-07-blog-phd-doctorate_desktop-1440.png" loading="lazy"></div>
+    <div class="screenshot-pane mobile"><div class="vp-label">Mobile — 375px</div><img src="organic-07-blog-phd-doctorate_mobile-375.png" loading="lazy"></div>
+  </div>
+  <div class="data-strip">
+    <div class="data-item"><div class="label">Sessions</div><div class="value">148,831</div></div>
+    <div class="data-item"><div class="label">Conv Rate</div><div class="value r">0.01%</div></div>
+    <div class="data-item"><div class="label">Conversions</div><div class="value r">21</div></div>
+    <div class="data-item"><div class="label">Engagement</div><div class="value g">67.8%</div></div>
+    <div class="data-item"><div class="label">GSC Clicks</div><div class="value">60,937</div></div>
+    <div class="data-item"><div class="label">Avg Session</div><div class="value">8.1 min</div></div>
+    <div class="data-item"><div class="label">Opportunity</div><div class="value g">+1,490/yr</div></div>
+  </div>
+  <div class="module-tags">
+    <span class="mtag" data-cat="nav">NAV-01 Header</span><span class="mtag" data-cat="nav">NAV-03 Breadcrumb</span><span class="mtag" data-cat="blog">HERO-05 Blog Post</span><span class="mtag" data-cat="form">FORM-04 RFI Sidebar</span><span class="mtag" data-cat="form">FORM-05 Sticky RFI</span><span class="mtag" data-cat="blog">Blog Article Body</span><span class="mtag" data-cat="cta">In-Article CTA</span><span class="mtag" data-cat="footer">FOOT-01 Footer</span>
+  </div>
+</div>
+
+<!-- ORG 08 -->
+<div id="org-08" class="page-card">
+  <div class="page-card-header">
+    <div><h3>8. Blog: Business Plan</h3><span class="url">uagc.edu/blog/how-write-business-plan-step-by-step</span></div>
+    <div class="badges"><span class="badge badge--red">0.08% Conv</span><span class="badge badge--green">63.0% Engagement</span></div>
+  </div>
+  <div class="screenshots-row">
+    <div class="screenshot-pane"><div class="vp-label">Desktop — 1440px</div><img src="organic-08-blog-business-plan_desktop-1440.png" loading="lazy"></div>
+    <div class="screenshot-pane mobile"><div class="vp-label">Mobile — 375px</div><img src="organic-08-blog-business-plan_mobile-375.png" loading="lazy"></div>
+  </div>
+  <div class="data-strip">
+    <div class="data-item"><div class="label">Sessions</div><div class="value">74,663</div></div>
+    <div class="data-item"><div class="label">Conv Rate</div><div class="value r">0.08%</div></div>
+    <div class="data-item"><div class="label">Conversions</div><div class="value r">63</div></div>
+    <div class="data-item"><div class="label">Engagement</div><div class="value g">63.0%</div></div>
+    <div class="data-item"><div class="label">GSC Clicks</div><div class="value">24,413</div></div>
+    <div class="data-item"><div class="label">Avg Session</div><div class="value">14.7 min</div></div>
+    <div class="data-item"><div class="label">Opportunity</div><div class="value g">+747/yr</div></div>
+  </div>
+  <div class="module-tags">
+    <span class="mtag" data-cat="nav">NAV-01 Header</span><span class="mtag" data-cat="nav">NAV-03 Breadcrumb</span><span class="mtag" data-cat="blog">HERO-05 Blog Post</span><span class="mtag" data-cat="form">FORM-04 RFI Sidebar</span><span class="mtag" data-cat="form">FORM-05 Sticky RFI</span><span class="mtag" data-cat="blog">Blog Article Body</span><span class="mtag" data-cat="blog">Infographic Content</span><span class="mtag" data-cat="cta">In-Article CTA</span><span class="mtag" data-cat="footer">FOOT-01 Footer</span>
+  </div>
+</div>
+
+<!-- ORG 09 -->
+<div id="org-09" class="page-card">
+  <div class="page-card-header">
+    <div><h3>9. Bachelor's Degrees (Hub)</h3><span class="url">uagc.edu/online-degrees/bachelors</span></div>
+    <div class="badges"><span class="badge badge--blue">Degree Level Hub</span></div>
+  </div>
+  <div class="screenshots-row">
+    <div class="screenshot-pane"><div class="vp-label">Desktop — 1440px</div><img src="organic-09-degrees-bachelors_desktop-1440.png" loading="lazy"></div>
+    <div class="screenshot-pane mobile"><div class="vp-label">Mobile — 375px</div><img src="organic-09-degrees-bachelors_mobile-375.png" loading="lazy"></div>
+  </div>
+  <div class="data-strip">
+    <div class="data-item"><div class="label">Note</div><div class="value" style="font-size:12px;color:var(--muted)">Bachelor's degree-level hub — compare with paid /bachelors-degrees-v5 for layout differences</div></div>
+  </div>
+  <div class="module-tags">
+    <span class="mtag" data-cat="nav">NAV-01 Header</span><span class="mtag" data-cat="nav">NAV-03 Breadcrumb</span><span class="mtag" data-cat="hero">HERO-03 Organic Banner</span><span class="mtag" data-cat="form">FORM-03 RFI Below Hero</span><span class="mtag" data-cat="form">FORM-05 Sticky RFI</span><span class="mtag" data-cat="social">TRUST-02 Accred</span><span class="mtag" data-cat="program">PROG-03 Top Requested</span><span class="mtag" data-cat="program">PROG-02 Program List</span><span class="mtag" data-cat="program">PROG-04 Not Sure?</span><span class="mtag" data-cat="content">Related Articles</span><span class="mtag" data-cat="footer">FOOT-01 Footer</span>
+  </div>
+</div>
+
+<!-- ORG 10 -->
+<div id="org-10" class="page-card">
+  <div class="page-card-header">
+    <div><h3>10. Criminal Justice Degrees</h3><span class="url">uagc.edu/online-degrees/criminal-justice</span></div>
+    <div class="badges"><span class="badge badge--blue">Program Hub</span></div>
+  </div>
+  <div class="screenshots-row">
+    <div class="screenshot-pane"><div class="vp-label">Desktop — 1440px</div><img src="organic-10-degrees-criminal-justice_desktop-1440.png" loading="lazy"></div>
+    <div class="screenshot-pane mobile"><div class="vp-label">Mobile — 375px</div><img src="organic-10-degrees-criminal-justice_mobile-375.png" loading="lazy"></div>
+  </div>
+  <div class="data-strip">
+    <div class="data-item"><div class="label">Note</div><div class="value" style="font-size:12px;color:var(--muted)">Organic CJ hub — compare with paid /criminal-justice-v6 for content and layout gap</div></div>
+  </div>
+  <div class="module-tags">
+    <span class="mtag" data-cat="nav">NAV-01 Header</span><span class="mtag" data-cat="nav">NAV-03 Breadcrumb</span><span class="mtag" data-cat="hero">HERO-03 Organic Banner</span><span class="mtag" data-cat="form">FORM-03 RFI Below Hero</span><span class="mtag" data-cat="form">FORM-05 Sticky RFI</span><span class="mtag" data-cat="social">TRUST-02 Accred</span><span class="mtag" data-cat="program">PROG-04 Not Sure?</span><span class="mtag" data-cat="content">VP-02 Value Props</span><span class="mtag" data-cat="social">TRUST-03 Faculty</span><span class="mtag" data-cat="content">Related Articles</span><span class="mtag" data-cat="footer">FOOT-01 Footer</span>
+  </div>
+</div>
+
+<!-- ═══════════════════════════ RANKING TABLES ═══════════════════════════ -->
+<div id="paid-ranking" class="section-header">
+  <div class="section-label">Conversion Ranking</div>
+  <div class="section-title">Top Converting Pages — Paid</div>
+</div>
+
+<table class="ranking">
+  <thead><tr><th style="width:48px">Rank</th><th>Page</th><th class="num">Conv Rate</th><th class="num">Conversions</th><th class="num">Sessions</th><th class="num">Engagement</th><th class="num">Bounce</th><th>Channel</th><th class="num">Ad Spend</th></tr></thead>
+  <tbody>
+    <tr><td><span class="rank-badge rk1">1</span></td><td><strong>degree-programs-v7</strong></td><td class="num" style="color:var(--green)">13.57%</td><td class="num">30,066</td><td class="num">221,507</td><td class="num">74.9%</td><td class="num">25.1%</td><td>Display</td><td class="num">—</td></tr>
+    <tr><td><span class="rank-badge rk2">2</span></td><td><strong>college-courses-v5</strong></td><td class="num" style="color:var(--green)">7.25%</td><td class="num">19,005</td><td class="num">262,257</td><td class="num">74.5%</td><td class="num">25.5%</td><td>Paid Search</td><td class="num">$1.64M</td></tr>
+    <tr><td><span class="rank-badge rk3">3</span></td><td><strong>online-programs-v8</strong></td><td class="num">4.92%</td><td class="num">9,437</td><td class="num">191,658</td><td class="num">68.1%</td><td class="num">31.9%</td><td>Display</td><td class="num">—</td></tr>
+    <tr><td><span class="rank-badge rk">4</span></td><td>online-programs-v7</td><td class="num">4.53%</td><td class="num">8,725</td><td class="num">192,742</td><td class="num">71.3%</td><td class="num">28.7%</td><td>Paid Search</td><td class="num">—</td></tr>
+    <tr><td><span class="rank-badge rk">5</span></td><td>bachelors-degrees-v5</td><td class="num" style="color:var(--amber)">3.50%</td><td class="num">16,013</td><td class="num">458,070</td><td class="num" style="color:var(--danger)">43.1%</td><td class="num" style="color:var(--danger)">56.9%</td><td>Paid Search</td><td class="num" style="color:var(--danger)">$1.41M</td></tr>
+    <tr><td><span class="rank-badge rk">6</span></td><td>military-v5</td><td class="num">3.07%</td><td class="num">9,551</td><td class="num">310,713</td><td class="num">52.9%</td><td class="num">47.1%</td><td>Display</td><td class="num">~$545K</td></tr>
+    <tr><td><span class="rank-badge rk">7</span></td><td>request-info-v5</td><td class="num" style="color:var(--danger)">3.01%</td><td class="num">35,498</td><td class="num">1,177,574</td><td class="num" style="color:var(--danger)">46.8%</td><td class="num" style="color:var(--danger)">53.2%</td><td>Paid Social</td><td class="num">~$807K</td></tr>
+  </tbody>
+</table>
+
+<div id="organic-ranking" class="section-header">
+  <div class="section-label">Conversion Ranking</div>
+  <div class="section-title">Top Converting Pages — Organic</div>
+</div>
+
+<table class="ranking">
+  <thead><tr><th style="width:48px">Rank</th><th>Page</th><th class="num">Conv Rate</th><th class="num">Conversions</th><th class="num">Sessions</th><th class="num">Engagement</th><th class="num">Bounce</th><th class="num">GSC Clicks</th></tr></thead>
+  <tbody>
+    <tr><td><span class="rank-badge rk1">1</span></td><td><strong>/online-degrees</strong></td><td class="num" style="color:var(--green)">5.82%</td><td class="num">3,428</td><td class="num">135,507</td><td class="num" style="color:var(--green)">88.8%</td><td class="num" style="color:var(--green)">11.2%</td><td class="num">15,098</td></tr>
+    <tr><td><span class="rank-badge rk2">2</span></td><td><strong>/online-degrees/business</strong></td><td class="num" style="color:var(--green)">~5.5%</td><td class="num">7,709</td><td class="num">~140K</td><td class="num" style="color:var(--green)">85.8%</td><td class="num" style="color:var(--green)">14.2%</td><td class="num">—</td></tr>
+    <tr><td><span class="rank-badge rk3">3</span></td><td><strong>/online-degrees/masters</strong></td><td class="num" style="color:var(--green)">~4.8%</td><td class="num">2,206</td><td class="num">~46K</td><td class="num" style="color:var(--green)">89.9%</td><td class="num" style="color:var(--green)">10.1%</td><td class="num">—</td></tr>
+    <tr><td><span class="rank-badge rk">4</span></td><td>/ (homepage)</td><td class="num" style="color:var(--amber)">2.00%</td><td class="num">23,133</td><td class="num">1,316,750</td><td class="num">56.7%</td><td class="num">43.3%</td><td class="num">142,563</td></tr>
+  </tbody>
+</table>
+
+<div class="section-header">
+  <div class="section-title">Blog Pages — Untapped Opportunity</div>
+  <div class="section-desc">243K engaged sessions producing 84 total conversions. At 1% conversion = ~2,400 additional leads/year.</div>
+</div>
+
+<table class="ranking">
+  <thead><tr><th>Page</th><th class="num">Conv Rate</th><th class="num">Conversions</th><th class="num">Sessions</th><th class="num">Engagement</th><th class="num">GSC Clicks</th><th class="num">Opportunity (1%)</th></tr></thead>
+  <tbody>
+    <tr><td>/blog/phd-vs-doctorate</td><td class="num" style="color:var(--danger)">0.01%</td><td class="num">21</td><td class="num">148,831</td><td class="num">67.8%</td><td class="num">60,937</td><td class="num" style="color:var(--green);font-weight:700">+1,490</td></tr>
+    <tr><td>/blog/business-plan</td><td class="num" style="color:var(--danger)">0.08%</td><td class="num">63</td><td class="num">74,663</td><td class="num">63.0%</td><td class="num">24,413</td><td class="num" style="color:var(--green);font-weight:700">+747</td></tr>
+    <tr><td>/blog/5-principles-management</td><td class="num" style="color:var(--danger)">~0%</td><td class="num">~0</td><td class="num">~20K</td><td class="num">—</td><td class="num">19,384</td><td class="num" style="color:var(--green);font-weight:700">+200</td></tr>
+  </tbody>
+</table>
+
+<!-- ═══════════════════════════ COMPONENT INVENTORY ═══════════════════════════ -->
+<div id="comp-inventory" class="section-header">
+  <div class="section-label">Component Inventory</div>
+  <div class="section-title">UI Module Catalog — 26 Shared Modules</div>
+  <div class="section-desc">Recurring design-system components identified across all 20 pages. Color-coded by category.</div>
+</div>
+
+<div class="inv-grid">
+  <div class="inv-card">
+    <div class="inv-name"><span class="dot" style="background:#6366F1"></span> Global Header</div>
+    <div class="inv-id">NAV-01</div>
+    <div class="inv-desc">Top nav bar — UAGC logo, primary links, utility nav. Consistent across all pages.</div>
+    <div class="inv-count">20 / 20 pages</div>
+  </div>
+  <div class="inv-card">
+    <div class="inv-name"><span class="dot" style="background:#6366F1"></span> Sticky Phone Bar</div>
+    <div class="inv-id">NAV-02</div>
+    <div class="inv-desc">Persistent 1-800 phone number strip above header. Paid landing pages only.</div>
+    <div class="inv-count">10 / 20 pages (paid only)</div>
+  </div>
+  <div class="inv-card">
+    <div class="inv-name"><span class="dot" style="background:#6366F1"></span> Breadcrumb</div>
+    <div class="inv-id">NAV-03</div>
+    <div class="inv-desc">Hierarchical breadcrumb trail below header. Organic site pages only.</div>
+    <div class="inv-count">10 / 20 pages (organic only)</div>
+  </div>
+  <div class="inv-card">
+    <div class="inv-name"><span class="dot" style="background:#EC4899"></span> Hero: Split + RFI</div>
+    <div class="inv-id">HERO-01</div>
+    <div class="inv-desc">Two-column hero — left: image + headline + CTA, right: multi-step RFI form. Primary paid LP pattern.</div>
+    <div class="inv-count">7 / 20 pages</div>
+  </div>
+  <div class="inv-card">
+    <div class="inv-name"><span class="dot" style="background:#EC4899"></span> Hero: Program LP</div>
+    <div class="inv-id">HERO-02</div>
+    <div class="inv-desc">Variant of split hero for program-specific paid LPs (Liberal Arts, CJ, Business). Narrower copy, program-focused headline.</div>
+    <div class="inv-count">3 / 20 pages</div>
+  </div>
+  <div class="inv-card">
+    <div class="inv-name"><span class="dot" style="background:#EC4899"></span> Hero: Organic Banner</div>
+    <div class="inv-id">HERO-03</div>
+    <div class="inv-desc">Full-width hero with category label, headline, and background photo. Used on organic program hubs and tuition page.</div>
+    <div class="inv-count">8 / 20 pages</div>
+  </div>
+  <div class="inv-card">
+    <div class="inv-name"><span class="dot" style="background:#EC4899"></span> Hero: Homepage</div>
+    <div class="inv-id">HERO-04</div>
+    <div class="inv-desc">"PROUD TO BE UAGC" large-format hero with student photo collage. Homepage only.</div>
+    <div class="inv-count">1 / 20 pages</div>
+  </div>
+  <div class="inv-card">
+    <div class="inv-name"><span class="dot" style="background:#F97316"></span> Hero: Blog Post</div>
+    <div class="inv-id">HERO-05</div>
+    <div class="inv-desc">Blog header with category tag, H1 title, author byline, date, share icons, and featured image.</div>
+    <div class="inv-count">2 / 20 pages</div>
+  </div>
+  <div class="inv-card">
+    <div class="inv-name"><span class="dot" style="background:var(--red)"></span> RFI: Hero Overlay</div>
+    <div class="inv-id">FORM-01</div>
+    <div class="inv-desc">Multi-step "Request More Information" form embedded in hero. Step 1: Area of Interest, Step 2: personal info.</div>
+    <div class="inv-count">10 / 20 pages (all paid)</div>
+  </div>
+  <div class="inv-card">
+    <div class="inv-name"><span class="dot" style="background:var(--red)"></span> RFI: Mid-Page Band</div>
+    <div class="inv-id">FORM-02</div>
+    <div class="inv-desc">Full-width navy/blue band with inline RFI form. Area of Interest + Degree dropdowns + submit.</div>
+    <div class="inv-count">8 / 20 pages</div>
+  </div>
+  <div class="inv-card">
+    <div class="inv-name"><span class="dot" style="background:var(--red)"></span> RFI: Below Hero</div>
+    <div class="inv-id">FORM-03</div>
+    <div class="inv-desc">Standalone RFI form below organic hero. White card with dropdowns. Used on organic hub pages.</div>
+    <div class="inv-count">8 / 20 pages</div>
+  </div>
+  <div class="inv-card">
+    <div class="inv-name"><span class="dot" style="background:var(--red)"></span> RFI: Blog Sidebar</div>
+    <div class="inv-id">FORM-04</div>
+    <div class="inv-desc">RFI form in sticky right sidebar on blog articles. Stays visible during scroll.</div>
+    <div class="inv-count">2 / 20 pages</div>
+  </div>
+  <div class="inv-card">
+    <div class="inv-name"><span class="dot" style="background:var(--red)"></span> Sticky RFI Bar</div>
+    <div class="inv-id">FORM-05</div>
+    <div class="inv-desc">Persistent bottom (mobile) or top (desktop) bar with condensed "Request Info" CTA. Appears on scroll once the primary RFI form leaves the viewport. Keeps conversion path always visible.</div>
+    <div class="inv-count">18 / 20 pages</div>
+  </div>
+  <div class="inv-card">
+    <div class="inv-name"><span class="dot" style="background:var(--green)"></span> Program Category Grid</div>
+    <div class="inv-id">PROG-01</div>
+    <div class="inv-desc">6–9 icon cards for degree categories (Accounting, Business, Criminal Justice, Education, etc.). Links to vertical hubs.</div>
+    <div class="inv-count">7 / 20 pages</div>
+  </div>
+  <div class="inv-card">
+    <div class="inv-name"><span class="dot" style="background:var(--green)"></span> Program List / Accordion</div>
+    <div class="inv-id">PROG-02</div>
+    <div class="inv-desc">Two-column expandable list of all degree programs by category. Full catalog browse.</div>
+    <div class="inv-count">9 / 20 pages</div>
+  </div>
+  <div class="inv-card">
+    <div class="inv-name"><span class="dot" style="background:var(--green)"></span> Top Requested Degrees</div>
+    <div class="inv-id">PROG-03</div>
+    <div class="inv-desc">3-column featured "most popular" degrees callout with images. Conversion-optimized picks.</div>
+    <div class="inv-count">4 / 20 pages</div>
+  </div>
+  <div class="inv-card">
+    <div class="inv-name"><span class="dot" style="background:var(--green)"></span> "Not Sure What to Study?"</div>
+    <div class="inv-id">PROG-04</div>
+    <div class="inv-desc">Decision-help CTA block. Quiz link, phone CTA, or advisor prompt for undecided visitors.</div>
+    <div class="inv-count">6 / 20 pages</div>
+  </div>
+  <div class="inv-card">
+    <div class="inv-name"><span class="dot" style="background:#2563EB"></span> Reasons to Choose UAGC</div>
+    <div class="inv-id">VP-01</div>
+    <div class="inv-desc">3-icon row: No SAT/GMAT, 5–6 Week Classes, $0 Application Fee. Often followed by VP-02 bullets.</div>
+    <div class="inv-count">10 / 20 pages</div>
+  </div>
+  <div class="inv-card">
+    <div class="inv-name"><span class="dot" style="background:#2563EB"></span> Value Props Bullet List</div>
+    <div class="inv-id">VP-02</div>
+    <div class="inv-desc">Extended benefits list: Accreditation, Transfer Policy, Work/Life Credit, Flexible, Technology, Learn from the Best.</div>
+    <div class="inv-count">12 / 20 pages</div>
+  </div>
+  <div class="inv-card">
+    <div class="inv-name"><span class="dot" style="background:#2563EB"></span> Benefits of [Degree] Block</div>
+    <div class="inv-id">VP-03</div>
+    <div class="inv-desc">Program- or page-specific benefits paragraph. "The Benefits of a Business Degree" etc.</div>
+    <div class="inv-count">9 / 20 pages</div>
+  </div>
+  <div class="inv-card">
+    <div class="inv-name"><span class="dot" style="background:#8B5CF6"></span> Testimonial / Student Quote</div>
+    <div class="inv-id">TRUST-01</div>
+    <div class="inv-desc">Student quote block with photo and attribution. Inline or sidebar placement.</div>
+    <div class="inv-count">8 / 20 pages</div>
+  </div>
+  <div class="inv-card">
+    <div class="inv-name"><span class="dot" style="background:#8B5CF6"></span> Accreditation Logos</div>
+    <div class="inv-id">TRUST-02</div>
+    <div class="inv-desc">Row of accreditation body logos (WASC, IACBE, CCNE, etc.) with descriptive text.</div>
+    <div class="inv-count">12 / 20 pages</div>
+  </div>
+  <div class="inv-card">
+    <div class="inv-name"><span class="dot" style="background:#8B5CF6"></span> Faculty Section</div>
+    <div class="inv-id">TRUST-03</div>
+    <div class="inv-desc">"Meet Our [Subject] Faculty" block with faculty photos, credentials. Organic vertical hubs.</div>
+    <div class="inv-count">4 / 20 pages</div>
+  </div>
+  <div class="inv-card">
+    <div class="inv-name"><span class="dot" style="background:var(--amber)"></span> Tuition & Ways to Save</div>
+    <div class="inv-id">FIN-01</div>
+    <div class="inv-desc">"Make an Investment in You" + tuition paragraph + pill-link nav (Grants, Scholarships, Military, Employer).</div>
+    <div class="inv-count">12 / 20 pages</div>
+  </div>
+  <div class="inv-card">
+    <div class="inv-name"><span class="dot" style="background:var(--amber)"></span> UAGC Promise / 3-Week Trial</div>
+    <div class="inv-id">FIN-02</div>
+    <div class="inv-desc">3-column CTA: Attend Risk Free, Start with Financial Aid, Flexibility to Find Your Fit. Risk-reversal module.</div>
+    <div class="inv-count">10 / 20 pages</div>
+  </div>
+  <div class="inv-card">
+    <div class="inv-name"><span class="dot" style="background:var(--amber)"></span> Bottom CTA Banner</div>
+    <div class="inv-id">CTA-01</div>
+    <div class="inv-desc">"Interested in Learning More About Our Degrees?" full-width navy + yellow gradient banner with CTA button.</div>
+    <div class="inv-count">18 / 20 pages</div>
+  </div>
+  <div class="inv-card">
+    <div class="inv-name"><span class="dot" style="background:#64748B"></span> Affiliation + Global Footer</div>
+    <div class="inv-id">FOOT-01</div>
+    <div class="inv-desc">"We are affiliated with University of Arizona" badge + full site footer with links, legal, privacy.</div>
+    <div class="inv-count">20 / 20 pages</div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════ CROSS-REFERENCE MATRIX ═══════════════════════════ -->
+<div id="comp-matrix" class="section-header">
+  <div class="section-label">Cross-Reference</div>
+  <div class="section-title">Module x Page Matrix</div>
+  <div class="section-desc">Which modules appear on which pages. Green = present. Scroll horizontally on smaller screens.</div>
+</div>
+
+<div style="overflow-x:auto;margin-bottom:40px;">
+<table class="matrix">
+  <thead>
+    <tr>
+      <th>Module</th>
+      <th class="rotate">P1 RFI v5</th>
+      <th class="rotate">P2 Bach v5</th>
+      <th class="rotate">P3 Military</th>
+      <th class="rotate">P4 Courses</th>
+      <th class="rotate">P5 DegProg</th>
+      <th class="rotate">P6 Prog v7</th>
+      <th class="rotate">P7 Prog v8</th>
+      <th class="rotate">P8 LibArts</th>
+      <th class="rotate">P9 CrimJ</th>
+      <th class="rotate">P10 Biz</th>
+      <th class="rotate">O1 Home</th>
+      <th class="rotate">O2 Degrees</th>
+      <th class="rotate">O3 Biz</th>
+      <th class="rotate">O4 Masters</th>
+      <th class="rotate">O5 Edu</th>
+      <th class="rotate">O6 Tuition</th>
+      <th class="rotate">O7 Blog PhD</th>
+      <th class="rotate">O8 Blog Biz</th>
+      <th class="rotate">O9 Bachelors</th>
+      <th class="rotate">O10 CrimJ</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr><td>NAV-01 Global Header</td><td><span class="ck"></span></td><td><span class="ck"></span></td><td><span class="ck"></span></td><td><span class="ck"></span></td><td><span class="ck"></span></td><td><span class="ck"></span></td><td><span class="ck"></span></td><td><span class="ck"></span></td><td><span class="ck"></span></td><td><span class="ck"></span></td><td><span class="ck"></span></td><td><span class="ck"></span></td><td><span class="ck"></span></td><td><span class="ck"></span></td><td><span class="ck"></span></td><td><span class="ck"></span></td><td><span class="ck"></span></td><td><span class="ck"></span></td><td><span class="ck"></span></td><td><span class="ck"></span></td></tr>
+    <tr><td>NAV-02 Phone Bar</td><td><span class="ck"></span></td><td><span class="ck"></span></td><td><span class="ck"></span></td><td><span class="ck"></span></td><td><span class="ck"></span></td><td><span class="ck"></span></td><td><span class="ck"></span></td><td><span class="ck"></span></td><td><span class="ck"></span></td><td><span class="ck"></span></td><td><span class="ck-n"></span></td><td><span class="ck-n"></span></td><td><span class="ck-n"></span></td><td><span class="ck-n"></span></td><td><span class="ck-n"></span></td><td><span class="ck-n"></span></td><td><span class="ck-n"></span></td><td><span class="ck-n"></span></td><td><span class="ck-n"></span></td><td><span class="ck-n"></span></td></tr>
+    <tr><td>NAV-03 Breadcrumb</td><td><span class="ck-n"></span></td><td><span class="ck-n"></span></td><td><span class="ck-n"></span></td><td><span class="ck-n"></span></td><td><span class="ck-n"></span></td><td><span class="ck-n"></span></td><td><span class="ck-n"></span></td><td><span class="ck-n"></span></td><td><span class="ck-n"></span></td><td><span class="ck-n"></span></td><td><span class="ck-n"></span></td><td><span class="ck"></span></td><td><span class="ck"></span></td><td><span class="ck"></span></td><td><span class="ck"></span></td><td><span class="ck"></span></td><td><span class="ck"></span></td><td><span class="ck"></span></td><td><span class="ck"></span></td><td><span class="ck"></span></td></tr>
+    <tr><td>HERO-01 Split + RFI</td><td><span class="ck"></span></td><td><span class="ck"></span></td><td><span class="ck"></span></td><td><span class="ck"></span></td><td><span class="ck"></span></td><td><span class="ck"></span></td><td><span class="ck"></span></td><td><span class="ck-n"></span></td><td><span class="ck-n"></span></td><td><span class="ck-n"></span></td><td><span class="ck-n"></span></td><td><span class="ck-n"></span></td><td><span class="ck-n"></span></td><td><span class="ck-n"></span></td><td><span class="ck-n"></span></td><td><span class="ck-n"></span></td><td><span class="ck-n"></span></td><td><span class="ck-n"></span></td><td><span class="ck-n"></span></td><td><span class="ck-n"></span></td></tr>
+    <tr><td>HERO-02 Program LP</td><td><span class="ck-n"></span></td><td><span class="ck-n"></span></td><td><span class="ck-n"></span></td><td><span class="ck-n"></span></td><td><span class="ck-n"></span></td><td><span class="ck-n"></span></td><td><span class="ck-n"></span></td><td><span class="ck"></span></td><td><span class="ck"></span></td><td><span class="ck"></span></td><td><span class="ck-n"></span></td><td><span class="ck-n"></span></td><td><span class="ck-n"></span></td><td><span class="ck-n"></span></td><td><span class="ck-n"></span></td><td><span class="ck-n"></span></td><td><span class="ck-n"></span></td><td><span class="ck-n"></span></td><td><span class="ck-n"></span></td><td><span class="ck-n"></span></td></tr>
+    <tr><td>HERO-03 Organic Banner</td><td><span class="ck-n"></span></td><td><span class="ck-n"></span></td><td><span class="ck-n"></span></td><td><span class="ck-n"></span></td><td><span class="ck-n"></span></td><td><span class="ck-n"></span></td><td><span class="ck-n"></span></td><td><span class="ck-n"></span></td><td><span class="ck-n"></span></td><td><span class="ck-n"></span></td><td><span class="ck-n"></span></td><td><span class="ck"></span></td><td><span class="ck"></span></td><td><span class="ck"></span></td><td><span class="ck"></span></td><td><span class="ck"></span></td><td><span class="ck-n"></span></td><td><span class="ck-n"></span></td><td><span class="ck"></span></td><td><span class="ck"></span></td></tr>
+    <tr><td>HERO-04 Homepage</td><td><span class="ck-n"></span></td><td><span class="ck-n"></span></td><td><span class="ck-n"></span></td><td><span class="ck-n"></span></td><td><span class="ck-n"></span></td><td><span class="ck-n"></span></td><td><span class="ck-n"></span></td><td><span class="ck-n"></span></td><td><span class="ck-n"></span></td><td><span class="ck-n"></span></td><td><span class="ck"></span></td><td><span class="ck-n"></span></td><td><span class="ck-n"></span></td><td><span class="ck-n"></span></td><td><span class="ck-n"></span></td><td><span class="ck-n"></span></td><td><span class="ck-n"></span></td><td><span class="ck-n"></span></td><td><span class="ck-n"></span></td><td><span class="ck-n"></span></td></tr>
+    <tr><td>HERO-05 Blog Post</td><td><span class="ck-n"></span></td><td><span class="ck-n"></span></td><td><span class="ck-n"></span></td><td><span class="ck-n"></span></td><td><span class="ck-n"></span></td><td><span class="ck-n"></span></td><td><span class="ck-n"></span></td><td><span class="ck-n"></span></td><td><span class="ck-n"></span></td><td><span class="ck-n"></span></td><td><span class="ck-n"></span></td><td><span class="ck-n"></span></td><td><span class="ck-n"></span></td><td><span class="ck-n"></span></td><td><span class="ck-n"></span></td><td><span class="ck-n"></span></td><td><span class="ck"></span></td><td><span class="ck"></span></td><td><span class="ck-n"></span></td><td><span class="ck-n"></span></td></tr>
+    <tr><td>FORM-01 RFI Hero Overlay</td><td><span class="ck"></span></td><td><span class="ck"></span></td><td><span class="ck"></span></td><td><span class="ck"></span></td><td><span class="ck"></span></td><td><span class="ck"></span></td><td><span class="ck"></span></td><td><span class="ck"></span></td><td><span class="ck"></span></td><td><span class="ck"></span></td><td><span class="ck-n"></span></td><td><span class="ck-n"></span></td><td><span class="ck-n"></span></td><td><span class="ck-n"></span></td><td><span class="ck-n"></span></td><td><span class="ck-n"></span></td><td><span class="ck-n"></span></td><td><span class="ck-n"></span></td><td><span class="ck-n"></span></td><td><span class="ck-n"></span></td></tr>
+    <tr><td>FORM-02 RFI Mid-Page</td><td><span class="ck"></span></td><td><span class="ck-n"></span></td><td><span class="ck"></span></td><td><span class="ck"></span></td><td><span class="ck"></span></td><td><span class="ck-n"></span></td><td><span class="ck-n"></span></td><td><span class="ck"></span></td><td><span class="ck"></span></td><td><span class="ck"></span></td><td><span class="ck-n"></span></td><td><span class="ck-n"></span></td><td><span class="ck-n"></span></td><td><span class="ck-n"></span></td><td><span class="ck-n"></span></td><td><span class="ck-n"></span></td><td><span class="ck-n"></span></td><td><span class="ck-n"></span></td><td><span class="ck-n"></span></td><td><span class="ck-n"></span></td></tr>
+    <tr><td>FORM-03 RFI Below Hero</td><td><span class="ck-n"></span></td><td><span class="ck-n"></span></td><td><span class="ck-n"></span></td><td><span class="ck-n"></span></td><td><span class="ck-n"></span></td><td><span class="ck-n"></span></td><td><span class="ck-n"></span></td><td><span class="ck-n"></span></td><td><span class="ck-n"></span></td><td><span class="ck-n"></span></td><td><span class="ck-n"></span></td><td><span class="ck"></span></td><td><span class="ck"></span></td><td><span class="ck"></span></td><td><span class="ck"></span></td><td><span class="ck"></span></td><td><span class="ck-n"></span></td><td><span class="ck-n"></span></td><td><span class="ck"></span></td><td><span class="ck"></span></td></tr>
+    <tr><td>FORM-04 RFI Sidebar</td><td><span class="ck-n"></span></td><td><span class="ck-n"></span></td><td><span class="ck-n"></span></td><td><span class="ck-n"></span></td><td><span class="ck-n"></span></td><td><span class="ck-n"></span></td><td><span class="ck-n"></span></td><td><span class="ck-n"></span></td><td><span class="ck-n"></span></td><td><span class="ck-n"></span></td><td><span class="ck-n"></span></td><td><span class="ck-n"></span></td><td><span class="ck-n"></span></td><td><span class="ck-n"></span></td><td><span class="ck-n"></span></td><td><span class="ck-n"></span></td><td><span class="ck"></span></td><td><span class="ck"></span></td><td><span class="ck-n"></span></td><td><span class="ck-n"></span></td></tr>
+    <tr><td>FORM-05 Sticky RFI</td><td><span class="ck"></span></td><td><span class="ck"></span></td><td><span class="ck"></span></td><td><span class="ck"></span></td><td><span class="ck"></span></td><td><span class="ck"></span></td><td><span class="ck"></span></td><td><span class="ck"></span></td><td><span class="ck"></span></td><td><span class="ck"></span></td><td><span class="ck"></span></td><td><span class="ck"></span></td><td><span class="ck"></span></td><td><span class="ck"></span></td><td><span class="ck"></span></td><td><span class="ck"></span></td><td><span class="ck"></span></td><td><span class="ck"></span></td><td><span class="ck-n"></span></td><td><span class="ck-n"></span></td></tr>
+    <tr><td>PROG-01 Category Grid</td><td><span class="ck-n"></span></td><td><span class="ck"></span></td><td><span class="ck-n"></span></td><td><span class="ck"></span></td><td><span class="ck"></span></td><td><span class="ck-n"></span></td><td><span class="ck-n"></span></td><td><span class="ck-n"></span></td><td><span class="ck"></span></td><td><span class="ck"></span></td><td><span class="ck"></span></td><td><span class="ck-n"></span></td><td><span class="ck-n"></span></td><td><span class="ck-n"></span></td><td><span class="ck-n"></span></td><td><span class="ck-n"></span></td><td><span class="ck-n"></span></td><td><span class="ck-n"></span></td><td><span class="ck-n"></span></td><td><span class="ck-n"></span></td></tr>
+    <tr><td>PROG-02 Program List</td><td><span class="ck-n"></span></td><td><span class="ck"></span></td><td><span class="ck-n"></span></td><td><span class="ck"></span></td><td><span class="ck"></span></td><td><span class="ck"></span></td><td><span class="ck"></span></td><td><span class="ck"></span></td><td><span class="ck"></span></td><td><span class="ck"></span></td><td><span class="ck-n"></span></td><td><span class="ck"></span></td><td><span class="ck-n"></span></td><td><span class="ck"></span></td><td><span class="ck-n"></span></td><td><span class="ck-n"></span></td><td><span class="ck-n"></span></td><td><span class="ck-n"></span></td><td><span class="ck"></span></td><td><span class="ck-n"></span></td></tr>
+    <tr><td>PROG-03 Top Requested</td><td><span class="ck-n"></span></td><td><span class="ck-n"></span></td><td><span class="ck-n"></span></td><td><span class="ck-n"></span></td><td><span class="ck-n"></span></td><td><span class="ck-n"></span></td><td><span class="ck-n"></span></td><td><span class="ck-n"></span></td><td><span class="ck-n"></span></td><td><span class="ck-n"></span></td><td><span class="ck-n"></span></td><td><span class="ck"></span></td><td><span class="ck-n"></span></td><td><span class="ck"></span></td><td><span class="ck-n"></span></td><td><span class="ck-n"></span></td><td><span class="ck-n"></span></td><td><span class="ck-n"></span></td><td><span class="ck"></span></td><td><span class="ck-n"></span></td></tr>
+    <tr><td>PROG-04 Not Sure?</td><td><span class="ck-n"></span></td><td><span class="ck-n"></span></td><td><span class="ck-n"></span></td><td><span class="ck-n"></span></td><td><span class="ck-n"></span></td><td><span class="ck-n"></span></td><td><span class="ck-n"></span></td><td><span class="ck-n"></span></td><td><span class="ck-n"></span></td><td><span class="ck-n"></span></td><td><span class="ck-n"></span></td><td><span class="ck"></span></td><td><span class="ck"></span></td><td><span class="ck"></span></td><td><span class="ck"></span></td><td><span class="ck-n"></span></td><td><span class="ck-n"></span></td><td><span class="ck-n"></span></td><td><span class="ck"></span></td><td><span class="ck"></span></td></tr>
+    <tr><td>VP-01 Reasons to Choose</td><td><span class="ck"></span></td><td><span class="ck"></span></td><td><span class="ck"></span></td><td><span class="ck"></span></td><td><span class="ck"></span></td><td><span class="ck"></span></td><td><span class="ck"></span></td><td><span class="ck"></span></td><td><span class="ck"></span></td><td><span class="ck"></span></td><td><span class="ck-n"></span></td><td><span class="ck-n"></span></td><td><span class="ck-n"></span></td><td><span class="ck-n"></span></td><td><span class="ck-n"></span></td><td><span class="ck-n"></span></td><td><span class="ck-n"></span></td><td><span class="ck-n"></span></td><td><span class="ck-n"></span></td><td><span class="ck-n"></span></td></tr>
+    <tr><td>VP-02 Value Props List</td><td><span class="ck"></span></td><td><span class="ck"></span></td><td><span class="ck"></span></td><td><span class="ck"></span></td><td><span class="ck"></span></td><td><span class="ck"></span></td><td><span class="ck"></span></td><td><span class="ck"></span></td><td><span class="ck"></span></td><td><span class="ck"></span></td><td><span class="ck-n"></span></td><td><span class="ck-n"></span></td><td><span class="ck"></span></td><td><span class="ck-n"></span></td><td><span class="ck"></span></td><td><span class="ck-n"></span></td><td><span class="ck-n"></span></td><td><span class="ck-n"></span></td><td><span class="ck-n"></span></td><td><span class="ck"></span></td></tr>
+    <tr><td>VP-03 Benefits Block</td><td><span class="ck"></span></td><td><span class="ck"></span></td><td><span class="ck-n"></span></td><td><span class="ck"></span></td><td><span class="ck-n"></span></td><td><span class="ck-n"></span></td><td><span class="ck-n"></span></td><td><span class="ck"></span></td><td><span class="ck"></span></td><td><span class="ck"></span></td><td><span class="ck-n"></span></td><td><span class="ck-n"></span></td><td><span class="ck"></span></td><td><span class="ck-n"></span></td><td><span class="ck"></span></td><td><span class="ck-n"></span></td><td><span class="ck-n"></span></td><td><span class="ck-n"></span></td><td><span class="ck-n"></span></td><td><span class="ck"></span></td></tr>
+    <tr><td>TRUST-01 Testimonial</td><td><span class="ck-n"></span></td><td><span class="ck-n"></span></td><td><span class="ck-n"></span></td><td><span class="ck-n"></span></td><td><span class="ck-n"></span></td><td><span class="ck"></span></td><td><span class="ck"></span></td><td><span class="ck"></span></td><td><span class="ck"></span></td><td><span class="ck"></span></td><td><span class="ck"></span></td><td><span class="ck"></span></td><td><span class="ck-n"></span></td><td><span class="ck-n"></span></td><td><span class="ck-n"></span></td><td><span class="ck-n"></span></td><td><span class="ck-n"></span></td><td><span class="ck-n"></span></td><td><span class="ck-n"></span></td><td><span class="ck-n"></span></td></tr>
+    <tr><td>TRUST-02 Accreditation</td><td><span class="ck"></span></td><td><span class="ck-n"></span></td><td><span class="ck"></span></td><td><span class="ck-n"></span></td><td><span class="ck"></span></td><td><span class="ck"></span></td><td><span class="ck"></span></td><td><span class="ck-n"></span></td><td><span class="ck-n"></span></td><td><span class="ck-n"></span></td><td><span class="ck-n"></span></td><td><span class="ck-n"></span></td><td><span class="ck"></span></td><td><span class="ck"></span></td><td><span class="ck"></span></td><td><span class="ck-n"></span></td><td><span class="ck-n"></span></td><td><span class="ck-n"></span></td><td><span class="ck"></span></td><td><span class="ck"></span></td></tr>
+    <tr><td>TRUST-03 Faculty</td><td><span class="ck-n"></span></td><td><span class="ck-n"></span></td><td><span class="ck-n"></span></td><td><span class="ck-n"></span></td><td><span class="ck-n"></span></td><td><span class="ck-n"></span></td><td><span class="ck-n"></span></td><td><span class="ck-n"></span></td><td><span class="ck-n"></span></td><td><span class="ck-n"></span></td><td><span class="ck-n"></span></td><td><span class="ck-n"></span></td><td><span class="ck"></span></td><td><span class="ck-n"></span></td><td><span class="ck"></span></td><td><span class="ck-n"></span></td><td><span class="ck-n"></span></td><td><span class="ck-n"></span></td><td><span class="ck-n"></span></td><td><span class="ck"></span></td></tr>
+    <tr><td>FIN-01 Tuition & Save</td><td><span class="ck"></span></td><td><span class="ck"></span></td><td><span class="ck"></span></td><td><span class="ck"></span></td><td><span class="ck"></span></td><td><span class="ck"></span></td><td><span class="ck-n"></span></td><td><span class="ck"></span></td><td><span class="ck"></span></td><td><span class="ck"></span></td><td><span class="ck-n"></span></td><td><span class="ck-n"></span></td><td><span class="ck-n"></span></td><td><span class="ck-n"></span></td><td><span class="ck-n"></span></td><td><span class="ck"></span></td><td><span class="ck-n"></span></td><td><span class="ck-n"></span></td><td><span class="ck-n"></span></td><td><span class="ck-n"></span></td></tr>
+    <tr><td>FIN-02 3-Week Trial</td><td><span class="ck"></span></td><td><span class="ck"></span></td><td><span class="ck"></span></td><td><span class="ck"></span></td><td><span class="ck"></span></td><td><span class="ck"></span></td><td><span class="ck"></span></td><td><span class="ck"></span></td><td><span class="ck"></span></td><td><span class="ck"></span></td><td><span class="ck-n"></span></td><td><span class="ck-n"></span></td><td><span class="ck-n"></span></td><td><span class="ck-n"></span></td><td><span class="ck-n"></span></td><td><span class="ck"></span></td><td><span class="ck-n"></span></td><td><span class="ck-n"></span></td><td><span class="ck-n"></span></td><td><span class="ck-n"></span></td></tr>
+    <tr><td>CTA-01 Bottom Banner</td><td><span class="ck"></span></td><td><span class="ck"></span></td><td><span class="ck"></span></td><td><span class="ck"></span></td><td><span class="ck"></span></td><td><span class="ck"></span></td><td><span class="ck"></span></td><td><span class="ck"></span></td><td><span class="ck"></span></td><td><span class="ck"></span></td><td><span class="ck"></span></td><td><span class="ck-n"></span></td><td><span class="ck-n"></span></td><td><span class="ck-n"></span></td><td><span class="ck-n"></span></td><td><span class="ck-n"></span></td><td><span class="ck-n"></span></td><td><span class="ck-n"></span></td><td><span class="ck-n"></span></td><td><span class="ck-n"></span></td></tr>
+    <tr><td>FOOT-01 Footer</td><td><span class="ck"></span></td><td><span class="ck"></span></td><td><span class="ck"></span></td><td><span class="ck"></span></td><td><span class="ck"></span></td><td><span class="ck"></span></td><td><span class="ck"></span></td><td><span class="ck"></span></td><td><span class="ck"></span></td><td><span class="ck"></span></td><td><span class="ck"></span></td><td><span class="ck"></span></td><td><span class="ck"></span></td><td><span class="ck"></span></td><td><span class="ck"></span></td><td><span class="ck"></span></td><td><span class="ck"></span></td><td><span class="ck"></span></td><td><span class="ck"></span></td><td><span class="ck"></span></td></tr>
+  </tbody>
+</table>
+</div>
+
+</div>
+
+<script>
+  const sections = document.querySelectorAll('.page-card[id], .section-header[id]');
+  const sidebarLinks = document.querySelectorAll('.sidebar a');
+
+  const obs = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        sidebarLinks.forEach(l => l.classList.remove('active'));
+        const match = document.querySelector('.sidebar a[href="#' + e.target.id + '"]');
+        if (match) {
+          match.classList.add('active');
+          match.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
+        }
+      }
+    });
+  }, { rootMargin: '-10% 0px -70% 0px' });
+
+  sections.forEach(s => obs.observe(s));
+
+  sidebarLinks.forEach(link => {
+    link.addEventListener('click', (e) => {
+      if (window.innerWidth <= 1100) {
+        document.getElementById('sidebar').classList.remove('open');
+      }
+    });
+  });
+</script>
+
+</body>
+</html>

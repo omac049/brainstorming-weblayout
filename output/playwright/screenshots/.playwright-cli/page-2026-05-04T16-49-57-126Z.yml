@@ -1,0 +1,700 @@
+- generic [active] [ref=e1]:
+  - link "Skip to main content" [ref=e2] [cursor=pointer]:
+    - /url: "#main-content"
+  - generic [ref=e3]:
+    - banner [ref=e4]:
+      - generic [ref=e5]:
+        - link "The University of Arizona Global Campus" [ref=e7] [cursor=pointer]:
+          - /url: /
+          - img [ref=e8]
+        - navigation "Main Navigation" [ref=e18]:
+          - list [ref=e19]:
+            - listitem [ref=e20]:
+              - link "Online Degrees" [ref=e21] [cursor=pointer]:
+                - /url: /online-degrees
+            - listitem [ref=e22]:
+              - link "Admissions" [ref=e23] [cursor=pointer]:
+                - /url: /admissions
+            - listitem [ref=e24]:
+              - link "Tuition & Aid" [ref=e25] [cursor=pointer]:
+                - /url: /tuition-financial-aid
+            - listitem [ref=e26]:
+              - link "Student Experience" [ref=e27] [cursor=pointer]:
+                - /url: /student-experience
+            - listitem [ref=e28]:
+              - link "About UAGC" [ref=e29] [cursor=pointer]:
+                - /url: /about
+          - generic [ref=e30]:
+            - list [ref=e31]:
+              - listitem [ref=e32]:
+                - link "Military" [ref=e33] [cursor=pointer]:
+                  - /url: /military
+                - img [ref=e34]
+              - listitem [ref=e35]:
+                - link "Partnerships" [ref=e36] [cursor=pointer]:
+                  - /url: /partnerships
+                - img [ref=e37]
+              - listitem [ref=e38]:
+                - link "myUAGC" [ref=e39] [cursor=pointer]:
+                  - /url: https://myuagc.uagc.edu/
+              - listitem [ref=e40]:
+                - link "Apply Now" [ref=e41] [cursor=pointer]:
+                  - /url: https://cloud.mail.uagc.edu/apply
+              - listitem [ref=e42]:
+                - link "Chat" [ref=e43] [cursor=pointer]:
+                  - /url: "?chat=default"
+              - listitem [ref=e44]:
+                - link "+1 866 711 1700" [ref=e45] [cursor=pointer]:
+                  - /url: tel:+18667111700
+            - list [ref=e46]:
+              - listitem [ref=e47]:
+                - button "Search" [ref=e48] [cursor=pointer]
+        - link "Request Info" [ref=e51] [cursor=pointer]:
+          - /url: "#"
+        - navigation "secondary menu bar" [ref=e52]:
+          - list [ref=e53]:
+            - listitem [ref=e54]:
+              - link "Military" [ref=e55] [cursor=pointer]:
+                - /url: /military
+              - img [ref=e56]
+            - listitem [ref=e57]:
+              - link "Partnerships" [ref=e58] [cursor=pointer]:
+                - /url: /partnerships
+              - img [ref=e59]
+            - listitem [ref=e60]:
+              - link "myUAGC" [ref=e61] [cursor=pointer]:
+                - /url: https://myuagc.uagc.edu/
+            - listitem [ref=e62]:
+              - link "Apply Now" [ref=e63] [cursor=pointer]:
+                - /url: https://cloud.mail.uagc.edu/apply
+            - listitem [ref=e64]:
+              - link "Chat" [ref=e65] [cursor=pointer]:
+                - /url: "?chat=default"
+            - listitem [ref=e66]:
+              - link "+1 866 711 1700" [ref=e67] [cursor=pointer]:
+                - /url: tel:+18667111700
+          - list [ref=e68]:
+            - listitem [ref=e69]:
+              - button "Search" [ref=e70] [cursor=pointer]
+      - text: "! !"
+      - option "Select Area of Interest*"
+      - option "Business" [selected]
+      - option "Criminal Justice"
+      - option "Education"
+      - option "Health Care"
+      - option "Information Technology"
+      - option "Liberal Arts"
+      - option "Social & Behavioral Science"
+      - option "Undecided"
+      - option "Select Your Degree*" [selected]
+      - option "AA in Business"
+      - option "AA in Organizational Management"
+      - option "BA in Accounting"
+      - option "BA in Business Administration"
+      - option "BA in Business Economics"
+      - option "BA in Business Leadership"
+      - option "BA in Finance"
+      - option "BA in Human Resources Management"
+      - option "BA in Marketing"
+      - option "BA in Operations Management and Analysis"
+      - option "BA in Organizational Management"
+      - option "BA in Project Management"
+      - option "BA in Supply Chain Management"
+      - option "DPS in Organizational Leadership"
+      - option "MA in Organizational Management"
+      - option "MS in Finance"
+      - option "Master of Accountancy"
+      - option "Master of Business Administration MBA"
+      - option "Master of Human Resource Management"
+      - option "Master of Professional Studies in Leadership"
+      - option "Undecided"
+    - navigation "Site Breadcrumbs" [ref=e71]:
+      - list [ref=e72]:
+        - listitem [ref=e73]:
+          - link "Home" [ref=e74] [cursor=pointer]:
+            - /url: /
+          - img [ref=e76]
+        - listitem [ref=e78]:
+          - link "Online Degrees" [ref=e79] [cursor=pointer]:
+            - /url: /online-degrees
+          - img [ref=e81]
+        - listitem [ref=e83]:
+          - generic [ref=e84]: Business
+    - main [ref=e85]:
+      - article [ref=e86]:
+        - generic [ref=e88]:
+          - generic [ref=e89]:
+            - img "business students" [ref=e91]
+            - generic [ref=e92]:
+              - paragraph [ref=e94]: CREATING THE LEADERS OF TOMORROW
+              - heading "Online Business Degrees" [level=1] [ref=e96]
+          - text: "! !"
+        - generic [ref=e97]:
+          - generic [ref=e98]:
+            - text: "! ! ! !"
+            - generic [ref=e100]:
+              - heading "Request Information about Business Degrees" [level=2] [ref=e101]
+              - generic [ref=e103]:
+                - text: "! !"
+                - generic [ref=e104]:
+                  - generic [ref=e105]:
+                    - generic [ref=e106]: Area of Interest
+                    - combobox "Area of Interest" [ref=e107] [cursor=pointer]:
+                      - option "Select Area of Interest*"
+                      - option "Business" [selected]
+                      - option "Criminal Justice"
+                      - option "Education"
+                      - option "Health Care"
+                      - option "Information Technology"
+                      - option "Liberal Arts"
+                      - option "Social & Behavioral Science"
+                      - option "Undecided"
+                  - generic [ref=e108]:
+                    - generic [ref=e109]: Select Your Degree
+                    - combobox "Select Your Degree" [ref=e110] [cursor=pointer]:
+                      - option "Select Your Degree*" [selected]
+                      - option "AA in Business"
+                      - option "AA in Organizational Management"
+                      - option "BA in Accounting"
+                      - option "BA in Business Administration"
+                      - option "BA in Business Economics"
+                      - option "BA in Business Leadership"
+                      - option "BA in Finance"
+                      - option "BA in Human Resources Management"
+                      - option "BA in Marketing"
+                      - option "BA in Operations Management and Analysis"
+                      - option "BA in Organizational Management"
+                      - option "BA in Project Management"
+                      - option "BA in Supply Chain Management"
+                      - option "DPS in Organizational Leadership"
+                      - option "MA in Organizational Management"
+                      - option "MS in Finance"
+                      - option "Master of Accountancy"
+                      - option "Master of Business Administration MBA"
+                      - option "Master of Human Resource Management"
+                      - option "Master of Professional Studies in Leadership"
+                      - option "Undecided"
+                - button "Next" [ref=e112] [cursor=pointer]:
+                  - generic [ref=e113]: Next
+          - generic [ref=e115]:
+            - generic [ref=e117]:
+              - heading "UAGC Business Degrees" [level=2] [ref=e118]
+              - paragraph [ref=e120]: If you dream of starting your own company, climbing the corporate ranks, or starting in an entirely new field, an online business degree can equip you with the necessary skills to get there. Our online business programs are designed to help those looking to earn their degree in a college program offered online, all while maintaining their existing schedules. A general foundation in business can enhance your marketable skills as career opportunities aligned with the business industry continue to grow. The demands of the business field will increase, and skilled professionals who are familiar with the latest tactics and knowledge will be needed. Your online business degree can take your career to the next level or in a whole new direction.
+            - generic [ref=e121]:
+              - generic [ref=e122]:
+                - img [ref=e124]
+                - generic [ref=e131]: 15 Degree Programs
+              - generic [ref=e132]:
+                - img [ref=e134]
+                - generic [ref=e138]: 1 Course at a Time
+              - generic [ref=e139]:
+                - img [ref=e141]
+                - generic [ref=e148]: Extended Tech Support
+              - generic [ref=e149]:
+                - img [ref=e151]
+                - generic [ref=e158]: 20+ Emphases
+          - generic [ref=e159]:
+            - heading "UAGC Award-Winning Curriculum" [level=2] [ref=e161]
+            - generic [ref=e164]:
+              - generic [ref=e166]:
+                - article:
+                  - img "New Traditions in Public Speaking, Second Edition, by Dan Tinianow" [ref=e167]
+              - paragraph [ref=e169]:
+                - text: The University of Arizona Global Campus (UAGC) uses award-winning materials in its curriculum. "New Traditions in Public Speaking, Second Edition" by
+                - link "Dan Tinianow" [ref=e170] [cursor=pointer]:
+                  - /url: /about/faculty/dan-tinianow
+                - text: ", a Professor and the Program Chair for Oral and Interpersonal Communication, won the Textbooks for Excellence Awards from the Textbook & Academic Authors Association (TAA). The Textbooks & Academic Authors Association (TAA) is a professional development and networking organization for textbook and academic authors dedicated to honoring excellence in learning materials."
+                - link "Learn More" [ref=e171] [cursor=pointer]:
+                  - /url: /about/media-room/press-releases/university-arizona-global-campus-celebrates-four-constellation
+                  - text: Learn More
+                  - img [ref=e172]
+          - generic [ref=e175]:
+            - generic [ref=e177]: Explore Our Business Degrees
+            - generic [ref=e181]:
+              - group [ref=e183]:
+                - generic [ref=e184]:
+                  - generic [ref=e185]: Choose Your Degree Level
+                  - combobox "Choose Your Degree Level" [ref=e186] [cursor=pointer]:
+                    - option "Program Level" [selected]
+                    - option "Bachelor's Degrees"
+                    - option "Master's Degrees"
+                    - option "Doctoral Degrees"
+                    - option "Associate's Degrees"
+                - generic [ref=e187]:
+                  - generic [ref=e188]: Choose Your Area of Interest
+                  - combobox "Choose Your Area of Interest" [ref=e189] [cursor=pointer]:
+                    - option "Area of Interest" [selected]
+                    - option "Business"
+                    - option "Criminal Justice"
+                    - option "Education"
+                    - option "Health Care"
+                    - option "Information Technology"
+                    - option "Liberal Arts"
+                    - option "Social & Behavioral Science"
+                - generic [ref=e190]:
+                  - generic [ref=e191]: Choose Your College
+                  - combobox "Choose Your College" [ref=e192] [cursor=pointer]:
+                    - option "College" [selected]
+                    - option "College of Integrative Learning"
+                    - option "College of Professional Advancement"
+              - generic [ref=e194]:
+                - link "AA in Business College of Professional Advancement Prepare to launch a career in today’s fast-paced and ever-evolving business world. View Details" [ref=e196] [cursor=pointer]:
+                  - /url: /online-degrees/associate/business
+                  - generic [ref=e197]:
+                    - generic [ref=e198]: AA in Business
+                    - generic [ref=e199]: College of Professional Advancement
+                    - generic [ref=e200]: Prepare to launch a career in today’s fast-paced and ever-evolving business world.
+                  - generic [ref=e201]:
+                    - text: View Details
+                    - img [ref=e202]
+                - link "AA in Early Childhood Education College of Professional Advancement Prepare to work in the field of childcare as you learn the basics of childhood development. View Details" [ref=e205] [cursor=pointer]:
+                  - /url: /online-degrees/associate/early-childhood-education
+                  - generic [ref=e206]:
+                    - generic [ref=e207]: AA in Early Childhood Education
+                    - generic [ref=e208]: College of Professional Advancement
+                    - generic [ref=e209]: Prepare to work in the field of childcare as you learn the basics of childhood development.
+                  - generic [ref=e210]:
+                    - text: View Details
+                    - img [ref=e211]
+                - link "AA in Military Studies College of Professional Advancement Explore global security challenges, military affairs, and leadership principles. View Details" [ref=e214] [cursor=pointer]:
+                  - /url: /online-degrees/associate/military-studies
+                  - generic [ref=e215]:
+                    - generic [ref=e216]: AA in Military Studies
+                    - generic [ref=e217]: College of Professional Advancement
+                    - generic [ref=e218]: Explore global security challenges, military affairs, and leadership principles.
+                  - generic [ref=e219]:
+                    - text: View Details
+                    - img [ref=e220]
+                - link "AA in Organizational Management College of Professional Advancement Dive into the fundamentals, skills, and competencies of organizational management. View Details" [ref=e223] [cursor=pointer]:
+                  - /url: /online-degrees/associate/organizational-management
+                  - generic [ref=e224]:
+                    - generic [ref=e225]: AA in Organizational Management
+                    - generic [ref=e226]: College of Professional Advancement
+                    - generic [ref=e227]: Dive into the fundamentals, skills, and competencies of organizational management.
+                  - generic [ref=e228]:
+                    - text: View Details
+                    - img [ref=e229]
+                - link "BA in Accounting College of Professional Advancement Explore relevant, rigorous, and real-world accounting curriculum. View Details" [ref=e232] [cursor=pointer]:
+                  - /url: /online-degrees/bachelors/accounting
+                  - generic [ref=e233]:
+                    - generic [ref=e234]: BA in Accounting
+                    - generic [ref=e235]: College of Professional Advancement
+                    - generic [ref=e236]: Explore relevant, rigorous, and real-world accounting curriculum.
+                  - generic [ref=e237]:
+                    - text: View Details
+                    - img [ref=e238]
+                - link "BA in Applied Behavioral Science College of Professional Advancement Use your knowledge of human behavior to solve problems facing organizations and society. View Details" [ref=e241] [cursor=pointer]:
+                  - /url: /online-degrees/bachelors/applied-behavioral-science
+                  - generic [ref=e242]:
+                    - generic [ref=e243]: BA in Applied Behavioral Science
+                    - generic [ref=e244]: College of Professional Advancement
+                    - generic [ref=e245]: Use your knowledge of human behavior to solve problems facing organizations and society.
+                  - generic [ref=e246]:
+                    - text: View Details
+                    - img [ref=e247]
+                - link "BA in Business Administration College of Professional Advancement Prepare you for a variety of careers where core business fundamentals and problem-solving skills are a must. View Details" [ref=e250] [cursor=pointer]:
+                  - /url: /online-degrees/bachelors/business-administration
+                  - generic [ref=e251]:
+                    - generic [ref=e252]: BA in Business Administration
+                    - generic [ref=e253]: College of Professional Advancement
+                    - generic [ref=e254]: Prepare you for a variety of careers where core business fundamentals and problem-solving skills are a must.
+                  - generic [ref=e255]:
+                    - text: View Details
+                    - img [ref=e256]
+                - link "BA in Business Economics College of Professional Advancement Earn your BA in Business Economics online at UAGC. Build skills in data analytics, applied economics, and business strategy for in-demand careers. View Details" [ref=e259] [cursor=pointer]:
+                  - /url: /online-degrees/bachelors/business-economics
+                  - generic [ref=e260]:
+                    - generic [ref=e261]: BA in Business Economics
+                    - generic [ref=e262]: College of Professional Advancement
+                    - generic [ref=e263]: Earn your BA in Business Economics online at UAGC. Build skills in data analytics, applied economics, and business strategy for in-demand careers.
+                  - generic [ref=e264]:
+                    - text: View Details
+                    - img [ref=e265]
+                - link "BA in Business Information Systems College of Professional Advancement Build a repository of skills in the modern business environment. View Details" [ref=e268] [cursor=pointer]:
+                  - /url: /online-degrees/bachelors/business-information-systems
+                  - generic [ref=e269]:
+                    - generic [ref=e270]: BA in Business Information Systems
+                    - generic [ref=e271]: College of Professional Advancement
+                    - generic [ref=e272]: Build a repository of skills in the modern business environment.
+                  - generic [ref=e273]:
+                    - text: View Details
+                    - img [ref=e274]
+                - link "BA in Business Leadership College of Integrative Learning Develop your gift for guiding others and inspire them to excel. View Details" [ref=e277] [cursor=pointer]:
+                  - /url: /online-degrees/bachelors/business-leadership
+                  - generic [ref=e278]:
+                    - generic [ref=e279]: BA in Business Leadership
+                    - generic [ref=e280]: College of Integrative Learning
+                    - generic [ref=e281]: Develop your gift for guiding others and inspire them to excel.
+                  - generic [ref=e282]:
+                    - text: View Details
+                    - img [ref=e283]
+              - navigation "Pagination" [ref=e285]:
+                - heading "Pagination" [level=4] [ref=e286]
+                - list [ref=e287]:
+                  - listitem [ref=e288]:
+                    - link "Current page 1" [ref=e289] [cursor=pointer]:
+                      - /url: "?page=0"
+                      - generic [ref=e290]: Current page
+                      - text: "1"
+                  - listitem [ref=e291]:
+                    - link "Page 2" [ref=e292] [cursor=pointer]:
+                      - /url: "?page=1"
+                      - generic [ref=e293]: Page
+                      - text: "2"
+                  - listitem [ref=e294]:
+                    - link "Page 3" [ref=e295] [cursor=pointer]:
+                      - /url: "?page=2"
+                      - generic [ref=e296]: Page
+                      - text: "3"
+                  - listitem [ref=e297]:
+                    - link "Page 4" [ref=e298] [cursor=pointer]:
+                      - /url: "?page=3"
+                      - generic [ref=e299]: Page
+                      - text: "4"
+                  - text: …
+                  - listitem [ref=e300]:
+                    - link "Next page" [ref=e301] [cursor=pointer]:
+                      - /url: "?page=1"
+                      - generic [ref=e302]: Next page
+                      - img [ref=e304]
+          - generic [ref=e307]:
+            - heading "Not Sure What You Want to Study?" [level=2] [ref=e308]
+            - paragraph [ref=e310]: Whether you’re a natural born leader or excel at educating others, our Degree Finder tool can help you find the path that aligns with your individual skills and strengths.
+            - link "Take the Degree Finder Quiz" [ref=e312] [cursor=pointer]:
+              - /url: /online-degrees/find-your-degree
+          - generic [ref=e314]:
+            - link "Enrollment Talk to an Advisor You’ve got help 24/7" [ref=e315] [cursor=pointer]:
+              - /url: "#"
+              - generic [ref=e316]:
+                - generic [ref=e317]: Enrollment
+                - paragraph [ref=e319]: Talk to an Advisor
+                - paragraph [ref=e320]: You’ve got help 24/7
+              - img [ref=e324]
+            - link "Admissions Start Your Application Apply Now" [ref=e336] [cursor=pointer]:
+              - /url: https://apply.uagc.edu/
+              - generic [ref=e337]:
+                - generic [ref=e338]: Admissions
+                - paragraph [ref=e340]: Start Your Application
+                - paragraph [ref=e341]: Apply Now
+              - img [ref=e345]
+          - generic [ref=e360]:
+            - heading "Build Your Future in Business" [level=2] [ref=e364]
+            - generic [ref=e365]:
+              - generic [ref=e366]:
+                - generic [ref=e367] [cursor=pointer]: Career Opportunities
+                - generic [ref=e369] [cursor=pointer]: Courses in Business
+                - generic [ref=e371] [cursor=pointer]: Faculty & Support
+              - generic [ref=e373]:
+                - paragraph [ref=e378]: There are a large number of career opportunities in the field of business. Aside from those related to e-commerce and digital marketing, the traditional roles in economics, business administration, and project management are still integral to economic success. An online business degree can not only prove your abilities in these familiar positions but also showcase your dedication to the field to future employers.
+                - generic [ref=e379]:
+                  - paragraph [ref=e381]: UAGC offers a variety of online business degrees with courses that equip you with the resources to succeed in today’s economic environment. There will be plenty of options to fulfill your elective credit hours within or beyond your specialized scope. Explore other interesting business paths while working your way toward your degree, as well as the various online business degree courses available through UAGC. Find the one that is best for you.
+                  - link "View Business Courses" [ref=e382] [cursor=pointer]:
+                    - /url: https://www.uagc.edu/catalog/course-description/bus-business
+                - paragraph [ref=e385]: Our faculty members are responsible for equipping you with the appropriate business knowledge, critical thinking, and skills needed to be successful in both your personal and professional business career. Our business programs are taught by faculty members who have the professional experience needed to get you started in a career in business. Additionally, pursuing an online degree can connect you with a wide range of students and faculty. Don’t be afraid to ask your professors and fellow students questions, as those questions may point you to your next job lead or career.
+          - generic [ref=e387]:
+            - generic [ref=e389]:
+              - heading "Why Choose UAGC for Your Business Degree?" [level=2] [ref=e390]
+              - paragraph [ref=e392]: Explore how we stand out from the competition by providing an experience that is unique from traditional universities. Our convenient and flexible online format and accelerated 5- to 6-week courses make earning a college degree accessible to busy adult learners.
+            - generic [ref=e393]:
+              - generic [ref=e394]:
+                - img [ref=e396]
+                - generic [ref=e404]: Attend class for 3 weeks risk-free with the UAGC Promise
+              - generic [ref=e405]:
+                - img [ref=e407]
+                - generic [ref=e410]: $0 Application Fee
+              - generic [ref=e411]:
+                - img [ref=e413]
+                - generic [ref=e426]: Transfer approved college credits toward your bachelor’s program at UAGC**
+          - generic [ref=e427]:
+            - heading "Meet Our Business Faculty" [level=2] [ref=e428]
+            - paragraph [ref=e430]: Expect the highest level of instruction with seasoned faculty who have real-world experience in their fields.
+            - generic [ref=e431]:
+              - link "Ron Beach Portrait College of Professional Advancement Ronald Beach, PhD Lead Faculty - Professor" [ref=e432] [cursor=pointer]:
+                - /url: /about/faculty/ronald-beach
+                - img "Ron Beach Portrait" [ref=e433]
+                - heading "College of Professional Advancement" [level=4] [ref=e434]
+                - heading "Ronald Beach, PhD" [level=3] [ref=e435]
+                - paragraph [ref=e436]: Lead Faculty - Professor
+              - link "William Woods Portrait College of Professional Advancement William Woods, PhD Lead Faculty - Professor" [ref=e437] [cursor=pointer]:
+                - /url: /about/faculty/william-woods
+                - img "William Woods Portrait" [ref=e438]
+                - heading "College of Professional Advancement" [level=4] [ref=e439]
+                - heading "William Woods, PhD" [level=3] [ref=e440]
+                - paragraph [ref=e441]: Lead Faculty - Professor
+              - link "James Moore College of Professional Advancement James C. Moore, DBA Professor - Assistant Professor" [ref=e442] [cursor=pointer]:
+                - /url: /about/faculty/james-c-moore
+                - img "James Moore" [ref=e443]
+                - heading "College of Professional Advancement" [level=4] [ref=e444]
+                - heading "James C. Moore, DBA" [level=3] [ref=e445]
+                - paragraph [ref=e446]: Professor - Assistant Professor
+          - generic [ref=e449]:
+            - generic [ref=e450]:
+              - generic [ref=e452]: A Quality Education You Can Trust
+              - paragraph [ref=e454]:
+                - emphasis [ref=e455]: The University of Arizona Global Campus is accredited by WASC Senior College and University Commission (WSCUC), 1080 Marina Village Parkway, Suite 500, Alameda, CA 94501, 510.748.9001, www.wscuc.org. WSCUC is an institutional accrediting body recognized by the U.S. Department of Education (ED) and the Council on Higher Education Accreditation (CHEA).
+            - img "WASC logo" [ref=e458]
+          - generic [ref=e460]:
+            - heading "The Benefits of Our Business Degrees" [level=2] [ref=e464]
+            - generic [ref=e465]:
+              - generic [ref=e466]:
+                - generic [ref=e467] [cursor=pointer]: Earning Your Business Degree Online
+                - generic [ref=e469] [cursor=pointer]: Choosing an Online College for Your Business Degree
+                - generic [ref=e471] [cursor=pointer]: Beginning or Continuing a Career in Business
+              - generic [ref=e473]:
+                - paragraph [ref=e478]: Online business programs can be a great option if you are looking to enhance your career opportunities, as a business degree is a versatile credential that can set you up for success in almost any field. An online business program has many benefits over a traditional brick-and-mortar classroom, and can be ideal for busy working adults, as there is no relocating or commuting needed, and you can log into your courses at any time. Many students enrolled in online courses for their business degree highlight the advantages of a convenient and flexible schedule online classes provide. Those who have busy schedules will be given the flexibility to continue with their current responsibilities while going back to school. Another benefit of earning your business degree online from UAGC is the accessibility you are given to digital tools and educational resources that are often available 24 hours a day. These tools and resources can help you stay on top of your education while accelerating your learning.
+                - paragraph [ref=e481]:
+                  - text: There are several factors you may want to consider before choosing a school to attend for your online business degree. You should first consider whether or not that school provides the specific major or degree program in which you are interested. There are many unique specializations that can lead to different majors and degree programs within schools. While many of these degrees have similar-sounding names, there are some unique differences between a bachelor’s degree in business leadership versus one with an emphasis in
+                  - link "supply chain management" [ref=e482] [cursor=pointer]:
+                    - /url: https://www.uagc.edu/online-degrees/emphasis/supply-chain-management
+                  - text: . It is important that your university offers the program that you are most interested in so that you can be passionate about what you are studying. UAGC offers online business degrees in a variety of business-related majors and specializations in order to fit the interests of its students. You should also consider the learning format and whether that school offers the latest technologies, as this can impact your online learning experience. Additionally, looking into whether a degree program meets important business accreditation guidelines can be a helpful deciding factor. Our online business degree programs meet high academic standards, as many are accredited through the International Accreditation Council for Business Education (IACBE). Learn more about our
+                  - link "accreditation." [ref=e483] [cursor=pointer]:
+                    - /url: https://www.uagc.edu/about/accreditation
+                - paragraph [ref=e486]: Whether you are a recent high school graduate looking to get into the field or have current business experience, pursuing a business degree online can be a rewarding step to any jobseeker’s journey that can have long-lasting benefits. You may even already possess a bachelor’s level degree and wish to take your business career to the next level with a master’s program or higher. Due to the all-encompassing nature of business, your current career can be positively affected by the knowledge you receive from this online business degree, as the majority of organizations today need professionals who possess business-related skills.
+          - generic [ref=e487]:
+            - heading "Related Articles" [level=2] [ref=e489]
+            - generic [ref=e490]:
+              - link "Degree Programs 10 Questions New College Students Frequently Ask March 26, 2021 0:07:31" [ref=e491] [cursor=pointer]:
+                - /url: /blog/10-questions-new-college-students-frequently-ask
+                - generic [ref=e492]: Degree Programs
+                - generic [ref=e493]:
+                  - heading "10 Questions New College Students Frequently Ask" [level=3] [ref=e494]
+                  - generic [ref=e495]:
+                    - generic [ref=e496]:
+                      - text: March 26, 2021
+                      - text: 0:07:31
+                    - img [ref=e500]
+              - link "Admissions How Do Online Classes Work? Here’s a Look at a Typical Week November 18, 2021 0:09:13" [ref=e502] [cursor=pointer]:
+                - /url: /blog/how-do-online-classes-work-a-typical-week
+                - generic [ref=e503]: Admissions
+                - generic [ref=e504]:
+                  - heading "How Do Online Classes Work? Here’s a Look at a Typical Week" [level=3] [ref=e505]
+                  - generic [ref=e506]:
+                    - generic [ref=e507]:
+                      - text: November 18, 2021
+                      - text: 0:09:13
+                    - img [ref=e511]
+              - link "Business Getting Started in Small Business March 4, 2021 0:04:07" [ref=e513] [cursor=pointer]:
+                - /url: /blog/getting-started-small-business
+                - generic [ref=e514]: Business
+                - generic [ref=e515]:
+                  - heading "Getting Started in Small Business" [level=3] [ref=e516]
+                  - generic [ref=e517]:
+                    - generic [ref=e518]:
+                      - text: March 4, 2021
+                      - text: 0:04:07
+                    - img [ref=e522]
+              - link "Master's Program What You Need to Know About Earning Your Master’s Degree July 19, 2021 0:06:13" [ref=e524] [cursor=pointer]:
+                - /url: /blog/what-you-need-to-know-about-earning-your-masters-degree
+                - generic [ref=e525]: Master's Program
+                - generic [ref=e526]:
+                  - heading "What You Need to Know About Earning Your Master’s Degree" [level=3] [ref=e527]
+                  - generic [ref=e528]:
+                    - generic [ref=e529]:
+                      - text: July 19, 2021
+                      - text: 0:06:13
+                    - img [ref=e533]
+          - paragraph [ref=e538]: "**The transferability of credits is subject to the University of Arizona Global Campus transfer credit policies and requires the submission of official transcripts."
+    - contentinfo [ref=e539]:
+      - generic [ref=e541]:
+        - generic [ref=e542]:
+          - img "WSCUC Logo" [ref=e544]
+          - paragraph [ref=e547]: The University of Arizona Global Campus is accredited by WASC Senior College and University Commission (WSCUC), 1080 Marina Village Parkway, Suite 500, Alameda, CA 94501, 510.748.9001, www.wscuc.org. WSCUC is an institutional accrediting body recognized by the U.S. Department of Education (ED) and the Council on Higher Education Accreditation (CHEA).
+        - generic [ref=e548]:
+          - img [ref=e550]
+          - generic [ref=e577]: We are affiliated with the
+          - link "University of Arizona" [ref=e579] [cursor=pointer]:
+            - /url: https://www.arizona.edu/
+      - generic [ref=e581]:
+        - generic [ref=e582]:
+          - generic [ref=e583]:
+            - link "Get Started" [ref=e585] [cursor=pointer]:
+              - /url: "#"
+            - generic [ref=e586]:
+              - generic [ref=e587]:
+                - text: "|"
+                - link "+1 866 711 1700" [ref=e588] [cursor=pointer]:
+                  - /url: tel:8667111700
+              - generic [ref=e589]:
+                - img [ref=e591]
+                - link "LIVE CHAT" [ref=e592] [cursor=pointer]:
+                  - /url: "?chat=default"
+          - generic [ref=e593]:
+            - generic [ref=e594]: Connect
+            - list [ref=e595]:
+              - listitem [ref=e596]:
+                - link "facebook" [ref=e597] [cursor=pointer]:
+                  - /url: https://www.facebook.com/UniversityOfArizonaGlobalCampus/
+                  - img [ref=e598]
+              - listitem [ref=e603]:
+                - link "twitter x" [ref=e604] [cursor=pointer]:
+                  - /url: https://twitter.com/UAZGlobalCampus
+                  - img [ref=e605]
+              - listitem [ref=e609]:
+                - link "instagram" [ref=e610] [cursor=pointer]:
+                  - /url: https://www.instagram.com/uazglobalcampus/
+                  - img [ref=e611]
+              - listitem [ref=e616]:
+                - link "linkedin" [ref=e617] [cursor=pointer]:
+                  - /url: https://www.linkedin.com/school/university-of-arizona-global-campus/
+                  - img [ref=e618]
+              - listitem [ref=e623]:
+                - link "youtube" [ref=e624] [cursor=pointer]:
+                  - /url: https://www.youtube.com/c/UniversityofArizonaGlobalCampus
+                  - img [ref=e625]
+        - generic [ref=e628]:
+          - generic [ref=e629]:
+            - generic [ref=e630]: Degree Programs
+            - generic [ref=e631]:
+              - generic [ref=e632]:
+                - generic [ref=e633]: Business
+                - list [ref=e634]:
+                  - listitem [ref=e635]:
+                    - link "Bachelors of Business" [ref=e636] [cursor=pointer]:
+                      - /url: /online-degrees/business
+                      - text: Bachelors
+                  - listitem [ref=e637]:
+                    - link "Masters of Business" [ref=e638] [cursor=pointer]:
+                      - /url: /online-degrees/business
+                      - text: Masters
+                  - listitem [ref=e639]:
+                    - link "Doctoral of Business" [ref=e640] [cursor=pointer]:
+                      - /url: /online-degrees/business
+                      - text: Doctoral
+              - generic [ref=e641]:
+                - generic [ref=e642]: Education
+                - list [ref=e643]:
+                  - listitem [ref=e644]:
+                    - link "Bachelors of Education" [ref=e645] [cursor=pointer]:
+                      - /url: /online-degrees/education
+                      - text: Bachelors
+                  - listitem [ref=e646]:
+                    - link "Masters of Education" [ref=e647] [cursor=pointer]:
+                      - /url: /online-degrees/education
+                      - text: Masters
+                  - listitem [ref=e648]:
+                    - link "Doctoral of Education" [ref=e649] [cursor=pointer]:
+                      - /url: /online-degrees/education
+                      - text: Doctoral
+                  - listitem [ref=e650]:
+                    - link "Associates of Education" [ref=e651] [cursor=pointer]:
+                      - /url: /online-degrees/education
+                      - text: Associates
+              - generic [ref=e652]:
+                - generic [ref=e653]: Information Technology
+                - list [ref=e654]:
+                  - listitem [ref=e655]:
+                    - link "Bachelors of Information Technology" [ref=e656] [cursor=pointer]:
+                      - /url: /online-degrees/information-technology
+                      - text: Bachelors
+                  - listitem [ref=e657]:
+                    - link "Masters of Information Technology" [ref=e658] [cursor=pointer]:
+                      - /url: "#"
+                      - text: Masters
+              - generic [ref=e659]:
+                - generic [ref=e660]: Social & Behavioral Science
+                - list [ref=e661]:
+                  - listitem [ref=e662]:
+                    - link "Bachelors of Social & Behavioral Science" [ref=e663] [cursor=pointer]:
+                      - /url: /online-degrees/social-behavioral-science
+                      - text: Bachelors
+                  - listitem [ref=e664]:
+                    - link "Masters of Social & Behavioral Science" [ref=e665] [cursor=pointer]:
+                      - /url: /online-degrees/social-behavioral-science
+                      - text: Masters
+                  - listitem [ref=e666]:
+                    - link "Doctoral of Social & Behavioral Science" [ref=e667] [cursor=pointer]:
+                      - /url: /online-degrees/social-behavioral-science
+                      - text: Doctoral
+              - generic [ref=e668]:
+                - generic [ref=e669]: Criminal Justice
+                - list [ref=e670]:
+                  - listitem [ref=e671]:
+                    - link "Bachelors of Criminal Justice" [ref=e672] [cursor=pointer]:
+                      - /url: /online-degrees/criminal-justice
+                      - text: Bachelors
+                  - listitem [ref=e673]:
+                    - link "Masters of Criminal Justice" [ref=e674] [cursor=pointer]:
+                      - /url: /online-degrees/criminal-justice
+                      - text: Masters
+              - generic [ref=e675]:
+                - generic [ref=e676]: Health Care
+                - list [ref=e677]:
+                  - listitem [ref=e678]:
+                    - link "Bachelors of Health Care" [ref=e679] [cursor=pointer]:
+                      - /url: /online-degrees/health-care
+                      - text: Bachelors
+                  - listitem [ref=e680]:
+                    - link "Masters of Health Care" [ref=e681] [cursor=pointer]:
+                      - /url: /online-degrees/health-care
+                      - text: Masters
+              - generic [ref=e682]:
+                - generic [ref=e683]: Liberal Arts
+                - list [ref=e684]:
+                  - listitem [ref=e685]:
+                    - link "Bachelors of Liberal Arts" [ref=e686] [cursor=pointer]:
+                      - /url: /online-degrees/liberal-arts
+                      - text: Bachelors
+          - generic [ref=e687]:
+            - generic [ref=e688]:
+              - generic [ref=e689]: Information For
+              - list [ref=e690]:
+                - listitem [ref=e691]:
+                  - link "Future Students" [ref=e692] [cursor=pointer]:
+                    - /url: /admissions/new-students
+                - listitem [ref=e693]:
+                  - link "Returning Students" [ref=e694] [cursor=pointer]:
+                    - /url: /admissions/returning-students
+                - listitem [ref=e695]:
+                  - link "Military Students" [ref=e696] [cursor=pointer]:
+                    - /url: /military
+                - listitem [ref=e697]:
+                  - link "Faculty" [ref=e698] [cursor=pointer]:
+                    - /url: /about/faculty
+                - listitem [ref=e699]:
+                  - link "Employment" [ref=e700] [cursor=pointer]:
+                    - /url: https://uagc.careers/
+                - listitem [ref=e701]:
+                  - link "Corporations & Business" [ref=e702] [cursor=pointer]:
+                    - /url: /partnerships/organizations
+            - generic [ref=e703]:
+              - generic [ref=e704]: Institutional Data and Research
+              - list [ref=e705]:
+                - listitem [ref=e706]:
+                  - link "Student Consumer Information" [ref=e707] [cursor=pointer]:
+                    - /url: /consumer-information
+                - listitem [ref=e708]:
+                  - link "Institutional Data" [ref=e709] [cursor=pointer]:
+                    - /url: /institutional-data
+                - listitem [ref=e710]:
+                  - link "Institutional Review Board" [ref=e711] [cursor=pointer]:
+                    - /url: /institutional-review-board
+      - generic [ref=e713]:
+        - list [ref=e715]:
+          - listitem [ref=e716]:
+            - link "UAGC Terms & Conditions" [ref=e717] [cursor=pointer]:
+              - /url: /terms-and-conditions
+          - listitem [ref=e718]:
+            - link "SMS Terms & Conditions" [ref=e719] [cursor=pointer]:
+              - /url: /sms-terms-conditions
+          - listitem [ref=e720]:
+            - link "Privacy Policy" [ref=e721] [cursor=pointer]:
+              - /url: /privacy-policy
+          - listitem [ref=e722]:
+            - link "Cookie Policy" [ref=e723] [cursor=pointer]:
+              - /url: /cookie-policy
+          - listitem [ref=e724]:
+            - link "State Authorization Disclosures" [ref=e725] [cursor=pointer]:
+              - /url: /disclosures/state-authorization
+          - listitem [ref=e726]:
+            - link "Drug Free Schools Report" [ref=e727] [cursor=pointer]:
+              - /url: /consumer-information/drug-free
+          - listitem [ref=e728]:
+            - link "Accessibility Statement" [ref=e729] [cursor=pointer]:
+              - /url: /accessibility-statement
+        - generic [ref=e730]:
+          - generic [ref=e731]: Nondiscrimination
+          - paragraph [ref=e734]: "The University of Arizona Global Campus does not discriminate in its education programs and activities on the basis of race, color, creed, national or ethnic origin, religion, sex, pregnancy, childbirth and related medical conditions, marital status, medical condition, genetic information, service in the uniformed services, political activities and affiliations, age, disability, sexual orientation, gender identity, veteran status, or any other consideration made unlawful by federal, state, or local laws. Specifically, Title IX/SaVE requires the University not to discriminate on the basis of gender/sex in its education programs and activities. Gender/sex harassment, including gender/sex violence, is a form of prohibited gender/sex discrimination. Examples of covered acts are found in the University's Title IX Nondiscrimination Policy. Questions regarding Title IX may be referred to the UAGC Title IX Coordinator, Leah Belsley, at titleix@uagc.edu, or 180 South Arizona Avenue, Suite #301 Chandler, AZ 85225, 800.798.0584 Ext. 20705 or to the Office for Civil Rights at Office for Civil Rights (OCR), United States Department of Education, Washington DC 20201, and/or a criminal complaint with local law enforcement."
+        - generic [ref=e736]: ©2026 The University of Arizona Global Campus.
+      - text: "! ! ! !"
+  - text: "* ! * ! * * * * *"
+  - status [ref=e737]
