@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>1.5 Contentsquare Frustration Review — UAGC Phase 1</title>
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
   :root {
     --navy: #0C234B;
     --red: #AB0520;
@@ -15,247 +15,243 @@
     --green: #059669;
     --amber: #D97706;
     --danger: #DC2626;
-    --bg: #FAFBFC;
     --purple: #7C3AED;
+    --surface: #FFFFFF;
   }
   * { margin: 0; padding: 0; box-sizing: border-box; }
-  html { scroll-behavior: smooth; scroll-padding-top: 68px; }
-  body { font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: var(--light); color: #1a1a1a; line-height: 1.6; }
+  html { scroll-behavior: smooth; scroll-padding-top: 56px; }
+  body { font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: var(--light); color: #1a1a1a; line-height: 1.6; -webkit-font-smoothing: antialiased; }
 
-  @keyframes fadeUp { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: translateY(0); } }
-  .header { animation: fadeUp 0.4s ease-out; background: var(--navy); color: white; padding: 40px 64px; position: relative; }
-  .header::after { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 4px; background: var(--red); }
-  .header .back { color: rgba(255,255,255,0.5); text-decoration: none; font-size: 13px; display: inline-block; margin-bottom: 16px; }
-  .header .back:hover { color: white; }
-  .header h1 { font-size: 30px; font-weight: 700; letter-spacing: -0.5px; margin-bottom: 6px; }
-  .header p { font-size: 15px; opacity: 0.65; max-width: 720px; }
-  .header .meta { display: flex; gap: 24px; margin-top: 16px; font-size: 12px; opacity: 0.45; flex-wrap: wrap; }
+  /* ── Animations ─────────────────── */
+  @keyframes fadeUp { from { opacity:0; transform:translateY(24px) } to { opacity:1; transform:translateY(0) } }
+  @keyframes fadeIn { from { opacity:0 } to { opacity:1 } }
+  @keyframes countPulse { 0%,100% { transform:scale(1) } 50% { transform:scale(1.02) } }
 
-  .layout { display: flex; min-height: 100vh; }
+  .reveal { opacity:0; transform:translateY(20px); transition: opacity 0.5s ease-out, transform 0.5s ease-out; }
+  .reveal.visible { opacity:1; transform:translateY(0); }
 
+  /* ── Hero ────────────────────────── */
+  .hero {
+    background: var(--navy); color: white; padding: 72px 64px 64px; position: relative; overflow: hidden;
+  }
+  .hero::before {
+    content: ''; position: absolute; inset: 0;
+    background: radial-gradient(ellipse 70% 50% at 80% 50%, rgba(171,5,32,0.12) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .hero::after { content:''; position:absolute; bottom:0; left:0; right:0; height:4px; background:var(--red); }
+  .hero-back { color:rgba(255,255,255,0.4); text-decoration:none; font-size:12px; font-weight:500; letter-spacing:0.5px; display:inline-flex; align-items:center; gap:6px; margin-bottom:32px; transition:color 0.15s; }
+  .hero-back:hover { color:rgba(255,255,255,0.8); }
+  .hero-eyebrow { font-size:10px; font-weight:700; letter-spacing:2.5px; text-transform:uppercase; color:var(--red); margin-bottom:12px; opacity:0; animation:fadeUp 0.5s 0.1s ease-out forwards; }
+  .hero h1 { font-size:clamp(28px,4vw,40px); font-weight:800; letter-spacing:-1px; line-height:1.15; max-width:600px; margin-bottom:12px; opacity:0; animation:fadeUp 0.5s 0.2s ease-out forwards; }
+  .hero-desc { font-size:15px; opacity:0.5; max-width:560px; line-height:1.6; opacity:0; animation:fadeUp 0.5s 0.3s ease-out forwards; }
+  .hero-stats {
+    display:flex; gap:48px; margin-top:40px; flex-wrap:wrap;
+    opacity:0; animation:fadeUp 0.5s 0.45s ease-out forwards;
+  }
+  .hero-stat .hs-val { font-size:36px; font-weight:900; letter-spacing:-1px; line-height:1; }
+  .hero-stat .hs-val.rage { color:#EF4444; }
+  .hero-stat .hs-val.warn { color:#F59E0B; }
+  .hero-stat .hs-lbl { font-size:11px; font-weight:500; opacity:0.35; margin-top:6px; letter-spacing:0.3px; }
+  .hero-meta {
+    display:flex; gap:20px; margin-top:32px; font-size:11px; opacity:0.25; flex-wrap:wrap;
+    opacity:0; animation:fadeUp 0.5s 0.55s ease-out forwards;
+  }
+
+  /* ── Layout ─────────────────────── */
+  .layout { display:flex; min-height:100vh; }
   .sidebar {
-    width: 240px; flex-shrink: 0; background: white; border-right: 1px solid var(--border);
-    padding: 24px 16px; position: sticky; top: 44px; height: calc(100vh - 44px); overflow-y: auto;
-    font-size: 12px;
+    width:220px; flex-shrink:0; background:var(--surface); border-right:1px solid var(--border);
+    padding:20px 12px; position:sticky; top:0; height:100vh; overflow-y:auto; font-size:11px;
+    scrollbar-width:thin; scrollbar-color: var(--border) transparent;
   }
-  .sidebar .nav-group { margin-bottom: 20px; }
-  .sidebar .nav-label { font-size: 10px; font-weight: 700; letter-spacing: 1.2px; text-transform: uppercase; color: var(--muted); margin-bottom: 8px; }
-  .sidebar a { display: block; padding: 5px 10px; border-radius: 6px; color: #374151; text-decoration: none; margin-bottom: 2px; transition: all 0.15s; }
-  .sidebar a:hover { background: var(--light); color: var(--navy); }
-  .sidebar a.active { background: #EDE9FE; color: var(--purple); font-weight: 600; }
+  .sidebar::-webkit-scrollbar { width:4px; }
+  .sidebar::-webkit-scrollbar-thumb { background:var(--border); border-radius:2px; }
+  .sidebar .nav-back { display:block; padding:8px 10px 12px; font-size:11px; font-weight:600; color:var(--muted); text-decoration:none; border-bottom:1px solid var(--border); margin-bottom:12px; transition:color 0.15s; }
+  .sidebar .nav-back:hover { color:var(--navy); }
+  .sidebar .nav-group { margin-bottom:16px; }
+  .sidebar .nav-label { font-size:9px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; color:var(--border); margin-bottom:6px; padding-left:10px; }
+  .sidebar a:not(.nav-back) { display:block; padding:4px 10px; border-radius:5px; color:#4B5563; text-decoration:none; margin-bottom:1px; transition:all 0.12s; line-height:1.4; }
+  .sidebar a:not(.nav-back):hover { background:var(--light); color:var(--navy); }
+  .sidebar a.active { background:rgba(12,35,75,0.06); color:var(--navy); font-weight:600; }
+  .main { flex:1; padding:48px 56px 120px; max-width:940px; }
 
-  .main { flex: 1; padding: 40px 48px 120px; max-width: 960px; }
+  /* ── Typography ─────────────────── */
+  .section-break { height:1px; background:var(--border); margin:56px 0; }
+  h2 { font-size:20px; font-weight:800; color:var(--navy); letter-spacing:-0.4px; margin-bottom:6px; }
+  h2 .h2-count { font-size:13px; font-weight:500; color:var(--muted); letter-spacing:0; margin-left:8px; }
+  .section-desc { font-size:13px; color:var(--muted); margin-bottom:28px; max-width:600px; }
 
-  h2 { font-size: 22px; font-weight: 700; color: var(--navy); margin: 48px 0 16px; letter-spacing: -0.3px; padding-top: 16px; }
-  h2:first-of-type { margin-top: 0; }
-  h3 { font-size: 17px; font-weight: 700; color: #1a1a1a; margin: 28px 0 12px; }
+  /* ── Metric Rows (no cards) ─────── */
+  .metric-row { display:flex; gap:40px; flex-wrap:wrap; margin:24px 0 36px; }
+  .metric-item { }
+  .metric-item .m-val { font-size:28px; font-weight:800; color:var(--navy); letter-spacing:-0.5px; line-height:1; }
+  .metric-item .m-val.warn { color:var(--amber); }
+  .metric-item .m-val.danger { color:var(--danger); }
+  .metric-item .m-val.good { color:var(--green); }
+  .metric-item .m-lbl { font-size:10px; color:var(--muted); margin-top:4px; text-transform:uppercase; letter-spacing:0.5px; font-weight:600; }
 
-  .exec-summary {
-    background: white; border: 1px solid var(--border); border-radius: 14px;
-    padding: 28px; margin-bottom: 40px;
+  /* ── Tables ─────────────────────── */
+  table { width:100%; border-collapse:collapse; margin:16px 0 32px; }
+  thead th { padding:8px 12px; font-size:9px; font-weight:700; letter-spacing:0.8px; text-transform:uppercase; text-align:left; white-space:nowrap; color:var(--muted); border-bottom:2px solid var(--navy); }
+  td { padding:8px 12px; font-size:12px; border-bottom:1px solid var(--border); }
+  tr:last-child td { border-bottom:none; }
+  tr:hover td { background:rgba(12,35,75,0.015); }
+  .num { text-align:right; font-variant-numeric:tabular-nums; font-feature-settings:'tnum'; }
+  .rage-row { background:#FEF2F2; }
+  .rage-row td:first-child { box-shadow:inset 3px 0 0 var(--danger); }
+  .caution-row { background:#FFFBEB; }
+  .caution-row td:first-child { box-shadow:inset 3px 0 0 var(--amber); }
+
+  .badge { display:inline-block; padding:2px 7px; border-radius:3px; font-size:9px; font-weight:700; letter-spacing:0.3px; }
+  .badge-rage { background:#FEE2E2; color:#991B1B; }
+  .badge-caution { background:#FEF3C7; color:#92400E; }
+  .badge-ok { background:#D1FAE5; color:#065F46; }
+
+  /* ── Device Bar ─────────────────── */
+  .device-bar { display:flex; height:6px; border-radius:3px; overflow:hidden; margin:12px 0 8px; }
+  .device-bar .desk { background:var(--navy); }
+  .device-bar .mob { background:var(--red); }
+  .device-bar .tab { background:var(--border); }
+  .device-legend { display:flex; gap:20px; font-size:11px; color:var(--muted); margin-bottom:32px; }
+  .device-legend span::before { content:''; display:inline-block; width:8px; height:8px; border-radius:2px; margin-right:5px; vertical-align:middle; }
+  .device-legend .dl-desk::before { background:var(--navy); }
+  .device-legend .dl-mob::before { background:var(--red); }
+
+  /* ── Zone Blocks ────────────────── */
+  .zone-block { margin:16px 0; padding:20px 0; border-bottom:1px solid var(--border); }
+  .zone-block:last-child { border-bottom:none; }
+  .zone-block h4 { font-size:14px; font-weight:700; margin-bottom:2px; }
+  .zone-block .zone-sub { font-size:11px; color:var(--muted); margin-bottom:14px; }
+  .zone-metrics { display:flex; gap:28px; flex-wrap:wrap; }
+  .zone-metric { }
+  .zone-metric .zm-val { font-size:18px; font-weight:800; color:var(--navy); letter-spacing:-0.3px; }
+  .zone-metric .zm-lbl { font-size:9px; color:var(--muted); text-transform:uppercase; letter-spacing:0.5px; font-weight:600; }
+
+  /* ── Insight Callout ────────────── */
+  .insight {
+    border-left:3px solid var(--purple); padding:16px 20px; margin:24px 0;
+    background:rgba(124,58,237,0.03);
   }
-  .exec-summary h3 { margin-top: 0; font-size: 16px; color: var(--navy); }
-  .exec-summary ul { padding-left: 20px; margin-top: 12px; }
-  .exec-summary li { font-size: 14px; margin-bottom: 8px; line-height: 1.5; }
-  .exec-summary .stat-row { display: flex; gap: 16px; flex-wrap: wrap; margin-top: 16px; }
-  .exec-summary .stat {
-    flex: 1; min-width: 140px; background: var(--light); border-radius: 10px; padding: 16px; text-align: center;
-  }
-  .exec-summary .stat .val { font-size: 28px; font-weight: 800; color: var(--navy); }
-  .exec-summary .stat .lbl { font-size: 11px; color: var(--muted); margin-top: 4px; }
+  .insight h4 { font-size:12px; font-weight:700; color:var(--purple); text-transform:uppercase; letter-spacing:0.8px; margin-bottom:6px; }
+  .insight p { font-size:13px; color:#374151; line-height:1.6; }
 
-  .kpi-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; margin: 24px 0 32px; }
-  .kpi {
-    background: white; border: 1px solid var(--border); border-radius: 12px; padding: 20px; text-align: center;
-  }
-  .kpi .val { font-size: 26px; font-weight: 800; color: var(--navy); }
-  .kpi .lbl { font-size: 11px; color: var(--muted); margin-top: 4px; text-transform: uppercase; letter-spacing: 0.5px; }
-  .kpi.warn .val { color: var(--amber); }
-  .kpi.danger .val { color: var(--danger); }
-  .kpi.good .val { color: var(--green); }
+  /* ── Findings ───────────────────── */
+  .finding { padding:16px 0; border-bottom:1px solid var(--border); display:flex; gap:14px; align-items:flex-start; }
+  .finding:last-child { border-bottom:none; }
+  .finding .f-num { width:28px; height:28px; border-radius:6px; display:flex; align-items:center; justify-content:center; font-size:12px; font-weight:800; flex-shrink:0; color:white; }
+  .finding .f-num.f-rage { background:var(--danger); }
+  .finding .f-num.f-warn { background:var(--amber); }
+  .finding .f-num.f-info { background:#3B82F6; }
+  .finding .f-body strong { font-size:13px; font-weight:700; display:block; margin-bottom:2px; }
+  .finding .f-body p { font-size:12px; color:var(--muted); line-height:1.5; }
 
-  table { width: 100%; border-collapse: collapse; background: white; border: 1px solid var(--border); border-radius: 12px; overflow: hidden; margin: 16px 0 32px; }
-  thead { background: var(--navy); color: white; }
-  th { padding: 10px 14px; font-size: 10px; font-weight: 600; letter-spacing: 0.8px; text-transform: uppercase; text-align: left; white-space: nowrap; }
-  td { padding: 10px 14px; font-size: 13px; border-bottom: 1px solid var(--border); }
-  tr:last-child td { border-bottom: none; }
-  tr:hover td { background: #FAFAFB; }
-  .num { text-align: right; font-variant-numeric: tabular-nums; }
-
-  .rage { background: #FEF2F2; }
-  .rage td:first-child { border-left: 3px solid var(--danger); }
-  .caution { background: #FFFBEB; }
-  .caution td:first-child { border-left: 3px solid var(--amber); }
-
-  .badge {
-    display: inline-block; padding: 2px 8px; border-radius: 4px;
-    font-size: 10px; font-weight: 700; letter-spacing: 0.3px;
+  /* ── Visual Evidence ────────────── */
+  .ve-page { margin:40px 0 0; padding-top:40px; border-top:1px solid var(--border); }
+  .ve-page:first-child { border-top:none; padding-top:0; margin-top:0; }
+  .ve-page h3 { font-size:16px; font-weight:700; color:var(--navy); letter-spacing:-0.2px; margin-bottom:2px; }
+  .ve-page .ve-sub { font-size:11px; color:var(--muted); margin-bottom:16px; }
+  .ve-note { font-size:12px; color:#78350F; background:#FEFCE8; border-left:3px solid #F59E0B; padding:10px 14px; margin-bottom:20px; line-height:1.5; }
+  .ve-note strong { color:#92400E; }
+  .ve-grid { display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-bottom:12px; }
+  .ve-grid.solo { grid-template-columns:1fr; max-width:480px; }
+  .ve-item { position:relative; border-radius:8px; overflow:hidden; background:#F1F3F5; cursor:pointer; transition:box-shadow 0.2s; }
+  .ve-item:hover { box-shadow:0 2px 16px rgba(12,35,75,0.1); }
+  .ve-item img { width:100%; display:block; }
+  .ve-item .ve-strip {
+    position:absolute; bottom:0; left:0; right:0; padding:8px 12px;
+    background:linear-gradient(transparent,rgba(0,0,0,0.7));
+    display:flex; align-items:center; gap:6px; flex-wrap:wrap;
   }
-  .badge-rage { background: #FEE2E2; color: #991B1B; }
-  .badge-caution { background: #FEF3C7; color: #92400E; }
-  .badge-ok { background: #D1FAE5; color: #065F46; }
+  .ve-tag { display:inline-block; padding:2px 6px; border-radius:3px; font-size:9px; font-weight:700; letter-spacing:0.2px; }
+  .ve-tag-desktop { background:rgba(255,255,255,0.9); color:#374151; }
+  .ve-tag-mobile { background:#FDE68A; color:#78350F; }
+  .ve-tag-heatmap { background:#FCA5A5; color:#7F1D1D; }
+  .ve-tag-attention { background:#93C5FD; color:#1E3A5F; }
+  .ve-tag-scroll { background:#6EE7B7; color:#064E3B; }
+  .ve-item .ve-caption { color:white; font-size:10px; font-weight:500; margin-left:auto; }
 
-  .zone-card {
-    background: white; border: 1px solid var(--border); border-radius: 14px;
-    padding: 24px; margin: 20px 0;
-  }
-  .zone-card h4 { font-size: 15px; font-weight: 700; margin-bottom: 4px; }
-  .zone-card .zone-sub { font-size: 12px; color: var(--muted); margin-bottom: 16px; }
-  .zone-card .zone-grid {
-    display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 10px;
-  }
-  .zone-card .zone-metric { background: var(--light); border-radius: 8px; padding: 10px; text-align: center; }
-  .zone-card .zone-metric .zm-val { font-size: 18px; font-weight: 700; color: var(--navy); }
-  .zone-card .zone-metric .zm-lbl { font-size: 10px; color: var(--muted); }
+  /* ── Lightbox ───────────────────── */
+  .lightbox { display:none; position:fixed; inset:0; z-index:9999; background:rgba(0,0,0,0.92); align-items:center; justify-content:center; cursor:zoom-out; animation:fadeIn 0.2s ease-out; }
+  .lightbox.active { display:flex; }
+  .lightbox img { max-width:92vw; max-height:90vh; object-fit:contain; border-radius:4px; box-shadow:0 8px 40px rgba(0,0,0,0.4); }
+  .lightbox-close { position:absolute; top:20px; right:24px; color:rgba(255,255,255,0.5); font-size:14px; font-weight:600; cursor:pointer; transition:color 0.15s; letter-spacing:1px; }
+  .lightbox-close:hover { color:white; }
 
-  .finding {
-    background: white; border: 1px solid var(--border); border-radius: 12px;
-    padding: 20px 24px; margin: 12px 0; display: flex; gap: 16px; align-items: flex-start;
-  }
-  .finding .icon { width: 36px; height: 36px; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 18px; flex-shrink: 0; }
-  .finding .icon.rage-icon { background: #FEE2E2; }
-  .finding .icon.warn-icon { background: #FEF3C7; }
-  .finding .icon.info-icon { background: #DBEAFE; }
-  .finding .body { flex: 1; }
-  .finding .body strong { font-size: 14px; display: block; margin-bottom: 4px; }
-  .finding .body p { font-size: 13px; color: var(--muted); line-height: 1.5; }
+  /* ── Sparkline Chart ────────────── */
+  .spark-wrap { margin:16px 0 32px; }
+  .spark-wrap canvas { width:100%; height:120px; display:block; }
+  .spark-legend { display:flex; gap:20px; font-size:10px; color:var(--muted); margin-top:8px; }
+  .spark-legend span::before { content:''; display:inline-block; width:12px; height:2px; margin-right:5px; vertical-align:middle; }
+  .spark-legend .sl-views::before { background:var(--navy); }
+  .spark-legend .sl-bounce::before { background:var(--danger); }
 
-  .device-bar { display: flex; height: 32px; border-radius: 8px; overflow: hidden; margin: 16px 0; }
-  .device-bar div { display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 600; color: white; }
-  .device-bar .desk { background: var(--navy); }
-  .device-bar .mob { background: var(--red); }
-  .device-bar .tab { background: var(--muted); }
-
-  .insight-box {
-    background: linear-gradient(135deg, #EDE9FE 0%, #F3E8FF 100%);
-    border: 1px solid #DDD6FE; border-radius: 14px; padding: 24px; margin: 24px 0;
-  }
-  .insight-box h4 { font-size: 14px; font-weight: 700; color: var(--purple); margin-bottom: 8px; }
-  .insight-box p { font-size: 13px; color: #4C1D95; line-height: 1.6; }
-
-  .goal-row { display: flex; gap: 16px; flex-wrap: wrap; margin: 16px 0 32px; }
-  .goal-item {
-    flex: 1; min-width: 160px; background: white; border: 1px solid var(--border);
-    border-radius: 10px; padding: 16px; text-align: center;
-  }
-  .goal-item .g-val { font-size: 24px; font-weight: 800; color: var(--navy); }
-  .goal-item .g-name { font-size: 11px; color: var(--muted); margin-top: 4px; }
-
-  .trend-mini {
-    background: white; border: 1px solid var(--border); border-radius: 12px;
-    padding: 20px; margin: 16px 0 32px; overflow-x: auto;
-  }
-  .trend-mini table { margin: 0; border: none; }
-  .trend-mini th { background: var(--light); color: var(--navy); font-size: 9px; }
-  .trend-mini td { font-size: 11px; padding: 6px 10px; text-align: center; }
-
-  /* ── Visual Evidence Gallery ─────── */
-  .ve-section { margin: 48px 0; }
-  .ve-section > h3 { font-size: 18px; font-weight: 700; color: var(--navy); margin-bottom: 4px; }
-  .ve-section > .ve-sub { font-size: 13px; color: var(--muted); margin-bottom: 20px; }
-
-  .ve-pair {
-    display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 16px;
-  }
-  .ve-pair.solo { grid-template-columns: 1fr; max-width: 520px; }
-
-  .ve-card {
-    background: white; border: 1px solid var(--border); border-radius: 12px;
-    overflow: hidden; transition: box-shadow 0.2s;
-  }
-  .ve-card:hover { box-shadow: 0 4px 24px rgba(12,35,75,0.08); }
-
-  .ve-card .ve-img-wrap {
-    position: relative; background: #F1F3F5; overflow: hidden;
-    max-height: 520px;
-  }
-  .ve-card .ve-img-wrap img {
-    width: 100%; display: block; object-fit: cover; object-position: top;
-    cursor: zoom-in; transition: transform 0.2s;
-  }
-  .ve-card .ve-img-wrap img.expanded {
-    max-height: none; object-fit: contain; cursor: zoom-out;
-  }
-
-  .ve-card .ve-meta {
-    padding: 12px 16px; display: flex; align-items: center; gap: 8px; flex-wrap: wrap;
-  }
-  .ve-card .ve-meta .ve-label { font-size: 13px; font-weight: 600; color: #1a1a1a; }
-  .ve-badge {
-    display: inline-block; padding: 2px 8px; border-radius: 4px;
-    font-size: 10px; font-weight: 700; letter-spacing: 0.3px;
-  }
-  .ve-badge-heatmap { background: #FEE2E2; color: #991B1B; }
-  .ve-badge-attention { background: #DBEAFE; color: #1E40AF; }
-  .ve-badge-scroll { background: #D1FAE5; color: #065F46; }
-  .ve-badge-desktop { background: #F3F4F6; color: #374151; }
-  .ve-badge-mobile { background: #FEF3C7; color: #92400E; }
-
-  .ve-callout {
-    background: #FEFCE8; border: 1px solid #FDE68A; border-radius: 10px;
-    padding: 14px 18px; margin: 0 0 20px; font-size: 13px; color: #78350F; line-height: 1.5;
-  }
-  .ve-callout strong { color: #92400E; }
-
-  @media (max-width: 800px) {
-    .sidebar { display: none; }
-    .header { padding: 32px 20px; }
-    .main { padding: 24px 16px 80px; }
-    .kpi-grid { grid-template-columns: repeat(2, 1fr); }
-    .exec-summary .stat-row { flex-direction: column; }
-    .ve-pair { grid-template-columns: 1fr; }
+  /* ── Responsive ─────────────────── */
+  @media (max-width:800px) {
+    .sidebar { display:none; }
+    .hero { padding:48px 24px 40px; }
+    .hero-stats { gap:24px; }
+    .hero-stat .hs-val { font-size:28px; }
+    .main { padding:28px 20px 80px; }
+    .metric-row { gap:20px; }
+    .metric-item .m-val { font-size:22px; }
+    .ve-grid { grid-template-columns:1fr; }
+    .zone-metrics { gap:16px; }
   }
 </style>
 </head>
 <body>
 
-<div class="header">
-  <h1>1.5 Contentsquare Frustration Review</h1>
-  <p>UX behavior data from the Contentsquare Metrics + Zoning APIs — rage-click zones, engagement friction, and conversion bottlenecks across the UAGC site.</p>
-  <div class="meta">
+<!-- ═══ HERO ═══ -->
+<div class="hero">
+  <a href="index.html" class="hero-back">← Phase 1 Hub</a>
+  <div class="hero-eyebrow">Task 1.5 · Contentsquare</div>
+  <h1>Frustration Review</h1>
+  <p class="hero-desc">Where users rage-click, where they stop scrolling, and what the heatmaps prove — 30 days of UX behavior data across the UAGC site.</p>
+  <div class="hero-stats">
+    <div class="hero-stat"><div class="hs-val rage">181K</div><div class="hs-lbl">Frustrated form clicks / month</div></div>
+    <div class="hero-stat"><div class="hs-val rage">3.23×</div><div class="hs-lbl">Worst rage-click recurrence</div></div>
+    <div class="hero-stat"><div class="hs-val">1.07M</div><div class="hs-lbl">Pageviews analyzed</div></div>
+    <div class="hero-stat"><div class="hs-val warn">0.04%</div><div class="hs-lbl">Form conv per click (paid)</div></div>
+  </div>
+  <div class="hero-meta">
     <span>UAGC · uagc.edu</span>
-    <span>Data: 30 days (Apr 4 – May 4, 2026)</span>
-    <span>48 page groups · 8 zonings analyzed</span>
+    <span>Apr 4 – May 4, 2026 (30 days)</span>
+    <span>48 page groups · 8 zonings · 25 heatmaps</span>
     <span>Source: Contentsquare API (project 39856)</span>
   </div>
 </div>
 
+<!-- ═══ LAYOUT ═══ -->
 <div class="layout">
 
 <nav class="sidebar">
-  <a href="index.html" style="display:block;padding:8px 10px 14px;font-size:12px;font-weight:600;color:#6B7280;text-decoration:none;border-bottom:1px solid #E2E5EA;margin-bottom:12px;">← Phase 1 Hub</a>
+  <a href="index.html" class="nav-back">← Phase 1 Hub</a>
   <div class="nav-group">
     <div class="nav-label">Overview</div>
     <a href="#exec">Executive Summary</a>
-    <a href="#kpis">Site-Wide KPIs</a>
-    <a href="#devices">Device Split</a>
-    <a href="#goals">Goal Conversions</a>
-  </div>
-  <div class="nav-group">
-    <div class="nav-label">Page Groups</div>
-    <a href="#pg-top">Top Pages by Volume</a>
+    <a href="#kpis">Site-Wide Metrics</a>
     <a href="#pg-friction">High-Friction Pages</a>
-    <a href="#pg-full">Full Page Group Table</a>
+    <a href="#pg-full">All 48 Page Groups</a>
   </div>
   <div class="nav-group">
-    <div class="nav-label">Zoning / Frustration (Data)</div>
-    <a href="#zone-all">All Pages (Global)</a>
+    <div class="nav-label">Zoning Data</div>
+    <a href="#zone-all">Global Rage Zones</a>
     <a href="#zone-home">Homepage</a>
     <a href="#zone-degrees">Online Degrees</a>
     <a href="#zone-blog">Blog</a>
     <a href="#zone-rfi-popup">RFI Pop-Up</a>
-    <a href="#zone-rfi-success">RFI Success</a>
-    <a href="#zone-paid">Paid Success Pages</a>
+    <a href="#zone-paid">Paid Landing Pages</a>
   </div>
   <div class="nav-group">
-    <div class="nav-label">Visual Evidence</div>
+    <div class="nav-label">Heatmaps & Scroll</div>
     <a href="#ve-home">Homepage</a>
     <a href="#ve-degrees">Online Degrees</a>
     <a href="#ve-business">Business Degrees</a>
     <a href="#ve-masters">Masters Programs</a>
     <a href="#ve-reqinfo">Paid: Request Info v5</a>
     <a href="#ve-bachelors">Paid: Bachelor's v5</a>
-    <a href="#ve-courses">Paid: College Courses v5</a>
+    <a href="#ve-courses">Paid: Courses v5</a>
     <a href="#ve-degprog">Paid: Degree Programs v7</a>
   </div>
   <div class="nav-group">
@@ -268,751 +264,480 @@
 
 <div class="main">
 
-<!-- ===== EXECUTIVE SUMMARY ===== -->
-<h2 id="exec">Executive Summary</h2>
-<div class="exec-summary">
-  <h3>Contentsquare UX Intelligence — 30-Day Window</h3>
-  <ul>
-    <li><strong>RFI forms are the #1 rage-click zone site-wide.</strong> The two-step RFI form (<code>form-twostep__form</code>) on Paid Success pages logged 118,138 clicks with a 3.23× recurrence rate — users are repeatedly clicking/tapping the same form elements, signaling confusion or broken interactions.</li>
-    <li><strong>Quote slider is the most-clicked frustration element globally.</strong> With 67,792 clicks at 3.55× recurrence, the <code>quote-slider</code> module triggers repeated taps likely from non-responsive carousel controls.</li>
-    <li><strong>RFI Pop-Up form has a 2.78× click recurrence</strong> across 54,090 clicks — the form's submit or field interactions are confusing users at massive scale.</li>
-    <li><strong>Application Pages have 71.7% bounce rate</strong> — the highest of any page group — with only 32.3% scroll depth, suggesting the Salesforce intake flow loses users immediately.</li>
-    <li><strong>Paid Success pages load in 6.70s</strong> (nearly 2× the blog's 4.12s), contributing to the 11.7% bounce rate and reducing the value of paid traffic investments.</li>
-  </ul>
-  <div class="stat-row">
-    <div class="stat"><div class="val">1.07M</div><div class="lbl">Total Pageviews</div></div>
-    <div class="stat"><div class="val">48.2%</div><div class="lbl">Avg Scroll Depth</div></div>
-    <div class="stat"><div class="val">26.2%</div><div class="lbl">Site Bounce Rate</div></div>
-    <div class="stat"><div class="val">3.68s</div><div class="lbl">Avg Load Time</div></div>
-    <div class="stat"><div class="val">7.45%</div><div class="lbl">RFI Success Rate</div></div>
-  </div>
+<!-- ═══ EXECUTIVE SUMMARY ═══ -->
+<div class="reveal" id="exec">
+<h2>Executive Summary</h2>
+<p class="section-desc">Five signals that define the UX friction landscape across 1.07M monthly pageviews.</p>
+
+<ol style="padding-left:20px;margin-bottom:32px;">
+  <li style="font-size:13px;margin-bottom:10px;line-height:1.6;"><strong>RFI forms are the #1 rage-click zone site-wide.</strong> The two-step form on Paid Success pages logged 118,138 clicks with a 3.23× recurrence rate — users repeatedly clicking the same elements, signaling confusion or broken interactions.</li>
+  <li style="font-size:13px;margin-bottom:10px;line-height:1.6;"><strong>Quote slider is the most-clicked frustration element globally.</strong> 67,792 clicks at 3.55× recurrence — repeated taps from non-responsive carousel controls.</li>
+  <li style="font-size:13px;margin-bottom:10px;line-height:1.6;"><strong>RFI Pop-Up form has 2.78× click recurrence</strong> across 54,090 clicks — submit or field interactions confusing users at massive scale.</li>
+  <li style="font-size:13px;margin-bottom:10px;line-height:1.6;"><strong>Application Pages: 71.7% bounce rate</strong> — highest of any page group — with only 32.3% scroll depth. The Salesforce intake flow loses users immediately.</li>
+  <li style="font-size:13px;margin-bottom:10px;line-height:1.6;"><strong>Paid Success pages load in 6.70s</strong> (nearly 2× the blog's 4.12s), reducing the value of paid traffic investments.</li>
+</ol>
 </div>
 
-<!-- ===== SITE-WIDE KPIs ===== -->
-<h2 id="kpis">Site-Wide KPIs (All Pages — 30 Days)</h2>
-<div class="kpi-grid">
-  <div class="kpi"><div class="val">1,069,628</div><div class="lbl">Pageviews</div></div>
-  <div class="kpi"><div class="val">452,116</div><div class="lbl">Visits</div></div>
-  <div class="kpi"><div class="val">48.2%</div><div class="lbl">Scroll Rate</div></div>
-  <div class="kpi warn"><div class="val">26.2%</div><div class="lbl">Bounce Rate</div></div>
-  <div class="kpi"><div class="val">28.3%</div><div class="lbl">Exit Rate</div></div>
-  <div class="kpi danger"><div class="val">3.68s</div><div class="lbl">Avg Load Time</div></div>
-  <div class="kpi"><div class="val">32.8%</div><div class="lbl">Activity Rate</div></div>
-  <div class="kpi"><div class="val">2.37</div><div class="lbl">Pages / Visit</div></div>
+<!-- ═══ SITE-WIDE METRICS ═══ -->
+<div class="section-break"></div>
+<div class="reveal" id="kpis">
+<h2>Site-Wide Metrics <span class="h2-count">30 days · All Pages</span></h2>
+
+<div class="metric-row">
+  <div class="metric-item"><div class="m-val">1,069,628</div><div class="m-lbl">Pageviews</div></div>
+  <div class="metric-item"><div class="m-val">452,116</div><div class="m-lbl">Visits</div></div>
+  <div class="metric-item"><div class="m-val">48.2%</div><div class="m-lbl">Scroll Rate</div></div>
+  <div class="metric-item"><div class="m-val warn">26.2%</div><div class="m-lbl">Bounce Rate</div></div>
+  <div class="metric-item"><div class="m-val danger">3.68s</div><div class="m-lbl">Avg Load Time</div></div>
+  <div class="metric-item"><div class="m-val good">7.45%</div><div class="m-lbl">RFI Success Rate</div></div>
 </div>
 
-<!-- ===== DEVICE SPLIT ===== -->
-<h2 id="devices">Device Breakdown</h2>
+<h2 style="margin-top:0;">Device Split</h2>
 <div class="device-bar">
-  <div class="desk" style="width:51%">Desktop 51.0%</div>
-  <div class="mob" style="width:47.9%">Mobile 47.9%</div>
+  <div class="desk" style="width:51%"></div>
+  <div class="mob" style="width:47.9%"></div>
   <div class="tab" style="width:1.1%"></div>
 </div>
-<p style="font-size:13px;color:var(--muted);margin-bottom:32px;">Desktop: 543,556 · Mobile: 509,924 · Tablet: 11,838 — near-even split means mobile UX friction has outsized impact on overall conversion.</p>
-
-<!-- ===== GOALS ===== -->
-<h2 id="goals">Goal Conversions</h2>
-<div class="goal-row">
-  <div class="goal-item"><div class="g-val">7.45%</div><div class="g-name">Information — Success<br>(RFI Complete)</div></div>
-  <div class="goal-item"><div class="g-val">1.68%</div><div class="g-name">OAP Review/Submit<br>(Application Complete)</div></div>
+<div class="device-legend">
+  <span class="dl-desk">Desktop 51.0% (543,556)</span>
+  <span class="dl-mob">Mobile 47.9% (509,924)</span>
 </div>
-<p style="font-size:13px;color:var(--muted);margin-bottom:32px;">The remaining three click-based goals (Form CTA clicks) returned 0% — these goals may no longer match the current page structure or are tracking legacy form patterns.</p>
 
-<!-- ===== TOP PAGE GROUPS ===== -->
-<h2 id="pg-top">Top Page Groups by Volume</h2>
+<h2>Goal Conversions</h2>
+<div class="metric-row" style="margin-bottom:8px;">
+  <div class="metric-item"><div class="m-val good">7.45%</div><div class="m-lbl">RFI Complete</div></div>
+  <div class="metric-item"><div class="m-val">1.68%</div><div class="m-lbl">Application Complete</div></div>
+</div>
+<p style="font-size:11px;color:var(--muted);margin-bottom:32px;">Three remaining click-based goals returned 0% — likely stale selectors or removed CTAs.</p>
+</div>
+
+<!-- ═══ TOP PAGES ═══ -->
+<div class="section-break"></div>
+<div class="reveal">
+<h2>Top Page Groups by Volume</h2>
 <table>
   <thead><tr><th>Page Group</th><th>Mapping</th><th class="num">Views</th><th class="num">Bounce</th><th class="num">Scroll</th><th class="num">Exit</th><th class="num">Load (s)</th><th class="num">Activity</th></tr></thead>
   <tbody>
-    <tr><td>All Pages</td><td>All Pages</td><td class="num">1,069,628</td><td class="num">26.2%</td><td class="num">48.2%</td><td class="num">28.3%</td><td class="num">3.68</td><td class="num">32.8%</td></tr>
-    <tr><td>Application Pages</td><td>Site Structure</td><td class="num">485,835</td><td class="num">71.7%</td><td class="num">32.3%</td><td class="num">47.9%</td><td class="num">3.39</td><td class="num">35.3%</td></tr>
-    <tr><td>Success Pages</td><td>Site Structure</td><td class="num">256,707</td><td class="num">12.0%</td><td class="num">24.1%</td><td class="num">15.3%</td><td class="num">6.86</td><td class="num">15.1%</td></tr>
-    <tr><td>Paid Success</td><td>CS - High Level</td><td class="num">174,641</td><td class="num">11.7%</td><td class="num">23.2%</td><td class="num">11.2%</td><td class="num">6.70</td><td class="num">12.2%</td></tr>
-    <tr><td>Online Degree Programs</td><td>Site Structure</td><td class="num">118,678</td><td class="num">23.7%</td><td class="num">32.0%</td><td class="num">6.9%</td><td class="num">5.94</td><td class="num">43.5%</td></tr>
-    <tr><td>RFI - Pop Up</td><td>CS - High Level</td><td class="num">108,260</td><td class="num">29.8%</td><td class="num">26.6%</td><td class="num">22.8%</td><td class="num">6.75</td><td class="num">28.0%</td></tr>
-    <tr><td>Online Degrees</td><td>CS - High Level</td><td class="num">107,325</td><td class="num">23.7%</td><td class="num">33.4%</td><td class="num">6.0%</td><td class="num">5.92</td><td class="num">42.3%</td></tr>
-    <tr><td>Homepage</td><td>CS - High Level</td><td class="num">47,684</td><td class="num">20.5%</td><td class="num">11.7%</td><td class="num">16.4%</td><td class="num">6.83</td><td class="num">14.2%</td></tr>
-    <tr><td>Blog Pages</td><td>Site Structure</td><td class="num">45,037</td><td class="num">17.3%</td><td class="num">34.1%</td><td class="num">15.0%</td><td class="num">4.14</td><td class="num">29.1%</td></tr>
-    <tr><td>Bachelors</td><td>Site Structure</td><td class="num">41,832</td><td class="num">23.4%</td><td class="num">24.8%</td><td class="num">7.4%</td><td class="num">6.04</td><td class="num">34.3%</td></tr>
+    <tr><td>All Pages</td><td style="font-size:10px;color:var(--muted)">All Pages</td><td class="num">1,069,628</td><td class="num">26.2%</td><td class="num">48.2%</td><td class="num">28.3%</td><td class="num">3.68</td><td class="num">32.8%</td></tr>
+    <tr class="rage-row"><td>Application Pages</td><td style="font-size:10px;color:var(--muted)">Site Structure</td><td class="num">485,835</td><td class="num">71.7%</td><td class="num">32.3%</td><td class="num">47.9%</td><td class="num">3.39</td><td class="num">35.3%</td></tr>
+    <tr><td>Success Pages</td><td style="font-size:10px;color:var(--muted)">Site Structure</td><td class="num">256,707</td><td class="num">12.0%</td><td class="num">24.1%</td><td class="num">15.3%</td><td class="num">6.86</td><td class="num">15.1%</td></tr>
+    <tr><td>Paid Success</td><td style="font-size:10px;color:var(--muted)">CS - High Level</td><td class="num">174,641</td><td class="num">11.7%</td><td class="num">23.2%</td><td class="num">11.2%</td><td class="num">6.70</td><td class="num">12.2%</td></tr>
+    <tr><td>Online Degree Programs</td><td style="font-size:10px;color:var(--muted)">Site Structure</td><td class="num">118,678</td><td class="num">23.7%</td><td class="num">32.0%</td><td class="num">6.9%</td><td class="num">5.94</td><td class="num">43.5%</td></tr>
+    <tr class="caution-row"><td>RFI - Pop Up</td><td style="font-size:10px;color:var(--muted)">CS - High Level</td><td class="num">108,260</td><td class="num">29.8%</td><td class="num">26.6%</td><td class="num">22.8%</td><td class="num">6.75</td><td class="num">28.0%</td></tr>
+    <tr><td>Online Degrees</td><td style="font-size:10px;color:var(--muted)">CS - High Level</td><td class="num">107,325</td><td class="num">23.7%</td><td class="num">33.4%</td><td class="num">6.0%</td><td class="num">5.92</td><td class="num">42.3%</td></tr>
+    <tr><td>Homepage</td><td style="font-size:10px;color:var(--muted)">CS - High Level</td><td class="num">47,684</td><td class="num">20.5%</td><td class="num">11.7%</td><td class="num">16.4%</td><td class="num">6.83</td><td class="num">14.2%</td></tr>
+    <tr><td>Blog Pages</td><td style="font-size:10px;color:var(--muted)">Site Structure</td><td class="num">45,037</td><td class="num">17.3%</td><td class="num">34.1%</td><td class="num">15.0%</td><td class="num">4.14</td><td class="num">29.1%</td></tr>
+    <tr><td>Bachelors</td><td style="font-size:10px;color:var(--muted)">Site Structure</td><td class="num">41,832</td><td class="num">23.4%</td><td class="num">24.8%</td><td class="num">7.4%</td><td class="num">6.04</td><td class="num">34.3%</td></tr>
   </tbody>
 </table>
+</div>
 
-<!-- ===== HIGH FRICTION PAGES ===== -->
-<h2 id="pg-friction">High-Friction Page Groups</h2>
-<p style="font-size:13px;color:var(--muted);margin-bottom:16px;">Pages sorted by bounce rate — these represent the biggest drop-off points in the user journey.</p>
+<!-- ═══ HIGH-FRICTION ═══ -->
+<div class="reveal" id="pg-friction">
+<h2>High-Friction Page Groups</h2>
+<p class="section-desc">Sorted by bounce rate — the biggest drop-off points in the user journey.</p>
 <table>
   <thead><tr><th>Page Group</th><th class="num">Views</th><th class="num">Bounce</th><th class="num">Scroll</th><th class="num">Load (s)</th><th>Severity</th></tr></thead>
   <tbody>
-    <tr class="rage"><td>Application Pages</td><td class="num">485,835</td><td class="num">71.7%</td><td class="num">32.3%</td><td class="num">3.39</td><td><span class="badge badge-rage">CRITICAL</span></td></tr>
-    <tr class="caution"><td>Thank You</td><td class="num">26,598</td><td class="num">34.9%</td><td class="num">12.7%</td><td class="num">4.05</td><td><span class="badge badge-caution">WATCH</span></td></tr>
-    <tr class="caution"><td>RFI - Pop Up</td><td class="num">108,260</td><td class="num">29.8%</td><td class="num">26.6%</td><td class="num">6.75</td><td><span class="badge badge-caution">HIGH</span></td></tr>
-    <tr class="caution"><td>All Pages (site avg)</td><td class="num">1,069,628</td><td class="num">26.2%</td><td class="num">48.2%</td><td class="num">3.68</td><td><span class="badge badge-ok">BASELINE</span></td></tr>
-    <tr><td>Online Degrees</td><td class="num">107,325</td><td class="num">23.7%</td><td class="num">33.4%</td><td class="num">5.92</td><td><span class="badge badge-ok">OK</span></td></tr>
-    <tr><td>Homepage</td><td class="num">47,684</td><td class="num">20.5%</td><td class="num">11.7%</td><td class="num">6.83</td><td><span class="badge badge-caution">SLOW</span></td></tr>
-    <tr><td>Partnership</td><td class="num">34,314</td><td class="num">19.0%</td><td class="num">30.8%</td><td class="num">5.17</td><td><span class="badge badge-ok">OK</span></td></tr>
+    <tr class="rage-row"><td>Application Pages</td><td class="num">485,835</td><td class="num">71.7%</td><td class="num">32.3%</td><td class="num">3.39</td><td><span class="badge badge-rage">CRITICAL</span></td></tr>
+    <tr class="caution-row"><td>Thank You</td><td class="num">26,598</td><td class="num">34.9%</td><td class="num">12.7%</td><td class="num">4.05</td><td><span class="badge badge-caution">WATCH</span></td></tr>
+    <tr class="caution-row"><td>RFI - Pop Up</td><td class="num">108,260</td><td class="num">29.8%</td><td class="num">26.6%</td><td class="num">6.75</td><td><span class="badge badge-caution">HIGH</span></td></tr>
+    <tr><td>All Pages (site avg)</td><td class="num">1,069,628</td><td class="num">26.2%</td><td class="num">48.2%</td><td class="num">3.68</td><td><span class="badge badge-ok">BASELINE</span></td></tr>
     <tr><td>Paid Success</td><td class="num">174,641</td><td class="num">11.7%</td><td class="num">23.2%</td><td class="num">6.70</td><td><span class="badge badge-caution">SLOW</span></td></tr>
-    <tr><td>Success Pages</td><td class="num">256,707</td><td class="num">12.0%</td><td class="num">24.1%</td><td class="num">6.86</td><td><span class="badge badge-caution">SLOW</span></td></tr>
   </tbody>
 </table>
 
-<div class="insight-box">
-  <h4>Load Time vs Bounce Correlation</h4>
-  <p>Pages loading under 4.2s (Blog, Application) average 44.5% bounce while pages above 6.5s (Success, Homepage, Paid, RFI Pop-Up) average 18.5% bounce. The inverse correlation is because high-bounce Application Pages are Salesforce-hosted (fast but immediately abandoned), while slow-but-sticky pages like Paid Success hold users with form interactions despite load times. <strong>Load time is a friction factor on marketing pages but not the primary bounce driver — content relevance and form UX matter more.</strong></p>
+<div class="insight">
+  <h4>Load Time vs Bounce</h4>
+  <p>Pages loading under 4.2s average 44.5% bounce while pages above 6.5s average 18.5% bounce. The inverse correlation exists because high-bounce Application Pages are Salesforce-hosted (fast but immediately abandoned), while slow pages like Paid Success hold users with form interactions. <strong>Content relevance and form UX matter more than load time alone.</strong></p>
+</div>
 </div>
 
-<!-- ===== FULL TABLE ===== -->
-<h2 id="pg-full">Full Page Group Table</h2>
-<p style="font-size:13px;color:var(--muted);margin-bottom:16px;">All 48 tracked page groups across 4 targeted mappings, sorted by view volume.</p>
+<!-- ═══ FULL TABLE ═══ -->
+<div class="section-break"></div>
+<div class="reveal" id="pg-full">
+<h2>All Page Groups <span class="h2-count">48 groups · 4 mappings</span></h2>
 <div style="overflow-x:auto;">
 <table>
   <thead><tr><th>Page Group</th><th>Mapping</th><th class="num">Views</th><th class="num">Visits</th><th class="num">Bounce</th><th class="num">Scroll</th><th class="num">Exit</th><th class="num">Load</th><th class="num">Activity</th><th class="num">Land %</th></tr></thead>
   <tbody id="pg-table-body"></tbody>
 </table>
 </div>
+</div>
 
-<!-- ===== ZONING SECTIONS ===== -->
+<!-- ═══════════════════════════════════════════ -->
+<!-- ═══ ZONING DATA ═══════════════════════════ -->
+<!-- ═══════════════════════════════════════════ -->
 
-<h2 id="zone-all">Zoning: All Pages (Global)</h2>
-<p style="font-size:13px;color:var(--muted);margin-bottom:16px;">Global zoning from A/B test "RFI Pop-Up Removal" — 25 zones tracked across the entire site.</p>
+<div class="section-break"></div>
+<div class="reveal" id="zone-all">
+<h2>Global Rage Zones <span class="h2-count">All Pages · 25 zones tracked</span></h2>
+<p class="section-desc">From A/B test "RFI Pop-Up Removal" — the worst frustration signals across the entire site.</p>
 
-<div class="zone-card">
-  <h4>🔴 #1 Rage Zone: Quote Slider</h4>
-  <div class="zone-sub">Zone: <code>quote-slider-105731</code> · 67,792 clicks</div>
-  <div class="zone-grid">
-    <div class="zone-metric"><div class="zm-val" style="color:var(--danger)">3.55×</div><div class="zm-lbl">Click Recurrence</div></div>
+<div class="zone-block">
+  <h4 style="color:var(--danger);">Quote Slider — 3.55× recurrence</h4>
+  <div class="zone-sub"><code>quote-slider-105731</code> · 67,792 clicks · 0.11% conv/click</div>
+  <div class="zone-metrics">
+    <div class="zone-metric"><div class="zm-val" style="color:var(--danger)">3.55×</div><div class="zm-lbl">Recurrence</div></div>
     <div class="zone-metric"><div class="zm-val">24.4%</div><div class="zm-lbl">Click Rate</div></div>
     <div class="zone-metric"><div class="zm-val">0.55s</div><div class="zm-lbl">Hesitation</div></div>
-    <div class="zone-metric"><div class="zm-val">13.2%</div><div class="zm-lbl">Engagement</div></div>
-    <div class="zone-metric"><div class="zm-val">0.11%</div><div class="zm-lbl">Conv After Click</div></div>
-    <div class="zone-metric"><div class="zm-val">61.9%</div><div class="zm-lbl">Exposure Rate</div></div>
+    <div class="zone-metric"><div class="zm-val">61.9%</div><div class="zm-lbl">Exposure</div></div>
   </div>
 </div>
 
-<div class="zone-card">
-  <h4>🟡 #2 Frustration Zone: Paid Cards</h4>
-  <div class="zone-sub">Zone: <code>paid-cards-105796</code> · 9,308 clicks</div>
-  <div class="zone-grid">
-    <div class="zone-metric"><div class="zm-val" style="color:var(--amber)">2.93×</div><div class="zm-lbl">Click Recurrence</div></div>
+<div class="zone-block">
+  <h4 style="color:var(--amber);">Paid Cards — 2.93× recurrence</h4>
+  <div class="zone-sub"><code>paid-cards-105796</code> · 9,308 clicks · 0.05% conv/click</div>
+  <div class="zone-metrics">
+    <div class="zone-metric"><div class="zm-val" style="color:var(--amber)">2.93×</div><div class="zm-lbl">Recurrence</div></div>
     <div class="zone-metric"><div class="zm-val">12.1%</div><div class="zm-lbl">Click Rate</div></div>
     <div class="zone-metric"><div class="zm-val">0.09s</div><div class="zm-lbl">Hesitation</div></div>
-    <div class="zone-metric"><div class="zm-val">7.6%</div><div class="zm-lbl">Engagement</div></div>
-    <div class="zone-metric"><div class="zm-val">0.05%</div><div class="zm-lbl">Conv After Click</div></div>
-    <div class="zone-metric"><div class="zm-val">68.1%</div><div class="zm-lbl">Exposure Rate</div></div>
-  </div>
-</div>
-
-<div class="zone-card">
-  <h4>🟡 #3: Area of Interest Selector</h4>
-  <div class="zone-sub">Zone: <code>Select Area of Interest*</code> · 529 clicks</div>
-  <div class="zone-grid">
-    <div class="zone-metric"><div class="zm-val" style="color:var(--amber)">2.58×</div><div class="zm-lbl">Click Recurrence</div></div>
-    <div class="zone-metric"><div class="zm-val">3.3%</div><div class="zm-lbl">Click Rate</div></div>
-    <div class="zone-metric"><div class="zm-val">0.52s</div><div class="zm-lbl">Hesitation</div></div>
-    <div class="zone-metric"><div class="zm-val">4.3%</div><div class="zm-lbl">Engagement</div></div>
-    <div class="zone-metric"><div class="zm-val">0.27%</div><div class="zm-lbl">Conv After Click</div></div>
-    <div class="zone-metric"><div class="zm-val">19.1%</div><div class="zm-lbl">Exposure Rate</div></div>
+    <div class="zone-metric"><div class="zm-val">68.1%</div><div class="zm-lbl">Exposure</div></div>
   </div>
 </div>
 
 <table>
   <thead><tr><th>Zone</th><th class="num">Clicks</th><th class="num">Recurrence</th><th class="num">Click Rate</th><th class="num">Hesitation</th><th class="num">Exposure</th><th class="num">Conv/Click</th><th>Flag</th></tr></thead>
   <tbody>
-    <tr class="rage"><td>quote-slider-105731</td><td class="num">67,792</td><td class="num">3.55×</td><td class="num">24.4%</td><td class="num">0.55s</td><td class="num">61.9%</td><td class="num">0.11%</td><td><span class="badge badge-rage">RAGE</span></td></tr>
-    <tr class="rage"><td>paid-cards-105796</td><td class="num">9,308</td><td class="num">2.93×</td><td class="num">12.1%</td><td class="num">0.09s</td><td class="num">68.1%</td><td class="num">0.05%</td><td><span class="badge badge-rage">RAGE</span></td></tr>
-    <tr class="caution"><td>Select Area of Interest*</td><td class="num">529</td><td class="num">2.58×</td><td class="num">3.3%</td><td class="num">0.52s</td><td class="num">19.1%</td><td class="num">0.27%</td><td><span class="badge badge-caution">CAUTION</span></td></tr>
-    <tr class="caution"><td>zes-partner-divider-105611</td><td class="num">13,510</td><td class="num">2.29×</td><td class="num">10.9%</td><td class="num">0.13s</td><td class="num">92.3%</td><td class="num">0.16%</td><td><span class="badge badge-caution">CAUTION</span></td></tr>
-    <tr class="caution"><td>FAQ: Online Degrees</td><td class="num">13,656</td><td class="num">2.09×</td><td class="num">11.0%</td><td class="num">0.38s</td><td class="num">62.1%</td><td class="num">0.06%</td><td><span class="badge badge-caution">CAUTION</span></td></tr>
+    <tr class="rage-row"><td>quote-slider-105731</td><td class="num">67,792</td><td class="num">3.55×</td><td class="num">24.4%</td><td class="num">0.55s</td><td class="num">61.9%</td><td class="num">0.11%</td><td><span class="badge badge-rage">RAGE</span></td></tr>
+    <tr class="rage-row"><td>paid-cards-105796</td><td class="num">9,308</td><td class="num">2.93×</td><td class="num">12.1%</td><td class="num">0.09s</td><td class="num">68.1%</td><td class="num">0.05%</td><td><span class="badge badge-rage">RAGE</span></td></tr>
+    <tr class="caution-row"><td>Select Area of Interest*</td><td class="num">529</td><td class="num">2.58×</td><td class="num">3.3%</td><td class="num">0.52s</td><td class="num">19.1%</td><td class="num">0.27%</td><td><span class="badge badge-caution">CAUTION</span></td></tr>
+    <tr class="caution-row"><td>zes-partner-divider-105611</td><td class="num">13,510</td><td class="num">2.29×</td><td class="num">10.9%</td><td class="num">0.13s</td><td class="num">92.3%</td><td class="num">0.16%</td><td><span class="badge badge-caution">CAUTION</span></td></tr>
+    <tr class="caution-row"><td>FAQ: Online Degrees</td><td class="num">13,656</td><td class="num">2.09×</td><td class="num">11.0%</td><td class="num">0.38s</td><td class="num">62.1%</td><td class="num">0.06%</td><td><span class="badge badge-caution">CAUTION</span></td></tr>
   </tbody>
 </table>
-
-<!-- HOMEPAGE ZONING -->
-<h2 id="zone-home">Zoning: Homepage</h2>
-<div class="zone-card">
-  <h4>Homepage Desktop — 25 Zones</h4>
-  <div class="zone-sub">Zoning: <code>4/13/23 - Home Page - Desktop</code></div>
 </div>
+
+<!-- HOMEPAGE -->
+<div class="section-break"></div>
+<div class="reveal" id="zone-home">
+<h2>Homepage <span class="h2-count">47,684 views · 11.7% scroll</span></h2>
+
 <table>
   <thead><tr><th>Zone</th><th class="num">Clicks</th><th class="num">Recurrence</th><th class="num">Click Rate</th><th class="num">Hesitation</th><th class="num">Conv/Click</th><th>Flag</th></tr></thead>
   <tbody>
-    <tr class="caution"><td>site-layout__article-header</td><td class="num">2</td><td class="num">2.00×</td><td class="num">0.0%</td><td class="num">0.00s</td><td class="num">0.00%</td><td><span class="badge badge-caution">LOW VOL</span></td></tr>
-    <tr class="caution"><td>find-your-path-98551</td><td class="num">86</td><td class="num">1.96×</td><td class="num">0.3%</td><td class="num">0.40s</td><td class="num">0.68%</td><td><span class="badge badge-caution">CAUTION</span></td></tr>
+    <tr class="caution-row"><td>find-your-path-98551</td><td class="num">86</td><td class="num">1.96×</td><td class="num">0.3%</td><td class="num">0.40s</td><td class="num">0.68%</td><td><span class="badge badge-caution">CAUTION</span></td></tr>
     <tr><td>site-layout__article-content</td><td class="num">2,843</td><td class="num">1.50×</td><td class="num">9.6%</td><td class="num">0.17s</td><td class="num">0.12%</td><td><span class="badge badge-ok">OK</span></td></tr>
     <tr><td>blog-tools-102926</td><td class="num">35</td><td class="num">1.67×</td><td class="num">0.2%</td><td class="num">0.27s</td><td class="num">0.00%</td><td><span class="badge badge-ok">OK</span></td></tr>
   </tbody>
 </table>
-<div class="insight-box">
-  <h4>Homepage Insight</h4>
-  <p>Homepage has only <strong>11.7% scroll depth</strong> — the lowest of any non-success page. Users engage with above-the-fold content but rarely scroll. The "find-your-path" module (1.96× recurrence) suggests the degree-finder CTA is clicked repeatedly without resolving, possibly due to expectation mismatch. Given 47,684 monthly views, even incremental scroll improvement could significantly increase RFI exposure.</p>
+
+<div class="insight">
+  <h4>Insight</h4>
+  <p>Homepage has <strong>11.7% scroll depth</strong> — lowest of any non-success page. The "find-your-path" module (1.96× recurrence) suggests the degree-finder CTA is clicked repeatedly without resolving. Given 47,684 monthly views, incremental scroll improvement would significantly increase RFI exposure below fold.</p>
+</div>
 </div>
 
-<!-- ONLINE DEGREES ZONING -->
-<h2 id="zone-degrees">Zoning: Online Degrees</h2>
-<div class="zone-card">
-  <h4>🔴 Sticky RFI Form: High Recurrence</h4>
-  <div class="zone-sub">Zone: <code>header-sticky-rfi-forms</code> · 1,691 clicks</div>
-  <div class="zone-grid">
-    <div class="zone-metric"><div class="zm-val" style="color:var(--danger)">2.41×</div><div class="zm-lbl">Click Recurrence</div></div>
+<!-- ONLINE DEGREES -->
+<div class="section-break"></div>
+<div class="reveal" id="zone-degrees">
+<h2>Online Degrees <span class="h2-count">107,325 views · 33.4% scroll</span></h2>
+
+<div class="zone-block">
+  <h4 style="color:var(--danger);">Sticky RFI Form — 2.41× recurrence</h4>
+  <div class="zone-sub"><code>header-sticky-rfi-forms</code> · 1,691 clicks · 0.08% conv/click</div>
+  <div class="zone-metrics">
+    <div class="zone-metric"><div class="zm-val" style="color:var(--danger)">2.41×</div><div class="zm-lbl">Recurrence</div></div>
     <div class="zone-metric"><div class="zm-val">2.2%</div><div class="zm-lbl">Click Rate</div></div>
     <div class="zone-metric"><div class="zm-val">0.46s</div><div class="zm-lbl">Hesitation</div></div>
     <div class="zone-metric"><div class="zm-val">9.2%</div><div class="zm-lbl">Engagement</div></div>
-    <div class="zone-metric"><div class="zm-val">0.08%</div><div class="zm-lbl">Conv After Click</div></div>
   </div>
 </div>
-
-<div class="zone-card">
-  <h4>🔴 Two-Step RFI Form: High Recurrence</h4>
-  <div class="zone-sub">Zone: <code>paid-twostep__form</code> · 8,765 clicks</div>
-  <div class="zone-grid">
-    <div class="zone-metric"><div class="zm-val" style="color:var(--danger)">2.41×</div><div class="zm-lbl">Click Recurrence</div></div>
+<div class="zone-block">
+  <h4 style="color:var(--danger);">Two-Step RFI Form — 2.41× recurrence</h4>
+  <div class="zone-sub"><code>paid-twostep__form</code> · 8,765 clicks · 0.28% conv/click</div>
+  <div class="zone-metrics">
+    <div class="zone-metric"><div class="zm-val" style="color:var(--danger)">2.41×</div><div class="zm-lbl">Recurrence</div></div>
     <div class="zone-metric"><div class="zm-val">11.2%</div><div class="zm-lbl">Click Rate</div></div>
     <div class="zone-metric"><div class="zm-val">0.38s</div><div class="zm-lbl">Hesitation</div></div>
     <div class="zone-metric"><div class="zm-val">28.3%</div><div class="zm-lbl">Engagement</div></div>
-    <div class="zone-metric"><div class="zm-val">0.28%</div><div class="zm-lbl">Conv After Click</div></div>
   </div>
 </div>
-
-<table>
-  <thead><tr><th>Zone</th><th class="num">Clicks</th><th class="num">Recurrence</th><th class="num">Click Rate</th><th class="num">Hesitation</th><th class="num">Conv/Click</th><th>Flag</th></tr></thead>
-  <tbody>
-    <tr class="rage"><td>paid-twostep__form</td><td class="num">8,765</td><td class="num">2.41×</td><td class="num">11.2%</td><td class="num">0.38s</td><td class="num">0.28%</td><td><span class="badge badge-rage">RAGE</span></td></tr>
-    <tr class="rage"><td>header-sticky-rfi-forms</td><td class="num">1,691</td><td class="num">2.41×</td><td class="num">2.2%</td><td class="num">0.46s</td><td class="num">0.08%</td><td><span class="badge badge-rage">RAGE</span></td></tr>
-    <tr class="caution"><td>icon-text-block__content-block</td><td class="num">877</td><td class="num">2.35×</td><td class="num">1.2%</td><td class="num">0.05s</td><td class="num">0.08%</td><td><span class="badge badge-caution">CAUTION</span></td></tr>
-    <tr class="caution"><td>site-footer__top-group</td><td class="num">29</td><td class="num">2.23×</td><td class="num">0.1%</td><td class="num">0.00s</td><td class="num">0.00%</td><td><span class="badge badge-caution">LOW VOL</span></td></tr>
-    <tr><td>zes-two-column-tabs__credit-content</td><td class="num">9</td><td class="num">9.00×</td><td class="num">0.0%</td><td class="num">0.00s</td><td class="num">0.00%</td><td><span class="badge badge-caution">ANOMALY</span></td></tr>
-  </tbody>
-</table>
-
-<!-- BLOG ZONING -->
-<h2 id="zone-blog">Zoning: Blog</h2>
-<table>
-  <thead><tr><th>Zone</th><th class="num">Clicks</th><th class="num">Recurrence</th><th class="num">Click Rate</th><th class="num">Hesitation</th><th class="num">Conv/Click</th><th>Flag</th></tr></thead>
-  <tbody>
-    <tr class="caution"><td>blog-sidebar-form</td><td class="num">297</td><td class="num">2.58×</td><td class="num">1.3%</td><td class="num">0.19s</td><td class="num">0.00%</td><td><span class="badge badge-rage">RAGE</span></td></tr>
-    <tr><td>site-layout__header</td><td class="num">1,069</td><td class="num">1.98×</td><td class="num">4.8%</td><td class="num">0.34s</td><td class="num">0.07%</td><td><span class="badge badge-caution">CAUTION</span></td></tr>
-  </tbody>
-</table>
-<div class="insight-box">
-  <h4>Blog Form Friction</h4>
-  <p>The <code>blog-sidebar-form</code> has 2.58× click recurrence with <strong>0.00% conversion after click</strong> — users tap the form repeatedly but never convert. With 44,598 blog views per month and only 17.3% bounce, blog visitors are engaged readers but the sidebar RFI form is failing to capture intent. Consider replacing with a contextual CTA or inline form that matches the content topic.</p>
 </div>
 
-<!-- RFI POP-UP ZONING -->
-<h2 id="zone-rfi-popup">Zoning: RFI Pop-Up</h2>
-<div class="zone-card">
-  <h4>🔴 Pop-Up RFI Form: Massive Volume Rage Clicks</h4>
-  <div class="zone-sub">Zone: <code>webform-submission-lead-flow-system-node-14996-add-form--4</code> · 54,090 clicks</div>
-  <div class="zone-grid">
-    <div class="zone-metric"><div class="zm-val" style="color:var(--danger)">2.78×</div><div class="zm-lbl">Click Recurrence</div></div>
+<!-- BLOG -->
+<div class="section-break"></div>
+<div class="reveal" id="zone-blog">
+<h2>Blog <span class="h2-count">44,598 views · 17.3% bounce</span></h2>
+
+<table>
+  <thead><tr><th>Zone</th><th class="num">Clicks</th><th class="num">Recurrence</th><th class="num">Click Rate</th><th class="num">Conv/Click</th><th>Flag</th></tr></thead>
+  <tbody>
+    <tr class="rage-row"><td>blog-sidebar-form</td><td class="num">297</td><td class="num">2.58×</td><td class="num">1.3%</td><td class="num">0.00%</td><td><span class="badge badge-rage">RAGE</span></td></tr>
+    <tr class="caution-row"><td>site-layout__header</td><td class="num">1,069</td><td class="num">1.98×</td><td class="num">4.8%</td><td class="num">0.07%</td><td><span class="badge badge-caution">CAUTION</span></td></tr>
+  </tbody>
+</table>
+
+<div class="insight">
+  <h4>Insight</h4>
+  <p>The <code>blog-sidebar-form</code> has 2.58× click recurrence with <strong>0.00% conversion</strong>. Blog visitors are the most engaged readers on the site (17.3% bounce) but the sidebar form is completely broken for them. Replace with a contextual inline CTA that matches the content topic.</p>
+</div>
+</div>
+
+<!-- RFI POP-UP -->
+<div class="section-break"></div>
+<div class="reveal" id="zone-rfi-popup">
+<h2>RFI Pop-Up <span class="h2-count">108,260 views · 54,090 form clicks</span></h2>
+
+<div class="zone-block">
+  <h4 style="color:var(--danger);">Pop-Up Form — 2.78× recurrence, 0.01% conversion</h4>
+  <div class="zone-sub"><code>webform-submission-lead-flow-system-node-14996-add-form--4</code></div>
+  <div class="zone-metrics">
+    <div class="zone-metric"><div class="zm-val" style="color:var(--danger)">2.78×</div><div class="zm-lbl">Recurrence</div></div>
     <div class="zone-metric"><div class="zm-val">31.3%</div><div class="zm-lbl">Click Rate</div></div>
-    <div class="zone-metric"><div class="zm-val">0.03s</div><div class="zm-lbl">Hesitation</div></div>
     <div class="zone-metric"><div class="zm-val">48.1%</div><div class="zm-lbl">Engagement</div></div>
-    <div class="zone-metric"><div class="zm-val">0.01%</div><div class="zm-lbl">Conv After Click</div></div>
-    <div class="zone-metric"><div class="zm-val">75.2%</div><div class="zm-lbl">Exposure Rate</div></div>
+    <div class="zone-metric"><div class="zm-val">0.01%</div><div class="zm-lbl">Conv/Click</div></div>
+    <div class="zone-metric"><div class="zm-val">75.2%</div><div class="zm-lbl">Exposure</div></div>
   </div>
 </div>
-<p style="font-size:13px;color:var(--muted);margin:12px 0 32px;">108,260 pop-up views, 54,090 form clicks, 2.78× recurrence, and only <strong>0.01% conversion after click</strong>. This is the single highest-volume frustration signal on the site. Users are interacting with the form but unable to complete — likely field validation issues, confusing dropdown interactions, or submit failures.</p>
 
-<!-- RFI SUCCESS -->
-<h2 id="zone-rfi-success">Zoning: RFI Success Page</h2>
-<table>
-  <thead><tr><th>Zone</th><th class="num">Clicks</th><th class="num">Recurrence</th><th class="num">Click Rate</th><th class="num">Hesitation</th><th class="num">Conv/Click</th><th>Flag</th></tr></thead>
-  <tbody>
-    <tr class="caution"><td>partner-divider__logo-container</td><td class="num">101</td><td class="num">2.06×</td><td class="num">0.2%</td><td class="num">0.00s</td><td class="num">0.00%</td><td><span class="badge badge-caution">CAUTION</span></td></tr>
-  </tbody>
-</table>
-<p style="font-size:13px;color:var(--muted);margin:0 0 32px;">Low-severity — users tapping partner logos on the success/thank-you page, likely expecting clickable links. Minor fix: make logos link to partner pages or remove click affordance.</p>
+<div class="insight">
+  <h4>Critical</h4>
+  <p>This is the <strong>single highest-volume frustration signal on the site</strong>. 54,090 form clicks with only 0.01% conversion. Users interact with the form but cannot complete — likely field validation issues, confusing dropdowns, or submit failures.</p>
+</div>
+</div>
 
-<!-- PAID SUCCESS ZONING -->
-<h2 id="zone-paid">Zoning: Paid Success (Landing Pages)</h2>
-<div class="zone-card">
-  <h4>🔴 #1 Rage Zone: Two-Step RFI Form</h4>
-  <div class="zone-sub">Zone: <code>form-twostep__form</code> · 118,138 clicks — THE highest-volume zone on the entire site</div>
-  <div class="zone-grid">
-    <div class="zone-metric"><div class="zm-val" style="color:var(--danger)">3.23×</div><div class="zm-lbl">Click Recurrence</div></div>
+<!-- PAID SUCCESS -->
+<div class="section-break"></div>
+<div class="reveal" id="zone-paid">
+<h2>Paid Landing Pages <span class="h2-count">174,641 views · 118K form clicks</span></h2>
+
+<div class="zone-block">
+  <h4 style="color:var(--danger);">Two-Step RFI Form — THE highest-volume zone on the site</h4>
+  <div class="zone-sub"><code>form-twostep__form</code> · 118,138 clicks</div>
+  <div class="zone-metrics">
+    <div class="zone-metric"><div class="zm-val" style="color:var(--danger)">3.23×</div><div class="zm-lbl">Recurrence</div></div>
     <div class="zone-metric"><div class="zm-val">53.8%</div><div class="zm-lbl">Click Rate</div></div>
-    <div class="zone-metric"><div class="zm-val">0.22s</div><div class="zm-lbl">Hesitation</div></div>
     <div class="zone-metric"><div class="zm-val">62.1%</div><div class="zm-lbl">Engagement</div></div>
-    <div class="zone-metric"><div class="zm-val">0.04%</div><div class="zm-lbl">Conv After Click</div></div>
-    <div class="zone-metric"><div class="zm-val">89.2%</div><div class="zm-lbl">Exposure Rate</div></div>
+    <div class="zone-metric"><div class="zm-val">0.04%</div><div class="zm-lbl">Conv/Click</div></div>
+    <div class="zone-metric"><div class="zm-val">89.2%</div><div class="zm-lbl">Exposure</div></div>
   </div>
 </div>
 
 <table>
   <thead><tr><th>Zone</th><th class="num">Clicks</th><th class="num">Recurrence</th><th class="num">Click Rate</th><th class="num">Exposure</th><th class="num">Conv/Click</th><th>Flag</th></tr></thead>
   <tbody>
-    <tr class="rage"><td>form-twostep__form</td><td class="num">118,138</td><td class="num">3.23×</td><td class="num">53.8%</td><td class="num">89.2%</td><td class="num">0.04%</td><td><span class="badge badge-rage">RAGE</span></td></tr>
-    <tr class="caution"><td>paid-two-column-plain__heading</td><td class="num">318</td><td class="num">2.01×</td><td class="num">0.3%</td><td class="num">73.3%</td><td class="num">0.00%</td><td><span class="badge badge-caution">CAUTION</span></td></tr>
+    <tr class="rage-row"><td>form-twostep__form</td><td class="num">118,138</td><td class="num">3.23×</td><td class="num">53.8%</td><td class="num">89.2%</td><td class="num">0.04%</td><td><span class="badge badge-rage">RAGE</span></td></tr>
+    <tr class="caution-row"><td>paid-two-column-plain__heading</td><td class="num">318</td><td class="num">2.01×</td><td class="num">0.3%</td><td class="num">73.3%</td><td class="num">0.00%</td><td><span class="badge badge-caution">CAUTION</span></td></tr>
     <tr><td>site-header__logo</td><td class="num">3,202</td><td class="num">1.78×</td><td class="num">2.8%</td><td class="num">96.2%</td><td class="num">0.00%</td><td><span class="badge badge-caution">ESCAPE</span></td></tr>
-    <tr><td>paid-reasons__icon-container</td><td class="num">344</td><td class="num">1.69×</td><td class="num">0.4%</td><td class="num">68.2%</td><td class="num">0.00%</td><td><span class="badge badge-ok">OK</span></td></tr>
   </tbody>
 </table>
 
-<div class="insight-box">
-  <h4>Critical: Paid Landing Page Form Friction</h4>
-  <p>The two-step form on paid success pages is the <strong>most interacted-with element on the entire site</strong> (118,138 clicks, 89.2% exposure, 53.8% click rate) but converts at only <strong>0.04% per click</strong> with a <strong>3.23× recurrence rate</strong>. Users click the form 3+ times on average before abandoning. This is the #1 opportunity on the site: every 1% improvement in form conversion from these clicks would translate to ~1,181 additional leads per month. Investigate: field validation errors, dropdown usability, mobile tap targets, and step-2 abandonment.</p>
+<div class="insight">
+  <h4>Critical Opportunity</h4>
+  <p>The two-step form is the <strong>most interacted-with element on the entire site</strong> (118,138 clicks, 53.8% click rate) but converts at only <strong>0.04% per click</strong>. Users click 3+ times on average before abandoning. Every 1% improvement = ~1,181 additional leads per month.</p>
+</div>
 </div>
 
 <!-- ═══════════════════════════════════════════ -->
-<!-- ===== VISUAL EVIDENCE: HEATMAPS, SCROLL & ATTENTION ===== -->
+<!-- ═══ VISUAL EVIDENCE ══════════════════════ -->
 <!-- ═══════════════════════════════════════════ -->
-<h2 id="ve">Visual Evidence: Heatmaps, Scroll &amp; Attention</h2>
-<p style="font-size:14px;color:var(--muted);margin-bottom:8px;max-width:700px;">Contentsquare captures showing where users click, how far they scroll, and what content holds attention. Desktop and mobile side-by-side where available. <strong>Click any image to expand.</strong></p>
-<p style="font-size:12px;color:var(--muted);margin-bottom:40px;">25 captures · 8 pages · 30-day window (Apr 4 – May 4, 2026)</p>
 
-<!-- ── Homepage ── -->
-<div class="ve-section" id="ve-home">
-  <h3>Homepage — uagc.edu</h3>
-  <p class="ve-sub">47,684 views · 20.5% bounce · 11.7% scroll depth · 6.83s load</p>
+<div class="section-break"></div>
+<div class="reveal" id="ve">
+<h2>Visual Evidence <span class="h2-count">25 captures · 8 pages</span></h2>
+<p class="section-desc">Contentsquare heatmaps, scroll depth, and attention maps. Click any image to enlarge.</p>
 
-  <div class="ve-callout">
-    <strong>What to look for:</strong> The homepage has the lowest scroll depth of any non-success page (11.7%). The heatmap should confirm click activity concentrated above the fold, and the attention map should show rapid drop-off after the hero section. The "find-your-path" module had 1.96× click recurrence — look for repeated taps on the degree finder.
+<!-- Homepage -->
+<div class="ve-page" id="ve-home">
+  <h3>Homepage</h3>
+  <div class="ve-sub">47,684 views · 20.5% bounce · 11.7% scroll depth · 6.83s load</div>
+  <div class="ve-note"><strong>Look for:</strong> Click activity concentrated above fold. The "find-your-path" module had 1.96× recurrence — watch for repeated taps on the degree finder.</div>
+  <div class="ve-grid">
+    <div class="ve-item" onclick="openLightbox(this)"><img src="content_square/www.uagc.com - desktop- Heatmap.jpg" alt="Homepage Desktop Heatmap" loading="lazy"><div class="ve-strip"><span class="ve-tag ve-tag-desktop">Desktop</span><span class="ve-tag ve-tag-heatmap">Heatmap</span></div></div>
+    <div class="ve-item" onclick="openLightbox(this)"><img src="content_square/www.uagc.com - Mobile- Heatmap.jpg" alt="Homepage Mobile Heatmap" loading="lazy"><div class="ve-strip"><span class="ve-tag ve-tag-mobile">Mobile</span><span class="ve-tag ve-tag-heatmap">Heatmap</span></div></div>
   </div>
-
-  <h4 style="font-size:14px;font-weight:600;margin:16px 0 8px;color:#374151;">Click Heatmaps</h4>
-  <div class="ve-pair">
-    <div class="ve-card">
-      <div class="ve-img-wrap">
-        <img src="content_square/www.uagc.com - desktop- Heatmap.jpg" alt="Homepage Desktop Heatmap" loading="lazy" onclick="this.classList.toggle('expanded')">
-      </div>
-      <div class="ve-meta">
-        <span class="ve-badge ve-badge-desktop">Desktop</span>
-        <span class="ve-badge ve-badge-heatmap">Heatmap</span>
-        <span class="ve-label">Homepage — Click Distribution</span>
-      </div>
-    </div>
-    <div class="ve-card">
-      <div class="ve-img-wrap">
-        <img src="content_square/www.uagc.com - Mobile- Heatmap.jpg" alt="Homepage Mobile Heatmap" loading="lazy" onclick="this.classList.toggle('expanded')">
-      </div>
-      <div class="ve-meta">
-        <span class="ve-badge ve-badge-mobile">Mobile</span>
-        <span class="ve-badge ve-badge-heatmap">Heatmap</span>
-        <span class="ve-label">Homepage — Click Distribution</span>
-      </div>
-    </div>
-  </div>
-
-  <h4 style="font-size:14px;font-weight:600;margin:16px 0 8px;color:#374151;">Attention / Scroll Depth</h4>
-  <div class="ve-pair solo">
-    <div class="ve-card">
-      <div class="ve-img-wrap">
-        <img src="content_square/www.uagc.com -Mobile - Attention.jpg" alt="Homepage Mobile Attention" loading="lazy" onclick="this.classList.toggle('expanded')">
-      </div>
-      <div class="ve-meta">
-        <span class="ve-badge ve-badge-mobile">Mobile</span>
-        <span class="ve-badge ve-badge-attention">Attention</span>
-        <span class="ve-label">Homepage — Where Attention Drops Off</span>
-      </div>
-    </div>
+  <div class="ve-grid solo">
+    <div class="ve-item" onclick="openLightbox(this)"><img src="content_square/www.uagc.com -Mobile - Attention.jpg" alt="Homepage Mobile Attention" loading="lazy"><div class="ve-strip"><span class="ve-tag ve-tag-mobile">Mobile</span><span class="ve-tag ve-tag-attention">Attention</span><span class="ve-caption">Where attention drops off</span></div></div>
   </div>
 </div>
 
-<!-- ── Online Degrees ── -->
-<div class="ve-section" id="ve-degrees">
-  <h3>Online Degrees — /online-degrees</h3>
-  <p class="ve-sub">107,325 views · 23.7% bounce · 33.4% scroll · sticky RFI form 2.41× recurrence</p>
-
-  <div class="ve-callout">
-    <strong>What to look for:</strong> Two rage-click zones here — the sticky RFI header form (2.41×, 1,691 clicks) and the two-step form (2.41×, 8,765 clicks). The heatmap should reveal whether users are clicking the form intentionally or hitting dead zones. The attention map shows how far the degree listing content holds visitors.
+<!-- Online Degrees -->
+<div class="ve-page" id="ve-degrees">
+  <h3>Online Degrees</h3>
+  <div class="ve-sub">107,325 views · 23.7% bounce · 33.4% scroll · sticky RFI 2.41× recurrence</div>
+  <div class="ve-note"><strong>Look for:</strong> Two rage-click zones — sticky RFI header (2.41×, 1,691 clicks) and two-step form (2.41×, 8,765 clicks). Are users clicking intentionally or hitting dead zones?</div>
+  <div class="ve-grid">
+    <div class="ve-item" onclick="openLightbox(this)"><img src="content_square/Online Degrees - desktop- Heatmap.jpg" alt="Online Degrees Desktop Heatmap" loading="lazy"><div class="ve-strip"><span class="ve-tag ve-tag-desktop">Desktop</span><span class="ve-tag ve-tag-heatmap">Heatmap</span></div></div>
+    <div class="ve-item" onclick="openLightbox(this)"><img src="content_square/Online Degrees - Mobile -Heatmap.jpg" alt="Online Degrees Mobile Heatmap" loading="lazy"><div class="ve-strip"><span class="ve-tag ve-tag-mobile">Mobile</span><span class="ve-tag ve-tag-heatmap">Heatmap</span></div></div>
   </div>
-
-  <h4 style="font-size:14px;font-weight:600;margin:16px 0 8px;color:#374151;">Click Heatmaps</h4>
-  <div class="ve-pair">
-    <div class="ve-card">
-      <div class="ve-img-wrap">
-        <img src="content_square/Online Degrees - desktop- Heatmap.jpg" alt="Online Degrees Desktop Heatmap" loading="lazy" onclick="this.classList.toggle('expanded')">
-      </div>
-      <div class="ve-meta">
-        <span class="ve-badge ve-badge-desktop">Desktop</span>
-        <span class="ve-badge ve-badge-heatmap">Heatmap</span>
-        <span class="ve-label">Online Degrees — Click Distribution</span>
-      </div>
-    </div>
-    <div class="ve-card">
-      <div class="ve-img-wrap">
-        <img src="content_square/Online Degrees - Mobile -Heatmap.jpg" alt="Online Degrees Mobile Heatmap" loading="lazy" onclick="this.classList.toggle('expanded')">
-      </div>
-      <div class="ve-meta">
-        <span class="ve-badge ve-badge-mobile">Mobile</span>
-        <span class="ve-badge ve-badge-heatmap">Heatmap</span>
-        <span class="ve-label">Online Degrees — Click Distribution</span>
-      </div>
-    </div>
-  </div>
-
-  <h4 style="font-size:14px;font-weight:600;margin:16px 0 8px;color:#374151;">Attention / Scroll Depth</h4>
-  <div class="ve-pair solo">
-    <div class="ve-card">
-      <div class="ve-img-wrap">
-        <img src="content_square/Online Degrees -Mobile- Attention.jpg" alt="Online Degrees Mobile Attention" loading="lazy" onclick="this.classList.toggle('expanded')">
-      </div>
-      <div class="ve-meta">
-        <span class="ve-badge ve-badge-mobile">Mobile</span>
-        <span class="ve-badge ve-badge-attention">Attention</span>
-        <span class="ve-label">Online Degrees — Scroll Attention Drop-Off</span>
-      </div>
-    </div>
+  <div class="ve-grid solo">
+    <div class="ve-item" onclick="openLightbox(this)"><img src="content_square/Online Degrees -Mobile- Attention.jpg" alt="Online Degrees Mobile Attention" loading="lazy"><div class="ve-strip"><span class="ve-tag ve-tag-mobile">Mobile</span><span class="ve-tag ve-tag-attention">Attention</span></div></div>
   </div>
 </div>
 
-<!-- ── Business Degrees ── -->
-<div class="ve-section" id="ve-business">
-  <h3>Business Degrees — /online-degrees/business</h3>
-  <p class="ve-sub">7,029 views · 24.5% bounce · 26.3% scroll · 6.06s load</p>
-
-  <div class="ve-callout">
-    <strong>What to look for:</strong> Vertical hub page for business programs. With only 26.3% scroll depth, most program listings below fold are invisible. Compare desktop vs mobile click patterns to see if the RFI or program cards get more interaction.
+<!-- Business Degrees -->
+<div class="ve-page" id="ve-business">
+  <h3>Business Degrees</h3>
+  <div class="ve-sub">7,029 views · 24.5% bounce · 26.3% scroll · 6.06s load</div>
+  <div class="ve-note"><strong>Look for:</strong> Only 26.3% scroll — most program listings below fold are invisible. Compare RFI vs program card interaction.</div>
+  <div class="ve-grid">
+    <div class="ve-item" onclick="openLightbox(this)"><img src="content_square/Business Degrees-Desktop-heatmap.jpg" alt="Business Degrees Desktop Heatmap" loading="lazy"><div class="ve-strip"><span class="ve-tag ve-tag-desktop">Desktop</span><span class="ve-tag ve-tag-heatmap">Heatmap</span></div></div>
+    <div class="ve-item" onclick="openLightbox(this)"><img src="content_square/Business Degress-Mobile-heatmap.jpg" alt="Business Degrees Mobile Heatmap" loading="lazy"><div class="ve-strip"><span class="ve-tag ve-tag-mobile">Mobile</span><span class="ve-tag ve-tag-heatmap">Heatmap</span></div></div>
   </div>
-
-  <h4 style="font-size:14px;font-weight:600;margin:16px 0 8px;color:#374151;">Click Heatmaps</h4>
-  <div class="ve-pair">
-    <div class="ve-card">
-      <div class="ve-img-wrap">
-        <img src="content_square/Business Degrees-Desktop-heatmap.jpg" alt="Business Degrees Desktop Heatmap" loading="lazy" onclick="this.classList.toggle('expanded')">
-      </div>
-      <div class="ve-meta">
-        <span class="ve-badge ve-badge-desktop">Desktop</span>
-        <span class="ve-badge ve-badge-heatmap">Heatmap</span>
-        <span class="ve-label">Business Degrees — Click Distribution</span>
-      </div>
-    </div>
-    <div class="ve-card">
-      <div class="ve-img-wrap">
-        <img src="content_square/Business Degress-Mobile-heatmap.jpg" alt="Business Degrees Mobile Heatmap" loading="lazy" onclick="this.classList.toggle('expanded')">
-      </div>
-      <div class="ve-meta">
-        <span class="ve-badge ve-badge-mobile">Mobile</span>
-        <span class="ve-badge ve-badge-heatmap">Heatmap</span>
-        <span class="ve-label">Business Degrees — Click Distribution</span>
-      </div>
-    </div>
-  </div>
-
-  <h4 style="font-size:14px;font-weight:600;margin:16px 0 8px;color:#374151;">Attention / Scroll Depth</h4>
-  <div class="ve-pair solo">
-    <div class="ve-card">
-      <div class="ve-img-wrap">
-        <img src="content_square/Business Degrees-Mobile-Attention.jpg" alt="Business Degrees Mobile Attention" loading="lazy" onclick="this.classList.toggle('expanded')">
-      </div>
-      <div class="ve-meta">
-        <span class="ve-badge ve-badge-mobile">Mobile</span>
-        <span class="ve-badge ve-badge-attention">Attention</span>
-        <span class="ve-label">Business Degrees — Scroll Attention Drop-Off</span>
-      </div>
-    </div>
+  <div class="ve-grid solo">
+    <div class="ve-item" onclick="openLightbox(this)"><img src="content_square/Business Degrees-Mobile-Attention.jpg" alt="Business Degrees Mobile Attention" loading="lazy"><div class="ve-strip"><span class="ve-tag ve-tag-mobile">Mobile</span><span class="ve-tag ve-tag-attention">Attention</span></div></div>
   </div>
 </div>
 
-<!-- ── Masters Programs ── -->
-<div class="ve-section" id="ve-masters">
-  <h3>Masters Programs — /online-degrees/masters</h3>
-  <p class="ve-sub">24,736 views · 22.3% bounce · 24.3% scroll · 6.28s load</p>
-
-  <div class="ve-callout">
-    <strong>What to look for:</strong> High-engagement organic page (89.9% engagement rate in GA4). The scroll map should reveal whether the program grid and credential details below fold are being reached. Desktop vs mobile heatmap comparison shows if the degree finder or direct program links get more taps.
+<!-- Masters Programs -->
+<div class="ve-page" id="ve-masters">
+  <h3>Masters Programs</h3>
+  <div class="ve-sub">24,736 views · 22.3% bounce · 24.3% scroll · 89.9% GA4 engagement</div>
+  <div class="ve-note"><strong>Look for:</strong> Does the program grid below fold get reached? Scroll map should show the drop-off line.</div>
+  <div class="ve-grid">
+    <div class="ve-item" onclick="openLightbox(this)"><img src="content_square/Masters Programs-Desktop-Heatmap.jpg" alt="Masters Desktop Heatmap" loading="lazy"><div class="ve-strip"><span class="ve-tag ve-tag-desktop">Desktop</span><span class="ve-tag ve-tag-heatmap">Heatmap</span></div></div>
+    <div class="ve-item" onclick="openLightbox(this)"><img src="content_square/Masters Programs-Mobile-Heatmap.jpg" alt="Masters Mobile Heatmap" loading="lazy"><div class="ve-strip"><span class="ve-tag ve-tag-mobile">Mobile</span><span class="ve-tag ve-tag-heatmap">Heatmap</span></div></div>
   </div>
-
-  <h4 style="font-size:14px;font-weight:600;margin:16px 0 8px;color:#374151;">Click Heatmaps</h4>
-  <div class="ve-pair">
-    <div class="ve-card">
-      <div class="ve-img-wrap">
-        <img src="content_square/Masters Programs-Desktop-Heatmap.jpg" alt="Masters Desktop Heatmap" loading="lazy" onclick="this.classList.toggle('expanded')">
-      </div>
-      <div class="ve-meta">
-        <span class="ve-badge ve-badge-desktop">Desktop</span>
-        <span class="ve-badge ve-badge-heatmap">Heatmap</span>
-        <span class="ve-label">Masters Programs — Click Distribution</span>
-      </div>
-    </div>
-    <div class="ve-card">
-      <div class="ve-img-wrap">
-        <img src="content_square/Masters Programs-Mobile-Heatmap.jpg" alt="Masters Mobile Heatmap" loading="lazy" onclick="this.classList.toggle('expanded')">
-      </div>
-      <div class="ve-meta">
-        <span class="ve-badge ve-badge-mobile">Mobile</span>
-        <span class="ve-badge ve-badge-heatmap">Heatmap</span>
-        <span class="ve-label">Masters Programs — Click Distribution</span>
-      </div>
-    </div>
-  </div>
-
-  <h4 style="font-size:14px;font-weight:600;margin:16px 0 8px;color:#374151;">Scroll Depth</h4>
-  <div class="ve-pair solo">
-    <div class="ve-card">
-      <div class="ve-img-wrap">
-        <img src="content_square/Masters Programs-Mobile-scroll.jpg" alt="Masters Mobile Scroll" loading="lazy" onclick="this.classList.toggle('expanded')">
-      </div>
-      <div class="ve-meta">
-        <span class="ve-badge ve-badge-mobile">Mobile</span>
-        <span class="ve-badge ve-badge-scroll">Scroll</span>
-        <span class="ve-label">Masters Programs — How Far Users Scroll</span>
-      </div>
-    </div>
+  <div class="ve-grid solo">
+    <div class="ve-item" onclick="openLightbox(this)"><img src="content_square/Masters Programs-Mobile-scroll.jpg" alt="Masters Mobile Scroll" loading="lazy"><div class="ve-strip"><span class="ve-tag ve-tag-mobile">Mobile</span><span class="ve-tag ve-tag-scroll">Scroll</span><span class="ve-caption">How far users scroll</span></div></div>
   </div>
 </div>
 
-<!-- ── Paid: Request Info v5 ── -->
-<div class="ve-section" id="ve-reqinfo">
-  <h3>Paid: Request Info v5 — /success/request-info-v5</h3>
-  <p class="ve-sub">Paid landing · 1.18M sessions · $807K spend · 3.01% conv rate</p>
-
-  <div class="ve-callout">
-    <strong>What to look for:</strong> The highest-traffic paid landing page. The two-step form is the #1 rage-click zone site-wide (118K clicks, 3.23× recurrence on paid success pages collectively). The heatmap should show whether clicks cluster on specific form fields or the submit button. The attention map reveals how much of the below-form content (testimonials, program details) users actually see.
+<!-- Request Info v5 -->
+<div class="ve-page" id="ve-reqinfo">
+  <h3>Paid: Request Info v5</h3>
+  <div class="ve-sub">1.18M sessions · $807K spend · 3.01% conv rate</div>
+  <div class="ve-note"><strong>Look for:</strong> Highest-traffic paid page. Do clicks cluster on specific form fields or the submit button? The attention map shows how much below-form content users actually see.</div>
+  <div class="ve-grid">
+    <div class="ve-item" onclick="openLightbox(this)"><img src="content_square/Success-Request-v5-Desktop-heatmap.jpg" alt="Request Info v5 Desktop Heatmap" loading="lazy"><div class="ve-strip"><span class="ve-tag ve-tag-desktop">Desktop</span><span class="ve-tag ve-tag-heatmap">Heatmap</span></div></div>
+    <div class="ve-item" onclick="openLightbox(this)"><img src="content_square/Success-Request-v5-Mobile-Heatmap.jpg" alt="Request Info v5 Mobile Heatmap" loading="lazy"><div class="ve-strip"><span class="ve-tag ve-tag-mobile">Mobile</span><span class="ve-tag ve-tag-heatmap">Heatmap</span></div></div>
   </div>
-
-  <h4 style="font-size:14px;font-weight:600;margin:16px 0 8px;color:#374151;">Click Heatmaps</h4>
-  <div class="ve-pair">
-    <div class="ve-card">
-      <div class="ve-img-wrap">
-        <img src="content_square/Success-Request-v5-Desktop-heatmap.jpg" alt="Request Info v5 Desktop Heatmap" loading="lazy" onclick="this.classList.toggle('expanded')">
-      </div>
-      <div class="ve-meta">
-        <span class="ve-badge ve-badge-desktop">Desktop</span>
-        <span class="ve-badge ve-badge-heatmap">Heatmap</span>
-        <span class="ve-label">Request Info v5 — Click Distribution</span>
-      </div>
-    </div>
-    <div class="ve-card">
-      <div class="ve-img-wrap">
-        <img src="content_square/Success-Request-v5-Mobile-Heatmap.jpg" alt="Request Info v5 Mobile Heatmap" loading="lazy" onclick="this.classList.toggle('expanded')">
-      </div>
-      <div class="ve-meta">
-        <span class="ve-badge ve-badge-mobile">Mobile</span>
-        <span class="ve-badge ve-badge-heatmap">Heatmap</span>
-        <span class="ve-label">Request Info v5 — Click Distribution</span>
-      </div>
-    </div>
-  </div>
-
-  <h4 style="font-size:14px;font-weight:600;margin:16px 0 8px;color:#374151;">Attention / Scroll Depth</h4>
-  <div class="ve-pair solo">
-    <div class="ve-card">
-      <div class="ve-img-wrap">
-        <img src="content_square/Success-Request-v5-mobile-attention.jpg" alt="Request Info v5 Mobile Attention" loading="lazy" onclick="this.classList.toggle('expanded')">
-      </div>
-      <div class="ve-meta">
-        <span class="ve-badge ve-badge-mobile">Mobile</span>
-        <span class="ve-badge ve-badge-attention">Attention</span>
-        <span class="ve-label">Request Info v5 — Scroll Attention Drop-Off</span>
-      </div>
-    </div>
+  <div class="ve-grid solo">
+    <div class="ve-item" onclick="openLightbox(this)"><img src="content_square/Success-Request-v5-mobile-attention.jpg" alt="Request Info v5 Mobile Attention" loading="lazy"><div class="ve-strip"><span class="ve-tag ve-tag-mobile">Mobile</span><span class="ve-tag ve-tag-attention">Attention</span></div></div>
   </div>
 </div>
 
-<!-- ── Paid: Bachelor's Degrees v5 ── -->
-<div class="ve-section" id="ve-bachelors">
-  <h3>Paid: Bachelor's Degrees v5 — /success/degree-types/bachelors-degrees-v5</h3>
-  <p class="ve-sub">Paid landing · 458K sessions · $1.41M spend · 3.50% conv rate</p>
-
-  <div class="ve-callout">
-    <strong>What to look for:</strong> Second-highest spend paid page. Compare click patterns on the form vs. surrounding content. The mobile attention map should confirm whether users on phones even reach the supporting content below the form — critical given the near 50/50 device split.
+<!-- Bachelor's v5 -->
+<div class="ve-page" id="ve-bachelors">
+  <h3>Paid: Bachelor's Degrees v5</h3>
+  <div class="ve-sub">458K sessions · $1.41M spend · 3.50% conv rate</div>
+  <div class="ve-note"><strong>Look for:</strong> Second-highest spend. Does mobile attention map confirm users on phones reach supporting content below the form?</div>
+  <div class="ve-grid">
+    <div class="ve-item" onclick="openLightbox(this)"><img src="content_square/Success-degree-types-bachelors-degrees-v5-Desktop-Heatmap.jpg" alt="Bachelor's v5 Desktop Heatmap" loading="lazy"><div class="ve-strip"><span class="ve-tag ve-tag-desktop">Desktop</span><span class="ve-tag ve-tag-heatmap">Heatmap</span></div></div>
+    <div class="ve-item" onclick="openLightbox(this)"><img src="content_square/Success-degree-types-bachelors-degrees-v5-Mobile-Heatmap.jpg" alt="Bachelor's v5 Mobile Heatmap" loading="lazy"><div class="ve-strip"><span class="ve-tag ve-tag-mobile">Mobile</span><span class="ve-tag ve-tag-heatmap">Heatmap</span></div></div>
   </div>
-
-  <h4 style="font-size:14px;font-weight:600;margin:16px 0 8px;color:#374151;">Click Heatmaps</h4>
-  <div class="ve-pair">
-    <div class="ve-card">
-      <div class="ve-img-wrap">
-        <img src="content_square/Success-degree-types-bachelors-degrees-v5-Desktop-Heatmap.jpg" alt="Bachelor's v5 Desktop Heatmap" loading="lazy" onclick="this.classList.toggle('expanded')">
-      </div>
-      <div class="ve-meta">
-        <span class="ve-badge ve-badge-desktop">Desktop</span>
-        <span class="ve-badge ve-badge-heatmap">Heatmap</span>
-        <span class="ve-label">Bachelor's v5 — Click Distribution</span>
-      </div>
-    </div>
-    <div class="ve-card">
-      <div class="ve-img-wrap">
-        <img src="content_square/Success-degree-types-bachelors-degrees-v5-Mobile-Heatmap.jpg" alt="Bachelor's v5 Mobile Heatmap" loading="lazy" onclick="this.classList.toggle('expanded')">
-      </div>
-      <div class="ve-meta">
-        <span class="ve-badge ve-badge-mobile">Mobile</span>
-        <span class="ve-badge ve-badge-heatmap">Heatmap</span>
-        <span class="ve-label">Bachelor's v5 — Click Distribution</span>
-      </div>
-    </div>
-  </div>
-
-  <h4 style="font-size:14px;font-weight:600;margin:16px 0 8px;color:#374151;">Attention / Scroll Depth</h4>
-  <div class="ve-pair solo">
-    <div class="ve-card">
-      <div class="ve-img-wrap">
-        <img src="content_square/Success-degree-types-bachelors-degrees-v5-mobile-attention.jpg" alt="Bachelor's v5 Mobile Attention" loading="lazy" onclick="this.classList.toggle('expanded')">
-      </div>
-      <div class="ve-meta">
-        <span class="ve-badge ve-badge-mobile">Mobile</span>
-        <span class="ve-badge ve-badge-attention">Attention</span>
-        <span class="ve-label">Bachelor's v5 — Scroll Attention Drop-Off</span>
-      </div>
-    </div>
+  <div class="ve-grid solo">
+    <div class="ve-item" onclick="openLightbox(this)"><img src="content_square/Success-degree-types-bachelors-degrees-v5-mobile-attention.jpg" alt="Bachelor's v5 Mobile Attention" loading="lazy"><div class="ve-strip"><span class="ve-tag ve-tag-mobile">Mobile</span><span class="ve-tag ve-tag-attention">Attention</span></div></div>
   </div>
 </div>
 
-<!-- ── Paid: Online College Courses v5 ── -->
-<div class="ve-section" id="ve-courses">
-  <h3>Paid: Online College Courses v5 — /success/online-college-courses-v5</h3>
-  <p class="ve-sub">Paid landing · 262K sessions · $1.64M spend · 7.25% conv rate</p>
-
-  <div class="ve-callout">
-    <strong>What to look for:</strong> This page converts at 7.25% — more than 2× the v5 average. The heatmaps should reveal what's different about how users interact here vs lower-converting v5 pages. Is the form getting cleaner engagement? Is the content around it more compelling? The desktop attention map shows what content earns sustained viewing.
+<!-- College Courses v5 -->
+<div class="ve-page" id="ve-courses">
+  <h3>Paid: Online College Courses v5</h3>
+  <div class="ve-sub">262K sessions · $1.64M spend · 7.25% conv rate</div>
+  <div class="ve-note"><strong>Look for:</strong> Converts at 7.25% — more than 2× the v5 average. What's different about how users interact here vs lower-converting v5 pages?</div>
+  <div class="ve-grid">
+    <div class="ve-item" onclick="openLightbox(this)"><img src="content_square/Success-online-college-courses-v5-desktop-heatmap.jpg" alt="College Courses v5 Desktop Heatmap" loading="lazy"><div class="ve-strip"><span class="ve-tag ve-tag-desktop">Desktop</span><span class="ve-tag ve-tag-heatmap">Heatmap</span></div></div>
+    <div class="ve-item" onclick="openLightbox(this)"><img src="content_square/Success-online-college-courses-v5-Mobile-heatmap.jpg" alt="College Courses v5 Mobile Heatmap" loading="lazy"><div class="ve-strip"><span class="ve-tag ve-tag-mobile">Mobile</span><span class="ve-tag ve-tag-heatmap">Heatmap</span></div></div>
   </div>
-
-  <h4 style="font-size:14px;font-weight:600;margin:16px 0 8px;color:#374151;">Click Heatmaps</h4>
-  <div class="ve-pair">
-    <div class="ve-card">
-      <div class="ve-img-wrap">
-        <img src="content_square/Success-online-college-courses-v5-desktop-heatmap.jpg" alt="College Courses v5 Desktop Heatmap" loading="lazy" onclick="this.classList.toggle('expanded')">
-      </div>
-      <div class="ve-meta">
-        <span class="ve-badge ve-badge-desktop">Desktop</span>
-        <span class="ve-badge ve-badge-heatmap">Heatmap</span>
-        <span class="ve-label">College Courses v5 — Click Distribution</span>
-      </div>
-    </div>
-    <div class="ve-card">
-      <div class="ve-img-wrap">
-        <img src="content_square/Success-online-college-courses-v5-Mobile-heatmap.jpg" alt="College Courses v5 Mobile Heatmap" loading="lazy" onclick="this.classList.toggle('expanded')">
-      </div>
-      <div class="ve-meta">
-        <span class="ve-badge ve-badge-mobile">Mobile</span>
-        <span class="ve-badge ve-badge-heatmap">Heatmap</span>
-        <span class="ve-label">College Courses v5 — Click Distribution</span>
-      </div>
-    </div>
-  </div>
-
-  <h4 style="font-size:14px;font-weight:600;margin:16px 0 8px;color:#374151;">Attention / Scroll Depth</h4>
-  <div class="ve-pair solo">
-    <div class="ve-card">
-      <div class="ve-img-wrap">
-        <img src="content_square/Success-online-college-courses-v5-desktop-Attention.jpg" alt="College Courses v5 Desktop Attention" loading="lazy" onclick="this.classList.toggle('expanded')">
-      </div>
-      <div class="ve-meta">
-        <span class="ve-badge ve-badge-desktop">Desktop</span>
-        <span class="ve-badge ve-badge-attention">Attention</span>
-        <span class="ve-label">College Courses v5 — Content Attention</span>
-      </div>
-    </div>
+  <div class="ve-grid solo">
+    <div class="ve-item" onclick="openLightbox(this)"><img src="content_square/Success-online-college-courses-v5-desktop-Attention.jpg" alt="College Courses v5 Desktop Attention" loading="lazy"><div class="ve-strip"><span class="ve-tag ve-tag-desktop">Desktop</span><span class="ve-tag ve-tag-attention">Attention</span></div></div>
   </div>
 </div>
 
-<!-- ── Paid: Degree Programs v7 ── -->
-<div class="ve-section" id="ve-degprog">
-  <h3>Paid: Degree Programs v7 — /success/degree-programs-v7</h3>
-  <p class="ve-sub">Paid landing · #1 converter at 13.57% · 74.9% engagement rate</p>
-
-  <div class="ve-callout">
-    <strong>What to look for:</strong> The top-performing paid landing page at 13.57% conversion — <strong>3–5× higher than v5 pages</strong>. This page has a program grid and deeper content. The heatmaps should reveal the interaction pattern that drives this performance. Compare the click distribution here to v5 pages above to see the structural difference. The scroll map confirms whether users engage with the full content or convert early.
+<!-- Degree Programs v7 -->
+<div class="ve-page" id="ve-degprog">
+  <h3>Paid: Degree Programs v7 — Top Performer</h3>
+  <div class="ve-sub">#1 converter at 13.57% · 74.9% engagement rate · 3–5× higher than v5 pages</div>
+  <div class="ve-note"><strong>Look for:</strong> The interaction pattern that drives 13.57% conversion. Compare click distribution here to v5 pages above — what structural difference makes this work?</div>
+  <div class="ve-grid">
+    <div class="ve-item" onclick="openLightbox(this)"><img src="content_square/Success-degree-programs-v7-Desktop-Heatmap.jpg" alt="Degree Programs v7 Desktop Heatmap" loading="lazy"><div class="ve-strip"><span class="ve-tag ve-tag-desktop">Desktop</span><span class="ve-tag ve-tag-heatmap">Heatmap</span></div></div>
+    <div class="ve-item" onclick="openLightbox(this)"><img src="content_square/Success-degree-programs-v7-Mobile-Heatmap.jpg" alt="Degree Programs v7 Mobile Heatmap" loading="lazy"><div class="ve-strip"><span class="ve-tag ve-tag-mobile">Mobile</span><span class="ve-tag ve-tag-heatmap">Heatmap</span></div></div>
   </div>
-
-  <h4 style="font-size:14px;font-weight:600;margin:16px 0 8px;color:#374151;">Click Heatmaps</h4>
-  <div class="ve-pair">
-    <div class="ve-card">
-      <div class="ve-img-wrap">
-        <img src="content_square/Success-degree-programs-v7-Desktop-Heatmap.jpg" alt="Degree Programs v7 Desktop Heatmap" loading="lazy" onclick="this.classList.toggle('expanded')">
-      </div>
-      <div class="ve-meta">
-        <span class="ve-badge ve-badge-desktop">Desktop</span>
-        <span class="ve-badge ve-badge-heatmap">Heatmap</span>
-        <span class="ve-label">Degree Programs v7 — Click Distribution</span>
-      </div>
-    </div>
-    <div class="ve-card">
-      <div class="ve-img-wrap">
-        <img src="content_square/Success-degree-programs-v7-Mobile-Heatmap.jpg" alt="Degree Programs v7 Mobile Heatmap" loading="lazy" onclick="this.classList.toggle('expanded')">
-      </div>
-      <div class="ve-meta">
-        <span class="ve-badge ve-badge-mobile">Mobile</span>
-        <span class="ve-badge ve-badge-heatmap">Heatmap</span>
-        <span class="ve-label">Degree Programs v7 — Click Distribution</span>
-      </div>
-    </div>
-  </div>
-
-  <h4 style="font-size:14px;font-weight:600;margin:16px 0 8px;color:#374151;">Scroll Depth</h4>
-  <div class="ve-pair solo">
-    <div class="ve-card">
-      <div class="ve-img-wrap">
-        <img src="content_square/Success-degree-programs-v7-Mobile-scroll.jpg" alt="Degree Programs v7 Mobile Scroll" loading="lazy" onclick="this.classList.toggle('expanded')">
-      </div>
-      <div class="ve-meta">
-        <span class="ve-badge ve-badge-mobile">Mobile</span>
-        <span class="ve-badge ve-badge-scroll">Scroll</span>
-        <span class="ve-label">Degree Programs v7 — How Far Users Scroll</span>
-      </div>
-    </div>
+  <div class="ve-grid solo">
+    <div class="ve-item" onclick="openLightbox(this)"><img src="content_square/Success-degree-programs-v7-Mobile-scroll.jpg" alt="Degree Programs v7 Mobile Scroll" loading="lazy"><div class="ve-strip"><span class="ve-tag ve-tag-mobile">Mobile</span><span class="ve-tag ve-tag-scroll">Scroll</span><span class="ve-caption">How far users scroll</span></div></div>
   </div>
 </div>
+</div>
 
-<!-- ===== KEY FINDINGS ===== -->
-<h2 id="key-findings">Key Findings</h2>
+<!-- ═══════════════════════════════════════════ -->
+<!-- ═══ KEY FINDINGS ═════════════════════════ -->
+<!-- ═══════════════════════════════════════════ -->
+
+<div class="section-break"></div>
+<div class="reveal" id="key-findings">
+<h2>Key Findings</h2>
 
 <div class="finding">
-  <div class="icon rage-icon">1</div>
-  <div class="body">
+  <div class="f-num f-rage">1</div>
+  <div class="f-body">
     <strong>Form Rage Clicks Are the #1 Issue Site-Wide</strong>
-    <p>Three form zones — <code>form-twostep__form</code> (3.23×), <code>webform-submission RFI pop-up</code> (2.78×), and <code>paid-twostep__form</code> (2.41×) — collectively generate 181,000+ frustrated clicks per month. All share click recurrence above 2.4× with conversion rates under 0.3%. The form experience is the single biggest conversion bottleneck.</p>
+    <p>Three form zones — <code>form-twostep__form</code> (3.23×), <code>webform-submission RFI pop-up</code> (2.78×), and <code>paid-twostep__form</code> (2.41×) — collectively generate 181,000+ frustrated clicks per month with conversion rates under 0.3%.</p>
   </div>
 </div>
-
 <div class="finding">
-  <div class="icon rage-icon">2</div>
-  <div class="body">
+  <div class="f-num f-rage">2</div>
+  <div class="f-body">
     <strong>Application Pages: 71.7% Bounce, 485K Views</strong>
-    <p>The Salesforce-hosted application flow has the highest bounce rate of any page group, with nearly half a million monthly views bleeding out. Only 32.3% scroll depth suggests users either can't find what they need or immediately disengage from the application form. This is a massive funnel leak between RFI completion and application start.</p>
+    <p>The Salesforce-hosted application flow has the highest bounce rate of any page group. Only 32.3% scroll depth suggests users can't find what they need or immediately disengage. Massive funnel leak between RFI completion and application start.</p>
   </div>
 </div>
-
 <div class="finding">
-  <div class="icon warn-icon">3</div>
-  <div class="body">
+  <div class="f-num f-warn">3</div>
+  <div class="f-body">
     <strong>Quote Slider Generates False Engagement</strong>
-    <p>The testimonial/quote slider is the most-clicked non-form element (67,792 clicks, 3.55× recurrence) but has only 0.11% conversion after click. Users tap repeatedly trying to advance slides — likely because carousel controls aren't responsive or obvious. This creates noise in engagement metrics without driving conversions.</p>
+    <p>67,792 clicks at 3.55× recurrence but only 0.11% conversion. Users tap repeatedly trying to advance slides — carousel controls aren't responsive or obvious. Creates noise in engagement metrics.</p>
   </div>
 </div>
-
 <div class="finding">
-  <div class="icon warn-icon">4</div>
-  <div class="body">
+  <div class="f-num f-warn">4</div>
+  <div class="f-body">
     <strong>Blog Sidebar Form: High Engagement, Zero Conversion</strong>
-    <p>The blog draws 44,598 views with only 17.3% bounce (best engagement tier), but the sidebar RFI form has 2.58× rage clicks and literally 0.00% conversion after click. Blog readers are primed but the form mechanism is broken or misaligned with their intent.</p>
+    <p>44,598 views with 17.3% bounce (best engagement) but the sidebar form has 2.58× rage clicks and literally 0.00% conversion. Engaged readers, broken capture mechanism.</p>
   </div>
 </div>
-
 <div class="finding">
-  <div class="icon info-icon">5</div>
-  <div class="body">
+  <div class="f-num f-info">5</div>
+  <div class="f-body">
     <strong>Mobile Parity Risk</strong>
-    <p>With 47.9% of traffic on mobile (509,924 views), every form usability issue is amplified. The 2.41× recurrence on the sticky RFI header form on degree pages and the pop-up form friction are likely worse on smaller viewports where tap targets are compressed. Mobile-specific zoning data would quantify the gap.</p>
+    <p>47.9% of traffic on mobile (509,924 views). Every form issue is amplified on smaller viewports where tap targets are compressed. Mobile-specific zoning data would quantify the gap.</p>
   </div>
 </div>
+</div>
 
-<!-- ===== RECOMMENDATIONS ===== -->
-<h2 id="recs">Recommendations</h2>
+<!-- ═══ RECOMMENDATIONS ═══ -->
+<div class="section-break"></div>
+<div class="reveal" id="recs">
+<h2>Recommendations</h2>
 
 <table>
-  <thead><tr><th>#</th><th>Action</th><th>Impact Zone</th><th>Priority</th><th>Est. Impact</th></tr></thead>
+  <thead><tr><th>#</th><th>Action</th><th>Zone</th><th>Priority</th><th>Est. Impact</th></tr></thead>
   <tbody>
-    <tr class="rage"><td>1</td><td><strong>Audit two-step form field validation</strong> — check for silent validation errors, focus traps, and submit button state management on paid landing pages</td><td>Paid Success (form-twostep)</td><td><span class="badge badge-rage">P0</span></td><td>118K clicks → even 1% fix = 1.2K leads/mo</td></tr>
-    <tr class="rage"><td>2</td><td><strong>Fix RFI pop-up form interaction</strong> — 54K clicks at 2.78× recurrence with 0.01% conv suggests form submit failure or field confusion</td><td>RFI Pop-Up (global)</td><td><span class="badge badge-rage">P0</span></td><td>108K monthly pop-up views at risk</td></tr>
-    <tr class="caution"><td>3</td><td><strong>Replace or fix quote slider controls</strong> — make carousel navigation buttons larger, more visible, or replace with static testimonials</td><td>All Pages (quote-slider)</td><td><span class="badge badge-caution">P1</span></td><td>Reduces false engagement, improves UX clarity</td></tr>
-    <tr class="caution"><td>4</td><td><strong>Redesign blog sidebar CTA</strong> — replace failing sidebar form with contextual inline CTA or topic-matched lead magnet</td><td>Blog pages</td><td><span class="badge badge-caution">P1</span></td><td>44.6K engaged readers, currently zero form conversions</td></tr>
-    <tr><td>5</td><td><strong>Investigate application flow abandonment</strong> — 71.7% bounce on Salesforce intake needs session replay or CS zoning on that domain</td><td>Application Pages</td><td><span class="badge badge-caution">P1</span></td><td>485K views with 72% drop = 349K lost sessions</td></tr>
-    <tr><td>6</td><td><strong>Improve homepage scroll engagement</strong> — only 11.7% scroll depth despite 47K views; content below fold is invisible to users</td><td>Homepage</td><td><span class="badge badge-ok">P2</span></td><td>Better RFI/program exposure for navigational visitors</td></tr>
-    <tr><td>7</td><td><strong>Run mobile-specific zoning analysis</strong> — separate desktop vs mobile recurrence data to quantify form friction per device</td><td>All form zones</td><td><span class="badge badge-ok">P2</span></td><td>Prioritize mobile-first fixes for 48% of traffic</td></tr>
-    <tr><td>8</td><td><strong>Fix broken goal tracking</strong> — 3 of 5 CS goals return 0%, likely stale selectors or removed CTAs</td><td>CS configuration</td><td><span class="badge badge-ok">P2</span></td><td>Better data quality for ongoing optimization</td></tr>
+    <tr class="rage-row"><td>1</td><td><strong>Audit two-step form validation</strong> — silent errors, focus traps, submit state on paid pages</td><td>Paid Success</td><td><span class="badge badge-rage">P0</span></td><td>118K clicks → 1% fix = 1.2K leads/mo</td></tr>
+    <tr class="rage-row"><td>2</td><td><strong>Fix RFI pop-up interaction</strong> — 54K clicks at 2.78× with 0.01% conv</td><td>RFI Pop-Up</td><td><span class="badge badge-rage">P0</span></td><td>108K monthly views at risk</td></tr>
+    <tr class="caution-row"><td>3</td><td><strong>Fix quote slider controls</strong> — larger nav buttons or replace with static</td><td>All Pages</td><td><span class="badge badge-caution">P1</span></td><td>Reduce false engagement noise</td></tr>
+    <tr class="caution-row"><td>4</td><td><strong>Redesign blog sidebar CTA</strong> — contextual inline CTA or topic-matched lead magnet</td><td>Blog</td><td><span class="badge badge-caution">P1</span></td><td>44.6K engaged readers, 0 form convs</td></tr>
+    <tr><td>5</td><td><strong>Investigate application flow abandonment</strong> — session replay on Salesforce domain</td><td>Application</td><td><span class="badge badge-caution">P1</span></td><td>485K views, 72% drop = 349K lost</td></tr>
+    <tr><td>6</td><td><strong>Improve homepage scroll</strong> — 11.7% depth, content below fold invisible</td><td>Homepage</td><td><span class="badge badge-ok">P2</span></td><td>Better RFI/program exposure</td></tr>
+    <tr><td>7</td><td><strong>Run mobile-specific zoning</strong> — quantify form friction per device</td><td>All forms</td><td><span class="badge badge-ok">P2</span></td><td>Mobile-first fixes for 48% traffic</td></tr>
+    <tr><td>8</td><td><strong>Fix broken goal tracking</strong> — 3 of 5 CS goals return 0%</td><td>CS config</td><td><span class="badge badge-ok">P2</span></td><td>Better ongoing data quality</td></tr>
   </tbody>
 </table>
+</div>
 
-<!-- ===== DAILY TRENDS ===== -->
-<h2 id="trends">Daily Trends (30 Days)</h2>
-<div class="trend-mini">
-<table>
-  <thead><tr><th>Date</th><th>Views</th><th>Scroll %</th><th>Bounce %</th></tr></thead>
-  <tbody id="trends-body"></tbody>
-</table>
+<!-- ═══ DAILY TRENDS ═══ -->
+<div class="section-break"></div>
+<div class="reveal" id="trends">
+<h2>Daily Trends <span class="h2-count">30 days</span></h2>
+<p class="section-desc">Pageviews and bounce rate over the analysis window. Weekday/weekend cadence is consistent with no anomalies.</p>
+<div class="spark-wrap">
+  <canvas id="sparkline" height="120"></canvas>
+  <div class="spark-legend">
+    <span class="sl-views">Pageviews (scaled)</span>
+    <span class="sl-bounce">Bounce Rate</span>
+  </div>
+</div>
 </div>
 
 </div><!-- .main -->
 </div><!-- .layout -->
+
+<!-- ═══ LIGHTBOX ═══ -->
+<div class="lightbox" id="lightbox" onclick="closeLightbox()">
+  <div class="lightbox-close">ESC TO CLOSE</div>
+  <img id="lightbox-img" src="" alt="">
+</div>
 
 <script>
 const CS_DATA = {
@@ -1067,85 +792,130 @@ const CS_DATA = {
     {name:"RFI - Step 2",mapping:"CS - High Level",views:6,visits:5,bounce_rate:0.0,scroll_rate:91.7,exit_rate:0.0,loading_time_s:4.32,activity_rate:75.2,landing_rate:0.0},
   ],
   daily: [
-    {date:"2026-04-05",views:32907,scroll_rate:48.5,bounce_rate:26.0},
-    {date:"2026-04-06",views:24277,scroll_rate:47.1,bounce_rate:28.3},
-    {date:"2026-04-07",views:37917,scroll_rate:49.6,bounce_rate:25.8},
-    {date:"2026-04-08",views:38508,scroll_rate:48.5,bounce_rate:26.1},
-    {date:"2026-04-09",views:37476,scroll_rate:47.5,bounce_rate:25.9},
-    {date:"2026-04-10",views:36648,scroll_rate:47.8,bounce_rate:26.1},
-    {date:"2026-04-11",views:34949,scroll_rate:47.9,bounce_rate:25.9},
-    {date:"2026-04-12",views:28834,scroll_rate:47.9,bounce_rate:26.1},
-    {date:"2026-04-13",views:23825,scroll_rate:47.3,bounce_rate:27.3},
-    {date:"2026-04-14",views:38051,scroll_rate:48.8,bounce_rate:25.5},
-    {date:"2026-04-15",views:38281,scroll_rate:48.5,bounce_rate:26.0},
-    {date:"2026-04-16",views:37093,scroll_rate:47.5,bounce_rate:26.2},
-    {date:"2026-04-17",views:36652,scroll_rate:47.9,bounce_rate:26.0},
-    {date:"2026-04-18",views:34792,scroll_rate:47.9,bounce_rate:26.1},
-    {date:"2026-04-19",views:27987,scroll_rate:47.2,bounce_rate:27.4},
-    {date:"2026-04-20",views:22680,scroll_rate:47.3,bounce_rate:28.4},
-    {date:"2026-04-21",views:37153,scroll_rate:49.0,bounce_rate:25.7},
-    {date:"2026-04-22",views:37652,scroll_rate:48.2,bounce_rate:26.3},
-    {date:"2026-04-23",views:38106,scroll_rate:48.4,bounce_rate:26.2},
-    {date:"2026-04-24",views:37153,scroll_rate:47.9,bounce_rate:25.9},
-    {date:"2026-04-25",views:34671,scroll_rate:47.5,bounce_rate:26.3},
-    {date:"2026-04-26",views:28266,scroll_rate:47.6,bounce_rate:27.0},
-    {date:"2026-04-27",views:22984,scroll_rate:47.4,bounce_rate:28.4},
-    {date:"2026-04-28",views:37584,scroll_rate:48.9,bounce_rate:25.4},
-    {date:"2026-04-29",views:38131,scroll_rate:48.6,bounce_rate:26.0},
-    {date:"2026-04-30",views:37052,scroll_rate:48.1,bounce_rate:25.9},
-    {date:"2026-05-01",views:36068,scroll_rate:48.4,bounce_rate:25.8},
-    {date:"2026-05-02",views:33924,scroll_rate:47.7,bounce_rate:25.7},
-    {date:"2026-05-03",views:26762,scroll_rate:47.1,bounce_rate:27.4},
-    {date:"2026-05-04",views:11506,scroll_rate:48.4,bounce_rate:25.7},
+    {date:"04-05",views:32907,bounce_rate:26.0},{date:"04-06",views:24277,bounce_rate:28.3},
+    {date:"04-07",views:37917,bounce_rate:25.8},{date:"04-08",views:38508,bounce_rate:26.1},
+    {date:"04-09",views:37476,bounce_rate:25.9},{date:"04-10",views:36648,bounce_rate:26.1},
+    {date:"04-11",views:34949,bounce_rate:25.9},{date:"04-12",views:28834,bounce_rate:26.1},
+    {date:"04-13",views:23825,bounce_rate:27.3},{date:"04-14",views:38051,bounce_rate:25.5},
+    {date:"04-15",views:38281,bounce_rate:26.0},{date:"04-16",views:37093,bounce_rate:26.2},
+    {date:"04-17",views:36652,bounce_rate:26.0},{date:"04-18",views:34792,bounce_rate:26.1},
+    {date:"04-19",views:27987,bounce_rate:27.4},{date:"04-20",views:22680,bounce_rate:28.4},
+    {date:"04-21",views:37153,bounce_rate:25.7},{date:"04-22",views:37652,bounce_rate:26.3},
+    {date:"04-23",views:38106,bounce_rate:26.2},{date:"04-24",views:37153,bounce_rate:25.9},
+    {date:"04-25",views:34671,bounce_rate:26.3},{date:"04-26",views:28266,bounce_rate:27.0},
+    {date:"04-27",views:22984,bounce_rate:28.4},{date:"04-28",views:37584,bounce_rate:25.4},
+    {date:"04-29",views:38131,bounce_rate:26.0},{date:"04-30",views:37052,bounce_rate:25.9},
+    {date:"05-01",views:36068,bounce_rate:25.8},{date:"05-02",views:33924,bounce_rate:25.7},
+    {date:"05-03",views:26762,bounce_rate:27.4},{date:"05-04",views:11506,bounce_rate:25.7},
   ]
 };
 
-// Render page group table
+// Page group table
 const pgBody = document.getElementById('pg-table-body');
 CS_DATA.page_groups.forEach(pg => {
   const tr = document.createElement('tr');
-  const bounceClass = pg.bounce_rate > 50 ? ' class="rage"' : pg.bounce_rate > 25 ? ' class="caution"' : '';
-  tr.innerHTML = `
-    <td>${pg.name}</td>
-    <td style="font-size:11px;color:var(--muted)">${pg.mapping}</td>
-    <td class="num">${pg.views.toLocaleString()}</td>
-    <td class="num">${pg.visits.toLocaleString()}</td>
-    <td class="num">${pg.bounce_rate}%</td>
-    <td class="num">${pg.scroll_rate}%</td>
-    <td class="num">${pg.exit_rate}%</td>
-    <td class="num">${pg.loading_time_s}s</td>
-    <td class="num">${pg.activity_rate}%</td>
-    <td class="num">${pg.landing_rate}%</td>
-  `;
-  if (pg.bounce_rate > 50) tr.classList.add('rage');
-  else if (pg.bounce_rate > 28) tr.classList.add('caution');
+  tr.innerHTML = `<td>${pg.name}</td><td style="font-size:10px;color:var(--muted)">${pg.mapping}</td><td class="num">${pg.views.toLocaleString()}</td><td class="num">${pg.visits.toLocaleString()}</td><td class="num">${pg.bounce_rate}%</td><td class="num">${pg.scroll_rate}%</td><td class="num">${pg.exit_rate}%</td><td class="num">${pg.loading_time_s}s</td><td class="num">${pg.activity_rate}%</td><td class="num">${pg.landing_rate}%</td>`;
+  if (pg.bounce_rate > 50) tr.classList.add('rage-row');
+  else if (pg.bounce_rate > 28) tr.classList.add('caution-row');
   pgBody.appendChild(tr);
 });
 
-// Render daily trends
-const trendsBody = document.getElementById('trends-body');
-CS_DATA.daily.forEach(d => {
-  const tr = document.createElement('tr');
-  tr.innerHTML = `
-    <td>${d.date}</td>
-    <td>${d.views.toLocaleString()}</td>
-    <td>${d.scroll_rate}%</td>
-    <td>${d.bounce_rate}%</td>
-  `;
-  trendsBody.appendChild(tr);
-});
+// Sparkline chart
+const canvas = document.getElementById('sparkline');
+const ctx = canvas.getContext('2d');
+const dpr = window.devicePixelRatio || 1;
+function drawSparkline() {
+  const rect = canvas.getBoundingClientRect();
+  canvas.width = rect.width * dpr;
+  canvas.height = 120 * dpr;
+  ctx.scale(dpr, dpr);
+  const W = rect.width, H = 120, pad = {t:12,b:20,l:32,r:8};
+  const d = CS_DATA.daily;
+  const maxV = Math.max(...d.map(x=>x.views));
 
-// Active nav highlighting
-const observer = new IntersectionObserver(entries => {
+  ctx.clearRect(0,0,W,H);
+
+  // Grid lines
+  ctx.strokeStyle = '#E5E7EB'; ctx.lineWidth = 0.5;
+  for (let i=0;i<4;i++) {
+    const y = pad.t + (H-pad.t-pad.b) * i / 3;
+    ctx.beginPath(); ctx.moveTo(pad.l,y); ctx.lineTo(W-pad.r,y); ctx.stroke();
+  }
+
+  const xStep = (W-pad.l-pad.r) / (d.length-1);
+
+  // Views area
+  ctx.beginPath();
+  d.forEach((p,i) => {
+    const x = pad.l + i * xStep;
+    const y = pad.t + (1 - p.views/maxV) * (H-pad.t-pad.b);
+    i === 0 ? ctx.moveTo(x,y) : ctx.lineTo(x,y);
+  });
+  const lastX = pad.l + (d.length-1) * xStep;
+  ctx.lineTo(lastX, H-pad.b); ctx.lineTo(pad.l, H-pad.b); ctx.closePath();
+  ctx.fillStyle = 'rgba(12,35,75,0.06)'; ctx.fill();
+
+  // Views line
+  ctx.beginPath();
+  d.forEach((p,i) => {
+    const x = pad.l + i * xStep;
+    const y = pad.t + (1 - p.views/maxV) * (H-pad.t-pad.b);
+    i === 0 ? ctx.moveTo(x,y) : ctx.lineTo(x,y);
+  });
+  ctx.strokeStyle = '#0C234B'; ctx.lineWidth = 1.5; ctx.stroke();
+
+  // Bounce line (scaled to 20-30 range)
+  ctx.beginPath();
+  d.forEach((p,i) => {
+    const x = pad.l + i * xStep;
+    const y = pad.t + (1 - (p.bounce_rate-20)/10) * (H-pad.t-pad.b);
+    i === 0 ? ctx.moveTo(x,y) : ctx.lineTo(x,y);
+  });
+  ctx.strokeStyle = '#DC2626'; ctx.lineWidth = 1; ctx.setLineDash([4,3]); ctx.stroke();
+  ctx.setLineDash([]);
+
+  // X labels
+  ctx.fillStyle = '#9CA3AF'; ctx.font = '9px Inter,sans-serif'; ctx.textAlign = 'center';
+  [0,7,14,21,29].forEach(i => {
+    if (d[i]) ctx.fillText(d[i].date, pad.l + i * xStep, H-4);
+  });
+}
+drawSparkline();
+window.addEventListener('resize', drawSparkline);
+
+// Scroll reveal
+const revealObs = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); revealObs.unobserve(e.target); }});
+}, { threshold: 0.08 });
+document.querySelectorAll('.reveal').forEach(el => revealObs.observe(el));
+
+// Active sidebar nav
+const navObs = new IntersectionObserver(entries => {
   entries.forEach(e => {
     if (e.isIntersecting) {
-      document.querySelectorAll('.sidebar a').forEach(a => a.classList.remove('active'));
+      document.querySelectorAll('.sidebar a:not(.nav-back)').forEach(a => a.classList.remove('active'));
       const link = document.querySelector(`.sidebar a[href="#${e.target.id}"]`);
       if (link) link.classList.add('active');
     }
   });
-}, { rootMargin: '-20% 0px -70% 0px' });
-document.querySelectorAll('h2[id]').forEach(h => observer.observe(h));
+}, { rootMargin: '-10% 0px -80% 0px' });
+document.querySelectorAll('[id]').forEach(el => {
+  if (el.id && document.querySelector(`.sidebar a[href="#${el.id}"]`)) navObs.observe(el);
+});
+
+// Lightbox
+function openLightbox(el) {
+  const img = el.querySelector('img');
+  if (!img) return;
+  document.getElementById('lightbox-img').src = img.src;
+  document.getElementById('lightbox').classList.add('active');
+  document.body.style.overflow = 'hidden';
+}
+function closeLightbox() {
+  document.getElementById('lightbox').classList.remove('active');
+  document.body.style.overflow = '';
+}
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbox(); });
 </script>
 <script src="shared-nav.js"></script>
 
