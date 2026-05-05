@@ -2,3 +2,8 @@
 .env.*
 *.log
 node_modules/
+.DS_Store
+.cursor/hooks/state/
+
+# Keep compressed JPGs, skip original full-size PNGs from Contentsquare
+output/playwright/screenshots/content_square/*.png

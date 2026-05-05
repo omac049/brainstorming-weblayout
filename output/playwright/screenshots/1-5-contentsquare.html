@@ -149,12 +149,61 @@
   .trend-mini th { background: var(--light); color: var(--navy); font-size: 9px; }
   .trend-mini td { font-size: 11px; padding: 6px 10px; text-align: center; }
 
+  /* ── Visual Evidence Gallery ─────── */
+  .ve-section { margin: 48px 0; }
+  .ve-section > h3 { font-size: 18px; font-weight: 700; color: var(--navy); margin-bottom: 4px; }
+  .ve-section > .ve-sub { font-size: 13px; color: var(--muted); margin-bottom: 20px; }
+
+  .ve-pair {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 16px;
+  }
+  .ve-pair.solo { grid-template-columns: 1fr; max-width: 520px; }
+
+  .ve-card {
+    background: white; border: 1px solid var(--border); border-radius: 12px;
+    overflow: hidden; transition: box-shadow 0.2s;
+  }
+  .ve-card:hover { box-shadow: 0 4px 24px rgba(12,35,75,0.08); }
+
+  .ve-card .ve-img-wrap {
+    position: relative; background: #F1F3F5; overflow: hidden;
+    max-height: 520px;
+  }
+  .ve-card .ve-img-wrap img {
+    width: 100%; display: block; object-fit: cover; object-position: top;
+    cursor: zoom-in; transition: transform 0.2s;
+  }
+  .ve-card .ve-img-wrap img.expanded {
+    max-height: none; object-fit: contain; cursor: zoom-out;
+  }
+
+  .ve-card .ve-meta {
+    padding: 12px 16px; display: flex; align-items: center; gap: 8px; flex-wrap: wrap;
+  }
+  .ve-card .ve-meta .ve-label { font-size: 13px; font-weight: 600; color: #1a1a1a; }
+  .ve-badge {
+    display: inline-block; padding: 2px 8px; border-radius: 4px;
+    font-size: 10px; font-weight: 700; letter-spacing: 0.3px;
+  }
+  .ve-badge-heatmap { background: #FEE2E2; color: #991B1B; }
+  .ve-badge-attention { background: #DBEAFE; color: #1E40AF; }
+  .ve-badge-scroll { background: #D1FAE5; color: #065F46; }
+  .ve-badge-desktop { background: #F3F4F6; color: #374151; }
+  .ve-badge-mobile { background: #FEF3C7; color: #92400E; }
+
+  .ve-callout {
+    background: #FEFCE8; border: 1px solid #FDE68A; border-radius: 10px;
+    padding: 14px 18px; margin: 0 0 20px; font-size: 13px; color: #78350F; line-height: 1.5;
+  }
+  .ve-callout strong { color: #92400E; }
+
   @media (max-width: 800px) {
     .sidebar { display: none; }
     .header { padding: 32px 20px; }
     .main { padding: 24px 16px 80px; }
     .kpi-grid { grid-template-columns: repeat(2, 1fr); }
     .exec-summary .stat-row { flex-direction: column; }
+    .ve-pair { grid-template-columns: 1fr; }
   }
 </style>
 </head>
@@ -189,7 +238,7 @@
     <a href="#pg-full">Full Page Group Table</a>
   </div>
   <div class="nav-group">
-    <div class="nav-label">Zoning / Frustration</div>
+    <div class="nav-label">Zoning / Frustration (Data)</div>
     <a href="#zone-all">All Pages (Global)</a>
     <a href="#zone-home">Homepage</a>
     <a href="#zone-degrees">Online Degrees</a>
@@ -197,6 +246,17 @@
     <a href="#zone-rfi-popup">RFI Pop-Up</a>
     <a href="#zone-rfi-success">RFI Success</a>
     <a href="#zone-paid">Paid Success Pages</a>
+  </div>
+  <div class="nav-group">
+    <div class="nav-label">Visual Evidence</div>
+    <a href="#ve-home">Homepage</a>
+    <a href="#ve-degrees">Online Degrees</a>
+    <a href="#ve-business">Business Degrees</a>
+    <a href="#ve-masters">Masters Programs</a>
+    <a href="#ve-reqinfo">Paid: Request Info v5</a>
+    <a href="#ve-bachelors">Paid: Bachelor's v5</a>
+    <a href="#ve-courses">Paid: College Courses v5</a>
+    <a href="#ve-degprog">Paid: Degree Programs v7</a>
   </div>
   <div class="nav-group">
     <div class="nav-label">Analysis</div>
@@ -489,6 +549,397 @@
 <div class="insight-box">
   <h4>Critical: Paid Landing Page Form Friction</h4>
   <p>The two-step form on paid success pages is the <strong>most interacted-with element on the entire site</strong> (118,138 clicks, 89.2% exposure, 53.8% click rate) but converts at only <strong>0.04% per click</strong> with a <strong>3.23× recurrence rate</strong>. Users click the form 3+ times on average before abandoning. This is the #1 opportunity on the site: every 1% improvement in form conversion from these clicks would translate to ~1,181 additional leads per month. Investigate: field validation errors, dropdown usability, mobile tap targets, and step-2 abandonment.</p>
+</div>
+
+<!-- ═══════════════════════════════════════════ -->
+<!-- ===== VISUAL EVIDENCE: HEATMAPS, SCROLL & ATTENTION ===== -->
+<!-- ═══════════════════════════════════════════ -->
+<h2 id="ve">Visual Evidence: Heatmaps, Scroll &amp; Attention</h2>
+<p style="font-size:14px;color:var(--muted);margin-bottom:8px;max-width:700px;">Contentsquare captures showing where users click, how far they scroll, and what content holds attention. Desktop and mobile side-by-side where available. <strong>Click any image to expand.</strong></p>
+<p style="font-size:12px;color:var(--muted);margin-bottom:40px;">25 captures · 8 pages · 30-day window (Apr 4 – May 4, 2026)</p>
+
+<!-- ── Homepage ── -->
+<div class="ve-section" id="ve-home">
+  <h3>Homepage — uagc.edu</h3>
+  <p class="ve-sub">47,684 views · 20.5% bounce · 11.7% scroll depth · 6.83s load</p>
+
+  <div class="ve-callout">
+    <strong>What to look for:</strong> The homepage has the lowest scroll depth of any non-success page (11.7%). The heatmap should confirm click activity concentrated above the fold, and the attention map should show rapid drop-off after the hero section. The "find-your-path" module had 1.96× click recurrence — look for repeated taps on the degree finder.
+  </div>
+
+  <h4 style="font-size:14px;font-weight:600;margin:16px 0 8px;color:#374151;">Click Heatmaps</h4>
+  <div class="ve-pair">
+    <div class="ve-card">
+      <div class="ve-img-wrap">
+        <img src="content_square/www.uagc.com - desktop- Heatmap.jpg" alt="Homepage Desktop Heatmap" loading="lazy" onclick="this.classList.toggle('expanded')">
+      </div>
+      <div class="ve-meta">
+        <span class="ve-badge ve-badge-desktop">Desktop</span>
+        <span class="ve-badge ve-badge-heatmap">Heatmap</span>
+        <span class="ve-label">Homepage — Click Distribution</span>
+      </div>
+    </div>
+    <div class="ve-card">
+      <div class="ve-img-wrap">
+        <img src="content_square/www.uagc.com - Mobile- Heatmap.jpg" alt="Homepage Mobile Heatmap" loading="lazy" onclick="this.classList.toggle('expanded')">
+      </div>
+      <div class="ve-meta">
+        <span class="ve-badge ve-badge-mobile">Mobile</span>
+        <span class="ve-badge ve-badge-heatmap">Heatmap</span>
+        <span class="ve-label">Homepage — Click Distribution</span>
+      </div>
+    </div>
+  </div>
+
+  <h4 style="font-size:14px;font-weight:600;margin:16px 0 8px;color:#374151;">Attention / Scroll Depth</h4>
+  <div class="ve-pair solo">
+    <div class="ve-card">
+      <div class="ve-img-wrap">
+        <img src="content_square/www.uagc.com -Mobile - Attention.jpg" alt="Homepage Mobile Attention" loading="lazy" onclick="this.classList.toggle('expanded')">
+      </div>
+      <div class="ve-meta">
+        <span class="ve-badge ve-badge-mobile">Mobile</span>
+        <span class="ve-badge ve-badge-attention">Attention</span>
+        <span class="ve-label">Homepage — Where Attention Drops Off</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ── Online Degrees ── -->
+<div class="ve-section" id="ve-degrees">
+  <h3>Online Degrees — /online-degrees</h3>
+  <p class="ve-sub">107,325 views · 23.7% bounce · 33.4% scroll · sticky RFI form 2.41× recurrence</p>
+
+  <div class="ve-callout">
+    <strong>What to look for:</strong> Two rage-click zones here — the sticky RFI header form (2.41×, 1,691 clicks) and the two-step form (2.41×, 8,765 clicks). The heatmap should reveal whether users are clicking the form intentionally or hitting dead zones. The attention map shows how far the degree listing content holds visitors.
+  </div>
+
+  <h4 style="font-size:14px;font-weight:600;margin:16px 0 8px;color:#374151;">Click Heatmaps</h4>
+  <div class="ve-pair">
+    <div class="ve-card">
+      <div class="ve-img-wrap">
+        <img src="content_square/Online Degrees - desktop- Heatmap.jpg" alt="Online Degrees Desktop Heatmap" loading="lazy" onclick="this.classList.toggle('expanded')">
+      </div>
+      <div class="ve-meta">
+        <span class="ve-badge ve-badge-desktop">Desktop</span>
+        <span class="ve-badge ve-badge-heatmap">Heatmap</span>
+        <span class="ve-label">Online Degrees — Click Distribution</span>
+      </div>
+    </div>
+    <div class="ve-card">
+      <div class="ve-img-wrap">
+        <img src="content_square/Online Degrees - Mobile -Heatmap.jpg" alt="Online Degrees Mobile Heatmap" loading="lazy" onclick="this.classList.toggle('expanded')">
+      </div>
+      <div class="ve-meta">
+        <span class="ve-badge ve-badge-mobile">Mobile</span>
+        <span class="ve-badge ve-badge-heatmap">Heatmap</span>
+        <span class="ve-label">Online Degrees — Click Distribution</span>
+      </div>
+    </div>
+  </div>
+
+  <h4 style="font-size:14px;font-weight:600;margin:16px 0 8px;color:#374151;">Attention / Scroll Depth</h4>
+  <div class="ve-pair solo">
+    <div class="ve-card">
+      <div class="ve-img-wrap">
+        <img src="content_square/Online Degrees -Mobile- Attention.jpg" alt="Online Degrees Mobile Attention" loading="lazy" onclick="this.classList.toggle('expanded')">
+      </div>
+      <div class="ve-meta">
+        <span class="ve-badge ve-badge-mobile">Mobile</span>
+        <span class="ve-badge ve-badge-attention">Attention</span>
+        <span class="ve-label">Online Degrees — Scroll Attention Drop-Off</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ── Business Degrees ── -->
+<div class="ve-section" id="ve-business">
+  <h3>Business Degrees — /online-degrees/business</h3>
+  <p class="ve-sub">7,029 views · 24.5% bounce · 26.3% scroll · 6.06s load</p>
+
+  <div class="ve-callout">
+    <strong>What to look for:</strong> Vertical hub page for business programs. With only 26.3% scroll depth, most program listings below fold are invisible. Compare desktop vs mobile click patterns to see if the RFI or program cards get more interaction.
+  </div>
+
+  <h4 style="font-size:14px;font-weight:600;margin:16px 0 8px;color:#374151;">Click Heatmaps</h4>
+  <div class="ve-pair">
+    <div class="ve-card">
+      <div class="ve-img-wrap">
+        <img src="content_square/Business Degrees-Desktop-heatmap.jpg" alt="Business Degrees Desktop Heatmap" loading="lazy" onclick="this.classList.toggle('expanded')">
+      </div>
+      <div class="ve-meta">
+        <span class="ve-badge ve-badge-desktop">Desktop</span>
+        <span class="ve-badge ve-badge-heatmap">Heatmap</span>
+        <span class="ve-label">Business Degrees — Click Distribution</span>
+      </div>
+    </div>
+    <div class="ve-card">
+      <div class="ve-img-wrap">
+        <img src="content_square/Business Degress-Mobile-heatmap.jpg" alt="Business Degrees Mobile Heatmap" loading="lazy" onclick="this.classList.toggle('expanded')">
+      </div>
+      <div class="ve-meta">
+        <span class="ve-badge ve-badge-mobile">Mobile</span>
+        <span class="ve-badge ve-badge-heatmap">Heatmap</span>
+        <span class="ve-label">Business Degrees — Click Distribution</span>
+      </div>
+    </div>
+  </div>
+
+  <h4 style="font-size:14px;font-weight:600;margin:16px 0 8px;color:#374151;">Attention / Scroll Depth</h4>
+  <div class="ve-pair solo">
+    <div class="ve-card">
+      <div class="ve-img-wrap">
+        <img src="content_square/Business Degrees-Mobile-Attention.jpg" alt="Business Degrees Mobile Attention" loading="lazy" onclick="this.classList.toggle('expanded')">
+      </div>
+      <div class="ve-meta">
+        <span class="ve-badge ve-badge-mobile">Mobile</span>
+        <span class="ve-badge ve-badge-attention">Attention</span>
+        <span class="ve-label">Business Degrees — Scroll Attention Drop-Off</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ── Masters Programs ── -->
+<div class="ve-section" id="ve-masters">
+  <h3>Masters Programs — /online-degrees/masters</h3>
+  <p class="ve-sub">24,736 views · 22.3% bounce · 24.3% scroll · 6.28s load</p>
+
+  <div class="ve-callout">
+    <strong>What to look for:</strong> High-engagement organic page (89.9% engagement rate in GA4). The scroll map should reveal whether the program grid and credential details below fold are being reached. Desktop vs mobile heatmap comparison shows if the degree finder or direct program links get more taps.
+  </div>
+
+  <h4 style="font-size:14px;font-weight:600;margin:16px 0 8px;color:#374151;">Click Heatmaps</h4>
+  <div class="ve-pair">
+    <div class="ve-card">
+      <div class="ve-img-wrap">
+        <img src="content_square/Masters Programs-Desktop-Heatmap.jpg" alt="Masters Desktop Heatmap" loading="lazy" onclick="this.classList.toggle('expanded')">
+      </div>
+      <div class="ve-meta">
+        <span class="ve-badge ve-badge-desktop">Desktop</span>
+        <span class="ve-badge ve-badge-heatmap">Heatmap</span>
+        <span class="ve-label">Masters Programs — Click Distribution</span>
+      </div>
+    </div>
+    <div class="ve-card">
+      <div class="ve-img-wrap">
+        <img src="content_square/Masters Programs-Mobile-Heatmap.jpg" alt="Masters Mobile Heatmap" loading="lazy" onclick="this.classList.toggle('expanded')">
+      </div>
+      <div class="ve-meta">
+        <span class="ve-badge ve-badge-mobile">Mobile</span>
+        <span class="ve-badge ve-badge-heatmap">Heatmap</span>
+        <span class="ve-label">Masters Programs — Click Distribution</span>
+      </div>
+    </div>
+  </div>
+
+  <h4 style="font-size:14px;font-weight:600;margin:16px 0 8px;color:#374151;">Scroll Depth</h4>
+  <div class="ve-pair solo">
+    <div class="ve-card">
+      <div class="ve-img-wrap">
+        <img src="content_square/Masters Programs-Mobile-scroll.jpg" alt="Masters Mobile Scroll" loading="lazy" onclick="this.classList.toggle('expanded')">
+      </div>
+      <div class="ve-meta">
+        <span class="ve-badge ve-badge-mobile">Mobile</span>
+        <span class="ve-badge ve-badge-scroll">Scroll</span>
+        <span class="ve-label">Masters Programs — How Far Users Scroll</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ── Paid: Request Info v5 ── -->
+<div class="ve-section" id="ve-reqinfo">
+  <h3>Paid: Request Info v5 — /success/request-info-v5</h3>
+  <p class="ve-sub">Paid landing · 1.18M sessions · $807K spend · 3.01% conv rate</p>
+
+  <div class="ve-callout">
+    <strong>What to look for:</strong> The highest-traffic paid landing page. The two-step form is the #1 rage-click zone site-wide (118K clicks, 3.23× recurrence on paid success pages collectively). The heatmap should show whether clicks cluster on specific form fields or the submit button. The attention map reveals how much of the below-form content (testimonials, program details) users actually see.
+  </div>
+
+  <h4 style="font-size:14px;font-weight:600;margin:16px 0 8px;color:#374151;">Click Heatmaps</h4>
+  <div class="ve-pair">
+    <div class="ve-card">
+      <div class="ve-img-wrap">
+        <img src="content_square/Success-Request-v5-Desktop-heatmap.jpg" alt="Request Info v5 Desktop Heatmap" loading="lazy" onclick="this.classList.toggle('expanded')">
+      </div>
+      <div class="ve-meta">
+        <span class="ve-badge ve-badge-desktop">Desktop</span>
+        <span class="ve-badge ve-badge-heatmap">Heatmap</span>
+        <span class="ve-label">Request Info v5 — Click Distribution</span>
+      </div>
+    </div>
+    <div class="ve-card">
+      <div class="ve-img-wrap">
+        <img src="content_square/Success-Request-v5-Mobile-Heatmap.jpg" alt="Request Info v5 Mobile Heatmap" loading="lazy" onclick="this.classList.toggle('expanded')">
+      </div>
+      <div class="ve-meta">
+        <span class="ve-badge ve-badge-mobile">Mobile</span>
+        <span class="ve-badge ve-badge-heatmap">Heatmap</span>
+        <span class="ve-label">Request Info v5 — Click Distribution</span>
+      </div>
+    </div>
+  </div>
+
+  <h4 style="font-size:14px;font-weight:600;margin:16px 0 8px;color:#374151;">Attention / Scroll Depth</h4>
+  <div class="ve-pair solo">
+    <div class="ve-card">
+      <div class="ve-img-wrap">
+        <img src="content_square/Success-Request-v5-mobile-attention.jpg" alt="Request Info v5 Mobile Attention" loading="lazy" onclick="this.classList.toggle('expanded')">
+      </div>
+      <div class="ve-meta">
+        <span class="ve-badge ve-badge-mobile">Mobile</span>
+        <span class="ve-badge ve-badge-attention">Attention</span>
+        <span class="ve-label">Request Info v5 — Scroll Attention Drop-Off</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ── Paid: Bachelor's Degrees v5 ── -->
+<div class="ve-section" id="ve-bachelors">
+  <h3>Paid: Bachelor's Degrees v5 — /success/degree-types/bachelors-degrees-v5</h3>
+  <p class="ve-sub">Paid landing · 458K sessions · $1.41M spend · 3.50% conv rate</p>
+
+  <div class="ve-callout">
+    <strong>What to look for:</strong> Second-highest spend paid page. Compare click patterns on the form vs. surrounding content. The mobile attention map should confirm whether users on phones even reach the supporting content below the form — critical given the near 50/50 device split.
+  </div>
+
+  <h4 style="font-size:14px;font-weight:600;margin:16px 0 8px;color:#374151;">Click Heatmaps</h4>
+  <div class="ve-pair">
+    <div class="ve-card">
+      <div class="ve-img-wrap">
+        <img src="content_square/Success-degree-types-bachelors-degrees-v5-Desktop-Heatmap.jpg" alt="Bachelor's v5 Desktop Heatmap" loading="lazy" onclick="this.classList.toggle('expanded')">
+      </div>
+      <div class="ve-meta">
+        <span class="ve-badge ve-badge-desktop">Desktop</span>
+        <span class="ve-badge ve-badge-heatmap">Heatmap</span>
+        <span class="ve-label">Bachelor's v5 — Click Distribution</span>
+      </div>
+    </div>
+    <div class="ve-card">
+      <div class="ve-img-wrap">
+        <img src="content_square/Success-degree-types-bachelors-degrees-v5-Mobile-Heatmap.jpg" alt="Bachelor's v5 Mobile Heatmap" loading="lazy" onclick="this.classList.toggle('expanded')">
+      </div>
+      <div class="ve-meta">
+        <span class="ve-badge ve-badge-mobile">Mobile</span>
+        <span class="ve-badge ve-badge-heatmap">Heatmap</span>
+        <span class="ve-label">Bachelor's v5 — Click Distribution</span>
+      </div>
+    </div>
+  </div>
+
+  <h4 style="font-size:14px;font-weight:600;margin:16px 0 8px;color:#374151;">Attention / Scroll Depth</h4>
+  <div class="ve-pair solo">
+    <div class="ve-card">
+      <div class="ve-img-wrap">
+        <img src="content_square/Success-degree-types-bachelors-degrees-v5-mobile-attention.jpg" alt="Bachelor's v5 Mobile Attention" loading="lazy" onclick="this.classList.toggle('expanded')">
+      </div>
+      <div class="ve-meta">
+        <span class="ve-badge ve-badge-mobile">Mobile</span>
+        <span class="ve-badge ve-badge-attention">Attention</span>
+        <span class="ve-label">Bachelor's v5 — Scroll Attention Drop-Off</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ── Paid: Online College Courses v5 ── -->
+<div class="ve-section" id="ve-courses">
+  <h3>Paid: Online College Courses v5 — /success/online-college-courses-v5</h3>
+  <p class="ve-sub">Paid landing · 262K sessions · $1.64M spend · 7.25% conv rate</p>
+
+  <div class="ve-callout">
+    <strong>What to look for:</strong> This page converts at 7.25% — more than 2× the v5 average. The heatmaps should reveal what's different about how users interact here vs lower-converting v5 pages. Is the form getting cleaner engagement? Is the content around it more compelling? The desktop attention map shows what content earns sustained viewing.
+  </div>
+
+  <h4 style="font-size:14px;font-weight:600;margin:16px 0 8px;color:#374151;">Click Heatmaps</h4>
+  <div class="ve-pair">
+    <div class="ve-card">
+      <div class="ve-img-wrap">
+        <img src="content_square/Success-online-college-courses-v5-desktop-heatmap.jpg" alt="College Courses v5 Desktop Heatmap" loading="lazy" onclick="this.classList.toggle('expanded')">
+      </div>
+      <div class="ve-meta">
+        <span class="ve-badge ve-badge-desktop">Desktop</span>
+        <span class="ve-badge ve-badge-heatmap">Heatmap</span>
+        <span class="ve-label">College Courses v5 — Click Distribution</span>
+      </div>
+    </div>
+    <div class="ve-card">
+      <div class="ve-img-wrap">
+        <img src="content_square/Success-online-college-courses-v5-Mobile-heatmap.jpg" alt="College Courses v5 Mobile Heatmap" loading="lazy" onclick="this.classList.toggle('expanded')">
+      </div>
+      <div class="ve-meta">
+        <span class="ve-badge ve-badge-mobile">Mobile</span>
+        <span class="ve-badge ve-badge-heatmap">Heatmap</span>
+        <span class="ve-label">College Courses v5 — Click Distribution</span>
+      </div>
+    </div>
+  </div>
+
+  <h4 style="font-size:14px;font-weight:600;margin:16px 0 8px;color:#374151;">Attention / Scroll Depth</h4>
+  <div class="ve-pair solo">
+    <div class="ve-card">
+      <div class="ve-img-wrap">
+        <img src="content_square/Success-online-college-courses-v5-desktop-Attention.jpg" alt="College Courses v5 Desktop Attention" loading="lazy" onclick="this.classList.toggle('expanded')">
+      </div>
+      <div class="ve-meta">
+        <span class="ve-badge ve-badge-desktop">Desktop</span>
+        <span class="ve-badge ve-badge-attention">Attention</span>
+        <span class="ve-label">College Courses v5 — Content Attention</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ── Paid: Degree Programs v7 ── -->
+<div class="ve-section" id="ve-degprog">
+  <h3>Paid: Degree Programs v7 — /success/degree-programs-v7</h3>
+  <p class="ve-sub">Paid landing · #1 converter at 13.57% · 74.9% engagement rate</p>
+
+  <div class="ve-callout">
+    <strong>What to look for:</strong> The top-performing paid landing page at 13.57% conversion — <strong>3–5× higher than v5 pages</strong>. This page has a program grid and deeper content. The heatmaps should reveal the interaction pattern that drives this performance. Compare the click distribution here to v5 pages above to see the structural difference. The scroll map confirms whether users engage with the full content or convert early.
+  </div>
+
+  <h4 style="font-size:14px;font-weight:600;margin:16px 0 8px;color:#374151;">Click Heatmaps</h4>
+  <div class="ve-pair">
+    <div class="ve-card">
+      <div class="ve-img-wrap">
+        <img src="content_square/Success-degree-programs-v7-Desktop-Heatmap.jpg" alt="Degree Programs v7 Desktop Heatmap" loading="lazy" onclick="this.classList.toggle('expanded')">
+      </div>
+      <div class="ve-meta">
+        <span class="ve-badge ve-badge-desktop">Desktop</span>
+        <span class="ve-badge ve-badge-heatmap">Heatmap</span>
+        <span class="ve-label">Degree Programs v7 — Click Distribution</span>
+      </div>
+    </div>
+    <div class="ve-card">
+      <div class="ve-img-wrap">
+        <img src="content_square/Success-degree-programs-v7-Mobile-Heatmap.jpg" alt="Degree Programs v7 Mobile Heatmap" loading="lazy" onclick="this.classList.toggle('expanded')">
+      </div>
+      <div class="ve-meta">
+        <span class="ve-badge ve-badge-mobile">Mobile</span>
+        <span class="ve-badge ve-badge-heatmap">Heatmap</span>
+        <span class="ve-label">Degree Programs v7 — Click Distribution</span>
+      </div>
+    </div>
+  </div>
+
+  <h4 style="font-size:14px;font-weight:600;margin:16px 0 8px;color:#374151;">Scroll Depth</h4>
+  <div class="ve-pair solo">
+    <div class="ve-card">
+      <div class="ve-img-wrap">
+        <img src="content_square/Success-degree-programs-v7-Mobile-scroll.jpg" alt="Degree Programs v7 Mobile Scroll" loading="lazy" onclick="this.classList.toggle('expanded')">
+      </div>
+      <div class="ve-meta">
+        <span class="ve-badge ve-badge-mobile">Mobile</span>
+        <span class="ve-badge ve-badge-scroll">Scroll</span>
+        <span class="ve-label">Degree Programs v7 — How Far Users Scroll</span>
+      </div>
+    </div>
+  </div>
 </div>
 
 <!-- ===== KEY FINDINGS ===== -->
