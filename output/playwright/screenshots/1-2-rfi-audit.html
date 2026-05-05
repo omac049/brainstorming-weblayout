@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Task 1.2 — RFI Content Audit | UAGC Phase 1</title>
 <style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
   :root {
     --navy: #0C234B;
     --red: #AB0520;
@@ -17,17 +18,18 @@
     --bg: #FAFBFC;
   }
   * { margin: 0; padding: 0; box-sizing: border-box; }
-  html { scroll-behavior: smooth; scroll-padding-top: 24px; }
-  body { font-family: -apple-system, BlinkMacSystemFont, 'Inter', 'Segoe UI', sans-serif; background: var(--light); color: #1a1a1a; line-height: 1.5; }
+  html { scroll-behavior: smooth; scroll-padding-top: 68px; }
+  body { font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: var(--light); color: #1a1a1a; line-height: 1.5; }
 
-  .header { background: var(--navy); color: white; padding: 40px 48px; position: relative; margin-left: 260px; }
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: translateY(0); } }
+  .header { background: var(--navy); color: white; padding: 40px 48px; position: relative; margin-left: 260px; animation: fadeUp 0.4s ease-out; }
   .header::after { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 4px; background: var(--red); }
   .header h1 { font-size: 26px; font-weight: 700; letter-spacing: -0.4px; margin-bottom: 8px; }
   .header p { font-size: 14px; opacity: 0.78; max-width: 720px; }
   .header .meta { display: flex; flex-wrap: wrap; gap: 20px 28px; margin-top: 14px; font-size: 12px; opacity: 0.55; }
 
   .sidebar {
-    position: fixed; top: 0; left: 0; bottom: 0; width: 260px; z-index: 200;
+    position: fixed; top: 44px; left: 0; width: 260px; height: calc(100vh - 44px); z-index: 200;
     background: white; border-right: 1px solid var(--border);
     overflow-y: auto; padding: 20px 0;
     scrollbar-width: thin; scrollbar-color: var(--border) transparent;
@@ -174,7 +176,7 @@
 <button class="sidebar-toggle" onclick="document.getElementById('sidebar').classList.toggle('open')" aria-label="Toggle navigation">☰</button>
 
 <nav class="sidebar" id="sidebar">
-  <a class="back-link" href="index.html">← Back to Phase 1 Hub</a>
+  <a href="index.html" style="display:block;padding:8px 20px 14px;font-size:12px;font-weight:600;color:#6B7280;text-decoration:none;border-bottom:1px solid #E2E5EA;margin-bottom:12px;" class="back-link">← Phase 1 Hub</a>
   <div class="sb-title">Jump to audit</div>
 
   <div class="sb-group">
@@ -1044,5 +1046,6 @@
 <p style="font-size:12px;color:var(--muted);max-width:720px;line-height:1.5;margin-bottom:48px;"><strong>Note:</strong> Conversion rates follow the same GA4-style session-scoped labeling as the screenshot library index. Paid program-LP rows (P8–P10) omit headline conv % where those pages were not surfaced in the primary paid ranking slice. Matrix cells are interpretive summaries for stakeholder review, not a separate data pull.</p>
 
 </div>
+<script src="shared-nav.js"></script>
 </body>
 </html>

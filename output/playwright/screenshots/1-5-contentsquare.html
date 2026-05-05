@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>1.5 Contentsquare Frustration Review — UAGC Phase 1</title>
 <style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
   :root {
     --navy: #0C234B;
     --red: #AB0520;
@@ -18,10 +19,11 @@
     --purple: #7C3AED;
   }
   * { margin: 0; padding: 0; box-sizing: border-box; }
-  html { scroll-behavior: smooth; }
-  body { font-family: -apple-system, BlinkMacSystemFont, 'Inter', 'Segoe UI', sans-serif; background: var(--light); color: #1a1a1a; line-height: 1.6; }
+  html { scroll-behavior: smooth; scroll-padding-top: 68px; }
+  body { font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: var(--light); color: #1a1a1a; line-height: 1.6; }
 
-  .header { background: var(--navy); color: white; padding: 40px 64px; position: relative; }
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: translateY(0); } }
+  .header { animation: fadeUp 0.4s ease-out; background: var(--navy); color: white; padding: 40px 64px; position: relative; }
   .header::after { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 4px; background: var(--red); }
   .header .back { color: rgba(255,255,255,0.5); text-decoration: none; font-size: 13px; display: inline-block; margin-bottom: 16px; }
   .header .back:hover { color: white; }
@@ -33,7 +35,7 @@
 
   .sidebar {
     width: 240px; flex-shrink: 0; background: white; border-right: 1px solid var(--border);
-    padding: 24px 16px; position: sticky; top: 0; height: 100vh; overflow-y: auto;
+    padding: 24px 16px; position: sticky; top: 44px; height: calc(100vh - 44px); overflow-y: auto;
     font-size: 12px;
   }
   .sidebar .nav-group { margin-bottom: 20px; }
@@ -159,7 +161,6 @@
 <body>
 
 <div class="header">
-  <a class="back" href="index.html">← Back to Phase 1 Hub</a>
   <h1>1.5 Contentsquare Frustration Review</h1>
   <p>UX behavior data from the Contentsquare Metrics + Zoning APIs — rage-click zones, engagement friction, and conversion bottlenecks across the UAGC site.</p>
   <div class="meta">
@@ -173,6 +174,7 @@
 <div class="layout">
 
 <nav class="sidebar">
+  <a href="index.html" style="display:block;padding:8px 10px 14px;font-size:12px;font-weight:600;color:#6B7280;text-decoration:none;border-bottom:1px solid #E2E5EA;margin-bottom:12px;">← Phase 1 Hub</a>
   <div class="nav-group">
     <div class="nav-label">Overview</div>
     <a href="#exec">Executive Summary</a>
@@ -694,6 +696,7 @@ const observer = new IntersectionObserver(entries => {
 }, { rootMargin: '-20% 0px -70% 0px' });
 document.querySelectorAll('h2[id]').forEach(h => observer.observe(h));
 </script>
+<script src="shared-nav.js"></script>
 
 </body>
 </html>

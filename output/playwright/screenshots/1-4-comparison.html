@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Task 1.4 — Structural Comparison — UAGC Phase 1 Audit</title>
 <style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
   :root {
     --navy: #0C234B;
     --red: #AB0520;
@@ -23,18 +24,20 @@
   * { margin: 0; padding: 0; box-sizing: border-box; }
   html { scroll-behavior: smooth; scroll-padding-top: 72px; }
   body {
-    font-family: -apple-system, BlinkMacSystemFont, 'Inter', 'Segoe UI', sans-serif;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
     background: var(--light);
     color: #1a1a1a;
     line-height: 1.5;
   }
 
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: translateY(0); } }
   .header {
     background: var(--navy);
     color: white;
     padding: 44px 48px;
     position: relative;
     margin-left: 280px;
+    animation: fadeUp 0.4s ease-out;
   }
   .header::after {
     content: '';
@@ -76,9 +79,9 @@
 
   .sidebar {
     position: fixed;
-    top: 0;
+    top: 44px;
     left: 0;
-    bottom: 0;
+    height: calc(100vh - 44px);
     width: 280px;
     z-index: 200;
     background: white;
@@ -92,18 +95,18 @@
   .sidebar::-webkit-scrollbar-thumb { background: var(--border); border-radius: 4px; }
   .sidebar .sb-back {
     display: block;
-    margin: 0 18px 20px;
-    padding: 10px 14px;
-    border-radius: 10px;
-    background: var(--navy);
-    color: white;
-    text-decoration: none;
+    margin: 0 20px 14px;
+    padding: 6px 0;
     font-size: 13px;
-    font-weight: 600;
-    text-align: center;
-    transition: opacity 0.15s;
+    font-weight: 500;
+    color: var(--navy);
+    text-decoration: none;
+    transition: color 0.15s, opacity 0.15s;
   }
-  .sidebar .sb-back:hover { opacity: 0.92; }
+  .sidebar .sb-back:hover {
+    color: var(--red);
+    text-decoration: underline;
+  }
   .sidebar .sb-title {
     font-size: 12px;
     font-weight: 700;
@@ -517,7 +520,7 @@
 <button class="sidebar-toggle" type="button" onclick="document.getElementById('sidebar').classList.toggle('open')" aria-label="Toggle navigation">☰</button>
 
 <nav class="sidebar" id="sidebar">
-  <a class="sb-back" href="index.html">← Back to Phase 1 Hub</a>
+  <a class="sb-back" href="index.html">← Phase 1 Hub</a>
   <div class="sb-title">On this page</div>
   <div class="sb-group-label">Sections</div>
   <a class="nav" href="#overview">Performance Overview</a>
@@ -1141,5 +1144,6 @@
   }
 })();
 </script>
+<script src="shared-nav.js"></script>
 </body>
 </html>

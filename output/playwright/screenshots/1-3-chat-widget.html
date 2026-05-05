@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>1.3 Chat Widget & Sticky Element Audit — UAGC Phase 1</title>
 <style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
   :root {
     --navy: #0C234B;
     --red: #AB0520;
@@ -18,10 +19,12 @@
     --pinkbg: #FCE7F3;
   }
   * { margin: 0; padding: 0; box-sizing: border-box; }
-  html { scroll-behavior: smooth; scroll-padding-top: 24px; }
-  body { font-family: -apple-system, BlinkMacSystemFont, 'Inter', 'Segoe UI', sans-serif; background: var(--light); color: #1a1a1a; line-height: 1.6; }
+  html { scroll-behavior: smooth; scroll-padding-top: 68px; }
+  body { font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: var(--light); color: #1a1a1a; line-height: 1.6; }
 
-  .header { background: var(--navy); color: white; padding: 40px 64px; position: relative; }
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: translateY(0); } }
+
+  .header { background: var(--navy); color: white; padding: 40px 64px; position: relative; animation: fadeUp 0.4s ease-out; }
   .header::after { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 4px; background: var(--red); }
   .header .back { color: rgba(255,255,255,0.5); text-decoration: none; font-size: 13px; display: inline-block; margin-bottom: 16px; }
   .header .back:hover { color: white; }
@@ -30,10 +33,11 @@
   .header .meta { display: flex; gap: 24px; margin-top: 16px; font-size: 12px; opacity: 0.45; flex-wrap: wrap; }
 
   .layout { display: flex; min-height: 100vh; }
+  .layout-body { flex: 1; min-width: 0; display: flex; flex-direction: column; }
 
   .sidebar {
     width: 240px; flex-shrink: 0; background: white; border-right: 1px solid var(--border);
-    padding: 24px 16px; position: sticky; top: 0; height: 100vh; overflow-y: auto; font-size: 12px;
+    padding: 24px 16px; position: sticky; top: 44px; height: calc(100vh - 44px); overflow-y: auto; font-size: 12px;
   }
   .sidebar .nav-group { margin-bottom: 20px; }
   .sidebar .nav-label { font-size: 10px; font-weight: 700; letter-spacing: 1.2px; text-transform: uppercase; color: var(--muted); margin-bottom: 8px; }
@@ -128,21 +132,10 @@
 </head>
 <body>
 
-<div class="header">
-  <a class="back" href="index.html">&larr; Back to Phase 1 Hub</a>
-  <h1>1.3 Chat Widget & Sticky Element Audit</h1>
-  <p>Mobile viewport analysis of fixed/sticky elements — sticky RFI bar, tracking footer, and chat affordances — across 3 device sizes and 10 representative pages.</p>
-  <div class="meta">
-    <span>UAGC &middot; uagc.edu</span>
-    <span>Viewports: 375&times;667 &middot; 390&times;844 &middot; 414&times;896</span>
-    <span>10 pages &middot; 60 viewport captures</span>
-    <span>Playwright automated detection</span>
-  </div>
-</div>
-
 <div class="layout">
 
 <nav class="sidebar">
+  <a href="index.html" style="display:block;padding:8px 10px 14px;font-size:12px;font-weight:600;color:#6B7280;text-decoration:none;border-bottom:1px solid #E2E5EA;margin-bottom:12px;">← Phase 1 Hub</a>
   <div class="nav-group">
     <div class="nav-label">Overview</div>
     <a href="#exec">Executive Summary</a>
@@ -172,6 +165,18 @@
     <a href="#recs">Recommendations</a>
   </div>
 </nav>
+
+<div class="layout-body">
+<div class="header">
+  <h1>1.3 Chat Widget & Sticky Element Audit</h1>
+  <p>Mobile viewport analysis of fixed/sticky elements — sticky RFI bar, tracking footer, and chat affordances — across 3 device sizes and 10 representative pages.</p>
+  <div class="meta">
+    <span>UAGC &middot; uagc.edu</span>
+    <span>Viewports: 375&times;667 &middot; 390&times;844 &middot; 414&times;896</span>
+    <span>10 pages &middot; 60 viewport captures</span>
+    <span>Playwright automated detection</span>
+  </div>
+</div>
 
 <div class="main">
 
@@ -476,6 +481,7 @@
 </table>
 
 </div><!-- .main -->
+</div><!-- .layout-body -->
 </div><!-- .layout -->
 
 <script>
@@ -490,6 +496,7 @@ const observer = new IntersectionObserver(entries => {
 }, { rootMargin: '-20% 0px -70% 0px' });
 document.querySelectorAll('h2[id], [id^="p-"]').forEach(h => observer.observe(h));
 </script>
+<script src="shared-nav.js"></script>
 
 </body>
 </html>
