@@ -67,7 +67,7 @@
   .sidebar a:not(.nav-back) { display:block; padding:4px 10px; border-radius:5px; color:#4B5563; text-decoration:none; margin-bottom:1px; transition:all 0.12s; line-height:1.4; }
   .sidebar a:not(.nav-back):hover { background:var(--light); color:var(--navy); }
   .sidebar a.active { background:rgba(12,35,75,0.06); color:var(--navy); font-weight:600; }
-  .main { flex:1; padding:48px 56px 120px; max-width:940px; }
+  .main { flex:1; padding:48px 56px 120px; max-width:1080px; }
 
   /* ── Typography ─────────────────── */
   .section-break { height:1px; background:var(--border); margin:56px 0; }
@@ -146,8 +146,7 @@
   .ve-page .ve-sub { font-size:11px; color:var(--muted); margin-bottom:16px; }
   .ve-note { font-size:12px; color:#78350F; background:#FEFCE8; border-left:3px solid #F59E0B; padding:10px 14px; margin-bottom:20px; line-height:1.5; }
   .ve-note strong { color:#92400E; }
-  .ve-grid { display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-bottom:12px; }
-  .ve-grid.solo { grid-template-columns:1fr; max-width:480px; }
+  .ve-grid { display:grid; grid-template-columns:repeat(3, 1fr); gap:12px; margin-bottom:12px; }
   .ve-item { position:relative; border-radius:8px; overflow:hidden; background:#F1F3F5; cursor:pointer; transition:box-shadow 0.2s; }
   .ve-item:hover { box-shadow:0 2px 16px rgba(12,35,75,0.1); }
   .ve-item img { width:100%; display:block; }
@@ -188,7 +187,8 @@
     .main { padding:28px 20px 80px; }
     .metric-row { gap:20px; }
     .metric-item .m-val { font-size:22px; }
-    .ve-grid { grid-template-columns:1fr; }
+    .ve-grid { grid-template-columns:1fr 1fr; }
+    .ve-grid.mobile-stack { grid-template-columns:1fr; }
     .zone-metrics { gap:16px; }
   }
 </style>
@@ -539,8 +539,6 @@
   <div class="ve-grid">
     <div class="ve-item" onclick="openLightbox(this)"><img src="content_square/www.uagc.com-desktop-Heatmap.jpg" alt="Homepage Desktop Heatmap" loading="lazy"><div class="ve-strip"><span class="ve-tag ve-tag-desktop">Desktop</span><span class="ve-tag ve-tag-heatmap">Heatmap</span></div></div>
     <div class="ve-item" onclick="openLightbox(this)"><img src="content_square/www.uagc.com-Mobile-Heatmap.jpg" alt="Homepage Mobile Heatmap" loading="lazy"><div class="ve-strip"><span class="ve-tag ve-tag-mobile">Mobile</span><span class="ve-tag ve-tag-heatmap">Heatmap</span></div></div>
-  </div>
-  <div class="ve-grid solo">
     <div class="ve-item" onclick="openLightbox(this)"><img src="content_square/www.uagc.com-Mobile-Attention.jpg" alt="Homepage Mobile Attention" loading="lazy"><div class="ve-strip"><span class="ve-tag ve-tag-mobile">Mobile</span><span class="ve-tag ve-tag-attention">Attention</span><span class="ve-caption">Where attention drops off</span></div></div>
   </div>
 </div>
@@ -553,8 +551,6 @@
   <div class="ve-grid">
     <div class="ve-item" onclick="openLightbox(this)"><img src="content_square/Online-Degrees-desktop-Heatmap.jpg" alt="Online Degrees Desktop Heatmap" loading="lazy"><div class="ve-strip"><span class="ve-tag ve-tag-desktop">Desktop</span><span class="ve-tag ve-tag-heatmap">Heatmap</span></div></div>
     <div class="ve-item" onclick="openLightbox(this)"><img src="content_square/Online-Degrees-Mobile-Heatmap.jpg" alt="Online Degrees Mobile Heatmap" loading="lazy"><div class="ve-strip"><span class="ve-tag ve-tag-mobile">Mobile</span><span class="ve-tag ve-tag-heatmap">Heatmap</span></div></div>
-  </div>
-  <div class="ve-grid solo">
     <div class="ve-item" onclick="openLightbox(this)"><img src="content_square/Online-Degrees-Mobile-Attention.jpg" alt="Online Degrees Mobile Attention" loading="lazy"><div class="ve-strip"><span class="ve-tag ve-tag-mobile">Mobile</span><span class="ve-tag ve-tag-attention">Attention</span></div></div>
   </div>
 </div>
@@ -567,8 +563,6 @@
   <div class="ve-grid">
     <div class="ve-item" onclick="openLightbox(this)"><img src="content_square/Business-Degrees-Desktop-heatmap.jpg" alt="Business Degrees Desktop Heatmap" loading="lazy"><div class="ve-strip"><span class="ve-tag ve-tag-desktop">Desktop</span><span class="ve-tag ve-tag-heatmap">Heatmap</span></div></div>
     <div class="ve-item" onclick="openLightbox(this)"><img src="content_square/Business-Degress-Mobile-heatmap.jpg" alt="Business Degrees Mobile Heatmap" loading="lazy"><div class="ve-strip"><span class="ve-tag ve-tag-mobile">Mobile</span><span class="ve-tag ve-tag-heatmap">Heatmap</span></div></div>
-  </div>
-  <div class="ve-grid solo">
     <div class="ve-item" onclick="openLightbox(this)"><img src="content_square/Business-Degrees-Mobile-Attention.jpg" alt="Business Degrees Mobile Attention" loading="lazy"><div class="ve-strip"><span class="ve-tag ve-tag-mobile">Mobile</span><span class="ve-tag ve-tag-attention">Attention</span></div></div>
   </div>
 </div>
@@ -581,8 +575,6 @@
   <div class="ve-grid">
     <div class="ve-item" onclick="openLightbox(this)"><img src="content_square/Masters-Programs-Desktop-Heatmap.jpg" alt="Masters Desktop Heatmap" loading="lazy"><div class="ve-strip"><span class="ve-tag ve-tag-desktop">Desktop</span><span class="ve-tag ve-tag-heatmap">Heatmap</span></div></div>
     <div class="ve-item" onclick="openLightbox(this)"><img src="content_square/Masters-Programs-Mobile-Heatmap.jpg" alt="Masters Mobile Heatmap" loading="lazy"><div class="ve-strip"><span class="ve-tag ve-tag-mobile">Mobile</span><span class="ve-tag ve-tag-heatmap">Heatmap</span></div></div>
-  </div>
-  <div class="ve-grid solo">
     <div class="ve-item" onclick="openLightbox(this)"><img src="content_square/Masters-Programs-Mobile-scroll.jpg" alt="Masters Mobile Scroll" loading="lazy"><div class="ve-strip"><span class="ve-tag ve-tag-mobile">Mobile</span><span class="ve-tag ve-tag-scroll">Scroll</span><span class="ve-caption">How far users scroll</span></div></div>
   </div>
 </div>
@@ -595,8 +587,6 @@
   <div class="ve-grid">
     <div class="ve-item" onclick="openLightbox(this)"><img src="content_square/Success-Request-v5-Desktop-heatmap.jpg" alt="Request Info v5 Desktop Heatmap" loading="lazy"><div class="ve-strip"><span class="ve-tag ve-tag-desktop">Desktop</span><span class="ve-tag ve-tag-heatmap">Heatmap</span></div></div>
     <div class="ve-item" onclick="openLightbox(this)"><img src="content_square/Success-Request-v5-Mobile-Heatmap.jpg" alt="Request Info v5 Mobile Heatmap" loading="lazy"><div class="ve-strip"><span class="ve-tag ve-tag-mobile">Mobile</span><span class="ve-tag ve-tag-heatmap">Heatmap</span></div></div>
-  </div>
-  <div class="ve-grid solo">
     <div class="ve-item" onclick="openLightbox(this)"><img src="content_square/Success-Request-v5-mobile-attention.jpg" alt="Request Info v5 Mobile Attention" loading="lazy"><div class="ve-strip"><span class="ve-tag ve-tag-mobile">Mobile</span><span class="ve-tag ve-tag-attention">Attention</span></div></div>
   </div>
 </div>
@@ -609,8 +599,6 @@
   <div class="ve-grid">
     <div class="ve-item" onclick="openLightbox(this)"><img src="content_square/Success-degree-types-bachelors-degrees-v5-Desktop-Heatmap.jpg" alt="Bachelor's v5 Desktop Heatmap" loading="lazy"><div class="ve-strip"><span class="ve-tag ve-tag-desktop">Desktop</span><span class="ve-tag ve-tag-heatmap">Heatmap</span></div></div>
     <div class="ve-item" onclick="openLightbox(this)"><img src="content_square/Success-degree-types-bachelors-degrees-v5-Mobile-Heatmap.jpg" alt="Bachelor's v5 Mobile Heatmap" loading="lazy"><div class="ve-strip"><span class="ve-tag ve-tag-mobile">Mobile</span><span class="ve-tag ve-tag-heatmap">Heatmap</span></div></div>
-  </div>
-  <div class="ve-grid solo">
     <div class="ve-item" onclick="openLightbox(this)"><img src="content_square/Success-degree-types-bachelors-degrees-v5-mobile-attention.jpg" alt="Bachelor's v5 Mobile Attention" loading="lazy"><div class="ve-strip"><span class="ve-tag ve-tag-mobile">Mobile</span><span class="ve-tag ve-tag-attention">Attention</span></div></div>
   </div>
 </div>
@@ -623,8 +611,6 @@
   <div class="ve-grid">
     <div class="ve-item" onclick="openLightbox(this)"><img src="content_square/Success-online-college-courses-v5-desktop-heatmap.jpg" alt="College Courses v5 Desktop Heatmap" loading="lazy"><div class="ve-strip"><span class="ve-tag ve-tag-desktop">Desktop</span><span class="ve-tag ve-tag-heatmap">Heatmap</span></div></div>
     <div class="ve-item" onclick="openLightbox(this)"><img src="content_square/Success-online-college-courses-v5-Mobile-heatmap.jpg" alt="College Courses v5 Mobile Heatmap" loading="lazy"><div class="ve-strip"><span class="ve-tag ve-tag-mobile">Mobile</span><span class="ve-tag ve-tag-heatmap">Heatmap</span></div></div>
-  </div>
-  <div class="ve-grid solo">
     <div class="ve-item" onclick="openLightbox(this)"><img src="content_square/Success-online-college-courses-v5-desktop-Attention.jpg" alt="College Courses v5 Desktop Attention" loading="lazy"><div class="ve-strip"><span class="ve-tag ve-tag-desktop">Desktop</span><span class="ve-tag ve-tag-attention">Attention</span></div></div>
   </div>
 </div>
@@ -637,8 +623,6 @@
   <div class="ve-grid">
     <div class="ve-item" onclick="openLightbox(this)"><img src="content_square/Success-degree-programs-v7-Desktop-Heatmap.jpg" alt="Degree Programs v7 Desktop Heatmap" loading="lazy"><div class="ve-strip"><span class="ve-tag ve-tag-desktop">Desktop</span><span class="ve-tag ve-tag-heatmap">Heatmap</span></div></div>
     <div class="ve-item" onclick="openLightbox(this)"><img src="content_square/Success-degree-programs-v7-Mobile-Heatmap.jpg" alt="Degree Programs v7 Mobile Heatmap" loading="lazy"><div class="ve-strip"><span class="ve-tag ve-tag-mobile">Mobile</span><span class="ve-tag ve-tag-heatmap">Heatmap</span></div></div>
-  </div>
-  <div class="ve-grid solo">
     <div class="ve-item" onclick="openLightbox(this)"><img src="content_square/Success-degree-programs-v7-Mobile-scroll.jpg" alt="Degree Programs v7 Mobile Scroll" loading="lazy"><div class="ve-strip"><span class="ve-tag ve-tag-mobile">Mobile</span><span class="ve-tag ve-tag-scroll">Scroll</span><span class="ve-caption">How far users scroll</span></div></div>
   </div>
 </div>
