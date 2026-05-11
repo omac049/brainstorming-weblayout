@@ -111,6 +111,7 @@
   .tn-item .tn-dot.c3 { background: #EC4899; }
   .tn-item .tn-dot.c4 { background: #10B981; }
   .tn-item .tn-dot.c5 { background: #8B5CF6; }
+  .tn-item .tn-dot.c6 { background: #F97316; }
   .tn-item[aria-current="page"] { color: var(--navy); border-bottom-color: var(--red); }
   .tn-item[aria-current="page"] .tn-dot { box-shadow: 0 0 0 3px rgba(171,5,32,0.2); }
 
@@ -143,6 +144,11 @@
   .task-row .tr-num.t3 { background: #FCE7F3; color: #BE185D; }
   .task-row .tr-num.t4 { background: #D1FAE5; color: #065F46; }
   .task-row .tr-num.t5 { background: #F3E8FF; color: #6B21A8; }
+  .task-row .tr-num.t6 { background: #FFF7ED; color: #9A3412; }
+  .task-row .tr-num.t7 { background: #FFF7ED; color: #9A3412; }
+  .task-row .tr-num.t8 { background: #FFF7ED; color: #9A3412; }
+  .task-row .tr-num.t9 { background: #FFF7ED; color: #9A3412; }
+  .task-row .tr-num.t10 { background: #FFF7ED; color: #9A3412; }
   .task-row .tr-body h3 { font-size: 16px; font-weight: 700; letter-spacing: -0.2px; margin-bottom: 2px; }
   .task-row .tr-body p { font-size: 12px; color: var(--muted); }
   .task-row .tr-meta { text-align: right; flex-shrink: 0; }
@@ -215,7 +221,7 @@
   <h1>Audit &amp; Document</h1>
   <p class="hero-sub">Complete picture of 20 pages — where friction lives, what converts, and what the best-performing pages do differently.</p>
   <div class="hero-stats">
-    <div class="hero-stat"><div class="hs-val">5 / 5</div><div class="hs-lbl">Tasks Complete</div></div>
+    <div class="hero-stat"><div class="hs-val">10</div><div class="hs-lbl">Audit Tasks</div></div>
     <div class="hero-stat"><div class="hs-val">20</div><div class="hs-lbl">Pages Audited</div></div>
     <div class="hero-stat"><div class="hs-val">1.07M</div><div class="hs-lbl">Monthly Pageviews (CS)</div></div>
     <div class="hero-stat"><div class="hs-val">3.23×</div><div class="hs-lbl">Form Rage-Click Rate</div></div>
@@ -237,6 +243,7 @@
     <a class="tn-item" href="1-3-chat-widget.html"><span class="tn-dot c3"></span>1.3 Chat Widget</a>
     <a class="tn-item" href="1-4-comparison.html"><span class="tn-dot c4"></span>1.4 Comparison</a>
     <a class="tn-item" href="1-5-contentsquare.html"><span class="tn-dot c5"></span>1.5 Contentsquare</a>
+    <a class="tn-item" href="1-6-external-validation.html"><span class="tn-dot c6"></span>1.6–1.10 External Validation</a>
   </nav>
 </div>
 
@@ -248,7 +255,7 @@
 <div id="tasks" class="section reveal">
   <div class="section-label">Deliverables</div>
   <div class="section-title">Phase 1 Tasks</div>
-  <div class="section-desc">Five audit tasks covering screenshots, RFI form context, mobile occlusion, structural comparisons, and behavior analytics.</div>
+  <div class="section-desc">Ten audit tasks: five core (screenshots, RFI content, mobile occlusion, structural comparisons, behavior analytics) plus five external validation inputs (competitors, benchmarks, subdomains, exit paths, post-RFI flows).</div>
 
   <div class="task-list">
     <a class="task-row" href="1-1-screenshots.html">
@@ -312,6 +319,74 @@
       <span class="tr-arrow">→</span>
     </a>
   </div>
+
+  <div style="margin-top: 40px; padding-top: 32px; border-top: 1px solid var(--border);">
+    <div class="section-label">External Validation</div>
+    <div style="font-size: 14px; color: var(--muted); max-width: 720px; margin-bottom: 24px;">Add external validation inputs to the audit by reviewing competitor experiences, industry benchmarks, subdomains/cloud-hosted conversion paths, and post-RFI flows. These findings will help identify whether UAGC friction points are internal page issues, market expectation gaps, or tracking/journey gaps outside the main domain.</div>
+  </div>
+
+  <div class="task-list">
+    <a class="task-row" href="1-6-external-validation.html#competitors">
+      <div class="tr-num t6">1.6</div>
+      <div class="tr-body">
+        <h3>Competitive Landscape Review</h3>
+        <p>RFI flows, mobile UX, and page structure from SNHU, WGU, CSU Global, UT Tyler, and Empire State University.</p>
+      </div>
+      <div class="tr-meta">
+        <div class="tr-status" style="background: #FEF3C7; color: var(--amber);">Discovery</div>
+        <div class="tr-deliverable">5 competitors · RFI + mobile + structure</div>
+      </div>
+      <span class="tr-arrow">→</span>
+    </a>
+    <a class="task-row" href="1-6-external-validation.html#benchmarks">
+      <div class="tr-num t7">1.7</div>
+      <div class="tr-body">
+        <h3>Industry Benchmark Notes</h3>
+        <p>Online higher-ed norms for conversion rate, RFI completion, mobile UX, page speed, and form expectations.</p>
+      </div>
+      <div class="tr-meta">
+        <div class="tr-status" style="background: #FEF3C7; color: var(--amber);">Discovery</div>
+        <div class="tr-deliverable">5 benchmark areas · Cited sources</div>
+      </div>
+      <span class="tr-arrow">→</span>
+    </a>
+    <a class="task-row" href="1-6-external-validation.html#subdomains">
+      <div class="tr-num t8">1.8</div>
+      <div class="tr-body">
+        <h3>Subdomain &amp; Hidden Path Inventory</h3>
+        <p>Catalog of subdomains, Salesforce/cloud pages, campaign pages, thank-you pages, and hidden lead paths beyond uagc.edu.</p>
+      </div>
+      <div class="tr-meta">
+        <div class="tr-status" style="background: #FEF3C7; color: var(--amber);">Discovery</div>
+        <div class="tr-deliverable">Full path inventory · Tracking gaps</div>
+      </div>
+      <span class="tr-arrow">→</span>
+    </a>
+    <a class="task-row" href="1-6-external-validation.html#v8-exit">
+      <div class="tr-num t9">1.9</div>
+      <div class="tr-body">
+        <h3>Online Programs v8 Exit-Path Review</h3>
+        <p>Initial review of where v8 users leave or navigate away — identifying drop-off patterns and unintended exit points.</p>
+      </div>
+      <div class="tr-meta">
+        <div class="tr-status" style="background: #FEF3C7; color: var(--amber);">Discovery</div>
+        <div class="tr-deliverable">Exit flow analysis · Drop-off map</div>
+      </div>
+      <span class="tr-arrow">→</span>
+    </a>
+    <a class="task-row" href="1-6-external-validation.html#post-rfi">
+      <div class="tr-num t10">1.10</div>
+      <div class="tr-body">
+        <h3>Post-RFI Thank-You / Confirmation Review</h3>
+        <p>Current-state review of what users see after submitting an RFI — confirmation pages, next-step messaging, and re-engagement paths.</p>
+      </div>
+      <div class="tr-meta">
+        <div class="tr-status" style="background: #FEF3C7; color: var(--amber);">Discovery</div>
+        <div class="tr-deliverable">Post-submit UX audit · Gap list</div>
+      </div>
+      <span class="tr-arrow">→</span>
+    </a>
+  </div>
 </div>
 
 <!-- Key findings -->
@@ -350,6 +425,36 @@
       <div class="fi-val">13.57%</div>
       <div class="fi-label">Top paid page conv rate (v7)</div>
       <div class="fi-detail">Content-rich pages with program grids convert 3–5× better than generic form-first layouts.</div>
+    </div>
+  </div>
+</div>
+
+<!-- External validation context -->
+<div class="section reveal">
+  <div class="section-label">Discovery Gaps</div>
+  <div class="section-title">Why External Validation Matters</div>
+  <div class="section-desc">Tasks 1.1–1.5 document what's happening on the pages. Tasks 1.6–1.10 ask whether UAGC friction is a page problem, a market expectation gap, or a journey gap outside the main domain.</div>
+
+  <div class="findings-grid">
+    <div class="finding-item warn">
+      <div class="fi-val">5 Schools</div>
+      <div class="fi-label">Competitor RFI benchmarking</div>
+      <div class="fi-detail">SNHU, WGU, CSU Global, UT Tyler, Empire State — how do their RFI flows, mobile UX, and page structures compare to UAGC?</div>
+    </div>
+    <div class="finding-item warn">
+      <div class="fi-val">Off-Domain</div>
+      <div class="fi-label">Subdomain &amp; cloud page gaps</div>
+      <div class="fi-detail">Salesforce/cloud.mail pages, campaign URLs, thank-you pages, and hidden lead paths may represent tracking or experience gaps invisible to on-site analytics.</div>
+    </div>
+    <div class="finding-item warn">
+      <div class="fi-val">v8 Exits</div>
+      <div class="fi-label">Where do v8 users navigate away?</div>
+      <div class="fi-detail">Online Programs v8 (4.92% conv, Display traffic) — are users leaving to competitors, back-buttoning, or hitting dead-end navigation?</div>
+    </div>
+    <div class="finding-item warn">
+      <div class="fi-val">Post-RFI</div>
+      <div class="fi-label">Thank-you / confirmation UX</div>
+      <div class="fi-detail">What happens after form submit? Is the confirmation page a dead end or does it guide the user toward the next enrollment step?</div>
     </div>
   </div>
 </div>

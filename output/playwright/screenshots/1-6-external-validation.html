@@ -1,0 +1,750 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tasks 1.6–1.10 — External Validation Inputs | UAGC Phase 1</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+  :root {
+    --navy: #0C234B;
+    --red: #AB0520;
+    --light: #F7F8FA;
+    --border: #E2E5EA;
+    --muted: #6B7280;
+    --green: #059669;
+    --amber: #D97706;
+    --danger: #DC2626;
+    --orange: #EA580C;
+    --bg: #FAFBFC;
+    --surface: #FFFFFF;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; scroll-padding-top: 68px; }
+  body { font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: var(--light); color: #1a1a1a; line-height: 1.5; -webkit-font-smoothing: antialiased; }
+
+  .header { background: var(--navy); color: white; padding: 48px 32px 40px; text-align: center; position: relative; }
+  .header::after { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 4px; background: var(--red); }
+  .header-eyebrow { font-size: 11px; font-weight: 700; letter-spacing: 2.5px; text-transform: uppercase; color: var(--orange); margin-bottom: 12px; }
+  .header h1 { font-size: clamp(24px, 4vw, 36px); font-weight: 800; letter-spacing: -1px; line-height: 1.15; margin-bottom: 12px; }
+  .header p { font-size: 14px; opacity: 0.7; max-width: 680px; margin: 0 auto; line-height: 1.6; }
+
+  .content { max-width: 960px; margin: 0 auto; padding: 0 32px; }
+  .content-wide { max-width: 1280px; margin: 0 auto; padding: 0 32px; }
+
+  .section-nav {
+    position: sticky; top: 44px; z-index: 90;
+    background: var(--surface); border-bottom: 1px solid var(--border);
+    padding: 0; margin-top: 0;
+  }
+  .section-nav-inner {
+    max-width: 960px; margin: 0 auto; padding: 0 32px;
+    display: flex; gap: 0; overflow-x: auto;
+    scrollbar-width: none; -ms-overflow-style: none;
+  }
+  .section-nav-inner::-webkit-scrollbar { display: none; }
+  .sn-item {
+    padding: 12px 16px; font-size: 12px; font-weight: 600; color: var(--muted);
+    text-decoration: none; white-space: nowrap; border-bottom: 2px solid transparent;
+    transition: all 0.15s; flex-shrink: 0;
+  }
+  .sn-item:hover { color: var(--navy); background: var(--light); }
+  .sn-item .sn-num { font-weight: 800; color: var(--orange); margin-right: 4px; }
+
+  .section { padding: 56px 0; }
+  .section + .section { border-top: 1px solid var(--border); }
+  .section-label { font-size: 11px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--orange); margin-bottom: 8px; }
+  .section-title { font-size: 22px; font-weight: 800; letter-spacing: -0.4px; color: var(--navy); margin-bottom: 6px; }
+  .section-desc { font-size: 14px; color: var(--muted); max-width: 680px; margin-bottom: 28px; }
+
+  .card-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px; margin-bottom: 24px; }
+  .card {
+    background: var(--surface); border: 1px solid var(--border); border-radius: 10px;
+    padding: 20px; transition: box-shadow 0.2s;
+  }
+  .card:hover { box-shadow: 0 4px 16px rgba(12,35,75,0.06); }
+  .card h4 { font-size: 14px; font-weight: 700; color: var(--navy); margin-bottom: 6px; }
+  .card p { font-size: 13px; color: #4B5563; line-height: 1.55; }
+  .card .card-tag {
+    display: inline-block; font-size: 10px; font-weight: 700; letter-spacing: 0.5px;
+    text-transform: uppercase; padding: 2px 8px; border-radius: 4px; margin-bottom: 10px;
+  }
+  .card .card-tag.competitor { background: #DBEAFE; color: #1D4ED8; }
+  .card .card-tag.benchmark { background: #FEF3C7; color: #92400E; }
+  .card .card-tag.subdomain { background: #FCE7F3; color: #BE185D; }
+  .card .card-tag.exit { background: #F3E8FF; color: #6B21A8; }
+  .card .card-tag.post-rfi { background: #D1FAE5; color: #065F46; }
+
+  .checklist { list-style: none; margin: 20px 0; }
+  .checklist li {
+    display: flex; align-items: flex-start; gap: 10px;
+    padding: 8px 0; border-bottom: 1px solid var(--border);
+    font-size: 13px; color: #374151; line-height: 1.5;
+  }
+  .checklist li:last-child { border-bottom: none; }
+  .check-box {
+    flex-shrink: 0; width: 16px; height: 16px; border: 2px solid var(--border);
+    border-radius: 3px; margin-top: 2px;
+  }
+
+  .callout {
+    border-radius: 8px; padding: 16px 20px; margin: 20px 0;
+    border-left: 3px solid var(--orange); background: #FFF7ED;
+  }
+  .callout-title { font-size: 12px; font-weight: 700; color: var(--orange); margin-bottom: 4px; text-transform: uppercase; letter-spacing: 0.5px; }
+  .callout p { font-size: 13px; color: #374151; line-height: 1.5; }
+
+  table.ref { width: 100%; border-collapse: collapse; background: var(--surface); border-radius: 10px; overflow: hidden; margin: 20px 0; }
+  table.ref thead { background: var(--navy); color: white; }
+  table.ref th { padding: 10px 14px; font-size: 10px; font-weight: 600; letter-spacing: 0.8px; text-transform: uppercase; text-align: left; }
+  table.ref td { padding: 10px 14px; font-size: 13px; border-bottom: 1px solid var(--border); }
+  table.ref tr:last-child td { border-bottom: none; }
+  table.ref tr:hover td { background: #F9FAFB; }
+  table.ref .mono { font-family: 'SF Mono', 'Fira Code', monospace; font-size: 12px; color: var(--muted); }
+
+  /* ── Competitor tab navigation ── */
+  .comp-tabs {
+    display: flex; gap: 6px; flex-wrap: wrap; margin: 24px 0 32px;
+  }
+  .comp-tab {
+    display: inline-flex; align-items: center; gap: 6px;
+    padding: 8px 16px; font-size: 13px; font-weight: 600; color: var(--muted);
+    background: var(--surface); border: 1px solid var(--border); border-radius: 8px;
+    text-decoration: none; transition: all 0.15s;
+  }
+  .comp-tab:hover { color: var(--navy); border-color: var(--navy); background: #F0F4FF; }
+  .comp-tab .ct-dot {
+    width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0;
+  }
+  .comp-tab.uagc-row { background: #FFF7ED; border-color: var(--orange); color: var(--orange); }
+
+  /* ── Individual competitor blocks ── */
+  .comp-block {
+    padding: 48px 0; scroll-margin-top: 120px;
+  }
+  .comp-block + .comp-block { border-top: 1px solid var(--border); }
+  .comp-block-header {
+    display: flex; align-items: baseline; gap: 12px; margin-bottom: 6px;
+  }
+  .comp-block-name {
+    font-size: 20px; font-weight: 800; color: var(--navy); letter-spacing: -0.3px;
+  }
+  .comp-block-url {
+    font-size: 12px; color: var(--muted); font-weight: 500;
+  }
+
+  /* ── Findings as a definition-style grid ── */
+  .findings-dl {
+    display: grid; grid-template-columns: 140px 1fr; gap: 2px 20px;
+    margin: 20px 0; font-size: 13px;
+  }
+  .findings-dl dt {
+    font-weight: 700; color: var(--navy); padding: 8px 0;
+    border-bottom: 1px solid var(--border);
+  }
+  .findings-dl dd {
+    color: #374151; padding: 8px 0; line-height: 1.55;
+    border-bottom: 1px solid var(--border);
+  }
+  .findings-dl dd:last-of-type,
+  .findings-dl dt:last-of-type { border-bottom: none; }
+  .findings-dl dd strong { color: var(--navy); }
+  .findings-dl dd code { font-size: 12px; background: var(--light); padding: 1px 5px; border-radius: 3px; }
+
+  /* ── Screenshot rows: 75% desktop / 25% mobile (matches 1-1-screenshots.html) ── */
+  .screenshots-row { display: grid; grid-template-columns: 3fr 1fr; gap: 0; }
+  .screenshot-pane { padding: 20px; position: relative; }
+  .screenshot-pane + .screenshot-pane { border-left: 1px solid var(--border); }
+  .screenshot-pane .vp-label { font-size: 10px; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; color: var(--muted); margin-bottom: 10px; }
+  .screenshot-pane img { width: 100%; border: 1px solid var(--border); border-radius: 6px; display: block; }
+  .screenshot-pane.mobile img { max-width: 375px; margin: 0 auto; }
+  .ss-row-label {
+    font-size: 11px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase;
+    color: var(--orange); margin: 28px 0 4px; padding-left: 20px;
+  }
+  .ss-row-label:first-of-type { margin-top: 20px; }
+  .screenshots-row + .screenshots-row { border-top: 1px solid var(--border); }
+
+  @media (max-width: 800px) {
+    .screenshots-row { grid-template-columns: 1fr; }
+    .screenshot-pane + .screenshot-pane { border-left: none; border-top: 1px solid var(--border); }
+    .findings-dl { grid-template-columns: 1fr; }
+    .findings-dl dt { padding-bottom: 2px; border-bottom: none; }
+  }
+
+  .footer { text-align: center; padding: 40px 32px; background: var(--navy); color: rgba(255,255,255,0.3); font-size: 12px; margin-top: 48px; }
+
+  @media (max-width: 700px) {
+    .header { padding: 32px 20px 28px; }
+    .content, .content-wide { padding: 0 20px; }
+    .section { padding: 40px 0; }
+    .card-grid { grid-template-columns: 1fr; }
+    .comp-tabs { gap: 4px; }
+    .comp-tab { padding: 6px 12px; font-size: 12px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="header-eyebrow">Tasks 1.6–1.10 · External Validation</div>
+  <h1>Discovery Inputs</h1>
+  <p>Add external validation inputs to the audit by reviewing competitor experiences, industry benchmarks, subdomains/cloud-hosted conversion paths, and post-RFI flows. These findings will help identify whether UAGC friction points are internal page issues, market expectation gaps, or tracking/journey gaps outside the main domain.</p>
+</div>
+
+<div class="section-nav">
+  <div class="section-nav-inner">
+    <a class="sn-item" href="#competitors"><span class="sn-num">1.6</span> Competitors</a>
+    <a class="sn-item" href="#benchmarks"><span class="sn-num">1.7</span> Benchmarks</a>
+    <a class="sn-item" href="#subdomains"><span class="sn-num">1.8</span> Subdomains</a>
+    <a class="sn-item" href="#v8-exit"><span class="sn-num">1.9</span> v8 Exit Paths</a>
+    <a class="sn-item" href="#post-rfi"><span class="sn-num">1.10</span> Post-RFI Flow</a>
+  </div>
+</div>
+
+<div class="content">
+
+<!-- ═══ 1.6 — Competitive Landscape ═══ -->
+<div id="competitors" class="section" style="padding-bottom:0">
+  <div class="section-label">Task 1.6 — Complete</div>
+  <div class="section-title">Competitive Landscape Review</div>
+  <div class="section-desc">Live-site audit of RFI flows, above-fold content, mobile CTA treatment, and personalization from five online higher-ed competitors. Captured May 11, 2026.</div>
+
+  <!-- ── Jump-to competitor pills ── -->
+  <nav class="comp-tabs" aria-label="Jump to competitor">
+    <a class="comp-tab" href="#comp-snhu"><span class="ct-dot" style="background:#C41230"></span>SNHU</a>
+    <a class="comp-tab" href="#comp-wgu"><span class="ct-dot" style="background:#003057"></span>WGU</a>
+    <a class="comp-tab" href="#comp-csu"><span class="ct-dot" style="background:#1E4D2B"></span>CSU Global</a>
+    <a class="comp-tab" href="#comp-uttyler"><span class="ct-dot" style="background:#FF8200"></span>UT Tyler</a>
+    <a class="comp-tab" href="#comp-empire"><span class="ct-dot" style="background:#002D72"></span>Empire State</a>
+    <a class="comp-tab uagc-row" href="#comp-takeaways"><span class="ct-dot" style="background:var(--red)"></span>UAGC Takeaways</a>
+  </nav>
+</div>
+</div><!-- .content (section 1.6 header) -->
+
+<!-- Comparison table + competitor detail — wider container -->
+<div class="content-wide">
+  <div style="overflow-x: auto; margin: 0 0 16px;">
+  <table class="ref" style="min-width:900px">
+    <thead>
+      <tr>
+        <th>Competitor</th>
+        <th>RFI Steps</th>
+        <th>Required Fields</th>
+        <th>Form Above Fold?</th>
+        <th>Mobile Sticky CTA?</th>
+        <th>Chat / Bot</th>
+        <th>Audience Segmentation</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>SNHU</strong></td>
+        <td>1 step</td>
+        <td>14 fields</td>
+        <td>No (linked)</td>
+        <td>No</td>
+        <td>Virtual Assistant</td>
+        <td>Online/Campus, Military, Transfer, Int'l</td>
+      </tr>
+      <tr>
+        <td><strong>WGU</strong></td>
+        <td>3 steps</td>
+        <td>7 (step 1)</td>
+        <td>No (linked)</td>
+        <td>Header persists</td>
+        <td>Salesforce chat</td>
+        <td>By college, Military, Transfer, Quiz</td>
+      </tr>
+      <tr>
+        <td><strong>CSU Global</strong></td>
+        <td>1 step</td>
+        <td>6 fields</td>
+        <td>Just below fold</td>
+        <td>Header persists</td>
+        <td>GoldieBot</td>
+        <td>Military, Transfer, Int'l, Re-Entry</td>
+      </tr>
+      <tr>
+        <td><strong>UT Tyler</strong></td>
+        <td>1 step (Slate)</td>
+        <td>5 required</td>
+        <td><strong>Yes — in hero</strong></td>
+        <td>No (desktop only)</td>
+        <td>None</td>
+        <td>Student-type triage, Program Finder</td>
+      </tr>
+      <tr>
+        <td><strong>Empire State</strong></td>
+        <td>1 step (Slate)</td>
+        <td>4 fields</td>
+        <td>No (sidebar)</td>
+        <td>No</td>
+        <td>"Ask Blue"</td>
+        <td>"What Brings You Here?" tiles, /i-am-a/</td>
+      </tr>
+      <tr style="background: #FFF7ED;">
+        <td><strong>UAGC (current)</strong></td>
+        <td>2 steps</td>
+        <td>Step 1: AoI → full</td>
+        <td>Yes (above-fold + sticky)</td>
+        <td><strong>Yes — 45.6% viewport</strong></td>
+        <td>None</td>
+        <td>Minimal</td>
+      </tr>
+    </tbody>
+  </table>
+  </div>
+</div>
+
+<!-- ═══ Per-competitor detail in wider container ═══ -->
+<div class="content-wide">
+
+  <!-- ── SNHU ── -->
+  <div id="comp-snhu" class="comp-block">
+    <div class="comp-block-header">
+      <span class="comp-block-name">SNHU</span>
+      <span class="comp-block-url">snhu.edu</span>
+    </div>
+
+    <dl class="findings-dl">
+      <dt>RFI Flow</dt>
+      <dd>1 step, 14 fields. Cascading selects: degree → area → program. Includes address, military radio, visa conditionals. URL: <code>/admission/request-information</code></dd>
+      <dt>Above Fold</dt>
+      <dd>Hero with student photo (Taylor Strickland '24). Fact card: $342/credit, 40 courses, 8-week terms. <strong>No inline form</strong> — Apply Now + Request Info buttons link out.</dd>
+      <dt>Mobile CTA</dt>
+      <dd>No sticky bottom bar. Phone in header. <strong>Request Info opens Virtual Assistant</strong>, not the form.</dd>
+      <dt>Chat</dt>
+      <dd>Virtual Assistant (MS Bot Framework 4.17). Quick replies: "Show me popular programs," "Send me more info," "Talk to a human."</dd>
+      <dt>Personalization</dt>
+      <dd>No geo/persona banners. <strong>Context carry-through:</strong> browsing a program pre-selects it in the RFI form. Audience paths: Online/Campus, Military, Transfer, Int'l/Visa.</dd>
+    </dl>
+
+    <div class="ss-row-label">RFI Page</div>
+    <div class="screenshots-row">
+      <div class="screenshot-pane"><div class="vp-label">Desktop — 1440px</div><img src="competitors/snhu_rfi_desktop-1440.jpg" alt="SNHU RFI Desktop" loading="lazy"></div>
+      <div class="screenshot-pane mobile"><div class="vp-label">Mobile — 375px</div><img src="competitors/snhu_rfi_mobile-375.jpg" alt="SNHU RFI Mobile" loading="lazy"></div>
+    </div>
+    <div class="ss-row-label">Program Landing Page</div>
+    <div class="screenshots-row">
+      <div class="screenshot-pane"><div class="vp-label">Desktop — 1440px</div><img src="competitors/snhu_program_desktop-1440.jpg" alt="SNHU Program Desktop" loading="lazy"></div>
+      <div class="screenshot-pane mobile"><div class="vp-label">Mobile — 375px</div><img src="competitors/snhu_program_mobile-375.jpg" alt="SNHU Program Mobile" loading="lazy"></div>
+    </div>
+  </div>
+
+  <!-- ── WGU ── -->
+  <div id="comp-wgu" class="comp-block">
+    <div class="comp-block-header">
+      <span class="comp-block-name">WGU</span>
+      <span class="comp-block-url">wgu.edu</span>
+    </div>
+
+    <dl class="findings-dl">
+      <dt>RFI Flow</dt>
+      <dd>3-step wizard ("1 of 3"). Step 1: 7 fields — name, email, college, program, state, country. Cascading program by college. URL: <code>inquiry.wgu.edu/inquiry/1#!/inquiry?step=1</code></dd>
+      <dt>Above Fold</dt>
+      <dd>"MBA Degree" hero with professional imagery. Sticky sub-nav. <strong>No inline form</strong> — Request Info + Apply Now links. Trust: WSJ ROI citation, $4,805/term, ACBSP, Harris Poll salary data.</dd>
+      <dt>Mobile CTA</dt>
+      <dd>Persistent header with Apply Now + Call. <strong>No dedicated bottom bar.</strong></dd>
+      <dt>Chat</dt>
+      <dd>Salesforce Messaging (blue FAB): "Hello, have a question? Let's chat."</dd>
+      <dt>Personalization</dt>
+      <dd>No visible first-visit personalization. Segments by college (Business, Tech, Health, Education). Paths: Military, Transfers, "Take Quiz." Adobe Experience Platform + VWO + Marketo in source — infrastructure exists but not surfaced.</dd>
+    </dl>
+
+    <div class="ss-row-label">RFI Page</div>
+    <div class="screenshots-row">
+      <div class="screenshot-pane"><div class="vp-label">Desktop — 1440px</div><img src="competitors/wgu_rfi_desktop-1440.jpg" alt="WGU RFI Desktop" loading="lazy"></div>
+      <div class="screenshot-pane mobile"><div class="vp-label">Mobile — 375px</div><img src="competitors/wgu_rfi_mobile-375.jpg" alt="WGU RFI Mobile" loading="lazy"></div>
+    </div>
+    <div class="ss-row-label">Program Landing Page</div>
+    <div class="screenshots-row">
+      <div class="screenshot-pane"><div class="vp-label">Desktop — 1440px</div><img src="competitors/wgu_program_desktop-1440.jpg" alt="WGU Program Desktop" loading="lazy"></div>
+      <div class="screenshot-pane mobile"><div class="vp-label">Mobile — 375px</div><img src="competitors/wgu_program_mobile-375.jpg" alt="WGU Program Mobile" loading="lazy"></div>
+    </div>
+  </div>
+
+  <!-- ── CSU Global ── -->
+  <div id="comp-csu" class="comp-block">
+    <div class="comp-block-header">
+      <span class="comp-block-name">CSU Global</span>
+      <span class="comp-block-url">csuglobal.edu</span>
+    </div>
+
+    <dl class="findings-dl">
+      <dt>RFI Flow</dt>
+      <dd>1 step, 6 fields: name, email, phone, state. "Help Me Decide" option for undecided leads. All fields visible immediately. URL: <code>/request-info</code></dd>
+      <dt>Above Fold</dt>
+      <dd>"Online Bachelor's in Business Management" on dark imagery. Inline RFI just below fold with program pre-selected. Breadcrumb + tab nav (Overview, Learning Outcomes, Cost, FAQ). ACBSP + HLC accreditation.</dd>
+      <dt>Mobile CTA</dt>
+      <dd>Sticky header: REQUEST INFO + APPLY NOW persist. Inline RFI after scrolling past hero.</dd>
+      <dt>Chat</dt>
+      <dd><strong>GoldieBot</strong> (branded FAB). Entry overlay on program pages: "Free Application Code" modal ($25 fee waiver).</dd>
+      <dt>Personalization</dt>
+      <dd>Audience lanes: Undergraduate, Graduate, Transfer, Int'l, Military, Non-Degree, Re-Entry. "Help Me Decide" in dropdown. Colorado Residents pricing path.</dd>
+    </dl>
+
+    <div class="ss-row-label">RFI Page</div>
+    <div class="screenshots-row">
+      <div class="screenshot-pane"><div class="vp-label">Desktop — 1440px</div><img src="competitors/csu-global_rfi_desktop-1440.jpg" alt="CSU Global RFI Desktop" loading="lazy"></div>
+      <div class="screenshot-pane mobile"><div class="vp-label">Mobile — 375px</div><img src="competitors/csu-global_rfi_mobile-375.jpg" alt="CSU Global RFI Mobile" loading="lazy"></div>
+    </div>
+    <div class="ss-row-label">Program Landing Page</div>
+    <div class="screenshots-row">
+      <div class="screenshot-pane"><div class="vp-label">Desktop — 1440px</div><img src="competitors/csu-global_program_desktop-1440.jpg" alt="CSU Global Program Desktop" loading="lazy"></div>
+      <div class="screenshot-pane mobile"><div class="vp-label">Mobile — 375px</div><img src="competitors/csu-global_program_mobile-375.jpg" alt="CSU Global Program Mobile" loading="lazy"></div>
+    </div>
+  </div>
+
+  <!-- ── UT Tyler ── -->
+  <div id="comp-uttyler" class="comp-block">
+    <div class="comp-block-header">
+      <span class="comp-block-name">UT Tyler</span>
+      <span class="comp-block-url">uttyler.edu</span>
+    </div>
+
+    <dl class="findings-dl">
+      <dt>RFI Flow</dt>
+      <dd>1 step (Slate embed), 5 required fields. "I am studying as…" triage: First Time / Transfer / Graduate shows different follow-on fields. SMS consent defaults to Yes. URL: <code>/request-information/</code></dd>
+      <dt>Above Fold</dt>
+      <dd><strong>Slate form embedded directly in hero</strong> — fields visible on first viewport. Trust: 100% online, 87 transfer hours, 7-week terms, flat $9,900 pricing. Pew Research citation, alumni spotlight.</dd>
+      <dt>Mobile CTA</dt>
+      <dd>Form remains in hero flow at 390×812. <strong>No sticky bottom bar</strong> (desktop-only via <code>min-width:70em</code>). No chatbot.</dd>
+      <dt>Chat</dt>
+      <dd>None detected.</dd>
+      <dt>Personalization</dt>
+      <dd>Student-type triage in form with different field sets. Program Finder with Online/Campus/Hybrid filters. <strong>Program pages auto-populate form</strong> with relevant defaults. Información en Español in header.</dd>
+    </dl>
+
+    <div class="ss-row-label">RFI Page</div>
+    <div class="screenshots-row">
+      <div class="screenshot-pane"><div class="vp-label">Desktop — 1440px</div><img src="competitors/ut-tyler_rfi_desktop-1440.jpg" alt="UT Tyler RFI Desktop" loading="lazy"></div>
+      <div class="screenshot-pane mobile"><div class="vp-label">Mobile — 375px</div><img src="competitors/ut-tyler_rfi_mobile-375.jpg" alt="UT Tyler RFI Mobile" loading="lazy"></div>
+    </div>
+    <div class="ss-row-label">Program Landing Page</div>
+    <div class="screenshots-row">
+      <div class="screenshot-pane"><div class="vp-label">Desktop — 1440px</div><img src="competitors/ut-tyler_program_desktop-1440.jpg" alt="UT Tyler Program Desktop" loading="lazy"></div>
+      <div class="screenshot-pane mobile"><div class="vp-label">Mobile — 375px</div><img src="competitors/ut-tyler_program_mobile-375.jpg" alt="UT Tyler Program Mobile" loading="lazy"></div>
+    </div>
+  </div>
+
+  <!-- ── Empire State ── -->
+  <div id="comp-empire" class="comp-block">
+    <div class="comp-block-header">
+      <span class="comp-block-name">Empire State University</span>
+      <span class="comp-block-url">sunyempire.edu</span>
+    </div>
+
+    <dl class="findings-dl">
+      <dt>RFI Flow</dt>
+      <dd>1 step (Slate), <strong>4 fields only</strong> — degree level, email, first name, last name. Lightest form in the set. URL: <code>/request-info.html</code></dd>
+      <dt>Above Fold</dt>
+      <dd>"M.B.A." credential chip + "Business Management" H1. <strong>No form in first viewport</strong> — Slate in sidebar lower on page. Facts: 100% Online, $635/credit, 36–45 credits. IACBE + SHRM alignment.</dd>
+      <dt>Mobile CTA</dt>
+      <dd>No sticky bottom bar. Form not in first mobile viewport.</dd>
+      <dt>Chat</dt>
+      <dd><strong>"Ask Blue"</strong> (FAB, "Questions?"). Office routing: 1Stop, Admissions, ITS. Free-text input. Motion control toggle in top bar.</dd>
+      <dt>Personalization</dt>
+      <dd><strong>"What Brings You Here?"</strong> tiles: First-time, Transfer, Returning, Degree Completer, Military, Current Student. Dedicated <code>/i-am-a/</code> persona hub. Program explorer with degree-type and length filters.</dd>
+    </dl>
+
+    <div class="ss-row-label">RFI Page</div>
+    <div class="screenshots-row">
+      <div class="screenshot-pane"><div class="vp-label">Desktop — 1440px</div><img src="competitors/empire-state_rfi_desktop-1440.jpg" alt="Empire State RFI Desktop" loading="lazy"></div>
+      <div class="screenshot-pane mobile"><div class="vp-label">Mobile — 375px</div><img src="competitors/empire-state_rfi_mobile-375.jpg" alt="Empire State RFI Mobile" loading="lazy"></div>
+    </div>
+    <div class="ss-row-label">Program Landing Page</div>
+    <div class="screenshots-row">
+      <div class="screenshot-pane"><div class="vp-label">Desktop — 1440px</div><img src="competitors/empire-state_program_desktop-1440.jpg" alt="Empire State Program Desktop" loading="lazy"></div>
+      <div class="screenshot-pane mobile"><div class="vp-label">Mobile — 375px</div><img src="competitors/empire-state_program_mobile-375.jpg" alt="Empire State Program Mobile" loading="lazy"></div>
+    </div>
+  </div>
+
+  <!-- ── UAGC Takeaways ── -->
+  <div id="comp-takeaways" class="comp-block" style="border-top: 3px solid var(--red); padding-top: 40px;">
+    <div class="comp-block-header">
+      <span class="comp-block-name" style="color:var(--red)">Key Takeaways for UAGC</span>
+    </div>
+
+    <dl class="findings-dl" style="margin-top:16px">
+      <dt>Form Weight</dt>
+      <dd>UAGC's 2-step form is mid-pack. Empire State: 4 fields. SNHU: 14. CSU Global and UT Tyler: 5–6 required. <strong>No competitor uses a two-step wizard like UAGC</strong> — WGU's 3-step is the exception, on a separate subdomain.</dd>
+      <dt>Form-in-Hero</dt>
+      <dd>Only UT Tyler embeds the RFI directly in the hero (Slate). SNHU and WGU link out. CSU Global just below fold. Empire State sidebar. UAGC's on-page approach is <strong>not unusual</strong> but the 3.23x rage-click rate suggests execution problems, not strategy problems.</dd>
+      <dt>Mobile CTA</dt>
+      <dd><strong>No competitor has a sticky bottom CTA bar consuming 45% of mobile viewport.</strong> CSU Global persists header CTAs; UT Tyler desktop-only. This is a UAGC-specific friction pattern.</dd>
+      <dt>Chat</dt>
+      <dd>4 of 5 competitors have visible chatbots. UAGC has <strong>none</strong> on audited pages — a notable gap.</dd>
+      <dt>Personalization</dt>
+      <dd>None show dynamic first-visit personalization. Empire State's "What Brings You Here?" tiles and UT Tyler's form triage are the strongest signals. SNHU carries browsing context into the RFI form. <strong>UAGC lacks audience triage or context carry-through.</strong></dd>
+    </dl>
+  </div>
+
+</div><!-- .content-wide -->
+
+<div class="content">
+
+<!-- ═══ 1.7 — Industry Benchmarks ═══ -->
+<div id="benchmarks" class="section">
+  <div class="section-label">Task 1.7 — Complete</div>
+  <div class="section-title">Industry Benchmark Notes</div>
+  <div class="section-desc">Cited benchmarks for online higher-ed giving UAGC audit findings external context. Every figure includes its source.</div>
+
+  <!-- ── 1. Conversion Rates ── -->
+  <h3 style="font-size:15px;font-weight:800;color:var(--navy);margin:32px 0 6px;letter-spacing:-0.2px;">RFI / Lead Form Conversion Rates</h3>
+  <p style="font-size:13px;color:var(--muted);margin-bottom:16px;">What conversion rate is realistic for cold traffic vs. intent traffic in online higher-ed?</p>
+
+  <table class="ref">
+    <thead><tr><th>Metric</th><th>Benchmark</th><th>Source</th></tr></thead>
+    <tbody>
+      <tr><td>Higher-ed LP median conversion</td><td><strong>6.3%</strong></td><td>Unbounce Conversion Benchmark Report, 2025</td></tr>
+      <tr><td>Broader education median (incl. online courses)</td><td>8.4%</td><td>Unbounce Conversion Benchmark Report, 2025</td></tr>
+      <tr><td>Application conversion (deeper action)</td><td>3.8%</td><td>CUFinder Higher-Ed Benchmarks, 2026</td></tr>
+      <tr><td>Paid search conversion</td><td><strong>7.3%</strong></td><td>Unbounce Conversion Benchmark Report, 2025</td></tr>
+      <tr><td>Paid social conversion</td><td>5.1%</td><td>Unbounce Conversion Benchmark Report, 2025</td></tr>
+      <tr><td>Email conversion</td><td>14.1%</td><td>Unbounce Conversion Benchmark Report, 2025</td></tr>
+      <tr><td>Cost per qualified lead (blended)</td><td>$72.15</td><td>CUFinder Higher-Ed Benchmarks, 2026</td></tr>
+    </tbody>
+  </table>
+
+  <div class="callout" style="margin-top:8px;">
+    <div class="callout-title">UAGC Context</div>
+    <p>UAGC's v8 page converts at 4.92% (mostly Display traffic) and v7 at 13.57% (mostly Search). The 6.3% higher-ed LP median sits between them. Display-driven traffic converting below median is <strong>expected</strong>; the 3.23x rage-click rate on the RFI form is <strong>not</strong>.</p>
+  </div>
+
+  <!-- ── 2. Bounce Rates ── -->
+  <h3 style="font-size:15px;font-weight:800;color:var(--navy);margin:36px 0 6px;letter-spacing:-0.2px;">Landing Page Bounce Rates</h3>
+  <p style="font-size:13px;color:var(--muted);margin-bottom:16px;">Channel matters more than industry when evaluating bounce. A blended number is nearly meaningless.</p>
+
+  <table class="ref">
+    <thead><tr><th>Segment</th><th>Bounce Rate</th><th>Source</th></tr></thead>
+    <tbody>
+      <tr><td>Higher-ed websites (average)</td><td><strong>55.4%</strong></td><td>CUFinder Higher-Ed Benchmarks, 2026</td></tr>
+      <tr><td>Paid search (cross-industry)</td><td>38.6%</td><td>Digital Applied Bounce Rate Benchmarks, 2026</td></tr>
+      <tr><td>Display (cross-industry)</td><td>65%+</td><td>Digital Applied Bounce Rate Benchmarks, 2026</td></tr>
+      <tr><td>Organic search engagement rate (GA4)</td><td>63.07% engaged</td><td>EAB GA4 Engagement Study, Jul 2023–Jul 2024</td></tr>
+      <tr><td>Direct traffic engagement rate (GA4)</td><td>46.86% engaged</td><td>EAB GA4 Engagement Study, Jul 2023–Jul 2024</td></tr>
+    </tbody>
+  </table>
+
+  <div class="callout" style="margin-top:8px;">
+    <div class="callout-title">UAGC Context</div>
+    <p>UAGC's v8 bounce at 31.9% is <strong>well below</strong> the 65%+ Display benchmark — meaning the page holds Display traffic better than average. The issue is what happens <em>after</em> engagement: rage clicks and form friction, not abandonment at entry.</p>
+  </div>
+
+  <!-- ── 3. Mobile & Page Speed ── -->
+  <h3 style="font-size:15px;font-weight:800;color:var(--navy);margin:36px 0 6px;letter-spacing:-0.2px;">Mobile UX &amp; Page Speed</h3>
+  <p style="font-size:13px;color:var(--muted);margin-bottom:16px;">Mobile drives the majority of traffic but converts significantly lower. Speed thresholds are table-stakes.</p>
+
+  <table class="ref">
+    <thead><tr><th>Metric</th><th>Benchmark</th><th>Source</th></tr></thead>
+    <tbody>
+      <tr><td>Mobile traffic share (education)</td><td><strong>62%</strong> of site visits</td><td>CUFinder Higher-Ed Benchmarks, 2026</td></tr>
+      <tr><td>Desktop vs. mobile conversion gap</td><td>Desktop converts <strong>17.6%</strong> higher</td><td>Unbounce Conversion Benchmark Report, 2025</td></tr>
+      <tr><td>Mobile vs. desktop conversion (education)</td><td>Mobile 2.2% vs. Desktop 4.3%</td><td>WinSavvy CWV Education Study, 2025</td></tr>
+      <tr><td>Mobile form conversion gap (lead-gen)</td><td>Mobile converts <strong>32% below</strong> desktop</td><td>Digital Applied Form Benchmarks, 2026</td></tr>
+      <tr><td>LCP target (Google "Good")</td><td>≤ 2.5 seconds</td><td>Google Core Web Vitals, 2024</td></tr>
+      <tr><td>Education sites passing CWV</td><td>Only <strong>5%</strong></td><td>Cube Creative Technical SEO Study, 2025</td></tr>
+      <tr><td>Abandonment at 3+ second load</td><td>53% of mobile visitors leave</td><td>WinSavvy CWV Education Study, 2025</td></tr>
+      <tr><td>Conversion loss per 1s delay</td><td>Up to <strong>20%</strong> reduction</td><td>WinSavvy CWV Education Study, 2025</td></tr>
+    </tbody>
+  </table>
+
+  <div class="callout" style="margin-top:8px;">
+    <div class="callout-title">UAGC Context</div>
+    <p>UAGC's mobile sticky RFI bar consuming 45.6% of viewport is the dominant mobile UX issue — no competitor replicates it. With 62% of education traffic on mobile and a 32% lower form conversion rate already baked in, additional viewport occlusion amplifies the gap.</p>
+  </div>
+
+  <!-- ── 4. Form Field Count & Steps ── -->
+  <h3 style="font-size:15px;font-weight:800;color:var(--navy);margin:36px 0 6px;letter-spacing:-0.2px;">Form Field Count &amp; Step Count</h3>
+  <p style="font-size:13px;color:var(--muted);margin-bottom:16px;">Each additional field costs measurable conversion. Multi-step outperforms single-step at equal field count.</p>
+
+  <table class="ref">
+    <thead><tr><th>Field Count</th><th>Avg. Conversion Rate</th><th>Source</th></tr></thead>
+    <tbody>
+      <tr><td>3 fields</td><td><strong>23.1%</strong></td><td>Digital Applied Form Benchmarks, 2026</td></tr>
+      <tr><td>5 fields</td><td>17.0%</td><td>Digital Applied Form Benchmarks, 2026</td></tr>
+      <tr><td>7 fields</td><td>11.4%</td><td>Digital Applied Form Benchmarks, 2026</td></tr>
+      <tr><td>10+ fields</td><td>6.9%</td><td>Digital Applied Form Benchmarks, 2026</td></tr>
+    </tbody>
+  </table>
+
+  <table class="ref" style="margin-top:12px">
+    <thead><tr><th>Pattern</th><th>Performance</th><th>Source</th></tr></thead>
+    <tbody>
+      <tr><td>Multi-step vs. single-step (same fields)</td><td>Multi-step converts <strong>14% higher</strong></td><td>Digital Applied Form Benchmarks, 2026</td></tr>
+      <tr><td>Multi-step for lead-gen specifically</td><td><strong>21% higher</strong> conversion</td><td>Digital Applied Form Benchmarks, 2026</td></tr>
+      <tr><td>Reducing 11 → 4 fields</td><td>~120% conversion increase</td><td>Acciyo LP Forms for Schools Study, 2025</td></tr>
+      <tr><td>Recommended initial LP fields</td><td>≤ 3 fields (name, email, program)</td><td>Carnegie Slate Forms Study, 2025</td></tr>
+    </tbody>
+  </table>
+
+  <div class="callout" style="margin-top:8px;">
+    <div class="callout-title">UAGC Context</div>
+    <p>UAGC's 2-step form is <strong>directionally correct</strong> — multi-step outperforms single-step by 14–21%. But Step 1 (Area of Interest only) collects zero contact info, meaning abandonment between steps loses the lead entirely. Compare: Empire State captures a lead with 4 fields in one step; Carnegie recommends ≤ 3 initial fields that <em>include</em> email.</p>
+  </div>
+
+  <!-- ── 5. Session Duration & Content Depth ── -->
+  <h3 style="font-size:15px;font-weight:800;color:var(--navy);margin:36px 0 6px;letter-spacing:-0.2px;">Content Depth &amp; Session Duration</h3>
+  <p style="font-size:13px;color:var(--muted);margin-bottom:16px;">Longer, content-rich program pages correlate with higher engagement and better SEO performance.</p>
+
+  <table class="ref">
+    <thead><tr><th>Metric</th><th>Benchmark</th><th>Source</th></tr></thead>
+    <tbody>
+      <tr><td>Higher-ed avg. session duration</td><td><strong>2:01</strong></td><td>OHO Google Analytics Benchmarks for Higher Ed, 2023</td></tr>
+      <tr><td>Online education avg. session duration</td><td><strong>4:12</strong></td><td>CUFinder Online Education Benchmarks, 2026</td></tr>
+      <tr><td>Organic engaged session duration (GA4)</td><td>1:05</td><td>EAB GA4 Engagement Study, Jul 2023–Jul 2024</td></tr>
+      <tr><td>Organic engaged sessions per user</td><td>1.45</td><td>EAB GA4 Engagement Study, Jul 2023–Jul 2024</td></tr>
+      <tr><td>Education industry copy length preference</td><td><strong>Lowest word count</strong> of all industries</td><td>Unbounce Conversion Benchmark Report, 2025</td></tr>
+    </tbody>
+  </table>
+
+  <div class="callout" style="margin-top:8px;">
+    <div class="callout-title">UAGC Context</div>
+    <p>Online education platforms see 2x the session duration of general higher-ed sites (4:12 vs. 2:01), suggesting content-rich program pages drive deeper engagement. However, Unbounce data shows education <strong>landing pages</strong> need the shortest copy of any industry — the distinction is between <em>program pages</em> (depth helps) and <em>conversion landing pages</em> (brevity wins). UAGC's /success/ pages should lean short; program pages under /online-degrees/ should lean deep.</p>
+  </div>
+</div>
+
+<!-- ═══ 1.8 — Subdomain & Hidden Paths ═══ -->
+<div id="subdomains" class="section">
+  <div class="section-label">Task 1.8</div>
+  <div class="section-title">Subdomain &amp; Hidden Path Inventory</div>
+  <div class="section-desc">Catalog every conversion-relevant URL that lives outside the main www.uagc.edu domain — subdomains, Salesforce/cloud-hosted pages, campaign URLs, thank-you pages, and any lead paths not visible in standard site analytics.</div>
+
+  <table class="ref">
+    <thead><tr><th>Domain / Path Type</th><th>Known Examples</th><th>Status</th><th>Tracking Coverage</th></tr></thead>
+    <tbody>
+      <tr>
+        <td><strong>cloud.mail.uagc.edu</strong></td>
+        <td class="mono">/apply-now redirect target</td>
+        <td>Known — Salesforce intake</td>
+        <td>Off-domain; limited GA4 visibility</td>
+      </tr>
+      <tr>
+        <td><strong>login.uagc.edu</strong></td>
+        <td class="mono">Student portal (legacy)</td>
+        <td>Migrating → myuagc.uagc.edu</td>
+        <td>GSC data only; -59% traffic shift</td>
+      </tr>
+      <tr>
+        <td><strong>myuagc.uagc.edu</strong></td>
+        <td class="mono">New student portal</td>
+        <td>Active — new subdomain</td>
+        <td>+107K clicks (new in H2)</td>
+      </tr>
+      <tr>
+        <td><strong>/s/* application funnel</strong></td>
+        <td class="mono">/s/enrollment-agreement, /s/app2a-*, etc.</td>
+        <td>Active — deep funnel</td>
+        <td>Contentsquare tracked; GA4 partial</td>
+      </tr>
+      <tr>
+        <td><strong>Campaign landing pages</strong></td>
+        <td class="mono">/success/* variants (v5, v6, v7, v8)</td>
+        <td>Active — paid traffic destinations</td>
+        <td>GA4 tracked; multiple versions live</td>
+      </tr>
+      <tr>
+        <td><strong>Thank-you / confirmation</strong></td>
+        <td class="mono">/request-information-processing, others TBD</td>
+        <td>Needs inventory</td>
+        <td>Partial — conversion counted but UX unaudited</td>
+      </tr>
+      <tr>
+        <td><strong>Other subdomains</strong></td>
+        <td class="mono">student.uagc.edu, others TBD</td>
+        <td>Needs inventory</td>
+        <td>GSC visible; analytics coverage unknown</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <ul class="checklist">
+    <li><div class="check-box"></div>Complete DNS / subdomain enumeration for *.uagc.edu</li>
+    <li><div class="check-box"></div>Map all Salesforce / cloud.mail.uagc.edu page endpoints</li>
+    <li><div class="check-box"></div>Inventory active /success/* campaign page variants and their traffic sources</li>
+    <li><div class="check-box"></div>Identify thank-you / confirmation page URLs and their post-submit content</li>
+    <li><div class="check-box"></div>Document tracking gaps — which paths have GA4 coverage, which don't</li>
+    <li><div class="check-box"></div>Flag any lead paths where conversions are counted but the user experience is unaudited</li>
+  </ul>
+</div>
+
+<!-- ═══ 1.9 — v8 Exit-Path Review ═══ -->
+<div id="v8-exit" class="section">
+  <div class="section-label">Task 1.9</div>
+  <div class="section-title">Online Programs v8 Exit-Path Review</div>
+  <div class="section-desc">Initial review of where /success/online-programs-v8 users leave or navigate away. This page has 191K sessions (mostly Display traffic) and 4.92% conversion — but 31.9% bounce. Where do the other ~68% who engage eventually go?</div>
+
+  <div class="card-grid">
+    <div class="card">
+      <div class="card-tag exit">Exit Signal</div>
+      <h4>Navigation Away Patterns</h4>
+      <p>Are v8 users clicking through to program pages, hitting back, or leaving the site entirely? Map the top 5 exit destinations from v8.</p>
+    </div>
+    <div class="card">
+      <div class="card-tag exit">Exit Signal</div>
+      <h4>Scroll Depth vs. Exit Point</h4>
+      <p>At what content depth do users leave? Do exits cluster after the form, after the program grid, or before meaningful content loads?</p>
+    </div>
+    <div class="card">
+      <div class="card-tag exit">Exit Signal</div>
+      <h4>Display Traffic Intent</h4>
+      <p>v8 is primarily Display-driven (191K sessions). Display users arrive with low intent — how does this shape exit behavior vs. search-driven pages?</p>
+    </div>
+  </div>
+
+  <ul class="checklist">
+    <li><div class="check-box"></div>Pull GA4 next-page-path data for /success/online-programs-v8 sessions</li>
+    <li><div class="check-box"></div>Identify top 5 exit URLs or exit-to-external destinations</li>
+    <li><div class="check-box"></div>Cross-reference with Contentsquare scroll/engagement data if available</li>
+    <li><div class="check-box"></div>Compare v8 exit patterns against v7 (13.57% conv) and v5 (3.01% conv)</li>
+    <li><div class="check-box"></div>Note any dead-end navigation or broken internal links</li>
+  </ul>
+</div>
+
+<!-- ═══ 1.10 — Post-RFI Flow ═══ -->
+<div id="post-rfi" class="section">
+  <div class="section-label">Task 1.10</div>
+  <div class="section-title">Post-RFI Thank-You / Confirmation Review</div>
+  <div class="section-desc">What happens after a user submits an RFI form? The conversion is counted, but the post-submit experience — confirmation page, next-step messaging, re-engagement path — is currently unaudited. A dead-end thank-you page wastes the highest-intent moment in the funnel.</div>
+
+  <div class="card-grid">
+    <div class="card">
+      <div class="card-tag post-rfi">Post-Submit UX</div>
+      <h4>Confirmation Page Content</h4>
+      <p>What does the user see? A generic "thank you" or a guided next step (schedule a call, explore programs, set expectations for follow-up timing)?</p>
+    </div>
+    <div class="card">
+      <div class="card-tag post-rfi">Post-Submit UX</div>
+      <h4>Re-engagement Paths</h4>
+      <p>Does the confirmation page link back to relevant content — program pages, tuition info, student outcomes? Or is it a dead end that exits the user from the site?</p>
+    </div>
+    <div class="card">
+      <div class="card-tag post-rfi">Post-Submit UX</div>
+      <h4>Cross-Page Consistency</h4>
+      <p>Is the post-RFI experience the same from /request-info-v5, /degree-programs-v7, and program-specific pages? Or do different entry points lead to different (possibly worse) confirmation flows?</p>
+    </div>
+  </div>
+
+  <div class="callout">
+    <div class="callout-title">Known Reference</div>
+    <p><code>/request-information-processing</code> shows 96K sessions at 12.89% conversion rate (funnel mid-step). This page appears in the conversion path but its UX has not been documented. Screenshot and audit alongside any other confirmation/thank-you endpoints.</p>
+  </div>
+
+  <ul class="checklist">
+    <li><div class="check-box"></div>Screenshot post-RFI confirmation pages from each major form entry point</li>
+    <li><div class="check-box"></div>Document what content, CTAs, and next-step messaging appears on each</li>
+    <li><div class="check-box"></div>Check for re-engagement links (program pages, schedule a call, application start)</li>
+    <li><div class="check-box"></div>Note any dead-end patterns — pages with no onward navigation</li>
+    <li><div class="check-box"></div>Audit /request-information-processing page content and flow</li>
+    <li><div class="check-box"></div>Compare post-submit experience to competitor thank-you flows (from task 1.6)</li>
+  </ul>
+</div>
+
+</div><!-- .content -->
+
+<div class="footer">UAGC Phase 1 Audit · Tasks 1.6–1.10 · External Validation Inputs · May 2026</div>
+
+<script src="shared-nav.js"></script>
+</body>
+</html>

@@ -5,7 +5,8 @@
     { id: '1-2', label: '1.2 RFI Audit', href: '1-2-rfi-audit.html', dot: 'c2' },
     { id: '1-3', label: '1.3 Chat Widget', href: '1-3-chat-widget.html', dot: 'c3' },
     { id: '1-4', label: '1.4 Comparison', href: '1-4-comparison.html', dot: 'c4' },
-    { id: '1-5', label: '1.5 Contentsquare', href: '1-5-contentsquare.html', dot: 'c5' }
+    { id: '1-5', label: '1.5 Contentsquare', href: '1-5-contentsquare.html', dot: 'c5' },
+    { id: '1-6', label: '1.6–1.10 Ext. Validation', href: '1-6-external-validation.html', dot: 'c6' }
   ];
 
   var page = location.pathname.split('/').pop() || 'index.html';
@@ -20,7 +21,7 @@
     '.pn-item:hover{color:#0C234B;background:#F7F8FA}',
     '.pn-item[aria-current=page]{color:#0C234B;border-bottom-color:#AB0520}',
     '.pn-dot{width:7px;height:7px;border-radius:50%;flex-shrink:0}',
-    '.pn-dot.c1{background:#3B82F6}.pn-dot.c2{background:#F59E0B}.pn-dot.c3{background:#EC4899}.pn-dot.c4{background:#10B981}.pn-dot.c5{background:#8B5CF6}',
+    '.pn-dot.c1{background:#3B82F6}.pn-dot.c2{background:#F59E0B}.pn-dot.c3{background:#EC4899}.pn-dot.c4{background:#10B981}.pn-dot.c5{background:#8B5CF6}.pn-dot.c6{background:#F97316}',
     '.pn-item[aria-current=page] .pn-dot{box-shadow:0 0 0 3px rgba(171,5,32,.2)}',
     '.pn-prev-next{display:flex;align-items:center;gap:4px;margin-left:auto;padding:0 12px;flex-shrink:0}',
     '.pn-arrow{display:inline-flex;align-items:center;justify-content:center;width:32px;height:32px;border-radius:8px;border:1px solid #E2E5EA;background:#fff;color:#6B7280;text-decoration:none;font-size:14px;font-weight:700;transition:all .15s}',

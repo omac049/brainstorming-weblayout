@@ -442,11 +442,11 @@
     <div class="stat-label">Total Timeline</div>
   </div>
   <div class="stat-card">
-    <div class="stat-value" style="color: var(--text)">16 Tasks</div>
+    <div class="stat-value" style="color: var(--text)">26 Tasks</div>
     <div class="stat-label">Total Deliverables</div>
   </div>
   <div class="stat-card">
-    <div class="stat-value" style="color: var(--text)">~440 hrs</div>
+    <div class="stat-value" style="color: var(--text)">~584 hrs</div>
     <div class="stat-label">Total Effort</div>
   </div>
   <div class="stat-card">
@@ -460,7 +460,7 @@
   <h4>Contents</h4>
   <ul class="toc-list">
     <li><a href="#phase1">Phase 1 — Audit &amp; Document</a></li>
-    <li><a href="#phase2">Phase 2 — Quick Wins</a></li>
+    <li><a href="#phase2">Phase 2 — Quick Wins &amp; Real-Traffic Tests</a></li>
     <li><a href="#phase3">Phase 3 — Reskin Requirements</a></li>
     <li><a href="#timeline">Timeline</a></li>
     <li><a href="#effort">Effort Summary</a></li>
@@ -477,7 +477,7 @@
   <div class="phase-header">
     <h2 style="margin-top: 0;">Phase 1 — Audit &amp; Document</h2>
     <span class="pill blue">May 2026</span>
-    <span class="pill blue" style="opacity: 0.7;">~110 hours</span>
+    <span class="pill blue" style="opacity: 0.7;">~166 hours</span>
   </div>
 
   <p>Establish the complete picture of where friction lives. Every subsequent decision depends on this phase.</p>
@@ -494,6 +494,11 @@
     <li><div class="check-box"></div>Chat widget occlusion audit on 3 mobile viewports</li>
     <li><div class="check-box"></div>Side-by-side: /degree-programs-v7 vs /request-info-v5</li>
     <li><div class="check-box"></div>Contentsquare deep-dive on /s/* funnel rage clicks</li>
+    <li><div class="check-box"></div>Competitive landscape review — SNHU, WGU, CSU Global, UT Tyler, Empire State</li>
+    <li><div class="check-box"></div>Industry benchmark notes — conversion rates, mobile UX, page speed, form norms</li>
+    <li><div class="check-box"></div>Subdomain &amp; hidden path inventory — Salesforce/cloud pages, thank-you pages, tracking gaps</li>
+    <li><div class="check-box"></div>Online Programs v8 exit-path review — where users leave or navigate away</li>
+    <li><div class="check-box"></div>Post-RFI thank-you / confirmation experience review</li>
   </ul>
 
   <h3>Detailed Task Breakdown</h3>
@@ -556,17 +561,65 @@
           <td>Frustration findings report with element-level detail</td>
           <td>Report covers top 5 frustration pages. Each has: specific elements causing rage clicks, heatmap screenshots, recommended fixes. Priority-ranked.</td>
         </tr>
+        <tr style="border-top: 2px solid var(--border-light);">
+          <td colspan="7" style="font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--amber); padding: 14px;">External Validation Inputs</td>
+        </tr>
+        <tr>
+          <td class="task-id">1.6</td>
+          <td><strong>Competitive landscape review.</strong> Capture RFI flows, mobile UX, above-fold content, and page structure from SNHU, WGU, CSU Global, UT Tyler, and Empire State University. Document form step count, progressive disclosure patterns, personalization, and audience segmentation visible to a first-time visitor.</td>
+          <td class="text-bold">UX / Content</td>
+          <td>16 hrs</td>
+          <td>None</td>
+          <td>Competitor comparison doc with screenshots</td>
+          <td>5 competitors documented. Each has: RFI flow (desktop + mobile), above-fold screenshot, form field/step count, notable UX patterns.</td>
+        </tr>
+        <tr>
+          <td class="task-id">1.7</td>
+          <td><strong>Industry benchmark notes.</strong> Collect cited benchmarks for online higher-ed conversion rates, RFI completion rates by traffic source, mobile UX norms, page speed thresholds, and form expectation data. Every figure must include source, date, and context.</td>
+          <td class="text-bold">Analytics / UX</td>
+          <td>12 hrs</td>
+          <td>None</td>
+          <td>Benchmark reference doc with citations</td>
+          <td>5+ benchmark areas covered. Each figure sourced (published study, vendor report, or named case study with date). No unsourced claims.</td>
+        </tr>
+        <tr>
+          <td class="task-id">1.8</td>
+          <td><strong>Subdomain &amp; hidden path inventory.</strong> Catalog subdomains (*.uagc.edu), Salesforce/cloud.mail pages, campaign page variants (/success/*), thank-you/confirmation URLs, and any lead paths not visible in standard site analytics. Document tracking coverage for each.</td>
+          <td class="text-bold">Analytics / Dev</td>
+          <td>12 hrs</td>
+          <td>DNS access, GA4 admin</td>
+          <td>Path inventory spreadsheet with tracking gap flags</td>
+          <td>All subdomains enumerated. Each path: URL, purpose, GA4/CS tracking status, owner. Tracking gaps flagged.</td>
+        </tr>
+        <tr>
+          <td class="task-id">1.9</td>
+          <td><strong>Online Programs v8 exit-path review.</strong> Pull GA4 next-page-path and exit data for /success/online-programs-v8 sessions. Identify top 5 exit destinations, scroll-depth-to-exit correlation, and compare against v7 and v5 exit patterns. Note dead-end navigation.</td>
+          <td class="text-bold">Analytics</td>
+          <td>8 hrs</td>
+          <td>Tasks 1.1, 1.5 (screenshots + CS data)</td>
+          <td>v8 exit-path analysis with comparison to v7/v5</td>
+          <td>Top 5 exit destinations documented. Scroll depth vs. exit mapped. Comparison to v7/v5 patterns included. Dead-end links flagged.</td>
+        </tr>
+        <tr>
+          <td class="task-id">1.10</td>
+          <td><strong>Post-RFI thank-you / confirmation review.</strong> Screenshot and audit the confirmation experience from each major form entry point. Document content, next-step messaging, re-engagement CTAs, and dead-end patterns. Audit /request-information-processing page. Compare to competitor post-submit flows (Task 1.6).</td>
+          <td class="text-bold">UX / Content</td>
+          <td>8 hrs</td>
+          <td>Task 1.6 (competitor reference)</td>
+          <td>Post-RFI UX audit with screenshots and gap list</td>
+          <td>Every major form-to-confirmation path documented. Each confirmation page: content, CTAs, next steps, dead-end status. Competitor comparison included.</td>
+        </tr>
       </tbody>
     </table>
   </div>
 
   <div class="card-row">
     <div class="info-card">
-      <div class="info-card-header">Effort Breakdown <span class="pill blue" style="font-size:10px; padding: 2px 6px;">~110 hrs</span></div>
+      <div class="info-card-header">Effort Breakdown <span class="pill blue" style="font-size:10px; padding: 2px 6px;">~166 hrs</span></div>
       <div class="info-card-body">
-        <p>Web Dev: 16 hrs</p>
-        <p>UX / Content: 54 hrs</p>
-        <p>Analytics: 40 hrs</p>
+        <p>Web Dev: 28 hrs (+12 subdomain/path)</p>
+        <p>UX / Content: 78 hrs (+24 competitors/post-RFI)</p>
+        <p>Analytics: 60 hrs (+20 benchmarks/exits)</p>
       </div>
     </div>
     <div class="info-card">
@@ -591,16 +644,16 @@
 <!-- ═══════════════════════ PHASE 2 ═══════════════════════ -->
 <section class="phase-section" id="phase2">
   <div class="phase-header">
-    <h2 style="margin-top: 0;">Phase 2 — Quick Wins</h2>
+    <h2 style="margin-top: 0;">Phase 2 — Quick Wins &amp; Real-Traffic Tests</h2>
     <span class="pill green">June 2026</span>
-    <span class="pill green" style="opacity: 0.7;">~160 hours</span>
+    <span class="pill green" style="opacity: 0.7;">~248 hours</span>
   </div>
 
-  <p>Implement measurable improvements on highest-impact pages before the full reskin. These changes don't require a redesign — they require removing friction.</p>
+  <p>Use Phase 2 to validate recommended solutions with real traffic. Tests should focus on page speed, mobile usability, RFI friction, CTA hierarchy, Online Programs v8 comparison support, and post-RFI next steps. Testing should use lightweight tracking, cookie-based variant assignment, and Lead API submission so results connect to real user behavior and lead flow.</p>
 
   <div class="callout green">
     <div class="callout-title">Phase Outcome</div>
-    <p>Measurable conversion lifts on the primary RFI page and blog content. A/B test running to validate content-enrichment approach before committing to full reskin.</p>
+    <p>Measurable conversion and UX data from live-traffic tests across paid search, paid social, organic, email, and other sources. Cookie-based A/B tests running with Lead API integration so every variant ties back to real lead flow. Page speed, mobile usability, and post-RFI experience improvements validated before full reskin commitment.</p>
   </div>
 
   <h3>Checklist</h3>
@@ -608,8 +661,13 @@
     <li><div class="check-box"></div>Enrich /request-info-v5 with program content + social proof</li>
     <li><div class="check-box"></div>Add contextual CTA to PhD blog &rarr; doctoral programs</li>
     <li><div class="check-box"></div>Add contextual CTA to business plan blog &rarr; business degrees</li>
-    <li><div class="check-box"></div>A/B test enriched vs. current /request-info-v5</li>
+    <li><div class="check-box"></div>A/B testing infrastructure — cookie-based variant assignment, minimal tracking, Lead API posting</li>
     <li><div class="check-box"></div>Fix rage-click elements on /apply-now</li>
+    <li><div class="check-box"></div>Page speed audit &amp; quick fixes on top landing pages</li>
+    <li><div class="check-box"></div>Mobile UX cleanup — touch targets, chat occlusion, CTA visibility</li>
+    <li><div class="check-box"></div>RFI form placement &amp; messaging tests</li>
+    <li><div class="check-box"></div>Online Programs v8 &ldquo;Comparing Online Colleges?&rdquo; small box test</li>
+    <li><div class="check-box"></div>Post-RFI next-step tests — confirmation content, re-engagement CTAs</li>
   </ul>
 
   <h3>Detailed Task Breakdown</h3>
@@ -656,12 +714,12 @@
         </tr>
         <tr>
           <td class="task-id">2.4</td>
-          <td>Set up <strong>A/B test</strong>: enriched /request-info-v5 (Task 2.1) vs. current version. Test variables: page content only — forms stay identical. Track: conversion rate, bounce rate, engagement rate, avg session duration. Run for remainder of month or until statistical significance.</td>
-          <td class="text-bold">Analytics / Dev</td>
-          <td>32 hrs</td>
+          <td>Build <strong>lightweight A/B testing infrastructure</strong> for live traffic from paid search, paid social, organic, email, and other sources. Implement: <strong>cookie-based variant assignment</strong> (persistent across sessions), <strong>minimal tracking</strong> (variant ID in GA4 events + dataLayer), and <strong>Lead API posting</strong> so every RFI submission includes the variant ID. First test: enriched /request-info-v5 (Task 2.1) vs. current version. Track: conversion rate, bounce rate, engagement rate, avg session duration. Run until statistical significance.</td>
+          <td class="text-bold">Dev / Analytics</td>
+          <td>40 hrs</td>
           <td>Task 2.1 (enriched page ready)</td>
-          <td>A/B test running with dashboard</td>
-          <td>Test configured in Google Optimize or equivalent. 50/50 split. Primary metric: conversion rate. Secondary: bounce rate. Dashboard shared.</td>
+          <td>A/B infrastructure live; first test running with dashboard</td>
+          <td>Cookie-based assignment persists across sessions. Variant ID flows to GA4 events and Lead API payload. 50/50 split on first test. Dashboard shows variant-level conversion, bounce, and lead counts by traffic source.</td>
         </tr>
         <tr>
           <td class="task-id">2.5</td>
@@ -672,31 +730,81 @@
           <td>Fixes deployed to /apply-now</td>
           <td>Rage-click count reduced by 50%+ post-deploy. Button multi-clicks reduced. Verified via Contentsquare post-deploy check.</td>
         </tr>
+        <tr style="border-top: 2px solid var(--border-light);">
+          <td colspan="7" style="font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--green); padding: 14px;">Real-Traffic Tests</td>
+        </tr>
+        <tr>
+          <td class="task-id">2.6</td>
+          <td><strong>Page speed audit &amp; quick fixes</strong> on top 5 paid landing pages and top 5 organic pages. Run Lighthouse + CrUX field data. Address: render-blocking resources, unoptimized images, excessive third-party scripts. Target: LCP &lt; 2.5s, CLS &lt; 0.1 on mobile. Measure before/after with real traffic.</td>
+          <td class="text-bold">Dev</td>
+          <td>16 hrs</td>
+          <td>Task 1.1 (page list finalized)</td>
+          <td>Page speed report + fixes deployed</td>
+          <td>Before/after Lighthouse scores for 10 pages. LCP improved on mobile. Speed gains verified with CrUX or GA4 page timing events.</td>
+        </tr>
+        <tr>
+          <td class="task-id">2.7</td>
+          <td><strong>Mobile UX cleanup.</strong> Address Phase 1 findings: touch target sizing (min 48px), chat widget occlusion on CTA/form fields, above-fold CTA visibility at 375px, sticky-header height budget on mobile. Prioritize top 5 pages by mobile traffic volume.</td>
+          <td class="text-bold">Dev / UX</td>
+          <td>20 hrs</td>
+          <td>Tasks 1.1, 1.3 (screenshots + chat audit)</td>
+          <td>Mobile UX fixes deployed</td>
+          <td>Touch targets pass 48px minimum. Chat widget no longer occludes primary CTA or form fields. CTA visible above fold at 375px on top 5 pages. Mobile bounce rate monitored for improvement.</td>
+        </tr>
+        <tr>
+          <td class="task-id">2.8</td>
+          <td><strong>RFI form placement &amp; messaging tests.</strong> Use A/B infrastructure (Task 2.4) to test: form position on page (above-fold sticky vs. in-content), CTA copy variations, surrounding messaging (generic vs. program-specific value props). Cookie-based assignment; Lead API integration for lead attribution. Run on /request-info-v5 and one program page.</td>
+          <td class="text-bold">Dev / Content</td>
+          <td>20 hrs</td>
+          <td>Task 2.4 (A/B infrastructure live)</td>
+          <td>RFI placement test running with lead tracking</td>
+          <td>At least 2 form placement variants live. Each variant's leads flow through Lead API with variant ID. Dashboard tracks conversion rate by variant and traffic source.</td>
+        </tr>
+        <tr>
+          <td class="task-id">2.9</td>
+          <td><strong>Online Programs v8 &ldquo;Comparing Online Colleges?&rdquo; small box test.</strong> Add a compact comparison-support module to /success/online-programs-v8 addressing the comparison mindset identified in Phase 1 exit-path data (Task 1.9). Content: tuition transparency, accreditation, time-to-degree, and a &ldquo;See how UAGC compares&rdquo; CTA. A/B test box-present vs. control using Task 2.4 infrastructure.</td>
+          <td class="text-bold">Content / Dev</td>
+          <td>12 hrs</td>
+          <td>Tasks 1.9 (v8 exit paths), 2.4 (A/B infrastructure)</td>
+          <td>Comparison box test running on v8</td>
+          <td>Module is compact (no full-page redesign). Content is factual (tuition, accreditation, outcomes). A/B test measures exit rate reduction and scroll-to-form rate. Lead API captures variant.</td>
+        </tr>
+        <tr>
+          <td class="task-id">2.10</td>
+          <td><strong>Post-RFI next-step tests.</strong> Use Phase 1 confirmation review (Task 1.10) to redesign the thank-you / confirmation experience. Test: adding next-step content (what happens after you submit, expected contact timeline, explore-more CTAs) vs. current dead-end confirmation. Cookie-based variant assignment; track re-engagement clicks and downstream enrollment events where measurable.</td>
+          <td class="text-bold">Content / Dev</td>
+          <td>12 hrs</td>
+          <td>Tasks 1.10 (post-RFI review), 2.4 (A/B infrastructure)</td>
+          <td>Post-RFI test running on primary confirmation page</td>
+          <td>Confirmation page includes next-step content in test variant. Re-engagement CTA clicks tracked in GA4. Variant ID flows to Lead API. Before/after bounce from confirmation page measured.</td>
+        </tr>
       </tbody>
     </table>
   </div>
 
   <div class="card-row">
     <div class="info-card">
-      <div class="info-card-header">Effort Breakdown <span class="pill green" style="font-size:10px; padding: 2px 6px;">~160 hrs</span></div>
+      <div class="info-card-header">Effort Breakdown <span class="pill green" style="font-size:10px; padding: 2px 6px;">~248 hrs</span></div>
       <div class="info-card-body">
+        <p>Dev: 120 hrs</p>
         <p>Content: 60 hrs</p>
-        <p>Dev: 80 hrs</p>
-        <p>Analytics: 20 hrs</p>
+        <p>Analytics: 36 hrs</p>
+        <p>UX: 32 hrs</p>
       </div>
     </div>
     <div class="info-card">
       <div class="info-card-header">Key Risks <span class="pill amber" style="font-size:10px; padding: 2px 6px;">Monitor</span></div>
       <div class="info-card-body">
+        <p>Lead API access &amp; payload schema alignment</p>
+        <p>Cookie-based assignment vs. ad-platform attribution conflicts</p>
         <p>CMS limitations for blog CTA modules</p>
-        <p>A/B test tool access / setup time</p>
-        <p>Dev sprint capacity for /apply-now fixes</p>
+        <p>Dev sprint capacity for 10 concurrent tasks</p>
       </div>
     </div>
     <div class="info-card">
       <div class="info-card-header">Milestone <span class="pill green" style="font-size:10px; padding: 2px 6px;">Jun 30</span></div>
       <div class="info-card-body">
-        <p>Blog CTAs live. RFI page enriched and A/B test running. /apply-now fixes deployed. Initial lift data available by end of month.</p>
+        <p>A/B infrastructure live with cookie-based assignment and Lead API integration. Blog CTAs and RFI enrichment deployed. Page speed and mobile UX fixes live. v8 comparison box and post-RFI tests running. Initial lift data available by end of month.</p>
       </div>
     </div>
   </div>
@@ -848,16 +956,16 @@
         <tr>
           <td class="text-bold">May 1–31</td>
           <td><span class="pill blue">Phase 1: Audit</span></td>
-          <td>Screenshots, RFI audit, chat audit, side-by-side comparison, Contentsquare deep-dive</td>
+          <td>Screenshots, RFI audit, chat audit, side-by-side comparison, Contentsquare deep-dive, competitive review, benchmarks, subdomain inventory, v8 exit paths, post-RFI flow</td>
           <td>All audit deliverables in shared folder by May 30</td>
-          <td>PM reviews all 5 deliverables before Phase 2 starts</td>
+          <td>PM reviews all 10 deliverables before Phase 2 starts</td>
         </tr>
         <tr>
           <td class="text-bold">Jun 1–30</td>
-          <td><span class="pill green">Phase 2: Quick Wins</span></td>
-          <td>Enrich RFI page, add blog CTAs, launch A/B test, fix /apply-now rage clicks</td>
-          <td>Changes deployed, A/B test running by Jun 30</td>
-          <td>Blog CTAs trackable in GA4. A/B test configured and splitting traffic.</td>
+          <td><span class="pill green">Phase 2: Quick Wins &amp; Real-Traffic Tests</span></td>
+          <td>Enrich RFI page, blog CTAs, cookie-based A/B infrastructure + Lead API, rage-click fixes, page speed fixes, mobile UX cleanup, RFI placement/messaging tests, v8 comparison box test, post-RFI next-step tests</td>
+          <td>All tests running with Lead API integration by Jun 30</td>
+          <td>Cookie-based variant assignment live. Lead API posting verified. Blog CTAs trackable in GA4. Page speed and mobile fixes deployed. A/B tests splitting traffic across sources.</td>
         </tr>
         <tr>
           <td class="text-bold">Jul 1–31</td>
@@ -879,15 +987,15 @@
 
   <div class="stats-row">
     <div class="stat-card">
-      <div class="stat-value" style="color: var(--text)">~440 hrs</div>
+      <div class="stat-value" style="color: var(--text)">~584 hrs</div>
       <div class="stat-label">Total Estimated Effort</div>
     </div>
     <div class="stat-card">
-      <div class="stat-value" style="color: var(--blue)">~110 hrs</div>
+      <div class="stat-value" style="color: var(--blue)">~166 hrs</div>
       <div class="stat-label">Phase 1</div>
     </div>
     <div class="stat-card">
-      <div class="stat-value" style="color: var(--green)">~160 hrs</div>
+      <div class="stat-value" style="color: var(--green)">~248 hrs</div>
       <div class="stat-label">Phase 2</div>
     </div>
     <div class="stat-card">
@@ -910,17 +1018,17 @@
       <tbody>
         <tr>
           <td class="text-bold">Web Dev / Engineering</td>
+          <td class="text-right">28 hrs</td>
+          <td class="text-right">120 hrs</td>
           <td class="text-right">16 hrs</td>
-          <td class="text-right">80 hrs</td>
-          <td class="text-right">16 hrs</td>
-          <td class="text-right text-bold">112 hrs</td>
+          <td class="text-right text-bold">164 hrs</td>
         </tr>
         <tr>
           <td class="text-bold">UX / Design</td>
-          <td class="text-right">54 hrs</td>
-          <td class="text-right">&mdash;</td>
+          <td class="text-right">78 hrs</td>
+          <td class="text-right">32 hrs</td>
           <td class="text-right">90 hrs</td>
-          <td class="text-right text-bold">144 hrs</td>
+          <td class="text-right text-bold">200 hrs</td>
         </tr>
         <tr>
           <td class="text-bold">Content</td>
@@ -931,17 +1039,17 @@
         </tr>
         <tr>
           <td class="text-bold">Analytics</td>
-          <td class="text-right">40 hrs</td>
-          <td class="text-right">20 hrs</td>
+          <td class="text-right">60 hrs</td>
+          <td class="text-right">36 hrs</td>
           <td class="text-right">32 hrs</td>
-          <td class="text-right text-bold">92 hrs</td>
+          <td class="text-right text-bold">128 hrs</td>
         </tr>
         <tr style="border-top: 2px solid var(--border-light);">
           <td class="text-bold" style="color: var(--text)">Total</td>
-          <td class="text-right text-blue">~110 hrs</td>
-          <td class="text-right text-green">~160 hrs</td>
+          <td class="text-right text-blue">~166 hrs</td>
+          <td class="text-right text-green">~248 hrs</td>
           <td class="text-right text-amber">~170 hrs</td>
-          <td class="text-right" style="color: var(--text); font-weight: 800; font-size: 15px;">~440 hrs</td>
+          <td class="text-right" style="color: var(--text); font-weight: 800; font-size: 15px;">~584 hrs</td>
         </tr>
       </tbody>
     </table>
@@ -1008,6 +1116,46 @@
           <td class="raci-cell raci-R">R</td>
         </tr>
         <tr>
+          <td>1.6 Competitive Landscape</td>
+          <td class="raci-cell raci-A">A</td>
+          <td class="raci-cell raci-R">R</td>
+          <td class="raci-cell raci-I">I</td>
+          <td class="raci-cell raci-R">R</td>
+          <td class="raci-cell raci-C">C</td>
+        </tr>
+        <tr>
+          <td>1.7 Industry Benchmarks</td>
+          <td class="raci-cell raci-A">A</td>
+          <td class="raci-cell raci-C">C</td>
+          <td class="raci-cell raci-I">I</td>
+          <td class="raci-cell raci-I">I</td>
+          <td class="raci-cell raci-R">R</td>
+        </tr>
+        <tr>
+          <td>1.8 Subdomain Inventory</td>
+          <td class="raci-cell raci-A">A</td>
+          <td class="raci-cell raci-I">I</td>
+          <td class="raci-cell raci-R">R</td>
+          <td class="raci-cell raci-I">I</td>
+          <td class="raci-cell raci-R">R</td>
+        </tr>
+        <tr>
+          <td>1.9 v8 Exit-Path Review</td>
+          <td class="raci-cell raci-A">A</td>
+          <td class="raci-cell raci-C">C</td>
+          <td class="raci-cell raci-I">I</td>
+          <td class="raci-cell raci-I">I</td>
+          <td class="raci-cell raci-R">R</td>
+        </tr>
+        <tr>
+          <td>1.10 Post-RFI Flow Review</td>
+          <td class="raci-cell raci-A">A</td>
+          <td class="raci-cell raci-R">R</td>
+          <td class="raci-cell raci-C">C</td>
+          <td class="raci-cell raci-R">R</td>
+          <td class="raci-cell raci-C">C</td>
+        </tr>
+        <tr>
           <td>2.1 Enrich RFI Page</td>
           <td class="raci-cell raci-A">A</td>
           <td class="raci-cell raci-C">C</td>
@@ -1045,6 +1193,46 @@
           <td class="raci-cell raci-R">R</td>
           <td class="raci-cell raci-R">R</td>
           <td class="raci-cell raci-I">I</td>
+          <td class="raci-cell raci-C">C</td>
+        </tr>
+        <tr>
+          <td>2.6 Page Speed Fixes</td>
+          <td class="raci-cell raci-A">A</td>
+          <td class="raci-cell raci-I">I</td>
+          <td class="raci-cell raci-R">R</td>
+          <td class="raci-cell raci-I">I</td>
+          <td class="raci-cell raci-C">C</td>
+        </tr>
+        <tr>
+          <td>2.7 Mobile UX Cleanup</td>
+          <td class="raci-cell raci-A">A</td>
+          <td class="raci-cell raci-R">R</td>
+          <td class="raci-cell raci-R">R</td>
+          <td class="raci-cell raci-I">I</td>
+          <td class="raci-cell raci-I">I</td>
+        </tr>
+        <tr>
+          <td>2.8 RFI Placement Tests</td>
+          <td class="raci-cell raci-A">A</td>
+          <td class="raci-cell raci-C">C</td>
+          <td class="raci-cell raci-R">R</td>
+          <td class="raci-cell raci-R">R</td>
+          <td class="raci-cell raci-C">C</td>
+        </tr>
+        <tr>
+          <td>2.9 v8 Comparison Box</td>
+          <td class="raci-cell raci-A">A</td>
+          <td class="raci-cell raci-C">C</td>
+          <td class="raci-cell raci-R">R</td>
+          <td class="raci-cell raci-R">R</td>
+          <td class="raci-cell raci-C">C</td>
+        </tr>
+        <tr>
+          <td>2.10 Post-RFI Next Steps</td>
+          <td class="raci-cell raci-A">A</td>
+          <td class="raci-cell raci-R">R</td>
+          <td class="raci-cell raci-R">R</td>
+          <td class="raci-cell raci-R">R</td>
           <td class="raci-cell raci-C">C</td>
         </tr>
         <tr>
@@ -1147,6 +1335,30 @@
           <td>Fixes depend on element-level findings</td>
         </tr>
         <tr>
+          <td class="text-bold">2.7 Mobile UX cleanup</td>
+          <td>1.1 Screenshots + 1.3 Chat audit</td>
+          <td><span class="pill red" style="font-size:9px; padding: 2px 6px;">Hard</span></td>
+          <td>Mobile fixes depend on audit findings for touch targets, chat occlusion</td>
+        </tr>
+        <tr>
+          <td class="text-bold">2.8 RFI placement tests</td>
+          <td>2.4 A/B infrastructure live</td>
+          <td><span class="pill red" style="font-size:9px; padding: 2px 6px;">Hard</span></td>
+          <td>Placement tests require cookie-based assignment and Lead API to be operational</td>
+        </tr>
+        <tr>
+          <td class="text-bold">2.9 v8 comparison box</td>
+          <td>1.9 v8 exit paths + 2.4 A/B infrastructure</td>
+          <td><span class="pill red" style="font-size:9px; padding: 2px 6px;">Hard</span></td>
+          <td>Box content based on exit-path data; A/B test requires infrastructure</td>
+        </tr>
+        <tr>
+          <td class="text-bold">2.10 Post-RFI next steps</td>
+          <td>1.10 Post-RFI review + 2.4 A/B infrastructure</td>
+          <td><span class="pill red" style="font-size:9px; padding: 2px 6px;">Hard</span></td>
+          <td>Redesign based on confirmation audit; A/B test requires infrastructure</td>
+        </tr>
+        <tr>
           <td class="text-bold">3.1 Requirements doc</td>
           <td>Phase 1 complete + Phase 2 early data</td>
           <td><span class="pill red" style="font-size:9px; padding: 2px 6px;">Hard</span></td>
@@ -1164,7 +1376,7 @@
 
   <h3 style="margin-top: 24px;">Dependency Flow</h3>
   <div style="background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 24px; margin-top: 12px; overflow-x: auto;">
-    <svg viewBox="0 0 960 340" xmlns="http://www.w3.org/2000/svg" style="width: 100%; max-width: 960px; height: auto;">
+    <svg viewBox="0 0 960 480" xmlns="http://www.w3.org/2000/svg" style="width: 100%; max-width: 960px; height: auto;">
       <defs>
         <marker id="arrow" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
           <path d="M0,0 L8,3 L0,6" fill="#5f636b"/>
@@ -1180,8 +1392,8 @@
       <text x="820" y="20" fill="#f9a825" font-size="11" font-weight="700" text-anchor="middle" font-family="Inter" letter-spacing="0.08em">PHASE 3 — JULY</text>
 
       <!-- Vertical phase dividers -->
-      <line x1="330" y1="10" x2="330" y2="330" stroke="#24272e" stroke-width="1" stroke-dasharray="4"/>
-      <line x1="660" y1="10" x2="660" y2="330" stroke="#24272e" stroke-width="1" stroke-dasharray="4"/>
+      <line x1="330" y1="10" x2="330" y2="470" stroke="#24272e" stroke-width="1" stroke-dasharray="4"/>
+      <line x1="660" y1="10" x2="660" y2="470" stroke="#24272e" stroke-width="1" stroke-dasharray="4"/>
 
       <!-- Phase 1 boxes -->
       <rect x="30" y="40" width="120" height="36" rx="6" fill="#16181c" stroke="#5c9cf5" stroke-width="1.5"/>
@@ -1199,35 +1411,62 @@
       <rect x="30" y="220" width="280" height="36" rx="6" fill="#16181c" stroke="#5c9cf5" stroke-width="1.5"/>
       <text x="170" y="243" fill="#e8e9eb" font-size="11" font-weight="600" text-anchor="middle" font-family="Inter">1.5 Contentsquare Deep-Dive</text>
 
+      <rect x="30" y="280" width="140" height="36" rx="6" fill="#16181c" stroke="#5c9cf5" stroke-width="1.5"/>
+      <text x="100" y="303" fill="#e8e9eb" font-size="11" font-weight="600" text-anchor="middle" font-family="Inter">1.9 v8 Exit Paths</text>
+
+      <rect x="170" y="280" width="140" height="36" rx="6" fill="#16181c" stroke="#5c9cf5" stroke-width="1.5"/>
+      <text x="240" y="303" fill="#e8e9eb" font-size="11" font-weight="600" text-anchor="middle" font-family="Inter">1.10 Post-RFI</text>
+
       <!-- Phase 1 arrows -->
       <line x1="90" y1="76" x2="90" y2="96" stroke="#5f636b" stroke-width="1.5" marker-end="url(#arrow)"/>
       <line x1="150" y1="58" x2="168" y2="58" stroke="#5f636b" stroke-width="1.5" marker-end="url(#arrow)"/>
       <path d="M 150 63 Q 160 100, 170 160 L 170 158" fill="none" stroke="#5f636b" stroke-width="1.5" marker-end="url(#arrow)"/>
       <path d="M 240 76 Q 240 120, 220 158" fill="none" stroke="#5f636b" stroke-width="1.5" marker-end="url(#arrow)"/>
 
-      <!-- Phase 2 boxes -->
+      <!-- Phase 2 boxes — original tasks -->
       <rect x="360" y="40" width="260" height="36" rx="6" fill="#16181c" stroke="#43a047" stroke-width="2"/>
       <text x="490" y="63" fill="#e8e9eb" font-size="11" font-weight="700" text-anchor="middle" font-family="Inter">2.1 Enrich RFI Page</text>
 
-      <rect x="360" y="100" width="140" height="36" rx="6" fill="#16181c" stroke="#43a047" stroke-width="1.5"/>
-      <text x="430" y="123" fill="#e8e9eb" font-size="11" font-weight="600" text-anchor="middle" font-family="Inter">2.2 PhD CTA</text>
+      <rect x="360" y="100" width="120" height="36" rx="6" fill="#16181c" stroke="#43a047" stroke-width="1.5"/>
+      <text x="420" y="123" fill="#e8e9eb" font-size="11" font-weight="600" text-anchor="middle" font-family="Inter">2.2 PhD CTA</text>
 
-      <rect x="510" y="100" width="140" height="36" rx="6" fill="#16181c" stroke="#43a047" stroke-width="1.5"/>
-      <text x="580" y="123" fill="#e8e9eb" font-size="11" font-weight="600" text-anchor="middle" font-family="Inter">2.3 Biz Plan CTA</text>
+      <rect x="500" y="100" width="150" height="36" rx="6" fill="#16181c" stroke="#43a047" stroke-width="1.5"/>
+      <text x="575" y="123" fill="#e8e9eb" font-size="11" font-weight="600" text-anchor="middle" font-family="Inter">2.3 Biz Plan CTA</text>
 
-      <rect x="360" y="160" width="140" height="36" rx="6" fill="#16181c" stroke="#43a047" stroke-width="1.5"/>
-      <text x="430" y="183" fill="#e8e9eb" font-size="11" font-weight="600" text-anchor="middle" font-family="Inter">2.4 A/B Test</text>
+      <rect x="360" y="160" width="290" height="36" rx="6" fill="#16181c" stroke="#43a047" stroke-width="2"/>
+      <text x="505" y="183" fill="#e8e9eb" font-size="11" font-weight="700" text-anchor="middle" font-family="Inter">2.4 A/B Infra + Lead API</text>
 
-      <rect x="360" y="220" width="260" height="36" rx="6" fill="#16181c" stroke="#43a047" stroke-width="1.5"/>
-      <text x="490" y="243" fill="#e8e9eb" font-size="11" font-weight="600" text-anchor="middle" font-family="Inter">2.5 Fix Rage Clicks</text>
+      <rect x="360" y="220" width="140" height="36" rx="6" fill="#16181c" stroke="#43a047" stroke-width="1.5"/>
+      <text x="430" y="243" fill="#e8e9eb" font-size="11" font-weight="600" text-anchor="middle" font-family="Inter">2.5 Rage Clicks</text>
+
+      <rect x="510" y="220" width="140" height="36" rx="6" fill="#16181c" stroke="#43a047" stroke-width="1.5"/>
+      <text x="580" y="243" fill="#e8e9eb" font-size="11" font-weight="600" text-anchor="middle" font-family="Inter">2.6 Page Speed</text>
+
+      <!-- Phase 2 boxes — new real-traffic tests -->
+      <rect x="360" y="280" width="140" height="36" rx="6" fill="#16181c" stroke="#43a047" stroke-width="1.5"/>
+      <text x="430" y="303" fill="#e8e9eb" font-size="11" font-weight="600" text-anchor="middle" font-family="Inter">2.7 Mobile UX</text>
+
+      <rect x="510" y="280" width="140" height="36" rx="6" fill="#16181c" stroke="#43a047" stroke-width="1.5"/>
+      <text x="580" y="303" fill="#e8e9eb" font-size="11" font-weight="600" text-anchor="middle" font-family="Inter">2.8 RFI Tests</text>
+
+      <rect x="360" y="340" width="140" height="36" rx="6" fill="#16181c" stroke="#43a047" stroke-width="1.5"/>
+      <text x="430" y="363" fill="#e8e9eb" font-size="11" font-weight="600" text-anchor="middle" font-family="Inter">2.9 v8 Compare</text>
+
+      <rect x="510" y="340" width="140" height="36" rx="6" fill="#16181c" stroke="#43a047" stroke-width="1.5"/>
+      <text x="580" y="363" fill="#e8e9eb" font-size="11" font-weight="600" text-anchor="middle" font-family="Inter">2.10 Post-RFI</text>
 
       <!-- Phase 1 → Phase 2 arrows (cross-phase) -->
       <line x1="310" y1="178" x2="358" y2="58" stroke="#43a047" stroke-width="1.5" marker-end="url(#arrow-green)"/>
       <line x1="310" y1="238" x2="358" y2="238" stroke="#43a047" stroke-width="1.5" marker-end="url(#arrow-green)"/>
+      <line x1="170" y1="136" x2="358" y2="286" stroke="#43a047" stroke-width="1.5" marker-end="url(#arrow-green)"/>
+      <line x1="170" y1="298" x2="358" y2="352" stroke="#43a047" stroke-width="1.5" marker-end="url(#arrow-green)"/>
+      <line x1="310" y1="298" x2="508" y2="352" stroke="#43a047" stroke-width="1.5" marker-end="url(#arrow-green)"/>
 
       <!-- Phase 2 internal arrows -->
-      <line x1="500" y1="118" x2="508" y2="118" stroke="#5f636b" stroke-width="1.5" marker-end="url(#arrow)"/>
-      <line x1="490" y1="76" x2="430" y2="158" stroke="#5f636b" stroke-width="1.5" marker-end="url(#arrow)"/>
+      <line x1="480" y1="118" x2="498" y2="118" stroke="#5f636b" stroke-width="1.5" marker-end="url(#arrow)"/>
+      <line x1="490" y1="76" x2="460" y2="158" stroke="#5f636b" stroke-width="1.5" marker-end="url(#arrow)"/>
+      <path d="M 505 196 Q 505 240, 510 278" fill="none" stroke="#5f636b" stroke-width="1.5" marker-end="url(#arrow)"/>
+      <path d="M 505 196 Q 465 240, 430 278" fill="none" stroke="#5f636b" stroke-width="1.5" marker-end="url(#arrow)"/>
 
       <!-- Phase 3 boxes -->
       <rect x="690" y="40" width="250" height="36" rx="6" fill="#16181c" stroke="#f9a825" stroke-width="2"/>
@@ -1245,22 +1484,22 @@
       <rect x="820" y="160" width="120" height="36" rx="6" fill="#16181c" stroke="#f9a825" stroke-width="1.5"/>
       <text x="880" y="183" fill="#e8e9eb" font-size="11" font-weight="600" text-anchor="middle" font-family="Inter">3.5 Lightcast</text>
 
-      <rect x="690" y="280" width="250" height="36" rx="6" fill="#16181c" stroke="#f9a825" stroke-width="2"/>
-      <text x="815" y="303" fill="#e8e9eb" font-size="11" font-weight="700" text-anchor="middle" font-family="Inter">3.6 Results Readout</text>
+      <rect x="690" y="340" width="250" height="36" rx="6" fill="#16181c" stroke="#f9a825" stroke-width="2"/>
+      <text x="815" y="363" fill="#e8e9eb" font-size="11" font-weight="700" text-anchor="middle" font-family="Inter">3.6 Results Readout</text>
 
       <!-- Phase 2 → Phase 3 arrows -->
-      <line x1="620" y1="58" x2="688" y2="58" stroke="#f9a825" stroke-width="1.5" marker-end="url(#arrow)"/>
-      <path d="M 500 196 Q 600 270, 688 298" fill="none" stroke="#f9a825" stroke-width="1.5" marker-end="url(#arrow)"/>
+      <line x1="650" y1="58" x2="688" y2="58" stroke="#f9a825" stroke-width="1.5" marker-end="url(#arrow)"/>
+      <path d="M 580 376 Q 630 380, 688 368" fill="none" stroke="#f9a825" stroke-width="1.5" marker-end="url(#arrow)"/>
 
       <!-- Legend -->
-      <rect x="30" y="290" width="10" height="10" rx="2" fill="#5c9cf5"/>
-      <text x="46" y="299" fill="#8b8f98" font-size="9" font-family="Inter">Phase 1</text>
-      <rect x="100" y="290" width="10" height="10" rx="2" fill="#43a047"/>
-      <text x="116" y="299" fill="#8b8f98" font-size="9" font-family="Inter">Phase 2</text>
-      <rect x="170" y="290" width="10" height="10" rx="2" fill="#f9a825"/>
-      <text x="186" y="299" fill="#8b8f98" font-size="9" font-family="Inter">Phase 3</text>
-      <line x1="240" y1="295" x2="265" y2="295" stroke="#5f636b" stroke-width="1.5" marker-end="url(#arrow)"/>
-      <text x="272" y="299" fill="#8b8f98" font-size="9" font-family="Inter">Dependency</text>
+      <rect x="30" y="430" width="10" height="10" rx="2" fill="#5c9cf5"/>
+      <text x="46" y="439" fill="#8b8f98" font-size="9" font-family="Inter">Phase 1</text>
+      <rect x="100" y="430" width="10" height="10" rx="2" fill="#43a047"/>
+      <text x="116" y="439" fill="#8b8f98" font-size="9" font-family="Inter">Phase 2</text>
+      <rect x="170" y="430" width="10" height="10" rx="2" fill="#f9a825"/>
+      <text x="186" y="439" fill="#8b8f98" font-size="9" font-family="Inter">Phase 3</text>
+      <line x1="240" y1="435" x2="265" y2="435" stroke="#5f636b" stroke-width="1.5" marker-end="url(#arrow)"/>
+      <text x="272" y="439" fill="#8b8f98" font-size="9" font-family="Inter">Dependency</text>
     </svg>
   </div>
 </section>
@@ -1297,18 +1536,32 @@
           <td>Dev Lead</td>
         </tr>
         <tr>
-          <td class="text-bold">A/B test tool not configured or available</td>
-          <td class="text-red">High — Task 2.4 blocked, Phase 3 validation weakened</td>
-          <td>Low</td>
-          <td>Confirm tool access (Google Optimize, VWO, etc.) in Phase 1. Fallback: sequential deploy with before/after comparison.</td>
-          <td>Analytics Lead</td>
+          <td class="text-bold">Lead API access or payload schema not available</td>
+          <td class="text-red">High — Tasks 2.4, 2.8–2.10 blocked; test results can't tie to real lead flow</td>
+          <td class="text-amber">Medium</td>
+          <td>Request Lead API docs and test endpoint access during Phase 1. Define required payload fields (variant ID, source, timestamp) early. Fallback: GA4 event tracking only until API is available.</td>
+          <td>Dev Lead / Analytics</td>
         </tr>
         <tr>
-          <td class="text-bold">Phase 2 A/B test doesn't reach statistical significance within June</td>
+          <td class="text-bold">Cookie-based assignment conflicts with ad-platform attribution</td>
+          <td class="text-amber">Medium — variant assignment may not align with Google Ads / Meta click IDs</td>
+          <td class="text-amber">Medium</td>
+          <td>Use first-party cookies only. Pass variant ID as custom parameter in GA4 and Lead API — don't override GCLID/FBCLID. Document attribution model so paid team can reconcile.</td>
+          <td>Analytics / Dev</td>
+        </tr>
+        <tr>
+          <td class="text-bold">Phase 2 A/B tests don't reach statistical significance within June</td>
           <td class="text-amber">Medium — Phase 3 readout has preliminary data only</td>
           <td class="text-amber">Medium</td>
-          <td>Full month of data collection increases likelihood of significance. If still inconclusive, extend into July. Don't gate reskin decision on test alone — use alongside Phase 1 audit findings.</td>
+          <td>Full month of data collection increases likelihood of significance. Prioritize tests on highest-traffic pages. If still inconclusive, extend into July. Don't gate reskin decision on test alone — use alongside Phase 1 audit findings.</td>
           <td>PM / Analytics</td>
+        </tr>
+        <tr>
+          <td class="text-bold">Too many concurrent tests dilute traffic per variant</td>
+          <td class="text-amber">Medium — individual tests may be underpowered</td>
+          <td class="text-amber">Medium</td>
+          <td>Sequence tests by page: run RFI placement test and v8 comparison box test on different pages simultaneously. Stagger post-RFI test to start after initial RFI test stabilizes. Use sample-size calculators to validate minimum traffic per variant.</td>
+          <td>Analytics / PM</td>
         </tr>
         <tr>
           <td class="text-bold">Dev sprint capacity unavailable for /apply-now fixes</td>

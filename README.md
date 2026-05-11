@@ -833,8 +833,13 @@ Period 2: Oct 8, 2025 – Apr 8, 2026
 | 3 | Document chat widget position per page — screenshot overlays showing occlusion on mobile viewports (375×667, 390×844) | UX | Annotated screenshot deck |
 | 4 | Side-by-side structural comparison: `/success/degree-programs-v7` (13.57% conv) vs. `/success/request-info-v5` (3.01% conv) — what's different in content depth, program specificity, social proof, and value prop placement (form structure is similar) | UX / Content | Comparison document |
 | 5 | Review Contentsquare frustration data for `/s/*` application funnel pages — identify specific rage-click elements and broken interactions | UX / Analytics | Frustration findings report |
+| 6 | Competitive landscape review — capture RFI flows, mobile UX, and page structure from SNHU, WGU, CSU Global, UT Tyler, and Empire State University | UX / Content | Competitor comparison doc with screenshots |
+| 7 | Industry benchmark notes — collect cited benchmarks for online higher-ed conversion rates, RFI completion, mobile UX, page speed, and form expectations | Analytics / UX | Benchmark reference doc with citations |
+| 8 | Subdomain & hidden path inventory — catalog subdomains, Salesforce/cloud pages, campaign pages, thank-you pages, and hidden lead paths beyond uagc.edu | Analytics / Dev | Path inventory spreadsheet with tracking gap flags |
+| 9 | Online Programs v8 exit-path review — pull GA4 next-page-path and exit data, identify top exit destinations, compare to v7/v5 patterns | Analytics | v8 exit-path analysis |
+| 10 | Post-RFI thank-you / confirmation review — screenshot and audit the post-submit experience from each major form entry point, document next-step messaging and dead-end patterns | UX / Content | Post-RFI UX audit with gap list |
 
-**Phase 1 outcome:** Complete picture of what each page looks like, where friction lives, and what the best-performing pages do differently.
+**Phase 1 outcome:** Complete picture of what each page looks like, where friction lives, what the best-performing pages do differently, and whether UAGC friction points are internal page issues, market expectation gaps, or tracking/journey gaps outside the main domain.
 
 ### Phase 2: Quick Wins (Week of Apr 21)
 
