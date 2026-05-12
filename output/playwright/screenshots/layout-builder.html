@@ -1,0 +1,1068 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Layout Score Builder — UAGC Phase 1 Audit</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+:root {
+  --navy: #0C234B;
+  --navy-light: #1a3a6b;
+  --red: #AB0520;
+  --light: #F4F6F9;
+  --border: #E2E5EA;
+  --border-subtle: #ECEEF2;
+  --muted: #6B7280;
+  --green: #059669;
+  --amber: #D97706;
+  --danger: #DC2626;
+  --bg: #F8F9FB;
+  --surface: #FFFFFF;
+  --shadow-sm: 0 1px 2px rgba(12,35,75,0.04);
+  --shadow-md: 0 4px 12px rgba(12,35,75,0.06);
+  --shadow-lg: 0 8px 24px rgba(12,35,75,0.08);
+  --shadow-lift: 0 8px 20px rgba(12,35,75,0.12), 0 2px 6px rgba(12,35,75,0.04);
+  --radius: 10px;
+  --radius-lg: 14px;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; scroll-padding-top: 52px; }
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: var(--light); color: #1a1a1a; line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+@keyframes fadeUp { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes pulseGlow { 0%, 100% { box-shadow: 0 0 0 0 rgba(5,150,105,0); } 50% { box-shadow: 0 0 0 6px rgba(5,150,105,0.12); } }
+@keyframes shimmer { from { background-position: -200% 0; } to { background-position: 200% 0; } }
+
+.header {
+  background: linear-gradient(135deg, var(--navy) 0%, var(--navy-light) 60%, #1e4a8a 100%);
+  color: white; padding: 40px 48px 32px;
+  position: relative; animation: fadeUp 0.4s ease-out;
+}
+.header::after {
+  content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 3px;
+  background: linear-gradient(90deg, var(--red), #D4163A, var(--red));
+}
+.header h1 { font-size: 28px; font-weight: 800; letter-spacing: -0.5px; margin-bottom: 4px; }
+.header p { font-size: 14px; opacity: 0.65; max-width: 640px; line-height: 1.6; }
+.header .meta { display: flex; gap: 24px; margin-top: 14px; font-size: 12px; opacity: 0.45; }
+.header .meta span {
+  display: flex; align-items: center; gap: 6px;
+}
+.header .meta span::before {
+  content: ''; width: 5px; height: 5px; border-radius: 50%;
+  background: rgba(255,255,255,0.5);
+}
+
+.app { display: grid; grid-template-columns: 310px 1fr 350px; gap: 0; min-height: calc(100vh - 140px); }
+
+@media (max-width: 1200px) {
+  .app { grid-template-columns: 1fr; }
+  .catalog, .advisor { border: none; border-top: 1px solid var(--border); }
+}
+
+/* ── Catalog Panel ─────────────────── */
+.catalog {
+  background: var(--surface); border-right: 1px solid var(--border);
+  overflow-y: auto; padding: 0; height: calc(100vh - 140px); position: sticky; top: 44px;
+}
+.catalog::-webkit-scrollbar { width: 4px; }
+.catalog::-webkit-scrollbar-track { background: transparent; }
+.catalog::-webkit-scrollbar-thumb { background: #D1D5DB; border-radius: 4px; }
+.catalog::-webkit-scrollbar-thumb:hover { background: #9CA3AF; }
+
+.catalog-header {
+  padding: 18px 20px 14px; border-bottom: 1px solid var(--border);
+  position: sticky; top: 0; background: white; z-index: 10;
+}
+.catalog-header h2 { font-size: 14px; font-weight: 700; color: var(--navy); letter-spacing: -0.2px; }
+.catalog-header p { font-size: 11px; color: var(--muted); margin-top: 3px; }
+.catalog-search {
+  width: 100%; padding: 9px 12px 9px 34px; border: 1px solid var(--border); border-radius: var(--radius);
+  font-size: 12px; font-family: inherit; margin-top: 12px; outline: none;
+  transition: all 0.2s; background: var(--bg) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%239CA3AF' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='11' cy='11' r='8'/%3E%3Cline x1='21' y1='21' x2='16.65' y2='16.65'/%3E%3C/svg%3E") 12px center no-repeat;
+}
+.catalog-search:focus { border-color: var(--navy); background-color: white; box-shadow: 0 0 0 3px rgba(12,35,75,0.06); }
+
+.cat-group { padding: 0; }
+.cat-group-label {
+  font-size: 10px; font-weight: 700; letter-spacing: 1.2px; text-transform: uppercase;
+  padding: 16px 20px 6px; color: var(--muted); position: sticky; top: 80px;
+  background: white; z-index: 5;
+  display: flex; align-items: center; gap: 8px;
+}
+.cat-group-label::after {
+  content: ''; flex: 1; height: 1px; background: var(--border-subtle);
+}
+
+.mod-card {
+  display: flex; align-items: flex-start; gap: 10px;
+  padding: 10px 16px 10px 20px; cursor: grab; transition: all 0.18s ease;
+  border-bottom: 1px solid var(--border-subtle); user-select: none;
+  position: relative;
+}
+.mod-card::before {
+  content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 3px;
+  border-radius: 0 2px 2px 0; opacity: 0; transition: opacity 0.18s;
+  background: var(--cat-color, var(--muted));
+}
+.mod-card:hover {
+  background: var(--bg); transform: translateX(2px);
+}
+.mod-card:hover::before { opacity: 1; }
+.mod-card:active { cursor: grabbing; transform: translateX(2px) scale(0.99); }
+.mod-card.in-layout { opacity: 0.35; }
+.mod-card.in-layout:hover { opacity: 0.5; }
+.mod-card .dot {
+  width: 10px; height: 10px; border-radius: 3px; flex-shrink: 0; margin-top: 4px;
+  box-shadow: var(--shadow-sm);
+}
+.mod-card .mod-info { flex: 1; min-width: 0; }
+.mod-card .mod-name { font-size: 12px; font-weight: 600; color: #1f2937; letter-spacing: -0.1px; }
+.mod-card .mod-id { font-size: 10px; font-family: 'SF Mono', 'Fira Code', monospace; color: var(--muted); margin-top: 1px; }
+.mod-card .mod-usage {
+  font-size: 9px; font-weight: 600; color: var(--navy);
+  background: linear-gradient(135deg, #EEF2FF, #E8ECFA); padding: 2px 7px; border-radius: 4px;
+  margin-top: 3px; display: inline-block; letter-spacing: 0.2px;
+}
+.mod-card .add-btn {
+  flex-shrink: 0; width: 28px; height: 28px; border-radius: 8px;
+  border: 1px solid var(--border); background: white; cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 15px; font-weight: 700; color: var(--green);
+  transition: all 0.18s; margin-top: 2px;
+}
+.mod-card .add-btn:hover {
+  background: #ECFDF5; border-color: var(--green);
+  box-shadow: 0 0 0 3px rgba(5,150,105,0.08);
+  transform: scale(1.08);
+}
+.mod-card .add-btn:active { transform: scale(0.95); }
+
+/* ── Builder Panel ─────────────────── */
+.builder {
+  padding: 24px 32px; overflow-y: auto; height: calc(100vh - 140px); position: sticky; top: 44px;
+  background: var(--light);
+}
+.builder::-webkit-scrollbar { width: 6px; }
+.builder::-webkit-scrollbar-track { background: transparent; }
+.builder::-webkit-scrollbar-thumb { background: #D1D5DB; border-radius: 4px; }
+
+.builder-controls {
+  display: flex; gap: 10px; align-items: center; margin-bottom: 20px; flex-wrap: wrap;
+}
+.builder-controls label { font-size: 12px; font-weight: 600; color: var(--navy); }
+.builder-controls select {
+  padding: 8px 14px; border: 1px solid var(--border); border-radius: var(--radius);
+  font-size: 12px; font-family: inherit; background: white; cursor: pointer;
+  box-shadow: var(--shadow-sm); transition: all 0.15s;
+}
+.builder-controls select:hover { border-color: #9CA3AF; }
+.builder-controls select:focus { outline: none; border-color: var(--navy); box-shadow: 0 0 0 3px rgba(12,35,75,0.06); }
+.btn-reset {
+  margin-left: auto; padding: 7px 16px; border-radius: 8px;
+  border: 1px solid var(--border); background: white; font-size: 11px;
+  font-weight: 600; cursor: pointer; transition: all 0.18s; font-family: inherit;
+  box-shadow: var(--shadow-sm);
+}
+.btn-reset:hover { border-color: var(--danger); color: var(--danger); background: #FEF2F2; }
+.btn-preset {
+  padding: 7px 16px; border-radius: 8px;
+  border: 1px solid var(--green); background: #ECFDF5; font-size: 11px;
+  font-weight: 600; cursor: pointer; transition: all 0.18s; color: var(--green);
+  font-family: inherit; box-shadow: var(--shadow-sm);
+}
+.btn-preset:hover { background: var(--green); color: white; box-shadow: 0 2px 8px rgba(5,150,105,0.25); }
+
+.score-bar {
+  background: white; border: 1px solid var(--border); border-radius: var(--radius-lg);
+  padding: 22px 26px; margin-bottom: 20px;
+  box-shadow: var(--shadow-sm);
+}
+.score-main { display: flex; align-items: center; gap: 22px; margin-bottom: 18px; }
+.score-ring {
+  position: relative; width: 88px; height: 88px; flex-shrink: 0;
+}
+.score-ring svg { transform: rotate(-90deg); filter: drop-shadow(0 2px 4px rgba(0,0,0,0.06)); }
+.score-ring .track { fill: none; stroke: #F0F1F3; stroke-width: 5; }
+.score-ring .fill { fill: none; stroke-width: 5; stroke-linecap: round; transition: stroke-dashoffset 0.6s ease, stroke 0.3s; }
+.score-ring .fill-bg { fill: none; stroke-width: 5; stroke-linecap: round; opacity: 0.15; }
+.score-number {
+  position: absolute; inset: 0; display: flex; align-items: center; justify-content: center;
+  font-size: 26px; font-weight: 800; letter-spacing: -1px;
+}
+.score-number span { font-size: 13px; font-weight: 500; color: var(--muted); margin-left: 1px; letter-spacing: 0; }
+.score-label { font-size: 14px; font-weight: 700; color: var(--navy); letter-spacing: -0.2px; }
+.score-sublabel { font-size: 11px; color: var(--muted); margin-top: 3px; }
+
+.score-dims { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; }
+.dim-row {
+  display: flex; align-items: center; gap: 8px; padding: 8px 10px;
+  background: var(--bg); border-radius: 8px; border: 1px solid transparent;
+  transition: all 0.15s;
+}
+.dim-row:hover { border-color: var(--border); background: white; }
+.dim-icon { font-size: 14px; flex-shrink: 0; width: 20px; text-align: center; opacity: 0.8; }
+.dim-info { flex: 1; min-width: 0; }
+.dim-name { font-size: 10px; font-weight: 600; color: #4B5563; letter-spacing: 0.2px; }
+.dim-track { height: 5px; background: #E5E7EB; border-radius: 3px; margin-top: 4px; overflow: hidden; }
+.dim-fill { height: 100%; border-radius: 3px; transition: width 0.5s cubic-bezier(0.4,0,0.2,1), background 0.3s; }
+.dim-val { font-size: 12px; font-weight: 800; flex-shrink: 0; min-width: 28px; text-align: right; letter-spacing: -0.5px; }
+
+.layout-zone {
+  min-height: 300px; border: 2px dashed var(--border); border-radius: var(--radius-lg);
+  padding: 8px; transition: all 0.25s ease; background: white;
+}
+.layout-zone.drag-over {
+  border-color: var(--green); background: #F0FDF4;
+  box-shadow: inset 0 0 0 1px rgba(5,150,105,0.1), 0 0 0 4px rgba(5,150,105,0.06);
+}
+.layout-zone.empty { display: flex; align-items: center; justify-content: center; }
+.layout-empty-msg {
+  text-align: center; padding: 48px 24px; color: var(--muted);
+}
+.layout-empty-msg .icon {
+  font-size: 40px; margin-bottom: 12px; opacity: 0.3;
+  display: flex; align-items: center; justify-content: center;
+}
+.layout-empty-msg p { font-size: 13px; font-weight: 500; }
+.layout-empty-msg .hint { font-size: 11px; margin-top: 8px; opacity: 0.5; line-height: 1.6; }
+
+.layout-item {
+  display: flex; align-items: center; gap: 10px;
+  padding: 0; background: white; border: 1px solid var(--border);
+  border-radius: var(--radius); margin-bottom: 5px; cursor: grab; transition: all 0.18s ease;
+  user-select: none; overflow: hidden;
+}
+.layout-item:hover {
+  border-color: #9CA3AF; box-shadow: var(--shadow-md);
+  transform: translateY(-1px);
+}
+.layout-item:active { cursor: grabbing; box-shadow: var(--shadow-lift); transform: translateY(-2px); }
+.layout-item.dragging { opacity: 0.3; transform: scale(0.98); }
+.layout-item .li-color-strip {
+  width: 4px; align-self: stretch; flex-shrink: 0; border-radius: 0;
+}
+.layout-item .li-drag {
+  display: flex; flex-direction: column; gap: 2px; padding: 0 4px 0 8px;
+  flex-shrink: 0; opacity: 0.25; transition: opacity 0.15s;
+}
+.layout-item:hover .li-drag { opacity: 0.5; }
+.layout-item .li-drag span {
+  display: block; width: 10px; height: 2px; background: currentColor; border-radius: 1px;
+}
+.layout-item .li-order {
+  width: 24px; height: 24px; border-radius: 7px; background: var(--navy);
+  color: white; display: flex; align-items: center; justify-content: center;
+  font-size: 10px; font-weight: 700; flex-shrink: 0;
+  box-shadow: var(--shadow-sm);
+}
+.layout-item .li-dot { width: 8px; height: 8px; border-radius: 2px; flex-shrink: 0; }
+.layout-item .li-name { font-size: 12px; font-weight: 600; flex: 1; letter-spacing: -0.1px; }
+.layout-item .li-id {
+  font-size: 10px; font-family: 'SF Mono','Fira Code',monospace; color: var(--muted);
+  background: var(--bg); padding: 2px 6px; border-radius: 4px;
+}
+.layout-item .li-remove {
+  width: 24px; height: 24px; border-radius: 7px; border: 1px solid transparent;
+  background: transparent; cursor: pointer; display: flex; align-items: center; justify-content: center;
+  font-size: 13px; color: #C4C9D2; transition: all 0.18s; flex-shrink: 0; margin-right: 10px;
+}
+.layout-item .li-remove:hover { color: var(--danger); border-color: var(--danger); background: #FEF2F2; }
+
+.layout-drop-indicator {
+  height: 3px; background: var(--green); border-radius: 2px; margin: 2px 0;
+  transition: opacity 0.15s; opacity: 0;
+}
+.layout-drop-indicator.visible { opacity: 1; }
+
+.comparable-label {
+  margin-top: 20px; font-size: 10px; font-weight: 700; color: var(--muted);
+  letter-spacing: 1px; text-transform: uppercase;
+}
+.comparable-cards { display: flex; gap: 8px; margin-top: 10px; flex-wrap: wrap; }
+.comp-card {
+  padding: 12px 14px; border-radius: var(--radius); border: 1px solid var(--border);
+  background: white; font-size: 11px; flex: 1; min-width: 140px;
+  box-shadow: var(--shadow-sm); transition: all 0.18s;
+}
+.comp-card:hover { box-shadow: var(--shadow-md); border-color: #B8BEC8; }
+.comp-card .cc-name { font-weight: 700; color: var(--navy); margin-bottom: 4px; }
+.comp-card .cc-conv { font-weight: 800; font-size: 13px; letter-spacing: -0.3px; }
+.comp-card .cc-match { font-size: 10px; color: var(--muted); margin-top: 4px; }
+
+/* ── Advisor Panel ─────────────────── */
+.advisor {
+  background: var(--surface); border-left: 1px solid var(--border);
+  overflow-y: auto; padding: 0; height: calc(100vh - 140px); position: sticky; top: 44px;
+}
+.advisor::-webkit-scrollbar { width: 4px; }
+.advisor::-webkit-scrollbar-track { background: transparent; }
+.advisor::-webkit-scrollbar-thumb { background: #D1D5DB; border-radius: 4px; }
+
+.advisor-header {
+  padding: 18px 20px 14px; border-bottom: 1px solid var(--border);
+  position: sticky; top: 0; background: white; z-index: 10;
+}
+.advisor-header h2 {
+  font-size: 14px; font-weight: 700; color: var(--navy);
+  display: flex; align-items: center; gap: 8px; letter-spacing: -0.2px;
+}
+.advisor-header p { font-size: 11px; color: var(--muted); margin-top: 3px; }
+
+.advisor-section { padding: 18px 20px; border-bottom: 1px solid var(--border-subtle); }
+.advisor-section h3 {
+  font-size: 10px; font-weight: 700; letter-spacing: 1px;
+  text-transform: uppercase; color: var(--muted); margin-bottom: 10px;
+  display: flex; align-items: center; gap: 8px;
+}
+.advisor-section h3::after {
+  content: ''; flex: 1; height: 1px; background: var(--border-subtle);
+}
+
+.insight-card {
+  padding: 12px 14px; border-radius: var(--radius); margin-bottom: 8px;
+  font-size: 12px; line-height: 1.6; border-left: 3px solid;
+  transition: all 0.15s;
+}
+.insight-card:hover { transform: translateX(2px); }
+.insight-card.good { background: #ECFDF5; color: #065F46; border-left-color: var(--green); }
+.insight-card.warn { background: #FFFBEB; color: #92400E; border-left-color: var(--amber); }
+.insight-card.bad { background: #FEF2F2; color: #991B1B; border-left-color: var(--danger); }
+.insight-card.info { background: #EFF6FF; color: #1E40AF; border-left-color: #3B82F6; }
+.insight-card strong { font-weight: 700; }
+
+.llm-prompt-box {
+  margin-top: 10px; padding: 14px 16px; background: #1a1b2e; color: #CDD6F4;
+  border-radius: var(--radius); font-size: 11px; font-family: 'SF Mono','Fira Code', monospace;
+  line-height: 1.6; max-height: 320px; overflow-y: auto; white-space: pre-wrap;
+  word-break: break-word; border: 1px solid #2a2b40;
+}
+.llm-prompt-box::-webkit-scrollbar { width: 4px; }
+.llm-prompt-box::-webkit-scrollbar-thumb { background: #3a3b50; border-radius: 4px; }
+.btn-copy {
+  display: inline-flex; align-items: center; gap: 6px;
+  padding: 7px 16px; border-radius: 8px; border: 1px solid var(--border);
+  background: white; font-size: 11px; font-weight: 600; cursor: pointer;
+  font-family: inherit; transition: all 0.18s; margin-top: 10px;
+  box-shadow: var(--shadow-sm);
+}
+.btn-copy:hover { border-color: var(--navy); color: var(--navy); box-shadow: var(--shadow-md); }
+.btn-copy.copied { border-color: var(--green); color: var(--green); background: #ECFDF5; }
+
+.ref-pages { margin-top: 10px; }
+.ref-page {
+  display: flex; align-items: center; gap: 8px; padding: 8px 10px;
+  border-radius: 6px; font-size: 11px; transition: background 0.12s;
+  margin-bottom: 2px;
+}
+.ref-page:hover { background: var(--bg); }
+.ref-page .rp-name { font-weight: 600; flex: 1; }
+.ref-page .rp-conv { font-weight: 800; font-size: 12px; letter-spacing: -0.3px; }
+.ref-page .rp-match {
+  font-size: 9px; font-weight: 600; padding: 2px 7px; border-radius: 4px;
+  background: var(--bg); color: var(--muted);
+}
+
+.missing-modules { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 8px; }
+.mm-tag {
+  font-size: 10px; font-weight: 600; padding: 4px 10px; border-radius: 6px;
+  border: 1px dashed var(--border); color: #4B5563; cursor: pointer;
+  transition: all 0.18s; background: white;
+}
+.mm-tag:hover { border-color: var(--green); border-style: solid; background: #ECFDF5; color: var(--green); transform: translateY(-1px); box-shadow: var(--shadow-sm); }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>Layout Score Builder</h1>
+  <p>Drag modules from the 26-component catalog to build a page layout. Get a real-time score based on GA4 conversion data, Contentsquare behavioral signals, and UX dimension analysis.</p>
+  <div class="meta">
+    <span>26 Shared Modules</span>
+    <span>20 Audited Pages</span>
+    <span>8 Scoring Dimensions</span>
+    <span>Phase 1 Audit Data</span>
+  </div>
+</div>
+
+<div class="app">
+
+  <!-- ═══ LEFT: MODULE CATALOG ═══ -->
+  <div class="catalog">
+    <div class="catalog-header">
+      <h2>Module Catalog</h2>
+      <p>Drag or click + to add modules to your layout</p>
+      <input type="text" class="catalog-search" id="catalogSearch" placeholder="Search modules...">
+    </div>
+    <div id="catalogList"></div>
+  </div>
+
+  <!-- ═══ CENTER: BUILDER ═══ -->
+  <div class="builder">
+    <div class="builder-controls">
+      <label for="pageType">Page Type</label>
+      <select id="pageType">
+        <option value="paid-generic">Paid LP — Generic</option>
+        <option value="paid-program">Paid LP — Program-Specific</option>
+        <option value="organic-hub">Organic — Program Hub</option>
+        <option value="organic-home">Organic — Homepage</option>
+        <option value="organic-blog">Organic — Blog</option>
+        <option value="organic-tuition">Organic — Tuition / Info</option>
+        <option value="custom">Custom / New Template</option>
+      </select>
+      <button class="btn-preset" id="btnPreset" title="Load highest-converting layout for this page type">Load Best-Performer</button>
+      <button class="btn-reset" id="btnReset">Clear All</button>
+    </div>
+
+    <div class="score-bar" id="scoreBar">
+      <div class="score-main">
+        <div class="score-ring">
+          <svg viewBox="0 0 88 88" width="88" height="88">
+            <circle class="track" cx="44" cy="44" r="37"/>
+            <circle class="fill-bg" id="scoreArcBg" cx="44" cy="44" r="37" stroke-dasharray="232.5" stroke-dashoffset="0"/>
+            <circle class="fill" id="scoreArc" cx="44" cy="44" r="37" stroke-dasharray="232.5" stroke-dashoffset="232.5"/>
+          </svg>
+          <div class="score-number" id="scoreNumber">0</div>
+        </div>
+        <div>
+          <div class="score-label" id="scoreGrade">Add modules to begin</div>
+          <div class="score-sublabel" id="scoreSub">Build your layout from the catalog</div>
+        </div>
+      </div>
+      <div class="score-dims" id="scoreDims"></div>
+    </div>
+
+    <div class="layout-zone" id="layoutZone">
+      <div class="layout-empty-msg" id="emptyMsg">
+        <div class="icon"><svg width="48" height="48" viewBox="0 0 48 48" fill="none"><rect x="8" y="6" width="32" height="36" rx="4" stroke="#CBD5E1" stroke-width="2" stroke-dasharray="4 3"/><rect x="14" y="14" width="20" height="3" rx="1.5" fill="#E2E8F0"/><rect x="14" y="21" width="14" height="3" rx="1.5" fill="#E2E8F0"/><rect x="14" y="28" width="18" height="3" rx="1.5" fill="#E2E8F0"/><path d="M36 34l-4-4m0 0a3 3 0 10-4.24-4.24A3 3 0 0032 30z" stroke="#94A3B8" stroke-width="1.5" stroke-linecap="round"/></svg></div>
+        <p>Drag modules here to build your layout</p>
+        <div class="hint">Modules stack top-to-bottom like a real page.<br>Reorder by dragging within the zone.</div>
+      </div>
+    </div>
+
+    <div class="comparable-label" id="compLabel" style="display:none">Closest Real Pages</div>
+    <div class="comparable-cards" id="compCards"></div>
+  </div>
+
+  <!-- ═══ RIGHT: AI ADVISOR ═══ -->
+  <div class="advisor">
+    <div class="advisor-header">
+      <h2><span style="font-size:16px">&#9733;</span> Research Advisor</h2>
+      <p>Live analysis based on audit data — plus an LLM prompt you can copy</p>
+    </div>
+    <div id="advisorContent">
+      <div class="advisor-section">
+        <h3>Getting Started</h3>
+        <div class="insight-card info">
+          Select a <strong>page type</strong> and start adding modules. The advisor will surface research-backed insights, flag gaps, and generate an LLM prompt for deeper layout analysis.
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<script>
+// ═══════════════════════════════════════════════════════
+//  DATA: 26 Modules
+// ═══════════════════════════════════════════════════════
+const MODULES = [
+  { id:'NAV-01', name:'Global Header', cat:'nav', color:'#6366F1', usage:'20/20', desc:'Top nav — UAGC logo, primary links, utility nav.', pages:[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1] },
+  { id:'NAV-02', name:'Sticky Phone Bar', cat:'nav', color:'#6366F1', usage:'10/20', desc:'1-800 phone strip above header. Paid only.', pages:[1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0] },
+  { id:'NAV-03', name:'Breadcrumb', cat:'nav', color:'#6366F1', usage:'10/20', desc:'Hierarchical breadcrumb. Organic only.', pages:[0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1] },
+  { id:'HERO-01', name:'Hero: Split + RFI', cat:'hero', color:'#EC4899', usage:'7/20', desc:'Two-column hero — image+headline left, RFI form right. Primary paid LP pattern.', pages:[1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0] },
+  { id:'HERO-02', name:'Hero: Program LP', cat:'hero', color:'#EC4899', usage:'3/20', desc:'Program-specific paid hero (Liberal Arts, CJ, Business). Narrower copy.', pages:[0,0,0,0,0,0,0,1,1,1,0,0,0,0,0,0,0,0,0,0] },
+  { id:'HERO-03', name:'Hero: Organic Banner', cat:'hero', color:'#EC4899', usage:'8/20', desc:'Full-width hero with category label + background photo. Organic hubs.', pages:[0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,0,0,1,1] },
+  { id:'HERO-04', name:'Hero: Homepage', cat:'hero', color:'#EC4899', usage:'1/20', desc:'"PROUD TO BE UAGC" large-format hero with student collage. Homepage only.', pages:[0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0] },
+  { id:'HERO-05', name:'Hero: Blog Post', cat:'hero', color:'#F97316', usage:'2/20', desc:'Blog header — category tag, H1, byline, date, featured image.', pages:[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0] },
+  { id:'FORM-01', name:'RFI: Hero Overlay', cat:'form', color:'#AB0520', usage:'10/20', desc:'Multi-step RFI in hero. Step 1: Area of Interest, Step 2: personal info.', pages:[1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0] },
+  { id:'FORM-02', name:'RFI: Mid-Page Band', cat:'form', color:'#AB0520', usage:'8/20', desc:'Full-width navy band with inline RFI. Area of Interest + Degree dropdowns.', pages:[1,0,1,1,1,0,0,1,1,1,0,0,0,0,0,0,0,0,0,0] },
+  { id:'FORM-03', name:'RFI: Below Hero', cat:'form', color:'#AB0520', usage:'8/20', desc:'Standalone RFI below organic hero. White card with dropdowns.', pages:[0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,0,0,1,1] },
+  { id:'FORM-04', name:'RFI: Blog Sidebar', cat:'form', color:'#AB0520', usage:'2/20', desc:'Sticky right sidebar RFI on blog articles.', pages:[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0] },
+  { id:'FORM-05', name:'Sticky RFI Bar', cat:'form', color:'#AB0520', usage:'18/20', desc:'Persistent bottom/top bar with condensed "Request Info" CTA on scroll.', pages:[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0] },
+  { id:'PROG-01', name:'Program Category Grid', cat:'prog', color:'#059669', usage:'7/20', desc:'6–9 icon cards for degree categories. Links to vertical hubs.', pages:[0,1,0,1,1,0,0,0,1,1,1,0,0,0,0,0,0,0,0,0] },
+  { id:'PROG-02', name:'Program List / Accordion', cat:'prog', color:'#059669', usage:'9/20', desc:'Two-column expandable degree list by category. Full catalog browse.', pages:[0,1,0,1,1,1,1,1,1,1,0,1,0,1,0,0,0,0,1,0] },
+  { id:'PROG-03', name:'Top Requested Degrees', cat:'prog', color:'#059669', usage:'4/20', desc:'3-column "most popular" degrees with images. Conversion-optimized.', pages:[0,0,0,0,0,0,0,0,0,0,0,1,0,1,0,0,0,0,1,0] },
+  { id:'PROG-04', name:'"Not Sure What to Study?"', cat:'prog', color:'#059669', usage:'6/20', desc:'Decision-help CTA — quiz link, phone, or advisor prompt for undecided.', pages:[0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,0,0,0,1,1] },
+  { id:'VP-01', name:'Reasons to Choose UAGC', cat:'vp', color:'#2563EB', usage:'10/20', desc:'3-icon row: No SAT/GMAT, 5–6 Week Classes, $0 App Fee.', pages:[1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0] },
+  { id:'VP-02', name:'Value Props Bullet List', cat:'vp', color:'#2563EB', usage:'12/20', desc:'Extended benefits: Accreditation, Transfer Policy, Flexibility, etc.', pages:[1,1,1,1,1,1,1,1,1,1,0,0,1,0,1,0,0,0,0,1] },
+  { id:'VP-03', name:'Benefits of [Degree] Block', cat:'vp', color:'#2563EB', usage:'9/20', desc:'Program-specific benefits paragraph. Contextualizes the value prop.', pages:[1,1,0,1,0,0,0,1,1,1,0,0,1,0,1,0,0,0,0,1] },
+  { id:'TRUST-01', name:'Testimonial / Student Quote', cat:'trust', color:'#8B5CF6', usage:'8/20', desc:'Student quote with photo and attribution.', pages:[0,0,0,0,0,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0] },
+  { id:'TRUST-02', name:'Accreditation Logos', cat:'trust', color:'#8B5CF6', usage:'12/20', desc:'WASC, IACBE, CCNE etc. logo row with descriptive text.', pages:[1,0,1,0,1,1,1,0,0,0,0,0,1,1,1,0,0,0,1,1] },
+  { id:'TRUST-03', name:'Faculty Section', cat:'trust', color:'#8B5CF6', usage:'4/20', desc:'"Meet Our Faculty" with photos + credentials. Organic vertical hubs.', pages:[0,0,0,0,0,0,0,0,0,0,0,0,1,0,1,0,0,0,0,1] },
+  { id:'FIN-01', name:'Tuition & Ways to Save', cat:'fin', color:'#D97706', usage:'12/20', desc:'"Investment in You" + tuition + pill-links (Grants, Scholarships, etc.).', pages:[1,1,1,1,1,1,0,1,1,1,0,0,0,0,0,1,0,0,0,0] },
+  { id:'FIN-02', name:'UAGC Promise / 3-Week Trial', cat:'fin', color:'#D97706', usage:'10/20', desc:'3-column CTA: Risk Free, Financial Aid, Flexibility. Risk-reversal.', pages:[1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,1,0,0,0,0] },
+  { id:'CTA-01', name:'Bottom CTA Banner', cat:'cta', color:'#D97706', usage:'18/20', desc:'"Interested in Learning More?" full-width navy+yellow gradient banner.', pages:[1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0] },
+  { id:'FOOT-01', name:'Affiliation + Global Footer', cat:'foot', color:'#64748B', usage:'20/20', desc:'"Affiliated with University of Arizona" badge + site footer.', pages:[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1] },
+];
+
+// Page columns: P1-P10 (index 0-9), O1-O10 (index 10-19)
+const PAGES = [
+  { id:'P1', name:'Request Info v5', slug:'/success/request-info-v5', conv:3.01, sessions:1177574, type:'paid-generic' },
+  { id:'P2', name:"Bachelor's v5", slug:'/success/bachelors-v5', conv:3.50, sessions:458070, type:'paid-generic' },
+  { id:'P3', name:'Military v5', slug:'/success/military-v5', conv:3.07, sessions:310713, type:'paid-generic' },
+  { id:'P4', name:'College Courses v5', slug:'/success/courses-v5', conv:7.25, sessions:262257, type:'paid-generic' },
+  { id:'P5', name:'Degree Programs v7', slug:'/success/degree-programs-v7', conv:13.57, sessions:221507, type:'paid-generic' },
+  { id:'P6', name:'Online Programs v7', slug:'/success/online-programs-v7', conv:4.53, sessions:0, type:'paid-generic' },
+  { id:'P7', name:'Online Programs v8', slug:'/success/online-programs-v8', conv:4.92, sessions:0, type:'paid-generic' },
+  { id:'P8', name:'Liberal Arts v6', slug:'/success/liberal-arts-v6', conv:0, sessions:0, type:'paid-program' },
+  { id:'P9', name:'Criminal Justice v6', slug:'/success/cj-v6', conv:0, sessions:0, type:'paid-program' },
+  { id:'P10', name:'Business v6', slug:'/success/business-v6', conv:0, sessions:0, type:'paid-program' },
+  { id:'O1', name:'Homepage', slug:'/', conv:2.00, sessions:0, type:'organic-home' },
+  { id:'O2', name:'/online-degrees', slug:'/online-degrees', conv:5.82, sessions:0, type:'organic-hub' },
+  { id:'O3', name:'/…/business', slug:'/online-degrees/business', conv:5.50, sessions:0, type:'organic-hub' },
+  { id:'O4', name:'/…/masters', slug:'/online-degrees/masters', conv:4.80, sessions:0, type:'organic-hub' },
+  { id:'O5', name:'/…/education', slug:'/online-degrees/education', conv:0, sessions:0, type:'organic-hub' },
+  { id:'O6', name:'Tuition & Aid', slug:'/tuition', conv:0, sessions:0, type:'organic-tuition' },
+  { id:'O7', name:'Blog: PhD', slug:'/blog/phd', conv:0.01, sessions:0, type:'organic-blog' },
+  { id:'O8', name:'Blog: Biz Plan', slug:'/blog/biz-plan', conv:0.08, sessions:0, type:'organic-blog' },
+  { id:'O9', name:'/…/bachelors', slug:'/online-degrees/bachelors', conv:0, sessions:0, type:'organic-hub' },
+  { id:'O10', name:'/…/criminal-justice', slug:'/online-degrees/criminal-justice', conv:0, sessions:0, type:'organic-hub' },
+];
+
+const DIMENSIONS = [
+  { key:'conversion', name:'Conversion Path', icon:'&#9654;', weight:20 },
+  { key:'content',    name:'Content Specificity', icon:'&#9998;', weight:15 },
+  { key:'social',     name:'Social Proof', icon:'&#9733;', weight:12 },
+  { key:'discovery',  name:'Program Discovery', icon:'&#9783;', weight:15 },
+  { key:'fivesec',    name:'5-Second Test', icon:'&#9201;', weight:15 },
+  { key:'formstrat',  name:'Form Strategy', icon:'&#9744;', weight:13 },
+  { key:'scroll',     name:'Scroll Engagement', icon:'&#8645;', weight:5 },
+  { key:'mobile',     name:'Mobile Experience', icon:'&#9743;', weight:5 },
+];
+
+const CAT_LABELS = { nav:'Navigation', hero:'Hero', form:'Form / RFI', prog:'Program Discovery', vp:'Value Props', trust:'Trust Signals', fin:'Financial / CTA', cta:'CTA', foot:'Footer' };
+const CAT_ORDER = ['nav','hero','form','prog','vp','trust','fin','cta','foot'];
+
+const PRESETS = {
+  'paid-generic': ['NAV-01','NAV-02','HERO-01','FORM-01','VP-01','PROG-01','PROG-02','VP-02','VP-03','TRUST-02','FIN-01','FIN-02','FORM-02','CTA-01','FORM-05','FOOT-01'],
+  'paid-program': ['NAV-01','NAV-02','HERO-02','FORM-01','VP-01','VP-02','VP-03','PROG-02','TRUST-01','FIN-01','FIN-02','FORM-02','CTA-01','FORM-05','FOOT-01'],
+  'organic-hub':  ['NAV-01','NAV-03','HERO-03','FORM-03','PROG-03','PROG-02','PROG-04','TRUST-01','TRUST-02','TRUST-03','VP-02','VP-03','FORM-05','FOOT-01'],
+  'organic-home': ['NAV-01','HERO-04','PROG-01','TRUST-01','CTA-01','FORM-05','FOOT-01'],
+  'organic-blog': ['NAV-01','NAV-03','HERO-05','FORM-04','FORM-05','FOOT-01'],
+  'organic-tuition':['NAV-01','NAV-03','HERO-03','FORM-03','FIN-01','FIN-02','TRUST-02','FORM-05','FOOT-01'],
+  'custom': [],
+};
+
+// ═══════════════════════════════════════════════════════
+//  STATE
+// ═══════════════════════════════════════════════════════
+let layout = [];
+let dragSrcIdx = null;
+
+// ═══════════════════════════════════════════════════════
+//  RENDER CATALOG
+// ═══════════════════════════════════════════════════════
+function renderCatalog(filter) {
+  const el = document.getElementById('catalogList');
+  filter = (filter || '').toLowerCase();
+  let html = '';
+  const grouped = {};
+  MODULES.forEach(m => {
+    const gk = m.cat === 'cta' ? 'fin' : m.cat;
+    if (!grouped[gk]) grouped[gk] = [];
+    grouped[gk].push(m);
+  });
+  CAT_ORDER.filter(c => c !== 'cta').forEach(cat => {
+    const mods = grouped[cat];
+    if (!mods) return;
+    const filtered = mods.filter(m =>
+      m.name.toLowerCase().includes(filter) || m.id.toLowerCase().includes(filter) || m.desc.toLowerCase().includes(filter)
+    );
+    if (!filtered.length) return;
+    html += `<div class="cat-group"><div class="cat-group-label">${CAT_LABELS[cat] || cat}</div>`;
+    filtered.forEach(m => {
+      const inLayout = layout.includes(m.id);
+      html += `<div class="mod-card${inLayout ? ' in-layout' : ''}" draggable="true" data-id="${m.id}" style="--cat-color:${m.color}">
+        <div class="dot" style="background:${m.color}"></div>
+        <div class="mod-info">
+          <div class="mod-name">${m.name}</div>
+          <div class="mod-id">${m.id} &middot; <span class="mod-usage">${m.usage}</span></div>
+        </div>
+        <button class="add-btn" data-id="${m.id}" title="Add to layout">${inLayout ? '&#10003;' : '+'}</button>
+      </div>`;
+    });
+    html += '</div>';
+  });
+  el.innerHTML = html;
+
+  el.querySelectorAll('.add-btn').forEach(btn => {
+    btn.addEventListener('click', e => {
+      e.stopPropagation();
+      const id = btn.dataset.id;
+      if (!layout.includes(id)) { layout.push(id); refresh(); }
+    });
+  });
+
+  el.querySelectorAll('.mod-card').forEach(card => {
+    card.addEventListener('dragstart', e => {
+      e.dataTransfer.setData('text/plain', card.dataset.id);
+      e.dataTransfer.effectAllowed = 'copy';
+    });
+  });
+}
+
+// ═══════════════════════════════════════════════════════
+//  RENDER LAYOUT
+// ═══════════════════════════════════════════════════════
+function renderLayout() {
+  const zone = document.getElementById('layoutZone');
+  const empty = document.getElementById('emptyMsg');
+  if (!layout.length) {
+    zone.innerHTML = '';
+    zone.appendChild(empty);
+    empty.style.display = '';
+    zone.classList.add('empty');
+    return;
+  }
+  zone.classList.remove('empty');
+  let html = '';
+  layout.forEach((id, i) => {
+    const m = MODULES.find(x => x.id === id);
+    if (!m) return;
+    html += `<div class="layout-item" draggable="true" data-idx="${i}" data-id="${id}">
+      <div class="li-color-strip" style="background:${m.color}"></div>
+      <div class="li-drag"><span></span><span></span><span></span></div>
+      <div class="li-order">${i + 1}</div>
+      <div class="li-name">${m.name}</div>
+      <div class="li-id">${m.id}</div>
+      <button class="li-remove" data-idx="${i}" title="Remove">&times;</button>
+    </div>`;
+  });
+  zone.innerHTML = html;
+
+  zone.querySelectorAll('.li-remove').forEach(btn => {
+    btn.addEventListener('click', e => {
+      e.stopPropagation();
+      layout.splice(parseInt(btn.dataset.idx), 1);
+      refresh();
+    });
+  });
+
+  zone.querySelectorAll('.layout-item').forEach(item => {
+    item.addEventListener('dragstart', e => {
+      dragSrcIdx = parseInt(item.dataset.idx);
+      item.classList.add('dragging');
+      e.dataTransfer.effectAllowed = 'move';
+      e.dataTransfer.setData('text/plain', item.dataset.id);
+    });
+    item.addEventListener('dragend', () => {
+      item.classList.remove('dragging');
+      dragSrcIdx = null;
+    });
+    item.addEventListener('dragover', e => { e.preventDefault(); e.dataTransfer.dropEffect = dragSrcIdx !== null ? 'move' : 'copy'; });
+    item.addEventListener('drop', e => {
+      e.preventDefault();
+      const targetIdx = parseInt(item.dataset.idx);
+      if (dragSrcIdx !== null && dragSrcIdx !== targetIdx) {
+        const [moved] = layout.splice(dragSrcIdx, 1);
+        layout.splice(targetIdx, 0, moved);
+        dragSrcIdx = null;
+        refresh();
+      } else if (dragSrcIdx === null) {
+        const id = e.dataTransfer.getData('text/plain');
+        if (id && !layout.includes(id)) {
+          layout.splice(targetIdx, 0, id);
+          refresh();
+        }
+      }
+    });
+  });
+}
+
+// ═══════════════════════════════════════════════════════
+//  SCORING ENGINE
+// ═══════════════════════════════════════════════════════
+function scoreLayout() {
+  const pageType = document.getElementById('pageType').value;
+  const ids = new Set(layout);
+  const scores = {};
+
+  // 1. Conversion Path (0–100): Do you have at least one primary form + sticky + CTA?
+  let convScore = 0;
+  const hasPrimaryForm = ids.has('FORM-01') || ids.has('FORM-03') || ids.has('FORM-04');
+  const hasStickyRFI = ids.has('FORM-05');
+  const hasMidForm = ids.has('FORM-02');
+  const hasBottomCTA = ids.has('CTA-01');
+  if (hasPrimaryForm) convScore += 40;
+  if (hasStickyRFI) convScore += 25;
+  if (hasMidForm) convScore += 15;
+  if (hasBottomCTA) convScore += 10;
+  const hasAnyHero = ['HERO-01','HERO-02','HERO-03','HERO-04','HERO-05'].some(h => ids.has(h));
+  if (hasAnyHero) convScore += 10;
+  scores.conversion = Math.min(100, convScore);
+
+  // 2. Content Specificity (0–100): Program-specific content present?
+  let contentScore = 0;
+  if (ids.has('VP-03')) contentScore += 30;
+  if (ids.has('PROG-02')) contentScore += 25;
+  if (ids.has('PROG-01')) contentScore += 15;
+  if (ids.has('PROG-03')) contentScore += 15;
+  if (ids.has('VP-02')) contentScore += 10;
+  if (ids.has('VP-01')) contentScore += 5;
+  scores.content = Math.min(100, contentScore);
+
+  // 3. Social Proof (0–100)
+  let socialScore = 0;
+  if (ids.has('TRUST-01')) socialScore += 35;
+  if (ids.has('TRUST-02')) socialScore += 30;
+  if (ids.has('TRUST-03')) socialScore += 20;
+  if (ids.has('FIN-02')) socialScore += 15;
+  scores.social = Math.min(100, socialScore);
+
+  // 4. Program Discovery (0–100)
+  let discScore = 0;
+  if (ids.has('PROG-02')) discScore += 30;
+  if (ids.has('PROG-01')) discScore += 25;
+  if (ids.has('PROG-03')) discScore += 20;
+  if (ids.has('PROG-04')) discScore += 15;
+  if (ids.has('VP-03')) discScore += 10;
+  scores.discovery = Math.min(100, discScore);
+
+  // 5. 5-Second Test (0–100): Can visitor understand the page in 5 seconds?
+  let fiveScore = 0;
+  const heroFormCombo = (ids.has('HERO-01') || ids.has('HERO-02')) && ids.has('FORM-01');
+  const orgHeroForm = ids.has('HERO-03') && ids.has('FORM-03');
+  if (heroFormCombo || orgHeroForm) fiveScore += 35;
+  else if (hasAnyHero) fiveScore += 15;
+  if (ids.has('VP-01')) fiveScore += 20;
+  if (ids.has('PROG-01') || ids.has('PROG-03')) fiveScore += 20;
+  if (ids.has('NAV-01')) fiveScore += 10;
+  if (ids.has('NAV-02') && pageType.startsWith('paid')) fiveScore += 5;
+  if (ids.has('NAV-03') && pageType.startsWith('organic')) fiveScore += 5;
+  const heroIdx = layout.findIndex(id => id.startsWith('HERO'));
+  const formIdx = layout.findIndex(id => id.startsWith('FORM'));
+  if (heroIdx >= 0 && formIdx >= 0 && formIdx <= heroIdx + 1) fiveScore += 10;
+  scores.fivesec = Math.min(100, fiveScore);
+
+  // 6. Form Strategy (0–100): Smart form placement
+  let formScore = 0;
+  const formCount = layout.filter(id => id.startsWith('FORM')).length;
+  if (formCount >= 1) formScore += 25;
+  if (formCount >= 2) formScore += 25;
+  if (formCount >= 3) formScore += 15;
+  if (hasStickyRFI) formScore += 20;
+  if (hasPrimaryForm && formIdx <= 2) formScore += 15;
+  scores.formstrat = Math.min(100, formScore);
+
+  // 7. Scroll Engagement (0–100): Module variety keeps scroll interest
+  let scrollScore = 0;
+  const cats = new Set(layout.map(id => { const m = MODULES.find(x=>x.id===id); return m ? m.cat : ''; }));
+  scrollScore += Math.min(50, cats.size * 10);
+  if (ids.has('FIN-01')) scrollScore += 15;
+  if (ids.has('TRUST-01')) scrollScore += 15;
+  if (ids.has('PROG-04')) scrollScore += 10;
+  if (layout.length >= 8) scrollScore += 10;
+  scores.scroll = Math.min(100, scrollScore);
+
+  // 8. Mobile Experience (0–100)
+  let mobileScore = 60;
+  if (ids.has('FORM-05')) mobileScore += 15;
+  if (ids.has('NAV-02') && !pageType.startsWith('paid')) mobileScore -= 10;
+  if (layout.length > 16) mobileScore -= 15;
+  if (ids.has('FORM-04') && pageType !== 'organic-blog') mobileScore -= 10;
+  if (ids.has('FOOT-01')) mobileScore += 5;
+  if (ids.has('NAV-01')) mobileScore += 10;
+  if (formCount >= 3) mobileScore += 10;
+  scores.mobile = Math.min(100, Math.max(0, mobileScore));
+
+  const total = DIMENSIONS.reduce((sum, d) => sum + scores[d.key] * (d.weight / 100), 0);
+  return { scores, total: Math.round(total) };
+}
+
+function getGradeColor(score) {
+  if (score >= 80) return '#059669';
+  if (score >= 60) return '#2563EB';
+  if (score >= 40) return '#D97706';
+  return '#DC2626';
+}
+
+function getGradeLabel(score) {
+  if (score >= 85) return 'Excellent — Research-Backed Layout';
+  if (score >= 70) return 'Strong — Minor Gaps to Address';
+  if (score >= 50) return 'Moderate — Key Modules Missing';
+  if (score >= 30) return 'Weak — Significant Gaps';
+  return 'Add modules to begin';
+}
+
+// ═══════════════════════════════════════════════════════
+//  RENDER SCORE
+// ═══════════════════════════════════════════════════════
+function renderScore() {
+  const { scores, total } = scoreLayout();
+  const circumference = 2 * Math.PI * 37;
+  const offset = circumference * (1 - total / 100);
+  const color = getGradeColor(total);
+
+  const arc = document.getElementById('scoreArc');
+  arc.style.strokeDasharray = circumference;
+  arc.style.strokeDashoffset = offset;
+  arc.style.stroke = color;
+
+  const arcBg = document.getElementById('scoreArcBg');
+  arcBg.style.stroke = color;
+
+  const numEl = document.getElementById('scoreNumber');
+  numEl.innerHTML = `${total}<span>/100</span>`;
+  numEl.style.color = color;
+  document.getElementById('scoreGrade').textContent = getGradeLabel(total);
+  document.getElementById('scoreSub').textContent = layout.length
+    ? `${layout.length} modules · ${new Set(layout.map(id => MODULES.find(m=>m.id===id)?.cat)).size} categories`
+    : 'Build your layout from the catalog';
+
+  const dimsEl = document.getElementById('scoreDims');
+  dimsEl.innerHTML = DIMENSIONS.map(d => {
+    const val = scores[d.key];
+    const c = getGradeColor(val);
+    return `<div class="dim-row">
+      <div class="dim-icon">${d.icon}</div>
+      <div class="dim-info">
+        <div class="dim-name">${d.name} <span style="opacity:0.5;font-size:9px">(${d.weight}%)</span></div>
+        <div class="dim-track"><div class="dim-fill" style="width:${val}%;background:${c}"></div></div>
+      </div>
+      <div class="dim-val" style="color:${c}">${val}</div>
+    </div>`;
+  }).join('');
+}
+
+// ═══════════════════════════════════════════════════════
+//  COMPARABLE PAGES
+// ═══════════════════════════════════════════════════════
+function renderComparables() {
+  const label = document.getElementById('compLabel');
+  const cards = document.getElementById('compCards');
+  if (!layout.length) { label.style.display = 'none'; cards.innerHTML = ''; return; }
+  label.style.display = '';
+
+  const layoutSet = new Set(layout);
+  const similarities = PAGES.map((p, pi) => {
+    const pageModules = new Set(MODULES.filter((m, mi) => m.pages[pi]).map(m => m.id));
+    const intersection = [...layoutSet].filter(id => pageModules.has(id)).length;
+    const union = new Set([...layoutSet, ...pageModules]).size;
+    return { page: p, jaccard: union ? intersection / union : 0, shared: intersection, pageTotal: pageModules.size };
+  }).sort((a, b) => b.jaccard - a.jaccard).slice(0, 4);
+
+  cards.innerHTML = similarities.map(s => {
+    const convStr = s.page.conv ? `${s.page.conv}%` : '—';
+    const convClass = s.page.conv >= 5 ? 'color:var(--green)' : s.page.conv >= 3 ? 'color:var(--amber)' : 'color:var(--muted)';
+    return `<div class="comp-card">
+      <div class="cc-name">${s.page.id} ${s.page.name}</div>
+      <div class="cc-conv" style="${convClass}">Conv: ${convStr}</div>
+      <div class="cc-match">${Math.round(s.jaccard * 100)}% match · ${s.shared} shared modules</div>
+    </div>`;
+  }).join('');
+}
+
+// ═══════════════════════════════════════════════════════
+//  ADVISOR PANEL
+// ═══════════════════════════════════════════════════════
+function renderAdvisor() {
+  const el = document.getElementById('advisorContent');
+  if (!layout.length) {
+    el.innerHTML = `<div class="advisor-section"><h3>Getting Started</h3>
+      <div class="insight-card info">Select a <strong>page type</strong> and start adding modules. The advisor will surface research-backed insights, flag gaps, and generate an LLM prompt for deeper layout analysis.</div></div>`;
+    return;
+  }
+
+  const { scores, total } = scoreLayout();
+  const pageType = document.getElementById('pageType').value;
+  const ids = new Set(layout);
+  let html = '';
+
+  // Section 1: Key Insights
+  html += '<div class="advisor-section"><h3>Key Insights</h3>';
+  const insights = [];
+
+  if (!ids.has('FORM-05'))
+    insights.push({ type:'bad', text:'<strong>Missing Sticky RFI Bar (FORM-05)</strong> — present on 18/20 audited pages. Keeps conversion path visible as user scrolls past primary form. Contentsquare shows only 11.7% scroll depth on homepage.' });
+  if (!['FORM-01','FORM-03','FORM-04'].some(f => ids.has(f)))
+    insights.push({ type:'bad', text:'<strong>No primary RFI form</strong> — every audited page has at least one dedicated RFI (hero, below-hero, or sidebar). Without it, there is no clear conversion path.' });
+  if (scores.social < 40)
+    insights.push({ type:'warn', text:'<strong>Social proof is thin.</strong> Top-converting organic pages (O2–O5, 4.8–5.8% conv) all show Strong social proof. Add testimonials (TRUST-01) and accreditation (TRUST-02).' });
+  if (scores.discovery < 30 && !pageType.includes('blog'))
+    insights.push({ type:'warn', text:'<strong>Program discovery is weak.</strong> P5 Degree Programs v7 (13.57% conv, highest in the audit) has strong program browsing. Add PROG-01 or PROG-02 to help undecided visitors.' });
+  if (scores.fivesec < 50)
+    insights.push({ type:'warn', text:'<strong>5-second test concern.</strong> P1 Request Info v5 (1.18M sessions) fails this test — generic headline, no grid, proof far from form. Make sure hero + form + key value prop are all above the fold.' });
+  if (ids.has('FORM-01') && !ids.has('FORM-02') && pageType.startsWith('paid'))
+    insights.push({ type:'info', text:'Consider adding <strong>RFI: Mid-Page Band (FORM-02)</strong> — provides a second conversion touchpoint for visitors who scroll past the hero form. Used on 8/20 pages.' });
+  if (scores.content >= 70 && scores.social >= 60 && scores.conversion >= 70)
+    insights.push({ type:'good', text:'<strong>Strong layout pattern.</strong> This configuration mirrors top performers like P5 Degree Programs v7 (13.57%) and organic hubs (5–6%). Content, proof, and conversion paths all covered.' });
+  if (total >= 75)
+    insights.push({ type:'good', text:`<strong>Score: ${total}/100.</strong> This layout covers the key dimensions that correlate with higher conversion rates in the 20-page audit.` });
+  if (ids.has('FIN-01') && ids.has('FIN-02'))
+    insights.push({ type:'good', text:'<strong>Financial objection handling is strong.</strong> Tuition transparency + 3-week trial removes two major enrollment barriers.' });
+  if (ids.has('TRUST-01') && ids.has('TRUST-02'))
+    insights.push({ type:'good', text:'<strong>Trust signals layered well.</strong> Student testimonials + accreditation logos address both emotional and institutional credibility.' });
+
+  if (!insights.length)
+    insights.push({ type:'info', text:'Add more modules to unlock research-backed insights about your layout.' });
+
+  html += insights.map(i => `<div class="insight-card ${i.type}">${i.text}</div>`).join('');
+  html += '</div>';
+
+  // Section 2: Suggested additions
+  const missing = MODULES.filter(m => !ids.has(m.id));
+  const suggestedMissing = missing.filter(m => {
+    if (pageType.startsWith('paid') && ['NAV-03','HERO-03','HERO-04','HERO-05','FORM-03','FORM-04'].includes(m.id)) return false;
+    if (pageType.startsWith('organic') && ['NAV-02','HERO-01','HERO-02','FORM-01'].includes(m.id)) return false;
+    return true;
+  }).slice(0, 8);
+
+  if (suggestedMissing.length) {
+    html += '<div class="advisor-section"><h3>Consider Adding</h3>';
+    html += '<div class="missing-modules">';
+    html += suggestedMissing.map(m =>
+      `<span class="mm-tag" data-id="${m.id}" title="${m.desc}">+ ${m.id} ${m.name}</span>`
+    ).join('');
+    html += '</div></div>';
+  }
+
+  // Section 3: Reference pages
+  html += '<div class="advisor-section"><h3>Reference Pages</h3><div class="ref-pages">';
+  const relevant = PAGES.filter(p => p.conv > 0).sort((a, b) => b.conv - a.conv).slice(0, 6);
+  html += relevant.map(p => {
+    const pi = PAGES.indexOf(p);
+    const pageModules = new Set(MODULES.filter((m) => m.pages[pi]).map(m => m.id));
+    const shared = [...ids].filter(id => pageModules.has(id)).length;
+    const pct = ids.size ? Math.round(shared / ids.size * 100) : 0;
+    const convStyle = p.conv >= 5 ? 'color:var(--green)' : p.conv >= 3 ? 'color:var(--amber)' : 'color:var(--danger)';
+    return `<div class="ref-page">
+      <span class="rp-name">${p.id} ${p.name}</span>
+      <span class="rp-match">${pct}% overlap</span>
+      <span class="rp-conv" style="${convStyle}">${p.conv}%</span>
+    </div>`;
+  }).join('');
+  html += '</div></div>';
+
+  // Section 4: LLM Prompt
+  html += '<div class="advisor-section"><h3>LLM Analysis Prompt</h3>';
+  html += '<p style="font-size:11px;color:var(--muted);margin-bottom:8px">Copy this prompt into ChatGPT, Claude, or Cursor to get a deeper layout analysis.</p>';
+
+  const promptText = generateLLMPrompt(scores, total);
+  html += `<div class="llm-prompt-box" id="llmPrompt">${escHtml(promptText)}</div>`;
+  html += `<button class="btn-copy" id="btnCopy" onclick="copyPrompt()">&#128203; Copy Prompt</button>`;
+  html += '</div>';
+
+  el.innerHTML = html;
+
+  el.querySelectorAll('.mm-tag').forEach(tag => {
+    tag.addEventListener('click', () => {
+      const id = tag.dataset.id;
+      if (!layout.includes(id)) { layout.push(id); refresh(); }
+    });
+  });
+}
+
+function generateLLMPrompt(scores, total) {
+  const pageType = document.getElementById('pageType').value;
+  const ids = layout;
+  const moduleList = ids.map((id, i) => {
+    const m = MODULES.find(x => x.id === id);
+    return `  ${i+1}. ${m.id} — ${m.name}: ${m.desc}`;
+  }).join('\n');
+
+  const dimBreakdown = DIMENSIONS.map(d =>
+    `  - ${d.name}: ${scores[d.key]}/100 (weight: ${d.weight}%)`
+  ).join('\n');
+
+  const topPages = PAGES.filter(p => p.conv >= 4).map(p => `  - ${p.id} ${p.name}: ${p.conv}% conv`).join('\n');
+
+  return `You are a conversion rate optimization expert analyzing a higher-education landing page layout for University of Arizona Global Campus (UAGC).
+
+CONTEXT:
+- Page type: ${pageType}
+- This layout was built using a 26-module design system identified across 20 audited pages (10 paid landing pages, 10 organic).
+- Data sources: 12 months of GA4, Google Ads, Contentsquare behavioral analytics, and manual UX audits.
+- The highest-converting page in the audit is P5 "Degree Programs v7" at 13.57% conversion rate.
+- Key behavioral finding: Contentsquare frustration score is ~44/100 site-wide; hero RFI form rage-click recurrence is 3.23x; homepage scroll depth is only 11.7%.
+
+PROPOSED LAYOUT (top-to-bottom module order):
+${moduleList}
+
+CURRENT SCORES (${total}/100 overall):
+${dimBreakdown}
+
+TOP-PERFORMING REFERENCE PAGES:
+${topPages}
+
+RESEARCH FINDINGS TO CONSIDER:
+- P1 Request Info v5 (1.18M sessions, 3.01% conv) FAILS the 5-second test: generic headline, no program grid, accreditation far from form.
+- P5 Degree Programs v7 (13.57%) PASSES: strong program browser, testimonials near form, program-specific content.
+- Organic hubs with Strong content specificity + social proof consistently convert 4.8–5.8%.
+- Blog pages with sidebar-only RFI convert near 0% (0.01–0.08%).
+- Sticky RFI bar (FORM-05) appears on 18/20 pages — critical for maintaining conversion path on scroll.
+
+TASK:
+1. Analyze this layout's strengths and weaknesses based on the scoring dimensions and research data.
+2. Suggest specific module additions, removals, or reorderings that would improve the score.
+3. Identify the single highest-impact change and explain why, citing the research data.
+4. Flag any layout anti-patterns (e.g., trust signals too far from form, missing above-fold conversion path, redundant modules).
+5. Compare this layout to the top-performing reference pages and explain what's different.
+6. Provide a revised layout order with rationale.`;
+}
+
+function escHtml(s) { return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+
+function copyPrompt() {
+  const text = document.getElementById('llmPrompt').textContent;
+  navigator.clipboard.writeText(text).then(() => {
+    const btn = document.getElementById('btnCopy');
+    btn.innerHTML = '&#10003; Copied!';
+    btn.classList.add('copied');
+    setTimeout(() => { btn.innerHTML = '&#128203; Copy Prompt'; btn.classList.remove('copied'); }, 2000);
+  });
+}
+
+// ═══════════════════════════════════════════════════════
+//  DROP ZONE HANDLERS
+// ═══════════════════════════════════════════════════════
+function setupDropZone() {
+  const zone = document.getElementById('layoutZone');
+  zone.addEventListener('dragover', e => { e.preventDefault(); zone.classList.add('drag-over'); e.dataTransfer.dropEffect = dragSrcIdx !== null ? 'move' : 'copy'; });
+  zone.addEventListener('dragleave', () => zone.classList.remove('drag-over'));
+  zone.addEventListener('drop', e => {
+    e.preventDefault();
+    zone.classList.remove('drag-over');
+    if (dragSrcIdx !== null) return;
+    const id = e.dataTransfer.getData('text/plain');
+    if (id && !layout.includes(id)) { layout.push(id); refresh(); }
+  });
+}
+
+// ═══════════════════════════════════════════════════════
+//  CONTROLS
+// ═══════════════════════════════════════════════════════
+document.getElementById('btnReset').addEventListener('click', () => { layout = []; refresh(); });
+document.getElementById('btnPreset').addEventListener('click', () => {
+  const pt = document.getElementById('pageType').value;
+  layout = [...(PRESETS[pt] || [])];
+  refresh();
+});
+document.getElementById('pageType').addEventListener('change', () => refresh());
+document.getElementById('catalogSearch').addEventListener('input', e => renderCatalog(e.target.value));
+
+// ═══════════════════════════════════════════════════════
+//  REFRESH ALL
+// ═══════════════════════════════════════════════════════
+function refresh() {
+  renderCatalog(document.getElementById('catalogSearch').value);
+  renderLayout();
+  renderScore();
+  renderComparables();
+  renderAdvisor();
+}
+
+// ═══════════════════════════════════════════════════════
+//  INIT
+// ═══════════════════════════════════════════════════════
+setupDropZone();
+refresh();
+</script>
+<script src="shared-nav.js"></script>
+</body>
+</html>
