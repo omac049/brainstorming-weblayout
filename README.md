@@ -1,4 +1,4 @@
-# UAGC Website Reskin & Layout Review — Data-Driven Brief
+# Project Groundwork — UAGC Site Experience Audit & Layout Review
 
 **Date:** April 8, 2026
 **Property:** sc-domain:uagc.edu
