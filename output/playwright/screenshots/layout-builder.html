@@ -1641,12 +1641,51 @@ let _envApiKey = '';
 function getApiKey() { return _envApiKey; }
 function setApiKey(key) { _envApiKey = key; }
 
+// Rate limiting: 10 calls/day, 30s cooldown between calls
+const RATE_LIMIT = { maxPerDay: 10, cooldownMs: 30000 };
+let _lastCallTime = 0;
+
+function getRateLimitState() {
+  const today = new Date().toISOString().slice(0, 10);
+  const stored = JSON.parse(localStorage.getItem('uagc_llm_usage') || '{}');
+  if (stored.date !== today) return { date: today, count: 0 };
+  return stored;
+}
+
+function incrementRateLimit() {
+  const state = getRateLimitState();
+  state.count += 1;
+  state.date = new Date().toISOString().slice(0, 10);
+  localStorage.setItem('uagc_llm_usage', JSON.stringify(state));
+}
+
+function checkRateLimit() {
+  const state = getRateLimitState();
+  if (state.count >= RATE_LIMIT.maxPerDay) {
+    return { allowed: false, reason: `Daily limit reached (${RATE_LIMIT.maxPerDay}/${RATE_LIMIT.maxPerDay} calls today). Resets at midnight.` };
+  }
+  const elapsed = Date.now() - _lastCallTime;
+  if (_lastCallTime && elapsed < RATE_LIMIT.cooldownMs) {
+    const wait = Math.ceil((RATE_LIMIT.cooldownMs - elapsed) / 1000);
+    return { allowed: false, reason: `Cooldown active — wait ${wait}s between calls.` };
+  }
+  return { allowed: true, remaining: RATE_LIMIT.maxPerDay - state.count };
+}
+
 async function callOpenAIForLayout() {
   const key = getApiKey();
   if (!key) {
     const reasoningEl = document.getElementById('llmReasoning');
     reasoningEl.style.display = '';
     reasoningEl.innerHTML = `<div style="color:var(--danger);font-weight:600">No API key found.</div><p style="margin-top:4px;font-size:10px;color:var(--muted)">Serve this page via localhost (e.g. <code>python3 -m http.server 8080</code>) with a .env file containing OPENAI_API_KEY at the repo root.</p>`;
+    return null;
+  }
+
+  const rateCheck = checkRateLimit();
+  if (!rateCheck.allowed) {
+    const reasoningEl = document.getElementById('llmReasoning');
+    reasoningEl.style.display = '';
+    reasoningEl.innerHTML = `<div style="color:var(--amber);font-weight:600">⏱ Rate limited.</div><p style="margin-top:4px;font-size:11px">${rateCheck.reason}</p>`;
     return null;
   }
 
@@ -1749,9 +1788,11 @@ Only use module IDs from the list above. Order them top-to-bottom as they should
       <div class="llm-tag">GPT-5.4 mini Recommendation</div>
       <strong>${result.reasoning}</strong>
       <p style="margin-top:6px;opacity:0.8">${result.mobile_rationale}</p>
-      <p style="margin-top:4px;font-size:10px;color:var(--muted)">Expected score: ~${result.expected_score}/100 · ${validModules.length} modules</p>
+      <p style="margin-top:4px;font-size:10px;color:var(--muted)">Expected score: ~${result.expected_score}/100 · ${validModules.length} modules · ${rateCheck.remaining - 1} calls remaining today</p>
     `;
 
+    _lastCallTime = Date.now();
+    incrementRateLimit();
     return validModules;
   } catch (err) {
     reasoningEl.style.display = '';
@@ -1793,7 +1834,8 @@ document.getElementById('pageType').addEventListener('change', () => {
   const btn = document.getElementById('btnPreset');
   if (pt === 'custom') {
     btn.textContent = '✨ Generate with AI';
-    btn.title = 'Call GPT-5.4 mini to recommend the optimal mobile-first layout';
+    const rl = getRateLimitState();
+    btn.title = `Call GPT-5.4 mini (${RATE_LIMIT.maxPerDay - rl.count}/${RATE_LIMIT.maxPerDay} calls remaining today)`;
   } else {
     btn.textContent = 'Load Best-Performer';
     btn.title = 'Load highest-converting layout for this page type';
