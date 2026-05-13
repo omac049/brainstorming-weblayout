@@ -419,40 +419,6 @@ body {
 .layout-item.show-mobile .li-wire-preview { display: none; }
 .layout-item.show-mobile .li-wire-preview-mobile { display: flex; }
 
-/* ── API Settings ─────── */
-.btn-settings {
-  width: 32px; height: 32px; border-radius: 8px; border: 1px solid var(--border);
-  background: white; cursor: pointer; font-size: 14px; color: var(--muted);
-  display: flex; align-items: center; justify-content: center;
-  transition: all 0.18s; box-shadow: var(--shadow-sm);
-}
-.btn-settings:hover { border-color: var(--navy); color: var(--navy); }
-.btn-settings.has-key { border-color: var(--green); color: var(--green); background: #ECFDF5; }
-
-.api-settings {
-  background: white; border: 1px solid var(--border); border-radius: var(--radius);
-  padding: 14px 18px; margin-bottom: 14px; box-shadow: var(--shadow-sm);
-  animation: fadeUp 0.2s ease-out;
-}
-.api-settings label {
-  font-size: 11px; font-weight: 600; color: var(--navy); display: block; margin-bottom: 8px;
-}
-.api-key-field {
-  flex: 1; padding: 8px 12px; border: 1px solid var(--border); border-radius: var(--radius);
-  font-size: 12px; font-family: 'SF Mono','Fira Code',monospace; outline: none;
-  transition: border-color 0.15s;
-}
-.api-key-field:focus { border-color: var(--navy); box-shadow: 0 0 0 3px rgba(12,35,75,0.06); }
-.btn-save-key {
-  padding: 8px 16px; border-radius: var(--radius); border: 1px solid var(--green);
-  background: #ECFDF5; color: var(--green); font-size: 11px; font-weight: 600;
-  cursor: pointer; font-family: inherit; transition: all 0.18s;
-}
-.btn-save-key:hover { background: var(--green); color: white; }
-.api-key-status {
-  font-size: 10px; margin-top: 6px; min-height: 14px;
-}
-
 /* ── LLM Loading State ─────── */
 .btn-preset.loading {
   pointer-events: none; opacity: 0.7;
@@ -594,17 +560,6 @@ body {
       </select>
       <button class="btn-preset" id="btnPreset" title="Load highest-converting layout for this page type">Load Best-Performer</button>
       <button class="btn-reset" id="btnReset">Clear All</button>
-      <button class="btn-settings" id="btnSettings" title="OpenAI API Settings">&#9881;</button>
-    </div>
-    <div class="api-settings" id="apiSettings" style="display:none">
-      <div class="api-settings-inner">
-        <label>OpenAI API Key <span style="font-weight:400;color:var(--muted)">(stored locally, never sent elsewhere)</span></label>
-        <div style="display:flex;gap:6px">
-          <input type="password" id="apiKeyInput" placeholder="sk-..." class="api-key-field">
-          <button class="btn-save-key" id="btnSaveKey">Save</button>
-        </div>
-        <div class="api-key-status" id="apiKeyStatus"></div>
-      </div>
     </div>
 
     <div class="llm-reasoning" id="llmReasoning" style="display:none"></div>
@@ -1682,26 +1637,16 @@ function setupDropZone() {
 // ═══════════════════════════════════════════════════════
 //  OPENAI LLM INTEGRATION
 // ═══════════════════════════════════════════════════════
-function getApiKey() { return localStorage.getItem('uagc_openai_key') || ''; }
-function setApiKey(key) { localStorage.setItem('uagc_openai_key', key); updateKeyUI(); }
-
-function updateKeyUI() {
-  const btn = document.getElementById('btnSettings');
-  const status = document.getElementById('apiKeyStatus');
-  const key = getApiKey();
-  if (key) {
-    btn.classList.add('has-key');
-    status.innerHTML = '<span style="color:var(--green);font-weight:600">✓ Key saved</span> — "Custom" preset will use GPT-5.4 mini for layout recommendations.';
-  } else {
-    btn.classList.remove('has-key');
-    status.innerHTML = '';
-  }
-}
+let _envApiKey = '';
+function getApiKey() { return _envApiKey; }
+function setApiKey(key) { _envApiKey = key; }
 
 async function callOpenAIForLayout() {
   const key = getApiKey();
   if (!key) {
-    alert('Set your OpenAI API key first (click the ⚙ gear icon next to the controls).');
+    const reasoningEl = document.getElementById('llmReasoning');
+    reasoningEl.style.display = '';
+    reasoningEl.innerHTML = `<div style="color:var(--danger);font-weight:600">No API key found.</div><p style="margin-top:4px;font-size:10px;color:var(--muted)">Serve this page via localhost (e.g. <code>python3 -m http.server 8080</code>) with a .env file containing OPENAI_API_KEY at the repo root.</p>`;
     return null;
   }
 
@@ -1857,23 +1802,6 @@ document.getElementById('pageType').addEventListener('change', () => {
 });
 document.getElementById('catalogSearch').addEventListener('input', e => renderCatalog(e.target.value));
 
-// API settings toggle
-document.getElementById('btnSettings').addEventListener('click', () => {
-  const panel = document.getElementById('apiSettings');
-  panel.style.display = panel.style.display === 'none' ? '' : 'none';
-  if (panel.style.display !== 'none') {
-    const key = getApiKey();
-    if (key) document.getElementById('apiKeyInput').value = key;
-  }
-});
-document.getElementById('btnSaveKey').addEventListener('click', () => {
-  const val = document.getElementById('apiKeyInput').value.trim();
-  if (val) {
-    setApiKey(val);
-    document.getElementById('apiSettings').style.display = 'none';
-  }
-});
-updateKeyUI();
 
 // Viewport toggle
 document.querySelectorAll('.vt-btn').forEach(btn => {
