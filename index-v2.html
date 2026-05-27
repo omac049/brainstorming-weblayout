@@ -736,8 +736,182 @@
     </div>
   </div>
 
-  <!-- SLIDE 4: The Problem Child vs. The Star Student -->
+  <!-- SLIDE 4: Lead Funnel Overview -->
   <div class="slide" data-slide="3">
+    <div class="kicker amber">Lead funnel &mdash; Oct 2025&ndash;Mar 2026</div>
+    <h2>Lead Funnel Overview</h2>
+    <p class="subtitle" style="margin-top: 1vh; max-width: 900px;">Aligned with Kevin&rsquo;s Program Performance Report &middot; vs. prior Apr&ndash;Sep 2025</p>
+    <p class="meta-line" style="color: var(--amber); font-weight: 600;">Different window than the 12-month GSC/GA4 slides above &mdash; deduplicated program leads from BigQuery</p>
+
+    <div class="compare-grid" style="margin-top: 2.5vh; max-width: 1100px;">
+      <div class="compare-card" style="padding: clamp(16px, 2vw, 28px);">
+        <span class="tag blue">Undergraduate &middot; 38 programs</span>
+        <table class="data-table" style="margin-top: 1vh;">
+          <thead>
+            <tr>
+              <th>Metric</th>
+              <th>Oct&ndash;Mar</th>
+              <th>vs Prior</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Leads</td>
+              <td>149,356</td>
+              <td class="highlight-bad">&darr; &minus;45%</td>
+            </tr>
+            <tr>
+              <td>Decisions</td>
+              <td>9,727</td>
+              <td>&mdash;</td>
+            </tr>
+            <tr>
+              <td>Enrollments</td>
+              <td>2,629</td>
+              <td>&mdash;</td>
+            </tr>
+            <tr>
+              <td>Decision Rate</td>
+              <td>6.5%</td>
+              <td>&mdash;</td>
+            </tr>
+            <tr>
+              <td>Enrollment Rate</td>
+              <td>1.8%</td>
+              <td>&mdash;</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="compare-card" style="padding: clamp(16px, 2vw, 28px);">
+        <span class="tag green">Graduate &middot; 22 programs</span>
+        <table class="data-table" style="margin-top: 1vh;">
+          <thead>
+            <tr>
+              <th>Metric</th>
+              <th>Oct&ndash;Mar</th>
+              <th>vs Prior</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Leads</td>
+              <td>26,467</td>
+              <td class="highlight-bad">&darr; &minus;13%</td>
+            </tr>
+            <tr>
+              <td>Decisions</td>
+              <td>1,841</td>
+              <td>&mdash;</td>
+            </tr>
+            <tr>
+              <td>Enrollments</td>
+              <td>698</td>
+              <td>&mdash;</td>
+            </tr>
+            <tr>
+              <td>Decision Rate</td>
+              <td>7.0%</td>
+              <td>&mdash;</td>
+            </tr>
+            <tr>
+              <td>Enrollment Rate</td>
+              <td>2.6%</td>
+              <td>&mdash;</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="split" style="margin-top: 2vh; gap: clamp(16px, 2vw, 32px); max-width: 1100px;">
+      <div>
+        <h3 style="font-size: clamp(13px, 1.2vw, 16px); margin-bottom: 1vh;">Top 5 UG by enrollment</h3>
+        <table class="data-table" style="margin-top: 0;">
+          <thead>
+            <tr>
+              <th>Program</th>
+              <th>Enrollments</th>
+              <th>Rate</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>BA Business Administration</td>
+              <td>266</td>
+              <td>3.1%</td>
+            </tr>
+            <tr>
+              <td>AA Business</td>
+              <td>161</td>
+              <td>1.5%</td>
+            </tr>
+            <tr>
+              <td>BA Psychology</td>
+              <td>146</td>
+              <td>1.7%</td>
+            </tr>
+            <tr>
+              <td>BA Health Care Administration</td>
+              <td>140</td>
+              <td>1.5%</td>
+            </tr>
+            <tr>
+              <td>BA Social &amp; Criminal Justice</td>
+              <td>112</td>
+              <td>1.3%</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div>
+        <h3 style="font-size: clamp(13px, 1.2vw, 16px); margin-bottom: 1vh;">Top 5 Grad by enrollment</h3>
+        <table class="data-table" style="margin-top: 0;">
+          <thead>
+            <tr>
+              <th>Program</th>
+              <th>Enrollments</th>
+              <th>Rate</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Master of Business Administration</td>
+              <td>244</td>
+              <td>5.4%</td>
+            </tr>
+            <tr>
+              <td>MA Psychology</td>
+              <td>65</td>
+              <td>2.0%</td>
+            </tr>
+            <tr>
+              <td>MA Health Care Administration</td>
+              <td>57</td>
+              <td>2.0%</td>
+            </tr>
+            <tr>
+              <td>MA Organizational Management</td>
+              <td>42</td>
+              <td>4.7%</td>
+            </tr>
+            <tr>
+              <td>Master of Human Resource Management</td>
+              <td>33</td>
+              <td>2.8%</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div style="margin-top: 1.5vh; font-size: 10px; color: var(--text-secondary); opacity: 0.75; max-width: 1100px;">
+      <em>Source: BigQuery advertising-data-mart.inquiries &middot; Full report: <a href="https://kevinseaman-krs.github.io/uagc-program-report/" target="_blank" rel="noopener" style="color: var(--blue); text-decoration: none;">kevinseaman-krs.github.io/uagc-program-report/</a></em>
+    </div>
+  </div>
+
+  <!-- SLIDE 5: The Problem Child vs. The Star Student -->
+  <div class="slide" data-slide="4">
     <div class="revision-badge">&#x270e; Revised</div>
     <div class="kicker">What we already tested &mdash; and what it tells us</div>
     <h2>We Tested This Premise.<br>The Answer Is a Hybrid.</h2>
@@ -785,8 +959,8 @@
     </div>
   </div>
 
-  <!-- SLIDE 5: Top 5 Paid Landing Pages -->
-  <div class="slide" data-slide="4">
+  <!-- SLIDE 6: Top 5 Paid Landing Pages -->
+  <div class="slide" data-slide="5">
     <div class="kicker">The pattern across all paid pages</div>
     <h2>It's Not Just Two Pages.<br>It's a System-Wide Gap.</h2>
     <table class="data-table">
@@ -843,8 +1017,8 @@
     <p class="quip">The pages with fewer visitors are outperforming the ones with more. Fix the page, not the volume.</p>
   </div>
 
-  <!-- SLIDE 6: Blog Content Gap -->
-  <div class="slide" data-slide="5">
+  <!-- SLIDE 7: Blog Content Gap -->
+  <div class="slide" data-slide="6">
     <div class="kicker amber">The content goldmine nobody's mining</div>
     <h2>149K Engaged Readers.<br>21 Conversions.</h2>
     <div class="page-compare" style="margin-top: 3vh">
@@ -889,8 +1063,8 @@
     </div>
   </div>
 
-  <!-- SLIDE 7: Declining Organic -->
-  <div class="slide" data-slide="6">
+  <!-- SLIDE 8: Declining Organic -->
+  <div class="slide" data-slide="7">
     <div class="kicker">Half-year trend &mdash; Google Search Console</div>
     <h2>Organic Is Declining.<br>Every Visit Matters More.</h2>
     <p class="subtitle">H1 (Apr&ndash;Oct 2025) vs. H2 (Oct 2025&ndash;Apr 2026)</p>
@@ -1003,8 +1177,8 @@
     </div>
   </div>
 
-  <!-- SLIDE 8: Page Content Gap -->
-  <div class="slide" data-slide="7">
+  <!-- SLIDE 9: Page Content Gap -->
+  <div class="slide" data-slide="8">
     <div class="revision-badge">&#x270e; Revised</div>
     <div class="kicker">What the best-performing pages have in common</div>
     <h2>What High-Converting Pages<br>Show That Ours Don&rsquo;t</h2>
@@ -1090,8 +1264,8 @@
     </div>
   </div>
 
-  <!-- SLIDE 9: Case Studies -->
-  <div class="slide" data-slide="8">
+  <!-- SLIDE 10: Case Studies -->
+  <div class="slide" data-slide="9">
     <div class="kicker green">Benchmarks &mdash; others have solved this</div>
     <h2>This Isn't Speculative.<br>It's Proven.</h2>
     <div class="case-grid">
@@ -1128,8 +1302,8 @@
     </div>
   </div>
 
-  <!-- SLIDE 10: Priorities -->
-  <div class="slide" data-slide="9">
+  <!-- SLIDE 11: Priorities -->
+  <div class="slide" data-slide="10">
     <div class="revision-badge">&#x270e; Revised</div>
     <div class="kicker">Reskin priorities</div>
     <h2>Where to Focus</h2>
@@ -1172,8 +1346,8 @@
     </ol>
   </div>
 
-  <!-- SLIDE 11: The Math -->
-  <div class="slide" data-slide="10">
+  <!-- SLIDE 12: The Math -->
+  <div class="slide" data-slide="11">
     <div class="revision-badge">&#x270e; Revised</div>
     <div class="kicker green">The bottom line</div>
     <div class="big-number green" style="font-size: clamp(40px, 6vw, 90px)">The Pages Need to Sell</div>
@@ -1201,8 +1375,8 @@
     </div>
   </div>
 
-  <!-- SLIDE 12: Next Steps -->
-  <div class="slide" data-slide="11">
+  <!-- SLIDE 13: Next Steps -->
+  <div class="slide" data-slide="12">
     <div class="kicker green">Three phases, three months</div>
     <h1 style="margin-bottom: 0">Next Steps</h1>
     <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: clamp(10px, 1.2vw, 20px); margin-top: 1.5vh; max-width: 1100px;">

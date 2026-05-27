@@ -1,0 +1,2890 @@
+{
+  "pulled_at": "2026-05-27T19:10:24.250174+00:00",
+  "window": {
+    "start": "2025-10-01",
+    "end": "2026-04-01"
+  },
+  "source": "advertising-data-mart.inquiries.vw_lead_extract_details",
+  "undergraduate": {
+    "total": {
+      "leads": 149356,
+      "enrollments": 2629,
+      "by_marketing_rollup": {
+        "Paid": {
+          "leads": 112067,
+          "enrollments": 910
+        },
+        "Navigational": {
+          "leads": 30180,
+          "enrollments": 1169
+        },
+        "B2B": {
+          "leads": 7039,
+          "enrollments": 550
+        }
+      },
+      "paid_by_segment1": {
+        "Display": {
+          "leads": 44404,
+          "enrollments": 216
+        },
+        "Affiliate": {
+          "leads": 11219,
+          "enrollments": 62
+        },
+        "Affiliate - Search": {
+          "leads": 41136,
+          "enrollments": 325
+        },
+        "Non-Brand Search": {
+          "leads": 15308,
+          "enrollments": 307
+        }
+      },
+      "navigational_enrollment_pct": 44.47
+    },
+    "programs": [
+      {
+        "program_id": "001Do00000ScUyQIAV",
+        "program_name": "BA in Business Administration",
+        "degree_level": "Undergraduate",
+        "by_marketing_rollup": {
+          "Paid": {
+            "leads": 5468,
+            "enrollments": 49
+          },
+          "Navigational": {
+            "leads": 2752,
+            "enrollments": 144
+          },
+          "B2B": {
+            "leads": 492,
+            "enrollments": 73
+          }
+        },
+        "paid_by_segment1": {
+          "Display": {
+            "leads": 1141,
+            "enrollments": 7
+          },
+          "Affiliate": {
+            "leads": 920,
+            "enrollments": 7
+          },
+          "Affiliate - Search": {
+            "leads": 2813,
+            "enrollments": 20
+          },
+          "Non-Brand Search": {
+            "leads": 594,
+            "enrollments": 15
+          }
+        },
+        "total_leads": 8715,
+        "total_enrollments": 266,
+        "navigational_enrollment_pct": 54.14
+      },
+      {
+        "program_id": "001Do00000YZZzHIAX",
+        "program_name": "Undecided - Undecided",
+        "degree_level": "Undergraduate",
+        "by_marketing_rollup": {
+          "Paid": {
+            "leads": 11180,
+            "enrollments": 73
+          },
+          "Navigational": {
+            "leads": 1437,
+            "enrollments": 102
+          },
+          "B2B": {
+            "leads": 970,
+            "enrollments": 54
+          }
+        },
+        "paid_by_segment1": {
+          "Display": {
+            "leads": 9110,
+            "enrollments": 50
+          },
+          "Affiliate": {
+            "leads": 0,
+            "enrollments": 0
+          },
+          "Affiliate - Search": {
+            "leads": 334,
+            "enrollments": 1
+          },
+          "Non-Brand Search": {
+            "leads": 1736,
+            "enrollments": 22
+          }
+        },
+        "total_leads": 13591,
+        "total_enrollments": 229,
+        "navigational_enrollment_pct": 44.54
+      },
+      {
+        "program_id": "001Do00000ScUyCIAV",
+        "program_name": "AA in Business",
+        "degree_level": "Undergraduate",
+        "by_marketing_rollup": {
+          "Paid": {
+            "leads": 8441,
+            "enrollments": 63
+          },
+          "Navigational": {
+            "leads": 2127,
+            "enrollments": 71
+          },
+          "B2B": {
+            "leads": 184,
+            "enrollments": 27
+          }
+        },
+        "paid_by_segment1": {
+          "Display": {
+            "leads": 1530,
+            "enrollments": 10
+          },
+          "Affiliate": {
+            "leads": 1174,
+            "enrollments": 9
+          },
+          "Affiliate - Search": {
+            "leads": 5045,
+            "enrollments": 33
+          },
+          "Non-Brand Search": {
+            "leads": 692,
+            "enrollments": 11
+          }
+        },
+        "total_leads": 10756,
+        "total_enrollments": 161,
+        "navigational_enrollment_pct": 44.1
+      },
+      {
+        "program_id": "001Do00000ScUzFIAV",
+        "program_name": "BA in Psychology",
+        "degree_level": "Undergraduate",
+        "by_marketing_rollup": {
+          "Paid": {
+            "leads": 6775,
+            "enrollments": 84
+          },
+          "Navigational": {
+            "leads": 1655,
+            "enrollments": 53
+          },
+          "B2B": {
+            "leads": 136,
+            "enrollments": 9
+          }
+        },
+        "paid_by_segment1": {
+          "Display": {
+            "leads": 1471,
+            "enrollments": 9
+          },
+          "Affiliate": {
+            "leads": 1275,
+            "enrollments": 7
+          },
+          "Affiliate - Search": {
+            "leads": 3177,
+            "enrollments": 40
+          },
+          "Non-Brand Search": {
+            "leads": 852,
+            "enrollments": 28
+          }
+        },
+        "total_leads": 8571,
+        "total_enrollments": 146,
+        "navigational_enrollment_pct": 36.3
+      },
+      {
+        "program_id": "001Do00000ScUybIAF",
+        "program_name": "BA in Health Care Administration",
+        "degree_level": "Undergraduate",
+        "by_marketing_rollup": {
+          "Paid": {
+            "leads": 7708,
+            "enrollments": 46
+          },
+          "Navigational": {
+            "leads": 1472,
+            "enrollments": 61
+          },
+          "B2B": {
+            "leads": 254,
+            "enrollments": 33
+          }
+        },
+        "paid_by_segment1": {
+          "Display": {
+            "leads": 4385,
+            "enrollments": 17
+          },
+          "Affiliate": {
+            "leads": 2,
+            "enrollments": 0
+          },
+          "Affiliate - Search": {
+            "leads": 2785,
+            "enrollments": 17
+          },
+          "Non-Brand Search": {
+            "leads": 536,
+            "enrollments": 12
+          }
+        },
+        "total_leads": 9437,
+        "total_enrollments": 140,
+        "navigational_enrollment_pct": 43.57
+      },
+      {
+        "program_id": "001Do00000ScUz7IAF",
+        "program_name": "BA in Social and Criminal Justice",
+        "degree_level": "Undergraduate",
+        "by_marketing_rollup": {
+          "Paid": {
+            "leads": 6509,
+            "enrollments": 56
+          },
+          "Navigational": {
+            "leads": 1798,
+            "enrollments": 49
+          },
+          "B2B": {
+            "leads": 85,
+            "enrollments": 7
+          }
+        },
+        "paid_by_segment1": {
+          "Display": {
+            "leads": 1712,
+            "enrollments": 9
+          },
+          "Affiliate": {
+            "leads": 541,
+            "enrollments": 2
+          },
+          "Affiliate - Search": {
+            "leads": 3307,
+            "enrollments": 30
+          },
+          "Non-Brand Search": {
+            "leads": 949,
+            "enrollments": 15
+          }
+        },
+        "total_leads": 8395,
+        "total_enrollments": 112,
+        "navigational_enrollment_pct": 43.75
+      },
+      {
+        "program_id": "001Do00000ScUzJIAV",
+        "program_name": "BS in Cyber & Data Security Technology",
+        "degree_level": "Undergraduate",
+        "by_marketing_rollup": {
+          "Paid": {
+            "leads": 3486,
+            "enrollments": 38
+          },
+          "Navigational": {
+            "leads": 1025,
+            "enrollments": 46
+          },
+          "B2B": {
+            "leads": 338,
+            "enrollments": 18
+          }
+        },
+        "paid_by_segment1": {
+          "Display": {
+            "leads": 1062,
+            "enrollments": 4
+          },
+          "Affiliate": {
+            "leads": 616,
+            "enrollments": 5
+          },
+          "Affiliate - Search": {
+            "leads": 1489,
+            "enrollments": 22
+          },
+          "Non-Brand Search": {
+            "leads": 319,
+            "enrollments": 7
+          }
+        },
+        "total_leads": 4850,
+        "total_enrollments": 102,
+        "navigational_enrollment_pct": 45.1
+      },
+      {
+        "program_id": "001Do00000ScUyXIAV",
+        "program_name": "BA in Human Resources Management",
+        "degree_level": "Undergraduate",
+        "by_marketing_rollup": {
+          "Paid": {
+            "leads": 1659,
+            "enrollments": 23
+          },
+          "Navigational": {
+            "leads": 829,
+            "enrollments": 43
+          },
+          "B2B": {
+            "leads": 159,
+            "enrollments": 24
+          }
+        },
+        "paid_by_segment1": {
+          "Display": {
+            "leads": 591,
+            "enrollments": 3
+          },
+          "Affiliate": {
+            "leads": 296,
+            "enrollments": 1
+          },
+          "Affiliate - Search": {
+            "leads": 574,
+            "enrollments": 11
+          },
+          "Non-Brand Search": {
+            "leads": 198,
+            "enrollments": 8
+          }
+        },
+        "total_leads": 2648,
+        "total_enrollments": 90,
+        "navigational_enrollment_pct": 47.78
+      },
+      {
+        "program_id": "001Do00000ScUz6IAF",
+        "program_name": "BA in Homeland Security and Emergency Management",
+        "degree_level": "Undergraduate",
+        "by_marketing_rollup": {
+          "Paid": {
+            "leads": 8546,
+            "enrollments": 46
+          },
+          "Navigational": {
+            "leads": 901,
+            "enrollments": 35
+          },
+          "B2B": {
+            "leads": 43,
+            "enrollments": 2
+          }
+        },
+        "paid_by_segment1": {
+          "Display": {
+            "leads": 6516,
+            "enrollments": 25
+          },
+          "Affiliate": {
+            "leads": 364,
+            "enrollments": 1
+          },
+          "Affiliate - Search": {
+            "leads": 1239,
+            "enrollments": 8
+          },
+          "Non-Brand Search": {
+            "leads": 427,
+            "enrollments": 12
+          }
+        },
+        "total_leads": 9493,
+        "total_enrollments": 83,
+        "navigational_enrollment_pct": 42.17
+      },
+      {
+        "program_id": "001Do00000ScUzUIAV",
+        "program_name": "AA in Early Childhood Education",
+        "degree_level": "Undergraduate",
+        "by_marketing_rollup": {
+          "Paid": {
+            "leads": 4389,
+            "enrollments": 48
+          },
+          "Navigational": {
+            "leads": 1092,
+            "enrollments": 30
+          },
+          "B2B": {
+            "leads": 33,
+            "enrollments": 3
+          }
+        },
+        "paid_by_segment1": {
+          "Display": {
+            "leads": 884,
+            "enrollments": 4
+          },
+          "Affiliate": {
+            "leads": 386,
+            "enrollments": 6
+          },
+          "Affiliate - Search": {
+            "leads": 2076,
+            "enrollments": 12
+          },
+          "Non-Brand Search": {
+            "leads": 1043,
+            "enrollments": 26
+          }
+        },
+        "total_leads": 5515,
+        "total_enrollments": 81,
+        "navigational_enrollment_pct": 37.04
+      },
+      {
+        "program_id": "001Do00000ScUzGIAV",
+        "program_name": "BA in Applied Behavioral Science",
+        "degree_level": "Undergraduate",
+        "by_marketing_rollup": {
+          "Paid": {
+            "leads": 4545,
+            "enrollments": 48
+          },
+          "Navigational": {
+            "leads": 1051,
+            "enrollments": 21
+          },
+          "B2B": {
+            "leads": 58,
+            "enrollments": 8
+          }
+        },
+        "paid_by_segment1": {
+          "Display": {
+            "leads": 1337,
+            "enrollments": 10
+          },
+          "Affiliate": {
+            "leads": 669,
+            "enrollments": 5
+          },
+          "Affiliate - Search": {
+            "leads": 1817,
+            "enrollments": 11
+          },
+          "Non-Brand Search": {
+            "leads": 722,
+            "enrollments": 22
+          }
+        },
+        "total_leads": 5658,
+        "total_enrollments": 77,
+        "navigational_enrollment_pct": 27.27
+      },
+      {
+        "program_id": "001Do00000ScUyRIAV",
+        "program_name": "BA in Business Leadership",
+        "degree_level": "Undergraduate",
+        "by_marketing_rollup": {
+          "Paid": {
+            "leads": 2458,
+            "enrollments": 10
+          },
+          "Navigational": {
+            "leads": 663,
+            "enrollments": 36
+          },
+          "B2B": {
+            "leads": 153,
+            "enrollments": 25
+          }
+        },
+        "paid_by_segment1": {
+          "Display": {
+            "leads": 534,
+            "enrollments": 2
+          },
+          "Affiliate": {
+            "leads": 704,
+            "enrollments": 0
+          },
+          "Affiliate - Search": {
+            "leads": 1027,
+            "enrollments": 6
+          },
+          "Non-Brand Search": {
+            "leads": 193,
+            "enrollments": 2
+          }
+        },
+        "total_leads": 3276,
+        "total_enrollments": 71,
+        "navigational_enrollment_pct": 50.7
+      },
+      {
+        "program_id": "001Do00000ScUyPIAV",
+        "program_name": "BA in Accounting",
+        "degree_level": "Undergraduate",
+        "by_marketing_rollup": {
+          "Paid": {
+            "leads": 2781,
+            "enrollments": 28
+          },
+          "Navigational": {
+            "leads": 877,
+            "enrollments": 25
+          },
+          "B2B": {
+            "leads": 142,
+            "enrollments": 15
+          }
+        },
+        "paid_by_segment1": {
+          "Display": {
+            "leads": 641,
+            "enrollments": 3
+          },
+          "Affiliate": {
+            "leads": 655,
+            "enrollments": 6
+          },
+          "Affiliate - Search": {
+            "leads": 1186,
+            "enrollments": 7
+          },
+          "Non-Brand Search": {
+            "leads": 299,
+            "enrollments": 12
+          }
+        },
+        "total_leads": 3801,
+        "total_enrollments": 68,
+        "navigational_enrollment_pct": 36.76
+      },
+      {
+        "program_id": "001Do00000ScUySIAV",
+        "program_name": "BA in Finance",
+        "degree_level": "Undergraduate",
+        "by_marketing_rollup": {
+          "Paid": {
+            "leads": 1381,
+            "enrollments": 18
+          },
+          "Navigational": {
+            "leads": 540,
+            "enrollments": 32
+          },
+          "B2B": {
+            "leads": 123,
+            "enrollments": 17
+          }
+        },
+        "paid_by_segment1": {
+          "Display": {
+            "leads": 266,
+            "enrollments": 4
+          },
+          "Affiliate": {
+            "leads": 162,
+            "enrollments": 1
+          },
+          "Affiliate - Search": {
+            "leads": 659,
+            "enrollments": 7
+          },
+          "Non-Brand Search": {
+            "leads": 294,
+            "enrollments": 6
+          }
+        },
+        "total_leads": 2047,
+        "total_enrollments": 67,
+        "navigational_enrollment_pct": 47.76
+      },
+      {
+        "program_id": "001Do00000YZZzVIAX",
+        "program_name": "Undecided - Bachelors",
+        "degree_level": "Undergraduate",
+        "by_marketing_rollup": {
+          "Paid": {
+            "leads": 12,
+            "enrollments": 0
+          },
+          "Navigational": {
+            "leads": 265,
+            "enrollments": 2
+          },
+          "B2B": {
+            "leads": 1343,
+            "enrollments": 59
+          }
+        },
+        "paid_by_segment1": {
+          "Display": {
+            "leads": 6,
+            "enrollments": 0
+          },
+          "Affiliate": {
+            "leads": 0,
+            "enrollments": 0
+          },
+          "Affiliate - Search": {
+            "leads": 2,
+            "enrollments": 0
+          },
+          "Non-Brand Search": {
+            "leads": 4,
+            "enrollments": 0
+          }
+        },
+        "total_leads": 1620,
+        "total_enrollments": 61,
+        "navigational_enrollment_pct": 3.28
+      },
+      {
+        "program_id": "001Do00000ScUyWIAV",
+        "program_name": "BA in Project Management",
+        "degree_level": "Undergraduate",
+        "by_marketing_rollup": {
+          "Paid": {
+            "leads": 1702,
+            "enrollments": 19
+          },
+          "Navigational": {
+            "leads": 536,
+            "enrollments": 33
+          },
+          "B2B": {
+            "leads": 127,
+            "enrollments": 9
+          }
+        },
+        "paid_by_segment1": {
+          "Display": {
+            "leads": 414,
+            "enrollments": 3
+          },
+          "Affiliate": {
+            "leads": 385,
+            "enrollments": 3
+          },
+          "Affiliate - Search": {
+            "leads": 703,
+            "enrollments": 5
+          },
+          "Non-Brand Search": {
+            "leads": 200,
+            "enrollments": 8
+          }
+        },
+        "total_leads": 2370,
+        "total_enrollments": 61,
+        "navigational_enrollment_pct": 54.1
+      },
+      {
+        "program_id": "001Do00000ScUzEIAV",
+        "program_name": "BA in Health & Human Services",
+        "degree_level": "Undergraduate",
+        "by_marketing_rollup": {
+          "Paid": {
+            "leads": 2114,
+            "enrollments": 22
+          },
+          "Navigational": {
+            "leads": 574,
+            "enrollments": 21
+          },
+          "B2B": {
+            "leads": 54,
+            "enrollments": 12
+          }
+        },
+        "paid_by_segment1": {
+          "Display": {
+            "leads": 923,
+            "enrollments": 3
+          },
+          "Affiliate": {
+            "leads": 0,
+            "enrollments": 0
+          },
+          "Affiliate - Search": {
+            "leads": 984,
+            "enrollments": 9
+          },
+          "Non-Brand Search": {
+            "leads": 207,
+            "enrollments": 10
+          }
+        },
+        "total_leads": 2743,
+        "total_enrollments": 55,
+        "navigational_enrollment_pct": 38.18
+      },
+      {
+        "program_id": "001Do00000ScUyUIAV",
+        "program_name": "BA in Operations Management & Analysis",
+        "degree_level": "Undergraduate",
+        "by_marketing_rollup": {
+          "Paid": {
+            "leads": 962,
+            "enrollments": 7
+          },
+          "Navigational": {
+            "leads": 453,
+            "enrollments": 25
+          },
+          "B2B": {
+            "leads": 129,
+            "enrollments": 19
+          }
+        },
+        "paid_by_segment1": {
+          "Display": {
+            "leads": 313,
+            "enrollments": 2
+          },
+          "Affiliate": {
+            "leads": 126,
+            "enrollments": 0
+          },
+          "Affiliate - Search": {
+            "leads": 349,
+            "enrollments": 2
+          },
+          "Non-Brand Search": {
+            "leads": 174,
+            "enrollments": 3
+          }
+        },
+        "total_leads": 1544,
+        "total_enrollments": 51,
+        "navigational_enrollment_pct": 49.02
+      },
+      {
+        "program_id": "001Do00000ScUyaIAF",
+        "program_name": "BS in Health Information Management",
+        "degree_level": "Undergraduate",
+        "by_marketing_rollup": {
+          "Paid": {
+            "leads": 1545,
+            "enrollments": 11
+          },
+          "Navigational": {
+            "leads": 568,
+            "enrollments": 26
+          },
+          "B2B": {
+            "leads": 127,
+            "enrollments": 9
+          }
+        },
+        "paid_by_segment1": {
+          "Display": {
+            "leads": 586,
+            "enrollments": 5
+          },
+          "Affiliate": {
+            "leads": 0,
+            "enrollments": 0
+          },
+          "Affiliate - Search": {
+            "leads": 760,
+            "enrollments": 3
+          },
+          "Non-Brand Search": {
+            "leads": 199,
+            "enrollments": 3
+          }
+        },
+        "total_leads": 2241,
+        "total_enrollments": 46,
+        "navigational_enrollment_pct": 56.52
+      },
+      {
+        "program_id": "001Do00000ScUzKIAV",
+        "program_name": "BS in Information Technology",
+        "degree_level": "Undergraduate",
+        "by_marketing_rollup": {
+          "Paid": {
+            "leads": 2048,
+            "enrollments": 15
+          },
+          "Navigational": {
+            "leads": 681,
+            "enrollments": 17
+          },
+          "B2B": {
+            "leads": 149,
+            "enrollments": 14
+          }
+        },
+        "paid_by_segment1": {
+          "Display": {
+            "leads": 544,
+            "enrollments": 2
+          },
+          "Affiliate": {
+            "leads": 417,
+            "enrollments": 2
+          },
+          "Affiliate - Search": {
+            "leads": 934,
+            "enrollments": 9
+          },
+          "Non-Brand Search": {
+            "leads": 153,
+            "enrollments": 2
+          }
+        },
+        "total_leads": 2880,
+        "total_enrollments": 46,
+        "navigational_enrollment_pct": 36.96
+      },
+      {
+        "program_id": "001Do00000YZZxZIAX",
+        "program_name": "Undecided - Business",
+        "degree_level": "Undergraduate",
+        "by_marketing_rollup": {
+          "Paid": {
+            "leads": 1211,
+            "enrollments": 5
+          },
+          "Navigational": {
+            "leads": 342,
+            "enrollments": 24
+          },
+          "B2B": {
+            "leads": 306,
+            "enrollments": 16
+          }
+        },
+        "paid_by_segment1": {
+          "Display": {
+            "leads": 607,
+            "enrollments": 1
+          },
+          "Affiliate": {
+            "leads": 0,
+            "enrollments": 0
+          },
+          "Affiliate - Search": {
+            "leads": 301,
+            "enrollments": 1
+          },
+          "Non-Brand Search": {
+            "leads": 303,
+            "enrollments": 3
+          }
+        },
+        "total_leads": 1859,
+        "total_enrollments": 45,
+        "navigational_enrollment_pct": 53.33
+      },
+      {
+        "program_id": "001Do00000ScUzfIAF",
+        "program_name": "BA in Early Childhood Education",
+        "degree_level": "Undergraduate",
+        "by_marketing_rollup": {
+          "Paid": {
+            "leads": 2373,
+            "enrollments": 22
+          },
+          "Navigational": {
+            "leads": 735,
+            "enrollments": 22
+          },
+          "B2B": {
+            "leads": 51,
+            "enrollments": 1
+          }
+        },
+        "paid_by_segment1": {
+          "Display": {
+            "leads": 491,
+            "enrollments": 6
+          },
+          "Affiliate": {
+            "leads": 257,
+            "enrollments": 1
+          },
+          "Affiliate - Search": {
+            "leads": 822,
+            "enrollments": 4
+          },
+          "Non-Brand Search": {
+            "leads": 803,
+            "enrollments": 11
+          }
+        },
+        "total_leads": 3162,
+        "total_enrollments": 45,
+        "navigational_enrollment_pct": 48.89
+      },
+      {
+        "program_id": "001Do00000ScUyTIAV",
+        "program_name": "BA in Marketing",
+        "degree_level": "Undergraduate",
+        "by_marketing_rollup": {
+          "Paid": {
+            "leads": 1842,
+            "enrollments": 16
+          },
+          "Navigational": {
+            "leads": 680,
+            "enrollments": 18
+          },
+          "B2B": {
+            "leads": 68,
+            "enrollments": 8
+          }
+        },
+        "paid_by_segment1": {
+          "Display": {
+            "leads": 284,
+            "enrollments": 1
+          },
+          "Affiliate": {
+            "leads": 311,
+            "enrollments": 1
+          },
+          "Affiliate - Search": {
+            "leads": 979,
+            "enrollments": 7
+          },
+          "Non-Brand Search": {
+            "leads": 268,
+            "enrollments": 7
+          }
+        },
+        "total_leads": 2590,
+        "total_enrollments": 42,
+        "navigational_enrollment_pct": 42.86
+      },
+      {
+        "program_id": "001Do00000ScUzIIAV",
+        "program_name": "BS in Computer Software Technology",
+        "degree_level": "Undergraduate",
+        "by_marketing_rollup": {
+          "Paid": {
+            "leads": 1834,
+            "enrollments": 13
+          },
+          "Navigational": {
+            "leads": 476,
+            "enrollments": 19
+          },
+          "B2B": {
+            "leads": 144,
+            "enrollments": 9
+          }
+        },
+        "paid_by_segment1": {
+          "Display": {
+            "leads": 401,
+            "enrollments": 1
+          },
+          "Affiliate": {
+            "leads": 367,
+            "enrollments": 0
+          },
+          "Affiliate - Search": {
+            "leads": 859,
+            "enrollments": 7
+          },
+          "Non-Brand Search": {
+            "leads": 207,
+            "enrollments": 5
+          }
+        },
+        "total_leads": 2455,
+        "total_enrollments": 41,
+        "navigational_enrollment_pct": 46.34
+      },
+      {
+        "program_id": "001Do00000ScUyVIAV",
+        "program_name": "BA in Organizational Management",
+        "degree_level": "Undergraduate",
+        "by_marketing_rollup": {
+          "Paid": {
+            "leads": 562,
+            "enrollments": 10
+          },
+          "Navigational": {
+            "leads": 377,
+            "enrollments": 24
+          },
+          "B2B": {
+            "leads": 46,
+            "enrollments": 6
+          }
+        },
+        "paid_by_segment1": {
+          "Display": {
+            "leads": 180,
+            "enrollments": 4
+          },
+          "Affiliate": {
+            "leads": 143,
+            "enrollments": 0
+          },
+          "Affiliate - Search": {
+            "leads": 185,
+            "enrollments": 4
+          },
+          "Non-Brand Search": {
+            "leads": 54,
+            "enrollments": 2
+          }
+        },
+        "total_leads": 986,
+        "total_enrollments": 40,
+        "navigational_enrollment_pct": 60.0
+      },
+      {
+        "program_id": "001Do00000YZZyYIAX",
+        "program_name": "Undecided - Health Care",
+        "degree_level": "Undergraduate",
+        "by_marketing_rollup": {
+          "Paid": {
+            "leads": 3038,
+            "enrollments": 8
+          },
+          "Navigational": {
+            "leads": 357,
+            "enrollments": 20
+          },
+          "B2B": {
+            "leads": 238,
+            "enrollments": 11
+          }
+        },
+        "paid_by_segment1": {
+          "Display": {
+            "leads": 1918,
+            "enrollments": 1
+          },
+          "Affiliate": {
+            "leads": 0,
+            "enrollments": 0
+          },
+          "Affiliate - Search": {
+            "leads": 290,
+            "enrollments": 1
+          },
+          "Non-Brand Search": {
+            "leads": 830,
+            "enrollments": 6
+          }
+        },
+        "total_leads": 3633,
+        "total_enrollments": 39,
+        "navigational_enrollment_pct": 51.28
+      },
+      {
+        "program_id": "001Do00000ScUyNIAV",
+        "program_name": "BA in Supply Chain Management",
+        "degree_level": "Undergraduate",
+        "by_marketing_rollup": {
+          "Paid": {
+            "leads": 396,
+            "enrollments": 8
+          },
+          "Navigational": {
+            "leads": 297,
+            "enrollments": 17
+          },
+          "B2B": {
+            "leads": 53,
+            "enrollments": 8
+          }
+        },
+        "paid_by_segment1": {
+          "Display": {
+            "leads": 165,
+            "enrollments": 2
+          },
+          "Affiliate": {
+            "leads": 0,
+            "enrollments": 0
+          },
+          "Affiliate - Search": {
+            "leads": 180,
+            "enrollments": 4
+          },
+          "Non-Brand Search": {
+            "leads": 51,
+            "enrollments": 2
+          }
+        },
+        "total_leads": 746,
+        "total_enrollments": 33,
+        "navigational_enrollment_pct": 51.52
+      },
+      {
+        "program_id": "001Do00000ScUyDIAV",
+        "program_name": "AA in Organizational Management",
+        "degree_level": "Undergraduate",
+        "by_marketing_rollup": {
+          "Paid": {
+            "leads": 1359,
+            "enrollments": 8
+          },
+          "Navigational": {
+            "leads": 625,
+            "enrollments": 16
+          },
+          "B2B": {
+            "leads": 75,
+            "enrollments": 8
+          }
+        },
+        "paid_by_segment1": {
+          "Display": {
+            "leads": 414,
+            "enrollments": 1
+          },
+          "Affiliate": {
+            "leads": 246,
+            "enrollments": 0
+          },
+          "Affiliate - Search": {
+            "leads": 580,
+            "enrollments": 6
+          },
+          "Non-Brand Search": {
+            "leads": 119,
+            "enrollments": 1
+          }
+        },
+        "total_leads": 2059,
+        "total_enrollments": 32,
+        "navigational_enrollment_pct": 50.0
+      },
+      {
+        "program_id": "001Do00000ScUyeIAF",
+        "program_name": "BA in Health and Wellness",
+        "degree_level": "Undergraduate",
+        "by_marketing_rollup": {
+          "Paid": {
+            "leads": 2482,
+            "enrollments": 13
+          },
+          "Navigational": {
+            "leads": 546,
+            "enrollments": 13
+          },
+          "B2B": {
+            "leads": 63,
+            "enrollments": 5
+          }
+        },
+        "paid_by_segment1": {
+          "Display": {
+            "leads": 695,
+            "enrollments": 3
+          },
+          "Affiliate": {
+            "leads": 0,
+            "enrollments": 0
+          },
+          "Affiliate - Search": {
+            "leads": 1506,
+            "enrollments": 7
+          },
+          "Non-Brand Search": {
+            "leads": 281,
+            "enrollments": 3
+          }
+        },
+        "total_leads": 3095,
+        "total_enrollments": 31,
+        "navigational_enrollment_pct": 41.94
+      },
+      {
+        "program_id": "001Do00000ScUzhIAF",
+        "program_name": "BA in Education Studies",
+        "degree_level": "Undergraduate",
+        "by_marketing_rollup": {
+          "Paid": {
+            "leads": 1288,
+            "enrollments": 16
+          },
+          "Navigational": {
+            "leads": 361,
+            "enrollments": 11
+          },
+          "B2B": {
+            "leads": 32,
+            "enrollments": 2
+          }
+        },
+        "paid_by_segment1": {
+          "Display": {
+            "leads": 311,
+            "enrollments": 2
+          },
+          "Affiliate": {
+            "leads": 191,
+            "enrollments": 3
+          },
+          "Affiliate - Search": {
+            "leads": 507,
+            "enrollments": 4
+          },
+          "Non-Brand Search": {
+            "leads": 279,
+            "enrollments": 7
+          }
+        },
+        "total_leads": 1682,
+        "total_enrollments": 29,
+        "navigational_enrollment_pct": 37.93
+      },
+      {
+        "program_id": "001Do00000ScUzCIAV",
+        "program_name": "BA in Sociology",
+        "degree_level": "Undergraduate",
+        "by_marketing_rollup": {
+          "Paid": {
+            "leads": 1148,
+            "enrollments": 13
+          },
+          "Navigational": {
+            "leads": 351,
+            "enrollments": 13
+          },
+          "B2B": {
+            "leads": 19,
+            "enrollments": 2
+          }
+        },
+        "paid_by_segment1": {
+          "Display": {
+            "leads": 336,
+            "enrollments": 5
+          },
+          "Affiliate": {
+            "leads": 217,
+            "enrollments": 0
+          },
+          "Affiliate - Search": {
+            "leads": 371,
+            "enrollments": 2
+          },
+          "Non-Brand Search": {
+            "leads": 224,
+            "enrollments": 6
+          }
+        },
+        "total_leads": 1519,
+        "total_enrollments": 28,
+        "navigational_enrollment_pct": 46.43
+      },
+      {
+        "program_id": "001Do00000ScUyqIAF",
+        "program_name": "BA in Liberal Arts",
+        "degree_level": "Undergraduate",
+        "by_marketing_rollup": {
+          "Paid": {
+            "leads": 1699,
+            "enrollments": 16
+          },
+          "Navigational": {
+            "leads": 470,
+            "enrollments": 8
+          },
+          "B2B": {
+            "leads": 39,
+            "enrollments": 3
+          }
+        },
+        "paid_by_segment1": {
+          "Display": {
+            "leads": 512,
+            "enrollments": 3
+          },
+          "Affiliate": {
+            "leads": 93,
+            "enrollments": 1
+          },
+          "Affiliate - Search": {
+            "leads": 792,
+            "enrollments": 7
+          },
+          "Non-Brand Search": {
+            "leads": 302,
+            "enrollments": 5
+          }
+        },
+        "total_leads": 2212,
+        "total_enrollments": 27,
+        "navigational_enrollment_pct": 29.63
+      },
+      {
+        "program_id": "001Do00000YZZxjIAH",
+        "program_name": "Undecided - Criminal Justice",
+        "degree_level": "Undergraduate",
+        "by_marketing_rollup": {
+          "Paid": {
+            "leads": 1256,
+            "enrollments": 7
+          },
+          "Navigational": {
+            "leads": 171,
+            "enrollments": 17
+          },
+          "B2B": {
+            "leads": 55,
+            "enrollments": 2
+          }
+        },
+        "paid_by_segment1": {
+          "Display": {
+            "leads": 841,
+            "enrollments": 4
+          },
+          "Affiliate": {
+            "leads": 0,
+            "enrollments": 0
+          },
+          "Affiliate - Search": {
+            "leads": 76,
+            "enrollments": 1
+          },
+          "Non-Brand Search": {
+            "leads": 339,
+            "enrollments": 2
+          }
+        },
+        "total_leads": 1482,
+        "total_enrollments": 26,
+        "navigational_enrollment_pct": 65.38
+      },
+      {
+        "program_id": "001Do00000ScUzHIAV",
+        "program_name": "BA in Business Information Systems",
+        "degree_level": "Undergraduate",
+        "by_marketing_rollup": {
+          "Paid": {
+            "leads": 1087,
+            "enrollments": 7
+          },
+          "Navigational": {
+            "leads": 333,
+            "enrollments": 7
+          },
+          "B2B": {
+            "leads": 65,
+            "enrollments": 9
+          }
+        },
+        "paid_by_segment1": {
+          "Display": {
+            "leads": 263,
+            "enrollments": 1
+          },
+          "Affiliate": {
+            "leads": 299,
+            "enrollments": 0
+          },
+          "Affiliate - Search": {
+            "leads": 449,
+            "enrollments": 4
+          },
+          "Non-Brand Search": {
+            "leads": 76,
+            "enrollments": 2
+          }
+        },
+        "total_leads": 1485,
+        "total_enrollments": 23,
+        "navigational_enrollment_pct": 30.43
+      },
+      {
+        "program_id": "001Do00000ScUymIAF",
+        "program_name": "BS in Nursing",
+        "degree_level": "Undergraduate",
+        "by_marketing_rollup": {
+          "Paid": {
+            "leads": 502,
+            "enrollments": 3
+          },
+          "Navigational": {
+            "leads": 440,
+            "enrollments": 9
+          },
+          "B2B": {
+            "leads": 189,
+            "enrollments": 10
+          }
+        },
+        "paid_by_segment1": {
+          "Display": {
+            "leads": 275,
+            "enrollments": 2
+          },
+          "Affiliate": {
+            "leads": 0,
+            "enrollments": 0
+          },
+          "Affiliate - Search": {
+            "leads": 160,
+            "enrollments": 0
+          },
+          "Non-Brand Search": {
+            "leads": 67,
+            "enrollments": 1
+          }
+        },
+        "total_leads": 1132,
+        "total_enrollments": 22,
+        "navigational_enrollment_pct": 40.91
+      },
+      {
+        "program_id": "001Do00000YZZymIAH",
+        "program_name": "Undecided - Information Technology",
+        "degree_level": "Undergraduate",
+        "by_marketing_rollup": {
+          "Paid": {
+            "leads": 780,
+            "enrollments": 3
+          },
+          "Navigational": {
+            "leads": 181,
+            "enrollments": 7
+          },
+          "B2B": {
+            "leads": 122,
+            "enrollments": 3
+          }
+        },
+        "paid_by_segment1": {
+          "Display": {
+            "leads": 540,
+            "enrollments": 0
+          },
+          "Affiliate": {
+            "leads": 0,
+            "enrollments": 0
+          },
+          "Affiliate - Search": {
+            "leads": 119,
+            "enrollments": 1
+          },
+          "Non-Brand Search": {
+            "leads": 121,
+            "enrollments": 2
+          }
+        },
+        "total_leads": 1083,
+        "total_enrollments": 13,
+        "navigational_enrollment_pct": 53.85
+      },
+      {
+        "program_id": "001Do00000YZZyXIAX",
+        "program_name": "Undecided - Education",
+        "degree_level": "Undergraduate",
+        "by_marketing_rollup": {
+          "Paid": {
+            "leads": 653,
+            "enrollments": 3
+          },
+          "Navigational": {
+            "leads": 180,
+            "enrollments": 9
+          },
+          "B2B": {
+            "leads": 86,
+            "enrollments": 1
+          }
+        },
+        "paid_by_segment1": {
+          "Display": {
+            "leads": 302,
+            "enrollments": 1
+          },
+          "Affiliate": {
+            "leads": 0,
+            "enrollments": 0
+          },
+          "Affiliate - Search": {
+            "leads": 89,
+            "enrollments": 0
+          },
+          "Non-Brand Search": {
+            "leads": 262,
+            "enrollments": 2
+          }
+        },
+        "total_leads": 919,
+        "total_enrollments": 13,
+        "navigational_enrollment_pct": 69.23
+      },
+      {
+        "program_id": "001Do00000ScUyvIAF",
+        "program_name": "AA in Military Studies",
+        "degree_level": "Undergraduate",
+        "by_marketing_rollup": {
+          "Paid": {
+            "leads": 297,
+            "enrollments": 5
+          },
+          "Navigational": {
+            "leads": 159,
+            "enrollments": 8
+          },
+          "B2B": {
+            "leads": 1,
+            "enrollments": 0
+          }
+        },
+        "paid_by_segment1": {
+          "Display": {
+            "leads": 50,
+            "enrollments": 0
+          },
+          "Affiliate": {
+            "leads": 121,
+            "enrollments": 0
+          },
+          "Affiliate - Search": {
+            "leads": 81,
+            "enrollments": 2
+          },
+          "Non-Brand Search": {
+            "leads": 45,
+            "enrollments": 3
+          }
+        },
+        "total_leads": 459,
+        "total_enrollments": 13,
+        "navigational_enrollment_pct": 61.54
+      },
+      {
+        "program_id": "001Do00000YZZzGIAX",
+        "program_name": "Undecided - Social & Behavioral Science",
+        "degree_level": "Undergraduate",
+        "by_marketing_rollup": {
+          "Paid": {
+            "leads": 1273,
+            "enrollments": 5
+          },
+          "Navigational": {
+            "leads": 247,
+            "enrollments": 4
+          },
+          "B2B": {
+            "leads": 113,
+            "enrollments": 3
+          }
+        },
+        "paid_by_segment1": {
+          "Display": {
+            "leads": 983,
+            "enrollments": 3
+          },
+          "Affiliate": {
+            "leads": 0,
+            "enrollments": 0
+          },
+          "Affiliate - Search": {
+            "leads": 93,
+            "enrollments": 0
+          },
+          "Non-Brand Search": {
+            "leads": 197,
+            "enrollments": 2
+          }
+        },
+        "total_leads": 1633,
+        "total_enrollments": 12,
+        "navigational_enrollment_pct": 33.33
+      },
+      {
+        "program_id": "001Do00000ScUzgIAF",
+        "program_name": "BA in Early Childhood Education Administration",
+        "degree_level": "Undergraduate",
+        "by_marketing_rollup": {
+          "Paid": {
+            "leads": 573,
+            "enrollments": 6
+          },
+          "Navigational": {
+            "leads": 250,
+            "enrollments": 6
+          },
+          "B2B": {
+            "leads": 17,
+            "enrollments": 0
+          }
+        },
+        "paid_by_segment1": {
+          "Display": {
+            "leads": 137,
+            "enrollments": 1
+          },
+          "Affiliate": {
+            "leads": 84,
+            "enrollments": 1
+          },
+          "Affiliate - Search": {
+            "leads": 153,
+            "enrollments": 1
+          },
+          "Non-Brand Search": {
+            "leads": 199,
+            "enrollments": 3
+          }
+        },
+        "total_leads": 842,
+        "total_enrollments": 12,
+        "navigational_enrollment_pct": 50.0
+      },
+      {
+        "program_id": "001Do00000ScUysIAF",
+        "program_name": "BA in Communication Studies",
+        "degree_level": "Undergraduate",
+        "by_marketing_rollup": {
+          "Paid": {
+            "leads": 381,
+            "enrollments": 4
+          },
+          "Navigational": {
+            "leads": 199,
+            "enrollments": 5
+          },
+          "B2B": {
+            "leads": 23,
+            "enrollments": 2
+          }
+        },
+        "paid_by_segment1": {
+          "Display": {
+            "leads": 123,
+            "enrollments": 1
+          },
+          "Affiliate": {
+            "leads": 0,
+            "enrollments": 0
+          },
+          "Affiliate - Search": {
+            "leads": 188,
+            "enrollments": 1
+          },
+          "Non-Brand Search": {
+            "leads": 70,
+            "enrollments": 2
+          }
+        },
+        "total_leads": 604,
+        "total_enrollments": 11,
+        "navigational_enrollment_pct": 45.45
+      },
+      {
+        "program_id": "001Do00000ScUyEIAV",
+        "program_name": "BA in Business Economics",
+        "degree_level": "Undergraduate",
+        "by_marketing_rollup": {
+          "Paid": {
+            "leads": 590,
+            "enrollments": 6
+          },
+          "Navigational": {
+            "leads": 220,
+            "enrollments": 3
+          },
+          "B2B": {
+            "leads": 28,
+            "enrollments": 2
+          }
+        },
+        "paid_by_segment1": {
+          "Display": {
+            "leads": 91,
+            "enrollments": 0
+          },
+          "Affiliate": {
+            "leads": 0,
+            "enrollments": 0
+          },
+          "Affiliate - Search": {
+            "leads": 440,
+            "enrollments": 6
+          },
+          "Non-Brand Search": {
+            "leads": 59,
+            "enrollments": 0
+          }
+        },
+        "total_leads": 838,
+        "total_enrollments": 11,
+        "navigational_enrollment_pct": 27.27
+      },
+      {
+        "program_id": "001Do00000ScUzdIAF",
+        "program_name": "BA in Child Development",
+        "degree_level": "Undergraduate",
+        "by_marketing_rollup": {
+          "Paid": {
+            "leads": 569,
+            "enrollments": 3
+          },
+          "Navigational": {
+            "leads": 333,
+            "enrollments": 4
+          },
+          "B2B": {
+            "leads": 39,
+            "enrollments": 0
+          }
+        },
+        "paid_by_segment1": {
+          "Display": {
+            "leads": 126,
+            "enrollments": 0
+          },
+          "Affiliate": {
+            "leads": 0,
+            "enrollments": 0
+          },
+          "Affiliate - Search": {
+            "leads": 292,
+            "enrollments": 1
+          },
+          "Non-Brand Search": {
+            "leads": 151,
+            "enrollments": 2
+          }
+        },
+        "total_leads": 941,
+        "total_enrollments": 7,
+        "navigational_enrollment_pct": 57.14
+      },
+      {
+        "program_id": "001Do00000ScUzeIAF",
+        "program_name": "BA in Early Childhood Development with Differentiated Instruction",
+        "degree_level": "Undergraduate",
+        "by_marketing_rollup": {
+          "Paid": {
+            "leads": 496,
+            "enrollments": 2
+          },
+          "Navigational": {
+            "leads": 228,
+            "enrollments": 5
+          },
+          "B2B": {
+            "leads": 31,
+            "enrollments": 0
+          }
+        },
+        "paid_by_segment1": {
+          "Display": {
+            "leads": 112,
+            "enrollments": 0
+          },
+          "Affiliate": {
+            "leads": 145,
+            "enrollments": 0
+          },
+          "Affiliate - Search": {
+            "leads": 164,
+            "enrollments": 0
+          },
+          "Non-Brand Search": {
+            "leads": 75,
+            "enrollments": 2
+          }
+        },
+        "total_leads": 755,
+        "total_enrollments": 7,
+        "navigational_enrollment_pct": 71.43
+      },
+      {
+        "program_id": "001Do00000ScUzZIAV",
+        "program_name": "BA in Instructional Design",
+        "degree_level": "Undergraduate",
+        "by_marketing_rollup": {
+          "Paid": {
+            "leads": 200,
+            "enrollments": 1
+          },
+          "Navigational": {
+            "leads": 143,
+            "enrollments": 5
+          },
+          "B2B": {
+            "leads": 9,
+            "enrollments": 0
+          }
+        },
+        "paid_by_segment1": {
+          "Display": {
+            "leads": 43,
+            "enrollments": 1
+          },
+          "Affiliate": {
+            "leads": 53,
+            "enrollments": 0
+          },
+          "Affiliate - Search": {
+            "leads": 68,
+            "enrollments": 0
+          },
+          "Non-Brand Search": {
+            "leads": 36,
+            "enrollments": 0
+          }
+        },
+        "total_leads": 353,
+        "total_enrollments": 6,
+        "navigational_enrollment_pct": 83.33
+      },
+      {
+        "program_id": "001Do00000ScUyzIAF",
+        "program_name": "BA in Social Science",
+        "degree_level": "Undergraduate",
+        "by_marketing_rollup": {
+          "Paid": {
+            "leads": 198,
+            "enrollments": 3
+          },
+          "Navigational": {
+            "leads": 91,
+            "enrollments": 1
+          },
+          "B2B": {
+            "leads": 6,
+            "enrollments": 1
+          }
+        },
+        "paid_by_segment1": {
+          "Display": {
+            "leads": 56,
+            "enrollments": 0
+          },
+          "Affiliate": {
+            "leads": 0,
+            "enrollments": 0
+          },
+          "Affiliate - Search": {
+            "leads": 111,
+            "enrollments": 1
+          },
+          "Non-Brand Search": {
+            "leads": 31,
+            "enrollments": 2
+          }
+        },
+        "total_leads": 296,
+        "total_enrollments": 5,
+        "navigational_enrollment_pct": 20.0
+      },
+      {
+        "program_id": "001Do00000YZZz6IAH",
+        "program_name": "Undecided - Liberal Arts",
+        "degree_level": "Undergraduate",
+        "by_marketing_rollup": {
+          "Paid": {
+            "leads": 271,
+            "enrollments": 0
+          },
+          "Navigational": {
+            "leads": 92,
+            "enrollments": 2
+          },
+          "B2B": {
+            "leads": 22,
+            "enrollments": 1
+          }
+        },
+        "paid_by_segment1": {
+          "Display": {
+            "leads": 182,
+            "enrollments": 0
+          },
+          "Affiliate": {
+            "leads": 0,
+            "enrollments": 0
+          },
+          "Affiliate - Search": {
+            "leads": 21,
+            "enrollments": 0
+          },
+          "Non-Brand Search": {
+            "leads": 68,
+            "enrollments": 0
+          }
+        },
+        "total_leads": 385,
+        "total_enrollments": 3,
+        "navigational_enrollment_pct": 66.67
+      }
+    ]
+  },
+  "graduate": {
+    "total": {
+      "leads": 26467,
+      "enrollments": 698,
+      "by_marketing_rollup": {
+        "Paid": {
+          "leads": 16028,
+          "enrollments": 156
+        },
+        "Navigational": {
+          "leads": 7754,
+          "enrollments": 302
+        },
+        "B2B": {
+          "leads": 2669,
+          "enrollments": 239
+        }
+      },
+      "paid_by_segment1": {
+        "Display": {
+          "leads": 5671,
+          "enrollments": 43
+        },
+        "Affiliate": {
+          "leads": 54,
+          "enrollments": 2
+        },
+        "Affiliate - Search": {
+          "leads": 6326,
+          "enrollments": 42
+        },
+        "Non-Brand Search": {
+          "leads": 3977,
+          "enrollments": 69
+        }
+      },
+      "navigational_enrollment_pct": 43.27
+    },
+    "programs": [
+      {
+        "program_id": "001Do00000ScUy9IAF",
+        "program_name": "Master of Business Administration",
+        "degree_level": "Graduate",
+        "by_marketing_rollup": {
+          "Paid": {
+            "leads": 1807,
+            "enrollments": 27
+          },
+          "Navigational": {
+            "leads": 1720,
+            "enrollments": 99
+          },
+          "B2B": {
+            "leads": 968,
+            "enrollments": 118
+          }
+        },
+        "paid_by_segment1": {
+          "Display": {
+            "leads": 712,
+            "enrollments": 10
+          },
+          "Affiliate": {
+            "leads": 6,
+            "enrollments": 0
+          },
+          "Affiliate - Search": {
+            "leads": 544,
+            "enrollments": 6
+          },
+          "Non-Brand Search": {
+            "leads": 545,
+            "enrollments": 11
+          }
+        },
+        "total_leads": 4496,
+        "total_enrollments": 244,
+        "navigational_enrollment_pct": 40.57
+      },
+      {
+        "program_id": "001Do00000ScUz9IAF",
+        "program_name": "MA in Psychology",
+        "degree_level": "Graduate",
+        "by_marketing_rollup": {
+          "Paid": {
+            "leads": 2272,
+            "enrollments": 33
+          },
+          "Navigational": {
+            "leads": 810,
+            "enrollments": 27
+          },
+          "B2B": {
+            "leads": 112,
+            "enrollments": 5
+          }
+        },
+        "paid_by_segment1": {
+          "Display": {
+            "leads": 722,
+            "enrollments": 5
+          },
+          "Affiliate": {
+            "leads": 17,
+            "enrollments": 1
+          },
+          "Affiliate - Search": {
+            "leads": 755,
+            "enrollments": 9
+          },
+          "Non-Brand Search": {
+            "leads": 778,
+            "enrollments": 18
+          }
+        },
+        "total_leads": 3196,
+        "total_enrollments": 65,
+        "navigational_enrollment_pct": 41.54
+      },
+      {
+        "program_id": "001Do00000ScUynIAF",
+        "program_name": "MA in Health Care Administration",
+        "degree_level": "Graduate",
+        "by_marketing_rollup": {
+          "Paid": {
+            "leads": 2107,
+            "enrollments": 14
+          },
+          "Navigational": {
+            "leads": 584,
+            "enrollments": 29
+          },
+          "B2B": {
+            "leads": 196,
+            "enrollments": 14
+          }
+        },
+        "paid_by_segment1": {
+          "Display": {
+            "leads": 799,
+            "enrollments": 3
+          },
+          "Affiliate": {
+            "leads": 0,
+            "enrollments": 0
+          },
+          "Affiliate - Search": {
+            "leads": 1030,
+            "enrollments": 7
+          },
+          "Non-Brand Search": {
+            "leads": 278,
+            "enrollments": 4
+          }
+        },
+        "total_leads": 2887,
+        "total_enrollments": 57,
+        "navigational_enrollment_pct": 50.88
+      },
+      {
+        "program_id": "001Do00000ScUy8IAF",
+        "program_name": "MA in Organizational Management",
+        "degree_level": "Graduate",
+        "by_marketing_rollup": {
+          "Paid": {
+            "leads": 330,
+            "enrollments": 9
+          },
+          "Navigational": {
+            "leads": 448,
+            "enrollments": 21
+          },
+          "B2B": {
+            "leads": 117,
+            "enrollments": 12
+          }
+        },
+        "paid_by_segment1": {
+          "Display": {
+            "leads": 164,
+            "enrollments": 5
+          },
+          "Affiliate": {
+            "leads": 1,
+            "enrollments": 0
+          },
+          "Affiliate - Search": {
+            "leads": 126,
+            "enrollments": 0
+          },
+          "Non-Brand Search": {
+            "leads": 39,
+            "enrollments": 4
+          }
+        },
+        "total_leads": 895,
+        "total_enrollments": 42,
+        "navigational_enrollment_pct": 50.0
+      },
+      {
+        "program_id": "001Do00000ScUz8IAF",
+        "program_name": "MS in Criminal Justice",
+        "degree_level": "Graduate",
+        "by_marketing_rollup": {
+          "Paid": {
+            "leads": 2134,
+            "enrollments": 16
+          },
+          "Navigational": {
+            "leads": 475,
+            "enrollments": 15
+          },
+          "B2B": {
+            "leads": 35,
+            "enrollments": 2
+          }
+        },
+        "paid_by_segment1": {
+          "Display": {
+            "leads": 636,
+            "enrollments": 5
+          },
+          "Affiliate": {
+            "leads": 5,
+            "enrollments": 0
+          },
+          "Affiliate - Search": {
+            "leads": 865,
+            "enrollments": 3
+          },
+          "Non-Brand Search": {
+            "leads": 628,
+            "enrollments": 8
+          }
+        },
+        "total_leads": 2647,
+        "total_enrollments": 33,
+        "navigational_enrollment_pct": 45.45
+      },
+      {
+        "program_id": "001Do00000ScUyAIAV",
+        "program_name": "Master of Human Resource Management",
+        "degree_level": "Graduate",
+        "by_marketing_rollup": {
+          "Paid": {
+            "leads": 602,
+            "enrollments": 4
+          },
+          "Navigational": {
+            "leads": 474,
+            "enrollments": 17
+          },
+          "B2B": {
+            "leads": 101,
+            "enrollments": 12
+          }
+        },
+        "paid_by_segment1": {
+          "Display": {
+            "leads": 178,
+            "enrollments": 2
+          },
+          "Affiliate": {
+            "leads": 0,
+            "enrollments": 0
+          },
+          "Affiliate - Search": {
+            "leads": 207,
+            "enrollments": 2
+          },
+          "Non-Brand Search": {
+            "leads": 217,
+            "enrollments": 0
+          }
+        },
+        "total_leads": 1177,
+        "total_enrollments": 33,
+        "navigational_enrollment_pct": 51.52
+      },
+      {
+        "program_id": "001Do00000ScUykIAF",
+        "program_name": "MS in Health Informatics and Analytics",
+        "degree_level": "Graduate",
+        "by_marketing_rollup": {
+          "Paid": {
+            "leads": 634,
+            "enrollments": 7
+          },
+          "Navigational": {
+            "leads": 285,
+            "enrollments": 14
+          },
+          "B2B": {
+            "leads": 132,
+            "enrollments": 9
+          }
+        },
+        "paid_by_segment1": {
+          "Display": {
+            "leads": 213,
+            "enrollments": 1
+          },
+          "Affiliate": {
+            "leads": 0,
+            "enrollments": 0
+          },
+          "Affiliate - Search": {
+            "leads": 195,
+            "enrollments": 1
+          },
+          "Non-Brand Search": {
+            "leads": 226,
+            "enrollments": 5
+          }
+        },
+        "total_leads": 1054,
+        "total_enrollments": 30,
+        "navigational_enrollment_pct": 46.67
+      },
+      {
+        "program_id": "001Do00000YZZz7IAH",
+        "program_name": "Undecided - Masters",
+        "degree_level": "Graduate",
+        "by_marketing_rollup": {
+          "Paid": {
+            "leads": 5,
+            "enrollments": 0
+          },
+          "Navigational": {
+            "leads": 54,
+            "enrollments": 1
+          },
+          "B2B": {
+            "leads": 379,
+            "enrollments": 27
+          }
+        },
+        "paid_by_segment1": {
+          "Display": {
+            "leads": 3,
+            "enrollments": 0
+          },
+          "Affiliate": {
+            "leads": 0,
+            "enrollments": 0
+          },
+          "Affiliate - Search": {
+            "leads": 0,
+            "enrollments": 0
+          },
+          "Non-Brand Search": {
+            "leads": 2,
+            "enrollments": 0
+          }
+        },
+        "total_leads": 438,
+        "total_enrollments": 28,
+        "navigational_enrollment_pct": 3.57
+      },
+      {
+        "program_id": "001Do00000ScUzAIAV",
+        "program_name": "MA in Human Services",
+        "degree_level": "Graduate",
+        "by_marketing_rollup": {
+          "Paid": {
+            "leads": 1126,
+            "enrollments": 12
+          },
+          "Navigational": {
+            "leads": 428,
+            "enrollments": 14
+          },
+          "B2B": {
+            "leads": 28,
+            "enrollments": 1
+          }
+        },
+        "paid_by_segment1": {
+          "Display": {
+            "leads": 514,
+            "enrollments": 4
+          },
+          "Affiliate": {
+            "leads": 5,
+            "enrollments": 0
+          },
+          "Affiliate - Search": {
+            "leads": 430,
+            "enrollments": 3
+          },
+          "Non-Brand Search": {
+            "leads": 177,
+            "enrollments": 5
+          }
+        },
+        "total_leads": 1583,
+        "total_enrollments": 27,
+        "navigational_enrollment_pct": 51.85
+      },
+      {
+        "program_id": "001Do00000ScUylIAF",
+        "program_name": "Master of Public Health",
+        "degree_level": "Graduate",
+        "by_marketing_rollup": {
+          "Paid": {
+            "leads": 926,
+            "enrollments": 5
+          },
+          "Navigational": {
+            "leads": 279,
+            "enrollments": 11
+          },
+          "B2B": {
+            "leads": 130,
+            "enrollments": 10
+          }
+        },
+        "paid_by_segment1": {
+          "Display": {
+            "leads": 347,
+            "enrollments": 0
+          },
+          "Affiliate": {
+            "leads": 4,
+            "enrollments": 0
+          },
+          "Affiliate - Search": {
+            "leads": 375,
+            "enrollments": 2
+          },
+          "Non-Brand Search": {
+            "leads": 200,
+            "enrollments": 3
+          }
+        },
+        "total_leads": 1337,
+        "total_enrollments": 26,
+        "navigational_enrollment_pct": 42.31
+      },
+      {
+        "program_id": "001Do00000ScUzMIAV",
+        "program_name": "Master of Information Systems Management",
+        "degree_level": "Graduate",
+        "by_marketing_rollup": {
+          "Paid": {
+            "leads": 490,
+            "enrollments": 3
+          },
+          "Navigational": {
+            "leads": 272,
+            "enrollments": 11
+          },
+          "B2B": {
+            "leads": 140,
+            "enrollments": 7
+          }
+        },
+        "paid_by_segment1": {
+          "Display": {
+            "leads": 213,
+            "enrollments": 1
+          },
+          "Affiliate": {
+            "leads": 1,
+            "enrollments": 0
+          },
+          "Affiliate - Search": {
+            "leads": 214,
+            "enrollments": 1
+          },
+          "Non-Brand Search": {
+            "leads": 62,
+            "enrollments": 1
+          }
+        },
+        "total_leads": 902,
+        "total_enrollments": 21,
+        "navigational_enrollment_pct": 52.38
+      },
+      {
+        "program_id": "001Do00000ScUzNIAV",
+        "program_name": "MS in Technology Management",
+        "degree_level": "Graduate",
+        "by_marketing_rollup": {
+          "Paid": {
+            "leads": 430,
+            "enrollments": 5
+          },
+          "Navigational": {
+            "leads": 218,
+            "enrollments": 6
+          },
+          "B2B": {
+            "leads": 89,
+            "enrollments": 7
+          }
+        },
+        "paid_by_segment1": {
+          "Display": {
+            "leads": 179,
+            "enrollments": 3
+          },
+          "Affiliate": {
+            "leads": 1,
+            "enrollments": 0
+          },
+          "Affiliate - Search": {
+            "leads": 198,
+            "enrollments": 2
+          },
+          "Non-Brand Search": {
+            "leads": 52,
+            "enrollments": 0
+          }
+        },
+        "total_leads": 738,
+        "total_enrollments": 18,
+        "navigational_enrollment_pct": 33.33
+      },
+      {
+        "program_id": "001Do00000ScUzbIAF",
+        "program_name": "MA in Early Childhood Education Leadership",
+        "degree_level": "Graduate",
+        "by_marketing_rollup": {
+          "Paid": {
+            "leads": 346,
+            "enrollments": 2
+          },
+          "Navigational": {
+            "leads": 274,
+            "enrollments": 14
+          },
+          "B2B": {
+            "leads": 17,
+            "enrollments": 0
+          }
+        },
+        "paid_by_segment1": {
+          "Display": {
+            "leads": 126,
+            "enrollments": 0
+          },
+          "Affiliate": {
+            "leads": 5,
+            "enrollments": 1
+          },
+          "Affiliate - Search": {
+            "leads": 141,
+            "enrollments": 1
+          },
+          "Non-Brand Search": {
+            "leads": 74,
+            "enrollments": 0
+          }
+        },
+        "total_leads": 637,
+        "total_enrollments": 16,
+        "navigational_enrollment_pct": 87.5
+      },
+      {
+        "program_id": "001Do00000ScUzcIAF",
+        "program_name": "MA in Education",
+        "degree_level": "Graduate",
+        "by_marketing_rollup": {
+          "Paid": {
+            "leads": 877,
+            "enrollments": 6
+          },
+          "Navigational": {
+            "leads": 374,
+            "enrollments": 7
+          },
+          "B2B": {
+            "leads": 27,
+            "enrollments": 2
+          }
+        },
+        "paid_by_segment1": {
+          "Display": {
+            "leads": 286,
+            "enrollments": 1
+          },
+          "Affiliate": {
+            "leads": 6,
+            "enrollments": 0
+          },
+          "Affiliate - Search": {
+            "leads": 368,
+            "enrollments": 1
+          },
+          "Non-Brand Search": {
+            "leads": 217,
+            "enrollments": 4
+          }
+        },
+        "total_leads": 1279,
+        "total_enrollments": 15,
+        "navigational_enrollment_pct": 46.67
+      },
+      {
+        "program_id": "001Do00000ScUyBIAV",
+        "program_name": "MS in Finance",
+        "degree_level": "Graduate",
+        "by_marketing_rollup": {
+          "Paid": {
+            "leads": 428,
+            "enrollments": 2
+          },
+          "Navigational": {
+            "leads": 230,
+            "enrollments": 4
+          },
+          "B2B": {
+            "leads": 101,
+            "enrollments": 9
+          }
+        },
+        "paid_by_segment1": {
+          "Display": {
+            "leads": 93,
+            "enrollments": 0
+          },
+          "Affiliate": {
+            "leads": 0,
+            "enrollments": 0
+          },
+          "Affiliate - Search": {
+            "leads": 193,
+            "enrollments": 1
+          },
+          "Non-Brand Search": {
+            "leads": 142,
+            "enrollments": 1
+          }
+        },
+        "total_leads": 760,
+        "total_enrollments": 15,
+        "navigational_enrollment_pct": 26.67
+      },
+      {
+        "program_id": "001Do00000ScUzSIAV",
+        "program_name": "MA in Special Education",
+        "degree_level": "Graduate",
+        "by_marketing_rollup": {
+          "Paid": {
+            "leads": 651,
+            "enrollments": 5
+          },
+          "Navigational": {
+            "leads": 246,
+            "enrollments": 5
+          },
+          "B2B": {
+            "leads": 6,
+            "enrollments": 0
+          }
+        },
+        "paid_by_segment1": {
+          "Display": {
+            "leads": 258,
+            "enrollments": 3
+          },
+          "Affiliate": {
+            "leads": 3,
+            "enrollments": 0
+          },
+          "Affiliate - Search": {
+            "leads": 273,
+            "enrollments": 0
+          },
+          "Non-Brand Search": {
+            "leads": 117,
+            "enrollments": 2
+          }
+        },
+        "total_leads": 903,
+        "total_enrollments": 10,
+        "navigational_enrollment_pct": 50.0
+      },
+      {
+        "program_id": "001Do00000ScUzQIAV",
+        "program_name": "MS in Instructional Design and Technology",
+        "degree_level": "Graduate",
+        "by_marketing_rollup": {
+          "Paid": {
+            "leads": 190,
+            "enrollments": 3
+          },
+          "Navigational": {
+            "leads": 112,
+            "enrollments": 3
+          },
+          "B2B": {
+            "leads": 23,
+            "enrollments": 2
+          }
+        },
+        "paid_by_segment1": {
+          "Display": {
+            "leads": 57,
+            "enrollments": 0
+          },
+          "Affiliate": {
+            "leads": 0,
+            "enrollments": 0
+          },
+          "Affiliate - Search": {
+            "leads": 88,
+            "enrollments": 2
+          },
+          "Non-Brand Search": {
+            "leads": 45,
+            "enrollments": 1
+          }
+        },
+        "total_leads": 325,
+        "total_enrollments": 8,
+        "navigational_enrollment_pct": 37.5
+      },
+      {
+        "program_id": "001Do00000ScUyZIAV",
+        "program_name": "Master of Accountancy",
+        "degree_level": "Graduate",
+        "by_marketing_rollup": {
+          "Paid": {
+            "leads": 395,
+            "enrollments": 1
+          },
+          "Navigational": {
+            "leads": 282,
+            "enrollments": 4
+          },
+          "B2B": {
+            "leads": 48,
+            "enrollments": 2
+          }
+        },
+        "paid_by_segment1": {
+          "Display": {
+            "leads": 90,
+            "enrollments": 0
+          },
+          "Affiliate": {
+            "leads": 0,
+            "enrollments": 0
+          },
+          "Affiliate - Search": {
+            "leads": 159,
+            "enrollments": 0
+          },
+          "Non-Brand Search": {
+            "leads": 146,
+            "enrollments": 1
+          }
+        },
+        "total_leads": 725,
+        "total_enrollments": 7,
+        "navigational_enrollment_pct": 57.14
+      },
+      {
+        "program_id": "001Do00000ScUzOIAV",
+        "program_name": "Post Baccalaureate Teaching Certificate - Elementary Education",
+        "degree_level": "Graduate",
+        "by_marketing_rollup": {
+          "Paid": {
+            "leads": 63,
+            "enrollments": 1
+          },
+          "Navigational": {
+            "leads": 72,
+            "enrollments": 0
+          },
+          "B2B": {
+            "leads": 5,
+            "enrollments": 0
+          }
+        },
+        "paid_by_segment1": {
+          "Display": {
+            "leads": 26,
+            "enrollments": 0
+          },
+          "Affiliate": {
+            "leads": 0,
+            "enrollments": 0
+          },
+          "Affiliate - Search": {
+            "leads": 26,
+            "enrollments": 1
+          },
+          "Non-Brand Search": {
+            "leads": 11,
+            "enrollments": 0
+          }
+        },
+        "total_leads": 141,
+        "total_enrollments": 2,
+        "navigational_enrollment_pct": 0.0
+      },
+      {
+        "program_id": "001Do00000ScUzTIAV",
+        "program_name": "MA in Teaching and Learning with Technology",
+        "degree_level": "Graduate",
+        "by_marketing_rollup": {
+          "Paid": {
+            "leads": 213,
+            "enrollments": 1
+          },
+          "Navigational": {
+            "leads": 49,
+            "enrollments": 0
+          },
+          "B2B": {
+            "leads": 15,
+            "enrollments": 0
+          }
+        },
+        "paid_by_segment1": {
+          "Display": {
+            "leads": 53,
+            "enrollments": 0
+          },
+          "Affiliate": {
+            "leads": 0,
+            "enrollments": 0
+          },
+          "Affiliate - Search": {
+            "leads": 139,
+            "enrollments": 0
+          },
+          "Non-Brand Search": {
+            "leads": 21,
+            "enrollments": 1
+          }
+        },
+        "total_leads": 277,
+        "total_enrollments": 1,
+        "navigational_enrollment_pct": 0.0
+      },
+      {
+        "program_id": "001Do00000ScUzBIAV",
+        "program_name": "PhD in Human Services",
+        "degree_level": "Graduate",
+        "by_marketing_rollup": {
+          "Paid": {
+            "leads": 0,
+            "enrollments": 0
+          },
+          "Navigational": {
+            "leads": 25,
+            "enrollments": 0
+          },
+          "B2B": {
+            "leads": 0,
+            "enrollments": 0
+          }
+        },
+        "paid_by_segment1": {
+          "Display": {
+            "leads": 0,
+            "enrollments": 0
+          },
+          "Affiliate": {
+            "leads": 0,
+            "enrollments": 0
+          },
+          "Affiliate - Search": {
+            "leads": 0,
+            "enrollments": 0
+          },
+          "Non-Brand Search": {
+            "leads": 0,
+            "enrollments": 0
+          }
+        },
+        "total_leads": 25,
+        "total_enrollments": 0,
+        "navigational_enrollment_pct": null
+      },
+      {
+        "program_id": "001Do00000ScUyYIAV",
+        "program_name": "PhD in Organizational Development and Leadership Pre-2025",
+        "degree_level": "Graduate",
+        "by_marketing_rollup": {
+          "Paid": {
+            "leads": 2,
+            "enrollments": 0
+          },
+          "Navigational": {
+            "leads": 21,
+            "enrollments": 0
+          },
+          "B2B": {
+            "leads": 0,
+            "enrollments": 0
+          }
+        },
+        "paid_by_segment1": {
+          "Display": {
+            "leads": 2,
+            "enrollments": 0
+          },
+          "Affiliate": {
+            "leads": 0,
+            "enrollments": 0
+          },
+          "Affiliate - Search": {
+            "leads": 0,
+            "enrollments": 0
+          },
+          "Non-Brand Search": {
+            "leads": 0,
+            "enrollments": 0
+          }
+        },
+        "total_leads": 23,
+        "total_enrollments": 0,
+        "navigational_enrollment_pct": null
+      },
+      {
+        "program_id": "001Do00000ScUzRIAV",
+        "program_name": "PhD in Education",
+        "degree_level": "Graduate",
+        "by_marketing_rollup": {
+          "Paid": {
+            "leads": 0,
+            "enrollments": 0
+          },
+          "Navigational": {
+            "leads": 22,
+            "enrollments": 0
+          },
+          "B2B": {
+            "leads": 0,
+            "enrollments": 0
+          }
+        },
+        "paid_by_segment1": {
+          "Display": {
+            "leads": 0,
+            "enrollments": 0
+          },
+          "Affiliate": {
+            "leads": 0,
+            "enrollments": 0
+          },
+          "Affiliate - Search": {
+            "leads": 0,
+            "enrollments": 0
+          },
+          "Non-Brand Search": {
+            "leads": 0,
+            "enrollments": 0
+          }
+        },
+        "total_leads": 22,
+        "total_enrollments": 0,
+        "navigational_enrollment_pct": null
+      }
+    ]
+  }
+}

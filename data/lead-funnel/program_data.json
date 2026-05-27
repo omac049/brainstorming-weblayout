@@ -1,0 +1,1862 @@
+{
+  "pulled_at": "2026-05-27T19:10:17.555554+00:00",
+  "primary_window": {
+    "start": "2025-10-01",
+    "end": "2026-04-01"
+  },
+  "prior_window": {
+    "start": "2025-04-01",
+    "end": "2025-10-01"
+  },
+  "source": "advertising-data-mart.inquiries.vw_lead_extract_details",
+  "undergraduate": {
+    "total": {
+      "leads": 149356,
+      "app_starts": 37162,
+      "app_submitted": 16755,
+      "decisions": 9727,
+      "enrollments": 2629,
+      "decision_pct": 6.51,
+      "enrollment_pct": 1.76
+    },
+    "programs": [
+      {
+        "program_id": "001Do00000ScUyQIAV",
+        "program_name": "BA in Business Administration",
+        "degree_level": "Undergraduate",
+        "primary": {
+          "leads": 8715,
+          "app_starts": 2600,
+          "app_submitted": 1588,
+          "decisions": 1057,
+          "enrollments": 266,
+          "decision_pct": 12.13,
+          "enrollment_pct": 3.05
+        },
+        "prior": {
+          "leads": 18850,
+          "app_starts": 3592,
+          "app_submitted": 2283,
+          "decisions": 1304,
+          "enrollments": 359,
+          "decision_pct": 6.92,
+          "enrollment_pct": 1.9
+        },
+        "vs_prior_pct": -25.91
+      },
+      {
+        "program_id": "001Do00000YZZzHIAX",
+        "program_name": "Undecided - Undecided",
+        "degree_level": "Undergraduate",
+        "primary": {
+          "leads": 13591,
+          "app_starts": 4045,
+          "app_submitted": 747,
+          "decisions": 450,
+          "enrollments": 229,
+          "decision_pct": 3.31,
+          "enrollment_pct": 1.68
+        },
+        "prior": {
+          "leads": 3658,
+          "app_starts": 931,
+          "app_submitted": 181,
+          "decisions": 100,
+          "enrollments": 64,
+          "decision_pct": 2.73,
+          "enrollment_pct": 1.75
+        },
+        "vs_prior_pct": 257.81
+      },
+      {
+        "program_id": "001Do00000ScUyCIAV",
+        "program_name": "AA in Business",
+        "degree_level": "Undergraduate",
+        "primary": {
+          "leads": 10756,
+          "app_starts": 2763,
+          "app_submitted": 1422,
+          "decisions": 820,
+          "enrollments": 161,
+          "decision_pct": 7.62,
+          "enrollment_pct": 1.5
+        },
+        "prior": {
+          "leads": 15335,
+          "app_starts": 2662,
+          "app_submitted": 1548,
+          "decisions": 769,
+          "enrollments": 188,
+          "decision_pct": 5.01,
+          "enrollment_pct": 1.23
+        },
+        "vs_prior_pct": -14.36
+      },
+      {
+        "program_id": "001Do00000ScUzFIAV",
+        "program_name": "BA in Psychology",
+        "degree_level": "Undergraduate",
+        "primary": {
+          "leads": 8571,
+          "app_starts": 2058,
+          "app_submitted": 1088,
+          "decisions": 601,
+          "enrollments": 146,
+          "decision_pct": 7.01,
+          "enrollment_pct": 1.7
+        },
+        "prior": {
+          "leads": 25433,
+          "app_starts": 3279,
+          "app_submitted": 1859,
+          "decisions": 945,
+          "enrollments": 285,
+          "decision_pct": 3.72,
+          "enrollment_pct": 1.12
+        },
+        "vs_prior_pct": -48.77
+      },
+      {
+        "program_id": "001Do00000ScUybIAF",
+        "program_name": "BA in Health Care Administration",
+        "degree_level": "Undergraduate",
+        "primary": {
+          "leads": 9437,
+          "app_starts": 2054,
+          "app_submitted": 888,
+          "decisions": 465,
+          "enrollments": 140,
+          "decision_pct": 4.93,
+          "enrollment_pct": 1.48
+        },
+        "prior": {
+          "leads": 16195,
+          "app_starts": 2577,
+          "app_submitted": 1356,
+          "decisions": 633,
+          "enrollments": 200,
+          "decision_pct": 3.91,
+          "enrollment_pct": 1.23
+        },
+        "vs_prior_pct": -30.0
+      },
+      {
+        "program_id": "001Do00000ScUz7IAF",
+        "program_name": "BA in Social and Criminal Justice",
+        "degree_level": "Undergraduate",
+        "primary": {
+          "leads": 8395,
+          "app_starts": 1974,
+          "app_submitted": 1024,
+          "decisions": 564,
+          "enrollments": 112,
+          "decision_pct": 6.72,
+          "enrollment_pct": 1.33
+        },
+        "prior": {
+          "leads": 16042,
+          "app_starts": 2479,
+          "app_submitted": 1439,
+          "decisions": 689,
+          "enrollments": 159,
+          "decision_pct": 4.29,
+          "enrollment_pct": 0.99
+        },
+        "vs_prior_pct": -29.56
+      },
+      {
+        "program_id": "001Do00000ScUzJIAV",
+        "program_name": "BS in Cyber & Data Security Technology",
+        "degree_level": "Undergraduate",
+        "primary": {
+          "leads": 4850,
+          "app_starts": 1254,
+          "app_submitted": 590,
+          "decisions": 335,
+          "enrollments": 102,
+          "decision_pct": 6.91,
+          "enrollment_pct": 2.1
+        },
+        "prior": {
+          "leads": 11365,
+          "app_starts": 1754,
+          "app_submitted": 929,
+          "decisions": 510,
+          "enrollments": 213,
+          "decision_pct": 4.49,
+          "enrollment_pct": 1.87
+        },
+        "vs_prior_pct": -52.11
+      },
+      {
+        "program_id": "001Do00000ScUyXIAV",
+        "program_name": "BA in Human Resources Management",
+        "degree_level": "Undergraduate",
+        "primary": {
+          "leads": 2648,
+          "app_starts": 787,
+          "app_submitted": 465,
+          "decisions": 286,
+          "enrollments": 90,
+          "decision_pct": 10.8,
+          "enrollment_pct": 3.4
+        },
+        "prior": {
+          "leads": 6827,
+          "app_starts": 1116,
+          "app_submitted": 683,
+          "decisions": 384,
+          "enrollments": 151,
+          "decision_pct": 5.62,
+          "enrollment_pct": 2.21
+        },
+        "vs_prior_pct": -40.4
+      },
+      {
+        "program_id": "001Do00000ScUz6IAF",
+        "program_name": "BA in Homeland Security and Emergency Management",
+        "degree_level": "Undergraduate",
+        "primary": {
+          "leads": 9493,
+          "app_starts": 1370,
+          "app_submitted": 502,
+          "decisions": 269,
+          "enrollments": 83,
+          "decision_pct": 2.83,
+          "enrollment_pct": 0.87
+        },
+        "prior": {
+          "leads": 11980,
+          "app_starts": 1346,
+          "app_submitted": 707,
+          "decisions": 365,
+          "enrollments": 127,
+          "decision_pct": 3.05,
+          "enrollment_pct": 1.06
+        },
+        "vs_prior_pct": -34.65
+      },
+      {
+        "program_id": "001Do00000ScUzUIAV",
+        "program_name": "AA in Early Childhood Education",
+        "degree_level": "Undergraduate",
+        "primary": {
+          "leads": 5515,
+          "app_starts": 1269,
+          "app_submitted": 641,
+          "decisions": 324,
+          "enrollments": 81,
+          "decision_pct": 5.87,
+          "enrollment_pct": 1.47
+        },
+        "prior": {
+          "leads": 13072,
+          "app_starts": 1683,
+          "app_submitted": 963,
+          "decisions": 446,
+          "enrollments": 112,
+          "decision_pct": 3.41,
+          "enrollment_pct": 0.86
+        },
+        "vs_prior_pct": -27.68
+      },
+      {
+        "program_id": "001Do00000ScUzGIAV",
+        "program_name": "BA in Applied Behavioral Science",
+        "degree_level": "Undergraduate",
+        "primary": {
+          "leads": 5658,
+          "app_starts": 1210,
+          "app_submitted": 597,
+          "decisions": 311,
+          "enrollments": 77,
+          "decision_pct": 5.5,
+          "enrollment_pct": 1.36
+        },
+        "prior": {
+          "leads": 12164,
+          "app_starts": 1478,
+          "app_submitted": 817,
+          "decisions": 381,
+          "enrollments": 90,
+          "decision_pct": 3.13,
+          "enrollment_pct": 0.74
+        },
+        "vs_prior_pct": -14.44
+      },
+      {
+        "program_id": "001Do00000ScUyRIAV",
+        "program_name": "BA in Business Leadership",
+        "degree_level": "Undergraduate",
+        "primary": {
+          "leads": 3276,
+          "app_starts": 798,
+          "app_submitted": 396,
+          "decisions": 264,
+          "enrollments": 71,
+          "decision_pct": 8.06,
+          "enrollment_pct": 2.17
+        },
+        "prior": {
+          "leads": 8912,
+          "app_starts": 1206,
+          "app_submitted": 662,
+          "decisions": 363,
+          "enrollments": 122,
+          "decision_pct": 4.07,
+          "enrollment_pct": 1.37
+        },
+        "vs_prior_pct": -41.8
+      },
+      {
+        "program_id": "001Do00000ScUyPIAV",
+        "program_name": "BA in Accounting",
+        "degree_level": "Undergraduate",
+        "primary": {
+          "leads": 3801,
+          "app_starts": 967,
+          "app_submitted": 493,
+          "decisions": 301,
+          "enrollments": 68,
+          "decision_pct": 7.92,
+          "enrollment_pct": 1.79
+        },
+        "prior": {
+          "leads": 8162,
+          "app_starts": 1161,
+          "app_submitted": 656,
+          "decisions": 348,
+          "enrollments": 117,
+          "decision_pct": 4.26,
+          "enrollment_pct": 1.43
+        },
+        "vs_prior_pct": -41.88
+      },
+      {
+        "program_id": "001Do00000ScUySIAV",
+        "program_name": "BA in Finance",
+        "degree_level": "Undergraduate",
+        "primary": {
+          "leads": 2047,
+          "app_starts": 599,
+          "app_submitted": 298,
+          "decisions": 190,
+          "enrollments": 67,
+          "decision_pct": 9.28,
+          "enrollment_pct": 3.27
+        },
+        "prior": {
+          "leads": 5210,
+          "app_starts": 830,
+          "app_submitted": 461,
+          "decisions": 265,
+          "enrollments": 99,
+          "decision_pct": 5.09,
+          "enrollment_pct": 1.9
+        },
+        "vs_prior_pct": -32.32
+      },
+      {
+        "program_id": "001Do00000ScUyWIAV",
+        "program_name": "BA in Project Management",
+        "degree_level": "Undergraduate",
+        "primary": {
+          "leads": 2370,
+          "app_starts": 599,
+          "app_submitted": 294,
+          "decisions": 173,
+          "enrollments": 61,
+          "decision_pct": 7.3,
+          "enrollment_pct": 2.57
+        },
+        "prior": {
+          "leads": 5752,
+          "app_starts": 860,
+          "app_submitted": 491,
+          "decisions": 298,
+          "enrollments": 117,
+          "decision_pct": 5.18,
+          "enrollment_pct": 2.03
+        },
+        "vs_prior_pct": -47.86
+      },
+      {
+        "program_id": "001Do00000YZZzVIAX",
+        "program_name": "Undecided - Bachelors",
+        "degree_level": "Undergraduate",
+        "primary": {
+          "leads": 1620,
+          "app_starts": 956,
+          "app_submitted": 152,
+          "decisions": 107,
+          "enrollments": 61,
+          "decision_pct": 6.6,
+          "enrollment_pct": 3.77
+        },
+        "prior": {
+          "leads": 2546,
+          "app_starts": 1419,
+          "app_submitted": 256,
+          "decisions": 200,
+          "enrollments": 116,
+          "decision_pct": 7.86,
+          "enrollment_pct": 4.56
+        },
+        "vs_prior_pct": -47.41
+      },
+      {
+        "program_id": "001Do00000ScUzEIAV",
+        "program_name": "BA in Health & Human Services",
+        "degree_level": "Undergraduate",
+        "primary": {
+          "leads": 2743,
+          "app_starts": 689,
+          "app_submitted": 359,
+          "decisions": 200,
+          "enrollments": 55,
+          "decision_pct": 7.29,
+          "enrollment_pct": 2.01
+        },
+        "prior": {
+          "leads": 2919,
+          "app_starts": 673,
+          "app_submitted": 373,
+          "decisions": 181,
+          "enrollments": 62,
+          "decision_pct": 6.2,
+          "enrollment_pct": 2.12
+        },
+        "vs_prior_pct": -11.29
+      },
+      {
+        "program_id": "001Do00000ScUyUIAV",
+        "program_name": "BA in Operations Management & Analysis",
+        "degree_level": "Undergraduate",
+        "primary": {
+          "leads": 1544,
+          "app_starts": 457,
+          "app_submitted": 253,
+          "decisions": 136,
+          "enrollments": 51,
+          "decision_pct": 8.81,
+          "enrollment_pct": 3.3
+        },
+        "prior": {
+          "leads": 2917,
+          "app_starts": 579,
+          "app_submitted": 355,
+          "decisions": 192,
+          "enrollments": 103,
+          "decision_pct": 6.58,
+          "enrollment_pct": 3.53
+        },
+        "vs_prior_pct": -50.49
+      },
+      {
+        "program_id": "001Do00000ScUyaIAF",
+        "program_name": "BS in Health Information Management",
+        "degree_level": "Undergraduate",
+        "primary": {
+          "leads": 2241,
+          "app_starts": 541,
+          "app_submitted": 259,
+          "decisions": 142,
+          "enrollments": 46,
+          "decision_pct": 6.34,
+          "enrollment_pct": 2.05
+        },
+        "prior": {
+          "leads": 2830,
+          "app_starts": 692,
+          "app_submitted": 358,
+          "decisions": 158,
+          "enrollments": 52,
+          "decision_pct": 5.58,
+          "enrollment_pct": 1.84
+        },
+        "vs_prior_pct": -11.54
+      },
+      {
+        "program_id": "001Do00000ScUzKIAV",
+        "program_name": "BS in Information Technology",
+        "degree_level": "Undergraduate",
+        "primary": {
+          "leads": 2880,
+          "app_starts": 721,
+          "app_submitted": 367,
+          "decisions": 217,
+          "enrollments": 46,
+          "decision_pct": 7.53,
+          "enrollment_pct": 1.6
+        },
+        "prior": {
+          "leads": 7730,
+          "app_starts": 1003,
+          "app_submitted": 549,
+          "decisions": 313,
+          "enrollments": 85,
+          "decision_pct": 4.05,
+          "enrollment_pct": 1.1
+        },
+        "vs_prior_pct": -45.88
+      },
+      {
+        "program_id": "001Do00000YZZxZIAX",
+        "program_name": "Undecided - Business",
+        "degree_level": "Undergraduate",
+        "primary": {
+          "leads": 1859,
+          "app_starts": 452,
+          "app_submitted": 181,
+          "decisions": 115,
+          "enrollments": 45,
+          "decision_pct": 6.19,
+          "enrollment_pct": 2.42
+        },
+        "prior": {
+          "leads": 3141,
+          "app_starts": 887,
+          "app_submitted": 399,
+          "decisions": 247,
+          "enrollments": 113,
+          "decision_pct": 7.86,
+          "enrollment_pct": 3.6
+        },
+        "vs_prior_pct": -60.18
+      },
+      {
+        "program_id": "001Do00000ScUzfIAF",
+        "program_name": "BA in Early Childhood Education",
+        "degree_level": "Undergraduate",
+        "primary": {
+          "leads": 3162,
+          "app_starts": 726,
+          "app_submitted": 367,
+          "decisions": 195,
+          "enrollments": 45,
+          "decision_pct": 6.17,
+          "enrollment_pct": 1.42
+        },
+        "prior": {
+          "leads": 8228,
+          "app_starts": 1149,
+          "app_submitted": 620,
+          "decisions": 318,
+          "enrollments": 106,
+          "decision_pct": 3.86,
+          "enrollment_pct": 1.29
+        },
+        "vs_prior_pct": -57.55
+      },
+      {
+        "program_id": "001Do00000ScUyTIAV",
+        "program_name": "BA in Marketing",
+        "degree_level": "Undergraduate",
+        "primary": {
+          "leads": 2590,
+          "app_starts": 814,
+          "app_submitted": 485,
+          "decisions": 313,
+          "enrollments": 42,
+          "decision_pct": 12.08,
+          "enrollment_pct": 1.62
+        },
+        "prior": {
+          "leads": 6672,
+          "app_starts": 1092,
+          "app_submitted": 647,
+          "decisions": 363,
+          "enrollments": 65,
+          "decision_pct": 5.44,
+          "enrollment_pct": 0.97
+        },
+        "vs_prior_pct": -35.38
+      },
+      {
+        "program_id": "001Do00000ScUzIIAV",
+        "program_name": "BS in Computer Software Technology",
+        "degree_level": "Undergraduate",
+        "primary": {
+          "leads": 2455,
+          "app_starts": 611,
+          "app_submitted": 275,
+          "decisions": 146,
+          "enrollments": 41,
+          "decision_pct": 5.95,
+          "enrollment_pct": 1.67
+        },
+        "prior": {
+          "leads": 7346,
+          "app_starts": 891,
+          "app_submitted": 466,
+          "decisions": 236,
+          "enrollments": 76,
+          "decision_pct": 3.21,
+          "enrollment_pct": 1.03
+        },
+        "vs_prior_pct": -46.05
+      },
+      {
+        "program_id": "001Do00000ScUyVIAV",
+        "program_name": "BA in Organizational Management",
+        "degree_level": "Undergraduate",
+        "primary": {
+          "leads": 986,
+          "app_starts": 245,
+          "app_submitted": 144,
+          "decisions": 102,
+          "enrollments": 40,
+          "decision_pct": 10.34,
+          "enrollment_pct": 4.06
+        },
+        "prior": {
+          "leads": 3238,
+          "app_starts": 429,
+          "app_submitted": 255,
+          "decisions": 149,
+          "enrollments": 61,
+          "decision_pct": 4.6,
+          "enrollment_pct": 1.88
+        },
+        "vs_prior_pct": -34.43
+      },
+      {
+        "program_id": "001Do00000YZZyYIAX",
+        "program_name": "Undecided - Health Care",
+        "degree_level": "Undergraduate",
+        "primary": {
+          "leads": 3633,
+          "app_starts": 849,
+          "app_submitted": 240,
+          "decisions": 107,
+          "enrollments": 39,
+          "decision_pct": 2.95,
+          "enrollment_pct": 1.07
+        },
+        "prior": {
+          "leads": 5633,
+          "app_starts": 1408,
+          "app_submitted": 462,
+          "decisions": 201,
+          "enrollments": 79,
+          "decision_pct": 3.57,
+          "enrollment_pct": 1.4
+        },
+        "vs_prior_pct": -50.63
+      },
+      {
+        "program_id": "001Do00000ScUyNIAV",
+        "program_name": "BA in Supply Chain Management",
+        "degree_level": "Undergraduate",
+        "primary": {
+          "leads": 746,
+          "app_starts": 226,
+          "app_submitted": 130,
+          "decisions": 81,
+          "enrollments": 33,
+          "decision_pct": 10.86,
+          "enrollment_pct": 4.42
+        },
+        "prior": {
+          "leads": 0,
+          "app_starts": 0,
+          "app_submitted": 0,
+          "decisions": 0,
+          "enrollments": 0,
+          "decision_pct": null,
+          "enrollment_pct": null
+        },
+        "vs_prior_pct": null
+      },
+      {
+        "program_id": "001Do00000ScUyDIAV",
+        "program_name": "AA in Organizational Management",
+        "degree_level": "Undergraduate",
+        "primary": {
+          "leads": 2059,
+          "app_starts": 509,
+          "app_submitted": 274,
+          "decisions": 188,
+          "enrollments": 32,
+          "decision_pct": 9.13,
+          "enrollment_pct": 1.55
+        },
+        "prior": {
+          "leads": 3108,
+          "app_starts": 559,
+          "app_submitted": 339,
+          "decisions": 185,
+          "enrollments": 68,
+          "decision_pct": 5.95,
+          "enrollment_pct": 2.19
+        },
+        "vs_prior_pct": -52.94
+      },
+      {
+        "program_id": "001Do00000ScUyeIAF",
+        "program_name": "BA in Health and Wellness",
+        "degree_level": "Undergraduate",
+        "primary": {
+          "leads": 3095,
+          "app_starts": 712,
+          "app_submitted": 279,
+          "decisions": 148,
+          "enrollments": 31,
+          "decision_pct": 4.78,
+          "enrollment_pct": 1.0
+        },
+        "prior": {
+          "leads": 2,
+          "app_starts": 1,
+          "app_submitted": 0,
+          "decisions": 0,
+          "enrollments": 0,
+          "decision_pct": 0.0,
+          "enrollment_pct": 0.0
+        },
+        "vs_prior_pct": null
+      },
+      {
+        "program_id": "001Do00000ScUzhIAF",
+        "program_name": "BA in Education Studies",
+        "degree_level": "Undergraduate",
+        "primary": {
+          "leads": 1682,
+          "app_starts": 382,
+          "app_submitted": 197,
+          "decisions": 96,
+          "enrollments": 29,
+          "decision_pct": 5.71,
+          "enrollment_pct": 1.72
+        },
+        "prior": {
+          "leads": 4152,
+          "app_starts": 591,
+          "app_submitted": 359,
+          "decisions": 172,
+          "enrollments": 51,
+          "decision_pct": 4.14,
+          "enrollment_pct": 1.23
+        },
+        "vs_prior_pct": -43.14
+      },
+      {
+        "program_id": "001Do00000ScUzCIAV",
+        "program_name": "BA in Sociology",
+        "degree_level": "Undergraduate",
+        "primary": {
+          "leads": 1519,
+          "app_starts": 366,
+          "app_submitted": 215,
+          "decisions": 134,
+          "enrollments": 28,
+          "decision_pct": 8.82,
+          "enrollment_pct": 1.84
+        },
+        "prior": {
+          "leads": 3678,
+          "app_starts": 551,
+          "app_submitted": 340,
+          "decisions": 190,
+          "enrollments": 44,
+          "decision_pct": 5.17,
+          "enrollment_pct": 1.2
+        },
+        "vs_prior_pct": -36.36
+      },
+      {
+        "program_id": "001Do00000ScUyqIAF",
+        "program_name": "BA in Liberal Arts",
+        "degree_level": "Undergraduate",
+        "primary": {
+          "leads": 2212,
+          "app_starts": 513,
+          "app_submitted": 243,
+          "decisions": 141,
+          "enrollments": 27,
+          "decision_pct": 6.37,
+          "enrollment_pct": 1.22
+        },
+        "prior": {
+          "leads": 3915,
+          "app_starts": 710,
+          "app_submitted": 421,
+          "decisions": 218,
+          "enrollments": 49,
+          "decision_pct": 5.57,
+          "enrollment_pct": 1.25
+        },
+        "vs_prior_pct": -44.9
+      },
+      {
+        "program_id": "001Do00000YZZxjIAH",
+        "program_name": "Undecided - Criminal Justice",
+        "degree_level": "Undergraduate",
+        "primary": {
+          "leads": 1482,
+          "app_starts": 343,
+          "app_submitted": 122,
+          "decisions": 76,
+          "enrollments": 26,
+          "decision_pct": 5.13,
+          "enrollment_pct": 1.75
+        },
+        "prior": {
+          "leads": 2079,
+          "app_starts": 480,
+          "app_submitted": 234,
+          "decisions": 129,
+          "enrollments": 49,
+          "decision_pct": 6.2,
+          "enrollment_pct": 2.36
+        },
+        "vs_prior_pct": -46.94
+      },
+      {
+        "program_id": "001Do00000ScUzHIAV",
+        "program_name": "BA in Business Information Systems",
+        "degree_level": "Undergraduate",
+        "primary": {
+          "leads": 1485,
+          "app_starts": 333,
+          "app_submitted": 160,
+          "decisions": 96,
+          "enrollments": 23,
+          "decision_pct": 6.46,
+          "enrollment_pct": 1.55
+        },
+        "prior": {
+          "leads": 3631,
+          "app_starts": 471,
+          "app_submitted": 245,
+          "decisions": 131,
+          "enrollments": 41,
+          "decision_pct": 3.61,
+          "enrollment_pct": 1.13
+        },
+        "vs_prior_pct": -43.9
+      },
+      {
+        "program_id": "001Do00000ScUymIAF",
+        "program_name": "BS in Nursing",
+        "degree_level": "Undergraduate",
+        "primary": {
+          "leads": 1132,
+          "app_starts": 336,
+          "app_submitted": 106,
+          "decisions": 50,
+          "enrollments": 22,
+          "decision_pct": 4.42,
+          "enrollment_pct": 1.94
+        },
+        "prior": {
+          "leads": 1230,
+          "app_starts": 296,
+          "app_submitted": 104,
+          "decisions": 41,
+          "enrollments": 27,
+          "decision_pct": 3.33,
+          "enrollment_pct": 2.2
+        },
+        "vs_prior_pct": -18.52
+      },
+      {
+        "program_id": "001Do00000ScUyvIAF",
+        "program_name": "AA in Military Studies",
+        "degree_level": "Undergraduate",
+        "primary": {
+          "leads": 459,
+          "app_starts": 72,
+          "app_submitted": 48,
+          "decisions": 35,
+          "enrollments": 13,
+          "decision_pct": 7.63,
+          "enrollment_pct": 2.83
+        },
+        "prior": {
+          "leads": 903,
+          "app_starts": 103,
+          "app_submitted": 56,
+          "decisions": 42,
+          "enrollments": 18,
+          "decision_pct": 4.65,
+          "enrollment_pct": 1.99
+        },
+        "vs_prior_pct": -27.78
+      },
+      {
+        "program_id": "001Do00000YZZymIAH",
+        "program_name": "Undecided - Information Technology",
+        "degree_level": "Undergraduate",
+        "primary": {
+          "leads": 1083,
+          "app_starts": 241,
+          "app_submitted": 83,
+          "decisions": 40,
+          "enrollments": 13,
+          "decision_pct": 3.69,
+          "enrollment_pct": 1.2
+        },
+        "prior": {
+          "leads": 2597,
+          "app_starts": 509,
+          "app_submitted": 204,
+          "decisions": 109,
+          "enrollments": 58,
+          "decision_pct": 4.2,
+          "enrollment_pct": 2.23
+        },
+        "vs_prior_pct": -77.59
+      },
+      {
+        "program_id": "001Do00000YZZyXIAX",
+        "program_name": "Undecided - Education",
+        "degree_level": "Undergraduate",
+        "primary": {
+          "leads": 919,
+          "app_starts": 220,
+          "app_submitted": 66,
+          "decisions": 39,
+          "enrollments": 13,
+          "decision_pct": 4.24,
+          "enrollment_pct": 1.41
+        },
+        "prior": {
+          "leads": 1470,
+          "app_starts": 338,
+          "app_submitted": 124,
+          "decisions": 59,
+          "enrollments": 26,
+          "decision_pct": 4.01,
+          "enrollment_pct": 1.77
+        },
+        "vs_prior_pct": -50.0
+      },
+      {
+        "program_id": "001Do00000ScUzgIAF",
+        "program_name": "BA in Early Childhood Education Administration",
+        "degree_level": "Undergraduate",
+        "primary": {
+          "leads": 842,
+          "app_starts": 184,
+          "app_submitted": 85,
+          "decisions": 42,
+          "enrollments": 12,
+          "decision_pct": 4.99,
+          "enrollment_pct": 1.43
+        },
+        "prior": {
+          "leads": 2385,
+          "app_starts": 249,
+          "app_submitted": 136,
+          "decisions": 65,
+          "enrollments": 18,
+          "decision_pct": 2.73,
+          "enrollment_pct": 0.75
+        },
+        "vs_prior_pct": -33.33
+      },
+      {
+        "program_id": "001Do00000YZZzGIAX",
+        "program_name": "Undecided - Social & Behavioral Science",
+        "degree_level": "Undergraduate",
+        "primary": {
+          "leads": 1633,
+          "app_starts": 326,
+          "app_submitted": 122,
+          "decisions": 56,
+          "enrollments": 12,
+          "decision_pct": 3.43,
+          "enrollment_pct": 0.73
+        },
+        "prior": {
+          "leads": 3010,
+          "app_starts": 540,
+          "app_submitted": 219,
+          "decisions": 99,
+          "enrollments": 35,
+          "decision_pct": 3.29,
+          "enrollment_pct": 1.16
+        },
+        "vs_prior_pct": -65.71
+      },
+      {
+        "program_id": "001Do00000ScUyEIAV",
+        "program_name": "BA in Business Economics",
+        "degree_level": "Undergraduate",
+        "primary": {
+          "leads": 838,
+          "app_starts": 270,
+          "app_submitted": 145,
+          "decisions": 101,
+          "enrollments": 11,
+          "decision_pct": 12.05,
+          "enrollment_pct": 1.31
+        },
+        "prior": {
+          "leads": 3,
+          "app_starts": 3,
+          "app_submitted": 0,
+          "decisions": 0,
+          "enrollments": 0,
+          "decision_pct": 0.0,
+          "enrollment_pct": 0.0
+        },
+        "vs_prior_pct": null
+      },
+      {
+        "program_id": "001Do00000ScUysIAF",
+        "program_name": "BA in Communication Studies",
+        "degree_level": "Undergraduate",
+        "primary": {
+          "leads": 604,
+          "app_starts": 174,
+          "app_submitted": 105,
+          "decisions": 67,
+          "enrollments": 11,
+          "decision_pct": 11.09,
+          "enrollment_pct": 1.82
+        },
+        "prior": {
+          "leads": 0,
+          "app_starts": 0,
+          "app_submitted": 0,
+          "decisions": 0,
+          "enrollments": 0,
+          "decision_pct": null,
+          "enrollment_pct": null
+        },
+        "vs_prior_pct": null
+      },
+      {
+        "program_id": "001Do00000ScUzdIAF",
+        "program_name": "BA in Child Development",
+        "degree_level": "Undergraduate",
+        "primary": {
+          "leads": 941,
+          "app_starts": 220,
+          "app_submitted": 102,
+          "decisions": 57,
+          "enrollments": 7,
+          "decision_pct": 6.06,
+          "enrollment_pct": 0.74
+        },
+        "prior": {
+          "leads": 1032,
+          "app_starts": 221,
+          "app_submitted": 127,
+          "decisions": 63,
+          "enrollments": 17,
+          "decision_pct": 6.1,
+          "enrollment_pct": 1.65
+        },
+        "vs_prior_pct": -58.82
+      },
+      {
+        "program_id": "001Do00000ScUzeIAF",
+        "program_name": "BA in Early Childhood Development with Differentiated Instruction",
+        "degree_level": "Undergraduate",
+        "primary": {
+          "leads": 755,
+          "app_starts": 140,
+          "app_submitted": 61,
+          "decisions": 30,
+          "enrollments": 7,
+          "decision_pct": 3.97,
+          "enrollment_pct": 0.93
+        },
+        "prior": {
+          "leads": 3757,
+          "app_starts": 236,
+          "app_submitted": 117,
+          "decisions": 61,
+          "enrollments": 18,
+          "decision_pct": 1.62,
+          "enrollment_pct": 0.48
+        },
+        "vs_prior_pct": -61.11
+      },
+      {
+        "program_id": "001Do00000ScUzZIAV",
+        "program_name": "BA in Instructional Design",
+        "degree_level": "Undergraduate",
+        "primary": {
+          "leads": 353,
+          "app_starts": 54,
+          "app_submitted": 31,
+          "decisions": 13,
+          "enrollments": 6,
+          "decision_pct": 3.68,
+          "enrollment_pct": 1.7
+        },
+        "prior": {
+          "leads": 1215,
+          "app_starts": 113,
+          "app_submitted": 67,
+          "decisions": 32,
+          "enrollments": 15,
+          "decision_pct": 2.63,
+          "enrollment_pct": 1.23
+        },
+        "vs_prior_pct": -60.0
+      },
+      {
+        "program_id": "001Do00000ScUyzIAF",
+        "program_name": "BA in Social Science",
+        "degree_level": "Undergraduate",
+        "primary": {
+          "leads": 296,
+          "app_starts": 78,
+          "app_submitted": 50,
+          "decisions": 38,
+          "enrollments": 5,
+          "decision_pct": 12.84,
+          "enrollment_pct": 1.69
+        },
+        "prior": {
+          "leads": 0,
+          "app_starts": 0,
+          "app_submitted": 0,
+          "decisions": 0,
+          "enrollments": 0,
+          "decision_pct": null,
+          "enrollment_pct": null
+        },
+        "vs_prior_pct": null
+      },
+      {
+        "program_id": "001Do00000YZZz6IAH",
+        "program_name": "Undecided - Liberal Arts",
+        "degree_level": "Undergraduate",
+        "primary": {
+          "leads": 385,
+          "app_starts": 55,
+          "app_submitted": 16,
+          "decisions": 9,
+          "enrollments": 3,
+          "decision_pct": 2.34,
+          "enrollment_pct": 0.78
+        },
+        "prior": {
+          "leads": 701,
+          "app_starts": 151,
+          "app_submitted": 73,
+          "decisions": 41,
+          "enrollments": 14,
+          "decision_pct": 5.85,
+          "enrollment_pct": 2.0
+        },
+        "vs_prior_pct": -78.57
+      },
+      {
+        "program_id": "001Do00000ScUyhIAF",
+        "program_name": "BA in Health Informatics",
+        "degree_level": "Undergraduate",
+        "primary": {
+          "leads": 0,
+          "app_starts": 0,
+          "app_submitted": 0,
+          "decisions": 0,
+          "enrollments": 0,
+          "decision_pct": null,
+          "enrollment_pct": null
+        },
+        "prior": {
+          "leads": 1,
+          "app_starts": 1,
+          "app_submitted": 0,
+          "decisions": 0,
+          "enrollments": 0,
+          "decision_pct": 0.0,
+          "enrollment_pct": 0.0
+        },
+        "vs_prior_pct": null
+      },
+      {
+        "program_id": "001Do00000ScUzLIAV",
+        "program_name": "BS in Web and Mobile App Technology",
+        "degree_level": "Undergraduate",
+        "primary": {
+          "leads": 0,
+          "app_starts": 0,
+          "app_submitted": 0,
+          "decisions": 0,
+          "enrollments": 0,
+          "decision_pct": null,
+          "enrollment_pct": null
+        },
+        "prior": {
+          "leads": 10,
+          "app_starts": 8,
+          "app_submitted": 0,
+          "decisions": 0,
+          "enrollments": 0,
+          "decision_pct": 0.0,
+          "enrollment_pct": 0.0
+        },
+        "vs_prior_pct": null
+      },
+      {
+        "program_id": "001Do00000ScUyjIAF",
+        "program_name": "BA in Complementary and Alternative Health",
+        "degree_level": "Undergraduate",
+        "primary": {
+          "leads": 0,
+          "app_starts": 0,
+          "app_submitted": 0,
+          "decisions": 0,
+          "enrollments": 0,
+          "decision_pct": null,
+          "enrollment_pct": null
+        },
+        "prior": {
+          "leads": 3,
+          "app_starts": 3,
+          "app_submitted": 0,
+          "decisions": 0,
+          "enrollments": 0,
+          "decision_pct": 0.0,
+          "enrollment_pct": 0.0
+        },
+        "vs_prior_pct": null
+      },
+      {
+        "program_id": "001Do00000YZZyZIAX",
+        "program_name": "Undecided - Associate",
+        "degree_level": "Undergraduate",
+        "primary": {
+          "leads": 0,
+          "app_starts": 0,
+          "app_submitted": 0,
+          "decisions": 0,
+          "enrollments": 0,
+          "decision_pct": null,
+          "enrollment_pct": null
+        },
+        "prior": {
+          "leads": 22,
+          "app_starts": 14,
+          "app_submitted": 0,
+          "decisions": 0,
+          "enrollments": 0,
+          "decision_pct": 0.0,
+          "enrollment_pct": 0.0
+        },
+        "vs_prior_pct": null
+      }
+    ]
+  },
+  "graduate": {
+    "total": {
+      "leads": 26467,
+      "app_starts": 8138,
+      "app_submitted": 3362,
+      "decisions": 1841,
+      "enrollments": 698,
+      "decision_pct": 6.96,
+      "enrollment_pct": 2.64
+    },
+    "programs": [
+      {
+        "program_id": "001Do00000ScUy9IAF",
+        "program_name": "Master of Business Administration",
+        "degree_level": "Graduate",
+        "primary": {
+          "leads": 4496,
+          "app_starts": 1913,
+          "app_submitted": 855,
+          "decisions": 550,
+          "enrollments": 244,
+          "decision_pct": 12.23,
+          "enrollment_pct": 5.43
+        },
+        "prior": {
+          "leads": 4608,
+          "app_starts": 1706,
+          "app_submitted": 766,
+          "decisions": 507,
+          "enrollments": 318,
+          "decision_pct": 11.0,
+          "enrollment_pct": 6.9
+        },
+        "vs_prior_pct": -23.27
+      },
+      {
+        "program_id": "001Do00000ScUz9IAF",
+        "program_name": "MA in Psychology",
+        "degree_level": "Graduate",
+        "primary": {
+          "leads": 3196,
+          "app_starts": 824,
+          "app_submitted": 364,
+          "decisions": 169,
+          "enrollments": 65,
+          "decision_pct": 5.29,
+          "enrollment_pct": 2.03
+        },
+        "prior": {
+          "leads": 4060,
+          "app_starts": 795,
+          "app_submitted": 397,
+          "decisions": 186,
+          "enrollments": 84,
+          "decision_pct": 4.58,
+          "enrollment_pct": 2.07
+        },
+        "vs_prior_pct": -22.62
+      },
+      {
+        "program_id": "001Do00000ScUynIAF",
+        "program_name": "MA in Health Care Administration",
+        "degree_level": "Graduate",
+        "primary": {
+          "leads": 2887,
+          "app_starts": 824,
+          "app_submitted": 312,
+          "decisions": 162,
+          "enrollments": 57,
+          "decision_pct": 5.61,
+          "enrollment_pct": 1.97
+        },
+        "prior": {
+          "leads": 3275,
+          "app_starts": 837,
+          "app_submitted": 383,
+          "decisions": 192,
+          "enrollments": 92,
+          "decision_pct": 5.86,
+          "enrollment_pct": 2.81
+        },
+        "vs_prior_pct": -38.04
+      },
+      {
+        "program_id": "001Do00000ScUy8IAF",
+        "program_name": "MA in Organizational Management",
+        "degree_level": "Graduate",
+        "primary": {
+          "leads": 895,
+          "app_starts": 314,
+          "app_submitted": 158,
+          "decisions": 102,
+          "enrollments": 42,
+          "decision_pct": 11.4,
+          "enrollment_pct": 4.69
+        },
+        "prior": {
+          "leads": 1009,
+          "app_starts": 294,
+          "app_submitted": 156,
+          "decisions": 102,
+          "enrollments": 55,
+          "decision_pct": 10.11,
+          "enrollment_pct": 5.45
+        },
+        "vs_prior_pct": -23.64
+      },
+      {
+        "program_id": "001Do00000ScUyAIAV",
+        "program_name": "Master of Human Resource Management",
+        "degree_level": "Graduate",
+        "primary": {
+          "leads": 1177,
+          "app_starts": 364,
+          "app_submitted": 193,
+          "decisions": 98,
+          "enrollments": 33,
+          "decision_pct": 8.33,
+          "enrollment_pct": 2.8
+        },
+        "prior": {
+          "leads": 1917,
+          "app_starts": 377,
+          "app_submitted": 193,
+          "decisions": 102,
+          "enrollments": 58,
+          "decision_pct": 5.32,
+          "enrollment_pct": 3.03
+        },
+        "vs_prior_pct": -43.1
+      },
+      {
+        "program_id": "001Do00000ScUz8IAF",
+        "program_name": "MS in Criminal Justice",
+        "degree_level": "Graduate",
+        "primary": {
+          "leads": 2647,
+          "app_starts": 707,
+          "app_submitted": 286,
+          "decisions": 126,
+          "enrollments": 33,
+          "decision_pct": 4.76,
+          "enrollment_pct": 1.25
+        },
+        "prior": {
+          "leads": 2603,
+          "app_starts": 656,
+          "app_submitted": 311,
+          "decisions": 133,
+          "enrollments": 48,
+          "decision_pct": 5.11,
+          "enrollment_pct": 1.84
+        },
+        "vs_prior_pct": -31.25
+      },
+      {
+        "program_id": "001Do00000ScUykIAF",
+        "program_name": "MS in Health Informatics and Analytics",
+        "degree_level": "Graduate",
+        "primary": {
+          "leads": 1054,
+          "app_starts": 329,
+          "app_submitted": 116,
+          "decisions": 65,
+          "enrollments": 30,
+          "decision_pct": 6.17,
+          "enrollment_pct": 2.85
+        },
+        "prior": {
+          "leads": 1170,
+          "app_starts": 303,
+          "app_submitted": 133,
+          "decisions": 76,
+          "enrollments": 36,
+          "decision_pct": 6.5,
+          "enrollment_pct": 3.08
+        },
+        "vs_prior_pct": -16.67
+      },
+      {
+        "program_id": "001Do00000YZZz7IAH",
+        "program_name": "Undecided - Masters",
+        "degree_level": "Graduate",
+        "primary": {
+          "leads": 438,
+          "app_starts": 329,
+          "app_submitted": 48,
+          "decisions": 44,
+          "enrollments": 28,
+          "decision_pct": 10.05,
+          "enrollment_pct": 6.39
+        },
+        "prior": {
+          "leads": 644,
+          "app_starts": 421,
+          "app_submitted": 81,
+          "decisions": 61,
+          "enrollments": 43,
+          "decision_pct": 9.47,
+          "enrollment_pct": 6.68
+        },
+        "vs_prior_pct": -34.88
+      },
+      {
+        "program_id": "001Do00000ScUzAIAV",
+        "program_name": "MA in Human Services",
+        "degree_level": "Graduate",
+        "primary": {
+          "leads": 1583,
+          "app_starts": 402,
+          "app_submitted": 214,
+          "decisions": 104,
+          "enrollments": 27,
+          "decision_pct": 6.57,
+          "enrollment_pct": 1.71
+        },
+        "prior": {
+          "leads": 1733,
+          "app_starts": 378,
+          "app_submitted": 195,
+          "decisions": 88,
+          "enrollments": 37,
+          "decision_pct": 5.08,
+          "enrollment_pct": 2.14
+        },
+        "vs_prior_pct": -27.03
+      },
+      {
+        "program_id": "001Do00000ScUylIAF",
+        "program_name": "Master of Public Health",
+        "degree_level": "Graduate",
+        "primary": {
+          "leads": 1337,
+          "app_starts": 422,
+          "app_submitted": 137,
+          "decisions": 66,
+          "enrollments": 26,
+          "decision_pct": 4.94,
+          "enrollment_pct": 1.94
+        },
+        "prior": {
+          "leads": 1612,
+          "app_starts": 422,
+          "app_submitted": 173,
+          "decisions": 74,
+          "enrollments": 29,
+          "decision_pct": 4.59,
+          "enrollment_pct": 1.8
+        },
+        "vs_prior_pct": -10.34
+      },
+      {
+        "program_id": "001Do00000ScUzMIAV",
+        "program_name": "Master of Information Systems Management",
+        "degree_level": "Graduate",
+        "primary": {
+          "leads": 902,
+          "app_starts": 317,
+          "app_submitted": 110,
+          "decisions": 57,
+          "enrollments": 21,
+          "decision_pct": 6.32,
+          "enrollment_pct": 2.33
+        },
+        "prior": {
+          "leads": 965,
+          "app_starts": 257,
+          "app_submitted": 108,
+          "decisions": 68,
+          "enrollments": 34,
+          "decision_pct": 7.05,
+          "enrollment_pct": 3.52
+        },
+        "vs_prior_pct": -38.24
+      },
+      {
+        "program_id": "001Do00000ScUzNIAV",
+        "program_name": "MS in Technology Management",
+        "degree_level": "Graduate",
+        "primary": {
+          "leads": 738,
+          "app_starts": 246,
+          "app_submitted": 85,
+          "decisions": 45,
+          "enrollments": 18,
+          "decision_pct": 6.1,
+          "enrollment_pct": 2.44
+        },
+        "prior": {
+          "leads": 735,
+          "app_starts": 219,
+          "app_submitted": 95,
+          "decisions": 51,
+          "enrollments": 35,
+          "decision_pct": 6.94,
+          "enrollment_pct": 4.76
+        },
+        "vs_prior_pct": -48.57
+      },
+      {
+        "program_id": "001Do00000ScUzbIAF",
+        "program_name": "MA in Early Childhood Education Leadership",
+        "degree_level": "Graduate",
+        "primary": {
+          "leads": 637,
+          "app_starts": 143,
+          "app_submitted": 67,
+          "decisions": 47,
+          "enrollments": 16,
+          "decision_pct": 7.38,
+          "enrollment_pct": 2.51
+        },
+        "prior": {
+          "leads": 706,
+          "app_starts": 132,
+          "app_submitted": 80,
+          "decisions": 43,
+          "enrollments": 25,
+          "decision_pct": 6.09,
+          "enrollment_pct": 3.54
+        },
+        "vs_prior_pct": -36.0
+      },
+      {
+        "program_id": "001Do00000ScUyBIAV",
+        "program_name": "MS in Finance",
+        "degree_level": "Graduate",
+        "primary": {
+          "leads": 760,
+          "app_starts": 239,
+          "app_submitted": 94,
+          "decisions": 55,
+          "enrollments": 15,
+          "decision_pct": 7.24,
+          "enrollment_pct": 1.97
+        },
+        "prior": {
+          "leads": 746,
+          "app_starts": 233,
+          "app_submitted": 103,
+          "decisions": 54,
+          "enrollments": 22,
+          "decision_pct": 7.24,
+          "enrollment_pct": 2.95
+        },
+        "vs_prior_pct": -31.82
+      },
+      {
+        "program_id": "001Do00000ScUzcIAF",
+        "program_name": "MA in Education",
+        "degree_level": "Graduate",
+        "primary": {
+          "leads": 1279,
+          "app_starts": 294,
+          "app_submitted": 123,
+          "decisions": 58,
+          "enrollments": 15,
+          "decision_pct": 4.53,
+          "enrollment_pct": 1.17
+        },
+        "prior": {
+          "leads": 2326,
+          "app_starts": 351,
+          "app_submitted": 180,
+          "decisions": 72,
+          "enrollments": 31,
+          "decision_pct": 3.1,
+          "enrollment_pct": 1.33
+        },
+        "vs_prior_pct": -51.61
+      },
+      {
+        "program_id": "001Do00000ScUzSIAV",
+        "program_name": "MA in Special Education",
+        "degree_level": "Graduate",
+        "primary": {
+          "leads": 903,
+          "app_starts": 177,
+          "app_submitted": 73,
+          "decisions": 34,
+          "enrollments": 10,
+          "decision_pct": 3.77,
+          "enrollment_pct": 1.11
+        },
+        "prior": {
+          "leads": 1086,
+          "app_starts": 180,
+          "app_submitted": 94,
+          "decisions": 41,
+          "enrollments": 13,
+          "decision_pct": 3.78,
+          "enrollment_pct": 1.2
+        },
+        "vs_prior_pct": -23.08
+      },
+      {
+        "program_id": "001Do00000ScUzQIAV",
+        "program_name": "MS in Instructional Design and Technology",
+        "degree_level": "Graduate",
+        "primary": {
+          "leads": 325,
+          "app_starts": 77,
+          "app_submitted": 32,
+          "decisions": 15,
+          "enrollments": 8,
+          "decision_pct": 4.62,
+          "enrollment_pct": 2.46
+        },
+        "prior": {
+          "leads": 471,
+          "app_starts": 86,
+          "app_submitted": 39,
+          "decisions": 23,
+          "enrollments": 10,
+          "decision_pct": 4.88,
+          "enrollment_pct": 2.12
+        },
+        "vs_prior_pct": -20.0
+      },
+      {
+        "program_id": "001Do00000ScUyZIAV",
+        "program_name": "Master of Accountancy",
+        "degree_level": "Graduate",
+        "primary": {
+          "leads": 725,
+          "app_starts": 149,
+          "app_submitted": 71,
+          "decisions": 30,
+          "enrollments": 7,
+          "decision_pct": 4.14,
+          "enrollment_pct": 0.97
+        },
+        "prior": {
+          "leads": 680,
+          "app_starts": 179,
+          "app_submitted": 86,
+          "decisions": 52,
+          "enrollments": 29,
+          "decision_pct": 7.65,
+          "enrollment_pct": 4.26
+        },
+        "vs_prior_pct": -75.86
+      },
+      {
+        "program_id": "001Do00000ScUzOIAV",
+        "program_name": "Post Baccalaureate Teaching Certificate - Elementary Education",
+        "degree_level": "Graduate",
+        "primary": {
+          "leads": 141,
+          "app_starts": 22,
+          "app_submitted": 8,
+          "decisions": 3,
+          "enrollments": 2,
+          "decision_pct": 2.13,
+          "enrollment_pct": 1.42
+        },
+        "prior": {
+          "leads": 130,
+          "app_starts": 19,
+          "app_submitted": 6,
+          "decisions": 3,
+          "enrollments": 0,
+          "decision_pct": 2.31,
+          "enrollment_pct": 0.0
+        },
+        "vs_prior_pct": null
+      },
+      {
+        "program_id": "001Do00000ScUzTIAV",
+        "program_name": "MA in Teaching and Learning with Technology",
+        "degree_level": "Graduate",
+        "primary": {
+          "leads": 277,
+          "app_starts": 46,
+          "app_submitted": 16,
+          "decisions": 11,
+          "enrollments": 1,
+          "decision_pct": 3.97,
+          "enrollment_pct": 0.36
+        },
+        "prior": {
+          "leads": 0,
+          "app_starts": 0,
+          "app_submitted": 0,
+          "decisions": 0,
+          "enrollments": 0,
+          "decision_pct": null,
+          "enrollment_pct": null
+        },
+        "vs_prior_pct": null
+      },
+      {
+        "program_id": "001Do00000ScUzBIAV",
+        "program_name": "PhD in Human Services",
+        "degree_level": "Graduate",
+        "primary": {
+          "leads": 25,
+          "app_starts": 0,
+          "app_submitted": 0,
+          "decisions": 0,
+          "enrollments": 0,
+          "decision_pct": 0.0,
+          "enrollment_pct": 0.0
+        },
+        "prior": {
+          "leads": 0,
+          "app_starts": 0,
+          "app_submitted": 0,
+          "decisions": 0,
+          "enrollments": 0,
+          "decision_pct": null,
+          "enrollment_pct": null
+        },
+        "vs_prior_pct": null
+      },
+      {
+        "program_id": "001Do00000ScUyYIAV",
+        "program_name": "PhD in Organizational Development and Leadership Pre-2025",
+        "degree_level": "Graduate",
+        "primary": {
+          "leads": 23,
+          "app_starts": 0,
+          "app_submitted": 0,
+          "decisions": 0,
+          "enrollments": 0,
+          "decision_pct": 0.0,
+          "enrollment_pct": 0.0
+        },
+        "prior": {
+          "leads": 1,
+          "app_starts": 0,
+          "app_submitted": 0,
+          "decisions": 0,
+          "enrollments": 0,
+          "decision_pct": 0.0,
+          "enrollment_pct": 0.0
+        },
+        "vs_prior_pct": null
+      },
+      {
+        "program_id": "001Do00000YZZzkIAH",
+        "program_name": "Undecided - Doctoral",
+        "degree_level": "Graduate",
+        "primary": {
+          "leads": 0,
+          "app_starts": 0,
+          "app_submitted": 0,
+          "decisions": 0,
+          "enrollments": 0,
+          "decision_pct": null,
+          "enrollment_pct": null
+        },
+        "prior": {
+          "leads": 7,
+          "app_starts": 5,
+          "app_submitted": 0,
+          "decisions": 0,
+          "enrollments": 0,
+          "decision_pct": 0.0,
+          "enrollment_pct": 0.0
+        },
+        "vs_prior_pct": null
+      },
+      {
+        "program_id": "001Do00000ScUyoIAF",
+        "program_name": "MS in Nursing",
+        "degree_level": "Graduate",
+        "primary": {
+          "leads": 0,
+          "app_starts": 0,
+          "app_submitted": 0,
+          "decisions": 0,
+          "enrollments": 0,
+          "decision_pct": null,
+          "enrollment_pct": null
+        },
+        "prior": {
+          "leads": 1,
+          "app_starts": 1,
+          "app_submitted": 0,
+          "decisions": 0,
+          "enrollments": 0,
+          "decision_pct": 0.0,
+          "enrollment_pct": 0.0
+        },
+        "vs_prior_pct": null
+      },
+      {
+        "program_id": "001Do00000ScUzRIAV",
+        "program_name": "PhD in Education",
+        "degree_level": "Graduate",
+        "primary": {
+          "leads": 22,
+          "app_starts": 0,
+          "app_submitted": 0,
+          "decisions": 0,
+          "enrollments": 0,
+          "decision_pct": 0.0,
+          "enrollment_pct": 0.0
+        },
+        "prior": {
+          "leads": 0,
+          "app_starts": 0,
+          "app_submitted": 0,
+          "decisions": 0,
+          "enrollments": 0,
+          "decision_pct": null,
+          "enrollment_pct": null
+        },
+        "vs_prior_pct": null
+      }
+    ]
+  }
+}

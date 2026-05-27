@@ -1,0 +1,4255 @@
+{
+  "window": "Oct 2025 - Mar 2026",
+  "paid": {
+    "/success/online-programs-v8": {
+      "leads": 25201,
+      "app_starts": 6538,
+      "decisions": 1282,
+      "enrollments": 146,
+      "decision_pct": 5.09,
+      "enrollment_pct": 0.58
+    },
+    "/success/request-info-v5": {
+      "leads": 20548,
+      "app_starts": 3454,
+      "decisions": 425,
+      "enrollments": 66,
+      "decision_pct": 2.07,
+      "enrollment_pct": 0.32
+    },
+    "/success/degree-programs-v7": {
+      "leads": 13632,
+      "app_starts": 2677,
+      "decisions": 587,
+      "enrollments": 106,
+      "decision_pct": 4.31,
+      "enrollment_pct": 0.78
+    },
+    "/success/military-v5": {
+      "leads": 5986,
+      "app_starts": 739,
+      "decisions": 18,
+      "enrollments": 1,
+      "decision_pct": 0.3,
+      "enrollment_pct": 0.02
+    },
+    "/success/online-programs-v7": {
+      "leads": 5324,
+      "app_starts": 2049,
+      "decisions": 1042,
+      "enrollments": 372,
+      "decision_pct": 19.57,
+      "enrollment_pct": 6.99
+    },
+    "/success/degree-types/bachelors-degrees-v5": {
+      "leads": 3272,
+      "app_starts": 843,
+      "decisions": 159,
+      "enrollments": 42,
+      "decision_pct": 4.86,
+      "enrollment_pct": 1.28
+    },
+    "/success/online-college-courses-v7": {
+      "leads": 2369,
+      "app_starts": 238,
+      "decisions": 126,
+      "enrollments": 28,
+      "decision_pct": 5.32,
+      "enrollment_pct": 1.18
+    },
+    "/success/online-college-courses-v5": {
+      "leads": 2135,
+      "app_starts": 686,
+      "decisions": 188,
+      "enrollments": 56,
+      "decision_pct": 8.81,
+      "enrollment_pct": 2.62
+    },
+    "/success/degree/aa-early-childhood-education-v5": {
+      "leads": 1570,
+      "app_starts": 378,
+      "decisions": 66,
+      "enrollments": 15,
+      "decision_pct": 4.2,
+      "enrollment_pct": 0.96
+    },
+    "/success/military-general-v5": {
+      "leads": 1310,
+      "app_starts": 330,
+      "decisions": 85,
+      "enrollments": 30,
+      "decision_pct": 6.49,
+      "enrollment_pct": 2.29
+    },
+    "/success/programs/criminal-justice-v6": {
+      "leads": 1193,
+      "app_starts": 308,
+      "decisions": 54,
+      "enrollments": 9,
+      "decision_pct": 4.53,
+      "enrollment_pct": 0.75
+    },
+    "/success/programs/social-behavioral-science-v6": {
+      "leads": 1126,
+      "app_starts": 256,
+      "decisions": 33,
+      "enrollments": 13,
+      "decision_pct": 2.93,
+      "enrollment_pct": 1.15
+    },
+    "/success/back-to-school-v5": {
+      "leads": 1104,
+      "app_starts": 349,
+      "decisions": 74,
+      "enrollments": 14,
+      "decision_pct": 6.7,
+      "enrollment_pct": 1.27
+    },
+    "/success/programs/education-v6": {
+      "leads": 1007,
+      "app_starts": 259,
+      "decisions": 48,
+      "enrollments": 13,
+      "decision_pct": 4.77,
+      "enrollment_pct": 1.29
+    },
+    "/success/admissions-financial-aid-v5": {
+      "leads": 976,
+      "app_starts": 308,
+      "decisions": 56,
+      "enrollments": 10,
+      "decision_pct": 5.74,
+      "enrollment_pct": 1.02
+    },
+    "/success/online-degrees-v5": {
+      "leads": 921,
+      "app_starts": 183,
+      "decisions": 44,
+      "enrollments": 11,
+      "decision_pct": 4.78,
+      "enrollment_pct": 1.19
+    },
+    "/success/programs/liberal-arts-v6": {
+      "leads": 890,
+      "app_starts": 236,
+      "decisions": 38,
+      "enrollments": 9,
+      "decision_pct": 4.27,
+      "enrollment_pct": 1.01
+    },
+    "/success/programs/business-v6": {
+      "leads": 809,
+      "app_starts": 155,
+      "decisions": 30,
+      "enrollments": 11,
+      "decision_pct": 3.71,
+      "enrollment_pct": 1.36
+    },
+    "/success/degree/ba-early-childhood-education-v5": {
+      "leads": 763,
+      "app_starts": 210,
+      "decisions": 33,
+      "enrollments": 9,
+      "decision_pct": 4.33,
+      "enrollment_pct": 1.18
+    },
+    "/success/programs/psychology-v7": {
+      "leads": 685,
+      "app_starts": 166,
+      "decisions": 37,
+      "enrollments": 7,
+      "decision_pct": 5.4,
+      "enrollment_pct": 1.02
+    },
+    "/success/degree-types/masters-degrees-v5": {
+      "leads": 668,
+      "app_starts": 187,
+      "decisions": 52,
+      "enrollments": 22,
+      "decision_pct": 7.78,
+      "enrollment_pct": 3.29
+    },
+    "/success/degree/ma-psychology-v5": {
+      "leads": 661,
+      "app_starts": 164,
+      "decisions": 30,
+      "enrollments": 14,
+      "decision_pct": 4.54,
+      "enrollment_pct": 2.12
+    },
+    "/success/programs/information-technology-v6": {
+      "leads": 655,
+      "app_starts": 98,
+      "decisions": 14,
+      "enrollments": 8,
+      "decision_pct": 2.14,
+      "enrollment_pct": 1.22
+    },
+    "/success/degree/mba-v5": {
+      "leads": 613,
+      "app_starts": 171,
+      "decisions": 42,
+      "enrollments": 10,
+      "decision_pct": 6.85,
+      "enrollment_pct": 1.63
+    },
+    "/success/programs/education-v5": {
+      "leads": 596,
+      "app_starts": 136,
+      "decisions": 23,
+      "enrollments": 6,
+      "decision_pct": 3.86,
+      "enrollment_pct": 1.01
+    },
+    "/success/programs/information-technology-v5": {
+      "leads": 587,
+      "app_starts": 177,
+      "decisions": 59,
+      "enrollments": 6,
+      "decision_pct": 10.05,
+      "enrollment_pct": 1.02
+    },
+    "/success/degree/ba-applied-behavior-science-v5": {
+      "leads": 536,
+      "app_starts": 162,
+      "decisions": 60,
+      "enrollments": 16,
+      "decision_pct": 11.19,
+      "enrollment_pct": 2.99
+    },
+    "/success/programs/criminal-justice-v5": {
+      "leads": 467,
+      "app_starts": 145,
+      "decisions": 30,
+      "enrollments": 6,
+      "decision_pct": 6.42,
+      "enrollment_pct": 1.28
+    },
+    "/success/degree/ms-criminal-justice-v5": {
+      "leads": 466,
+      "app_starts": 141,
+      "decisions": 34,
+      "enrollments": 7,
+      "decision_pct": 7.3,
+      "enrollment_pct": 1.5
+    },
+    "/success/degree/ba-homeland-security-emergency-management-v6": {
+      "leads": 460,
+      "app_starts": 57,
+      "decisions": 7,
+      "enrollments": 1,
+      "decision_pct": 1.52,
+      "enrollment_pct": 0.22
+    },
+    "/success/degree/ba-health-care-administration-v5": {
+      "leads": 423,
+      "app_starts": 69,
+      "decisions": 13,
+      "enrollments": 3,
+      "decision_pct": 3.07,
+      "enrollment_pct": 0.71
+    },
+    "/success/degree/ba-homeland-security-emergency-management-v5": {
+      "leads": 383,
+      "app_starts": 104,
+      "decisions": 19,
+      "enrollments": 8,
+      "decision_pct": 4.96,
+      "enrollment_pct": 2.09
+    },
+    "/success/programs/criminal-justice-v7": {
+      "leads": 315,
+      "app_starts": 76,
+      "decisions": 9,
+      "enrollments": 1,
+      "decision_pct": 2.86,
+      "enrollment_pct": 0.32
+    },
+    "/success/degree/ba-early-childhood-administration-v5": {
+      "leads": 314,
+      "app_starts": 92,
+      "decisions": 9,
+      "enrollments": 3,
+      "decision_pct": 2.87,
+      "enrollment_pct": 0.96
+    },
+    "/success/programs/health-care-v6": {
+      "leads": 281,
+      "app_starts": 82,
+      "decisions": 16,
+      "enrollments": 3,
+      "decision_pct": 5.69,
+      "enrollment_pct": 1.07
+    },
+    "/success/degree/ba-education-studies-v5": {
+      "leads": 270,
+      "app_starts": 84,
+      "decisions": 29,
+      "enrollments": 10,
+      "decision_pct": 10.74,
+      "enrollment_pct": 3.7
+    },
+    "/success/degree/ma-education-v5": {
+      "leads": 237,
+      "app_starts": 79,
+      "decisions": 26,
+      "enrollments": 12,
+      "decision_pct": 10.97,
+      "enrollment_pct": 5.06
+    },
+    "/success/degree/master-human-resource-management-v5": {
+      "leads": 234,
+      "app_starts": 50,
+      "decisions": 6,
+      "enrollments": 0,
+      "decision_pct": 2.56,
+      "enrollment_pct": 0.0
+    },
+    "/success/programs/liberal-arts-v5": {
+      "leads": 226,
+      "app_starts": 56,
+      "decisions": 11,
+      "enrollments": 2,
+      "decision_pct": 4.87,
+      "enrollment_pct": 0.88
+    },
+    "/success/degree/ba-liberal-arts-v5": {
+      "leads": 207,
+      "app_starts": 65,
+      "decisions": 7,
+      "enrollments": 3,
+      "decision_pct": 3.38,
+      "enrollment_pct": 1.45
+    },
+    "/success/degree/ba-sociology-v5": {
+      "leads": 206,
+      "app_starts": 68,
+      "decisions": 12,
+      "enrollments": 3,
+      "decision_pct": 5.83,
+      "enrollment_pct": 1.46
+    },
+    "/success/programs/social-behavioral-science-v5": {
+      "leads": 183,
+      "app_starts": 43,
+      "decisions": 9,
+      "enrollments": 1,
+      "decision_pct": 4.92,
+      "enrollment_pct": 0.55
+    },
+    "/success/degree/ms-health-information-analytics-v5": {
+      "leads": 180,
+      "app_starts": 51,
+      "decisions": 11,
+      "enrollments": 3,
+      "decision_pct": 6.11,
+      "enrollment_pct": 1.67
+    },
+    "/success/degree-types/associate-degrees-v5": {
+      "leads": 178,
+      "app_starts": 72,
+      "decisions": 25,
+      "enrollments": 11,
+      "decision_pct": 14.04,
+      "enrollment_pct": 6.18
+    },
+    "/success/degree/ba-operations-management-analysis-v5": {
+      "leads": 164,
+      "app_starts": 40,
+      "decisions": 7,
+      "enrollments": 0,
+      "decision_pct": 4.27,
+      "enrollment_pct": 0.0
+    },
+    "/success/programs/psychology-v5": {
+      "leads": 160,
+      "app_starts": 47,
+      "decisions": 13,
+      "enrollments": 6,
+      "decision_pct": 8.12,
+      "enrollment_pct": 3.75
+    },
+    "/success/degree/ma-human-services-v5": {
+      "leads": 152,
+      "app_starts": 42,
+      "decisions": 12,
+      "enrollments": 4,
+      "decision_pct": 7.89,
+      "enrollment_pct": 2.63
+    },
+    "/success/degree/master-of-accountancy-v5": {
+      "leads": 151,
+      "app_starts": 35,
+      "decisions": 3,
+      "enrollments": 1,
+      "decision_pct": 1.99,
+      "enrollment_pct": 0.66
+    },
+    "/success/online-programs-v9": {
+      "leads": 129,
+      "app_starts": 56,
+      "decisions": 28,
+      "enrollments": 7,
+      "decision_pct": 21.71,
+      "enrollment_pct": 5.43
+    },
+    "/success/degree/ms-finance-v5": {
+      "leads": 126,
+      "app_starts": 32,
+      "decisions": 9,
+      "enrollments": 1,
+      "decision_pct": 7.14,
+      "enrollment_pct": 0.79
+    },
+    "/success/degree/ba-psychology-v5": {
+      "leads": 120,
+      "app_starts": 36,
+      "decisions": 14,
+      "enrollments": 5,
+      "decision_pct": 11.67,
+      "enrollment_pct": 4.17
+    },
+    "/success/degree/ma-health-care-administration-v5": {
+      "leads": 115,
+      "app_starts": 40,
+      "decisions": 10,
+      "enrollments": 4,
+      "decision_pct": 8.7,
+      "enrollment_pct": 3.48
+    },
+    "/success/programs/health-care-v5": {
+      "leads": 96,
+      "app_starts": 35,
+      "decisions": 5,
+      "enrollments": 0,
+      "decision_pct": 5.21,
+      "enrollment_pct": 0.0
+    },
+    "/success/degree/ba-project-management-v5": {
+      "leads": 86,
+      "app_starts": 16,
+      "decisions": 7,
+      "enrollments": 2,
+      "decision_pct": 8.14,
+      "enrollment_pct": 2.33
+    },
+    "/success/degree/ba-psychology-v6": {
+      "leads": 83,
+      "app_starts": 32,
+      "decisions": 9,
+      "enrollments": 3,
+      "decision_pct": 10.84,
+      "enrollment_pct": 3.61
+    },
+    "/success/degree/ba-health-human-services-v5": {
+      "leads": 80,
+      "app_starts": 23,
+      "decisions": 6,
+      "enrollments": 2,
+      "decision_pct": 7.5,
+      "enrollment_pct": 2.5
+    },
+    "/success/degree/ba-finance-v5": {
+      "leads": 79,
+      "app_starts": 20,
+      "decisions": 1,
+      "enrollments": 0,
+      "decision_pct": 1.27,
+      "enrollment_pct": 0.0
+    },
+    "/success/degree/ba-business-information-system-v5": {
+      "leads": 75,
+      "app_starts": 23,
+      "decisions": 6,
+      "enrollments": 1,
+      "decision_pct": 8.0,
+      "enrollment_pct": 1.33
+    },
+    "/success/programs/accounting-finance-v6": {
+      "leads": 74,
+      "app_starts": 18,
+      "decisions": 6,
+      "enrollments": 1,
+      "decision_pct": 8.11,
+      "enrollment_pct": 1.35
+    },
+    "/success/degree/master-public-health-v5": {
+      "leads": 71,
+      "app_starts": 25,
+      "decisions": 3,
+      "enrollments": 2,
+      "decision_pct": 4.23,
+      "enrollment_pct": 2.82
+    },
+    "/success/online-programs-v10": {
+      "leads": 68,
+      "app_starts": 26,
+      "decisions": 3,
+      "enrollments": 0,
+      "decision_pct": 4.41,
+      "enrollment_pct": 0.0
+    },
+    "/success/degree/bs-health-information-management-v5": {
+      "leads": 61,
+      "app_starts": 21,
+      "decisions": 2,
+      "enrollments": 0,
+      "decision_pct": 3.28,
+      "enrollment_pct": 0.0
+    },
+    "/success/degree/ma-early-childhood-educational-leadership-v5": {
+      "leads": 58,
+      "app_starts": 15,
+      "decisions": 5,
+      "enrollments": 2,
+      "decision_pct": 8.62,
+      "enrollment_pct": 3.45
+    },
+    "/success/degree/ba-applied-behavior-science-v6": {
+      "leads": 54,
+      "app_starts": 12,
+      "decisions": 6,
+      "enrollments": 2,
+      "decision_pct": 11.11,
+      "enrollment_pct": 3.7
+    },
+    "/success/programs/finance-v5": {
+      "leads": 45,
+      "app_starts": 9,
+      "decisions": 0,
+      "enrollments": 0,
+      "decision_pct": 0.0,
+      "enrollment_pct": 0.0
+    },
+    "/success/flexibility-v5": {
+      "leads": 41,
+      "app_starts": 11,
+      "decisions": 1,
+      "enrollments": 0,
+      "decision_pct": 2.44,
+      "enrollment_pct": 0.0
+    },
+    "/success/programs/leadership-v5": {
+      "leads": 40,
+      "app_starts": 9,
+      "decisions": 3,
+      "enrollments": 1,
+      "decision_pct": 7.5,
+      "enrollment_pct": 2.5
+    },
+    "/success/degree/ba-business-administration-v6": {
+      "leads": 40,
+      "app_starts": 11,
+      "decisions": 5,
+      "enrollments": 1,
+      "decision_pct": 12.5,
+      "enrollment_pct": 2.5
+    },
+    "/success/degree/ma-psychology-v6": {
+      "leads": 37,
+      "app_starts": 11,
+      "decisions": 1,
+      "enrollments": 0,
+      "decision_pct": 2.7,
+      "enrollment_pct": 0.0
+    },
+    "/success/degree/aa-early-childhood-education-v6": {
+      "leads": 37,
+      "app_starts": 9,
+      "decisions": 1,
+      "enrollments": 1,
+      "decision_pct": 2.7,
+      "enrollment_pct": 2.7
+    },
+    "/success/degree/ms-technology-management-v5": {
+      "leads": 36,
+      "app_starts": 10,
+      "decisions": 1,
+      "enrollments": 0,
+      "decision_pct": 2.78,
+      "enrollment_pct": 0.0
+    },
+    "/success/degree/ba-business-administration-v5": {
+      "leads": 35,
+      "app_starts": 12,
+      "decisions": 8,
+      "enrollments": 1,
+      "decision_pct": 22.86,
+      "enrollment_pct": 2.86
+    },
+    "/success/degree/ba-early-childhood-development-differentiated-instruction-v5": {
+      "leads": 35,
+      "app_starts": 6,
+      "decisions": 3,
+      "enrollments": 1,
+      "decision_pct": 8.57,
+      "enrollment_pct": 2.86
+    },
+    "/success/degree/ba-social-criminal-justice-v6": {
+      "leads": 35,
+      "app_starts": 9,
+      "decisions": 1,
+      "enrollments": 0,
+      "decision_pct": 2.86,
+      "enrollment_pct": 0.0
+    },
+    "/success/degree/ba-liberal-arts-v6": {
+      "leads": 33,
+      "app_starts": 9,
+      "decisions": 3,
+      "enrollments": 2,
+      "decision_pct": 9.09,
+      "enrollment_pct": 6.06
+    },
+    "/success/degree/bs-cyber-data-security-technology-v6": {
+      "leads": 32,
+      "app_starts": 9,
+      "decisions": 3,
+      "enrollments": 1,
+      "decision_pct": 9.38,
+      "enrollment_pct": 3.12
+    },
+    "/success/arizona": {
+      "leads": 29,
+      "app_starts": 5,
+      "decisions": 0,
+      "enrollments": 0,
+      "decision_pct": 0.0,
+      "enrollment_pct": 0.0
+    },
+    "/success/degree/ms-criminal-justice-v6": {
+      "leads": 26,
+      "app_starts": 10,
+      "decisions": 0,
+      "enrollments": 0,
+      "decision_pct": 0.0,
+      "enrollment_pct": 0.0
+    },
+    "/success/degree/ms-instructional-design-technology-v5": {
+      "leads": 26,
+      "app_starts": 10,
+      "decisions": 3,
+      "enrollments": 1,
+      "decision_pct": 11.54,
+      "enrollment_pct": 3.85
+    },
+    "/success/degree/ma-special-education-v5": {
+      "leads": 25,
+      "app_starts": 6,
+      "decisions": 1,
+      "enrollments": 0,
+      "decision_pct": 4.0,
+      "enrollment_pct": 0.0
+    },
+    "/success/degree/ba-organizational-management-v5": {
+      "leads": 23,
+      "app_starts": 3,
+      "decisions": 2,
+      "enrollments": 0,
+      "decision_pct": 8.7,
+      "enrollment_pct": 0.0
+    },
+    "/success/degree/ba-accounting-v6": {
+      "leads": 22,
+      "app_starts": 8,
+      "decisions": 4,
+      "enrollments": 2,
+      "decision_pct": 18.18,
+      "enrollment_pct": 9.09
+    },
+    "/success/degree/ba-health-care-administration-v6": {
+      "leads": 22,
+      "app_starts": 8,
+      "decisions": 3,
+      "enrollments": 1,
+      "decision_pct": 13.64,
+      "enrollment_pct": 4.55
+    },
+    "/success/degree/ba-marketing-v6": {
+      "leads": 22,
+      "app_starts": 8,
+      "decisions": 2,
+      "enrollments": 1,
+      "decision_pct": 9.09,
+      "enrollment_pct": 4.55
+    },
+    "/success/degree/ba-human-resource-management-v6": {
+      "leads": 21,
+      "app_starts": 6,
+      "decisions": 2,
+      "enrollments": 0,
+      "decision_pct": 9.52,
+      "enrollment_pct": 0.0
+    },
+    "/success/degree/ba-business-leadership-v6": {
+      "leads": 21,
+      "app_starts": 5,
+      "decisions": 2,
+      "enrollments": 1,
+      "decision_pct": 9.52,
+      "enrollment_pct": 4.76
+    },
+    "/success/degree/doctorate-psychology-v6": {
+      "leads": 21,
+      "app_starts": 4,
+      "decisions": 0,
+      "enrollments": 0,
+      "decision_pct": 0.0,
+      "enrollment_pct": 0.0
+    },
+    "/success/degree/ba-project-management-v6": {
+      "leads": 19,
+      "app_starts": 5,
+      "decisions": 0,
+      "enrollments": 0,
+      "decision_pct": 0.0,
+      "enrollment_pct": 0.0
+    },
+    "/success/degree/ba-early-childhood-education-v6": {
+      "leads": 17,
+      "app_starts": 4,
+      "decisions": 0,
+      "enrollments": 0,
+      "decision_pct": 0.0,
+      "enrollment_pct": 0.0
+    },
+    "/success/degree/ba-health-human-services-v6": {
+      "leads": 17,
+      "app_starts": 4,
+      "decisions": 0,
+      "enrollments": 0,
+      "decision_pct": 0.0,
+      "enrollment_pct": 0.0
+    },
+    "/success/degree/ba-accounting-v5": {
+      "leads": 15,
+      "app_starts": 2,
+      "decisions": 1,
+      "enrollments": 0,
+      "decision_pct": 6.67,
+      "enrollment_pct": 0.0
+    },
+    "/success/degree/ma-organizational-management-v5": {
+      "leads": 15,
+      "app_starts": 2,
+      "decisions": 0,
+      "enrollments": 0,
+      "decision_pct": 0.0,
+      "enrollment_pct": 0.0
+    },
+    "/success/degree/mba-v6": {
+      "leads": 15,
+      "app_starts": 6,
+      "decisions": 3,
+      "enrollments": 2,
+      "decision_pct": 20.0,
+      "enrollment_pct": 13.33
+    },
+    "/success/degree/ba-instructional-design-v5": {
+      "leads": 14,
+      "app_starts": 5,
+      "decisions": 0,
+      "enrollments": 0,
+      "decision_pct": 0.0,
+      "enrollment_pct": 0.0
+    },
+    "/success/degree/bs-computer-software-technology-v6": {
+      "leads": 14,
+      "app_starts": 6,
+      "decisions": 3,
+      "enrollments": 1,
+      "decision_pct": 21.43,
+      "enrollment_pct": 7.14
+    },
+    "/success/degree/ba-finance-v6": {
+      "leads": 13,
+      "app_starts": 3,
+      "decisions": 2,
+      "enrollments": 2,
+      "decision_pct": 15.38,
+      "enrollment_pct": 15.38
+    },
+    "/success/degree/bs-informational-technology-v6": {
+      "leads": 13,
+      "app_starts": 3,
+      "decisions": 0,
+      "enrollments": 0,
+      "decision_pct": 0.0,
+      "enrollment_pct": 0.0
+    },
+    "/success/degree/bs-cyber-data-security-technology-v5": {
+      "leads": 13,
+      "app_starts": 3,
+      "decisions": 1,
+      "enrollments": 0,
+      "decision_pct": 7.69,
+      "enrollment_pct": 0.0
+    },
+    "/success/degree/ba-organizational-management-v6": {
+      "leads": 13,
+      "app_starts": 3,
+      "decisions": 1,
+      "enrollments": 0,
+      "decision_pct": 7.69,
+      "enrollment_pct": 0.0
+    },
+    "/success/degree/ms-finance-v6": {
+      "leads": 12,
+      "app_starts": 5,
+      "decisions": 0,
+      "enrollments": 0,
+      "decision_pct": 0.0,
+      "enrollment_pct": 0.0
+    },
+    "/success/degree/bs-informational-technology-v5": {
+      "leads": 11,
+      "app_starts": 4,
+      "decisions": 1,
+      "enrollments": 0,
+      "decision_pct": 9.09,
+      "enrollment_pct": 0.0
+    },
+    "/success/degree/ma-human-services-v6": {
+      "leads": 11,
+      "app_starts": 2,
+      "decisions": 0,
+      "enrollments": 0,
+      "decision_pct": 0.0,
+      "enrollment_pct": 0.0
+    },
+    "/success/degree/ba-social-criminal-justice-v5": {
+      "leads": 10,
+      "app_starts": 2,
+      "decisions": 0,
+      "enrollments": 0,
+      "decision_pct": 0.0,
+      "enrollment_pct": 0.0
+    },
+    "/success/degree/ba-education-studies-v6": {
+      "leads": 10,
+      "app_starts": 1,
+      "decisions": 1,
+      "enrollments": 0,
+      "decision_pct": 10.0,
+      "enrollment_pct": 0.0
+    },
+    "/success/degree/ma-education-v6": {
+      "leads": 9,
+      "app_starts": 0,
+      "decisions": 0,
+      "enrollments": 0,
+      "decision_pct": 0.0,
+      "enrollment_pct": 0.0
+    },
+    "/success/degree/ba-sociology-v6": {
+      "leads": 9,
+      "app_starts": 4,
+      "decisions": 1,
+      "enrollments": 0,
+      "decision_pct": 11.11,
+      "enrollment_pct": 0.0
+    },
+    "/success/degree/bs-health-information-management-v6": {
+      "leads": 9,
+      "app_starts": 2,
+      "decisions": 1,
+      "enrollments": 1,
+      "decision_pct": 11.11,
+      "enrollment_pct": 11.11
+    },
+    "/success/degree/ma-special-education-v6": {
+      "leads": 7,
+      "app_starts": 1,
+      "decisions": 0,
+      "enrollments": 0,
+      "decision_pct": 0.0,
+      "enrollment_pct": 0.0
+    },
+    "/success/degree/master-informational-sciences-management-v6": {
+      "leads": 7,
+      "app_starts": 2,
+      "decisions": 0,
+      "enrollments": 0,
+      "decision_pct": 0.0,
+      "enrollment_pct": 0.0
+    },
+    "/success/degree/ma-organizational-management-v6": {
+      "leads": 7,
+      "app_starts": 4,
+      "decisions": 2,
+      "enrollments": 1,
+      "decision_pct": 28.57,
+      "enrollment_pct": 14.29
+    },
+    "/success/home-v5": {
+      "leads": 7,
+      "app_starts": 2,
+      "decisions": 0,
+      "enrollments": 0,
+      "decision_pct": 0.0,
+      "enrollment_pct": 0.0
+    },
+    "/success/degree/master-informational-sciences-management-v5": {
+      "leads": 7,
+      "app_starts": 3,
+      "decisions": 0,
+      "enrollments": 0,
+      "decision_pct": 0.0,
+      "enrollment_pct": 0.0
+    },
+    "/success/degree/doctorate-education-v6": {
+      "leads": 7,
+      "app_starts": 1,
+      "decisions": 0,
+      "enrollments": 0,
+      "decision_pct": 0.0,
+      "enrollment_pct": 0.0
+    },
+    "/success/degree/doctorate-organizational-development-leadership-v6": {
+      "leads": 7,
+      "app_starts": 0,
+      "decisions": 0,
+      "enrollments": 0,
+      "decision_pct": 0.0,
+      "enrollment_pct": 0.0
+    },
+    "/success/degree/ba-operations-management-analysis-v6": {
+      "leads": 6,
+      "app_starts": 2,
+      "decisions": 2,
+      "enrollments": 2,
+      "decision_pct": 33.33,
+      "enrollment_pct": 33.33
+    },
+    "/success/degree/master-public-health-v6": {
+      "leads": 6,
+      "app_starts": 1,
+      "decisions": 0,
+      "enrollments": 0,
+      "decision_pct": 0.0,
+      "enrollment_pct": 0.0
+    },
+    "/success/degree/ma-health-care-administration-v6": {
+      "leads": 6,
+      "app_starts": 3,
+      "decisions": 2,
+      "enrollments": 1,
+      "decision_pct": 33.33,
+      "enrollment_pct": 16.67
+    },
+    "/success/degree/bs-computer-software-technology-v5": {
+      "leads": 5,
+      "app_starts": 1,
+      "decisions": 0,
+      "enrollments": 0,
+      "decision_pct": 0.0,
+      "enrollment_pct": 0.0
+    },
+    "/success/degree/ms-technology-management-v6": {
+      "leads": 5,
+      "app_starts": 3,
+      "decisions": 1,
+      "enrollments": 0,
+      "decision_pct": 20.0,
+      "enrollment_pct": 0.0
+    },
+    "/success/transfer-v5": {
+      "leads": 5,
+      "app_starts": 2,
+      "decisions": 0,
+      "enrollments": 0,
+      "decision_pct": 0.0,
+      "enrollment_pct": 0.0
+    },
+    "/success/degree/ba-business-information-system-v6": {
+      "leads": 5,
+      "app_starts": 2,
+      "decisions": 1,
+      "enrollments": 0,
+      "decision_pct": 20.0,
+      "enrollment_pct": 0.0
+    },
+    "/success/degree/master-of-accountancy-v6": {
+      "leads": 5,
+      "app_starts": 1,
+      "decisions": 0,
+      "enrollments": 0,
+      "decision_pct": 0.0,
+      "enrollment_pct": 0.0
+    },
+    "/success/degree/ba-early-childhood-administration-v6": {
+      "leads": 5,
+      "app_starts": 1,
+      "decisions": 0,
+      "enrollments": 0,
+      "decision_pct": 0.0,
+      "enrollment_pct": 0.0
+    },
+    "/success/degree/bs-nursing-v6": {
+      "leads": 4,
+      "app_starts": 2,
+      "decisions": 1,
+      "enrollments": 0,
+      "decision_pct": 25.0,
+      "enrollment_pct": 0.0
+    },
+    "/success/degree/ms-instructional-design-technology-v6": {
+      "leads": 4,
+      "app_starts": 2,
+      "decisions": 1,
+      "enrollments": 0,
+      "decision_pct": 25.0,
+      "enrollment_pct": 0.0
+    },
+    "/success/degree/ms-health-information-analytics-v6": {
+      "leads": 3,
+      "app_starts": 2,
+      "decisions": 1,
+      "enrollments": 0,
+      "decision_pct": 33.33,
+      "enrollment_pct": 0.0
+    },
+    "/success/degree/ba-human-resource-management-v5": {
+      "leads": 3,
+      "app_starts": 1,
+      "decisions": 0,
+      "enrollments": 0,
+      "decision_pct": 0.0,
+      "enrollment_pct": 0.0
+    },
+    "/success/degree/doctorate-psychology-v5": {
+      "leads": 3,
+      "app_starts": 0,
+      "decisions": 0,
+      "enrollments": 0,
+      "decision_pct": 0.0,
+      "enrollment_pct": 0.0
+    },
+    "/success/degree/ba-child-development-v6": {
+      "leads": 3,
+      "app_starts": 1,
+      "decisions": 0,
+      "enrollments": 0,
+      "decision_pct": 0.0,
+      "enrollment_pct": 0.0
+    },
+    "/success/degree/master-human-resource-management-v6": {
+      "leads": 3,
+      "app_starts": 2,
+      "decisions": 0,
+      "enrollments": 0,
+      "decision_pct": 0.0,
+      "enrollment_pct": 0.0
+    },
+    "/success/new-year-v5": {
+      "leads": 2,
+      "app_starts": 0,
+      "decisions": 0,
+      "enrollments": 0,
+      "decision_pct": 0.0,
+      "enrollment_pct": 0.0
+    },
+    "/success/degree/ma-early-childhood-educational-leadership-v6": {
+      "leads": 2,
+      "app_starts": 1,
+      "decisions": 0,
+      "enrollments": 0,
+      "decision_pct": 0.0,
+      "enrollment_pct": 0.0
+    },
+    "/success/degree-types/doctoral-degrees-v5": {
+      "leads": 2,
+      "app_starts": 0,
+      "decisions": 0,
+      "enrollments": 0,
+      "decision_pct": 0.0,
+      "enrollment_pct": 0.0
+    },
+    "/success/programs/organizational-management-v5": {
+      "leads": 2,
+      "app_starts": 1,
+      "decisions": 1,
+      "enrollments": 0,
+      "decision_pct": 50.0,
+      "enrollment_pct": 0.0
+    },
+    "/success/online-v5": {
+      "leads": 1,
+      "app_starts": 1,
+      "decisions": 0,
+      "enrollments": 0,
+      "decision_pct": 0.0,
+      "enrollment_pct": 0.0
+    },
+    "/success/programs/early-childhood-education-v5": {
+      "leads": 1,
+      "app_starts": 0,
+      "decisions": 0,
+      "enrollments": 0,
+      "decision_pct": 0.0,
+      "enrollment_pct": 0.0
+    },
+    "/success/programs/business-v5": {
+      "leads": 1,
+      "app_starts": 0,
+      "decisions": 0,
+      "enrollments": 0,
+      "decision_pct": 0.0,
+      "enrollment_pct": 0.0
+    },
+    "/success/online-college-classes-v5": {
+      "leads": 1,
+      "app_starts": 0,
+      "decisions": 0,
+      "enrollments": 0,
+      "decision_pct": 0.0,
+      "enrollment_pct": 0.0
+    },
+    "/success/degree/ba-instructional-design-v6": {
+      "leads": 1,
+      "app_starts": 0,
+      "decisions": 0,
+      "enrollments": 0,
+      "decision_pct": 0.0,
+      "enrollment_pct": 0.0
+    },
+    "/success/degree/ba-early-childhood-development-differentiated-instruction-v6": {
+      "leads": 1,
+      "app_starts": 0,
+      "decisions": 0,
+      "enrollments": 0,
+      "decision_pct": 0.0,
+      "enrollment_pct": 0.0
+    },
+    "/success/programs/human-resource-management-v5": {
+      "leads": 1,
+      "app_starts": 0,
+      "decisions": 0,
+      "enrollments": 0,
+      "decision_pct": 0.0,
+      "enrollment_pct": 0.0
+    },
+    "/success/degree/doctorate-human-services-v6": {
+      "leads": 1,
+      "app_starts": 0,
+      "decisions": 0,
+      "enrollments": 0,
+      "decision_pct": 0.0,
+      "enrollment_pct": 0.0
+    },
+    "/success/degree/ba-marketing-v5": {
+      "leads": 1,
+      "app_starts": 0,
+      "decisions": 0,
+      "enrollments": 0,
+      "decision_pct": 0.0,
+      "enrollment_pct": 0.0
+    }
+  },
+  "organic": {
+    "": {
+      "leads": 3978,
+      "app_starts": 940,
+      "decisions": 500,
+      "enrollments": 139,
+      "decision_pct": 12.57,
+      "enrollment_pct": 3.49
+    },
+    "/partnerships/corporate/perkspot": {
+      "leads": 2052,
+      "app_starts": 1666,
+      "decisions": 56,
+      "enrollments": 23,
+      "decision_pct": 2.73,
+      "enrollment_pct": 1.12
+    },
+    "/online-degrees/business": {
+      "leads": 1659,
+      "app_starts": 429,
+      "decisions": 108,
+      "enrollments": 18,
+      "decision_pct": 6.51,
+      "enrollment_pct": 1.08
+    },
+    "/request-information": {
+      "leads": 996,
+      "app_starts": 150,
+      "decisions": 72,
+      "enrollments": 33,
+      "decision_pct": 7.23,
+      "enrollment_pct": 3.31
+    },
+    "/online-degrees": {
+      "leads": 597,
+      "app_starts": 170,
+      "decisions": 64,
+      "enrollments": 24,
+      "decision_pct": 10.72,
+      "enrollment_pct": 4.02
+    },
+    "/tuition-financial-aid/our-promise": {
+      "leads": 587,
+      "app_starts": 130,
+      "decisions": 32,
+      "enrollments": 14,
+      "decision_pct": 5.45,
+      "enrollment_pct": 2.39
+    },
+    "/tuition-financial-aid": {
+      "leads": 551,
+      "app_starts": 108,
+      "decisions": 28,
+      "enrollments": 5,
+      "decision_pct": 5.08,
+      "enrollment_pct": 0.91
+    },
+    "/military": {
+      "leads": 515,
+      "app_starts": 154,
+      "decisions": 80,
+      "enrollments": 46,
+      "decision_pct": 15.53,
+      "enrollment_pct": 8.93
+    },
+    "/online-degrees/masters": {
+      "leads": 492,
+      "app_starts": 191,
+      "decisions": 87,
+      "enrollments": 51,
+      "decision_pct": 17.68,
+      "enrollment_pct": 10.37
+    },
+    "/online-degrees/bachelors/health-and-wellness": {
+      "leads": 428,
+      "app_starts": 102,
+      "decisions": 23,
+      "enrollments": 5,
+      "decision_pct": 5.37,
+      "enrollment_pct": 1.17
+    },
+    "/online-degrees/bachelors": {
+      "leads": 413,
+      "app_starts": 160,
+      "decisions": 83,
+      "enrollments": 37,
+      "decision_pct": 20.1,
+      "enrollment_pct": 8.96
+    },
+    "/online-degrees/bachelors/business-economics": {
+      "leads": 403,
+      "app_starts": 108,
+      "decisions": 28,
+      "enrollments": 3,
+      "decision_pct": 6.95,
+      "enrollment_pct": 0.74
+    },
+    "/tuition-financial-aid/grants": {
+      "leads": 348,
+      "app_starts": 89,
+      "decisions": 11,
+      "enrollments": 2,
+      "decision_pct": 3.16,
+      "enrollment_pct": 0.57
+    },
+    "/tuition-financial-aid/scholarships": {
+      "leads": 308,
+      "app_starts": 65,
+      "decisions": 19,
+      "enrollments": 7,
+      "decision_pct": 6.17,
+      "enrollment_pct": 2.27
+    },
+    "/student-experience/fast-track-graduate-degree": {
+      "leads": 270,
+      "app_starts": 39,
+      "decisions": 7,
+      "enrollments": 6,
+      "decision_pct": 2.59,
+      "enrollment_pct": 2.22
+    },
+    "/admissions/new-students": {
+      "leads": 269,
+      "app_starts": 145,
+      "decisions": 89,
+      "enrollments": 22,
+      "decision_pct": 33.09,
+      "enrollment_pct": 8.18
+    },
+    "/partnerships/corporate/rwjbarnabas-health": {
+      "leads": 256,
+      "app_starts": 193,
+      "decisions": 44,
+      "enrollments": 26,
+      "decision_pct": 17.19,
+      "enrollment_pct": 10.16
+    },
+    "/student-experience/transcript-request": {
+      "leads": 240,
+      "app_starts": 10,
+      "decisions": 3,
+      "enrollments": 1,
+      "decision_pct": 1.25,
+      "enrollment_pct": 0.42
+    },
+    "/online-degrees/associate/business": {
+      "leads": 222,
+      "app_starts": 83,
+      "decisions": 38,
+      "enrollments": 12,
+      "decision_pct": 17.12,
+      "enrollment_pct": 5.41
+    },
+    "/online-degrees/bachelors/business-administration": {
+      "leads": 221,
+      "app_starts": 71,
+      "decisions": 35,
+      "enrollments": 19,
+      "decision_pct": 15.84,
+      "enrollment_pct": 8.6
+    },
+    "/admissions/traditional": {
+      "leads": 207,
+      "app_starts": 59,
+      "decisions": 16,
+      "enrollments": 6,
+      "decision_pct": 7.73,
+      "enrollment_pct": 2.9
+    },
+    "/partnerships/corporate/sedgwick": {
+      "leads": 203,
+      "app_starts": 174,
+      "decisions": 72,
+      "enrollments": 48,
+      "decision_pct": 35.47,
+      "enrollment_pct": 23.65
+    },
+    "/online-degrees/masters/business-administration": {
+      "leads": 198,
+      "app_starts": 89,
+      "decisions": 46,
+      "enrollments": 20,
+      "decision_pct": 23.23,
+      "enrollment_pct": 10.1
+    },
+    "/online-degrees/bachelors/psychology": {
+      "leads": 191,
+      "app_starts": 56,
+      "decisions": 20,
+      "enrollments": 5,
+      "decision_pct": 10.47,
+      "enrollment_pct": 2.62
+    },
+    "/online-degrees/health-care": {
+      "leads": 182,
+      "app_starts": 49,
+      "decisions": 18,
+      "enrollments": 9,
+      "decision_pct": 9.89,
+      "enrollment_pct": 4.95
+    },
+    "/online-degrees/associate": {
+      "leads": 180,
+      "app_starts": 55,
+      "decisions": 27,
+      "enrollments": 6,
+      "decision_pct": 15.0,
+      "enrollment_pct": 3.33
+    },
+    "/online-degrees/education": {
+      "leads": 167,
+      "app_starts": 38,
+      "decisions": 12,
+      "enrollments": 5,
+      "decision_pct": 7.19,
+      "enrollment_pct": 2.99
+    },
+    "/online-degrees/bachelors/health-care-administration": {
+      "leads": 166,
+      "app_starts": 71,
+      "decisions": 22,
+      "enrollments": 8,
+      "decision_pct": 13.25,
+      "enrollment_pct": 4.82
+    },
+    "/online-degrees/social-behavioral-science": {
+      "leads": 157,
+      "app_starts": 36,
+      "decisions": 17,
+      "enrollments": 11,
+      "decision_pct": 10.83,
+      "enrollment_pct": 7.01
+    },
+    "/partnerships/corporate/banner-health": {
+      "leads": 153,
+      "app_starts": 109,
+      "decisions": 15,
+      "enrollments": 0,
+      "decision_pct": 9.8,
+      "enrollment_pct": 0.0
+    },
+    "/online-degrees/associate/early-childhood-education": {
+      "leads": 149,
+      "app_starts": 44,
+      "decisions": 18,
+      "enrollments": 3,
+      "decision_pct": 12.08,
+      "enrollment_pct": 2.01
+    },
+    "/online-degrees/bachelors/cyber-data-security-technology": {
+      "leads": 148,
+      "app_starts": 51,
+      "decisions": 19,
+      "enrollments": 10,
+      "decision_pct": 12.84,
+      "enrollment_pct": 6.76
+    },
+    "/online-degrees/bachelors/social-science": {
+      "leads": 147,
+      "app_starts": 37,
+      "decisions": 11,
+      "enrollments": 3,
+      "decision_pct": 7.48,
+      "enrollment_pct": 2.04
+    },
+    "/online-degrees/bachelors/criminal-justice": {
+      "leads": 146,
+      "app_starts": 52,
+      "decisions": 16,
+      "enrollments": 6,
+      "decision_pct": 10.96,
+      "enrollment_pct": 4.11
+    },
+    "/partnerships/academic/uma": {
+      "leads": 146,
+      "app_starts": 76,
+      "decisions": 38,
+      "enrollments": 18,
+      "decision_pct": 26.03,
+      "enrollment_pct": 12.33
+    },
+    "/partnerships/corporate/fedex": {
+      "leads": 131,
+      "app_starts": 101,
+      "decisions": 22,
+      "enrollments": 13,
+      "decision_pct": 16.79,
+      "enrollment_pct": 9.92
+    },
+    "/partnerships/corporate/t-mobile": {
+      "leads": 123,
+      "app_starts": 93,
+      "decisions": 30,
+      "enrollments": 11,
+      "decision_pct": 24.39,
+      "enrollment_pct": 8.94
+    },
+    "/online-degrees/information-technology": {
+      "leads": 119,
+      "app_starts": 33,
+      "decisions": 14,
+      "enrollments": 5,
+      "decision_pct": 11.76,
+      "enrollment_pct": 4.2
+    },
+    "/online-degrees/masters/psychology": {
+      "leads": 117,
+      "app_starts": 40,
+      "decisions": 14,
+      "enrollments": 8,
+      "decision_pct": 11.97,
+      "enrollment_pct": 6.84
+    },
+    "/partnerships/corporate/common-spirit": {
+      "leads": 117,
+      "app_starts": 89,
+      "decisions": 12,
+      "enrollments": 7,
+      "decision_pct": 10.26,
+      "enrollment_pct": 5.98
+    },
+    "/partnerships/corporate/usbank": {
+      "leads": 117,
+      "app_starts": 92,
+      "decisions": 11,
+      "enrollments": 4,
+      "decision_pct": 9.4,
+      "enrollment_pct": 3.42
+    },
+    "/online-degrees/bachelors/early-childhood-education": {
+      "leads": 114,
+      "app_starts": 35,
+      "decisions": 15,
+      "enrollments": 3,
+      "decision_pct": 13.16,
+      "enrollment_pct": 2.63
+    },
+    "/partnerships/corporate/ups": {
+      "leads": 114,
+      "app_starts": 89,
+      "decisions": 12,
+      "enrollments": 7,
+      "decision_pct": 10.53,
+      "enrollment_pct": 6.14
+    },
+    "/partnerships/corporate/edassist": {
+      "leads": 113,
+      "app_starts": 71,
+      "decisions": 8,
+      "enrollments": 5,
+      "decision_pct": 7.08,
+      "enrollment_pct": 4.42
+    },
+    "/admissions": {
+      "leads": 112,
+      "app_starts": 37,
+      "decisions": 23,
+      "enrollments": 7,
+      "decision_pct": 20.54,
+      "enrollment_pct": 6.25
+    },
+    "/online-degrees/bachelors/homeland-security-emergency-management": {
+      "leads": 112,
+      "app_starts": 35,
+      "decisions": 17,
+      "enrollments": 5,
+      "decision_pct": 15.18,
+      "enrollment_pct": 4.46
+    },
+    "/online-degrees/bachelors/applied-behavioral-science": {
+      "leads": 112,
+      "app_starts": 32,
+      "decisions": 13,
+      "enrollments": 4,
+      "decision_pct": 11.61,
+      "enrollment_pct": 3.57
+    },
+    "/admissions/bachelors": {
+      "leads": 109,
+      "app_starts": 34,
+      "decisions": 13,
+      "enrollments": 4,
+      "decision_pct": 11.93,
+      "enrollment_pct": 3.67
+    },
+    "/online-degrees/bachelors/accounting": {
+      "leads": 104,
+      "app_starts": 38,
+      "decisions": 20,
+      "enrollments": 9,
+      "decision_pct": 19.23,
+      "enrollment_pct": 8.65
+    },
+    "/military/active-duty": {
+      "leads": 103,
+      "app_starts": 41,
+      "decisions": 23,
+      "enrollments": 12,
+      "decision_pct": 22.33,
+      "enrollment_pct": 11.65
+    },
+    "/partnerships/corporate/beneplace": {
+      "leads": 103,
+      "app_starts": 78,
+      "decisions": 5,
+      "enrollments": 1,
+      "decision_pct": 4.85,
+      "enrollment_pct": 0.97
+    },
+    "/online-degrees/associate/organizational-management": {
+      "leads": 103,
+      "app_starts": 34,
+      "decisions": 13,
+      "enrollments": 5,
+      "decision_pct": 12.62,
+      "enrollment_pct": 4.85
+    },
+    "/partnerships/corporate/la-care": {
+      "leads": 100,
+      "app_starts": 80,
+      "decisions": 23,
+      "enrollments": 12,
+      "decision_pct": 23.0,
+      "enrollment_pct": 12.0
+    },
+    "/about/why-uagc/support": {
+      "leads": 100,
+      "app_starts": 21,
+      "decisions": 4,
+      "enrollments": 3,
+      "decision_pct": 4.0,
+      "enrollment_pct": 3.0
+    },
+    "/military/air-force": {
+      "leads": 97,
+      "app_starts": 58,
+      "decisions": 45,
+      "enrollments": 33,
+      "decision_pct": 46.39,
+      "enrollment_pct": 34.02
+    },
+    "/online-degrees/criminal-justice": {
+      "leads": 95,
+      "app_starts": 24,
+      "decisions": 7,
+      "enrollments": 4,
+      "decision_pct": 7.37,
+      "enrollment_pct": 4.21
+    },
+    "/online-degrees/bachelors/human-resources-management": {
+      "leads": 94,
+      "app_starts": 34,
+      "decisions": 16,
+      "enrollments": 7,
+      "decision_pct": 17.02,
+      "enrollment_pct": 7.45
+    },
+    "/military/veterans": {
+      "leads": 93,
+      "app_starts": 27,
+      "decisions": 9,
+      "enrollments": 3,
+      "decision_pct": 9.68,
+      "enrollment_pct": 3.23
+    },
+    "/partnerships/corporate/auto-club-group": {
+      "leads": 91,
+      "app_starts": 67,
+      "decisions": 13,
+      "enrollments": 8,
+      "decision_pct": 14.29,
+      "enrollment_pct": 8.79
+    },
+    "/partnerships/corporate/benefithub": {
+      "leads": 91,
+      "app_starts": 72,
+      "decisions": 6,
+      "enrollments": 1,
+      "decision_pct": 6.59,
+      "enrollment_pct": 1.1
+    },
+    "/partnerships/corporate/state-of-arizona": {
+      "leads": 91,
+      "app_starts": 73,
+      "decisions": 7,
+      "enrollments": 3,
+      "decision_pct": 7.69,
+      "enrollment_pct": 3.3
+    },
+    "/online-degrees/bachelors/project-management": {
+      "leads": 90,
+      "app_starts": 25,
+      "decisions": 16,
+      "enrollments": 10,
+      "decision_pct": 17.78,
+      "enrollment_pct": 11.11
+    },
+    "/partnerships/corporate/ovg": {
+      "leads": 89,
+      "app_starts": 75,
+      "decisions": 21,
+      "enrollments": 12,
+      "decision_pct": 23.6,
+      "enrollment_pct": 13.48
+    },
+    "/admissions/masters": {
+      "leads": 86,
+      "app_starts": 37,
+      "decisions": 17,
+      "enrollments": 10,
+      "decision_pct": 19.77,
+      "enrollment_pct": 11.63
+    },
+    "/online-degrees/bachelors/business-leadership": {
+      "leads": 85,
+      "app_starts": 31,
+      "decisions": 14,
+      "enrollments": 6,
+      "decision_pct": 16.47,
+      "enrollment_pct": 7.06
+    },
+    "/partnerships/corporate/sempra": {
+      "leads": 85,
+      "app_starts": 69,
+      "decisions": 19,
+      "enrollments": 13,
+      "decision_pct": 22.35,
+      "enrollment_pct": 15.29
+    },
+    "/online-degrees/bachelors/supply-chain-management": {
+      "leads": 84,
+      "app_starts": 16,
+      "decisions": 6,
+      "enrollments": 0,
+      "decision_pct": 7.14,
+      "enrollment_pct": 0.0
+    },
+    "/partnerships/corporate/textron": {
+      "leads": 81,
+      "app_starts": 64,
+      "decisions": 34,
+      "enrollments": 29,
+      "decision_pct": 41.98,
+      "enrollment_pct": 35.8
+    },
+    "/online-degrees/bachelors/finance": {
+      "leads": 80,
+      "app_starts": 33,
+      "decisions": 19,
+      "enrollments": 7,
+      "decision_pct": 23.75,
+      "enrollment_pct": 8.75
+    },
+    "/partnerships/corporate/nghs": {
+      "leads": 79,
+      "app_starts": 58,
+      "decisions": 13,
+      "enrollments": 6,
+      "decision_pct": 16.46,
+      "enrollment_pct": 7.59
+    },
+    "/online-degrees/masters/organizational-management": {
+      "leads": 78,
+      "app_starts": 36,
+      "decisions": 12,
+      "enrollments": 5,
+      "decision_pct": 15.38,
+      "enrollment_pct": 6.41
+    },
+    "/military/spouses-dependents": {
+      "leads": 77,
+      "app_starts": 22,
+      "decisions": 9,
+      "enrollments": 5,
+      "decision_pct": 11.69,
+      "enrollment_pct": 6.49
+    },
+    "/partnerships/corporate/qtc": {
+      "leads": 76,
+      "app_starts": 51,
+      "decisions": 21,
+      "enrollments": 10,
+      "decision_pct": 27.63,
+      "enrollment_pct": 13.16
+    },
+    "/online-degrees/bachelors/health-human-services": {
+      "leads": 76,
+      "app_starts": 25,
+      "decisions": 8,
+      "enrollments": 3,
+      "decision_pct": 10.53,
+      "enrollment_pct": 3.95
+    },
+    "/partnerships/corporate/aecom": {
+      "leads": 76,
+      "app_starts": 62,
+      "decisions": 17,
+      "enrollments": 13,
+      "decision_pct": 22.37,
+      "enrollment_pct": 17.11
+    },
+    "/online-degrees/bachelors/nursing": {
+      "leads": 75,
+      "app_starts": 23,
+      "decisions": 5,
+      "enrollments": 0,
+      "decision_pct": 6.67,
+      "enrollment_pct": 0.0
+    },
+    "/online-degrees/bachelors/health-information-management": {
+      "leads": 74,
+      "app_starts": 24,
+      "decisions": 6,
+      "enrollments": 2,
+      "decision_pct": 8.11,
+      "enrollment_pct": 2.7
+    },
+    "/partnerships/corporate/airgasinc": {
+      "leads": 71,
+      "app_starts": 61,
+      "decisions": 26,
+      "enrollments": 18,
+      "decision_pct": 36.62,
+      "enrollment_pct": 25.35
+    },
+    "/online-degrees/bachelors/organizational-management": {
+      "leads": 70,
+      "app_starts": 28,
+      "decisions": 15,
+      "enrollments": 9,
+      "decision_pct": 21.43,
+      "enrollment_pct": 12.86
+    },
+    "/military/tuition-financial-aid": {
+      "leads": 70,
+      "app_starts": 22,
+      "decisions": 8,
+      "enrollments": 7,
+      "decision_pct": 11.43,
+      "enrollment_pct": 10.0
+    },
+    "/partnerships/corporate/consumercellular": {
+      "leads": 69,
+      "app_starts": 54,
+      "decisions": 10,
+      "enrollments": 9,
+      "decision_pct": 14.49,
+      "enrollment_pct": 13.04
+    },
+    "/online-degrees/doctoral": {
+      "leads": 68,
+      "app_starts": 14,
+      "decisions": 1,
+      "enrollments": 0,
+      "decision_pct": 1.47,
+      "enrollment_pct": 0.0
+    },
+    "/partnerships/corporate/comcast": {
+      "leads": 67,
+      "app_starts": 57,
+      "decisions": 20,
+      "enrollments": 15,
+      "decision_pct": 29.85,
+      "enrollment_pct": 22.39
+    },
+    "/online-degrees-v8": {
+      "leads": 65,
+      "app_starts": 25,
+      "decisions": 12,
+      "enrollments": 7,
+      "decision_pct": 18.46,
+      "enrollment_pct": 10.77
+    },
+    "/partnerships/corporate/nrg": {
+      "leads": 62,
+      "app_starts": 51,
+      "decisions": 11,
+      "enrollments": 6,
+      "decision_pct": 17.74,
+      "enrollment_pct": 9.68
+    },
+    "/online-degrees/bachelors/marketing": {
+      "leads": 62,
+      "app_starts": 20,
+      "decisions": 11,
+      "enrollments": 2,
+      "decision_pct": 17.74,
+      "enrollment_pct": 3.23
+    },
+    "/partnerships/corporate/hackensackmeridianhealth": {
+      "leads": 62,
+      "app_starts": 48,
+      "decisions": 18,
+      "enrollments": 14,
+      "decision_pct": 29.03,
+      "enrollment_pct": 22.58
+    },
+    "/partnerships/corporate/epic": {
+      "leads": 62,
+      "app_starts": 55,
+      "decisions": 15,
+      "enrollments": 10,
+      "decision_pct": 24.19,
+      "enrollment_pct": 16.13
+    },
+    "/online-degrees/bachelors/operations-management-analysis": {
+      "leads": 61,
+      "app_starts": 25,
+      "decisions": 9,
+      "enrollments": 4,
+      "decision_pct": 14.75,
+      "enrollment_pct": 6.56
+    },
+    "/terms-and-conditions": {
+      "leads": 60,
+      "app_starts": 11,
+      "decisions": 2,
+      "enrollments": 0,
+      "decision_pct": 3.33,
+      "enrollment_pct": 0.0
+    },
+    "/online-degrees/bachelors/computer-software-technology": {
+      "leads": 60,
+      "app_starts": 24,
+      "decisions": 6,
+      "enrollments": 3,
+      "decision_pct": 10.0,
+      "enrollment_pct": 5.0
+    },
+    "/online-degrees/doctoral/psychology": {
+      "leads": 59,
+      "app_starts": 11,
+      "decisions": 0,
+      "enrollments": 0,
+      "decision_pct": 0.0,
+      "enrollment_pct": 0.0
+    },
+    "/online-degrees/masters/health-care-administration": {
+      "leads": 58,
+      "app_starts": 21,
+      "decisions": 8,
+      "enrollments": 5,
+      "decision_pct": 13.79,
+      "enrollment_pct": 8.62
+    },
+    "/online-degrees/bachelors/information-technology": {
+      "leads": 57,
+      "app_starts": 16,
+      "decisions": 6,
+      "enrollments": 3,
+      "decision_pct": 10.53,
+      "enrollment_pct": 5.26
+    },
+    "/tuition-financial-aid/cost-of-attendance": {
+      "leads": 56,
+      "app_starts": 13,
+      "decisions": 6,
+      "enrollments": 0,
+      "decision_pct": 10.71,
+      "enrollment_pct": 0.0
+    },
+    "/partnerships/corporate/Sedgwick": {
+      "leads": 53,
+      "app_starts": 40,
+      "decisions": 20,
+      "enrollments": 13,
+      "decision_pct": 37.74,
+      "enrollment_pct": 24.53
+    },
+    "/partnerships/corporate/shamrock": {
+      "leads": 53,
+      "app_starts": 40,
+      "decisions": 20,
+      "enrollments": 13,
+      "decision_pct": 37.74,
+      "enrollment_pct": 24.53
+    },
+    "/about/contact-us": {
+      "leads": 53,
+      "app_starts": 9,
+      "decisions": 6,
+      "enrollments": 0,
+      "decision_pct": 11.32,
+      "enrollment_pct": 0.0
+    },
+    "/partnerships/corporate/scri": {
+      "leads": 52,
+      "app_starts": 38,
+      "decisions": 8,
+      "enrollments": 5,
+      "decision_pct": 15.38,
+      "enrollment_pct": 9.62
+    },
+    "/student-experience": {
+      "leads": 52,
+      "app_starts": 11,
+      "decisions": 0,
+      "enrollments": 0,
+      "decision_pct": 0.0,
+      "enrollment_pct": 0.0
+    },
+    "/online-degrees/masters/human-services": {
+      "leads": 52,
+      "app_starts": 21,
+      "decisions": 13,
+      "enrollments": 4,
+      "decision_pct": 25.0,
+      "enrollment_pct": 7.69
+    },
+    "/partnerships/corporate/ftg": {
+      "leads": 50,
+      "app_starts": 10,
+      "decisions": 0,
+      "enrollments": 0,
+      "decision_pct": 0.0,
+      "enrollment_pct": 0.0
+    },
+    "/partnerships/corporate/libertyenergy": {
+      "leads": 50,
+      "app_starts": 43,
+      "decisions": 7,
+      "enrollments": 4,
+      "decision_pct": 14.0,
+      "enrollment_pct": 8.0
+    },
+    "/online-degrees/bachelors/education-studies": {
+      "leads": 50,
+      "app_starts": 19,
+      "decisions": 4,
+      "enrollments": 3,
+      "decision_pct": 8.0,
+      "enrollment_pct": 6.0
+    },
+    "/online-degrees/masters/criminal-justice": {
+      "leads": 49,
+      "app_starts": 18,
+      "decisions": 6,
+      "enrollments": 3,
+      "decision_pct": 12.24,
+      "enrollment_pct": 6.12
+    },
+    "/partnerships/corporate/bwxt": {
+      "leads": 49,
+      "app_starts": 38,
+      "decisions": 17,
+      "enrollments": 9,
+      "decision_pct": 34.69,
+      "enrollment_pct": 18.37
+    },
+    "/online-degrees/masters/human-resource-management": {
+      "leads": 48,
+      "app_starts": 16,
+      "decisions": 4,
+      "enrollments": 1,
+      "decision_pct": 8.33,
+      "enrollment_pct": 2.08
+    },
+    "/partnerships/corporate/cityofmesa": {
+      "leads": 47,
+      "app_starts": 43,
+      "decisions": 7,
+      "enrollments": 5,
+      "decision_pct": 14.89,
+      "enrollment_pct": 10.64
+    },
+    "/partnerships/corporate/edward-jones": {
+      "leads": 47,
+      "app_starts": 34,
+      "decisions": 6,
+      "enrollments": 3,
+      "decision_pct": 12.77,
+      "enrollment_pct": 6.38
+    },
+    "/student-experience/honor-societies": {
+      "leads": 46,
+      "app_starts": 1,
+      "decisions": 1,
+      "enrollments": 0,
+      "decision_pct": 2.17,
+      "enrollment_pct": 0.0
+    },
+    "/partnerships/corporate/msc": {
+      "leads": 46,
+      "app_starts": 38,
+      "decisions": 6,
+      "enrollments": 3,
+      "decision_pct": 13.04,
+      "enrollment_pct": 6.52
+    },
+    "/online-degrees/bachelors/child-development": {
+      "leads": 45,
+      "app_starts": 9,
+      "decisions": 4,
+      "enrollments": 0,
+      "decision_pct": 8.89,
+      "enrollment_pct": 0.0
+    },
+    "/online-degrees/masters/early-childhood-education-leadership": {
+      "leads": 45,
+      "app_starts": 13,
+      "decisions": 8,
+      "enrollments": 3,
+      "decision_pct": 17.78,
+      "enrollment_pct": 6.67
+    },
+    "/partnerships/corporate/grantforyou": {
+      "leads": 44,
+      "app_starts": 34,
+      "decisions": 8,
+      "enrollments": 6,
+      "decision_pct": 18.18,
+      "enrollment_pct": 13.64
+    },
+    "/student-experience/career-services": {
+      "leads": 44,
+      "app_starts": 3,
+      "decisions": 1,
+      "enrollments": 0,
+      "decision_pct": 2.27,
+      "enrollment_pct": 0.0
+    },
+    "/partnerships/corporate/knight-swift": {
+      "leads": 42,
+      "app_starts": 27,
+      "decisions": 2,
+      "enrollments": 0,
+      "decision_pct": 4.76,
+      "enrollment_pct": 0.0
+    },
+    "/partnerships/corporate/CSAA": {
+      "leads": 42,
+      "app_starts": 33,
+      "decisions": 10,
+      "enrollments": 5,
+      "decision_pct": 23.81,
+      "enrollment_pct": 11.9
+    },
+    "/partnerships/corporate/quest-diagnostics": {
+      "leads": 42,
+      "app_starts": 26,
+      "decisions": 3,
+      "enrollments": 1,
+      "decision_pct": 7.14,
+      "enrollment_pct": 2.38
+    },
+    "/online-degrees/bachelors/liberal-arts": {
+      "leads": 41,
+      "app_starts": 15,
+      "decisions": 5,
+      "enrollments": 2,
+      "decision_pct": 12.2,
+      "enrollment_pct": 4.88
+    },
+    "/student-experience/peer-mentoring": {
+      "leads": 41,
+      "app_starts": 2,
+      "decisions": 0,
+      "enrollments": 0,
+      "decision_pct": 0.0,
+      "enrollment_pct": 0.0
+    },
+    "/partnerships/corporate/osi-systems": {
+      "leads": 40,
+      "app_starts": 29,
+      "decisions": 5,
+      "enrollments": 2,
+      "decision_pct": 12.5,
+      "enrollment_pct": 5.0
+    },
+    "/sms-terms-conditions": {
+      "leads": 40,
+      "app_starts": 8,
+      "decisions": 0,
+      "enrollments": 0,
+      "decision_pct": 0.0,
+      "enrollment_pct": 0.0
+    },
+    "/online-degrees/bachelors/sociology": {
+      "leads": 39,
+      "app_starts": 10,
+      "decisions": 2,
+      "enrollments": 0,
+      "decision_pct": 5.13,
+      "enrollment_pct": 0.0
+    },
+    "/online-degrees/masters/education": {
+      "leads": 39,
+      "app_starts": 8,
+      "decisions": 1,
+      "enrollments": 1,
+      "decision_pct": 2.56,
+      "enrollment_pct": 2.56
+    },
+    "/partnerships/corporate/cencora": {
+      "leads": 39,
+      "app_starts": 32,
+      "decisions": 8,
+      "enrollments": 6,
+      "decision_pct": 20.51,
+      "enrollment_pct": 15.38
+    },
+    "/military/army": {
+      "leads": 39,
+      "app_starts": 12,
+      "decisions": 7,
+      "enrollments": 1,
+      "decision_pct": 17.95,
+      "enrollment_pct": 2.56
+    },
+    "/partnerships/corporate/amazon": {
+      "leads": 38,
+      "app_starts": 29,
+      "decisions": 0,
+      "enrollments": 0,
+      "decision_pct": 0.0,
+      "enrollment_pct": 0.0
+    },
+    "/partnerships/corporate/cox": {
+      "leads": 37,
+      "app_starts": 22,
+      "decisions": 12,
+      "enrollments": 8,
+      "decision_pct": 32.43,
+      "enrollment_pct": 21.62
+    },
+    "/admissions/non-traditional": {
+      "leads": 37,
+      "app_starts": 9,
+      "decisions": 5,
+      "enrollments": 2,
+      "decision_pct": 13.51,
+      "enrollment_pct": 5.41
+    },
+    "/online-degrees/bachelors/communication-studies": {
+      "leads": 36,
+      "app_starts": 8,
+      "decisions": 4,
+      "enrollments": 2,
+      "decision_pct": 11.11,
+      "enrollment_pct": 5.56
+    },
+    "/online-degrees/liberal-arts": {
+      "leads": 36,
+      "app_starts": 10,
+      "decisions": 3,
+      "enrollments": 1,
+      "decision_pct": 8.33,
+      "enrollment_pct": 2.78
+    },
+    "/partnerships/corporate/usps": {
+      "leads": 35,
+      "app_starts": 27,
+      "decisions": 1,
+      "enrollments": 1,
+      "decision_pct": 2.86,
+      "enrollment_pct": 2.86
+    },
+    "/online-degrees/masters/teaching-and-learning-with-technology": {
+      "leads": 35,
+      "app_starts": 6,
+      "decisions": 2,
+      "enrollments": 1,
+      "decision_pct": 5.71,
+      "enrollment_pct": 2.86
+    },
+    "/military/admissions/au-abc-gem": {
+      "leads": 34,
+      "app_starts": 14,
+      "decisions": 9,
+      "enrollments": 6,
+      "decision_pct": 26.47,
+      "enrollment_pct": 17.65
+    },
+    "/online-degrees/bachelors/business-information-systems": {
+      "leads": 34,
+      "app_starts": 14,
+      "decisions": 8,
+      "enrollments": 1,
+      "decision_pct": 23.53,
+      "enrollment_pct": 2.94
+    },
+    "/privacy-policy": {
+      "leads": 34,
+      "app_starts": 4,
+      "decisions": 2,
+      "enrollments": 1,
+      "decision_pct": 5.88,
+      "enrollment_pct": 2.94
+    },
+    "/partnerships/corporate/qcrh": {
+      "leads": 33,
+      "app_starts": 31,
+      "decisions": 10,
+      "enrollments": 8,
+      "decision_pct": 30.3,
+      "enrollment_pct": 24.24
+    },
+    "/online-degrees/masters/health-informatics-analytics": {
+      "leads": 33,
+      "app_starts": 11,
+      "decisions": 6,
+      "enrollments": 3,
+      "decision_pct": 18.18,
+      "enrollment_pct": 9.09
+    },
+    "/partnerships/corporate/alterra": {
+      "leads": 33,
+      "app_starts": 26,
+      "decisions": 3,
+      "enrollments": 0,
+      "decision_pct": 9.09,
+      "enrollment_pct": 0.0
+    },
+    "/partnerships/corporate/santander": {
+      "leads": 33,
+      "app_starts": 23,
+      "decisions": 2,
+      "enrollments": 1,
+      "decision_pct": 6.06,
+      "enrollment_pct": 3.03
+    },
+    "/partnerships/corporate/sheetz": {
+      "leads": 32,
+      "app_starts": 29,
+      "decisions": 8,
+      "enrollments": 5,
+      "decision_pct": 25.0,
+      "enrollment_pct": 15.62
+    },
+    "/partnerships/corporate/ttec": {
+      "leads": 32,
+      "app_starts": 24,
+      "decisions": 8,
+      "enrollments": 5,
+      "decision_pct": 25.0,
+      "enrollment_pct": 15.62
+    },
+    "/online-degrees/masters/information-systems-management": {
+      "leads": 32,
+      "app_starts": 12,
+      "decisions": 7,
+      "enrollments": 4,
+      "decision_pct": 21.88,
+      "enrollment_pct": 12.5
+    },
+    "/partnerships/corporate/national-life-group": {
+      "leads": 31,
+      "app_starts": 23,
+      "decisions": 5,
+      "enrollments": 4,
+      "decision_pct": 16.13,
+      "enrollment_pct": 12.9
+    },
+    "/partnerships/corporate/uhnj": {
+      "leads": 31,
+      "app_starts": 27,
+      "decisions": 5,
+      "enrollments": 3,
+      "decision_pct": 16.13,
+      "enrollment_pct": 9.68
+    },
+    "/partnerships/corporate/uhaul": {
+      "leads": 31,
+      "app_starts": 25,
+      "decisions": 7,
+      "enrollments": 4,
+      "decision_pct": 22.58,
+      "enrollment_pct": 12.9
+    },
+    "/admissions/associates": {
+      "leads": 30,
+      "app_starts": 5,
+      "decisions": 2,
+      "enrollments": 1,
+      "decision_pct": 6.67,
+      "enrollment_pct": 3.33
+    },
+    "/online-degrees/bachelors/early-childhood-education-administration": {
+      "leads": 30,
+      "app_starts": 7,
+      "decisions": 4,
+      "enrollments": 0,
+      "decision_pct": 13.33,
+      "enrollment_pct": 0.0
+    },
+    "/partnerships/corporate/gainwell": {
+      "leads": 30,
+      "app_starts": 24,
+      "decisions": 9,
+      "enrollments": 6,
+      "decision_pct": 30.0,
+      "enrollment_pct": 20.0
+    },
+    "/online-degrees/emphases": {
+      "leads": 30,
+      "app_starts": 6,
+      "decisions": 4,
+      "enrollments": 2,
+      "decision_pct": 13.33,
+      "enrollment_pct": 6.67
+    },
+    "/partnerships/corporate/pool-corp": {
+      "leads": 30,
+      "app_starts": 21,
+      "decisions": 2,
+      "enrollments": 1,
+      "decision_pct": 6.67,
+      "enrollment_pct": 3.33
+    },
+    "/partnerships/corporate/idaydream": {
+      "leads": 30,
+      "app_starts": 2,
+      "decisions": 0,
+      "enrollments": 0,
+      "decision_pct": 0.0,
+      "enrollment_pct": 0.0
+    },
+    "/partnerships/corporate/perdue-farms": {
+      "leads": 30,
+      "app_starts": 25,
+      "decisions": 6,
+      "enrollments": 3,
+      "decision_pct": 20.0,
+      "enrollment_pct": 10.0
+    },
+    "/online-degrees/masters/public-health": {
+      "leads": 29,
+      "app_starts": 17,
+      "decisions": 5,
+      "enrollments": 2,
+      "decision_pct": 17.24,
+      "enrollment_pct": 6.9
+    },
+    "/partnerships/corporate/standard-aero": {
+      "leads": 29,
+      "app_starts": 23,
+      "decisions": 3,
+      "enrollments": 2,
+      "decision_pct": 10.34,
+      "enrollment_pct": 6.9
+    },
+    "/tuition-financial-aid/payment-options": {
+      "leads": 29,
+      "app_starts": 8,
+      "decisions": 2,
+      "enrollments": 1,
+      "decision_pct": 6.9,
+      "enrollment_pct": 3.45
+    },
+    "/partnerships/corporate/state-farm": {
+      "leads": 29,
+      "app_starts": 25,
+      "decisions": 9,
+      "enrollments": 8,
+      "decision_pct": 31.03,
+      "enrollment_pct": 27.59
+    },
+    "/military/tuition-financial-aid/grants/liberty-grant": {
+      "leads": 28,
+      "app_starts": 6,
+      "decisions": 3,
+      "enrollments": 0,
+      "decision_pct": 10.71,
+      "enrollment_pct": 0.0
+    },
+    "/about/accreditation": {
+      "leads": 28,
+      "app_starts": 15,
+      "decisions": 2,
+      "enrollments": 0,
+      "decision_pct": 7.14,
+      "enrollment_pct": 0.0
+    },
+    "/online-degrees/bachelors/instructional-design": {
+      "leads": 27,
+      "app_starts": 17,
+      "decisions": 7,
+      "enrollments": 3,
+      "decision_pct": 25.93,
+      "enrollment_pct": 11.11
+    },
+    "/partnerships/corporate/microchip-technology-inc": {
+      "leads": 27,
+      "app_starts": 19,
+      "decisions": 5,
+      "enrollments": 2,
+      "decision_pct": 18.52,
+      "enrollment_pct": 7.41
+    },
+    "/online-degrees/certificates/post-baccalaureate-teaching": {
+      "leads": 27,
+      "app_starts": 5,
+      "decisions": 0,
+      "enrollments": 0,
+      "decision_pct": 0.0,
+      "enrollment_pct": 0.0
+    },
+    "/partnerships/corporate/phoenix-childrens-hospital": {
+      "leads": 26,
+      "app_starts": 19,
+      "decisions": 2,
+      "enrollments": 2,
+      "decision_pct": 7.69,
+      "enrollment_pct": 7.69
+    },
+    "/partnerships/corporate/ardenthealth": {
+      "leads": 25,
+      "app_starts": 17,
+      "decisions": 3,
+      "enrollments": 1,
+      "decision_pct": 12.0,
+      "enrollment_pct": 4.0
+    },
+    "/online-degrees/masters/technology-management": {
+      "leads": 25,
+      "app_starts": 14,
+      "decisions": 9,
+      "enrollments": 4,
+      "decision_pct": 36.0,
+      "enrollment_pct": 16.0
+    },
+    "/online-degrees/doctoral/organizational-leadership": {
+      "leads": 25,
+      "app_starts": 9,
+      "decisions": 0,
+      "enrollments": 0,
+      "decision_pct": 0.0,
+      "enrollment_pct": 0.0
+    },
+    "/partnerships/corporate/the-hartford": {
+      "leads": 25,
+      "app_starts": 16,
+      "decisions": 8,
+      "enrollments": 3,
+      "decision_pct": 32.0,
+      "enrollment_pct": 12.0
+    },
+    "/online-degrees/associate/military-studies": {
+      "leads": 25,
+      "app_starts": 7,
+      "decisions": 5,
+      "enrollments": 3,
+      "decision_pct": 20.0,
+      "enrollment_pct": 12.0
+    },
+    "/partnerships/corporate/kelly-services": {
+      "leads": 25,
+      "app_starts": 21,
+      "decisions": 1,
+      "enrollments": 0,
+      "decision_pct": 4.0,
+      "enrollment_pct": 0.0
+    },
+    "/partnerships/corporate/core-main": {
+      "leads": 24,
+      "app_starts": 19,
+      "decisions": 5,
+      "enrollments": 4,
+      "decision_pct": 20.83,
+      "enrollment_pct": 16.67
+    },
+    "/partnerships/corporate/csx": {
+      "leads": 24,
+      "app_starts": 22,
+      "decisions": 6,
+      "enrollments": 4,
+      "decision_pct": 25.0,
+      "enrollment_pct": 16.67
+    },
+    "/partnerships/corporate/rxo": {
+      "leads": 24,
+      "app_starts": 17,
+      "decisions": 2,
+      "enrollments": 1,
+      "decision_pct": 8.33,
+      "enrollment_pct": 4.17
+    },
+    "/partnerships/students": {
+      "leads": 24,
+      "app_starts": 4,
+      "decisions": 2,
+      "enrollments": 1,
+      "decision_pct": 8.33,
+      "enrollment_pct": 4.17
+    },
+    "/partnerships/corporate/leidos": {
+      "leads": 23,
+      "app_starts": 21,
+      "decisions": 5,
+      "enrollments": 3,
+      "decision_pct": 21.74,
+      "enrollment_pct": 13.04
+    },
+    "/partnerships/corporate/medtronic": {
+      "leads": 23,
+      "app_starts": 19,
+      "decisions": 3,
+      "enrollments": 2,
+      "decision_pct": 13.04,
+      "enrollment_pct": 8.7
+    },
+    "/partnerships/corporate/uhg": {
+      "leads": 23,
+      "app_starts": 17,
+      "decisions": 0,
+      "enrollments": 0,
+      "decision_pct": 0.0,
+      "enrollment_pct": 0.0
+    },
+    "/military/tuition-financial-aid/tuition": {
+      "leads": 23,
+      "app_starts": 8,
+      "decisions": 5,
+      "enrollments": 1,
+      "decision_pct": 21.74,
+      "enrollment_pct": 4.35
+    },
+    "/partnerships/corporate/pharmavite": {
+      "leads": 22,
+      "app_starts": 17,
+      "decisions": 9,
+      "enrollments": 6,
+      "decision_pct": 40.91,
+      "enrollment_pct": 27.27
+    },
+    "/partnerships/corporate/amentum": {
+      "leads": 21,
+      "app_starts": 13,
+      "decisions": 2,
+      "enrollments": 1,
+      "decision_pct": 9.52,
+      "enrollment_pct": 4.76
+    },
+    "/partnerships/corporate/erie-insurance": {
+      "leads": 21,
+      "app_starts": 19,
+      "decisions": 8,
+      "enrollments": 7,
+      "decision_pct": 38.1,
+      "enrollment_pct": 33.33
+    },
+    "/partnerships/corporate/gapinc": {
+      "leads": 21,
+      "app_starts": 17,
+      "decisions": 5,
+      "enrollments": 2,
+      "decision_pct": 23.81,
+      "enrollment_pct": 9.52
+    },
+    "/partnerships/corporate/bright-horizons": {
+      "leads": 21,
+      "app_starts": 13,
+      "decisions": 1,
+      "enrollments": 1,
+      "decision_pct": 4.76,
+      "enrollment_pct": 4.76
+    },
+    "/partnerships/corporate/lumen": {
+      "leads": 21,
+      "app_starts": 18,
+      "decisions": 5,
+      "enrollments": 4,
+      "decision_pct": 23.81,
+      "enrollment_pct": 19.05
+    },
+    "/partnerships/corporate/cvs-health": {
+      "leads": 21,
+      "app_starts": 16,
+      "decisions": 2,
+      "enrollments": 1,
+      "decision_pct": 9.52,
+      "enrollment_pct": 4.76
+    },
+    "/partnerships/corporate/case-foods": {
+      "leads": 21,
+      "app_starts": 17,
+      "decisions": 4,
+      "enrollments": 3,
+      "decision_pct": 19.05,
+      "enrollment_pct": 14.29
+    },
+    "/partnerships/corporate/edcor": {
+      "leads": 20,
+      "app_starts": 15,
+      "decisions": 3,
+      "enrollments": 1,
+      "decision_pct": 15.0,
+      "enrollment_pct": 5.0
+    },
+    "/partnerships/corporate/avisbudget": {
+      "leads": 20,
+      "app_starts": 17,
+      "decisions": 2,
+      "enrollments": 0,
+      "decision_pct": 10.0,
+      "enrollment_pct": 0.0
+    },
+    "/partnerships/corporate/dutch-bros-coffee": {
+      "leads": 20,
+      "app_starts": 14,
+      "decisions": 2,
+      "enrollments": 2,
+      "decision_pct": 10.0,
+      "enrollment_pct": 10.0
+    },
+    "/partnerships/corporate/synchrony-financial": {
+      "leads": 20,
+      "app_starts": 12,
+      "decisions": 3,
+      "enrollments": 3,
+      "decision_pct": 15.0,
+      "enrollment_pct": 15.0
+    },
+    "/partnerships/corporate/hca": {
+      "leads": 20,
+      "app_starts": 18,
+      "decisions": 5,
+      "enrollments": 2,
+      "decision_pct": 25.0,
+      "enrollment_pct": 10.0
+    },
+    "/partnerships/corporate/munich-re-americas": {
+      "leads": 20,
+      "app_starts": 16,
+      "decisions": 5,
+      "enrollments": 3,
+      "decision_pct": 25.0,
+      "enrollment_pct": 15.0
+    },
+    "/partnerships/corporate/gmfinancial": {
+      "leads": 19,
+      "app_starts": 15,
+      "decisions": 4,
+      "enrollments": 3,
+      "decision_pct": 21.05,
+      "enrollment_pct": 15.79
+    },
+    "/partnerships/corporate/pride-industries": {
+      "leads": 19,
+      "app_starts": 17,
+      "decisions": 1,
+      "enrollments": 0,
+      "decision_pct": 5.26,
+      "enrollment_pct": 0.0
+    },
+    "/partnerships/corporate/first-solar": {
+      "leads": 19,
+      "app_starts": 11,
+      "decisions": 1,
+      "enrollments": 1,
+      "decision_pct": 5.26,
+      "enrollment_pct": 5.26
+    },
+    "/partnerships/corporate/nyph": {
+      "leads": 19,
+      "app_starts": 15,
+      "decisions": 3,
+      "enrollments": 3,
+      "decision_pct": 15.79,
+      "enrollment_pct": 15.79
+    },
+    "/partnerships/corporate/paychex": {
+      "leads": 19,
+      "app_starts": 16,
+      "decisions": 5,
+      "enrollments": 4,
+      "decision_pct": 26.32,
+      "enrollment_pct": 21.05
+    },
+    "/partnerships/corporate/zurich": {
+      "leads": 19,
+      "app_starts": 15,
+      "decisions": 6,
+      "enrollments": 4,
+      "decision_pct": 31.58,
+      "enrollment_pct": 21.05
+    },
+    "/partnerships/corporate/tuition.io": {
+      "leads": 19,
+      "app_starts": 12,
+      "decisions": 1,
+      "enrollments": 0,
+      "decision_pct": 5.26,
+      "enrollment_pct": 0.0
+    },
+    "/online-degrees/find-your-degree/analyst": {
+      "leads": 19,
+      "app_starts": 4,
+      "decisions": 1,
+      "enrollments": 0,
+      "decision_pct": 5.26,
+      "enrollment_pct": 0.0
+    },
+    "/online-degrees/find-your-degree/entrepreneur": {
+      "leads": 18,
+      "app_starts": 2,
+      "decisions": 1,
+      "enrollments": 0,
+      "decision_pct": 5.56,
+      "enrollment_pct": 0.0
+    },
+    "/online-degrees/masters/instructional-design-technology": {
+      "leads": 18,
+      "app_starts": 2,
+      "decisions": 0,
+      "enrollments": 0,
+      "decision_pct": 0.0,
+      "enrollment_pct": 0.0
+    },
+    "/online-degrees/masters/accounting": {
+      "leads": 18,
+      "app_starts": 5,
+      "decisions": 1,
+      "enrollments": 0,
+      "decision_pct": 5.56,
+      "enrollment_pct": 0.0
+    },
+    "/partnerships/corporate/guardian": {
+      "leads": 18,
+      "app_starts": 13,
+      "decisions": 3,
+      "enrollments": 1,
+      "decision_pct": 16.67,
+      "enrollment_pct": 5.56
+    },
+    "/partnerships/corporate/cdw": {
+      "leads": 18,
+      "app_starts": 14,
+      "decisions": 2,
+      "enrollments": 0,
+      "decision_pct": 11.11,
+      "enrollment_pct": 0.0
+    },
+    "/partnerships/corporate/wawa": {
+      "leads": 18,
+      "app_starts": 13,
+      "decisions": 4,
+      "enrollments": 3,
+      "decision_pct": 22.22,
+      "enrollment_pct": 16.67
+    },
+    "/partnerships/corporate/highmark": {
+      "leads": 18,
+      "app_starts": 15,
+      "decisions": 3,
+      "enrollments": 2,
+      "decision_pct": 16.67,
+      "enrollment_pct": 11.11
+    },
+    "/partnerships/corporate/msts": {
+      "leads": 18,
+      "app_starts": 16,
+      "decisions": 3,
+      "enrollments": 1,
+      "decision_pct": 16.67,
+      "enrollment_pct": 5.56
+    },
+    "/online-degrees/masters/finance": {
+      "leads": 17,
+      "app_starts": 5,
+      "decisions": 3,
+      "enrollments": 1,
+      "decision_pct": 17.65,
+      "enrollment_pct": 5.88
+    },
+    "/request-information/thank-you": {
+      "leads": 17,
+      "app_starts": 1,
+      "decisions": 0,
+      "enrollments": 0,
+      "decision_pct": 0.0,
+      "enrollment_pct": 0.0
+    },
+    "/student-experience/student-support-services": {
+      "leads": 17,
+      "app_starts": 3,
+      "decisions": 2,
+      "enrollments": 2,
+      "decision_pct": 11.76,
+      "enrollment_pct": 11.76
+    },
+    "/student-experience/student-resources": {
+      "leads": 17,
+      "app_starts": 3,
+      "decisions": 1,
+      "enrollments": 0,
+      "decision_pct": 5.88,
+      "enrollment_pct": 0.0
+    },
+    "/partnerships/corporate/verizon": {
+      "leads": 17,
+      "app_starts": 13,
+      "decisions": 2,
+      "enrollments": 2,
+      "decision_pct": 11.76,
+      "enrollment_pct": 11.76
+    },
+    "/military/navy": {
+      "leads": 17,
+      "app_starts": 4,
+      "decisions": 2,
+      "enrollments": 1,
+      "decision_pct": 11.76,
+      "enrollment_pct": 5.88
+    },
+    "/online-degrees/bachelors/early-childhood-development-differentiated-instruction": {
+      "leads": 17,
+      "app_starts": 6,
+      "decisions": 1,
+      "enrollments": 1,
+      "decision_pct": 5.88,
+      "enrollment_pct": 5.88
+    },
+    "/partnerships/corporate/yale-new-haven-health": {
+      "leads": 17,
+      "app_starts": 12,
+      "decisions": 3,
+      "enrollments": 3,
+      "decision_pct": 17.65,
+      "enrollment_pct": 17.65
+    },
+    "/partnerships/corporate/gxo": {
+      "leads": 17,
+      "app_starts": 13,
+      "decisions": 1,
+      "enrollments": 1,
+      "decision_pct": 5.88,
+      "enrollment_pct": 5.88
+    },
+    "/tuition-financial-aid/grants/alumni": {
+      "leads": 16,
+      "app_starts": 7,
+      "decisions": 2,
+      "enrollments": 2,
+      "decision_pct": 12.5,
+      "enrollment_pct": 12.5
+    },
+    "/partnerships/corporate/altice": {
+      "leads": 16,
+      "app_starts": 13,
+      "decisions": 2,
+      "enrollments": 1,
+      "decision_pct": 12.5,
+      "enrollment_pct": 6.25
+    },
+    "/partnerships/corporate/walgreens": {
+      "leads": 16,
+      "app_starts": 15,
+      "decisions": 1,
+      "enrollments": 0,
+      "decision_pct": 6.25,
+      "enrollment_pct": 0.0
+    },
+    "/partnerships/corporate/aaane": {
+      "leads": 16,
+      "app_starts": 11,
+      "decisions": 3,
+      "enrollments": 1,
+      "decision_pct": 18.75,
+      "enrollment_pct": 6.25
+    },
+    "/student-experience/volunteer-program": {
+      "leads": 15,
+      "app_starts": 1,
+      "decisions": 0,
+      "enrollments": 0,
+      "decision_pct": 0.0,
+      "enrollment_pct": 0.0
+    },
+    "/partnerships/corporate/reyescoca-colabottling": {
+      "leads": 15,
+      "app_starts": 10,
+      "decisions": 4,
+      "enrollments": 3,
+      "decision_pct": 26.67,
+      "enrollment_pct": 20.0
+    },
+    "/partnerships/corporate/humangood": {
+      "leads": 15,
+      "app_starts": 12,
+      "decisions": 1,
+      "enrollments": 1,
+      "decision_pct": 6.67,
+      "enrollment_pct": 6.67
+    },
+    "/partnerships/corporate/aha": {
+      "leads": 15,
+      "app_starts": 12,
+      "decisions": 3,
+      "enrollments": 2,
+      "decision_pct": 20.0,
+      "enrollment_pct": 13.33
+    },
+    "/partnerships/corporate/carefirst": {
+      "leads": 15,
+      "app_starts": 11,
+      "decisions": 3,
+      "enrollments": 1,
+      "decision_pct": 20.0,
+      "enrollment_pct": 6.67
+    },
+    "/partnerships/corporate/parker-hannifin": {
+      "leads": 15,
+      "app_starts": 15,
+      "decisions": 2,
+      "enrollments": 2,
+      "decision_pct": 13.33,
+      "enrollment_pct": 13.33
+    },
+    "/partnerships/corporate/jbhunttransport": {
+      "leads": 15,
+      "app_starts": 15,
+      "decisions": 4,
+      "enrollments": 2,
+      "decision_pct": 26.67,
+      "enrollment_pct": 13.33
+    },
+    "/partnerships/corporate/southwest": {
+      "leads": 15,
+      "app_starts": 8,
+      "decisions": 1,
+      "enrollments": 0,
+      "decision_pct": 6.67,
+      "enrollment_pct": 0.0
+    },
+    "/partnerships/corporate/first-tech": {
+      "leads": 15,
+      "app_starts": 12,
+      "decisions": 2,
+      "enrollments": 1,
+      "decision_pct": 13.33,
+      "enrollment_pct": 6.67
+    },
+    "/online-degrees/masters/accounting-v3": {
+      "leads": 14,
+      "app_starts": 0,
+      "decisions": 0,
+      "enrollments": 0,
+      "decision_pct": 0.0,
+      "enrollment_pct": 0.0
+    },
+    "/partnerships/corporate/brightviewlandscape": {
+      "leads": 14,
+      "app_starts": 9,
+      "decisions": 1,
+      "enrollments": 0,
+      "decision_pct": 7.14,
+      "enrollment_pct": 0.0
+    },
+    "/partnerships/corporate/bank-united": {
+      "leads": 14,
+      "app_starts": 13,
+      "decisions": 2,
+      "enrollments": 1,
+      "decision_pct": 14.29,
+      "enrollment_pct": 7.14
+    },
+    "/partnerships/corporate/drivetime": {
+      "leads": 14,
+      "app_starts": 13,
+      "decisions": 4,
+      "enrollments": 2,
+      "decision_pct": 28.57,
+      "enrollment_pct": 14.29
+    },
+    "/partnerships/corporate/ceva": {
+      "leads": 14,
+      "app_starts": 8,
+      "decisions": 2,
+      "enrollments": 1,
+      "decision_pct": 14.29,
+      "enrollment_pct": 7.14
+    },
+    "/partnerships/corporate/cec-entertainment": {
+      "leads": 14,
+      "app_starts": 11,
+      "decisions": 2,
+      "enrollments": 1,
+      "decision_pct": 14.29,
+      "enrollment_pct": 7.14
+    },
+    "/partnerships/corporate/stv": {
+      "leads": 14,
+      "app_starts": 12,
+      "decisions": 3,
+      "enrollments": 1,
+      "decision_pct": 21.43,
+      "enrollment_pct": 7.14
+    },
+    "/partnerships/corporate/hfhs": {
+      "leads": 13,
+      "app_starts": 5,
+      "decisions": 0,
+      "enrollments": 0,
+      "decision_pct": 0.0,
+      "enrollment_pct": 0.0
+    },
+    "/admissions/non-traditional/pla": {
+      "leads": 13,
+      "app_starts": 4,
+      "decisions": 0,
+      "enrollments": 0,
+      "decision_pct": 0.0,
+      "enrollment_pct": 0.0
+    },
+    "/partnerships/corporate/vituity": {
+      "leads": 13,
+      "app_starts": 10,
+      "decisions": 1,
+      "enrollments": 0,
+      "decision_pct": 7.69,
+      "enrollment_pct": 0.0
+    },
+    "/partnerships/corporate/ingram-content": {
+      "leads": 13,
+      "app_starts": 10,
+      "decisions": 2,
+      "enrollments": 1,
+      "decision_pct": 15.38,
+      "enrollment_pct": 7.69
+    },
+    "/partnerships/corporate/carrington-holding": {
+      "leads": 13,
+      "app_starts": 8,
+      "decisions": 3,
+      "enrollments": 2,
+      "decision_pct": 23.08,
+      "enrollment_pct": 15.38
+    },
+    "/partnerships/corporate/ingersoll-rand": {
+      "leads": 12,
+      "app_starts": 7,
+      "decisions": 2,
+      "enrollments": 2,
+      "decision_pct": 16.67,
+      "enrollment_pct": 16.67
+    },
+    "/student-experience/alumni": {
+      "leads": 12,
+      "app_starts": 2,
+      "decisions": 0,
+      "enrollments": 0,
+      "decision_pct": 0.0,
+      "enrollment_pct": 0.0
+    },
+    "/accessibility-statement": {
+      "leads": 12,
+      "app_starts": 0,
+      "decisions": 0,
+      "enrollments": 0,
+      "decision_pct": 0.0,
+      "enrollment_pct": 0.0
+    },
+    "/partnerships/corporate/alaskaairlines": {
+      "leads": 12,
+      "app_starts": 7,
+      "decisions": 0,
+      "enrollments": 0,
+      "decision_pct": 0.0,
+      "enrollment_pct": 0.0
+    },
+    "/partnerships/corporate/dhl": {
+      "leads": 12,
+      "app_starts": 10,
+      "decisions": 3,
+      "enrollments": 1,
+      "decision_pct": 25.0,
+      "enrollment_pct": 8.33
+    },
+    "/admissions/doctorate": {
+      "leads": 12,
+      "app_starts": 0,
+      "decisions": 0,
+      "enrollments": 0,
+      "decision_pct": 0.0,
+      "enrollment_pct": 0.0
+    },
+    "/partnerships/corporate/lineage": {
+      "leads": 12,
+      "app_starts": 9,
+      "decisions": 2,
+      "enrollments": 1,
+      "decision_pct": 16.67,
+      "enrollment_pct": 8.33
+    },
+    "/tuition-financial-aid/faq": {
+      "leads": 12,
+      "app_starts": 1,
+      "decisions": 1,
+      "enrollments": 1,
+      "decision_pct": 8.33,
+      "enrollment_pct": 8.33
+    },
+    "/online-degrees/masters/business-administration-v8": {
+      "leads": 12,
+      "app_starts": 5,
+      "decisions": 2,
+      "enrollments": 1,
+      "decision_pct": 16.67,
+      "enrollment_pct": 8.33
+    },
+    "/about": {
+      "leads": 12,
+      "app_starts": 2,
+      "decisions": 2,
+      "enrollments": 0,
+      "decision_pct": 16.67,
+      "enrollment_pct": 0.0
+    },
+    "/partnerships/corporate/tiaa": {
+      "leads": 11,
+      "app_starts": 9,
+      "decisions": 1,
+      "enrollments": 0,
+      "decision_pct": 9.09,
+      "enrollment_pct": 0.0
+    },
+    "/partnerships/corporate/cdk": {
+      "leads": 11,
+      "app_starts": 8,
+      "decisions": 3,
+      "enrollments": 0,
+      "decision_pct": 27.27,
+      "enrollment_pct": 0.0
+    },
+    "/partnerships/corporate/arthrex": {
+      "leads": 11,
+      "app_starts": 8,
+      "decisions": 1,
+      "enrollments": 1,
+      "decision_pct": 9.09,
+      "enrollment_pct": 9.09
+    },
+    "/military/marines": {
+      "leads": 11,
+      "app_starts": 3,
+      "decisions": 2,
+      "enrollments": 2,
+      "decision_pct": 18.18,
+      "enrollment_pct": 18.18
+    },
+    "/military/admissions": {
+      "leads": 11,
+      "app_starts": 6,
+      "decisions": 4,
+      "enrollments": 3,
+      "decision_pct": 36.36,
+      "enrollment_pct": 27.27
+    },
+    "/partnerships/corporate/neogenomics": {
+      "leads": 11,
+      "app_starts": 7,
+      "decisions": 2,
+      "enrollments": 2,
+      "decision_pct": 18.18,
+      "enrollment_pct": 18.18
+    },
+    "/partnerships/corporate/stifel": {
+      "leads": 11,
+      "app_starts": 7,
+      "decisions": 1,
+      "enrollments": 1,
+      "decision_pct": 9.09,
+      "enrollment_pct": 9.09
+    },
+    "/partnerships/corporate/gerdau": {
+      "leads": 11,
+      "app_starts": 8,
+      "decisions": 2,
+      "enrollments": 2,
+      "decision_pct": 18.18,
+      "enrollment_pct": 18.18
+    },
+    "/admissions/week-in-the-life": {
+      "leads": 11,
+      "app_starts": 1,
+      "decisions": 1,
+      "enrollments": 0,
+      "decision_pct": 9.09,
+      "enrollment_pct": 0.0
+    },
+    "/partnerships/corporate/smud": {
+      "leads": 11,
+      "app_starts": 9,
+      "decisions": 2,
+      "enrollments": 1,
+      "decision_pct": 18.18,
+      "enrollment_pct": 9.09
+    },
+    "/partnerships/corporate/zions": {
+      "leads": 11,
+      "app_starts": 8,
+      "decisions": 1,
+      "enrollments": 1,
+      "decision_pct": 9.09,
+      "enrollment_pct": 9.09
+    },
+    "/partnerships/corporate/teleperformance": {
+      "leads": 11,
+      "app_starts": 8,
+      "decisions": 1,
+      "enrollments": 1,
+      "decision_pct": 9.09,
+      "enrollment_pct": 9.09
+    },
+    "/partnerships/corporate/faa-trust": {
+      "leads": 11,
+      "app_starts": 1,
+      "decisions": 0,
+      "enrollments": 0,
+      "decision_pct": 0.0,
+      "enrollment_pct": 0.0
+    },
+    "/partnerships/corporate/sba": {
+      "leads": 11,
+      "app_starts": 9,
+      "decisions": 2,
+      "enrollments": 2,
+      "decision_pct": 18.18,
+      "enrollment_pct": 18.18
+    },
+    "/partnerships/corporate/blue-shield-of-ca": {
+      "leads": 11,
+      "app_starts": 5,
+      "decisions": 2,
+      "enrollments": 1,
+      "decision_pct": 18.18,
+      "enrollment_pct": 9.09
+    },
+    "/online-degrees/bachelors/cyber-data-security-technology-v3": {
+      "leads": 10,
+      "app_starts": 0,
+      "decisions": 0,
+      "enrollments": 0,
+      "decision_pct": 0.0,
+      "enrollment_pct": 0.0
+    },
+    "/partnerships/corporate/roche": {
+      "leads": 10,
+      "app_starts": 10,
+      "decisions": 5,
+      "enrollments": 4,
+      "decision_pct": 50.0,
+      "enrollment_pct": 40.0
+    },
+    "/node": {
+      "leads": 10,
+      "app_starts": 0,
+      "decisions": 0,
+      "enrollments": 0,
+      "decision_pct": 0.0,
+      "enrollment_pct": 0.0
+    },
+    "/partnerships/corporate/nationwide": {
+      "leads": 10,
+      "app_starts": 10,
+      "decisions": 2,
+      "enrollments": 1,
+      "decision_pct": 20.0,
+      "enrollment_pct": 10.0
+    },
+    "/college-of-professional-advancement": {
+      "leads": 10,
+      "app_starts": 3,
+      "decisions": 2,
+      "enrollments": 0,
+      "decision_pct": 20.0,
+      "enrollment_pct": 0.0
+    },
+    "/student-experience/technology": {
+      "leads": 10,
+      "app_starts": 0,
+      "decisions": 0,
+      "enrollments": 0,
+      "decision_pct": 0.0,
+      "enrollment_pct": 0.0
+    },
+    "/partnerships/corporate/best-buy": {
+      "leads": 10,
+      "app_starts": 6,
+      "decisions": 0,
+      "enrollments": 0,
+      "decision_pct": 0.0,
+      "enrollment_pct": 0.0
+    },
+    "/blog/what-is-a-psyd": {
+      "leads": 10,
+      "app_starts": 0,
+      "decisions": 0,
+      "enrollments": 0,
+      "decision_pct": 0.0,
+      "enrollment_pct": 0.0
+    },
+    "/partnerships/corporate/gknautomotive": {
+      "leads": 10,
+      "app_starts": 6,
+      "decisions": 1,
+      "enrollments": 1,
+      "decision_pct": 10.0,
+      "enrollment_pct": 10.0
+    },
+    "/partnerships/corporate/allegheny": {
+      "leads": 10,
+      "app_starts": 8,
+      "decisions": 0,
+      "enrollments": 0,
+      "decision_pct": 0.0,
+      "enrollment_pct": 0.0
+    },
+    "/online-degrees/masters/psychology-v8": {
+      "leads": 10,
+      "app_starts": 3,
+      "decisions": 1,
+      "enrollments": 0,
+      "decision_pct": 10.0,
+      "enrollment_pct": 0.0
+    },
+    "/partnerships/corporate/alpla": {
+      "leads": 9,
+      "app_starts": 4,
+      "decisions": 1,
+      "enrollments": 0,
+      "decision_pct": 11.11,
+      "enrollment_pct": 0.0
+    },
+    "/student-experience/student-organizations": {
+      "leads": 9,
+      "app_starts": 1,
+      "decisions": 0,
+      "enrollments": 0,
+      "decision_pct": 0.0,
+      "enrollment_pct": 0.0
+    },
+    "/student-experience/student-access-wellness-office": {
+      "leads": 9,
+      "app_starts": 0,
+      "decisions": 0,
+      "enrollments": 0,
+      "decision_pct": 0.0,
+      "enrollment_pct": 0.0
+    },
+    "/partnerships/corporate/geo-group": {
+      "leads": 9,
+      "app_starts": 6,
+      "decisions": 1,
+      "enrollments": 1,
+      "decision_pct": 11.11,
+      "enrollment_pct": 11.11
+    },
+    "/online-degrees/doctoral/education": {
+      "leads": 9,
+      "app_starts": 2,
+      "decisions": 0,
+      "enrollments": 0,
+      "decision_pct": 0.0,
+      "enrollment_pct": 0.0
+    },
+    "/partnerships/corporate/pepsico": {
+      "leads": 9,
+      "app_starts": 9,
+      "decisions": 5,
+      "enrollments": 4,
+      "decision_pct": 55.56,
+      "enrollment_pct": 44.44
+    },
+    "/online-degrees/masters/special-education": {
+      "leads": 9,
+      "app_starts": 3,
+      "decisions": 1,
+      "enrollments": 1,
+      "decision_pct": 11.11,
+      "enrollment_pct": 11.11
+    },
+    "/online-degrees/masters/human-resource-management-v2": {
+      "leads": 9,
+      "app_starts": 6,
+      "decisions": 3,
+      "enrollments": 1,
+      "decision_pct": 33.33,
+      "enrollment_pct": 11.11
+    },
+    "/military/admissions/general-education-mobile": {
+      "leads": 9,
+      "app_starts": 6,
+      "decisions": 6,
+      "enrollments": 4,
+      "decision_pct": 66.67,
+      "enrollment_pct": 44.44
+    },
+    "/online-degrees/masters/business-administration-v2": {
+      "leads": 9,
+      "app_starts": 1,
+      "decisions": 0,
+      "enrollments": 0,
+      "decision_pct": 0.0,
+      "enrollment_pct": 0.0
+    },
+    "/partnerships/corporate/ocsea": {
+      "leads": 8,
+      "app_starts": 6,
+      "decisions": 0,
+      "enrollments": 0,
+      "decision_pct": 0.0,
+      "enrollment_pct": 0.0
+    },
+    "/blog/6-ways-to-get-college-credit-for-work-and-life-experience": {
+      "leads": 8,
+      "app_starts": 1,
+      "decisions": 1,
+      "enrollments": 1,
+      "decision_pct": 12.5,
+      "enrollment_pct": 12.5
+    },
+    "/military/admissions/military-support-team": {
+      "leads": 8,
+      "app_starts": 5,
+      "decisions": 3,
+      "enrollments": 2,
+      "decision_pct": 37.5,
+      "enrollment_pct": 25.0
+    },
+    "/online-degrees/masters/psychology-v2": {
+      "leads": 8,
+      "app_starts": 3,
+      "decisions": 1,
+      "enrollments": 1,
+      "decision_pct": 12.5,
+      "enrollment_pct": 12.5
+    },
+    "/partnerships/corporate/nch": {
+      "leads": 8,
+      "app_starts": 5,
+      "decisions": 1,
+      "enrollments": 0,
+      "decision_pct": 12.5,
+      "enrollment_pct": 0.0
+    },
+    "/partnerships/corporate/emh": {
+      "leads": 8,
+      "app_starts": 8,
+      "decisions": 0,
+      "enrollments": 0,
+      "decision_pct": 0.0,
+      "enrollment_pct": 0.0
+    },
+    "/about/media-room/press-releases/college-professional-advancement-professor-uagc-wins": {
+      "leads": 8,
+      "app_starts": 0,
+      "decisions": 0,
+      "enrollments": 0,
+      "decision_pct": 0.0,
+      "enrollment_pct": 0.0
+    },
+    "/partnerships/corporate/vantage-west": {
+      "leads": 8,
+      "app_starts": 8,
+      "decisions": 6,
+      "enrollments": 4,
+      "decision_pct": 75.0,
+      "enrollment_pct": 50.0
+    },
+    "/partnerships/corporate/allied-universal": {
+      "leads": 8,
+      "app_starts": 7,
+      "decisions": 1,
+      "enrollments": 0,
+      "decision_pct": 12.5,
+      "enrollment_pct": 0.0
+    },
+    "/partnerships/corporate/maxim-healthcare": {
+      "leads": 8,
+      "app_starts": 6,
+      "decisions": 2,
+      "enrollments": 2,
+      "decision_pct": 25.0,
+      "enrollment_pct": 25.0
+    },
+    "/partnerships/corporate/microsoft": {
+      "leads": 8,
+      "app_starts": 6,
+      "decisions": 3,
+      "enrollments": 2,
+      "decision_pct": 37.5,
+      "enrollment_pct": 25.0
+    },
+    "/partnerships/corporate/aep": {
+      "leads": 8,
+      "app_starts": 5,
+      "decisions": 1,
+      "enrollments": 1,
+      "decision_pct": 12.5,
+      "enrollment_pct": 12.5
+    },
+    "/blog/how-write-business-plan-step-by-step": {
+      "leads": 8,
+      "app_starts": 3,
+      "decisions": 0,
+      "enrollments": 0,
+      "decision_pct": 0.0,
+      "enrollment_pct": 0.0
+    },
+    "/military/tuition-financial-aid/yellow-ribbon-program": {
+      "leads": 8,
+      "app_starts": 6,
+      "decisions": 4,
+      "enrollments": 3,
+      "decision_pct": 50.0,
+      "enrollment_pct": 37.5
+    },
+    "/partnerships/corporate/cityoftempe": {
+      "leads": 8,
+      "app_starts": 7,
+      "decisions": 3,
+      "enrollments": 2,
+      "decision_pct": 37.5,
+      "enrollment_pct": 25.0
+    },
+    "/partnerships/corporate/ewing": {
+      "leads": 8,
+      "app_starts": 5,
+      "decisions": 0,
+      "enrollments": 0,
+      "decision_pct": 0.0,
+      "enrollment_pct": 0.0
+    },
+    "/about/why-uagc": {
+      "leads": 8,
+      "app_starts": 2,
+      "decisions": 1,
+      "enrollments": 0,
+      "decision_pct": 12.5,
+      "enrollment_pct": 0.0
+    },
+    "/partnerships/corporate/uline": {
+      "leads": 8,
+      "app_starts": 6,
+      "decisions": 2,
+      "enrollments": 2,
+      "decision_pct": 25.0,
+      "enrollment_pct": 25.0
+    },
+    "/partnerships/corporate/sw-gas": {
+      "leads": 8,
+      "app_starts": 6,
+      "decisions": 3,
+      "enrollments": 3,
+      "decision_pct": 37.5,
+      "enrollment_pct": 37.5
+    },
+    "/partnerships/corporate/millersalehouse": {
+      "leads": 7,
+      "app_starts": 7,
+      "decisions": 1,
+      "enrollments": 1,
+      "decision_pct": 14.29,
+      "enrollment_pct": 14.29
+    },
+    "/partnerships/corporate/7-eleven": {
+      "leads": 7,
+      "app_starts": 6,
+      "decisions": 1,
+      "enrollments": 1,
+      "decision_pct": 14.29,
+      "enrollment_pct": 14.29
+    },
+    "/online-degrees/bachelors/finance-v3": {
+      "leads": 7,
+      "app_starts": 1,
+      "decisions": 0,
+      "enrollments": 0,
+      "decision_pct": 0.0,
+      "enrollment_pct": 0.0
+    },
+    "/partnerships/corporate/BCBSNE": {
+      "leads": 7,
+      "app_starts": 5,
+      "decisions": 4,
+      "enrollments": 3,
+      "decision_pct": 57.14,
+      "enrollment_pct": 42.86
+    },
+    "/student-experience/deans-list": {
+      "leads": 7,
+      "app_starts": 2,
+      "decisions": 1,
+      "enrollments": 1,
+      "decision_pct": 14.29,
+      "enrollment_pct": 14.29
+    },
+    "/catalog/masters-program/admission-policies-and-procedures-for-masters-programs": {
+      "leads": 7,
+      "app_starts": 4,
+      "decisions": 1,
+      "enrollments": 0,
+      "decision_pct": 14.29,
+      "enrollment_pct": 0.0
+    },
+    "/partnerships/corporate/alcon": {
+      "leads": 7,
+      "app_starts": 7,
+      "decisions": 0,
+      "enrollments": 0,
+      "decision_pct": 0.0,
+      "enrollment_pct": 0.0
+    },
+    "/partnerships/corporate/dana": {
+      "leads": 7,
+      "app_starts": 5,
+      "decisions": 2,
+      "enrollments": 2,
+      "decision_pct": 28.57,
+      "enrollment_pct": 28.57
+    },
+    "/catalog/undergraduate-programs/admission-policies-and-procedures-for-bachelors-degree-programs": {
+      "leads": 7,
+      "app_starts": 1,
+      "decisions": 0,
+      "enrollments": 0,
+      "decision_pct": 0.0,
+      "enrollment_pct": 0.0
+    },
+    "/online-degrees/find-your-degree/educator": {
+      "leads": 7,
+      "app_starts": 2,
+      "decisions": 1,
+      "enrollments": 1,
+      "decision_pct": 14.29,
+      "enrollment_pct": 14.29
+    },
+    "/about/why-uagc/flexibility": {
+      "leads": 7,
+      "app_starts": 1,
+      "decisions": 1,
+      "enrollments": 0,
+      "decision_pct": 14.29,
+      "enrollment_pct": 0.0
+    },
+    "/online-degrees/associate-v8": {
+      "leads": 7,
+      "app_starts": 5,
+      "decisions": 4,
+      "enrollments": 3,
+      "decision_pct": 57.14,
+      "enrollment_pct": 42.86
+    },
+    "/partnerships/corporate/southstate-bank": {
+      "leads": 7,
+      "app_starts": 7,
+      "decisions": 1,
+      "enrollments": 1,
+      "decision_pct": 14.29,
+      "enrollment_pct": 14.29
+    },
+    "/partnerships/corporate/burris-logistics": {
+      "leads": 7,
+      "app_starts": 7,
+      "decisions": 3,
+      "enrollments": 2,
+      "decision_pct": 42.86,
+      "enrollment_pct": 28.57
+    },
+    "/partnerships/corporate/telecare": {
+      "leads": 7,
+      "app_starts": 6,
+      "decisions": 1,
+      "enrollments": 0,
+      "decision_pct": 14.29,
+      "enrollment_pct": 0.0
+    },
+    "/online-degrees/bachelors/business-administration-v3": {
+      "leads": 7,
+      "app_starts": 3,
+      "decisions": 2,
+      "enrollments": 1,
+      "decision_pct": 28.57,
+      "enrollment_pct": 14.29
+    },
+    "/partnerships/corporate/quanex": {
+      "leads": 7,
+      "app_starts": 6,
+      "decisions": 3,
+      "enrollments": 3,
+      "decision_pct": 42.86,
+      "enrollment_pct": 42.86
+    },
+    "/partnerships/corporate/ists": {
+      "leads": 7,
+      "app_starts": 5,
+      "decisions": 0,
+      "enrollments": 0,
+      "decision_pct": 0.0,
+      "enrollment_pct": 0.0
+    },
+    "/partnerships/academic/maricopa-community-colleges": {
+      "leads": 7,
+      "app_starts": 0,
+      "decisions": 0,
+      "enrollments": 0,
+      "decision_pct": 0.0,
+      "enrollment_pct": 0.0
+    },
+    "/partnerships/corporate/xpo-logistics": {
+      "leads": 7,
+      "app_starts": 5,
+      "decisions": 1,
+      "enrollments": 0,
+      "decision_pct": 14.29,
+      "enrollment_pct": 0.0
+    },
+    "/partnerships/corporate/ddc": {
+      "leads": 7,
+      "app_starts": 5,
+      "decisions": 0,
+      "enrollments": 0,
+      "decision_pct": 0.0,
+      "enrollment_pct": 0.0
+    },
+    "/partnerships/corporate/eaton": {
+      "leads": 7,
+      "app_starts": 4,
+      "decisions": 2,
+      "enrollments": 1,
+      "decision_pct": 28.57,
+      "enrollment_pct": 14.29
+    },
+    "/partnerships/corporate/finishline": {
+      "leads": 7,
+      "app_starts": 7,
+      "decisions": 0,
+      "enrollments": 0,
+      "decision_pct": 0.0,
+      "enrollment_pct": 0.0
+    },
+    "/partnerships/corporate/ash-grove": {
+      "leads": 7,
+      "app_starts": 7,
+      "decisions": 4,
+      "enrollments": 2,
+      "decision_pct": 57.14,
+      "enrollment_pct": 28.57
+    },
+    "/partnerships/organizations": {
+      "leads": 6,
+      "app_starts": 3,
+      "decisions": 2,
+      "enrollments": 0,
+      "decision_pct": 33.33,
+      "enrollment_pct": 0.0
+    },
+    "/online-degrees/bachelors/health-care-administration-v3": {
+      "leads": 6,
+      "app_starts": 2,
+      "decisions": 0,
+      "enrollments": 0,
+      "decision_pct": 0.0,
+      "enrollment_pct": 0.0
+    },
+    "/partnerships/transfer": {
+      "leads": 6,
+      "app_starts": 2,
+      "decisions": 1,
+      "enrollments": 0,
+      "decision_pct": 16.67,
+      "enrollment_pct": 0.0
+    },
+    "/partnerships/corporate/incomm": {
+      "leads": 6,
+      "app_starts": 5,
+      "decisions": 1,
+      "enrollments": 0,
+      "decision_pct": 16.67,
+      "enrollment_pct": 0.0
+    },
+    "/online-degrees/bachelors/project-management-v2": {
+      "leads": 6,
+      "app_starts": 3,
+      "decisions": 2,
+      "enrollments": 1,
+      "decision_pct": 33.33,
+      "enrollment_pct": 16.67
+    },
+    "/partnerships/corporate/cityoftucson": {
+      "leads": 6,
+      "app_starts": 6,
+      "decisions": 1,
+      "enrollments": 0,
+      "decision_pct": 16.67,
+      "enrollment_pct": 0.0
+    },
+    "/partnerships/corporate/wakemed": {
+      "leads": 6,
+      "app_starts": 6,
+      "decisions": 0,
+      "enrollments": 0,
+      "decision_pct": 0.0,
+      "enrollment_pct": 0.0
+    },
+    "/partnerships/corporate/community-options": {
+      "leads": 6,
+      "app_starts": 4,
+      "decisions": 1,
+      "enrollments": 0,
+      "decision_pct": 16.67,
+      "enrollment_pct": 0.0
+    },
+    "/partnerships/corporate/alterman": {
+      "leads": 6,
+      "app_starts": 5,
+      "decisions": 1,
+      "enrollments": 0,
+      "decision_pct": 16.67,
+      "enrollment_pct": 0.0
+    },
+    "/partnerships/corporate/spirit-aerosystems": {
+      "leads": 6,
+      "app_starts": 6,
+      "decisions": 2,
+      "enrollments": 1,
+      "decision_pct": 33.33,
+      "enrollment_pct": 16.67
+    },
+    "/online-degrees/bachelors/health-information-management-v3": {
+      "leads": 6,
+      "app_starts": 2,
+      "decisions": 1,
+      "enrollments": 0,
+      "decision_pct": 16.67,
+      "enrollment_pct": 0.0
+    },
+    "/partnerships/corporate/plains-all-american-pipeline": {
+      "leads": 6,
+      "app_starts": 5,
+      "decisions": 0,
+      "enrollments": 0,
+      "decision_pct": 0.0,
+      "enrollment_pct": 0.0
+    },
+    "/partnerships/corporate/fanatics": {
+      "leads": 6,
+      "app_starts": 5,
+      "decisions": 2,
+      "enrollments": 0,
+      "decision_pct": 33.33,
+      "enrollment_pct": 0.0
+    },
+    "/student-experience/honors-program": {
+      "leads": 6,
+      "app_starts": 0,
+      "decisions": 0,
+      "enrollments": 0,
+      "decision_pct": 0.0,
+      "enrollment_pct": 0.0
+    },
+    "/online-degrees/masters/health-care-administration-v3": {
+      "leads": 6,
+      "app_starts": 2,
+      "decisions": 2,
+      "enrollments": 0,
+      "decision_pct": 33.33,
+      "enrollment_pct": 0.0
+    },
+    "/form/accessibility-feedback/confirmation": {
+      "leads": 6,
+      "app_starts": 0,
+      "decisions": 0,
+      "enrollments": 0,
+      "decision_pct": 0.0,
+      "enrollment_pct": 0.0
+    },
+    "/partnerships/corporate/bsw-health": {
+      "leads": 6,
+      "app_starts": 5,
+      "decisions": 0,
+      "enrollments": 0,
+      "decision_pct": 0.0,
+      "enrollment_pct": 0.0
+    },
+    "/online-degrees/bachelors/applied-behavioral-science-v3": {
+      "leads": 6,
+      "app_starts": 0,
+      "decisions": 0,
+      "enrollments": 0,
+      "decision_pct": 0.0,
+      "enrollment_pct": 0.0
+    },
+    "/partnerships/corporate/ketteringhealth": {
+      "leads": 6,
+      "app_starts": 6,
+      "decisions": 0,
+      "enrollments": 0,
+      "decision_pct": 0.0,
+      "enrollment_pct": 0.0
+    },
+    "/qualified-tuition-reduction": {
+      "leads": 6,
+      "app_starts": 5,
+      "decisions": 5,
+      "enrollments": 2,
+      "decision_pct": 83.33,
+      "enrollment_pct": 33.33
+    },
+    "/request-information-new": {
+      "leads": 6,
+      "app_starts": 1,
+      "decisions": 1,
+      "enrollments": 0,
+      "decision_pct": 16.67,
+      "enrollment_pct": 0.0
+    },
+    "/military/tuition-financial-aid/grants/patriot-grant": {
+      "leads": 6,
+      "app_starts": 0,
+      "decisions": 0,
+      "enrollments": 0,
+      "decision_pct": 0.0,
+      "enrollment_pct": 0.0
+    },
+    "/online-degrees/bachelors/human-resources-management-v3": {
+      "leads": 6,
+      "app_starts": 2,
+      "decisions": 2,
+      "enrollments": 1,
+      "decision_pct": 33.33,
+      "enrollment_pct": 16.67
+    },
+    "/online-degrees/bachelors/early-childhood-education-v3": {
+      "leads": 6,
+      "app_starts": 3,
+      "decisions": 3,
+      "enrollments": 1,
+      "decision_pct": 50.0,
+      "enrollment_pct": 16.67
+    },
+    "/user/login": {
+      "leads": 6,
+      "app_starts": 0,
+      "decisions": 0,
+      "enrollments": 0,
+      "decision_pct": 0.0,
+      "enrollment_pct": 0.0
+    },
+    "/partnerships/corporate/karcherna": {
+      "leads": 6,
+      "app_starts": 4,
+      "decisions": 1,
+      "enrollments": 1,
+      "decision_pct": 16.67,
+      "enrollment_pct": 16.67
+    },
+    "/partnerships/corporate/learning-care-group": {
+      "leads": 6,
+      "app_starts": 3,
+      "decisions": 1,
+      "enrollments": 0,
+      "decision_pct": 16.67,
+      "enrollment_pct": 0.0
+    },
+    "/admissions/non-traditional/ntp": {
+      "leads": 6,
+      "app_starts": 1,
+      "decisions": 0,
+      "enrollments": 0,
+      "decision_pct": 0.0,
+      "enrollment_pct": 0.0
+    },
+    "/student-experience/university-library": {
+      "leads": 5,
+      "app_starts": 0,
+      "decisions": 0,
+      "enrollments": 0,
+      "decision_pct": 0.0,
+      "enrollment_pct": 0.0
+    },
+    "/student-experience/office-student-affairs": {
+      "leads": 5,
+      "app_starts": 2,
+      "decisions": 2,
+      "enrollments": 1,
+      "decision_pct": 40.0,
+      "enrollment_pct": 20.0
+    },
+    "/student-experience/graduation/ceremony-information": {
+      "leads": 5,
+      "app_starts": 0,
+      "decisions": 0,
+      "enrollments": 0,
+      "decision_pct": 0.0,
+      "enrollment_pct": 0.0
+    },
+    "/online-degrees/bachelors/early-childhood-education-v2": {
+      "leads": 5,
+      "app_starts": 2,
+      "decisions": 1,
+      "enrollments": 0,
+      "decision_pct": 20.0,
+      "enrollment_pct": 0.0
+    },
+    "/partnerships/corporate/spps": {
+      "leads": 5,
+      "app_starts": 4,
+      "decisions": 0,
+      "enrollments": 0,
+      "decision_pct": 0.0,
+      "enrollment_pct": 0.0
+    },
+    "/partnerships/corporate/wex": {
+      "leads": 5,
+      "app_starts": 5,
+      "decisions": 1,
+      "enrollments": 1,
+      "decision_pct": 20.0,
+      "enrollment_pct": 20.0
+    },
+    "/online-degrees/bachelors/nursing-v2": {
+      "leads": 5,
+      "app_starts": 3,
+      "decisions": 1,
+      "enrollments": 0,
+      "decision_pct": 20.0,
+      "enrollment_pct": 0.0
+    },
+    "/student-experience/advisor-support": {
+      "leads": 5,
+      "app_starts": 0,
+      "decisions": 0,
+      "enrollments": 0,
+      "decision_pct": 0.0,
+      "enrollment_pct": 0.0
+    },
+    "/partnerships/corporate/pnc": {
+      "leads": 5,
+      "app_starts": 4,
+      "decisions": 0,
+      "enrollments": 0,
+      "decision_pct": 0.0,
+      "enrollment_pct": 0.0
+    },
+    "/online-degrees/comparison": {
+      "leads": 5,
+      "app_starts": 2,
+      "decisions": 0,
+      "enrollments": 0,
+      "decision_pct": 0.0,
+      "enrollment_pct": 0.0
+    },
+    "/online-degrees/bachelors/health-care-administration-v2": {
+      "leads": 5,
+      "app_starts": 2,
+      "decisions": 2,
+      "enrollments": 0,
+      "decision_pct": 40.0,
+      "enrollment_pct": 0.0
+    },
+    "/tuition-financial-aid/cftg-docs": {
+      "leads": 5,
+      "app_starts": 2,
+      "decisions": 1,
+      "enrollments": 0,
+      "decision_pct": 20.0,
+      "enrollment_pct": 0.0
+    },
+    "/military/admissions/process": {
+      "leads": 5,
+      "app_starts": 3,
+      "decisions": 3,
+      "enrollments": 1,
+      "decision_pct": 60.0,
+      "enrollment_pct": 20.0
+    },
+    "/partnerships/corporate/aurora": {
+      "leads": 5,
+      "app_starts": 5,
+      "decisions": 1,
+      "enrollments": 1,
+      "decision_pct": 20.0,
+      "enrollment_pct": 20.0
+    },
+    "/online-degrees/find-your-degree/nurturer": {
+      "leads": 5,
+      "app_starts": 0,
+      "decisions": 0,
+      "enrollments": 0,
+      "decision_pct": 0.0,
+      "enrollment_pct": 0.0
+    },
+    "/blog/what-can-i-do-with-an-associate-degree-in-early-childhood-education": {
+      "leads": 5,
+      "app_starts": 0,
+      "decisions": 0,
+      "enrollments": 0,
+      "decision_pct": 0.0,
+      "enrollment_pct": 0.0
+    },
+    "/partnerships/corporate/sosi": {
+      "leads": 5,
+      "app_starts": 4,
+      "decisions": 0,
+      "enrollments": 0,
+      "decision_pct": 0.0,
+      "enrollment_pct": 0.0
+    },
+    "/partnerships/corporate/elililly": {
+      "leads": 5,
+      "app_starts": 4,
+      "decisions": 0,
+      "enrollments": 0,
+      "decision_pct": 0.0,
+      "enrollment_pct": 0.0
+    },
+    "/partnerships/corporate/hvcu": {
+      "leads": 5,
+      "app_starts": 5,
+      "decisions": 1,
+      "enrollments": 0,
+      "decision_pct": 20.0,
+      "enrollment_pct": 0.0
+    },
+    "/partnerships/academic/dallas-college": {
+      "leads": 5,
+      "app_starts": 1,
+      "decisions": 0,
+      "enrollments": 0,
+      "decision_pct": 0.0,
+      "enrollment_pct": 0.0
+    },
+    "/partnerships/corporate/tolmar": {
+      "leads": 5,
+      "app_starts": 2,
+      "decisions": 0,
+      "enrollments": 0,
+      "decision_pct": 0.0,
+      "enrollment_pct": 0.0
+    },
+    "/partnerships/corporate/halliburton": {
+      "leads": 5,
+      "app_starts": 4,
+      "decisions": 1,
+      "enrollments": 0,
+      "decision_pct": 20.0,
+      "enrollment_pct": 0.0
+    },
+    "/partnerships/corporate/cityofphoenix": {
+      "leads": 5,
+      "app_starts": 4,
+      "decisions": 0,
+      "enrollments": 0,
+      "decision_pct": 0.0,
+      "enrollment_pct": 0.0
+    },
+    "/partnerships/corporate/benefit-eligibility-process": {
+      "leads": 5,
+      "app_starts": 0,
+      "decisions": 0,
+      "enrollments": 0,
+      "decision_pct": 0.0,
+      "enrollment_pct": 0.0
+    },
+    "/partnerships/corporate/adm": {
+      "leads": 5,
+      "app_starts": 5,
+      "decisions": 2,
+      "enrollments": 2,
+      "decision_pct": 40.0,
+      "enrollment_pct": 40.0
+    },
+    "/military/admissions/transfer": {
+      "leads": 5,
+      "app_starts": 0,
+      "decisions": 0,
+      "enrollments": 0,
+      "decision_pct": 0.0,
+      "enrollment_pct": 0.0
+    },
+    "/online-degrees/bachelors/applied-behavioral-science-v2": {
+      "leads": 5,
+      "app_starts": 3,
+      "decisions": 0,
+      "enrollments": 0,
+      "decision_pct": 0.0,
+      "enrollment_pct": 0.0
+    },
+    "/student-experience/graduation": {
+      "leads": 5,
+      "app_starts": 0,
+      "decisions": 0,
+      "enrollments": 0,
+      "decision_pct": 0.0,
+      "enrollment_pct": 0.0
+    },
+    "/partnerships/corporate/pacific-seafood": {
+      "leads": 5,
+      "app_starts": 2,
+      "decisions": 0,
+      "enrollments": 0,
+      "decision_pct": 0.0,
+      "enrollment_pct": 0.0
+    },
+    "/partnerships/corporate/daimler-trucks": {
+      "leads": 5,
+      "app_starts": 4,
+      "decisions": 0,
+      "enrollments": 0,
+      "decision_pct": 0.0,
+      "enrollment_pct": 0.0
+    }
+  }
+}

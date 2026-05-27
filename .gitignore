@@ -3,7 +3,10 @@
 *.log
 node_modules/
 .DS_Store
+__pycache__/
+*.pyc
 .cursor/hooks/state/
+credentials/
 
 # Keep compressed JPGs, skip original full-size PNGs from Contentsquare
 output/playwright/screenshots/content_square/*.png

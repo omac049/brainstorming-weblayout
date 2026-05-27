@@ -3,7 +3,7 @@
 **Date:** April 8, 2026
 **Property:** sc-domain:uagc.edu
 **Data Window:** April 8, 2025 – April 8, 2026 (12 months)
-**Data Sources:** Google Search Console, Google Analytics 4
+**Data Sources:** Google Search Console, Google Analytics 4, BigQuery (lead funnel)
 
 ---
 
@@ -83,6 +83,28 @@
 | Mar 2026 | 1,087,003 | 18,785 | 42.6% | 57.4% |
 
 **Key Finding:** Sessions spike Sep–Oct (enrollment pushes) but engagement rate drops to 38% — more traffic, worse quality. Peak conversion months are Jun–Aug. The gap between traffic volume and conversion quality in peak months is a layout/UX problem worth investigating.
+
+---
+
+## 1A. Lead Funnel Alignment (BigQuery)
+
+This data supplements the site analytics above with lead-funnel metrics from BigQuery, aligned to Kevin's program report windows for cross-referencing.
+
+**Data Windows:** Primary Oct 2025 – Mar 2026 | Prior Apr – Sep 2025
+**Source:** `advertising-data-mart.inquiries.vw_lead_extract_details`
+
+### Headline Totals — Primary Window (Oct–Mar 2026)
+
+Validated against [Kevin's program report](https://kevinseaman-krs.github.io/uagc-program-report/):
+
+| Segment | Leads | Decisions | Enrollments |
+|---------|-------|-----------|-------------|
+| Undergraduate | 149,356 | 9,727 | 2,629 |
+| Graduate | 26,467 | 1,841 | 698 |
+
+Program-level detail lives in `data/lead-funnel/` (`program_data.json`, `monthly_detail.json`, `marketing_mix.json`).
+
+**Window note:** Site analytics above use a rolling 12-month GSC/GA4 window (Apr 2025 – Apr 2026). Lead-funnel data uses 6-month windows matching Kevin's report — use both when connecting traffic patterns to downstream lead volume, but do not mix windows without adjusting the comparison.
 
 ---
 
