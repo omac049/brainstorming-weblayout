@@ -19,3 +19,8 @@ prototypes/tsconfig.tsbuildinfo
 # Cursor workspace temp files (screenshots, skill cache)
 .cursor/tmp-*
 .cursor/skills/
+
+# Internal AI agent tooling (not for dev handoff)
+AGENTS.md
+.cursor/skills/
+.cursor/hooks/
