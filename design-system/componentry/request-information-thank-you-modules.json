@@ -1,0 +1,180 @@
+{
+  "page": {
+    "name": "request-information-thank-you",
+    "liveUrl": "https://www.uagc.edu/request-information/thank-you",
+    "liveUrlPersonalized": "https://www.uagc.edu/request-information/thank-you?sid=7717243",
+    "prototypeRoute": "/organic/request-information/thank-you",
+    "prototypeRoutePersonalized": "/organic/request-information/thank-you?firstName=Natasha&program=BA+Business+Administration",
+    "prototypeRepo": "uagc-prototypes",
+    "figmaFileKey": "HoSMZOSnKSVgUXlskHv9tS",
+    "figmaPageWireframes": "request-information-thank-you — Wireframes",
+    "figmaPageComponentry": "request-information-thank-you — Componentry",
+    "designTokens": "design-system/MASTER.md",
+    "persona": "post-RFI converter (just submitted lead form)",
+    "dataWindow": "Phase 1 Task 1.10 audit + Contentsquare Thank-you exports",
+    "funnelPosition": "RFI submit → this page → admission portal (Start Application)",
+    "auditReference": "output/playwright/screenshots/1-6-external-validation.html#post-rfi"
+  },
+  "variants": [
+    {
+      "id": "personalized",
+      "queryParams": ["sid", "submissionID", "token"],
+      "primaryForSignOff": true,
+      "notes": "First name injected; Start Application links to admission portal with session context"
+    },
+    {
+      "id": "base",
+      "queryParams": [],
+      "fallbackCopy": "Congratulations — you've taken the first step. (No trailing comma artifact.)"
+    }
+  ],
+  "sectionOrder": [
+    { "order": 1, "moduleId": "NAV-00-TY", "anchor": null, "scrollMargin": null },
+    { "order": 2, "moduleId": "TY-HERO", "anchor": "confirmation", "scrollMargin": "scroll-mt-20" },
+    { "order": 3, "moduleId": "TY-RECEIPT", "anchor": null, "scrollMargin": null },
+    { "order": 4, "moduleId": "START-01", "anchor": "start-date", "scrollMargin": "scroll-mt-20" },
+    { "order": 5, "moduleId": "TY-NEXT", "anchor": "next-steps", "scrollMargin": "scroll-mt-20" },
+    { "order": 6, "moduleId": "TY-CONTACT", "anchor": "contact", "scrollMargin": "scroll-mt-20" },
+    { "order": 7, "moduleId": "TRUST-01", "anchor": null, "scrollMargin": null },
+    { "order": 8, "moduleId": "FOOT-01", "anchor": null, "scrollMargin": null }
+  ],
+  "modules": [
+    {
+      "id": "NAV-00-TY",
+      "name": "Site Header (post-submit variant)",
+      "category": "nav",
+      "reactComponent": "SiteHeader",
+      "reactPath": "src/components/organic/SiteHeader.tsx",
+      "props": { "variant": "full", "hideRequestInfo": true, "primaryCta": "apply" },
+      "notes": "Full nav BUT suppress Request Info utility CTA — competes with Start Application. Apply Now may remain."
+    },
+    {
+      "id": "TY-HERO",
+      "name": "Confirmation hero",
+      "category": "hero",
+      "reactComponent": "ThankYouHeroSection",
+      "reactPath": "src/components/organic/ThankYouHeroSection.tsx",
+      "props": {
+        "headlineTemplate": "Congratulations {firstName},",
+        "subheadline": "you've taken the first step.",
+        "expectationsBullets": [
+          "Discuss your goals and answer questions",
+          "Review education and career background for transfer credits and discounts",
+          "Answer questions about your degree of interest and the application process",
+          "Request your transcripts for you"
+        ],
+        "badges": ["$0 Application Fee", "No Standardized Test Required"],
+        "primaryCta": { "label": "Start Application", "href": "admission-portal-url-from-token" },
+        "secondaryCta": { "label": "Program Information", "href": "#program-info or program page URL" }
+      },
+      "breadcrumb": ["Home", "Request Information", "Thank You"],
+      "background": "#faf9f7",
+      "doNot": ["Show RFI form in hero column", "Trailing comma when firstName missing"]
+    },
+    {
+      "id": "TY-RECEIPT",
+      "name": "Submission receipt",
+      "category": "trust",
+      "reactComponent": "SubmissionReceiptSection",
+      "reactPath": "src/components/organic/SubmissionReceiptSection.tsx",
+      "props": {
+        "showConfirmationId": true,
+        "showEmailNotice": true,
+        "showProgramRecap": true,
+        "showContactRecap": true,
+        "estimatedResponse": "An advisor will contact you within 1 business day."
+      },
+      "notes": "NEW vs live — audit Critical #2: no receipt today. Prototype uses mock confirmation ID + submitted program recap."
+    },
+    {
+      "id": "START-01",
+      "name": "Upcoming start date (populated)",
+      "category": "content",
+      "reactComponent": "UpcomingStartDates",
+      "reactPath": "src/components/sections/UpcomingStartDates.tsx",
+      "props": { "variant": "card", "dates": "next one date for selected program", "computeDaysLeftAtRender": true },
+      "notes": "Fix live empty Start Date widget — populate from program context or next global start date."
+    },
+    {
+      "id": "TY-NEXT",
+      "name": "Next steps — admissions process",
+      "category": "content",
+      "reactComponent": "ThankYouNextStepsSection",
+      "reactPath": "src/components/organic/ThankYouNextStepsSection.tsx",
+      "props": {
+        "heading": "Next Steps: The Admissions Process",
+        "steps": [
+          { "title": "Talk to an Advisor", "description": "One of our helpful Admission Specialists will help you find the program that's right for you.", "linkLabel": "Learn More" },
+          { "title": "Apply for Free", "description": "We make applying to college simple with an online application you can navigate with confidence.", "linkLabel": "Learn More" },
+          { "title": "Get Ready for Class", "description": "Explore your student portal and make sure you are ready to start strong.", "linkLabel": "Learn More" }
+        ]
+      },
+      "layout": "3-card row desktop / stacked mobile",
+      "background": "#FFFFFF"
+    },
+    {
+      "id": "TY-CONTACT",
+      "name": "Immediate contact options",
+      "category": "cta",
+      "reactComponent": "ThankYouContactSection",
+      "reactPath": "src/components/organic/ThankYouContactSection.tsx",
+      "props": {
+        "heading": "Have Questions that Can't Wait?",
+        "subheading": "You've got help 24/7",
+        "phone": "+1 866 711 1700",
+        "chatLabel": "Let's Chat",
+        "advisorHours": [
+          "Monday – Thursday: 5 a.m. – 7 p.m. PT",
+          "Friday: 5 a.m. – 5 p.m. PT",
+          "Saturday – Sunday: 7 a.m. – 4 p.m. PT"
+        ]
+      },
+      "background": "#0C234B",
+      "notes": "Elevate hours above fold vs live — audit item #13"
+    },
+    {
+      "id": "TRUST-01",
+      "name": "Program-matched testimonial (optional, single card)",
+      "category": "trust",
+      "reactComponent": "TestimonialSection",
+      "reactPath": "src/components/sections/TestimonialSection.tsx",
+      "props": { "matchProgramArea": true },
+      "notes": "Single card matched to submitted area of interest — uses card layout with persona tag (program area), initials avatar, verified badge. Omit section if no match."
+    },
+    {
+      "id": "FOOT-01",
+      "name": "Site footer",
+      "category": "foot",
+      "reactComponent": "Footer",
+      "reactPath": "src/components/shared/Footer.tsx"
+    }
+  ],
+  "explicitlyOmittedVsLive": [
+    { "liveModule": "Sidebar RFI form", "reason": "Critical — user just converted" },
+    { "liveModule": "Sticky RFI overlay / FORM-05", "reason": "No post-submit RFI anywhere on page" },
+    { "liveModule": "Left sidebar anchor nav (7 pills)", "reason": "Focused confirmation, not mini-site" },
+    { "liveModule": "College Designed for You / VP block", "reason": "Pre-decision persuasion on post-decision page" },
+    { "liveModule": "Blog articles (4 cards)", "reason": "Stale 2021–2022; not post-submit relevant" },
+    { "liveModule": "Tuition / Ways to Save / UAGC Promise", "reason": "Pre-decision — link out if needed, not full modules" },
+    { "liveModule": "Embedded full application widget", "reason": "Hero Start Application links to portal instead" },
+    { "liveModule": "Videos + Events + testimonial carousel", "reason": "Page length reduction — 13+ modules → ~6 substantive" }
+  ],
+  "sharedFromPaidOrganic": [
+    "UpcomingStartDates (START-01 — must populate date)",
+    "Footer",
+    "SiteHeader base (NAV-00 with TY overrides)"
+  ],
+  "targetMobileScreens": "5–6 iPhone screens",
+  "referenceCaptures": {
+    "baseDesktop": "output/playwright/screenshots/thank-you-base_desktop-1440.jpg",
+    "baseMobile": "output/playwright/screenshots/thank-you-base_mobile-375.jpg",
+    "personalizedDesktop": "output/playwright/screenshots/thank-you-personalized_desktop-1440.jpg",
+    "personalizedMobile": "output/playwright/screenshots/thank-you-personalized_mobile-375.jpg",
+    "organicCapturePersonalized": "output/playwright/screenshots/organic-13-thank-you-personalized_*.png"
+  },
+  "rfiIntegration": {
+    "entryPoints": ["All organic RFI forms (hub, program, homepage sticky)", "Paid /success/* RFIs share same thank-you URL in production"],
+    "redirectBehavior": "Prototype: mock redirect with query params or sessionStorage for firstName + program",
+    "noFormsOnPage": true
+  }
+}

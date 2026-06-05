@@ -1,0 +1,285 @@
+{
+  "page": {
+    "name": "degree-programs-v7",
+    "liveUrl": "https://www.uagc.edu/success/degree-programs-v7",
+    "prototypeRoute": "/degree-programs-v7",
+    "prototypeRepo": "uagc-prototypes",
+    "figmaFileKey": "HoSMZOSnKSVgUXlskHv9tS",
+    "figmaFileUrl": "https://www.figma.com/design/HoSMZOSnKSVgUXlskHv9tS/UAGC-Paid-page-templates-3--%E2%80%94-Wireframe?node-id=0-1",
+    "figmaProjectId": "598288008",
+    "figmaProjectUrl": "https://www.figma.com/files/team/954051891409200881/project/598288008?fuid=1052358699765663783",
+    "figmaFoundationFileKey": "c4O4uPeilJDBZFjARNnt65",
+    "figmaFoundationNote": "External Reskin file — no team access; tokens live in design-system/MASTER.md",
+    "figmaPageWireframes": "01 — Wireframes",
+    "figmaPageComponentry": "02 — Componentry",
+    "designTokens": "design-system/MASTER.md",
+    "sharedModuleSpec": "design-system/pages/request-info-v5.md",
+    "persona": "career-advancement / program-discovery (paid-generic)",
+    "dataWindow": "30d (paid traffic)"
+  },
+  "sharedModules": {
+    "description": "These four modules are identical across request-info-v5, degree-programs-v7, and online-college-courses-v5. Canonical specs live in request-info-v5-modules.json.",
+    "modules": ["NAV-01", "NAV-UX-01", "START-01", "TRUST-02"]
+  },
+  "sectionOrder": [
+    { "order": 1, "moduleId": "NAV-01", "anchor": null, "scrollMargin": null, "shared": true },
+    { "order": 2, "moduleId": "NAV-UX-01", "anchor": null, "scrollMargin": null, "shared": true },
+    { "order": 3, "moduleId": "HERO-01", "anchor": "hero-rfi", "scrollMargin": "scroll-mt-24" },
+    { "order": 4, "moduleId": "START-01", "anchor": null, "scrollMargin": null, "shared": true },
+    { "order": 5, "moduleId": "TRUST-02", "anchor": null, "scrollMargin": null, "shared": true },
+    { "order": 6, "moduleId": "VP-01", "anchor": "why-uagc", "scrollMargin": "scroll-mt-20" },
+    { "order": 7, "moduleId": "BRIDGE-01", "anchor": "programs", "scrollMargin": null },
+    { "order": 8, "moduleId": "PROG-01", "anchor": "programs", "scrollMargin": "scroll-mt-20" },
+    { "order": 9, "moduleId": "BRIDGE-01", "anchor": "careers", "scrollMargin": null },
+    { "order": 10, "moduleId": "CAREER-01", "anchor": "careers", "scrollMargin": "scroll-mt-20" },
+    { "order": 11, "moduleId": "SALARY-01", "anchor": null, "scrollMargin": null },
+    { "order": 12, "moduleId": "FIN-01", "anchor": "tuition", "scrollMargin": "scroll-mt-20" },
+    { "order": 13, "moduleId": "CRED-01", "anchor": "credentials", "scrollMargin": "scroll-mt-20" },
+    { "order": 14, "moduleId": "TRUST-01", "anchor": "stories", "scrollMargin": "scroll-mt-20" },
+    { "order": 15, "moduleId": "EMOT-01", "anchor": null, "scrollMargin": null },
+    { "order": 16, "moduleId": "FORM-02", "anchor": "rfi", "scrollMargin": "scroll-mt-20" },
+    { "order": 17, "moduleId": "FAQ-01", "anchor": "faq", "scrollMargin": "scroll-mt-20" },
+    { "order": 18, "moduleId": "CTA-01", "anchor": null, "scrollMargin": null },
+    { "order": 19, "moduleId": "FOOT-01", "anchor": null, "scrollMargin": null },
+    { "order": 20, "moduleId": "FORM-05", "anchor": null, "scrollMargin": null }
+  ],
+  "modules": [
+    {
+      "id": "NAV-01",
+      "shared": true,
+      "canonicalSpec": "request-info-v5-modules.json",
+      "overrides": null
+    },
+    {
+      "id": "NAV-UX-01",
+      "shared": true,
+      "canonicalSpec": "request-info-v5-modules.json",
+      "overrides": {
+        "note": "PAGE_SECTIONS array is page-specific but currently identical to v5 anchors"
+      }
+    },
+    {
+      "id": "HERO-01",
+      "name": "Hero: Split + RFI (mini)",
+      "category": "hero",
+      "reactComponent": "HeroSection + RFIForm",
+      "reactPath": "src/components/sections/HeroSection.tsx",
+      "childComponents": ["RFIForm variant=mini"],
+      "props": {
+        "headline": "Find the Right Degree for Your Career",
+        "subheadline": "50+ accredited online programs in business, healthcare, education, IT, and more — built for working adults who need flexibility without sacrificing quality.",
+        "backgroundImage": "/images/UAGC_WEB_Landing-Page_Hero-Images_v1_Page_6.jpg.webp",
+        "mobileBackgroundImage": "/images/UAGC_WEB_Landing-Page_Hero-Images_v1_Page_6.jpg.webp",
+        "highlights": ["WSCUC Accredited", "50+ Programs", "$0 to Apply"]
+      },
+      "layout": {
+        "desktop": "~75/25 image+headline | form column 400–440px",
+        "mobile": "image band + navy pill row + form below"
+      },
+      "tokens": {
+        "headline": "type-h1 / font-heading-condensed extrabold",
+        "pills": "min 13px mobile, 14px desktop; bg-white/15; ring-white/25; gold dot"
+      },
+      "doNot": ["Cover faces with RFI", "Sticky bar on initial hero view", "Sub-12px pill text"],
+      "diffFromV5": {
+        "headline": "v5='Discover Online School Done Right' → v7='Find the Right Degree for Your Career'",
+        "subheadline": "v5='Earn your degree on your schedule…' → v7='50+ accredited online programs in business, healthcare, education, IT, and more…'",
+        "highlights": "v5=['5-Week Courses','One Class at a Time','$0 Application Fee'] → v7=['WSCUC Accredited','50+ Programs','$0 to Apply']"
+      },
+      "simulationRationale": "63% skeptical response to generic copy. Outcome-focused headline + accreditation-first pill + field-specific subheadline address top 3 simulation themes."
+    },
+    {
+      "id": "FORM-01",
+      "shared": true,
+      "canonicalSpec": "request-info-v5-modules.json",
+      "overrides": null
+    },
+    {
+      "id": "START-01",
+      "shared": true,
+      "canonicalSpec": "request-info-v5-modules.json",
+      "overrides": null
+    },
+    {
+      "id": "TRUST-02",
+      "shared": true,
+      "canonicalSpec": "request-info-v5-modules.json",
+      "overrides": null
+    },
+    {
+      "id": "VP-01",
+      "name": "Reasons to Choose UAGC",
+      "category": "vp",
+      "reactComponent": "ValuePropsSection",
+      "reactPath": "src/components/sections/ValuePropsSection.tsx",
+      "props": {
+        "heading": "Reasons to Choose UAGC",
+        "subheading": "Accredited programs, transparent costs, and real support — not just marketing promises.",
+        "highlightCards": "4 cards — proof-forward copy with community-college transfer, 2+2, free credit eval language",
+        "experienceCallout": "Prior Learning Assessment navy block",
+        "bulletPoints": "OMIT — do not pass on v7 (duplicates TrustStrip)"
+      },
+      "background": "#faf9f7",
+      "doNot": ["Section-level RFI CTA", "bulletPoints duplicating TrustStrip", "Gradients/shadows"],
+      "diffFromV5": "Remove bulletPoints; rewrite card copy with transfer specificity (2+2, community college, free credit eval); subheading reframed proof-forward",
+      "simulationRationale": "Transfer personas (Dr. Foster) wanted 2+2 + articulation language. ROI personas (Carlos Ramirez) wanted cost transparency earlier. Education personas needed 'accredited' upfront."
+    },
+    {
+      "id": "BRIDGE-01",
+      "name": "Next Step Bridge",
+      "category": "content",
+      "reactComponent": "NextStepBridge",
+      "reactPath": "src/components/shared/NextStepBridge.tsx",
+      "props": { "variant": "light | dark" },
+      "notes": "Same as v5. Currently missing from prototype — add."
+    },
+    {
+      "id": "PROG-01",
+      "name": "Program Explorer (full)",
+      "category": "prog",
+      "reactComponent": "ProgramExplorer",
+      "reactPath": "src/components/sections/ProgramExplorer.tsx",
+      "props": { "compact": false, "showTransferCallout": false },
+      "copy": "50+ programs (not 200+)",
+      "behavior": "Searchable in-page; expandable rows; NO per-program Request Info CTA",
+      "mobile": "~6 programs visible + Show All expand; native <select> for area filter; no nested scroll traps",
+      "background": "#FFFFFF",
+      "diffFromV5": "compact=false (v5 uses compact=true). This is the program-discovery page — full catalog is the centerpiece."
+    },
+    {
+      "id": "CAREER-01",
+      "shared": false,
+      "canonicalSpec": "request-info-v5-modules.json",
+      "overrides": null,
+      "notes": "Same spec as v5. Currently missing from prototype — add."
+    },
+    {
+      "id": "SALARY-01",
+      "shared": false,
+      "canonicalSpec": "request-info-v5-modules.json",
+      "overrides": null,
+      "notes": "Same spec as v5. Currently missing from prototype — add."
+    },
+    {
+      "id": "FIN-01",
+      "shared": false,
+      "canonicalSpec": "request-info-v5-modules.json",
+      "overrides": null,
+      "notes": "Same spec as v5. Currently missing from prototype — add."
+    },
+    {
+      "id": "CRED-01",
+      "shared": false,
+      "canonicalSpec": "request-info-v5-modules.json",
+      "overrides": null,
+      "notes": "Replaces current prototype's custom ContentBlock + badge grid."
+    },
+    {
+      "id": "TRUST-01",
+      "shared": false,
+      "canonicalSpec": "request-info-v5-modules.json",
+      "overrides": {
+        "heading": "Students Like You Are Already Here",
+        "subheading": "Real outcomes from people who chose UAGC for the same reasons you're considering it.",
+        "testimonials": [
+          { "tag": "Career Changer", "name": "Priya Navarro", "credential": "BS in Health Care Administration, 2023" },
+          { "tag": "Military Veteran", "name": "Timothy Cruz", "credential": "BS in Information Technology, 2023" },
+          { "tag": "Working Professional", "name": "Maria Delgado", "credential": "BS in Health Care Administration, 2024" }
+        ]
+      },
+      "notes": "Career-outcome focused — lead card centers salary lift and career pivot"
+    },
+    {
+      "id": "EMOT-01",
+      "shared": false,
+      "canonicalSpec": "request-info-v5-modules.json",
+      "overrides": null,
+      "notes": "Currently missing from prototype — add."
+    },
+    {
+      "id": "FORM-02",
+      "shared": false,
+      "canonicalSpec": "request-info-v5-modules.json",
+      "overrides": null,
+      "notes": "Replaces current inline RFI variant."
+    },
+    {
+      "id": "FAQ-01",
+      "shared": false,
+      "canonicalSpec": "request-info-v5-modules.json",
+      "overrides": null,
+      "notes": "Currently missing from prototype — add."
+    },
+    {
+      "id": "CTA-01",
+      "shared": false,
+      "canonicalSpec": "request-info-v5-modules.json",
+      "overrides": null,
+      "notes": "Currently missing from prototype — add."
+    },
+    {
+      "id": "FOOT-01",
+      "shared": false,
+      "canonicalSpec": "request-info-v5-modules.json",
+      "overrides": null
+    },
+    {
+      "id": "FORM-05",
+      "shared": false,
+      "canonicalSpec": "request-info-v5-modules.json",
+      "overrides": null,
+      "notes": "Currently missing from prototype — add."
+    }
+  ],
+  "sharedAcrossTemplates": [
+    "Header",
+    "Footer",
+    "HeroSection",
+    "RFIForm",
+    "RFIStickyBar",
+    "TrustStrip",
+    "ValuePropsSection",
+    "ProgramExplorer",
+    "UpcomingStartDates",
+    "CareerOutcomesSection",
+    "SalaryGrowthSection",
+    "TuitionSection",
+    "EmployerCredentialSection",
+    "TestimonialSection",
+    "EmotionalMotivationSection",
+    "FAQSection",
+    "Footer",
+    "Header",
+    "NextStepBridge",
+    "SectionNav"
+  ],
+  "migrationNotes": {
+    "remove": [
+      "ContentBlock intro section",
+      "RFIForm variant='inline' custom section",
+      "Custom accreditation ContentBlock + badge grid",
+      "REASONS_BULLETS / bulletPoints prop",
+      "metadata export (convert to 'use client')"
+    ],
+    "add": [
+      "SectionNav with PAGE_SECTIONS",
+      "Header variant='reduced'",
+      "heroFormRef + RFIStickyBar",
+      "NextStepBridge (2 instances)",
+      "CareerOutcomesSection",
+      "SalaryGrowthSection",
+      "TuitionSection",
+      "EmployerCredentialSection (replacing custom grid)",
+      "EmotionalMotivationSection",
+      "FAQSection",
+      "CTA-01 bottom multi-path",
+      "ScrollReveal wrappers"
+    ],
+    "modify": [
+      "Hero copy (headline, subheadline, highlights)",
+      "TrustStrip position: move from hero sidebar to banner below START-01",
+      "ProgramExplorer: keep full (not compact); add id='programs' + scroll-mt-20",
+      "ValuePropsSection: remove bulletPoints prop"
+    ]
+  }
+}

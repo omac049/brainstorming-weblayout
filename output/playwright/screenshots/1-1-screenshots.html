@@ -29,65 +29,143 @@
   .header .meta { display: flex; gap: 32px; margin-top: 16px; font-size: 13px; opacity: 0.5; }
 
   .sidebar {
-    position: fixed; top: 44px; left: 0; height: calc(100vh - 44px); width: 260px; z-index: 200;
-    background: white; border-right: 1px solid var(--border);
-    overflow-y: auto; padding: 20px 0;
+    position: fixed; top: 44px; left: 0; height: calc(100vh - 44px); z-index: 200;
+    width: 48px;
+    background: rgba(255,255,255,0.92); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+    border-right: 1px solid var(--border);
+    overflow: hidden; padding: 0;
+    transition: width 0.25s cubic-bezier(0.4, 0, 0.2, 1), background 0.2s, box-shadow 0.2s;
     scrollbar-width: thin; scrollbar-color: var(--border) transparent;
   }
-  .sidebar::-webkit-scrollbar { width: 4px; }
-  .sidebar::-webkit-scrollbar-thumb { background: var(--border); border-radius: 4px; }
+  .sidebar::-webkit-scrollbar { width: 3px; }
+  .sidebar::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+  .sidebar.expanded {
+    width: 240px; background: white; overflow-y: auto;
+    box-shadow: 2px 0 16px rgba(0,0,0,0.06);
+  }
+
+  .sb-progress {
+    position: absolute; top: 0; left: 0; width: 3px; height: 100%;
+    background: transparent; z-index: 10; pointer-events: none;
+  }
+  .sb-progress-fill {
+    width: 100%; background: var(--red); border-radius: 0 0 2px 2px;
+    transition: height 0.15s ease-out; opacity: 0.7;
+  }
+
+  .sb-expand-toggle {
+    display: flex; align-items: center; justify-content: center;
+    width: 100%; height: 44px; border: none; background: transparent;
+    cursor: pointer; color: var(--muted); font-size: 16px;
+    transition: color 0.15s, background 0.15s; flex-shrink: 0;
+    border-bottom: 1px solid var(--border);
+  }
+  .sb-expand-toggle:hover { color: var(--navy); background: #F7F8FA; }
+  .sb-expand-toggle svg { transition: transform 0.25s; }
+  .sidebar.expanded .sb-expand-toggle svg { transform: rotate(180deg); }
+
+  .sb-nav-inner { padding: 8px 0; }
+
   .sidebar .sb-title {
-    font-size: 13px; font-weight: 700; color: var(--navy); padding: 0 20px; margin-bottom: 16px;
+    font-size: 12px; font-weight: 700; color: var(--navy); padding: 0 14px; margin-bottom: 12px;
     display: flex; align-items: center; gap: 8px;
+    white-space: nowrap; opacity: 0; transition: opacity 0.15s;
   }
+  .sidebar.expanded .sb-title { opacity: 1; }
   .sidebar .sb-title::before {
-    content: ''; display: block; width: 20px; height: 3px; background: var(--red); border-radius: 2px; flex-shrink: 0;
+    content: ''; display: block; width: 16px; height: 3px; background: var(--red); border-radius: 2px; flex-shrink: 0;
   }
-  .sidebar .sb-group { margin-bottom: 8px; }
+  .sidebar .sb-group { margin-bottom: 4px; }
   .sidebar .sb-group-label {
-    font-size: 10px; font-weight: 700; letter-spacing: 1.2px; text-transform: uppercase;
-    padding: 10px 20px 6px; color: var(--muted);
+    font-size: 9px; font-weight: 700; letter-spacing: 1.2px; text-transform: uppercase;
+    padding: 8px 14px 4px; color: var(--muted); white-space: nowrap;
+    opacity: 0; height: 0; overflow: hidden; transition: opacity 0.15s, height 0.15s, padding 0.15s;
   }
+  .sidebar.expanded .sb-group-label { opacity: 1; height: auto; }
   .sidebar .sb-group-label.paid { color: var(--amber); }
   .sidebar .sb-group-label.organic { color: #2563EB; }
   .sidebar .sb-group-label.tables { color: var(--red); }
   .sidebar .sb-group-label.inventory { color: var(--green); }
+
   .sidebar a {
-    display: flex; align-items: center; gap: 10px;
-    padding: 7px 20px; font-size: 13px; font-weight: 400; color: #4B5563;
+    display: flex; align-items: center; gap: 8px;
+    padding: 5px 12px; font-size: 12px; font-weight: 400; color: #6B7280;
     text-decoration: none; transition: all 0.12s; border-left: 3px solid transparent;
+    white-space: nowrap; min-height: 32px;
   }
-  .sidebar a:hover { background: #F9FAFB; color: var(--navy); }
-  .sidebar a.active { background: #FEF2F2; color: var(--red); border-left-color: var(--red); font-weight: 600; }
+  .sidebar:not(.expanded) a { justify-content: center; padding: 4px 0; }
+  .sidebar a:hover { background: #F7F8FA; color: var(--navy); }
+  .sidebar a.active {
+    background: rgba(171,5,32,0.06); color: var(--red); border-left-color: var(--red); font-weight: 600;
+  }
   .sidebar a .num {
     display: inline-flex; align-items: center; justify-content: center;
-    width: 22px; height: 22px; border-radius: 6px; font-size: 11px; font-weight: 600;
+    width: 20px; height: 20px; border-radius: 5px; font-size: 10px; font-weight: 600;
     background: #F3F4F6; color: var(--muted); flex-shrink: 0;
+    transition: background 0.12s, color 0.12s;
   }
   .sidebar a.active .num { background: var(--red); color: white; }
+  .sidebar a .link-text { opacity: 0; transition: opacity 0.15s; overflow: hidden; }
+  .sidebar.expanded a .link-text { opacity: 1; }
   .sidebar a .conv-pill {
-    margin-left: auto; font-size: 10px; font-weight: 600; padding: 1px 6px; border-radius: 4px;
-    flex-shrink: 0;
+    margin-left: auto; font-size: 9px; font-weight: 600; padding: 1px 5px; border-radius: 3px;
+    flex-shrink: 0; opacity: 0; transition: opacity 0.15s;
   }
+  .sidebar.expanded a .conv-pill { opacity: 1; }
   .sidebar a .conv-pill.g { background: #ECFDF5; color: var(--green); }
   .sidebar a .conv-pill.a { background: #FFFBEB; color: var(--amber); }
   .sidebar a .conv-pill.r { background: #FEF2F2; color: var(--danger); }
 
-  .sidebar-toggle {
-    display: none; position: fixed; top: 12px; left: 12px; z-index: 300;
-    width: 40px; height: 40px; border-radius: 10px; border: 1px solid var(--border);
-    background: white; cursor: pointer; align-items: center; justify-content: center;
-    font-size: 18px; box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  .sb-section-hint {
+    position: absolute; bottom: 12px; left: 0; width: 48px;
+    text-align: center; font-size: 9px; font-weight: 600; color: var(--muted);
+    letter-spacing: 0.5px; text-transform: uppercase; pointer-events: none;
+    transition: opacity 0.15s;
+  }
+  .sidebar.expanded .sb-section-hint { opacity: 0; }
+
+  .sb-keyboard-hint {
+    padding: 8px 14px; font-size: 10px; color: var(--muted); border-top: 1px solid var(--border);
+    margin-top: 8px; opacity: 0; transition: opacity 0.15s;
+  }
+  .sidebar.expanded .sb-keyboard-hint { opacity: 1; }
+  .sb-keyboard-hint kbd {
+    display: inline-block; padding: 1px 5px; border: 1px solid var(--border);
+    border-radius: 3px; font-family: inherit; font-size: 10px; background: #F9FAFB;
   }
 
-  .content { max-width: 1600px; margin: 0 auto; padding: 0 48px 120px; margin-left: 260px; }
-  .header { margin-left: 260px; }
+  .sidebar-toggle {
+    display: none; position: fixed; top: 12px; left: 12px; z-index: 300;
+    width: 36px; height: 36px; border-radius: 8px; border: 1px solid var(--border);
+    background: white; cursor: pointer; align-items: center; justify-content: center;
+    font-size: 16px; box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+  }
+
+  .content { max-width: 1600px; margin: 0 auto; padding: 0 48px 120px; margin-left: 48px; transition: margin-left 0.25s cubic-bezier(0.4, 0, 0.2, 1); }
+  .header { margin-left: 48px; transition: margin-left 0.25s cubic-bezier(0.4, 0, 0.2, 1); }
+  body.sb-pinned .content, body.sb-pinned .header { margin-left: 240px; }
 
   @media (max-width: 1100px) {
-    .sidebar { transform: translateX(-100%); transition: transform 0.25s; box-shadow: none; }
-    .sidebar.open { transform: translateX(0); box-shadow: 4px 0 24px rgba(0,0,0,0.12); }
+    .sidebar { transform: translateX(-100%); transition: transform 0.25s, width 0.25s; box-shadow: none; width: 240px; }
+    .sidebar.open { transform: translateX(0); box-shadow: 4px 0 24px rgba(0,0,0,0.10); }
+    .sidebar.open .sb-group-label, .sidebar.open .sb-title, .sidebar.open a .link-text, .sidebar.open a .conv-pill, .sidebar.open .sb-keyboard-hint { opacity: 1; height: auto; }
     .sidebar-toggle { display: flex; }
-    .content, .header { margin-left: 0; }
+    .content, .header, body.sb-pinned .content, body.sb-pinned .header { margin-left: 0 !important; }
+    .sb-section-hint, .sb-progress, .sb-expand-toggle { display: none; }
+  }
+  @media (min-width: 1101px) {
+    .sidebar-toggle { display: none !important; }
+    .sidebar:hover, .sidebar.expanded {
+      width: 240px; background: white; overflow-y: auto;
+      box-shadow: 2px 0 16px rgba(0,0,0,0.06);
+    }
+    .sidebar:hover .sb-group-label, .sidebar.expanded .sb-group-label { opacity: 1; height: auto; }
+    .sidebar:hover .sb-title, .sidebar.expanded .sb-title { opacity: 1; }
+    .sidebar:hover a .link-text, .sidebar.expanded a .link-text { opacity: 1; }
+    .sidebar:hover a .conv-pill, .sidebar.expanded a .conv-pill { opacity: 1; }
+    .sidebar:hover .sb-keyboard-hint, .sidebar.expanded .sb-keyboard-hint { opacity: 1; }
+    .sidebar:hover .sb-section-hint, .sidebar.expanded .sb-section-hint { opacity: 0; }
+    .sidebar:hover .sb-expand-toggle svg { transform: rotate(180deg); }
   }
 
   .section-header { padding: 48px 0 24px; animation: fadeUp 0.4s 0.1s ease-out both; }
@@ -223,54 +301,68 @@
 <button class="sidebar-toggle" onclick="document.getElementById('sidebar').classList.toggle('open')" aria-label="Toggle navigation">☰</button>
 
 <nav class="sidebar" id="sidebar">
-  <a href="index.html" style="display:block;padding:8px 20px 14px;font-size:12px;font-weight:600;color:#6B7280;text-decoration:none;border-bottom:1px solid #E2E5EA;margin-bottom:12px;">← Phase 1 Hub</a>
-  <div class="sb-title">1.1 Screenshot Library</div>
+  <div class="sb-progress"><div class="sb-progress-fill" id="sbProgressFill"></div></div>
 
-  <div class="sb-group">
-    <div class="sb-group-label paid">Paid Landing Pages</div>
-    <a href="#paid-01"><span class="num">1</span> Request Info v5 <span class="conv-pill r">3.0%</span></a>
-    <a href="#paid-02"><span class="num">2</span> Bachelor's v5 <span class="conv-pill r">3.5%</span></a>
-    <a href="#paid-03"><span class="num">3</span> Military v5 <span class="conv-pill a">3.1%</span></a>
-    <a href="#paid-04"><span class="num">4</span> Courses v5 <span class="conv-pill g">7.3%</span></a>
-    <a href="#paid-05"><span class="num">5</span> Degree Prog v7 <span class="conv-pill g">13.6%</span></a>
-    <a href="#paid-06"><span class="num">6</span> Programs v7 <span class="conv-pill a">4.5%</span></a>
-    <a href="#paid-07"><span class="num">7</span> Programs v8 <span class="conv-pill a">4.9%</span></a>
-    <a href="#paid-08"><span class="num">8</span> Liberal Arts v6</a>
-    <a href="#paid-09"><span class="num">9</span> Criminal Justice v6</a>
-    <a href="#paid-10"><span class="num">10</span> Business v6</a>
+  <button class="sb-expand-toggle" id="sbToggle" aria-label="Expand navigation">
+    <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M6 3l5 5-5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+  </button>
+
+  <div class="sb-nav-inner">
+    <a href="index.html" class="sb-back" title="Phase 1 Hub"><span class="num">←</span><span class="link-text">Phase 1 Hub</span></a>
+    <div class="sb-title">1.1 Screenshot Library</div>
+
+    <div class="sb-group">
+      <div class="sb-group-label paid">Paid Landing Pages</div>
+      <a href="#paid-01"><span class="num">1</span><span class="link-text">Request Info v5</span><span class="conv-pill r">3.0%</span></a>
+      <a href="#paid-02"><span class="num">2</span><span class="link-text">Bachelor's v5</span><span class="conv-pill r">3.5%</span></a>
+      <a href="#paid-03"><span class="num">3</span><span class="link-text">Military v5</span><span class="conv-pill a">3.1%</span></a>
+      <a href="#paid-04"><span class="num">4</span><span class="link-text">Courses v5</span><span class="conv-pill g">7.3%</span></a>
+      <a href="#paid-05"><span class="num">5</span><span class="link-text">Degree Prog v7</span><span class="conv-pill g">13.6%</span></a>
+      <a href="#paid-06"><span class="num">6</span><span class="link-text">Programs v7</span><span class="conv-pill a">4.5%</span></a>
+      <a href="#paid-07"><span class="num">7</span><span class="link-text">Programs v8</span><span class="conv-pill a">4.9%</span></a>
+      <a href="#paid-08"><span class="num">8</span><span class="link-text">Liberal Arts v6</span></a>
+      <a href="#paid-09"><span class="num">9</span><span class="link-text">Criminal Justice v6</span></a>
+      <a href="#paid-10"><span class="num">10</span><span class="link-text">Business v6</span></a>
+    </div>
+
+    <div class="sb-group">
+      <div class="sb-group-label organic">Organic Pages</div>
+      <a href="#org-01"><span class="num">1</span><span class="link-text">Homepage</span><span class="conv-pill a">2.0%</span></a>
+      <a href="#org-02"><span class="num">2</span><span class="link-text">Online Degrees</span><span class="conv-pill g">5.8%</span></a>
+      <a href="#org-03"><span class="num">3</span><span class="link-text">Business Degrees</span><span class="conv-pill g">5.5%</span></a>
+      <a href="#org-04"><span class="num">4</span><span class="link-text">Masters</span><span class="conv-pill g">4.8%</span></a>
+      <a href="#org-05"><span class="num">5</span><span class="link-text">Education</span></a>
+      <a href="#org-06"><span class="num">6</span><span class="link-text">Tuition & Aid</span></a>
+      <a href="#org-07"><span class="num">7</span><span class="link-text">Blog: PhD</span><span class="conv-pill r">0.01%</span></a>
+      <a href="#org-08"><span class="num">8</span><span class="link-text">Blog: Biz Plan</span><span class="conv-pill r">0.08%</span></a>
+      <a href="#org-09"><span class="num">9</span><span class="link-text">Bachelors Hub</span></a>
+      <a href="#org-10"><span class="num">10</span><span class="link-text">Criminal Justice</span></a>
+    </div>
+
+    <div class="sb-group">
+      <div class="sb-group-label" style="color:#059669">Post-RFI Flow</div>
+      <a href="#thankyou-base"><span class="num">TY</span><span class="link-text">Thank-You</span></a>
+    </div>
+
+    <div class="sb-group">
+      <div class="sb-group-label tables">Ranking Tables</div>
+      <a href="#paid-ranking"><span class="num">R</span><span class="link-text">Paid Conversion Rank</span></a>
+      <a href="#organic-ranking"><span class="num">R</span><span class="link-text">Organic Conversion Rank</span></a>
+      <a href="#blog-opportunity"><span class="num">B</span><span class="link-text">Blog Opportunity</span></a>
+    </div>
+
+    <div class="sb-group">
+      <div class="sb-group-label inventory">Component Inventory</div>
+      <a href="#comp-inventory"><span class="num">M</span><span class="link-text">Module Catalog</span></a>
+      <a href="#comp-matrix"><span class="num">X</span><span class="link-text">Page x Module Matrix</span></a>
+    </div>
+
+    <div class="sb-keyboard-hint">
+      <kbd>↑</kbd> <kbd>↓</kbd> prev / next section
+    </div>
   </div>
 
-  <div class="sb-group">
-    <div class="sb-group-label organic">Organic Pages</div>
-    <a href="#org-01"><span class="num">1</span> Homepage <span class="conv-pill a">2.0%</span></a>
-    <a href="#org-02"><span class="num">2</span> Online Degrees <span class="conv-pill g">5.8%</span></a>
-    <a href="#org-03"><span class="num">3</span> Business Degrees <span class="conv-pill g">5.5%</span></a>
-    <a href="#org-04"><span class="num">4</span> Masters <span class="conv-pill g">4.8%</span></a>
-    <a href="#org-05"><span class="num">5</span> Education</a>
-    <a href="#org-06"><span class="num">6</span> Tuition & Aid</a>
-    <a href="#org-07"><span class="num">7</span> Blog: PhD <span class="conv-pill r">0.01%</span></a>
-    <a href="#org-08"><span class="num">8</span> Blog: Biz Plan <span class="conv-pill r">0.08%</span></a>
-    <a href="#org-09"><span class="num">9</span> Bachelors Hub</a>
-    <a href="#org-10"><span class="num">10</span> Criminal Justice</a>
-  </div>
-
-  <div class="sb-group">
-    <div class="sb-group-label" style="color:#059669">Post-RFI Flow</div>
-    <a href="#thankyou-base"><span class="num">TY</span> Thank-You</a>
-  </div>
-
-  <div class="sb-group">
-    <div class="sb-group-label tables">Ranking Tables</div>
-    <a href="#paid-ranking">Paid Conversion Rank</a>
-    <a href="#organic-ranking">Organic Conversion Rank</a>
-    <a href="#blog-opportunity">Blog Opportunity</a>
-  </div>
-
-  <div class="sb-group">
-    <div class="sb-group-label inventory">Component Inventory</div>
-    <a href="#comp-inventory">Module Catalog</a>
-    <a href="#comp-matrix">Page x Module Matrix</a>
-  </div>
+  <div class="sb-section-hint" id="sbSectionHint">Paid</div>
 </nav>
 
 <div class="content">
@@ -1409,17 +1501,44 @@
 </div>
 
 <script>
+(function() {
+  const sidebar = document.getElementById('sidebar');
+  const toggle = document.getElementById('sbToggle');
+  const progressFill = document.getElementById('sbProgressFill');
+  const sectionHint = document.getElementById('sbSectionHint');
   const sections = document.querySelectorAll('.page-card[id], .section-header[id]');
-  const sidebarLinks = document.querySelectorAll('.sidebar a');
+  const sidebarLinks = sidebar.querySelectorAll('.sb-nav-inner a[href^="#"]');
+  let pinned = false;
 
+  toggle.addEventListener('click', () => {
+    pinned = !pinned;
+    sidebar.classList.toggle('expanded', pinned);
+    document.body.classList.toggle('sb-pinned', pinned);
+  });
+
+  const sectionHints = { 'paid': 'Paid', 'org': 'Organic', 'thankyou': 'Post-RFI', 'paid-ranking': 'Tables', 'organic-ranking': 'Tables', 'blog-opportunity': 'Tables', 'comp': 'Inventory' };
+
+  function getSectionHint(id) {
+    if (!id) return '';
+    for (const [prefix, label] of Object.entries(sectionHints)) {
+      if (id.startsWith(prefix)) return label;
+    }
+    return '';
+  }
+
+  let currentActiveId = null;
   const obs = new IntersectionObserver((entries) => {
     entries.forEach(e => {
       if (e.isIntersecting) {
         sidebarLinks.forEach(l => l.classList.remove('active'));
-        const match = document.querySelector('.sidebar a[href="#' + e.target.id + '"]');
+        const match = sidebar.querySelector('a[href="#' + e.target.id + '"]');
         if (match) {
           match.classList.add('active');
-          match.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
+          if (sidebar.classList.contains('expanded')) {
+            match.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
+          }
+          currentActiveId = e.target.id;
+          sectionHint.textContent = getSectionHint(e.target.id);
         }
       }
     });
@@ -1427,13 +1546,35 @@
 
   sections.forEach(s => obs.observe(s));
 
-  sidebarLinks.forEach(link => {
-    link.addEventListener('click', (e) => {
-      if (window.innerWidth <= 1100) {
-        document.getElementById('sidebar').classList.remove('open');
+  function updateProgress() {
+    const scrollTop = window.scrollY;
+    const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+    const pct = docHeight > 0 ? Math.min(scrollTop / docHeight, 1) : 0;
+    progressFill.style.height = (pct * 100) + '%';
+  }
+  window.addEventListener('scroll', updateProgress, { passive: true });
+  updateProgress();
+
+  const anchorIds = Array.from(sidebarLinks).map(a => a.getAttribute('href').slice(1));
+  document.addEventListener('keydown', (e) => {
+    if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return;
+    if (e.key === 'ArrowUp' || e.key === 'ArrowDown') {
+      const dir = e.key === 'ArrowDown' ? 1 : -1;
+      const idx = anchorIds.indexOf(currentActiveId);
+      const next = idx + dir;
+      if (next >= 0 && next < anchorIds.length) {
+        e.preventDefault();
+        document.getElementById(anchorIds[next])?.scrollIntoView({ behavior: 'smooth' });
       }
+    }
+  });
+
+  sidebarLinks.forEach(link => {
+    link.addEventListener('click', () => {
+      if (window.innerWidth <= 1100) sidebar.classList.remove('open');
     });
   });
+})();
 </script>
 <script src="shared-nav.js"></script>
 

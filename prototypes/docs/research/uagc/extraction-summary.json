@@ -1,0 +1,26 @@
+{
+  "extractedAt": "2026-05-27T20:57:06.014Z",
+  "pages": [
+    {
+      "slug": "request-info-v5",
+      "url": "https://www.uagc.edu/success/request-info-v5",
+      "sectionCount": 24,
+      "imageCount": 11,
+      "svgCount": 7
+    },
+    {
+      "slug": "degree-programs-v7",
+      "url": "https://www.uagc.edu/success/degree-programs-v7",
+      "sectionCount": 52,
+      "imageCount": 16,
+      "svgCount": 29
+    },
+    {
+      "slug": "online-college-courses-v5",
+      "url": "https://www.uagc.edu/success/online-college-courses-v5",
+      "sectionCount": 51,
+      "imageCount": 21,
+      "svgCount": 29
+    }
+  ]
+}

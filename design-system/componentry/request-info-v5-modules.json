@@ -1,0 +1,314 @@
+{
+  "page": {
+    "name": "request-info-v5",
+    "liveUrl": "https://www.uagc.edu/success/request-info-v5",
+    "prototypeRoute": "/request-info-v5",
+    "prototypeRepo": "uagc-prototypes",
+    "figmaFileKey": "HoSMZOSnKSVgUXlskHv9tS",
+    "figmaFileUrl": "https://www.figma.com/design/HoSMZOSnKSVgUXlskHv9tS/UAGC-Paid-page-templates-3--%E2%80%94-Wireframe?node-id=0-1",
+    "figmaProjectId": "598288008",
+    "figmaProjectUrl": "https://www.figma.com/files/team/954051891409200881/project/598288008?fuid=1052358699765663783",
+    "figmaFoundationFileKey": "c4O4uPeilJDBZFjARNnt65",
+    "figmaFoundationNote": "External Reskin file — no team access; tokens live in design-system/MASTER.md",
+    "figmaPageWireframes": "01 — Wireframes",
+    "figmaPageComponentry": "02 — Componentry",
+    "designTokens": "design-system/MASTER.md",
+    "persona": "career-advancement (paid-generic)",
+    "dataWindow": "30d (paid traffic)"
+  },
+  "sectionOrder": [
+    { "order": 1, "moduleId": "NAV-01", "anchor": null, "scrollMargin": null },
+    { "order": 2, "moduleId": "NAV-UX-01", "anchor": null, "scrollMargin": null },
+    { "order": 3, "moduleId": "HERO-01", "anchor": "hero-rfi", "scrollMargin": "scroll-mt-24" },
+    { "order": 4, "moduleId": "START-01", "anchor": null, "scrollMargin": null },
+    { "order": 5, "moduleId": "TRUST-02", "anchor": null, "scrollMargin": null },
+    { "order": 6, "moduleId": "VP-01", "anchor": "why-uagc", "scrollMargin": "scroll-mt-20" },
+    { "order": 7, "moduleId": "BRIDGE-01", "anchor": "programs", "scrollMargin": null },
+    { "order": 8, "moduleId": "PROG-01", "anchor": "programs", "scrollMargin": null },
+    { "order": 9, "moduleId": "BRIDGE-01", "anchor": "careers", "scrollMargin": null },
+    { "order": 10, "moduleId": "CAREER-01", "anchor": "careers", "scrollMargin": "scroll-mt-20" },
+    { "order": 11, "moduleId": "SALARY-01", "anchor": null, "scrollMargin": null },
+    { "order": 12, "moduleId": "FIN-01", "anchor": "tuition", "scrollMargin": "scroll-mt-20" },
+    { "order": 13, "moduleId": "CRED-01", "anchor": "credentials", "scrollMargin": "scroll-mt-20" },
+    { "order": 14, "moduleId": "TRUST-01", "anchor": "stories", "scrollMargin": "scroll-mt-20" },
+    { "order": 15, "moduleId": "EMOT-01", "anchor": null, "scrollMargin": null },
+    { "order": 16, "moduleId": "FORM-02", "anchor": "rfi", "scrollMargin": "scroll-mt-20" },
+    { "order": 17, "moduleId": "FAQ-01", "anchor": "faq", "scrollMargin": "scroll-mt-20" },
+    { "order": 18, "moduleId": "CTA-01", "anchor": null, "scrollMargin": null },
+    { "order": 19, "moduleId": "FOOT-01", "anchor": null, "scrollMargin": null },
+    { "order": 20, "moduleId": "FORM-05", "anchor": null, "scrollMargin": null }
+  ],
+  "modules": [
+    {
+      "id": "NAV-01",
+      "name": "Global Header (reduced)",
+      "category": "nav",
+      "reactComponent": "Header",
+      "reactPath": "src/components/shared/Header.tsx",
+      "props": { "variant": "reduced" },
+      "figmaLibrary": "UAGC Library",
+      "figmaRefs": ["page_library_header", "UAGC_logo"],
+      "background": "#FFFFFF",
+      "notes": "Fixed top; z-index 100. Reduced variant hides full nav links."
+    },
+    {
+      "id": "NAV-UX-01",
+      "name": "Section Nav (sticky pills)",
+      "category": "nav",
+      "reactComponent": "SectionNav",
+      "reactPath": "src/components/shared/SectionNav.tsx",
+      "props": { "sections": "PAGE_SECTIONS array in page.tsx" },
+      "background": "transparent / white on scroll",
+      "notes": "Prototype-only UX; not in 26-module catalog. Anchors: why-uagc, programs, careers, tuition, credentials, stories, rfi, faq."
+    },
+    {
+      "id": "HERO-01",
+      "name": "Hero: Split + RFI (mini)",
+      "category": "hero",
+      "reactComponent": "HeroSection + RFIForm",
+      "reactPath": "src/components/sections/HeroSection.tsx",
+      "childComponents": ["RFIForm variant=mini"],
+      "props": {
+        "headline": "Discover Online School Done Right",
+        "subheadline": "Earn your degree on your schedule…",
+        "backgroundImage": "/images/hero-v5-desktop.jpg",
+        "mobileBackgroundImage": "/images/hero-v5-mobile.jpg",
+        "highlights": ["5-Week Courses", "One Class at a Time", "$0 Application Fee"]
+      },
+      "layout": {
+        "desktop": "~75/25 image+headline | form column 400–440px",
+        "mobile": "image band + navy pill row + form below"
+      },
+      "tokens": {
+        "headline": "type-h1 / font-heading-condensed extrabold",
+        "pills": "min 13px mobile, 14px desktop; bg-white/15; ring-white/25; gold dot"
+      },
+      "doNot": ["Cover faces with RFI", "Sticky bar on initial hero view", "Sub-12px pill text"]
+    },
+    {
+      "id": "FORM-01",
+      "name": "RFI: Hero (two-step mini)",
+      "category": "form",
+      "reactComponent": "RFIForm",
+      "reactPath": "src/components/shared/RFIForm.tsx",
+      "props": { "variant": "mini", "heroFormRef": "required for sticky bar" },
+      "fields": ["college_of_interest", "firstname", "lastname", "email", "phone", "state", "tcpa_checkbox"],
+      "figmaLibrary": "UAGC DESIGN SYSTEM",
+      "figmaRefs": ["Button/RFIsolid", "Form/RFI Dropdown", "RFI/vertical (UAGC Library)"],
+      "notes": "Trust line below: 'It only takes a minute. No obligation.'"
+    },
+    {
+      "id": "START-01",
+      "name": "Upcoming Start Dates",
+      "category": "content",
+      "reactComponent": "UpcomingStartDates",
+      "reactPath": "src/components/sections/UpcomingStartDates.tsx",
+      "props": { "variant": "card", "dates": "next two only" },
+      "background": "#FFFFFF",
+      "notes": "Quiet urgency only — no 'Enroll now'. Informational next two dates."
+    },
+    {
+      "id": "TRUST-02",
+      "name": "Trust Strip (banner)",
+      "category": "trust",
+      "reactComponent": "TrustStrip",
+      "reactPath": "src/components/sections/TrustStrip.tsx",
+      "props": { "variant": "banner" },
+      "defaultBadges": ["WSCUC Accredited", "50+ Online Programs", "Financial Aid Available"],
+      "notes": "Third badge = barrier-removal value prop, NOT enrollment dates. Reuse below hero trust line in sidebar variant elsewhere."
+    },
+    {
+      "id": "VP-01",
+      "name": "Reasons to Choose UAGC",
+      "category": "vp",
+      "reactComponent": "ValuePropsSection",
+      "reactPath": "src/components/sections/ValuePropsSection.tsx",
+      "props": {
+        "heading": "Reasons to Choose UAGC",
+        "highlightCards": "4 cards — first = Generous Transfer Policy",
+        "experienceCallout": "Prior Learning Assessment navy block",
+        "bulletPoints": "omit on v5 (no TrustStrip duplicate)"
+      },
+      "cardStructure": {
+        "statCard": "optional stat above title (type-stat condensed)",
+        "nonStatCard": "icon + title + description",
+        "grid": "2 col mobile, up to 4 desktop"
+      },
+      "figmaLibrary": "UAGC Library",
+      "figmaRefs": ["icons_text_block", "icon_text_block", "Why Choose - RESKIN (RTB Modules page)"],
+      "background": "#faf9f7",
+      "doNot": ["Section-level RFI CTA", "bulletPoints duplicating TrustStrip", "Gradients/shadows"]
+    },
+    {
+      "id": "BRIDGE-01",
+      "name": "Next Step Bridge",
+      "category": "content",
+      "reactComponent": "NextStepBridge",
+      "reactPath": "src/components/shared/NextStepBridge.tsx",
+      "props": { "variant": "light | dark" },
+      "background": "#faf9f7 or uagc-navy",
+      "notes": "Scroll cue between major sections."
+    },
+    {
+      "id": "PROG-01",
+      "name": "Program Explorer (compact)",
+      "category": "prog",
+      "reactComponent": "ProgramExplorer",
+      "reactPath": "src/components/sections/ProgramExplorer.tsx",
+      "props": { "compact": true, "showTransferCallout": false },
+      "copy": "50+ programs (not 200+)",
+      "behavior": "Searchable in-page; expandable rows; NO per-program Request Info CTA",
+      "background": "#FFFFFF"
+    },
+    {
+      "id": "CAREER-01",
+      "name": "Career Outcomes by Program",
+      "category": "trust",
+      "reactComponent": "CareerOutcomesSection",
+      "reactPath": "src/components/sections/CareerOutcomesSection.tsx",
+      "includes": "Comparison table + Handshake callout (98,000+ employers)",
+      "background": "uagc-navy #0C234B",
+      "textOnDark": "#FFFFFF, muted #b8c5d9 — avoid text-white/50–70",
+      "doNot": ["Separate ProgramComparisonSection adjacent", "Duplicate Handshake in CRED-01 narrative"]
+    },
+    {
+      "id": "SALARY-01",
+      "name": "Salary Growth by Degree",
+      "category": "content",
+      "reactComponent": "SalaryGrowthSection",
+      "reactPath": "src/components/sections/SalaryGrowthSection.tsx",
+      "includes": ["Degree tier cards", "Field tabs", "Lifetime $1.2M+ block"],
+      "sourceCitation": "BLS — link inline in source prop",
+      "background": "#faf9f7 / white alternating"
+    },
+    {
+      "id": "FIN-01",
+      "name": "Tuition & Financial Aid",
+      "category": "fin",
+      "reactComponent": "TuitionSection",
+      "reactPath": "src/components/sections/TuitionSection.tsx",
+      "background": "#faf9f7",
+      "layout": "Unified vertical flow: centered header → 3-col pricing row → bridge stat → 3×2 savings grid",
+      "pricingTiers": [
+        { "label": "Undergraduate", "amount": "$485/credit" },
+        { "label": "Graduate", "amount": "$625/credit" },
+        { "label": "Application Fee", "amount": "$0", "accent": true }
+      ],
+      "bridgeStat": "86% of UAGC students receive financial aid or scholarship assistance",
+      "savingsGrid": [
+        { "id": "fafsa", "label": "FAFSA & Federal Aid", "stat": "94%", "statLabel": "receive aid" },
+        { "id": "scholarships", "label": "Scholarships", "stat": "$0", "statLabel": "to repay" },
+        { "id": "military", "label": "Military Benefits", "stat": "$250", "statLabel": "/credit" },
+        { "id": "employer", "label": "Employer Partners", "stat": "1,500+", "statLabel": "partners" },
+        { "id": "transfer", "label": "Transfer Credits", "stat": "41.5", "statLabel": "avg credits" },
+        { "id": "prior-learning", "label": "Prior Learning Credit", "stat": "6", "statLabel": "pathways" }
+      ],
+      "interaction": "Stat-forward cards (stat always visible); independent disclosure; 3 bullets per card; no outbound links",
+      "responsive": "Mobile 1-col savings / Tablet 2-col / Desktop 3-col (2 rows); pricing always 3-col",
+      "notes": "Unified vertical flow replaces split-column layout. Stats front-loaded for scannability. 3 bullets per card (trimmed from 4). No '6 Ways to Save' subheader — grid IS the ways to save."
+    },
+    {
+      "id": "CRED-01",
+      "name": "Employer Credentials + Accreditation",
+      "category": "trust",
+      "reactComponent": "EmployerCredentialSection",
+      "reactPath": "src/components/sections/EmployerCredentialSection.tsx",
+      "stats": ["98,000+ Handshake", "1,500+ Employer Partners", "4 Programmatic Accreditations"],
+      "background": "#fdf8ef on v5",
+      "doNot": ["Repeat Handshake story if already in CAREER-01"]
+    },
+    {
+      "id": "TRUST-01",
+      "name": "Peer Testimonials (3-card grid)",
+      "category": "trust",
+      "reactComponent": "TestimonialSection",
+      "reactPath": "src/components/sections/TestimonialSection.tsx",
+      "layout": "3-card responsive grid (1 col mobile → 2 col tablet → 3 col desktop)",
+      "v5Content": {
+        "heading": "Students Like You Are Already Here",
+        "subheading": "Real experiences from people who started where you are now.",
+        "testimonials": [
+          { "tag": "Working Parent", "name": "Sheena Smith", "credential": "AA in Early Childhood Education, 2022" },
+          { "tag": "Career Changer", "name": "Priya Navarro", "credential": "BS in Health Care Administration, 2023" },
+          { "tag": "First-Generation Student", "name": "Marcus Johnson", "credential": "BA in Business Administration, 2024" }
+        ]
+      },
+      "cardFeatures": ["persona tag pill (gold)", "short 2-sentence quote", "initials avatar", "BadgeCheck verified icon", "5-star rating"],
+      "background": "#FFFFFF"
+    },
+    {
+      "id": "EMOT-01",
+      "name": "Emotional Motivation (Tier 3)",
+      "category": "content",
+      "reactComponent": "EmotionalMotivationSection",
+      "reactPath": "src/components/sections/EmotionalMotivationSection.tsx",
+      "background": "uagc-navy",
+      "notes": "Career-advancement persona; pull quote + stat row"
+    },
+    {
+      "id": "FORM-02",
+      "name": "RFI: Mid-page (full)",
+      "category": "form",
+      "reactComponent": "RFIForm",
+      "props": { "variant": "full" },
+      "sectionHeading": "Take the Next Step Toward Your Degree",
+      "background": "#faf9f7",
+      "maxWidth": "720–880px centered"
+    },
+    {
+      "id": "FAQ-01",
+      "name": "FAQ (categorized accordion)",
+      "category": "content",
+      "reactComponent": "FAQSection",
+      "reactPath": "src/components/sections/FAQSection.tsx",
+      "categories": ["admissions", "tuition", "academics", "credibility"],
+      "background": "#FFFFFF"
+    },
+    {
+      "id": "CTA-01",
+      "name": "Bottom CTA (multi-path)",
+      "category": "cta",
+      "reactComponent": "inline in page.tsx (not extracted)",
+      "paths": ["Chat with Advisor", "Call (855) 210-4959", "Request Information #rfi", "Apply Now"],
+      "background": "uagc-navy",
+      "notes": "v5 prototype expands CTA-01 beyond single Learn More banner"
+    },
+    {
+      "id": "FOOT-01",
+      "name": "Footer",
+      "category": "foot",
+      "reactComponent": "Footer",
+      "reactPath": "src/components/shared/Footer.tsx"
+    },
+    {
+      "id": "FORM-05",
+      "name": "Sticky RFI Bar (mobile)",
+      "category": "form",
+      "reactComponent": "RFIStickyBar",
+      "reactPath": "src/components/shared/RFIForm.tsx",
+      "behavior": "Shows ONLY after scroll past hero mini form; hidden while heroFormRef intersects viewport",
+      "notes": "Mobile-primary pattern"
+    }
+  ],
+  "sharedAcrossTemplates": [
+    "HeroSection",
+    "RFIForm",
+    "TrustStrip",
+    "ValuePropsSection",
+    "ProgramExplorer",
+    "UpcomingStartDates",
+    "CareerOutcomesSection",
+    "SalaryGrowthSection",
+    "TuitionSection",
+    "EmployerCredentialSection",
+    "TestimonialSection",
+    "EmotionalMotivationSection",
+    "FAQSection",
+    "Footer",
+    "Header"
+  ],
+  "templateVariants": {
+    "degree-programs-v7": "Same module set; ProgramExplorer may be full; hero copy differs",
+    "online-college-courses-v5": "BenefitsSection may replace some VP blocks; shared RFI patterns"
+  }
+}

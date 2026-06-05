@@ -1,0 +1,182 @@
+{
+  "sourceUrl": "https://www.uagc.edu/",
+  "slug": "homepage",
+  "extractedAt": "2026-06-02T23:23:36.520Z",
+  "title": "Accredited Online College | UAGC",
+  "nav": {
+    "menus": [
+      {
+        "label": "Online Degrees",
+        "href": "",
+        "columns": []
+      },
+      {
+        "label": "Admission",
+        "href": "",
+        "columns": []
+      },
+      {
+        "label": "Student Experience",
+        "href": "",
+        "columns": []
+      },
+      {
+        "label": "About UAGC",
+        "href": "",
+        "columns": []
+      }
+    ],
+    "utility": [
+      {
+        "label": "Military",
+        "href": ""
+      },
+      {
+        "label": "Partnerships",
+        "href": ""
+      },
+      {
+        "label": "myUAGC",
+        "href": ""
+      }
+    ],
+    "phone": "+1 866 711 1700"
+  },
+  "hero": {
+    "eyebrow": "Welcome to UAGC",
+    "headline": "Education Your Way",
+    "subheadline": "Flexible programs with personalized support that meets your needs.",
+    "hasEmbeddedRfi": true,
+    "images": {
+      "desktop": "https://www.uagc.edu/sites/default/files/styles/paid_hero_header_899x600/public/Briah-Tiffany_Classof2021%5B1%5D_edit.jpg.webp?h=eca34813&itok=tX8jmJ07",
+      "mobile": "https://www.uagc.edu/sites/default/files/styles/paid_hero_mobile_image_768x512/public/Briah-Tiffany_Classof2021%5B1%5D_edit.jpg.webp?h=eca34813&itok=F-H6tir9",
+      "alt": "UAGC graduate posing"
+    }
+  },
+  "sections": [
+    {
+      "id": "request-more-information",
+      "heading": "Request More Information",
+      "subheading": "",
+      "links": []
+    },
+    {
+      "id": "50-programs-100-online",
+      "heading": "50+ Programs. 100% Online.",
+      "subheading": "",
+      "links": []
+    },
+    {
+      "id": "explore-our-accredited-degree-programs",
+      "heading": "Explore our accredited degree programs",
+      "subheading": "",
+      "links": []
+    },
+    {
+      "id": "become-part-of-the-proud-wildcat-community",
+      "heading": "Become Part of the Proud Wildcat Community",
+      "subheading": "",
+      "links": []
+    },
+    {
+      "id": "what-interests-you",
+      "heading": "What Interests You?",
+      "subheading": "",
+      "links": []
+    },
+    {
+      "id": "uagc-in-the-news",
+      "heading": "UAGC in the News",
+      "subheading": "",
+      "links": []
+    },
+    {
+      "id": "accreditation-quality-education",
+      "heading": "Accreditation = Quality Education",
+      "subheading": "",
+      "links": []
+    },
+    {
+      "id": "personalized-education-for-all",
+      "heading": "Personalized Education for All",
+      "subheading": "",
+      "links": []
+    },
+    {
+      "id": "why-uagc",
+      "heading": "Why UAGC?",
+      "subheading": "",
+      "links": []
+    },
+    {
+      "id": "find-your-path",
+      "heading": "Find Your Path",
+      "subheading": "",
+      "links": []
+    },
+    {
+      "id": "are-you-ready-to-start",
+      "heading": "Are You Ready to Start?",
+      "subheading": "",
+      "links": []
+    },
+    {
+      "id": "explore-our-accredited-degree-programs",
+      "heading": "Explore our accredited degree programs",
+      "subheading": "",
+      "links": []
+    },
+    {
+      "id": "how-we-re-different",
+      "heading": "How We’re Different",
+      "subheading": "",
+      "links": []
+    },
+    {
+      "id": "uagc-faqs",
+      "heading": "UAGC FAQs",
+      "subheading": "",
+      "links": []
+    },
+    {
+      "id": "let-us-help",
+      "heading": "Let us help.",
+      "subheading": "",
+      "links": []
+    }
+  ],
+  "sectionNav": [
+    {
+      "id": "testimonials",
+      "label": "Testimonials"
+    },
+    {
+      "id": "our-goal",
+      "label": "Our Goal"
+    },
+    {
+      "id": "interests",
+      "label": "Interests"
+    },
+    {
+      "id": "why-uagc",
+      "label": "Why UAGC"
+    },
+    {
+      "id": "degree-path",
+      "label": "Degree Path"
+    },
+    {
+      "id": "our-differences",
+      "label": "Our Differences"
+    },
+    {
+      "id": "faq",
+      "label": "FAQ"
+    }
+  ],
+  "images": [
+    "https://www.uagc.edu/sites/default/files/styles/paid_hero_header_899x600/public/Briah-Tiffany_Classof2021%5B1%5D_edit.jpg.webp?h=eca34813&itok=tX8jmJ07",
+    "https://www.uagc.edu/sites/default/files/styles/paid_hero_mobile_image_768x512/public/Briah-Tiffany_Classof2021%5B1%5D_edit.jpg.webp?h=eca34813&itok=F-H6tir9"
+  ]
+}

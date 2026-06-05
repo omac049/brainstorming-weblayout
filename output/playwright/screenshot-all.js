@@ -25,6 +25,9 @@ const ORGANIC_PAGES = [
   { slug: 'organic-08-blog-business-plan',  url: 'https://www.uagc.edu/blog/how-write-business-plan-step-by-step' },
   { slug: 'organic-09-degrees-bachelors',   url: 'https://www.uagc.edu/online-degrees/bachelors' },
   { slug: 'organic-10-degrees-criminal-justice', url: 'https://www.uagc.edu/online-degrees/criminal-justice' },
+  { slug: 'organic-11-program-business-administration', url: 'https://www.uagc.edu/online-degrees/bachelors/business-administration' },
+  { slug: 'organic-12-thank-you-base', url: 'https://www.uagc.edu/request-information/thank-you' },
+  { slug: 'organic-13-thank-you-personalized', url: 'https://www.uagc.edu/request-information/thank-you?sid=7717243' },
 ];
 
 const ALL_PAGES = [...PAID_PAGES, ...ORGANIC_PAGES];

@@ -1,0 +1,379 @@
+{
+  "page": {
+    "name": "online-college-courses-v5",
+    "liveUrl": "https://www.uagc.edu/success/online-college-courses-v5",
+    "prototypeRoute": "/online-college-courses-v5",
+    "prototypeRepo": "uagc-prototypes",
+    "figmaFileKey": "HoSMZOSnKSVgUXlskHv9tS",
+    "figmaFileUrl": "https://www.figma.com/design/HoSMZOSnKSVgUXlskHv9tS/UAGC-Paid-page-templates-3--%E2%80%94-Wireframe?node-id=0-1",
+    "figmaProjectId": "598288008",
+    "figmaProjectUrl": "https://www.figma.com/files/team/954051891409200881/project/598288008?fuid=1052358699765663783",
+    "figmaFoundationFileKey": "c4O4uPeilJDBZFjARNnt65",
+    "figmaFoundationNote": "External Reskin file — no team access; tokens live in design-system/MASTER.md",
+    "figmaPageWireframes": "01 — Wireframes",
+    "figmaPageComponentry": "02 — Componentry",
+    "designTokens": "design-system/MASTER.md",
+    "sharedModuleSpec": "design-system/pages/request-info-v5.md",
+    "persona": "course-format exploration (paid-generic)",
+    "dataWindow": "30d (paid traffic)"
+  },
+  "sharedModules": {
+    "description": "These four modules are identical across request-info-v5, degree-programs-v7, and online-college-courses-v5. Canonical specs live in request-info-v5-modules.json.",
+    "modules": ["NAV-01", "NAV-UX-01", "START-01", "TRUST-02"]
+  },
+  "sectionOrder": [
+    { "order": 1, "moduleId": "NAV-01", "anchor": null, "scrollMargin": null, "shared": true },
+    { "order": 2, "moduleId": "NAV-UX-01", "anchor": null, "scrollMargin": null, "shared": true },
+    { "order": 3, "moduleId": "HERO-01", "anchor": "hero-rfi", "scrollMargin": "scroll-mt-24" },
+    { "order": 4, "moduleId": "START-01", "anchor": null, "scrollMargin": null, "shared": true },
+    { "order": 5, "moduleId": "TRUST-02", "anchor": null, "scrollMargin": null, "shared": true },
+    { "order": 6, "moduleId": "VP-01", "anchor": "why-uagc", "scrollMargin": "scroll-mt-20" },
+    { "order": 7, "moduleId": "SKEPT-01", "anchor": "proof", "scrollMargin": "scroll-mt-20" },
+    { "order": 8, "moduleId": "FIN-01", "anchor": "tuition", "scrollMargin": "scroll-mt-20" },
+    { "order": 9, "moduleId": "TRUST-01", "anchor": "stories", "scrollMargin": "scroll-mt-20" },
+    { "order": 10, "moduleId": "FORM-02", "anchor": "rfi", "scrollMargin": "scroll-mt-20" },
+    { "order": 11, "moduleId": "FAQ-01", "anchor": "faq", "scrollMargin": "scroll-mt-20" },
+    { "order": 12, "moduleId": "CTA-01", "anchor": null, "scrollMargin": null },
+    { "order": 13, "moduleId": "FOOT-01", "anchor": null, "scrollMargin": null },
+    { "order": 14, "moduleId": "FORM-05", "anchor": null, "scrollMargin": null }
+  ],
+  "modules": [
+    {
+      "id": "NAV-01",
+      "shared": true,
+      "canonicalSpec": "request-info-v5-modules.json",
+      "overrides": null
+    },
+    {
+      "id": "NAV-UX-01",
+      "shared": true,
+      "canonicalSpec": "request-info-v5-modules.json",
+      "overrides": {
+        "note": "PAGE_SECTIONS is page-specific: 6 pills (no Programs, Careers, or Credentials anchors)",
+        "pageSections": [
+          { "id": "why-uagc", "label": "Why UAGC" },
+          { "id": "proof", "label": "Proof" },
+          { "id": "tuition", "label": "Tuition" },
+          { "id": "stories", "label": "Stories" },
+          { "id": "rfi", "label": "Get Started" },
+          { "id": "faq", "label": "FAQ" }
+        ]
+      }
+    },
+    {
+      "id": "HERO-01",
+      "name": "Hero: Split + RFI (mini)",
+      "category": "hero",
+      "reactComponent": "HeroSection + RFIForm",
+      "reactPath": "src/components/sections/HeroSection.tsx",
+      "childComponents": ["RFIForm variant=mini"],
+      "props": {
+        "headline": "Explore Flexible Online Courses at UAGC",
+        "subheadline": "5- to 6-week courses, one at a time. Built for working adults who need real flexibility — not just a marketing promise. Try your first course free for 3 weeks.",
+        "backgroundImage": "/images/UAGC_WEB_Landing-Page_Hero-Images_v1_Page_9.jpg",
+        "mobileBackgroundImage": "/images/UAGC_WEB_Landing-Page_Hero-Images_v1_Page_9.jpg",
+        "highlights": ["Try a Course Free", "5-Week Classes", "$0 to Apply"]
+      },
+      "layout": {
+        "desktop": "~75/25 image+headline | form column 400–440px",
+        "mobile": "image band + navy pill row + form below"
+      },
+      "tokens": {
+        "headline": "type-h1 / font-heading-condensed extrabold",
+        "pills": "min 13px mobile, 14px desktop; bg-white/15; ring-white/25; gold dot"
+      },
+      "doNot": ["Cover faces with RFI", "Sticky bar on initial hero view", "Sub-12px pill text"],
+      "diffFromV5": {
+        "headline": "v5='Earn Your Degree 100% Online at UAGC' → occ='Explore Flexible Online Courses at UAGC'",
+        "headlineV7": "v7='Find the Right Degree for Your Career'",
+        "subheadlineTone": "v5/v7 outcome- or discovery-driven → occ experience/format/trial",
+        "highlights": "v5=['5-Week Courses','One Class at a Time','$0 Application Fee'] → occ=['Try a Course Free','5-Week Classes','$0 to Apply']",
+        "highlightsV7": "v7=['WSCUC Accredited','50+ Programs','$0 to Apply']",
+        "firstPill": "v5='5-Week Courses' | v7='WSCUC Accredited' → occ='Try a Course Free'",
+        "heroImage": "Live paid page asset UAGC_WEB_Landing-Page_Hero-Images_v1_Page_9.jpg (not v5/v7 hero images)"
+      },
+      "simulationRationale": "'Try Your First Course Free' was the single most cited positive across 31 personas. Leading with trial in first pill and subheadline gives this page identity distinct from v5/v7."
+    },
+    {
+      "id": "FORM-01",
+      "shared": true,
+      "canonicalSpec": "request-info-v5-modules.json",
+      "overrides": null
+    },
+    {
+      "id": "START-01",
+      "shared": true,
+      "canonicalSpec": "request-info-v5-modules.json",
+      "overrides": null
+    },
+    {
+      "id": "TRUST-02",
+      "shared": true,
+      "canonicalSpec": "request-info-v5-modules.json",
+      "overrides": null
+    },
+    {
+      "id": "VP-01",
+      "name": "Reasons to Choose UAGC",
+      "category": "vp",
+      "reactComponent": "ValuePropsSection",
+      "reactPath": "src/components/sections/ValuePropsSection.tsx",
+      "props": {
+        "heading": "Reasons to Choose UAGC",
+        "subheading": "Focused courses, real support, and a format built around your life — not the other way around.",
+        "highlightCards": [
+          {
+            "title": "One Focused Class at a Time",
+            "stat": "5–6 wk",
+            "description": "Take one course in 5- to 6-week blocks. No juggling four classes. 92% of students study while working full time."
+          },
+          {
+            "title": "Try Your First Course Free",
+            "stat": "3 wk",
+            "description": "Test the format for 3 weeks with no financial commitment. If it's not right, walk away — no cost, no obligation."
+          },
+          {
+            "title": "Transfer Up to 75% of Your Credits",
+            "stat": "Up to 75%",
+            "description": "Bring credits from community colleges, military training, and professional certs. Average students transfer 41.5 credits."
+          },
+          {
+            "title": "Transparent Costs, $0 to Start",
+            "stat": "$0",
+            "description": "No application fee. No enrollment deposit. See actual per-credit costs before you commit."
+          }
+        ],
+        "experienceCallout": "REASONS_EXPERIENCE (Prior Learning Assessment navy block — same constant as v5/v7)",
+        "bulletPoints": "OMIT — do not pass (duplicates TrustStrip)"
+      },
+      "background": "#faf9f7",
+      "doNot": ["Section-level RFI CTA", "bulletPoints duplicating TrustStrip", "Gradients/shadows"],
+      "diffFromV5": {
+        "card2": "v5/v7 Card 2='No Standardized Tests Required' → occ='Try Your First Course Free' (stat 3 wk) — unique to this page",
+        "subheading": "Reframed for course-format context vs v5/v7 proof-forward or discovery copy"
+      },
+      "simulationRationale": "Trial offer is strongest conversion hook for course-format skeptics; Card 2 swap is the primary VP differentiator vs v5/v7."
+    },
+    {
+      "id": "SKEPT-01",
+      "name": "Skepticism Buster",
+      "category": "proof",
+      "reactComponent": "SkepticismBuster",
+      "reactPath": "src/components/sections/SkepticismBuster.tsx",
+      "exclusiveToPage": "online-college-courses-v5",
+      "props": {
+        "heading": "Straight Answers to Real Questions",
+        "subheading": "We know what you're wondering. Here's the truth.",
+        "softCta": "Still have questions? Talk to an advisor — no strings.",
+        "cards": [
+          {
+            "id": "accreditation",
+            "question": "Is this a real, respected university?",
+            "proofStat": "WSCUC Accredited",
+            "proofStatLabel": "Regional accreditation (logo mark)",
+            "answer": "UAGC is regionally accredited by WSCUC — the same body that accredits Stanford, UCLA, and the University of Arizona main campus. Your degree carries the same institutional accreditation weight.",
+            "expandedDetail": [
+              "Part of the University of Arizona enterprise",
+              "4 programmatic accreditations (CAHIIM, etc.)",
+              "98,000+ employers on Handshake recognize UAGC graduates",
+              "1,500+ employer tuition partners"
+            ]
+          },
+          {
+            "id": "cost",
+            "question": "What does it actually cost — before I give you my info?",
+            "proofStat": "$485/credit",
+            "proofStatLabel": "undergrad · $625/credit grad",
+            "answer": "Undergraduate courses are $485 per credit. Graduate courses are $625 per credit. Application fee: $0. And 86% of UAGC students receive financial aid or scholarship assistance.",
+            "expandedDetail": [
+              "FAFSA / federal grants and loans",
+              "Military TA at $250/credit",
+              "1,500+ employer tuition partners",
+              "Average students transfer 41.5 credits (= real dollar savings)",
+              "Scholarships via ScholarshipUniverse"
+            ]
+          },
+          {
+            "id": "transfer",
+            "question": "Will my existing credits actually count?",
+            "proofStat": "Up to 75%",
+            "proofStatLabel": "transfer accepted",
+            "answer": "You can transfer up to 75% of your credits from community colleges, other accredited schools, military training, and professional certifications. Average students transfer 41.5 credits. Get a free, no-obligation credit evaluation before you commit.",
+            "expandedDetail": [
+              "2+2 pathways from community colleges",
+              "Prior learning assessment (6 pathways)",
+              "Credits from 25+ years ago can count",
+              "Military credit (JST, CCAF, service schools)",
+              "Free transcript review before enrollment"
+            ]
+          }
+        ]
+      },
+      "designTokens": {
+        "sectionBackground": "#FFFFFF",
+        "sectionAnchor": "id=proof scroll-mt-20",
+        "cardBorderIdle": "border-uagc-navy/10",
+        "cardBorderExpanded": "border-uagc-navy",
+        "cardBorderHover": "hover:border-uagc-navy/30",
+        "questionText": "type-h4 weight 700 text-uagc-navy",
+        "proofStat": "type-stat font-heading-condensed 800 text-uagc-red",
+        "answerText": "body default text-uagc-gray-700",
+        "expandedDetail": "lighter body, check-marked bullets (FIN-01 disclosure pattern)",
+        "disclosure": "Multiple cards can be open simultaneously (independent disclosure, same as FIN-01)",
+        "touchTargets": "chevron area minimum 44px mobile"
+      },
+      "responsive": {
+        "mobile": "< 640px: 1-col stack, full-width cards",
+        "tablet": "640px+: 1-col stack (content-heavy cards need width)",
+        "desktop": "1024px+: 3-col grid"
+      },
+      "replacesModules": ["CAREER-01", "SALARY-01", "CRED-01", "EMOT-01"],
+      "notes": "Exclusive to online-college-courses-v5. Distills career, salary, credential, and emotional proof into three digestible Q&A cards for format-skeptical visitors."
+    },
+    {
+      "id": "FIN-01",
+      "shared": false,
+      "canonicalSpec": "request-info-v5-modules.json",
+      "overrides": null
+    },
+    {
+      "id": "TRUST-01",
+      "shared": false,
+      "canonicalSpec": "request-info-v5-modules.json",
+      "name": "Peer Testimonials (3-card grid)",
+      "category": "trust",
+      "reactComponent": "TestimonialSection",
+      "reactPath": "src/components/sections/TestimonialSection.tsx",
+      "overrides": {
+        "heading": "Students Like You Are Already Here",
+        "subheading": "See how real students fit UAGC courses into their lives.",
+        "testimonials": [
+          { "tag": "Working Parent", "name": "Maria Delgado", "credential": "BS in Health Care Administration, 2024" },
+          { "tag": "Exploring Options", "name": "Angela Torres", "credential": "Currently enrolled, Business Administration" },
+          { "tag": "Returning to School", "name": "Dwayne Mitchell", "credential": "Currently enrolled, Criminal Justice" }
+        ]
+      },
+      "diffFromV5": {
+        "v5": "3-card grid: Working Parent, Career Changer, First-Generation Student",
+        "v7": "3-card grid: Career Changer, Military Veteran, Working Professional",
+        "occ": "3-card grid: Working Parent, Exploring Options, Returning to School — format/flexibility focus"
+      },
+      "simulationRationale": "Working parents and constraint-heavy personas wanted stories from people managing courses around shifts and family. Persona tags let visitors self-identify before reading."
+    },
+    {
+      "id": "FORM-02",
+      "shared": false,
+      "canonicalSpec": "request-info-v5-modules.json",
+      "name": "Mid-page RFI (full)",
+      "category": "form",
+      "reactComponent": "RFIForm + emotional wrapper",
+      "reactPath": "src/components/shared/RFIForm.tsx",
+      "overrides": {
+        "heading": "Your Future Starts with One Course",
+        "subhead": "Share a few details and we'll send you everything you need to get started — program options, financial aid details, and how to claim your free trial course.",
+        "trustChips": [
+          "No obligation — just information",
+          "Response within 1 business day",
+          "$0 application fee"
+        ],
+        "note": "Absorbs EMOT-01 emotional close — only emotional beat on this lean page"
+      }
+    },
+    {
+      "id": "FAQ-01",
+      "shared": false,
+      "canonicalSpec": "request-info-v5-modules.json",
+      "name": "FAQ",
+      "category": "content",
+      "reactComponent": "FAQSection",
+      "reactPath": "src/components/sections/FAQSection.tsx",
+      "overrides": {
+        "scope": "course-format",
+        "items": [
+          {
+            "category": "format",
+            "question": "How do the 5-6 week courses work?",
+            "addresses": ["Patricia Sandoval", "Keisha Brown"]
+          },
+          {
+            "category": "format",
+            "question": "How much time per week should I plan for?",
+            "addresses": ["Keisha Brown", "Pat Sullivan"]
+          },
+          {
+            "category": "format",
+            "question": "What technology do I need for online courses?",
+            "addresses": ["Rosa Hernandez", "Mike Thompson"]
+          },
+          {
+            "category": "trial",
+            "question": "How does the 3-week free trial work?",
+            "addresses": ["Jordan Chen-Nakamura", "Carlos Ramirez"]
+          },
+          {
+            "category": "trial",
+            "question": "What happens after the free trial ends?",
+            "addresses": ["Carlos Ramirez", "Jayden Thompson"]
+          },
+          {
+            "category": "cost",
+            "question": "How much does tuition cost per credit?",
+            "addresses": ["Carlos Ramirez", "Brandon Hill"]
+          },
+          {
+            "category": "cost",
+            "question": "What financial aid is available?",
+            "addresses": ["Jayden Thompson", "Esperanza Morales"]
+          },
+          {
+            "category": "credibility",
+            "question": "Is UAGC accredited?",
+            "addresses": ["Sarah Kim", "Linda Martinez"]
+          },
+          {
+            "category": "credibility",
+            "question": "What is UAGC's relationship with the University of Arizona?",
+            "addresses": ["Jordan Taylor", "Dr. Hartley"]
+          },
+          {
+            "category": "admissions",
+            "question": "Can I transfer credits from another school?",
+            "addresses": ["Dr. Angela Foster", "James Mitchell"]
+          }
+        ]
+      }
+    },
+    {
+      "id": "CTA-01",
+      "shared": false,
+      "canonicalSpec": "request-info-v5-modules.json",
+      "overrides": null
+    },
+    {
+      "id": "FOOT-01",
+      "shared": false,
+      "canonicalSpec": "request-info-v5-modules.json",
+      "overrides": null
+    },
+    {
+      "id": "FORM-05",
+      "shared": false,
+      "canonicalSpec": "request-info-v5-modules.json",
+      "overrides": null
+    }
+  ],
+  "sharedAcrossTemplates": [
+    "Header",
+    "SectionNav",
+    "HeroSection",
+    "RFIForm",
+    "RFIStickyBar",
+    "TrustStrip",
+    "ValuePropsSection",
+    "UpcomingStartDates",
+    "TuitionSection",
+    "TestimonialSection",
+    "FAQSection",
+    "Footer"
+  ]
+}

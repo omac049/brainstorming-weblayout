@@ -1,0 +1,15 @@
+/* Source: https://www.uagc.edu/success/request-info-v5 - extracted May 2026 */
+/* This file is a reference for clone fidelity - DO NOT import directly */
+
+/* KEY FINDINGS:
+ * 1. UAGC-Montserrat = Google Fonts Montserrat (renamed, served from gstatic)
+ * 2. html { font-family: "UAGC-Montserrat", sans-serif } for headings
+ * 3. body * { font-family: "Fira Sans", Arial, sans-serif } for body
+ * 4. Icons: SVG background-images from /themes/uagc/dist/ (NOT icomoon for value prop icons)
+ * 5. icomoon used only for arrow/chevron/magnify decorative glyphs
+ * 6. .h2: 2rem mobile / 3rem desktop, weight 500, color #0c234b
+ * 7. p: 1rem/1.5 mobile, 1.25rem/1.2 desktop
+ * 8. buttons: border-radius 20px, bg #ef9600, color #0c234b, weight 500
+ * 9. Header: paid-nav = 96px height
+ * 10. Footer (paid): .paid-footer bg #d0d0ce, color #0c234b
+ */

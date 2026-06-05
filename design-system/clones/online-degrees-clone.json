@@ -1,0 +1,120 @@
+{
+  "sourceUrl": "https://www.uagc.edu/online-degrees/",
+  "slug": "online-degrees",
+  "extractedAt": "2026-06-02T23:21:19.336Z",
+  "title": "Online Degrees: Accredited & Flexible Programs | UAGC",
+  "nav": {
+    "menus": [
+      {
+        "label": "Online Degrees",
+        "href": "",
+        "columns": []
+      },
+      {
+        "label": "Admission",
+        "href": "",
+        "columns": []
+      },
+      {
+        "label": "Student Experience",
+        "href": "",
+        "columns": []
+      },
+      {
+        "label": "About UAGC",
+        "href": "",
+        "columns": []
+      }
+    ],
+    "utility": [
+      {
+        "label": "Military",
+        "href": ""
+      },
+      {
+        "label": "Partnerships",
+        "href": ""
+      },
+      {
+        "label": "myUAGC",
+        "href": ""
+      }
+    ],
+    "phone": "+1 866 711 1700"
+  },
+  "hero": {
+    "eyebrow": "",
+    "headline": "Online Degrees",
+    "subheadline": "Study something you love in an environment designed for busy adults.",
+    "hasEmbeddedRfi": true,
+    "images": {
+      "desktop": "https://www.uagc.edu/sites/default/files/styles/paid_hero_header_899x600/public/Aaron-Adkins-Pic_crop.jpg.webp?h=b69e0e0e&itok=YyZZjxAE",
+      "mobile": "https://www.uagc.edu/sites/default/files/styles/paid_hero_mobile_image_768x512/public/Aaron-Adkins-Pic_crop.jpg.webp?h=b69e0e0e&itok=sdpSAz6F",
+      "alt": "UAGC graduate posing"
+    }
+  },
+  "sections": [
+    {
+      "id": "request-more-information",
+      "heading": "Request More Information",
+      "subheading": "",
+      "links": []
+    },
+    {
+      "id": "explore-our-accredited-degree-programs",
+      "heading": "Explore our accredited degree programs",
+      "subheading": "",
+      "links": []
+    },
+    {
+      "id": "flexible-online-college-degrees-to-fit-your-life",
+      "heading": "Flexible Online College Degrees to Fit Your Life",
+      "subheading": "",
+      "links": []
+    },
+    {
+      "id": "top-three-requested-degrees",
+      "heading": "Top Three Requested Degrees",
+      "subheading": "",
+      "links": []
+    },
+    {
+      "id": "not-sure-what-you-want-to-study",
+      "heading": "Not Sure What You Want to Study?",
+      "subheading": "",
+      "links": []
+    },
+    {
+      "id": "start-your-journey",
+      "heading": "Start Your Journey",
+      "subheading": "",
+      "links": []
+    },
+    {
+      "id": "frequently-asked-questions-about-online-degrees",
+      "heading": "Frequently Asked Questions About Online Degrees",
+      "subheading": "",
+      "links": []
+    },
+    {
+      "id": "let-us-help",
+      "heading": "Let us help.",
+      "subheading": "",
+      "links": []
+    }
+  ],
+  "sectionNav": [
+    {
+      "id": "why-uagc",
+      "label": "Why UAGC"
+    },
+    {
+      "id": "faq",
+      "label": "FAQ"
+    }
+  ],
+  "images": [
+    "https://www.uagc.edu/sites/default/files/styles/paid_hero_header_899x600/public/Aaron-Adkins-Pic_crop.jpg.webp?h=b69e0e0e&itok=YyZZjxAE",
+    "https://www.uagc.edu/sites/default/files/styles/paid_hero_mobile_image_768x512/public/Aaron-Adkins-Pic_crop.jpg.webp?h=b69e0e0e&itok=sdpSAz6F"
+  ]
+}

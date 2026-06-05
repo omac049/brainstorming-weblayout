@@ -1,0 +1,285 @@
+{
+  "page": {
+    "name": "online-degrees-hub",
+    "liveUrl": "https://www.uagc.edu/online-degrees/",
+    "prototypeRoute": "/organic/online-degrees",
+    "prototypeRepo": "uagc-prototypes",
+    "figmaFileKey": "HoSMZOSnKSVgUXlskHv9tS",
+    "figmaFileUrl": "https://www.figma.com/design/HoSMZOSnKSVgUXlskHv9tS/UAGC-Paid-page-templates-3--%E2%80%94-Wireframe?node-id=0-1",
+    "figmaProjectId": "598288008",
+    "figmaPageWireframes": "online-degrees-hub — Wireframes",
+    "figmaPageComponentry": "online-degrees-hub — Componentry",
+    "designTokens": "design-system/MASTER.md",
+    "persona": "organic-program-discovery (undecided searcher)",
+    "dataWindow": "12mo GSC/GA4 (organic); 30d Contentsquare for scroll/RFI friction",
+    "analyticsBaseline": {
+      "engagementRate": "88.8%",
+      "conversionRate": "5.82%",
+      "avgSessionDuration": "~11.8 min",
+      "contentsquareStickyRfiRage": "2.41× recurrence",
+      "note": "Organic gold standard — layout to preserve discovery rhythm while reducing RFI duplication"
+    }
+  },
+  "sectionOrder": [
+    { "order": 1, "moduleId": "NAV-00", "anchor": null, "scrollMargin": null },
+    { "order": 2, "moduleId": "HERO-ORG", "anchor": null, "scrollMargin": null },
+    { "order": 3, "moduleId": "RFI-HERO", "anchor": "hero-rfi", "scrollMargin": "scroll-mt-24" },
+    { "order": 4, "moduleId": "HUB-TOP3", "anchor": "top-degrees", "scrollMargin": "scroll-mt-20" },
+    { "order": 5, "moduleId": "HUB-CATALOG", "anchor": "programs", "scrollMargin": "scroll-mt-20" },
+    { "order": 6, "moduleId": "HUB-INTRO", "anchor": null, "scrollMargin": null },
+    { "order": 7, "moduleId": "TRUST-01", "anchor": "stories", "scrollMargin": "scroll-mt-20" },
+    { "order": 8, "moduleId": "HUB-FINDER", "anchor": "degree-finder", "scrollMargin": "scroll-mt-20" },
+    { "order": 9, "moduleId": "HUB-JOURNEY", "anchor": "journey", "scrollMargin": "scroll-mt-20" },
+    { "order": 10, "moduleId": "FAQ-01", "anchor": "faq", "scrollMargin": "scroll-mt-20" },
+    { "order": 11, "moduleId": "ACCR-01", "anchor": null, "scrollMargin": null },
+    { "order": 12, "moduleId": "CTA-01", "anchor": null, "scrollMargin": null },
+    { "order": 13, "moduleId": "FOOT-01", "anchor": null, "scrollMargin": null },
+    { "order": 14, "moduleId": "FORM-05", "anchor": null, "scrollMargin": null }
+  ],
+  "modules": [
+    {
+      "id": "NAV-00",
+      "name": "Global Header (full site)",
+      "category": "nav",
+      "reactComponent": "SiteHeader",
+      "reactPath": "src/components/organic/SiteHeader.tsx",
+      "props": { "variant": "full" },
+      "background": "#FFFFFF",
+      "notes": "Full mega-menu nav — NOT paid NAV-01 reduced. Desktop mega-menus; mobile drawer. Request Info + Apply in utility bar."
+    },
+    {
+      "id": "HERO-ORG",
+      "name": "Organic Hero (no embedded RFI)",
+      "category": "hero",
+      "reactComponent": "OrganicHomeHero",
+      "reactPath": "src/components/organic/OrganicHomeHero.tsx",
+      "props": {
+        "eyebrow": "Find the Program That's Right for You",
+        "headline": "Online Degrees",
+        "subheadline": "Study something you love in an environment designed for busy adults.",
+        "showBreadcrumb": true,
+        "breadcrumb": ["Home", "Online Degrees"]
+      },
+      "layout": {
+        "desktop": "Full-width hero image + headline overlay; RFI in separate band below",
+        "mobile": "Image band + headline stack; no form in hero image area"
+      },
+      "doNot": ["Embed RFI inside hero image column (live pattern — keep band separation)", "Cover faces with form on mobile"]
+    },
+    {
+      "id": "RFI-HERO",
+      "name": "RFI band below hero",
+      "category": "form",
+      "reactComponent": "RFIForm",
+      "reactPath": "src/components/shared/RFIForm.tsx",
+      "props": { "variant": "mini", "heroFormRef": "required for sticky bar", "sectionTitle": "Request More Information" },
+      "fields": ["college_of_interest", "degree_level", "firstname", "lastname", "email", "phone", "state", "tcpa_checkbox"],
+      "background": "#FFFFFF",
+      "notes": "Two-step mini. Trust line: 'It only takes a minute. No obligation.' Program routing via area + degree level — not full 50+ degree dropdown on step 1."
+    },
+    {
+      "id": "HUB-INTRO",
+      "name": "Hub value intro",
+      "category": "content",
+      "reactComponent": "HubIntroSection",
+      "reactPath": "src/components/organic/HubIntroSection.tsx",
+      "props": {
+        "heading": "Flexible Online College Degrees to Fit Your Life",
+        "body": "At UAGC, online degrees provide a flexible way for busy adults to fit college into their lives…"
+      },
+      "background": "#FFFFFF"
+    },
+    {
+      "id": "HUB-TOP3",
+      "name": "Top 3 requested degrees",
+      "category": "discovery",
+      "reactComponent": "TopDegreesSection",
+      "reactPath": "src/components/organic/TopDegreesSection.tsx",
+      "props": {
+        "heading": "Top Three Requested Degrees",
+        "subheading": "Find many competitive and valuable educational disciplines among UAGC online bachelor's degree programs, including the three most popular degrees.",
+        "cards": [
+          {
+            "title": "Bachelor of Arts in Business Administration",
+            "description": "Study the keys to a successful business and take your career to the next level.",
+            "href": "/online-degrees/bachelors/business-administration"
+          },
+          {
+            "title": "Bachelor of Arts in Organizational Management",
+            "description": "Examine the human side of managing organizations.",
+            "href": "/online-degrees/bachelors/organizational-management"
+          },
+          {
+            "title": "Bachelor of Arts in Early Childhood Education",
+            "description": "Amplify your impact and empower future learners.",
+            "href": "/online-degrees/bachelors/early-childhood-education"
+          }
+        ]
+      },
+      "layout": "3-col desktop / stacked mobile; image + title + Learn More link per card",
+      "background": "#faf9f7"
+    },
+    {
+      "id": "HUB-CATALOG",
+      "name": "Filterable program catalog",
+      "category": "discovery",
+      "reactComponent": "ProgramCatalogSection",
+      "reactPath": "src/components/organic/ProgramCatalogSection.tsx",
+      "props": {
+        "heading": "Do You Know Which Degree You Want?",
+        "subheading": "Choose an online degree program that aligns with your goals…",
+        "initialVisible": 6,
+        "filters": ["degreeLevel", "areaOfInterest", "college"]
+      },
+      "behavior": "Native select filters (no horizontal pill scroll trap). ~6 programs visible in page flow + Show All expand. Each row: title, college, short blurb, View Details link — NO per-row RFI.",
+      "copy": "50+ programs across associate, bachelor's, master's, and doctoral levels",
+      "background": "#FFFFFF",
+      "doNot": ["Nested scroll containers (max-h + overflow-y-auto)", "Per-program Request Info buttons", "200+ programs copy"]
+    },
+    {
+      "id": "HUB-FINDER",
+      "name": "Degree finder CTA",
+      "category": "discovery",
+      "reactComponent": "DegreeFinderCTA",
+      "reactPath": "src/components/organic/DegreeFinderCTA.tsx",
+      "props": {
+        "heading": "Not Sure What You Want to Study?",
+        "body": "Whether you're a natural born leader or excel at educating others, our Degree Finder tool can help you find the path that aligns with your individual skills and strengths.",
+        "ctaLabel": "Take the Degree Finder Quiz",
+        "ctaHref": "/degree-finder"
+      },
+      "background": "#0C234B",
+      "textOnDark": "#FFFFFF, muted #b8c5d9"
+    },
+    {
+      "id": "TRUST-01",
+      "name": "Peer Testimonials (3-card grid)",
+      "category": "trust",
+      "reactComponent": "TestimonialSection",
+      "reactPath": "src/components/sections/TestimonialSection.tsx",
+      "props": { "heading": "What Our Students Think" },
+      "hubTestimonials": [
+        { "tag": "Working Parent", "name": "Stacey Metzler", "credential": "Master of Arts in Psychology" },
+        { "tag": "Military Veteran", "name": "Timothy Cathey", "credential": "BA in Social and Criminal Justice" },
+        { "tag": "Working Professional", "name": "Tyler Barnett", "credential": "BA in Organizational Management" }
+      ],
+      "background": "#faf9f7",
+      "notes": "3 of 4 live hub voices retained; Flory Seidel dropped for consistent 3-card layout across all templates"
+    },
+    {
+      "id": "HUB-JOURNEY",
+      "name": "Start your journey",
+      "category": "content",
+      "reactComponent": "EnrollmentJourneySection",
+      "reactPath": "src/components/organic/EnrollmentJourneySection.tsx",
+      "props": {
+        "heading": "Start Your Journey",
+        "subheading": "Prepare yourself to begin your enrollment process by reviewing some basic information before you get started.",
+        "steps": [
+          { "title": "Transfer Credits", "description": "Decrease your time to completion by transferring your past credits.", "linkLabel": "Learn More" },
+          { "title": "Application", "description": "Gather documents and work with your Admission Specialist through the process.", "linkLabel": "Learn More" },
+          { "title": "Funding Options", "description": "Explore flexible tuition options and payment plans.", "linkLabel": "Learn More" }
+        ]
+      },
+      "layout": "3-card row desktop / stacked mobile",
+      "background": "#FFFFFF"
+    },
+    {
+      "id": "FAQ-01",
+      "name": "FAQ (hub topics)",
+      "category": "content",
+      "reactComponent": "FAQSection",
+      "reactPath": "src/components/sections/FAQSection.tsx",
+      "props": {
+        "heading": "Frequently Asked Questions About Online Degrees",
+        "categories": ["online-worth", "advantages"]
+      },
+      "hubTopics": [
+        "Are Online Degrees Worth it?",
+        "What Are the Advantages of an Online Degree?"
+      ],
+      "background": "#FFFFFF"
+    },
+    {
+      "id": "ACCR-01",
+      "name": "Accreditation band",
+      "category": "trust",
+      "reactComponent": "AccreditationBand",
+      "reactPath": "src/components/organic/AccreditationBand.tsx",
+      "props": {
+        "wscucCopy": "The University of Arizona Global Campus is accredited by WASC Senior College and University Commission (WSCUC)…",
+        "uaAffiliation": true
+      },
+      "background": "#faf9f7",
+      "notes": "Defensible UA enterprise / WSCUC language — no overreaching superlatives."
+    },
+    {
+      "id": "CTA-01",
+      "name": "Bottom CTA (multi-path)",
+      "category": "cta",
+      "reactComponent": "inline in page.tsx",
+      "paths": ["Chat with Advisor", "Call +1 866 711 1700", "Request Information #hero-rfi", "Apply Now"],
+      "background": "#0C234B"
+    },
+    {
+      "id": "FOOT-01",
+      "name": "Site footer",
+      "category": "foot",
+      "reactComponent": "Footer",
+      "reactPath": "src/components/shared/Footer.tsx",
+      "notes": "Full site footer — same as live organic pages."
+    },
+    {
+      "id": "FORM-05",
+      "name": "Sticky RFI bar (mobile)",
+      "category": "form",
+      "reactComponent": "RFIStickyBar",
+      "reactPath": "src/components/shared/RFIForm.tsx",
+      "behavior": "Hidden on initial hero RFI view; visible after scroll past hero RFI band",
+      "notes": "Prototype should reduce rage clicks vs live (Contentsquare 2.41× sticky recurrence) — clear label, single target #hero-rfi"
+    }
+  ],
+  "omittedVsLive": [
+    {
+      "livePattern": "Multiple mid-page RFI blocks (generic + stepped duplicates)",
+      "prototypeRule": "Single hero RFI band + sticky bar only — no FORM-02 mid-page on hub v1"
+    },
+    {
+      "livePattern": "Explore accredited degrees inline form block",
+      "prototypeRule": "Fold discovery into HUB-CATALOG filters; no duplicate form"
+    },
+    {
+      "livePattern": "Pagination-only catalog on mobile",
+      "prototypeRule": "Show 6 + Show All in normal page flow"
+    }
+  ],
+  "sharedFromPaid": [
+    "RFIForm (mini two-step)",
+    "RFIStickyBar",
+    "FAQSection",
+    "TestimonialSection",
+    "Footer",
+    "CTA-01 multi-path pattern"
+  ],
+  "organicOnly": [
+    "NAV-00",
+    "HERO-ORG",
+    "RFI-HERO",
+    "HUB-INTRO",
+    "HUB-TOP3",
+    "HUB-CATALOG",
+    "HUB-FINDER",
+    "HUB-JOURNEY",
+    "ACCR-01"
+  ],
+  "targetMobileScreens": "10–12 iPhone screens",
+  "rfiIntegration": {
+    "postSubmitUrl": "/request-information/thank-you",
+    "postSubmitSpec": "design-system/pages/request-information-thank-you.md",
+    "prototypeRedirect": "/organic/request-information/thank-you"
+  },
+  "referenceCapture": {
+    "liveDesktop": "output/playwright/screenshots/organic-02-online-degrees_desktop-1440.png",
+    "liveMobile": "output/playwright/screenshots/organic-02-online-degrees_mobile-375.png"
+  }
+}

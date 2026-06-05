@@ -10,3 +10,12 @@ credentials/
 
 # Keep compressed JPGs, skip original full-size PNGs from Contentsquare
 output/playwright/screenshots/content_square/*.png
+
+# Prototype build artifacts
+prototypes/.next/
+prototypes/out/
+prototypes/tsconfig.tsbuildinfo
+
+# Cursor workspace temp files (screenshots, skill cache)
+.cursor/tmp-*
+.cursor/skills/
