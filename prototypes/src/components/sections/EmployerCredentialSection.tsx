@@ -6,6 +6,7 @@ import {
   Shield,
 } from "lucide-react";
 
+import { assetPath } from "@/lib/asset-path";
 import { cn } from "@/lib/utils";
 
 export interface EmployerCredentialSectionProps {
@@ -71,7 +72,7 @@ export function EmployerCredentialSection({
             <div className="mb-6 shrink-0 sm:mb-0">
               <div className="rounded-xl border-2 border-uagc-gold p-1.5">
                 <img
-                  src="/images/WSCUC-Logo-Square.jpg"
+                  src={assetPath("/images/WSCUC-Logo-Square.jpg")}
                   alt="WSCUC — Institutional Accreditation"
                   className="size-24 rounded-lg sm:size-28"
                   loading="lazy"
@@ -135,7 +136,7 @@ export function EmployerCredentialSection({
               >
                 <div className="flex items-start gap-4">
                   <img
-                    src={accr.src}
+                    src={assetPath(accr.src)}
                     alt={`${accr.name} — ${accr.label}`}
                     className="size-16 shrink-0 rounded-lg sm:size-[72px]"
                     loading="lazy"

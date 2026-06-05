@@ -1,6 +1,6 @@
 "use client";
 
-import Image from "next/image";
+import { AssetImage } from "@/components/shared/AssetImage";
 import { type ReactNode, useEffect, useRef, type RefObject } from "react";
 
 import { HOMEPAGE_CLONE } from "@/lib/clones/homepage-clone";
@@ -116,7 +116,7 @@ export function OrganicHomeHero({
       >
         {/* === MOBILE === */}
         <div className="relative flex h-[480px] flex-col justify-end sm:h-[520px] lg:hidden">
-          <Image
+          <AssetImage
             src={imageSrc}
             alt={imageAlt}
             fill
@@ -171,7 +171,7 @@ export function OrganicHomeHero({
             className="absolute inset-0 will-change-transform"
             aria-hidden="true"
           >
-            <Image
+            <AssetImage
               src={imageSrc}
               alt={imageAlt}
               fill

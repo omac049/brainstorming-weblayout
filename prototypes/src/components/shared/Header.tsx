@@ -1,6 +1,6 @@
 "use client";
 
-import Image from "next/image";
+import { AssetImage } from "@/components/shared/AssetImage";
 import Link from "next/link";
 import { Phone } from "lucide-react";
 import { useEffect, useState } from "react";
@@ -67,7 +67,7 @@ export function Header({ variant = "default", hideRequestInfo = false }: HeaderP
           )}
           aria-label="University of Arizona Global Campus home"
         >
-          <Image
+          <AssetImage
             src="/images/UAGC_logo.svg"
             alt="University of Arizona Global Campus"
             width={181}

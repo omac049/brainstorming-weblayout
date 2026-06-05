@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useCallback, useEffect, useRef } from "react";
-import Image from "next/image";
+import { AssetImage } from "@/components/shared/AssetImage";
 import { Play, X } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
@@ -53,7 +53,7 @@ function VideoCard({
           <span className="absolute inset-0 animate-pulse bg-white/5" />
         )}
 
-        <Image
+        <AssetImage
           src={src}
           alt={`Portrait of ${testimonial.name}`}
           fill

@@ -1,6 +1,6 @@
 "use client";
 
-import Image from "next/image";
+import { AssetImage } from "@/components/shared/AssetImage";
 import Link from "next/link";
 
 import {
@@ -75,7 +75,7 @@ export function AccreditationBand() {
           <div className="flex flex-col items-center text-center sm:flex-row sm:items-start sm:gap-8 sm:text-left">
             <div className="mb-6 shrink-0 sm:mb-0">
               <div className="rounded-xl border-2 border-uagc-gold p-1.5">
-                <Image
+                <AssetImage
                   src="/images/WSCUC-Logo-Square.jpg"
                   alt="WSCUC — Institutional Accreditation"
                   width={112}
@@ -140,7 +140,7 @@ export function AccreditationBand() {
                 className="rounded-xl border border-gray-200 bg-white p-5 sm:p-6"
               >
                 <div className="flex items-start gap-4">
-                  <Image
+                  <AssetImage
                     src={accr.src}
                     alt={`${accr.name} — ${accr.label}`}
                     width={72}
@@ -218,7 +218,7 @@ export function AccreditationBand() {
 
         {/* ── UA Enterprise Callout ── */}
         <div className="mt-6 flex items-start gap-4 rounded-lg border border-uagc-gold/30 bg-uagc-gold/[0.08] px-5 py-5 sm:mt-8 sm:items-center sm:gap-5 sm:px-6">
-          <Image
+          <AssetImage
             src="/images/ua_horiz_rgb_4.svg"
             alt="University of Arizona"
             width={160}

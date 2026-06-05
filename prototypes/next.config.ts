@@ -2,10 +2,15 @@ import type { NextConfig } from "next";
 
 const isGitHubPages = process.env.GITHUB_PAGES === "true";
 
+const basePath = isGitHubPages ? "/brainstorming-weblayout" : "";
+
 const nextConfig: NextConfig = {
   output: isGitHubPages ? "export" : "standalone",
-  basePath: isGitHubPages ? "/brainstorming-weblayout" : "",
+  basePath,
   assetPrefix: isGitHubPages ? "/brainstorming-weblayout/" : undefined,
+  env: {
+    NEXT_PUBLIC_BASE_PATH: basePath,
+  },
   turbopack: { root: "." },
   allowedDevOrigins: ["192.168.68.55"],
   images: {

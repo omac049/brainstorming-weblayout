@@ -1,4 +1,4 @@
-import Image from "next/image";
+import { AssetImage } from "@/components/shared/AssetImage";
 import Link from "next/link";
 import type { ReactNode } from "react";
 
@@ -101,7 +101,7 @@ export function ContentBlock({
           {hasImage && image && (
             <div className={cn("relative", reversed ? "lg:order-1" : "lg:order-2")}>
               <div className="relative aspect-[4/3] w-full overflow-hidden rounded-sm">
-                <Image
+                <AssetImage
                   src={image}
                   alt={imageAlt}
                   fill
@@ -112,7 +112,7 @@ export function ContentBlock({
                   )}
                 />
                 {mobileImage ? (
-                  <Image
+                  <AssetImage
                     src={mobileImage}
                     alt={imageAlt}
                     fill

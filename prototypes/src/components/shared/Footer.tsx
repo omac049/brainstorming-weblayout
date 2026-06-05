@@ -1,4 +1,4 @@
-import Image from "next/image";
+import { AssetImage } from "@/components/shared/AssetImage";
 import Link from "next/link";
 
 const WSCUC_ACCREDITATION =
@@ -34,7 +34,7 @@ export function Footer() {
             className="flex shrink-0 items-center justify-self-start focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--color-uagc-navy)]"
             aria-label="University of Arizona Global Campus home"
           >
-            <Image
+            <AssetImage
               src="/images/UAGC_logo.svg"
               alt="University of Arizona Global Campus"
               width={181}
@@ -54,7 +54,7 @@ export function Footer() {
           </div>
 
           <div className="flex flex-col items-start gap-2 md:items-end md:text-right">
-            <Image
+            <AssetImage
               src="/images/ua_horiz_rgb_4.svg"
               alt="The University of Arizona"
               width={160}

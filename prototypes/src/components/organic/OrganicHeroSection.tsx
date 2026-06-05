@@ -1,6 +1,6 @@
 "use client";
 
-import Image from "next/image";
+import { AssetImage } from "@/components/shared/AssetImage";
 import Link from "next/link";
 import type { RefObject } from "react";
 
@@ -60,7 +60,7 @@ export function OrganicHeroSection({ heroRef, className }: OrganicHeroSectionPro
           </div>
 
           <div className="relative min-h-[280px] sm:min-h-[340px] lg:min-h-full">
-            <Image
+            <AssetImage
               src={HERO.images.mobile}
               alt={HERO.images.alt}
               fill
@@ -68,7 +68,7 @@ export function OrganicHeroSection({ heroRef, className }: OrganicHeroSectionPro
               sizes="(max-width: 1023px) 100vw, 50vw"
               className="object-cover object-[center_20%] lg:hidden"
             />
-            <Image
+            <AssetImage
               src={HERO.images.desktop}
               alt={HERO.images.alt}
               fill

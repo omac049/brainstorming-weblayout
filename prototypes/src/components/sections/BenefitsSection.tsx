@@ -1,4 +1,4 @@
-import Image from "next/image";
+import { AssetImage } from "@/components/shared/AssetImage";
 import {
   BookOpen,
   Calendar,
@@ -215,7 +215,7 @@ export function BenefitsSection({
           {hasImage && image && (
             <div className="relative hidden w-full max-w-md lg:block">
               <div className="relative aspect-[3/4] w-full overflow-hidden rounded-xl">
-                <Image
+                <AssetImage
                   src={image}
                   alt={imageAlt}
                   fill

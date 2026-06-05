@@ -1,6 +1,6 @@
 "use client";
 
-import Image from "next/image";
+import { AssetImage } from "@/components/shared/AssetImage";
 import {
   forwardRef,
   useEffect,
@@ -104,7 +104,7 @@ export const HeroSection = forwardRef<HTMLElement, HeroSectionProps>(
       <div className="lg:hidden">
         {/* Image with gradient overlay, headline + subheadline */}
         <div className="relative h-[56vw] min-h-[210px] max-h-[260px]">
-          <Image
+          <AssetImage
             src={mobileSrc}
             alt=""
             fill
@@ -163,7 +163,7 @@ export const HeroSection = forwardRef<HTMLElement, HeroSectionProps>(
             className="absolute inset-0 will-change-transform"
             aria-hidden="true"
           >
-            <Image
+            <AssetImage
               src={backgroundImage}
               alt=""
               fill
