@@ -443,15 +443,19 @@ function FAQSectionAccordion({
     >
       <div className="mx-auto w-full max-w-[1440px] px-4 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-3xl">
-          <div className="mb-8 text-center sm:mb-10">
-            <span aria-hidden className="mx-auto mb-3 accent-bar" />
-            <h2 className="type-h2 text-uagc-navy">{heading}</h2>
-            {subheading ? (
-              <p className="mx-auto mt-3 max-w-lg text-[0.9375rem] leading-relaxed text-uagc-gray">
-                {subheading}
-              </p>
-            ) : null}
-          </div>
+          {heading.trim() || subheading?.trim() ? (
+            <div className="mb-8 text-center sm:mb-10">
+              <span aria-hidden className="mx-auto mb-3 accent-bar" />
+              {heading.trim() ? (
+                <h2 className="type-h2 text-uagc-navy">{heading}</h2>
+              ) : null}
+              {subheading?.trim() ? (
+                <p className="mx-auto mt-3 max-w-lg text-[0.9375rem] leading-relaxed text-uagc-gray">
+                  {subheading}
+                </p>
+              ) : null}
+            </div>
+          ) : null}
 
           <div className="flex flex-col gap-3">
             {items.map((item, index) => (
@@ -491,11 +495,12 @@ export function FAQSection({
 }: FAQSectionProps) {
   if (variant === "accordion") {
     const simpleItems = items as SimpleFAQItem[];
+    const accordionSubheading = heading === "" ? "" : subheading;
     return (
       <FAQSectionAccordion
         id={id}
         heading={heading}
-        subheading={subheading}
+        subheading={accordionSubheading}
         items={simpleItems}
         className={className}
       />

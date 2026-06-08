@@ -1,55 +1,60 @@
 "use client";
 
-import { useScrollReveal, useAnimatedCounter } from "@/hooks/useScrollReveal";
-
 interface StatItem {
-  end: number;
-  prefix?: string;
-  suffix?: string;
+  value: string;
   label: string;
+  sublabel?: string;
 }
 
+/** Scale / outcome stats — complements hero trust pills ($485, WSCUC, $0 apply). */
 const STATS: StatItem[] = [
-  { end: 54, suffix: "+", label: "Accredited Programs" },
-  { end: 86, suffix: "%", label: "Receive Financial Aid" },
-  { end: 485, prefix: "$", label: "Per Credit" },
-  { end: 98000, suffix: "+", label: "Employers on Handshake" },
+  { value: "50+", label: "Online degree", sublabel: "programs" },
+  { value: "100%", label: "Online", sublabel: "coursework" },
+  { value: "95,000+", label: "Alumni", sublabel: "Worldwide" },
+  { value: "86%", label: "Receive", sublabel: "Financial Aid" },
+  { value: "1:1", label: "Student", sublabel: "Support" },
 ];
 
-function formatNumber(n: number): string {
-  return n >= 1000 ? n.toLocaleString("en-US") : String(n);
-}
-
-function AnimatedStat({ item, isVisible }: { item: StatItem; isVisible: boolean }) {
-  const count = useAnimatedCounter(item.end, isVisible, item.end > 1000 ? 2200 : 1600);
+function StatCell({ item }: { item: StatItem }) {
   return (
-    <div className="flex flex-col items-center gap-1 px-2 py-3 sm:gap-1.5">
-      <p className="type-stat text-[1.5rem] text-uagc-gold sm:text-[2.25rem] lg:text-[3rem]">
-        {item.prefix ?? ""}
-        {formatNumber(count)}
-        {item.suffix ?? ""}
+    <div className="flex min-w-0 flex-col items-center justify-center bg-uagc-navy px-2 py-4 text-center sm:px-3 sm:py-5 lg:px-4 lg:py-6">
+      <p className="font-heading-condensed text-[1.25rem] font-extrabold leading-none text-uagc-gold sm:text-[1.5rem] lg:text-[1.875rem]">
+        {item.value}
       </p>
-      <p className="text-[0.625rem] font-medium uppercase tracking-wider text-white/80 sm:text-xs lg:text-sm">
+      <p className="mt-1.5 text-[0.5625rem] font-medium uppercase leading-snug tracking-[0.06em] text-white/70 sm:mt-2 sm:text-[0.625rem] lg:text-[0.6875rem]">
         {item.label}
+        {item.sublabel && (
+          <>
+            <br />
+            {item.sublabel}
+          </>
+        )}
       </p>
     </div>
   );
 }
 
-export function ImpactStrip() {
-  const { ref, isVisible } = useScrollReveal<HTMLDivElement>({ threshold: 0.3 });
+export interface ImpactStripProps {
+  id?: string;
+  className?: string;
+}
 
+export function ImpactStrip({ id = "impact", className }: ImpactStripProps) {
   return (
     <div
-      ref={ref}
-      className="bg-uagc-navy py-10 sm:py-14 lg:py-16"
+      id={id}
+      className={className}
       role="region"
       aria-label="UAGC by the numbers"
     >
-      <div className="mx-auto grid w-full max-w-[1440px] grid-cols-2 gap-y-6 px-4 sm:px-6 lg:grid-cols-4 lg:gap-0 lg:divide-x lg:divide-white/15 lg:px-8">
-        {STATS.map((item) => (
-          <AnimatedStat key={item.label} item={item} isVisible={isVisible} />
-        ))}
+      <div className="border-t border-white/10 bg-uagc-navy">
+        <div className="mx-auto w-full max-w-[1440px]">
+          <div className="grid grid-cols-2 gap-px bg-white/[0.08] sm:grid-cols-3 lg:grid-cols-5">
+            {STATS.map((item) => (
+              <StatCell key={`${item.value}-${item.label}`} item={item} />
+            ))}
+          </div>
+        </div>
       </div>
     </div>
   );

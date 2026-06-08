@@ -67,6 +67,7 @@ export interface RFIFormProps {
   onSubmit?: (data: Record<string, string>) => void;
   /** Attach to the mini form root so sticky bar visibility can track hero form in viewport. */
   heroFormRef?: RefObject<HTMLDivElement | null>;
+  initialValues?: Partial<RFIFormData>;
 }
 
 export interface RFIStickyBarProps {
@@ -794,12 +795,22 @@ function FullRFIForm({
   heading = DEFAULT_RFI_HEADING,
   className,
   onSubmit,
-}: Pick<RFIFormProps, "heading" | "className" | "onSubmit">) {
+  initialValues,
+}: Pick<RFIFormProps, "heading" | "className" | "onSubmit" | "initialValues">) {
   const [step, setStep] = useState<1 | 2>(1);
-  const [formData, setFormData] = useState<RFIFormData>(INITIAL_FORM_DATA);
+  const [formData, setFormData] = useState<RFIFormData>({
+    ...INITIAL_FORM_DATA,
+    ...initialValues,
+  });
   const [status, setStatus] = useState<SubmitStatus>("idle");
   const [errors, setErrors] = useState<FieldError[]>([]);
   const [stepOneError, setStepOneError] = useState("");
+
+  useEffect(() => {
+    if (initialValues) {
+      setFormData((prev) => ({ ...prev, ...initialValues }));
+    }
+  }, [initialValues]);
 
   const updateField = <K extends keyof RFIFormData>(
     key: K,
@@ -1095,6 +1106,7 @@ export function RFIForm({
   className,
   onSubmit,
   heroFormRef,
+  initialValues,
 }: RFIFormProps) {
   switch (variant) {
     case "mini":
@@ -1111,6 +1123,7 @@ export function RFIForm({
           heading={heading}
           className={className}
           onSubmit={onSubmit}
+          initialValues={initialValues}
         />
       );
     case "inline":

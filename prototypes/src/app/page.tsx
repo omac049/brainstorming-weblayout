@@ -9,6 +9,13 @@ const pages = [
     tag: "Organic · New",
   },
   {
+    slug: "organic/homepage-v2",
+    title: "Homepage v2 (Conversion Architecture)",
+    description:
+      "Reimagined homepage — micro-RFI hero, competitive comparison strip, interactive cost estimator, multi-CTA placement. ~7 sections vs 13. Targets bounce, RFI conversion, and competitive differentiation.",
+    tag: "Organic · v2",
+  },
+  {
     slug: "organic/online-degrees",
     title: "Online Degrees Hub (Organic)",
     description:

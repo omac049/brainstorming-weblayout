@@ -38,6 +38,7 @@ export interface ProgramExplorerProps {
   showTransferCallout?: boolean;
   ctaTarget?: string;
   className?: string;
+  onProgramSelect?: (program: ProgramDetail) => void;
 }
 
 /* ------------------------------------------------------------------ */
@@ -321,6 +322,7 @@ export function ProgramExplorer({
   showTransferCallout: _showTransferCallout = false,
   ctaTarget: _ctaTarget = "#rfi",
   className,
+  onProgramSelect,
 }: ProgramExplorerProps) {
   const MOBILE_INITIAL_COUNT = 6;
   const [query, setQuery] = useState("");
@@ -371,9 +373,13 @@ export function ProgramExplorer({
     return counts;
   }, [programs]);
 
-  const handleToggle = useCallback((programName: string) => {
-    setExpandedProgram((prev) => (prev === programName ? null : programName));
-  }, []);
+  const handleToggle = useCallback((program: ProgramDetail) => {
+    if (onProgramSelect) {
+      onProgramSelect(program);
+    } else {
+      setExpandedProgram((prev) => (prev === program.name ? null : program.name));
+    }
+  }, [onProgramSelect]);
 
   return (
     <section
@@ -597,8 +603,8 @@ export function ProgramExplorer({
                   program={program}
                   areaFilter={areaFilter}
                   compact={compact}
-                  isExpanded={expandedProgram === program.name}
-                  onToggle={() => handleToggle(program.name)}
+                  isExpanded={!onProgramSelect && expandedProgram === program.name}
+                  onToggle={() => handleToggle(program)}
                 />
               </div>
             );
