@@ -52,7 +52,7 @@ export function AccreditationBand() {
   return (
     <section
       ref={ref}
-      className="section-pad bg-[#faf9f7]"
+      className="section-pad bg-uagc-surface"
       aria-labelledby="home-accr-heading"
     >
       <div className="mx-auto w-full max-w-[1440px] px-4 sm:px-6 lg:px-8">

@@ -283,7 +283,7 @@ export function HeroV2({
       <span className="mt-2 block sm:mt-3">
         Finish Your Degree
         <br />
-        <span className="italic text-uagc-gold">On Your Schedule</span>
+        <span className="text-uagc-gold">On Your Schedule</span>
       </span>
     </>
   );

@@ -162,12 +162,9 @@ export function CostEstimator({
         >
           {/* Left — headline + inputs (aligned with TuitionTable rhythm) */}
           <div>
-            <p className="text-xs font-bold uppercase tracking-widest text-uagc-gold">
-              Tuition &amp; Financial Aid
-            </p>
-            <h2 id={`${id}-heading`} className="type-h2 mt-2 text-uagc-navy">
-              What Could{" "}
-              <em className="not-italic text-uagc-gold">Your Degree</em> Cost?
+            <span aria-hidden className="mb-3 accent-bar" />
+            <h2 id={`${id}-heading`} className="type-h2 text-uagc-navy">
+              What Could Your Degree Cost?
             </h2>
             <p className="mt-3 max-w-xl text-[0.9375rem] leading-relaxed text-uagc-gray sm:text-sm">
               Set your path, transfer credits, and aid options to preview tuition.
@@ -200,7 +197,7 @@ export function CostEstimator({
                           "min-h-11 cursor-pointer rounded-lg border px-3 py-2.5 text-center text-sm font-semibold transition-colors duration-200",
                           degreeLevel === key
                             ? "border-uagc-navy bg-uagc-navy text-white"
-                            : "border-uagc-border bg-[#faf9f7] text-uagc-navy hover:border-uagc-navy/25",
+                            : "border-uagc-border bg-uagc-surface text-uagc-navy hover:border-uagc-navy/25",
                         )}
                       >
                         {val.label}
@@ -258,7 +255,7 @@ export function CostEstimator({
                           "min-h-11 cursor-pointer rounded-lg border px-4 py-2.5 text-left text-sm font-semibold transition-colors duration-200 sm:text-center",
                           isActive
                             ? "border-uagc-navy bg-uagc-navy text-white"
-                            : "border-uagc-border bg-[#faf9f7] text-uagc-navy hover:border-uagc-navy/25",
+                            : "border-uagc-border bg-uagc-surface text-uagc-navy hover:border-uagc-navy/25",
                         )}
                         aria-pressed={isActive}
                       >
@@ -304,7 +301,7 @@ export function CostEstimator({
                 {calculation.aidReduction > 0 && (
                   <div className="flex items-baseline justify-between gap-4">
                     <span className="text-white/70">Est. aid reduction</span>
-                    <span className="font-semibold tabular-nums text-[#7dcea0]">
+                    <span className="font-semibold tabular-nums text-uagc-gold">
                       −{formatCurrency(calculation.aidReduction)}
                     </span>
                   </div>
@@ -339,7 +336,7 @@ export function CostEstimator({
               <button
                 type="button"
                 onClick={onGetPlan}
-                className="mt-6 inline-flex min-h-11 w-full items-center justify-center gap-2 rounded-md bg-uagc-gold px-5 py-3 text-sm font-bold text-uagc-navy transition-colors duration-200 hover:bg-[#d4870a] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
+                className="mt-6 inline-flex min-h-11 w-full items-center justify-center gap-2 rounded-lg bg-uagc-gold px-5 py-3 text-sm font-semibold text-uagc-navy transition-colors duration-200 hover:bg-[#d4870a] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
               >
                 Get Your Personalized Plan
                 <ArrowRight className="size-4" aria-hidden />

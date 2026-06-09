@@ -80,7 +80,7 @@ function ApplyFeeBadge({ compact = false }: { compact?: boolean }) {
   return (
     <span
       className={cn(
-        "inline-flex items-center gap-1 font-semibold text-[#0A7A56]",
+        "inline-flex items-center gap-1 font-semibold text-uagc-navy",
         compact ? "text-xs" : "text-sm",
       )}
     >
@@ -104,7 +104,7 @@ export function TuitionTable({
       id={id}
       aria-labelledby={`${id}-heading`}
       className={cn(
-        "scroll-mt-28 section-pad bg-[#faf9f7] lg:scroll-mt-36",
+        "scroll-mt-28 section-pad bg-uagc-surface lg:scroll-mt-36",
         className,
       )}
     >
@@ -118,15 +118,12 @@ export function TuitionTable({
         >
           {/* Left — headline + tuition table */}
           <div>
-            <p className="text-xs font-bold uppercase tracking-widest text-uagc-gold">
-              Quality Education. Accessible.
-            </p>
+            <span aria-hidden className="mb-3 accent-bar" />
             <h2
               id={`${id}-heading`}
-              className="type-h2 mt-2 text-uagc-navy"
+              className="type-h2 text-uagc-navy"
             >
-              An Affordable{" "}
-              <em className="not-italic text-uagc-gold">Path Forward</em>
+              An Affordable Path Forward
             </h2>
             <p className="mt-3 max-w-xl text-[0.9375rem] leading-relaxed text-uagc-gray sm:text-sm">
               We&rsquo;re committed to making your degree achievable with
@@ -159,7 +156,7 @@ export function TuitionTable({
                       className={cn(
                         "border-b border-uagc-border last:border-b-0 transition-colors duration-200",
                         row.highlight
-                          ? "bg-[rgba(0,125,138,0.04)]"
+                          ? "bg-uagc-gold/10"
                           : "hover:bg-uagc-navy/[0.03]",
                       )}
                     >
@@ -170,7 +167,7 @@ export function TuitionTable({
                         className={cn(
                           "px-4 py-3 font-heading text-[17px] font-bold tracking-tight",
                           row.militaryRate
-                            ? "text-sky-800"
+                            ? "text-uagc-gold"
                             : "text-uagc-navy",
                         )}
                       >
@@ -195,7 +192,7 @@ export function TuitionTable({
                   key={row.level}
                   className={cn(
                     "rounded-lg border border-uagc-border bg-white px-4 py-3.5",
-                    row.highlight && "border-sky-200 bg-[rgba(0,125,138,0.04)]",
+                    row.highlight && "border-uagc-gold/30 bg-uagc-gold/10",
                   )}
                 >
                   <div className="flex items-start justify-between gap-3">
@@ -207,8 +204,8 @@ export function TuitionTable({
                         <span
                           className={cn(
                             "font-bold",
-                            row.militaryRate
-                              ? "text-sky-800"
+                            row.                            militaryRate
+                              ? "text-uagc-gold"
                               : "text-uagc-navy",
                           )}
                         >
@@ -219,7 +216,7 @@ export function TuitionTable({
                         {row.estTotal}
                       </p>
                     </div>
-                    <span className="shrink-0 rounded-full bg-[#0A7A56]/10 px-2.5 py-1">
+                    <span className="shrink-0 rounded-full bg-uagc-gold/15 px-2.5 py-1">
                       <ApplyFeeBadge compact />
                     </span>
                   </div>
@@ -237,7 +234,7 @@ export function TuitionTable({
           {/* Right — 86% anchor + aid options */}
           <div className="lg:pt-1">
             <p
-              className="font-heading-condensed text-[clamp(4rem,12vw,5rem)] font-extrabold leading-none tracking-[-0.04em] text-uagc-navy"
+              className="type-stat text-[clamp(4rem,12vw,5rem)] text-uagc-navy"
               aria-label="86 percent"
             >
               86<span className="text-uagc-gold">%</span>
@@ -253,9 +250,9 @@ export function TuitionTable({
                 return (
                   <div
                     key={option.title}
-                    className="flex items-start gap-3 rounded-lg border border-uagc-border bg-white p-3.5 transition-colors duration-200 hover:border-uagc-navy"
+                    className="group flex items-start gap-3 rounded-2xl border border-uagc-border bg-white p-3.5 transition-all duration-200 hover:border-uagc-gold hover:shadow-[0_4px_20px_rgba(12,35,75,0.08)]"
                   >
-                    <span className="flex size-8 shrink-0 items-center justify-center rounded bg-uagc-navy/[0.06] text-uagc-navy">
+                    <span className="flex size-8 shrink-0 items-center justify-center rounded-xl bg-uagc-surface text-uagc-navy transition-colors duration-200 group-hover:bg-[#fdf3e0] group-hover:text-uagc-gold">
                       <Icon className="size-[15px]" strokeWidth={1.75} />
                     </span>
                     <div className="min-w-0">
@@ -275,7 +272,7 @@ export function TuitionTable({
               <button
                 type="button"
                 onClick={onExploreAid}
-                className="mt-7 inline-flex min-h-11 cursor-pointer items-center gap-2 rounded-md bg-uagc-gold px-5 py-2.5 text-sm font-bold text-uagc-navy transition-colors duration-200 hover:bg-[#d4870a] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-uagc-navy"
+                className="mt-7 inline-flex min-h-11 cursor-pointer items-center gap-2 rounded-lg bg-uagc-gold px-5 py-2.5 text-sm font-semibold text-uagc-navy transition-colors duration-200 hover:bg-[#d4870a] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-uagc-navy"
               >
                 Estimate Your Cost
                 <ArrowRight className="size-4" aria-hidden />
@@ -285,7 +282,7 @@ export function TuitionTable({
                 href={exploreAidHref}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="mt-7 inline-flex min-h-11 items-center gap-2 rounded-md bg-uagc-gold px-5 py-2.5 text-sm font-bold text-uagc-navy transition-colors duration-200 hover:bg-[#d4870a] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-uagc-navy"
+                className="mt-7 inline-flex min-h-11 items-center gap-2 rounded-lg bg-uagc-gold px-5 py-2.5 text-sm font-semibold text-uagc-navy transition-colors duration-200 hover:bg-[#d4870a] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-uagc-navy"
               >
                 Explore All Aid Options
                 <ArrowRight className="size-4" aria-hidden />

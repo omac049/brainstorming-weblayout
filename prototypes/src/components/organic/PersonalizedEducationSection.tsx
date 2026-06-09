@@ -46,12 +46,9 @@ export function PersonalizedEducationSection({
           )}
         >
           <div className="max-w-2xl">
-            <p className="text-xs font-bold uppercase tracking-widest text-uagc-gold">
-              From the UAGC Blog
-            </p>
-            <h2 id={`${id}-heading`} className="type-h2 mt-2 text-uagc-navy">
-              Latest{" "}
-              <em className="not-italic text-uagc-gold">Stories &amp; Insights</em>
+            <span aria-hidden className="mb-3 accent-bar" />
+            <h2 id={`${id}-heading`} className="type-h2 text-uagc-navy">
+              Latest Stories &amp; Insights
             </h2>
             <p className="mt-3 text-[0.9375rem] leading-relaxed text-uagc-gray sm:text-sm">
               Student success stories, faculty perspectives, and practical tips
@@ -62,7 +59,7 @@ export function PersonalizedEducationSection({
             href={viewAllHref}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex shrink-0 items-center gap-1.5 text-sm font-bold text-uagc-gold transition-colors hover:text-uagc-navy"
+            className="inline-flex shrink-0 items-center gap-1.5 text-sm font-semibold text-uagc-red transition-colors hover:underline"
           >
             View All Articles
             <ArrowRight className="size-3.5" strokeWidth={2.5} aria-hidden />
@@ -83,11 +80,11 @@ export function PersonalizedEducationSection({
               target="_blank"
               rel="noopener noreferrer"
               className={cn(
-                "group flex cursor-pointer flex-col overflow-hidden rounded-xl border border-uagc-border bg-white no-underline transition-colors duration-200",
-                "hover:border-uagc-navy/25",
+                "group flex cursor-pointer flex-col overflow-hidden rounded-2xl border border-uagc-border bg-white no-underline transition-all duration-200",
+                "hover:border-uagc-gold hover:shadow-[0_4px_20px_rgba(12,35,75,0.08)]",
               )}
             >
-              <div className="relative aspect-[590/330] overflow-hidden bg-[#faf9f7]">
+              <div className="relative aspect-[590/330] overflow-hidden bg-uagc-surface">
                 <AssetImage
                   src={post.imageSrc}
                   alt={post.imageAlt}
@@ -118,7 +115,7 @@ export function PersonalizedEducationSection({
                 <p className="mt-2 flex-1 text-sm leading-relaxed text-uagc-gray">
                   {post.description}
                 </p>
-                <span className="mt-4 inline-flex min-h-11 items-center gap-1.5 text-sm font-bold text-uagc-gold transition-all duration-200 group-hover:gap-2.5">
+                <span className="mt-4 inline-flex min-h-11 items-center gap-1.5 text-sm font-semibold text-uagc-red transition-all duration-200 group-hover:gap-2.5">
                   Read Article
                   <ArrowRight className="size-4" strokeWidth={2.5} aria-hidden />
                 </span>

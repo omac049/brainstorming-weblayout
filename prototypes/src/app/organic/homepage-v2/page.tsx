@@ -203,7 +203,7 @@ export default function OrganicHomepageV2() {
 
         {/* ── WHAT INTERESTS YOU? (Brandy: area-of-study grid) ── */}
         <ScrollReveal>
-          <InterestAreaGrid className="bg-[#faf9f7]" />
+          <InterestAreaGrid className="bg-uagc-surface" />
         </ScrollReveal>
 
         {/* ── AN AFFORDABLE PATH FORWARD (Brandy: tuition table) ── */}
@@ -213,12 +213,12 @@ export default function OrganicHomepageV2() {
 
         {/* ── COST-EST — interactive tuition preview ── */}
         <ScrollReveal delay={60}>
-          <CostEstimator className="bg-[#faf9f7]" onGetPlan={scrollToRfi} />
+          <CostEstimator className="bg-uagc-surface" onGetPlan={scrollToRfi} />
         </ScrollReveal>
 
         {/* ── LATEST STORIES (live blog feed) ── */}
         <ScrollReveal>
-          <PersonalizedEducationSection className="bg-[#faf9f7]" />
+          <PersonalizedEducationSection />
         </ScrollReveal>
 
         {/* ── READY TO TAKE THE NEXT STEP? (navy CTA band + white form card) ── */}
@@ -274,7 +274,7 @@ export default function OrganicHomepageV2() {
         </section>
 
         {/* ── UAGC FAQs (Brandy: FAQ accordion) ── */}
-        <section id="faq" className="scroll-mt-24 section-pad bg-[#faf9f7]">
+        <section id="faq" className="scroll-mt-24 section-pad bg-uagc-surface">
           <div className="mx-auto w-full max-w-[1440px] px-4 sm:px-6 lg:px-8">
             <div className="mb-8 text-center">
               <span aria-hidden className="mx-auto mb-3 accent-bar" />

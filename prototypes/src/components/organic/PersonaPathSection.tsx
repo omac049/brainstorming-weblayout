@@ -70,16 +70,15 @@ export function PersonaPathSection({
       <div className="mx-auto w-full max-w-[1440px] px-4 sm:px-6 lg:px-8">
         <div className="mb-10 flex flex-col gap-4 sm:mb-12 lg:flex-row lg:items-end lg:justify-between lg:gap-6">
           <div>
-            <p className="text-xs font-bold uppercase tracking-widest text-uagc-gold">
-              Built for Your Journey
+            <span aria-hidden className="mb-3 accent-bar" />
+            <h2 className="type-h2 text-uagc-navy">Find the Path That Fits You</h2>
+            <p className="mt-3 max-w-2xl text-[0.9375rem] leading-relaxed text-uagc-gray sm:text-base">
+              Whether you&rsquo;re balancing work, military service, or transfer credits — explore paths built for where you are now.
             </p>
-            <h2 className="type-h2 mt-2 text-uagc-navy">
-              Find the Path That Fits You
-            </h2>
           </div>
           <a
             href={viewAllHref}
-            className="inline-flex shrink-0 items-center gap-1.5 text-sm font-bold text-uagc-gold transition-colors hover:text-uagc-navy"
+            className="inline-flex shrink-0 items-center gap-1.5 text-sm font-semibold text-uagc-red transition-colors hover:underline"
           >
             View All Paths
             <ArrowRight className="size-3.5" strokeWidth={2.5} aria-hidden />
@@ -92,8 +91,8 @@ export function PersonaPathSection({
               key={path.title}
               href={path.href}
               className={cn(
-                "group block cursor-pointer overflow-hidden rounded-xl border border-uagc-border bg-white no-underline transition-all duration-200",
-                "hover:-translate-y-1 hover:shadow-[0_10px_40px_rgba(0,0,0,0.1)]",
+                "group relative block cursor-pointer overflow-hidden rounded-2xl border border-uagc-border bg-white no-underline transition-all duration-200",
+                "hover:border-uagc-gold hover:shadow-[0_4px_20px_rgba(12,35,75,0.08)]",
               )}
             >
               <div className="relative h-40 overflow-hidden sm:h-[175px]">
@@ -104,20 +103,16 @@ export function PersonaPathSection({
                   sizes="(min-width: 1024px) 320px, 75vw"
                   className="object-cover object-[center_20%] transition-transform duration-300 group-hover:scale-105"
                 />
-                <div
-                  className="absolute inset-0 bg-gradient-to-t from-uagc-navy/35 via-transparent to-transparent"
-                  aria-hidden
-                />
               </div>
 
-              <div className="px-[18px] pb-[18px] pt-[26px]">
-                <h3 className="font-heading text-[1.3125rem] font-bold leading-tight text-uagc-navy">
+              <div className="px-[18px] pb-[18px] pt-5">
+                <h3 className="type-h5 text-uagc-navy">
                   {path.title}
                 </h3>
                 <p className="mb-3.5 mt-1.5 text-[13px] leading-relaxed text-uagc-gray">
                   {path.description}
                 </p>
-                <span className="inline-flex items-center gap-1 text-[13px] font-bold text-uagc-gold transition-all duration-200 group-hover:gap-2">
+                <span className="inline-flex items-center gap-1 text-[13px] font-semibold text-uagc-red transition-all duration-200 group-hover:gap-2">
                   Explore Your Path
                   <ArrowRight className="size-3" strokeWidth={2.5} aria-hidden />
                 </span>
