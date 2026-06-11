@@ -1,10 +1,12 @@
-name: Deploy Prototypes to GitHub Pages
+name: Deploy to GitHub Pages
 
 on:
   push:
     branches: [main]
     paths:
       - "prototypes/**"
+      - "decks/**"
+      - "output/playwright/screenshots/**"
       - ".github/workflows/deploy-pages.yml"
   workflow_dispatch:
 
@@ -20,9 +22,6 @@ concurrency:
 jobs:
   build:
     runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: prototypes
     steps:
       - uses: actions/checkout@v4
 
@@ -33,10 +32,28 @@ jobs:
           cache-dependency-path: prototypes/package-lock.json
 
       - run: npm ci
+        working-directory: prototypes
 
       - run: npm run build
+        working-directory: prototypes
         env:
           GITHUB_PAGES: "true"
+
+      - name: Copy decks and audit pages into build output
+        run: |
+          cp -r decks prototypes/out/decks
+          mkdir -p prototypes/out/output/playwright
+          cp -r output/playwright/screenshots prototypes/out/output/playwright/screenshots
+
+      - name: Create deck screenshot aliases
+        run: |
+          mkdir -p prototypes/out/decks/screenshots
+          SS=output/playwright/screenshots
+          cp "$SS/homepage_desktop-1440.png"                       prototypes/out/decks/screenshots/homepage-desktop.png
+          cp "$SS/organic-07-blog-phd-doctorate_desktop-1440.png"  prototypes/out/decks/screenshots/blog-phd-desktop.png
+          cp "$SS/online-degrees_desktop-1440.png"                 prototypes/out/decks/screenshots/online-degrees-desktop.png
+          cp "$SS/request-info-v5_desktop-1440.png"                prototypes/out/decks/screenshots/rfi-v5-desktop.png
+          cp "$SS/degree-programs-v7_desktop-1440.png"             prototypes/out/decks/screenshots/degree-programs-v7-desktop.png
 
       - uses: actions/upload-pages-artifact@v3
         with:
