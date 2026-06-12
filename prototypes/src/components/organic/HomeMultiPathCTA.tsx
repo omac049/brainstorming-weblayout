@@ -60,7 +60,7 @@ export function HomeMultiPathCTA() {
           <h2 id="home-next-steps-heading" className="type-h2 text-white">
             Ready to Take the Next Step?
           </h2>
-          <p className="mt-3 text-sm leading-relaxed text-[#b8c5d9] sm:text-base">
+          <p className="mt-3 text-sm leading-relaxed text-uagc-navy-muted sm:text-base">
             Choose the path that works best for you.
           </p>
         </div>
@@ -74,7 +74,7 @@ export function HomeMultiPathCTA() {
             >
               <span className="text-uagc-gold">{icon}</span>
               <h3 className="mt-4 font-heading text-lg font-semibold">{title}</h3>
-              <p className="mt-2 flex-1 text-sm text-[#b8c5d9]">{description}</p>
+              <p className="mt-2 flex-1 text-sm text-uagc-navy-muted">{description}</p>
               <span className="mt-4 text-xs font-bold uppercase tracking-wide text-uagc-gold group-hover:underline">
                 {label} →
               </span>

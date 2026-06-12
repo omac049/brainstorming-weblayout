@@ -243,12 +243,12 @@ function HeroSectionNav({
         className,
       )}
     >
-      <div className="mx-auto flex w-full max-w-[1440px] items-center gap-1 overflow-x-auto px-5 py-2 sm:justify-center sm:gap-1.5 sm:px-6 lg:px-8 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+      <div className="mx-auto flex w-full max-w-[1440px] items-center gap-1 overflow-x-auto px-5 py-2 mobile-nav-scroll sm:justify-center sm:gap-1.5 sm:px-6 lg:px-8">
         {items.map((item) => (
           <a
             key={item.id}
             href={`#${item.id}`}
-            className="shrink-0 min-w-[44px] rounded-full px-3.5 py-2 text-center text-xs font-medium tracking-wide text-white/75 transition-all duration-200 hover:bg-white/10 hover:text-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white sm:min-w-0 sm:px-4 sm:text-[0.8125rem]"
+            className="shrink-0 min-w-11 rounded-full px-3.5 py-2 text-center text-xs font-medium tracking-wide text-white/75 transition-colors duration-200 hover:bg-white/10 hover:text-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white sm:min-w-0 sm:px-4 sm:text-[0.8125rem]"
           >
             {item.label}
           </a>

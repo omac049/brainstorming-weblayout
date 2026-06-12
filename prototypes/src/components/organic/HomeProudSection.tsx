@@ -14,14 +14,14 @@ export function HomeProudSection() {
           <h2 id="home-proud-heading" className="type-h2 mt-2 text-white">
             50+ Programs. 100% Online.
           </h2>
-          <p className="mt-3 max-w-2xl text-sm leading-relaxed text-[#b8c5d9] sm:text-base">
+          <p className="mt-3 max-w-2xl text-sm leading-relaxed text-uagc-navy-muted sm:text-base">
             Part of the University of Arizona enterprise — flexible online degrees
             for busy adults who need school to fit real life.
           </p>
         </div>
         <Link
           href="/organic/online-degrees"
-          className="inline-flex min-h-11 shrink-0 items-center gap-2 rounded-full bg-uagc-gold px-5 py-2.5 text-sm font-bold uppercase tracking-wide text-uagc-navy transition-colors hover:bg-[#f5a623] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
+          className="inline-flex min-h-11 shrink-0 items-center gap-2 rounded-full bg-uagc-gold px-5 py-2.5 text-sm font-bold uppercase tracking-wide text-uagc-navy transition-colors hover:bg-uagc-gold-hover focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
         >
           View All Programs
           <ArrowRight className="size-4" aria-hidden />

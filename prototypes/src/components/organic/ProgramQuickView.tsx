@@ -41,7 +41,7 @@ export function ProgramQuickView({
   if (!program) return null;
 
   return (
-    <div className="fixed inset-0 z-[100]" role="dialog" aria-modal="true" aria-label={program.name}>
+    <div className="fixed inset-0 z-100" role="dialog" aria-modal="true" aria-label={program.name}>
       <div
         className="absolute inset-0 bg-black/40 backdrop-blur-sm"
         onClick={onClose}
@@ -52,8 +52,8 @@ export function ProgramQuickView({
         ref={panelRef}
         className={cn(
           "absolute bg-white shadow-2xl overflow-y-auto",
-          "inset-x-0 bottom-0 top-[15vh] rounded-t-2xl",
-          "lg:inset-y-0 lg:left-auto lg:right-0 lg:w-[480px] lg:rounded-none xl:w-[520px]",
+          "inset-x-0 bottom-0 top-[12svh] max-h-[88svh] rounded-t-2xl",
+          "lg:inset-y-0 lg:top-0 lg:max-h-none lg:left-auto lg:right-0 lg:w-[480px] lg:rounded-none xl:w-[520px]",
         )}
       >
         <div className="sticky top-0 z-10 flex items-start justify-between border-b border-uagc-border bg-white px-5 py-4 sm:px-6">
@@ -68,7 +68,7 @@ export function ProgramQuickView({
           <button
             type="button"
             onClick={onClose}
-            className="ml-3 flex size-9 shrink-0 items-center justify-center rounded-full text-uagc-gray transition-colors hover:bg-uagc-surface hover:text-uagc-navy"
+            className="ml-3 flex size-11 shrink-0 cursor-pointer items-center justify-center rounded-full text-uagc-gray transition-colors hover:bg-uagc-surface hover:text-uagc-navy"
             aria-label="Close program details"
           >
             <X className="size-5" />
@@ -84,19 +84,19 @@ export function ProgramQuickView({
             <div className="rounded-lg bg-uagc-surface p-3 text-center">
               <Clock className="mx-auto size-4 text-uagc-navy/60" aria-hidden />
               <p className="mt-1.5 text-lg font-bold text-uagc-navy">{program.credits}</p>
-              <p className="text-[11px] text-uagc-gray">Credits</p>
+              <p className="type-micro text-uagc-gray">Credits</p>
             </div>
             <div className="rounded-lg bg-uagc-surface p-3 text-center">
               <BookOpen className="mx-auto size-4 text-uagc-navy/60" aria-hidden />
               <p className="mt-1.5 text-sm font-bold text-uagc-navy">{program.duration}</p>
-              <p className="text-[11px] text-uagc-gray">Est. Time</p>
+              <p className="type-micro text-uagc-gray">Est. Time</p>
             </div>
             <div className="rounded-lg bg-uagc-surface p-3 text-center">
               <TrendingUp className="mx-auto size-4 text-uagc-navy/60" aria-hidden />
               <p className="mt-1.5 text-lg font-bold text-uagc-navy">
                 {program.level.includes("Master") || program.level.includes("Doctoral") ? "$625" : "$485"}
               </p>
-              <p className="text-[11px] text-uagc-gray">Per Credit</p>
+              <p className="type-micro text-uagc-gray">Per Credit</p>
             </div>
           </div>
 
@@ -120,7 +120,7 @@ export function ProgramQuickView({
                 </li>
               ))}
             </ul>
-            <p className="mt-2 text-[10px] text-uagc-gray/50">
+            <p className="mt-2 text-xs text-uagc-gray/50">
               Salary ranges are national medians from BLS and vary by location.
             </p>
           </div>
@@ -146,11 +146,11 @@ export function ProgramQuickView({
           )}
         </div>
 
-        <div className="sticky bottom-0 border-t border-uagc-border bg-white px-5 py-4 sm:px-6">
+        <div className="sticky bottom-0 border-t border-uagc-border bg-white px-5 py-4 safe-area-bottom sm:px-6">
           <button
             type="button"
             onClick={() => onRequestInfo?.(program.area)}
-            className="inline-flex min-h-[3rem] w-full items-center justify-center gap-2 rounded-full bg-uagc-gold px-6 py-3 text-sm font-bold uppercase tracking-wide text-uagc-navy transition-colors hover:bg-uagc-gold/90 focus-visible:ring-2 focus-visible:ring-uagc-gold focus-visible:ring-offset-2"
+            className="inline-flex min-h-12 w-full items-center justify-center gap-2 rounded-full bg-uagc-gold px-6 py-3 text-sm font-bold uppercase tracking-wide text-uagc-navy transition-colors hover:bg-uagc-gold/90 focus-visible:ring-2 focus-visible:ring-uagc-gold focus-visible:ring-offset-2"
           >
             Request Info for This Program
             <ArrowRight className="size-4" aria-hidden />

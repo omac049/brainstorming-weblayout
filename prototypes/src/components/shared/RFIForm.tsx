@@ -5,11 +5,14 @@ import {
   useCallback,
   useEffect,
   useMemo,
+  useRef,
   useState,
   type FormEvent,
   type ReactNode,
   type RefObject,
 } from "react";
+
+import { usePublishElementHeight } from "@/hooks/usePublishElementHeight";
 
 import {
   AREAS_OF_INTEREST,
@@ -76,7 +79,8 @@ export interface RFIStickyBarProps {
   className?: string;
 }
 
-const STICKY_BAR_HEIGHT_CLASS = "pb-[env(safe-area-inset-bottom,8px)]";
+const STICKY_BAR_HEIGHT_CLASS =
+  "pb-[max(0.5rem,env(safe-area-inset-bottom,0px))]";
 
 const MINI_HEADING = "Request More Information";
 
@@ -97,7 +101,7 @@ const inputClass = "rfi-input";
 const inputErrorClass = "rfi-input border-red-500 ring-2 ring-red-100";
 const primaryButtonClass = "rfi-button-primary";
 const secondaryButtonClass =
-  "inline-flex min-h-[3.25rem] items-center justify-center gap-2 rounded-full border border-uagc-navy bg-white px-6 py-3 text-sm font-bold uppercase tracking-wide text-uagc-navy transition-[background-color,transform] hover:bg-uagc-navy/5 focus-visible:ring-2 focus-visible:ring-uagc-navy focus-visible:ring-offset-2 motion-safe:active:scale-[0.98]";
+  "inline-flex min-h-13 items-center justify-center gap-2 rounded-full border border-uagc-navy bg-white px-6 py-3 text-sm font-bold uppercase tracking-wide text-uagc-navy transition-[background-color,transform] hover:bg-uagc-navy/5 focus-visible:ring-2 focus-visible:ring-uagc-navy focus-visible:ring-offset-2 motion-safe:active:scale-98";
 
 function toSubmitRecord(data: RFIFormData): Record<string, string> {
   const record: Record<string, string> = {
@@ -719,7 +723,7 @@ function MiniRFIForm({
             >
               {status === "submitting" ? (
                 <>
-                  <Loader2 className="size-4 animate-spin" aria-hidden />
+                  <Loader2 className="size-4 animate-spin motion-reduce:animate-none" aria-hidden />
                   Submitting...
                 </>
               ) : (
@@ -805,12 +809,14 @@ function FullRFIForm({
   const [status, setStatus] = useState<SubmitStatus>("idle");
   const [errors, setErrors] = useState<FieldError[]>([]);
   const [stepOneError, setStepOneError] = useState("");
+  const [prevInitialValues, setPrevInitialValues] = useState(initialValues);
 
-  useEffect(() => {
+  if (initialValues !== prevInitialValues) {
+    setPrevInitialValues(initialValues);
     if (initialValues) {
       setFormData((prev) => ({ ...prev, ...initialValues }));
     }
-  }, [initialValues]);
+  }
 
   const updateField = <K extends keyof RFIFormData>(
     key: K,
@@ -951,7 +957,7 @@ function FullRFIForm({
             >
               {status === "submitting" ? (
                 <>
-                  <Loader2 className="size-4 animate-spin" aria-hidden />
+                  <Loader2 className="size-4 animate-spin motion-reduce:animate-none" aria-hidden />
                   Submitting...
                 </>
               ) : (
@@ -1049,11 +1055,14 @@ export function RFIStickyBar({
   className,
 }: RFIStickyBarProps) {
   const [heroFormVisible, setHeroFormVisible] = useState(true);
+  const barRef = useRef<HTMLDivElement>(null);
+
+  usePublishElementHeight(barRef, "--uagc-sticky-rfi-height");
 
   useEffect(() => {
     const heroElement = heroFormRef.current;
     if (!heroElement) {
-      setHeroFormVisible(false);
+      queueMicrotask(() => setHeroFormVisible(false));
       return;
     }
 
@@ -1074,10 +1083,11 @@ export function RFIStickyBar({
 
   return (
     <div
+      ref={barRef}
       data-rfi-sticky-bar
       aria-hidden={heroFormVisible}
       className={cn(
-        "fixed inset-x-0 bottom-0 z-[98] border-t border-white/10 bg-uagc-navy px-4 pt-2.5 shadow-[0_-4px_16px_rgba(0,0,0,0.35)] transition-transform duration-300 ease-out md:hidden",
+        "fixed inset-x-0 bottom-0 z-98 border-t border-white/10 bg-uagc-navy px-4 pt-2.5 shadow-[0_-4px_16px_rgba(0,0,0,0.35)] transition-transform duration-300 ease-out md:hidden",
         STICKY_BAR_HEIGHT_CLASS,
         heroFormVisible
           ? "pointer-events-none translate-y-full"
@@ -1091,7 +1101,7 @@ export function RFIStickyBar({
       <a
         href="#rfi"
         tabIndex={heroFormVisible ? -1 : 0}
-        className="rfi-button-primary flex w-full items-center justify-center gap-2 text-center"
+        className="rfi-button-primary flex min-h-11 w-full items-center justify-center gap-2 text-center"
       >
         Request More Information
         <ArrowRight className="size-4" aria-hidden="true" />

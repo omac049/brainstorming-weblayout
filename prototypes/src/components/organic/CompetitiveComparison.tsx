@@ -61,7 +61,7 @@ function MobileCards() {
         </p>
 
         <div key={activeIndex} className="mt-3 space-y-3 transition-opacity duration-200">
-          <div className="rounded-lg border-l-4 border-uagc-gold bg-uagc-gold/[0.06] p-3">
+          <div className="rounded-lg border-l-4 border-uagc-gold bg-uagc-gold/6 p-3">
             <p className="text-[11px] font-bold uppercase tracking-wide text-uagc-gold">UAGC</p>
             <p className="mt-1 text-base font-bold text-uagc-navy">{row.uagc}</p>
           </div>
@@ -130,7 +130,7 @@ function DesktopTable() {
               <th className="w-[18%] px-5 py-4 text-left text-xs font-bold uppercase tracking-wide text-uagc-gray/60">
                 &nbsp;
               </th>
-              <th className="w-[28%] border-l-4 border-uagc-gold bg-uagc-gold/[0.06] px-5 py-4 text-left text-xs font-bold uppercase tracking-wide text-uagc-navy">
+              <th className="w-[28%] border-l-4 border-uagc-gold bg-uagc-gold/6 px-5 py-4 text-left text-xs font-bold uppercase tracking-wide text-uagc-navy">
                 UAGC
               </th>
               <th className="w-[27%] px-5 py-4 text-left text-xs font-bold uppercase tracking-wide text-uagc-gray/60">
@@ -147,7 +147,7 @@ function DesktopTable() {
                 <td className="px-5 py-4 font-semibold text-uagc-navy">
                   {row.dimension}
                 </td>
-                <td className="border-l-4 border-uagc-gold bg-uagc-gold/[0.03] px-5 py-4 font-bold text-uagc-navy">
+                <td className="border-l-4 border-uagc-gold bg-uagc-gold/3 px-5 py-4 font-bold text-uagc-navy">
                   {row.uagc}
                 </td>
                 <td className="px-5 py-4 text-uagc-gray">
@@ -194,7 +194,7 @@ export function CompetitiveComparison({
           </p>
           <a
             href="#rfi"
-            className="inline-flex min-h-11 shrink-0 cursor-pointer items-center gap-2 rounded-md bg-uagc-gold px-5 py-2.5 text-sm font-bold text-uagc-navy transition-colors duration-200 hover:bg-[#d4870a] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-uagc-navy"
+            className="inline-flex min-h-11 shrink-0 cursor-pointer items-center gap-2 rounded-md bg-uagc-gold px-5 py-2.5 text-sm font-bold text-uagc-navy transition-colors duration-200 hover:bg-uagc-gold-dark focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-uagc-navy"
           >
             Request Your Program Guide
           </a>

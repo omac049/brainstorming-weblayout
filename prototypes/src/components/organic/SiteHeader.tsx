@@ -87,8 +87,8 @@ function UtilityDropdown({ link }: { link: UtilityLinkItem }) {
           aria-hidden
         />
       </Link>
-      <div className="invisible absolute left-0 top-full z-50 pt-1 opacity-0 transition-all group-hover/util:visible group-hover/util:opacity-100">
-        <div className="min-w-[200px] rounded-lg border border-white/10 bg-[#0a1d3f] py-1 shadow-xl">
+      <div className="invisible absolute left-0 top-full z-50 pt-1 opacity-0 transition-[visibility,opacity] group-hover/util:visible group-hover/util:opacity-100">
+        <div className="min-w-[200px] rounded-lg border border-white/10 bg-uagc-navy-panel py-1 shadow-xl">
           <Link
             href={link.href}
             className="block px-4 py-2 text-[11px] font-bold uppercase tracking-[0.08em] text-uagc-gold/80 transition-colors hover:bg-white/10 hover:text-uagc-gold"
@@ -151,12 +151,12 @@ function MegaMenuPanel({
               <Link
                 href={column.href}
                 onClick={onNavigate}
-                className="mb-3 block text-[11px] font-bold uppercase tracking-[0.1em] text-uagc-navy/50 transition-colors hover:text-uagc-red"
+                className="mb-3 block text-[11px] font-bold uppercase tracking-widest text-uagc-navy/50 transition-colors hover:text-uagc-red"
               >
                 {column.title}
               </Link>
             ) : (
-              <p className="mb-3 text-[11px] font-bold uppercase tracking-[0.1em] text-uagc-navy/50">
+              <p className="mb-3 text-[11px] font-bold uppercase tracking-widest text-uagc-navy/50">
                 {column.title}
               </p>
             )}
@@ -166,7 +166,7 @@ function MegaMenuPanel({
                   <Link
                     href={link.href}
                     onClick={onNavigate}
-                    className="block rounded-md px-2 py-1.5 text-sm font-medium text-uagc-navy transition-colors hover:bg-[#f5f4f0] hover:text-uagc-red focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-uagc-navy"
+                    className="block rounded-md px-2 py-1.5 text-sm font-medium text-uagc-navy transition-colors hover:bg-muted hover:text-uagc-red focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-uagc-navy"
                   >
                     {link.label}
                   </Link>
@@ -177,7 +177,7 @@ function MegaMenuPanel({
         ))}
 
         {menu.featured ? (
-          <div className="rounded-xl border border-uagc-border bg-[#faf9f7] p-5">
+          <div className="rounded-xl border border-uagc-border bg-uagc-cream p-5">
             <p className="text-[10px] font-bold uppercase tracking-[0.12em] text-uagc-gold">
               Recommended
             </p>
@@ -196,7 +196,7 @@ function MegaMenuPanel({
             <Link
               href={menu.href}
               onClick={onNavigate}
-              className="mt-4 inline-flex min-h-9 items-center rounded-full bg-uagc-navy px-4 text-xs font-bold uppercase tracking-wide text-white hover:bg-[#1a3566]"
+              className="mt-4 inline-flex min-h-9 items-center rounded-full bg-uagc-navy px-4 text-xs font-bold uppercase tracking-wide text-white hover:bg-uagc-navy-hover"
             >
               View All {menu.label}
             </Link>
@@ -247,7 +247,7 @@ function MobileNavSection({
           </Link>
           {menu.columns.map((column) => (
             <div key={column.title}>
-              <p className="mb-2 text-[10px] font-bold uppercase tracking-[0.1em] text-uagc-navy/40">
+              <p className="mb-2 text-[10px] font-bold uppercase tracking-widest text-uagc-navy/40">
                 {column.title}
               </p>
               <ul className="space-y-1">
@@ -256,7 +256,7 @@ function MobileNavSection({
                     <Link
                       href={link.href}
                       onClick={onNavigate}
-                      className="block rounded-md px-2 py-2 text-sm text-uagc-gray transition-colors hover:bg-[#f5f4f0] hover:text-uagc-navy"
+                      className="block rounded-md px-2 py-2 text-sm text-uagc-gray transition-colors hover:bg-muted hover:text-uagc-navy"
                     >
                       {link.label}
                     </Link>
@@ -313,7 +313,7 @@ function MobileUtilitySection({
         </Link>
         <button
           type="button"
-          className="flex min-h-10 min-w-10 items-center justify-center text-uagc-navy/50"
+          className="touch-target flex items-center justify-center text-uagc-navy/50"
           onClick={() => setOpen((v) => !v)}
           aria-label={`${open ? "Collapse" : "Expand"} ${link.label} submenu`}
         >
@@ -330,7 +330,7 @@ function MobileUtilitySection({
               key={child.href}
               href={child.href}
               onClick={onNavigate}
-              className="block rounded-md px-2 py-1.5 text-sm text-uagc-gray transition-colors hover:bg-[#f5f4f0] hover:text-uagc-navy"
+              className="block rounded-md px-2 py-1.5 text-sm text-uagc-gray transition-colors hover:bg-muted hover:text-uagc-navy"
             >
               {child.label}
             </Link>
@@ -419,7 +419,7 @@ export function SiteHeader({ hideRequestInfo = false }: SiteHeaderProps) {
     <header
       ref={headerRef}
       role="banner"
-      className="fixed inset-x-0 top-0 z-[100] bg-white shadow-sm"
+      className="fixed inset-x-0 top-0 z-100 bg-white pt-[env(safe-area-inset-top,0px)] shadow-sm"
     >
       {/* ── Utility bar ── */}
       <div className="hidden bg-uagc-navy lg:block">
@@ -513,8 +513,8 @@ export function SiteHeader({ hideRequestInfo = false }: SiteHeaderProps) {
                     className={cn(
                       "inline-flex min-h-10 items-center gap-1 rounded-md px-3 text-sm font-medium transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-uagc-navy",
                       isOpen
-                        ? "bg-[#f5f4f0] text-uagc-red"
-                        : "text-uagc-navy hover:bg-[#f5f4f0] hover:text-uagc-red",
+                        ? "bg-muted text-uagc-red"
+                        : "text-uagc-navy hover:bg-muted hover:text-uagc-red",
                     )}
                     aria-expanded={isOpen}
                     aria-controls={panelId}
@@ -539,7 +539,7 @@ export function SiteHeader({ hideRequestInfo = false }: SiteHeaderProps) {
         <div className="flex items-center gap-2">
           <a
             href="https://cloud.mail.uagc.edu/apply"
-            className="hidden min-h-9 items-center rounded-full bg-uagc-red px-5 text-xs font-bold uppercase tracking-wide text-white transition-colors hover:bg-[#8a0418] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-uagc-red sm:inline-flex"
+            className="hidden min-h-9 items-center rounded-full bg-uagc-red px-5 text-xs font-bold uppercase tracking-wide text-white transition-colors hover:bg-uagc-red-hover focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-uagc-red sm:inline-flex"
             onClick={closeAll}
           >
             Apply Now
@@ -547,7 +547,7 @@ export function SiteHeader({ hideRequestInfo = false }: SiteHeaderProps) {
           {!hideRequestInfo ? (
             <a
               href="#rfi"
-              className="hidden min-h-9 items-center rounded-full bg-uagc-gold px-5 text-xs font-bold uppercase tracking-wide text-uagc-navy transition-colors hover:bg-[#f5a623] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-uagc-navy sm:inline-flex"
+              className="hidden min-h-9 items-center rounded-full bg-uagc-gold px-5 text-xs font-bold uppercase tracking-wide text-uagc-navy transition-colors hover:bg-uagc-gold-hover focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-uagc-navy sm:inline-flex"
               onClick={closeAll}
             >
               Request Info
@@ -557,14 +557,14 @@ export function SiteHeader({ hideRequestInfo = false }: SiteHeaderProps) {
           <a
             href={PHONE_HREF}
             aria-label={`Call UAGC at ${PHONE_DISPLAY}`}
-            className="inline-flex min-h-11 min-w-11 items-center justify-center rounded-full text-uagc-navy transition-colors hover:bg-[#f5f4f0] hover:text-uagc-red focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-uagc-navy xl:hidden"
+            className="inline-flex min-h-11 min-w-11 items-center justify-center rounded-full text-uagc-navy transition-colors hover:bg-muted hover:text-uagc-red focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-uagc-navy xl:hidden"
           >
             <Phone className="size-5" strokeWidth={2} aria-hidden />
           </a>
 
           <button
             type="button"
-            className="inline-flex min-h-11 min-w-11 items-center justify-center rounded-md text-uagc-navy transition-colors hover:bg-[#f5f4f0] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-uagc-navy xl:hidden"
+            className="inline-flex min-h-11 min-w-11 items-center justify-center rounded-md text-uagc-navy transition-colors hover:bg-muted focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-uagc-navy xl:hidden"
             aria-expanded={mobileOpen}
             aria-controls={mobileDrawerId}
             aria-label={mobileOpen ? "Close menu" : "Open menu"}
@@ -594,12 +594,12 @@ export function SiteHeader({ hideRequestInfo = false }: SiteHeaderProps) {
           <button
             type="button"
             aria-label="Close menu overlay"
-            className="fixed inset-0 top-14 z-[98] bg-black/50 backdrop-blur-sm sm:top-16 xl:hidden"
+            className="fixed inset-0 top-14 z-98 bg-black/50 backdrop-blur-sm sm:top-16 xl:hidden"
             onClick={() => setMobileOpen(false)}
           />
           <div
             id={mobileDrawerId}
-            className="fixed inset-x-0 bottom-0 top-14 z-[99] overflow-y-auto bg-white sm:top-16 xl:hidden"
+            className="fixed inset-x-0 bottom-0 top-14 z-99 overflow-y-auto bg-white pb-[env(safe-area-inset-bottom,0px)] sm:top-16 xl:hidden"
           >
             {/* Quick actions — SUNY-inspired top CTA strip */}
             <div className="flex gap-2 border-b border-uagc-border bg-uagc-navy px-4 py-3">
@@ -607,7 +607,7 @@ export function SiteHeader({ hideRequestInfo = false }: SiteHeaderProps) {
                 <a
                   href="#rfi"
                   onClick={closeAll}
-                  className="flex flex-1 min-h-10 items-center justify-center rounded-full bg-uagc-gold text-xs font-bold uppercase tracking-wide text-uagc-navy"
+                  className="flex flex-1 min-h-11 items-center justify-center rounded-full bg-uagc-gold text-xs font-bold uppercase tracking-wide text-uagc-navy"
                 >
                   Request Info
                 </a>
@@ -615,14 +615,14 @@ export function SiteHeader({ hideRequestInfo = false }: SiteHeaderProps) {
               <a
                 href="https://cloud.mail.uagc.edu/apply"
                 onClick={closeAll}
-                className="flex flex-1 min-h-10 items-center justify-center rounded-full bg-uagc-red text-xs font-bold uppercase tracking-wide text-white"
+                className="flex flex-1 min-h-11 items-center justify-center rounded-full bg-uagc-red text-xs font-bold uppercase tracking-wide text-white"
               >
                 Apply Now
               </a>
             </div>
 
             {/* Utility quick links with submenus */}
-            <div className="border-b border-uagc-border bg-[#f8f8f7]">
+            <div className="border-b border-uagc-border bg-uagc-cream">
               {ORGANIC_UTILITY_LINKS.map((link) => {
                 const Icon = UTILITY_ICON_MAP[link.icon];
                 const hasChildren = link.children && link.children.length > 0;

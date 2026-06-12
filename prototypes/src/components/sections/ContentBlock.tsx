@@ -42,7 +42,6 @@ export function ContentBlock({
   className,
 }: ContentBlockProps) {
   const isNavy = backgroundColor === "navy";
-  const ctaVariant = isNavy ? "gold" : "navy";
   const hasImage = Boolean(image);
 
   return (
@@ -62,7 +61,7 @@ export function ContentBlock({
           >
             <div
               className={cn(
-                "mb-3 h-[3px] w-10",
+                "mb-3 h-0.75 w-10",
                 isNavy ? "bg-white/60" : "bg-uagc-navy"
               )}
               aria-hidden
@@ -86,12 +85,7 @@ export function ContentBlock({
             {ctaText && ctaHref && (
               <Link
                 href={ctaHref}
-                className={cn(
-                  "mt-6 inline-flex w-fit items-center justify-center rounded-full px-6 py-2.5 text-sm font-semibold transition-opacity",
-                  ctaVariant === "gold"
-                    ? "cta-primary px-6 py-2.5 text-sm"
-                    : "cta-primary px-6 py-2.5 text-sm"
-                )}
+                className="cta-primary mt-6 inline-flex w-fit items-center justify-center px-6 py-2.5 text-sm font-semibold transition-opacity"
               >
                 {ctaText}
               </Link>

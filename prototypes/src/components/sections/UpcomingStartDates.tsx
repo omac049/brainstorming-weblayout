@@ -15,12 +15,15 @@ export interface UpcomingStartDatesProps {
   variant?: "inline" | "card";
 }
 
-const DEFAULT_DATES: StartDateEntry[] = [
+export const DEFAULT_START_DATES: StartDateEntry[] = [
   { date: "June 16", label: "Next class" },
   { date: "July 7", label: "Following" },
 ];
 
-function daysUntil(dateStr: string): number {
+/** @deprecated Use DEFAULT_START_DATES */
+const DEFAULT_DATES = DEFAULT_START_DATES;
+
+export function daysUntilStartDate(dateStr: string): number {
   const currentYear = new Date().getFullYear();
   const target = new Date(`${dateStr}, ${currentYear}`);
   const now = new Date();
@@ -38,7 +41,7 @@ export function UpcomingStartDates({
 }: UpcomingStartDatesProps) {
   const nextDate = dates[0];
   // Compute during render so SSR and hydration match (avoid useEffect-only badge).
-  const daysLeft = nextDate ? daysUntil(nextDate.date) : null;
+  const daysLeft = nextDate ? daysUntilStartDate(nextDate.date) : null;
 
   if (variant === "inline") {
     return (
@@ -49,7 +52,7 @@ export function UpcomingStartDates({
         )}
       >
         <span className="relative flex size-2">
-          <span className="absolute inline-flex size-full animate-ping rounded-full bg-green-500 opacity-75" />
+          <span className="absolute inline-flex size-full animate-ping motion-reduce:animate-none rounded-full bg-green-500 opacity-75" />
           <span className="relative inline-flex size-2 rounded-full bg-green-600" />
         </span>
         <span className="font-medium text-uagc-navy">
@@ -101,7 +104,7 @@ export function UpcomingStartDates({
                 <div className="flex items-center gap-2">
                   {i === 0 && (
                     <span className="relative flex size-2">
-                      <span className="absolute inline-flex size-full animate-ping rounded-full bg-green-400 opacity-60" />
+                      <span className="absolute inline-flex size-full animate-ping motion-reduce:animate-none rounded-full bg-green-400 opacity-60" />
                       <span className="relative inline-flex size-2 rounded-full bg-green-400" />
                     </span>
                   )}

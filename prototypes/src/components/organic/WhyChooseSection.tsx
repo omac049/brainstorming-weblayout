@@ -101,7 +101,7 @@ export function WhyChooseSection({
               <p className="text-[13px] leading-snug text-white/90">
                 &ldquo;{QUOTE}&rdquo;
               </p>
-              <p className="mt-1.5 text-[11px] font-bold uppercase tracking-wide text-uagc-gold">
+              <p className="mt-1.5 text-xs font-bold uppercase tracking-wide text-uagc-gold">
                 UAGC Graduate
               </p>
             </div>
@@ -110,11 +110,11 @@ export function WhyChooseSection({
           {/* Left — photo stack + quote badge */}
           <div className="relative hidden lg:block">
             <div className="relative pb-8 pr-8">
-              <div className="absolute left-[-20px] top-7 z-[2] max-w-[220px] rounded-2xl border border-uagc-border bg-uagc-navy px-5 py-4">
+              <div className="absolute left-[-20px] top-7 z-2 max-w-[220px] rounded-2xl border border-uagc-border bg-uagc-navy px-5 py-4">
                 <p className="text-[13px] leading-snug text-white/90">
                   &ldquo;{QUOTE}&rdquo;
                 </p>
-                <p className="mt-2 text-[11px] font-bold uppercase tracking-wide text-uagc-gold">
+                <p className="mt-2 text-xs font-bold uppercase tracking-wide text-uagc-gold">
                   UAGC Graduate
                 </p>
               </div>
@@ -129,7 +129,7 @@ export function WhyChooseSection({
                 />
               </div>
 
-              <div className="absolute bottom-[-28px] right-[-28px] z-[1] w-[48%] overflow-hidden rounded-2xl border-2 border-white">
+              <div className="absolute bottom-[-28px] right-[-28px] z-1 w-[48%] overflow-hidden rounded-2xl border-2 border-white">
                 <div className="relative aspect-[4/3]">
                   <AssetImage
                     src="/images/why-choose-studying.jpg"
@@ -159,14 +159,14 @@ export function WhyChooseSection({
                 <article
                   key={stat.label}
                   className={cn(
-                    "group relative flex-1 overflow-hidden rounded-2xl border border-uagc-border bg-white px-5 py-[18px] text-center transition-all duration-200 hover:border-uagc-gold hover:shadow-[0_4px_20px_rgba(12,35,75,0.08)]",
+                    "group relative flex-1 overflow-hidden rounded-2xl border border-uagc-border bg-white px-5 py-[18px] text-center transition-[border-color,box-shadow] duration-200 hover:border-uagc-gold hover:shadow-[0_4px_20px_rgba(12,35,75,0.08)]",
                     `stagger-${index + 1}`,
                     isVisible && "is-visible",
                   )}
                 >
                   <span
                     aria-hidden
-                    className="absolute inset-x-0 top-0 h-[3px] origin-left scale-x-0 bg-uagc-gold transition-transform duration-300 group-hover:scale-x-100"
+                    className="absolute inset-x-0 top-0 h-0.75 origin-left scale-x-0 bg-uagc-gold transition-transform duration-300 group-hover:scale-x-100"
                   />
                   <p className="type-stat text-[1.75rem] text-uagc-navy sm:text-[2rem]">
                     {stat.value}
@@ -185,16 +185,16 @@ export function WhyChooseSection({
                   <article
                     key={row.title}
                     className={cn(
-                      "group relative flex items-start gap-3.5 overflow-hidden rounded-2xl border border-uagc-border bg-white px-4 py-3.5 transition-all duration-200 hover:border-uagc-gold hover:shadow-[0_4px_20px_rgba(12,35,75,0.08)] sm:gap-4 sm:px-4 sm:py-4",
+                      "group relative flex items-start gap-3.5 overflow-hidden rounded-2xl border border-uagc-border bg-white px-4 py-3.5 transition-[border-color,box-shadow] duration-200 hover:border-uagc-gold hover:shadow-[0_4px_20px_rgba(12,35,75,0.08)] sm:gap-4 sm:px-4 sm:py-4",
                       `stagger-${index + 1}`,
                       isVisible && "is-visible",
                     )}
                   >
                     <span
                       aria-hidden
-                      className="absolute inset-x-0 top-0 h-[3px] origin-left scale-x-0 bg-uagc-gold transition-transform duration-300 group-hover:scale-x-100"
+                      className="absolute inset-x-0 top-0 h-0.75 origin-left scale-x-0 bg-uagc-gold transition-transform duration-300 group-hover:scale-x-100"
                     />
-                    <span className="mt-0.5 flex size-9 shrink-0 items-center justify-center rounded-xl bg-uagc-surface text-uagc-navy transition-colors duration-200 group-hover:bg-[#fdf3e0] group-hover:text-uagc-gold sm:size-10">
+                    <span className="mt-0.5 flex size-9 shrink-0 items-center justify-center rounded-xl bg-uagc-surface text-uagc-navy transition-colors duration-200 group-hover:bg-uagc-gold-tint group-hover:text-uagc-gold sm:size-10">
                       <Icon className="size-[18px] sm:size-5" strokeWidth={1.75} />
                     </span>
                     <div className="min-w-0">

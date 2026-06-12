@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Fira_Sans, Fira_Sans_Extra_Condensed, Montserrat } from "next/font/google";
 import "./globals.css";
 
@@ -33,6 +33,13 @@ export const metadata: Metadata = {
     ],
     apple: "/seo/apple-touch-icon.png",
   },
+};
+
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  viewportFit: "cover",
+  themeColor: "#0C234B",
 };
 
 export default function RootLayout({

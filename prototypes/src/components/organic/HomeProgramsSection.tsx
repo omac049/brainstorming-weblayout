@@ -47,7 +47,7 @@ export function HomeProgramsSection() {
             <Link
               key={level.title}
               href={level.href}
-              className="group relative flex cursor-pointer flex-col rounded-xl border border-gray-100 bg-white px-6 py-8 shadow-sm transition-all duration-200 hover:-translate-y-1 hover:shadow-xl focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-uagc-navy sm:px-8 sm:py-10 motion-safe:animate-[fadeSlideUp_0.5s_ease_both]"
+              className="group relative flex cursor-pointer flex-col rounded-xl border border-gray-100 bg-white px-6 py-8 shadow-sm transition-[transform,box-shadow] duration-200 hover:-translate-y-1 hover:shadow-xl focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-uagc-navy sm:px-8 sm:py-10 motion-safe:animate-[fadeSlideUp_0.5s_ease_both]"
               style={{ animationDelay: `${i * 100}ms` }}
             >
               <span

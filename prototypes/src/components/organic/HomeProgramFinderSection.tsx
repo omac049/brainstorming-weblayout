@@ -63,7 +63,7 @@ export function HomeProgramFinderSection() {
               </a>
               <a
                 href="#rfi"
-                className="inline-flex min-h-[3.25rem] items-center justify-center rounded-full bg-uagc-gold px-7 py-3 text-sm font-bold uppercase tracking-wide text-uagc-navy transition-colors duration-200 hover:bg-[#f5a623] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-uagc-navy"
+                className="inline-flex min-h-13 items-center justify-center rounded-full bg-uagc-gold px-7 py-3 text-sm font-bold uppercase tracking-wide text-uagc-navy transition-colors duration-200 hover:bg-uagc-gold-hover focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-uagc-navy"
               >
                 Request Info
               </a>
@@ -99,7 +99,7 @@ function TrustCard({
   detail: string;
 }) {
   return (
-    <div className="group flex flex-col items-center rounded-xl border border-gray-100 bg-[#fafaf8] px-4 py-5 text-center transition-all duration-200 hover:border-uagc-gold/30 hover:shadow-md sm:px-5 sm:py-6">
+    <div className="group flex flex-col items-center rounded-xl border border-gray-100 bg-sidebar px-4 py-5 text-center transition-[border-color,box-shadow] duration-200 hover:border-uagc-gold/30 hover:shadow-md sm:px-5 sm:py-6">
       <div className="mb-2 flex size-10 items-center justify-center rounded-full bg-uagc-gold/10">
         {icon}
       </div>

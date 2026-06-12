@@ -34,22 +34,25 @@ This document is the **single source of truth** for the Phase 2 **organic** rede
 
 | # | Catalog ID | React component | Section anchor | Background | Notes |
 |---|------------|-----------------|----------------|------------|-------|
-| — | `NAV-00` | `SiteHeader` (`variant="full"`) | — | `#FFFFFF` | Full mega-menu — **not** paid reduced header |
-| 1 | `HERO-ORG` | `OrganicHomeHero` (shared) | — | hero image | Full-width parallax + trust pills; **no form in hero** |
-| 2 | `RFI-HERO` | `RFIForm` (`mini`) | `#hero-rfi` | `#FFFFFF` | Two-step; trust line below |
-| 3 | `HUB-TOP3` | `TopDegreesSection` | `#top-degrees` | `#faf9f7` | 3 popular program cards — **discovery-first** (CS: 30% exposure window) |
-| 4 | `HUB-CATALOG` | `ProgramCatalogSection` | `#programs` | `#FFFFFF` | Filters + ~6 visible + Show All |
-| 5 | `HUB-INTRO` | `HubIntroSection` | — | `#FFFFFF` | “Flexible online degrees…” — reinforcement after discovery |
-| 6 | `TRUST-01` | `TestimonialSection` | `#stories` | `#faf9f7` | 3-card grid with persona tags |
-| 7 | `HUB-FINDER` | `DegreeFinderCTA` | `#degree-finder` | `#0C234B` | Quiz CTA band |
-| 8 | `HUB-JOURNEY` | `EnrollmentJourneySection` | `#journey` | `#FFFFFF` | Transfer / apply / funding |
-| 9 | `FAQ-01` | `FAQSection` | `#faq` | `#FFFFFF` | 2 primary hub topics |
-| 10 | `ACCR-01` | `AccreditationBand` | — | `#faf9f7` | WSCUC + UA affiliation |
-| 11 | `CTA-01` | Inline section in `page.tsx` | — | `#0C234B` | Chat, phone, #hero-rfi, apply |
-| — | `FOOT-01` | `Footer` | — | navy footer | Full site footer |
-| — | `FORM-05` | `RFIStickyBar` | — | fixed bottom | Mobile; after scroll past hero RFI |
+| — | `NAV-00` | `SiteHeader` | — | `#FFFFFF` | Full mega-menu; Request Info → `#rfi` |
+| 1 | `HERO-ORG` | `OrganicHomeHero` | — | hero image | Trust pills only; **no form in hero** |
+| 2 | `HUB-POPULAR` | `HubPopularPrograms` | — | `#FFFFFF` | Top 3 degrees as inline links + View all 50+ |
+| 3 | `PERSONA-PATHS` | `PersonaPathSection` | `#paths` | `#FFFFFF` | Transfer / military / graduate / career-changer routing |
+| 4 | `PROG-01` | `ProgramExplorer` | `#programs` | `#FFFFFF` | **Primary workspace** — search + filters |
+| 5 | `TUITION-BAND` | `TuitionHighlightBand` | `#tuition` | `#0C234B` | $485/credit, 86% aid, GI Bill |
+| 6 | `WAYS-TO-SAVE` | `WaysToSaveSection` | `#ways-to-save` | `#FFFFFF` | Expandable cost/aid disclosures — simulation cost clarity |
+| 7 | `AREAS` | `AreasOfStudyGrid` | `#areas` | `bg-uagc-surface` | Routes to high-conv child hubs (business, masters, etc.) |
+| 8 | `TRUST-01` | `VideoTestimonialSection` | `#stories` | `#0C234B` | **Student Experience / In Their Own Words** — video cards + modal |
+| 9 | `CAREER-01` | `CareerOutcomesSection` (hub-lite) | `#outcomes` | `#0C234B` | 4-area outcomes + Handshake — employer-respect proof |
+| 10 | `HUB-JOURNEY` | `EnrollmentJourneySection` | `#journey` | `#FFFFFF` | Transfer / apply / funding |
+| 11 | `CTA-01` | `HubBottomCTA` | `#next-steps` | `#0C234B` | Ready to Start Your Degree? — four paths (Request Info → `#rfi`) |
+| 12 | `ACCR-01` | `AccreditationBand` | — | `bg-uagc-surface` | Visual break between navy CTA and navy RFI |
+| 13 | `FORM-02` | `RFIForm` (`full`) | `#rfi` | `#0C234B` | Or Request Information Here — after Accreditation |
+| 14 | `FAQ-01` | `FAQSection` | `#faq` | `#FFFFFF` | Objection handler directly above footer |
+| — | `FOOT-01` | `SiteFooter` | — | navy footer | Organic site footer |
+| — | `FORM-05` | `RFIStickyBar` | — | fixed bottom | Mobile; hidden while hero visible; links to `#rfi` |
 
-**Substantive module count:** **11** (+ chrome).  
+**Substantive module count:** **14** (+ chrome). **Deprecated:** `RFI-HERO`, `HUB-INTRO`, `HUB-TOP3`, `HUB-CATALOG`, `HUB-FINDER`, `HOME-PATH`, `HUB-PATHS`, `CTA+FORM-02` (`HubClosingBand`) — see manifest `deprecatedModules`.  
 **Prototype-only helpers:** `ScrollReveal` wrapper (optional progressive enhancement — base content visible without JS).
 
 ---
@@ -58,7 +61,7 @@ This document is the **single source of truth** for the Phase 2 **organic** rede
 
 | Live pattern | Prototype rule | Rationale |
 |--------------|----------------|-----------|
-| **4+ RFI form instances** on page | Hero RFI + sticky only | Contentsquare sticky RFI **2.41× rage**; consolidate conversion path |
+| **4+ RFI form instances** on page | Closing `FORM-02` + header + sticky only | Contentsquare sticky RFI **2.41× rage**; consolidate conversion path |
 | “Explore accredited degrees” inline form | Use `HUB-CATALOG` filters only | Duplicate ask before visitor explores programs |
 | Paginated catalog only | **6 programs + Show All** in page flow | Mobile scroll engagement; avoid pagination trap |
 | Horizontal filter pill strips | **Native `<select>`** per filter dimension | AGENTS.md — no nested scroll traps |
@@ -317,11 +320,11 @@ Same behavior as paid — see [request-info-v5 FORM-05](./request-info-v5.md):
 **Sign-off checklist:**
 
 - [ ] Full nav works on mobile (drawer) and desktop (mega-menu sketch acceptable in Figma)
-- [ ] Hero image visible; RFI in dedicated band below
-- [ ] Top 3 cards link to real program URLs
+- [ ] Hero image visible; no RFI in hero or mid-page bands
+- [ ] Areas of Study + Program Explorer link to real program URLs
 - [ ] Catalog: native selects + 6-up + Show All — no scroll trap
-- [ ] No mid-page RFI duplicate blocks
-- [ ] Sticky bar hidden on initial hero RFI view
+- [ ] Single closing `#rfi` form; no duplicate mid-page RFI blocks
+- [ ] Sticky bar hidden while hero is in view
 - [ ] FAQ + accreditation + bottom CTA present
 - [ ] Desktop 1440 + mobile 375 Figma wireframes match prototype route
 

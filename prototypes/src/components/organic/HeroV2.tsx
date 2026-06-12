@@ -62,7 +62,7 @@ function HeroTrustPills({
         <span
           key={pill.label}
           className={cn(
-            "inline-flex items-center rounded-full px-3 py-1.5 text-[0.75rem] font-medium tracking-wide sm:px-4 sm:text-[0.8125rem]",
+            "inline-flex items-center rounded-full px-3.5 py-2 text-[0.8125rem] font-medium tracking-wide sm:px-4 sm:text-[0.8125rem]",
             pill.accent
               ? "trust-pill-accent border border-uagc-gold/50 bg-uagc-gold/20 font-semibold text-white"
               : "border border-white/25 bg-white/10 text-white/95 sm:font-medium sm:hover:bg-white/15",
@@ -97,15 +97,15 @@ function HeroSectionNav({
         className,
       )}
     >
-      <div className="mx-auto flex w-full max-w-[1440px] items-center gap-1 overflow-x-auto px-5 py-2.5 sm:justify-center sm:gap-1.5 sm:px-6 lg:px-8 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+      <div className="mx-auto flex w-full max-w-[1440px] items-center gap-1 overflow-x-auto px-5 py-2.5 mobile-nav-scroll sm:justify-center sm:gap-1.5 sm:px-6 lg:px-8">
         {items.map((item) => (
           <a
             key={item.id}
             href={`#${item.id}`}
             className={cn(
-              "shrink-0 min-w-[44px] rounded-full px-3.5 py-2 text-center text-xs font-medium tracking-wide transition-all duration-200 focus-visible:outline-2 focus-visible:outline-offset-2 sm:min-w-0 sm:px-4 sm:text-[0.8125rem]",
+              "shrink-0 min-w-11 rounded-full px-3.5 py-2 text-center text-xs font-medium tracking-wide transition-colors duration-200 focus-visible:outline-2 focus-visible:outline-offset-2 sm:min-w-0 sm:px-4 sm:text-[0.8125rem]",
               isLight
-                ? "text-uagc-navy/70 hover:bg-uagc-navy/[0.06] hover:text-uagc-navy focus-visible:outline-uagc-navy"
+                ? "text-uagc-navy/70 hover:bg-uagc-navy/6 hover:text-uagc-navy focus-visible:outline-uagc-navy"
                 : "text-white/75 hover:bg-white/10 hover:text-white focus-visible:outline-white",
             )}
           >
@@ -132,16 +132,13 @@ function HeroVideoBackground({
 }) {
   const videoRef = useRef<HTMLVideoElement>(null);
   const [videoReady, setVideoReady] = useState(false);
-  const [useVideo, setUseVideo] = useState(true);
+  const [useVideo] = useState(() => {
+    if (typeof window === "undefined") return true;
+    return !window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  });
 
   useEffect(() => {
-    const prefersReduced = window.matchMedia(
-      "(prefers-reduced-motion: reduce)",
-    ).matches;
-    if (prefersReduced) {
-      setUseVideo(false);
-      return;
-    }
+    if (!useVideo) return;
 
     const video = videoRef.current;
     if (!video) return;
@@ -155,7 +152,7 @@ function HeroVideoBackground({
     }, 4000);
 
     return () => window.clearTimeout(fallbackTimer);
-  }, []);
+  }, [useVideo]);
 
   return (
     <div ref={mediaRef} className="absolute inset-0 will-change-transform">
@@ -177,7 +174,7 @@ function HeroVideoBackground({
 
       <div
         className={cn(
-          "absolute inset-0 z-[1] transition-opacity duration-[1200ms] ease-out",
+          "absolute inset-0 z-1 transition-opacity duration-1200 ease-out",
           useVideo && videoReady && "pointer-events-none opacity-0",
         )}
         aria-hidden={useVideo && videoReady}
@@ -235,7 +232,7 @@ function HeroCopyBlock({
   return (
     <div className="hero-enter-headline">
       {eyebrow ? (
-        <p className="text-[0.6875rem] font-semibold uppercase tracking-[0.15em] text-uagc-gold">
+        <p className="text-xs font-semibold uppercase tracking-[0.15em] text-uagc-gold sm:text-[0.8125rem] sm:tracking-[0.2em] lg:text-[0.875rem]">
           {eyebrow}
         </p>
       ) : null}
@@ -277,7 +274,7 @@ export function HeroV2({
 
   const defaultHeadline = (
     <>
-      <span className="block text-[0.6875rem] font-semibold uppercase tracking-[0.15em] text-uagc-gold sm:text-[0.8125rem] sm:tracking-[0.2em] lg:text-[0.875rem]">
+      <span className="block text-xs font-semibold uppercase tracking-[0.15em] text-uagc-gold sm:text-[0.8125rem] sm:tracking-[0.2em] lg:text-[0.875rem]">
         University of Arizona Global Campus
       </span>
       <span className="mt-2 block sm:mt-3">
@@ -307,7 +304,8 @@ export function HeroV2({
     const prefersReduced = window.matchMedia(
       "(prefers-reduced-motion: reduce)",
     ).matches;
-    if (prefersReduced) return;
+    const coarsePointer = window.matchMedia("(pointer: coarse)").matches;
+    if (prefersReduced || coarsePointer) return;
 
     let frame = 0;
 
@@ -341,13 +339,13 @@ export function HeroV2({
 
   const desktopOverlay = (
     <>
-      <div className="absolute inset-0 z-[2] bg-[linear-gradient(to_top,rgba(7,21,41,0.96)_0%,rgba(7,21,41,0.75)_28%,rgba(7,21,41,0.35)_55%,rgba(7,21,41,0.08)_80%,transparent_100%)]" />
-      <div className="absolute inset-0 z-[2] bg-[linear-gradient(to_right,rgba(7,21,41,0.65)_0%,rgba(7,21,41,0.2)_45%,transparent_70%)]" />
+      <div className="absolute inset-0 z-2 bg-[linear-gradient(to_top,rgba(7,21,41,0.96)_0%,rgba(7,21,41,0.75)_28%,rgba(7,21,41,0.35)_55%,rgba(7,21,41,0.08)_80%,transparent_100%)]" />
+      <div className="absolute inset-0 z-2 bg-[linear-gradient(to_right,rgba(7,21,41,0.65)_0%,rgba(7,21,41,0.2)_45%,transparent_70%)]" />
     </>
   );
 
   const mobileOverlay = (
-    <div className="absolute inset-0 z-[2] bg-[linear-gradient(to_top,rgba(12,35,75,0.97)_0%,rgba(12,35,75,0.65)_45%,rgba(12,35,75,0.15)_70%,transparent_100%)]" />
+    <div className="absolute inset-0 z-2 bg-[linear-gradient(to_top,rgba(12,35,75,0.97)_0%,rgba(12,35,75,0.65)_45%,rgba(12,35,75,0.15)_70%,transparent_100%)]" />
   );
 
   return (
@@ -359,7 +357,7 @@ export function HeroV2({
       >
         {/* Mobile: photo only (mock hides video ≤768px) */}
         <div className="relative flex flex-col lg:hidden">
-          <div className="relative h-[320px] sm:h-[360px]">
+          <div className="relative min-h-[min(22rem,58svh)] sm:min-h-[min(24rem,62svh)]">
             <AssetImage
               src={mobileImageSrc}
               alt={imageAlt}

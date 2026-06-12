@@ -1,4 +1,9 @@
+"use client";
+
 import { DollarSign, Award, Shield, CreditCard } from "lucide-react";
+
+import { cn } from "@/lib/utils";
+import { useScrollReveal } from "@/hooks/useScrollReveal";
 
 const HIGHLIGHTS = [
   {
@@ -27,18 +32,30 @@ const HIGHLIGHTS = [
   },
 ] as const;
 
-export function TuitionHighlightBand() {
+interface TuitionHighlightBandProps {
+  id?: string;
+}
+
+export function TuitionHighlightBand({ id = "tuition" }: TuitionHighlightBandProps) {
+  const { ref, isVisible } = useScrollReveal<HTMLElement>();
+
   return (
     <section
-      className="bg-uagc-navy py-10 sm:py-12"
+      ref={ref}
+      id={id}
+      className="scroll-mt-20 bg-uagc-navy py-10 sm:py-12"
       aria-label="Tuition highlights"
     >
       <div className="mx-auto w-full max-w-[1440px] px-4 sm:px-6 lg:px-8">
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-          {HIGHLIGHTS.map(({ icon: Icon, stat, label, detail }) => (
+          {HIGHLIGHTS.map(({ icon: Icon, stat, label, detail }, i) => (
             <div
               key={stat}
-              className="flex items-start gap-4 rounded-xl border border-white/10 bg-white/[0.04] px-5 py-5"
+              className={cn(
+                "flex items-start gap-4 rounded-xl border border-white/10 bg-white/4 px-5 py-5 reveal-section",
+                `stagger-${i + 1}`,
+                isVisible && "is-visible",
+              )}
             >
               <span className="flex size-10 shrink-0 items-center justify-center rounded-lg bg-uagc-gold/15">
                 <Icon
@@ -51,10 +68,10 @@ export function TuitionHighlightBand() {
                 <p className="font-heading text-2xl font-bold leading-none text-white">
                   {stat}
                 </p>
-                <p className="mt-0.5 text-sm font-semibold text-white/80">
+                <p className="mt-0.5 text-sm font-semibold text-white/90">
                   {label}
                 </p>
-                <p className="mt-1 text-xs text-white/50">{detail}</p>
+                <p className="mt-1 text-xs text-uagc-navy-muted">{detail}</p>
               </div>
             </div>
           ))}

@@ -10,6 +10,6 @@ function resolveSrc(src: ImageProps["src"]): ImageProps["src"] {
   return src;
 }
 
-export function AssetImage({ src, ...props }: ImageProps) {
-  return <Image src={resolveSrc(src)} {...props} />;
+export function AssetImage({ src, alt = "", ...props }: ImageProps) {
+  return <Image src={resolveSrc(src)} alt={alt} {...props} />;
 }

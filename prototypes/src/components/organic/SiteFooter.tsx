@@ -1,5 +1,7 @@
 import { Phone, MessageCircle, Mail } from "lucide-react";
 
+import { cn } from "@/lib/utils";
+
 const DEGREE_AREAS = [
   { label: "Business", href: "https://www.uagc.edu/online-degrees/business" },
   { label: "Education", href: "https://www.uagc.edu/online-degrees/education" },
@@ -29,9 +31,12 @@ const PHONE_HREF = "tel:+18667111700";
 const focusRing =
   "focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-uagc-gold/60 focus-visible:rounded-sm";
 
-export function SiteFooter() {
+export function SiteFooter({ className, hideRequestInfo }: { className?: string; hideRequestInfo?: boolean }) {
   return (
-    <footer role="contentinfo" className="bg-uagc-navy">
+    <footer
+      role="contentinfo"
+      className={cn("bg-uagc-navy mobile-sticky-offset md:pb-0", className)}
+    >
       {/* ── Top: Contact + affiliation ── */}
       <div className="mx-auto w-full max-w-[1440px] px-4 py-8 sm:px-6 lg:px-10">
         <div className="flex flex-col gap-6 lg:flex-row lg:items-center lg:justify-between">
@@ -55,13 +60,15 @@ export function SiteFooter() {
           </div>
 
           <div className="flex flex-wrap items-center gap-3">
-            <a
-              href="#rfi"
-              className={`group inline-flex min-h-11 items-center justify-center gap-2 rounded-full bg-uagc-gold px-6 text-sm font-bold uppercase tracking-wide text-uagc-navy transition-colors hover:bg-[#f5a623] ${focusRing}`}
-            >
-              Request Info
-              <Mail className="size-4 transition-transform group-hover:translate-x-0.5" strokeWidth={2} aria-hidden />
-            </a>
+            {!hideRequestInfo && (
+              <a
+                href="#rfi"
+                className={`group inline-flex min-h-11 items-center justify-center gap-2 rounded-full bg-uagc-gold px-6 text-sm font-bold uppercase tracking-wide text-uagc-navy transition-colors hover:bg-uagc-gold-hover ${focusRing}`}
+              >
+                Request Info
+                <Mail className="size-4 transition-transform group-hover:translate-x-0.5" strokeWidth={2} aria-hidden />
+              </a>
+            )}
             <a
               href={PHONE_HREF}
               className={`inline-flex min-h-11 items-center gap-2 whitespace-nowrap rounded-full border border-white/20 px-4 text-xs font-medium text-white/80 transition-colors hover:border-white/40 hover:text-white ${focusRing}`}
@@ -69,13 +76,15 @@ export function SiteFooter() {
               <Phone className="size-3.5 shrink-0" strokeWidth={1.8} aria-hidden />
               {PHONE_DISPLAY}
             </a>
-            <button
-              type="button"
-              className={`inline-flex min-h-11 cursor-pointer items-center gap-2 whitespace-nowrap rounded-full border border-white/20 px-4 text-xs font-medium text-white/80 transition-colors hover:border-white/40 hover:text-white ${focusRing}`}
+            <a
+              href="https://www.uagc.edu/chat"
+              target="_blank"
+              rel="noopener noreferrer"
+              className={`inline-flex min-h-11 items-center gap-2 whitespace-nowrap rounded-full border border-white/20 px-4 text-xs font-medium text-white/80 transition-colors hover:border-white/40 hover:text-white ${focusRing}`}
             >
               <MessageCircle className="size-3.5 shrink-0" strokeWidth={1.8} aria-hidden />
               Live Chat
-            </button>
+            </a>
           </div>
         </div>
       </div>
@@ -131,12 +140,12 @@ export function SiteFooter() {
             >
               Nondiscrimination Policy
             </summary>
-            <p className="mt-2 max-w-5xl text-xs leading-relaxed text-white/35">
+            <p className="mt-2 max-w-5xl text-xs leading-relaxed text-white/60">
               {NONDISCRIMINATION}
             </p>
           </details>
 
-          <p className="mt-2 text-xs text-white/30">
+          <p className="mt-2 text-xs text-white/60">
             180 South Arizona Avenue, Suite #301, Chandler, AZ 85225
           </p>
         </div>

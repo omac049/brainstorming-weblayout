@@ -28,7 +28,8 @@ docker compose up app --build
 | `/request-info-v5` | Paid | Full ~16 module stack with hero RFI |
 | `/degree-programs-v7` | Paid | Full stack with ProgramExplorer |
 | `/online-college-courses-v5` | Paid | Lean ~10 module OCC variant |
-| `/organic/homepage` | Organic | Empathy-first arc, no mid-page RFI |
+| `/organic/homepage` | Organic | Conversion architecture — cost estimator, program explorer, closing RFI |
+| `/organic/homepage-v2` | Organic | Redirects to `/organic/homepage` (legacy URL) |
 | `/organic/online-degrees` | Organic | Discovery hub, navigational-first |
 | `/organic/request-information/thank-you` | Organic | Post-submission confirmation |
 

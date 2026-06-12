@@ -238,7 +238,7 @@ function AccordionItem({
   return (
     <div
       className={cn(
-        "group/item rounded-xl border transition-all duration-300",
+        "group/item rounded-xl border transition-[border-color,box-shadow] duration-300",
         isOpen
           ? "border-uagc-navy/15 bg-white shadow-[0_2px_12px_rgba(12,35,75,0.06)]"
           : "border-uagc-border bg-white hover:border-uagc-navy/10 hover:shadow-[0_1px_6px_rgba(12,35,75,0.04)]",
@@ -255,7 +255,7 @@ function AccordionItem({
         >
           <span
             className={cn(
-              "mt-0.5 flex size-7 shrink-0 items-center justify-center rounded-lg text-xs font-bold transition-all duration-300",
+              "mt-0.5 flex size-7 shrink-0 items-center justify-center rounded-lg text-xs font-bold transition-[background-color,color] duration-300",
               isOpen
                 ? "bg-uagc-gold text-uagc-navy"
                 : "bg-uagc-surface text-uagc-gray group-hover/item:bg-uagc-gold/15 group-hover/item:text-uagc-navy",
@@ -482,32 +482,23 @@ function FAQSectionAccordion({
 }
 
 /* ------------------------------------------------------------------ */
-/*  Main section                                                       */
+/*  Full paid-landing FAQ (search + categories)                          */
 /* ------------------------------------------------------------------ */
 
-export function FAQSection({
+function FAQSectionDefault({
   id,
-  heading = "Frequently Asked Questions",
-  subheading = "Find quick answers to the most common questions about UAGC — or reach out to an advisor for personalized help.",
-  items = DEFAULT_FAQ_ITEMS,
-  variant = "default",
+  heading,
+  subheading,
+  items,
   className,
-}: FAQSectionProps) {
-  if (variant === "accordion") {
-    const simpleItems = items as SimpleFAQItem[];
-    const accordionSubheading = heading === "" ? "" : subheading;
-    return (
-      <FAQSectionAccordion
-        id={id}
-        heading={heading}
-        subheading={accordionSubheading}
-        items={simpleItems}
-        className={className}
-      />
-    );
-  }
-
-  const fullItems = items as FAQItem[];
+}: {
+  id?: string;
+  heading: string;
+  subheading: string;
+  items: FAQItem[];
+  className?: string;
+}) {
+  const fullItems = items;
   const [activeCategory, setActiveCategory] = useState<
     FAQCategory | "all"
   >("all");
@@ -614,7 +605,7 @@ export function FAQSection({
               aria-selected={activeCategory === "all"}
               onClick={() => setActiveCategory("all")}
               className={cn(
-                "inline-flex items-center gap-1.5 rounded-full border px-4 py-2 text-xs font-semibold tracking-wide transition-all duration-200 sm:text-sm",
+                "inline-flex items-center gap-1.5 rounded-full border px-4 py-2 text-xs font-semibold tracking-wide transition-[background-color,color,border-color] duration-200 sm:text-sm",
                 activeCategory === "all"
                   ? "border-uagc-navy bg-uagc-navy text-white"
                   : "border-uagc-border bg-white text-uagc-gray hover:border-uagc-navy/20 hover:text-uagc-navy",
@@ -643,7 +634,7 @@ export function FAQSection({
                   aria-selected={isActive}
                   onClick={() => setActiveCategory(cat.id)}
                   className={cn(
-                    "inline-flex items-center gap-1.5 rounded-full border px-4 py-2 text-xs font-semibold tracking-wide transition-all duration-200 sm:text-sm",
+                    "inline-flex items-center gap-1.5 rounded-full border px-4 py-2 text-xs font-semibold tracking-wide transition-[background-color,color,border-color] duration-200 sm:text-sm",
                     isActive
                       ? "border-uagc-navy bg-uagc-navy text-white"
                       : "border-uagc-border bg-white text-uagc-gray hover:border-uagc-navy/20 hover:text-uagc-navy",
@@ -713,7 +704,7 @@ export function FAQSection({
           {/* Bottom CTA */}
           <div className="mt-8 overflow-hidden rounded-xl border border-uagc-border bg-white sm:mt-10">
             <div className="flex flex-col items-center gap-4 px-6 py-8 text-center sm:flex-row sm:gap-6 sm:px-8 sm:text-left">
-              <span className="flex size-12 shrink-0 items-center justify-center rounded-full bg-uagc-navy/[0.06]">
+              <span className="flex size-12 shrink-0 items-center justify-center rounded-full bg-uagc-navy/6">
                 <MessageCircle
                   className="size-5 text-uagc-navy"
                   strokeWidth={1.5}
@@ -741,5 +732,63 @@ export function FAQSection({
 
       <FAQStructuredData items={fullItems} />
     </section>
+  );
+}
+
+/* ------------------------------------------------------------------ */
+/*  Main section                                                       */
+/* ------------------------------------------------------------------ */
+
+export function FAQSection({
+  id,
+  heading = "Frequently Asked Questions",
+  subheading = "Find quick answers to the most common questions about UAGC — or reach out to an advisor for personalized help.",
+  items = DEFAULT_FAQ_ITEMS,
+  variant = "default",
+  className,
+}: FAQSectionProps) {
+  useEffect(() => {
+    // #region agent log
+    fetch("http://127.0.0.1:7772/ingest/24b5b1ff-078e-4328-bf26-1b7274349e2e", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "X-Debug-Session-Id": "dda533",
+      },
+      body: JSON.stringify({
+        sessionId: "dda533",
+        runId: "pre-fix",
+        hypothesisId: "A",
+        location: "FAQSection.tsx:dispatch",
+        message: "FAQSection variant dispatch",
+        data: { variant, itemCount: items.length },
+        timestamp: Date.now(),
+      }),
+    }).catch(() => {});
+    // #endregion
+  }, [variant, items.length]);
+
+  if (variant === "accordion") {
+    const simpleItems = items as SimpleFAQItem[];
+    const accordionSubheading = heading === "" ? "" : subheading;
+    return (
+      <FAQSectionAccordion
+        id={id}
+        heading={heading}
+        subheading={accordionSubheading}
+        items={simpleItems}
+        className={className}
+      />
+    );
+  }
+
+  return (
+    <FAQSectionDefault
+      id={id}
+      heading={heading}
+      subheading={subheading}
+      items={items as FAQItem[]}
+      className={className}
+    />
   );
 }

@@ -3,7 +3,7 @@
     "name": "online-degrees-hub",
     "liveUrl": "https://www.uagc.edu/online-degrees/",
     "prototypeRoute": "/organic/online-degrees",
-    "prototypeRepo": "uagc-prototypes",
+    "prototypeRepo": "brainstorming-weblayout/prototypes",
     "figmaFileKey": "HoSMZOSnKSVgUXlskHv9tS",
     "figmaFileUrl": "https://www.figma.com/design/HoSMZOSnKSVgUXlskHv9tS/UAGC-Paid-page-templates-3--%E2%80%94-Wireframe?node-id=0-1",
     "figmaProjectId": "598288008",
@@ -17,24 +17,27 @@
       "conversionRate": "5.82%",
       "avgSessionDuration": "~11.8 min",
       "contentsquareStickyRfiRage": "2.41× recurrence",
-      "note": "Organic gold standard — layout to preserve discovery rhythm while reducing RFI duplication"
+      "note": "Discovery-first hub — no hero/mid-page RFI; single closing FORM-02 + header + sticky"
     }
   },
   "sectionOrder": [
     { "order": 1, "moduleId": "NAV-00", "anchor": null, "scrollMargin": null },
     { "order": 2, "moduleId": "HERO-ORG", "anchor": null, "scrollMargin": null },
-    { "order": 3, "moduleId": "RFI-HERO", "anchor": "hero-rfi", "scrollMargin": "scroll-mt-24" },
-    { "order": 4, "moduleId": "HUB-TOP3", "anchor": "top-degrees", "scrollMargin": "scroll-mt-20" },
-    { "order": 5, "moduleId": "HUB-CATALOG", "anchor": "programs", "scrollMargin": "scroll-mt-20" },
-    { "order": 6, "moduleId": "HUB-INTRO", "anchor": null, "scrollMargin": null },
-    { "order": 7, "moduleId": "TRUST-01", "anchor": "stories", "scrollMargin": "scroll-mt-20" },
-    { "order": 8, "moduleId": "HUB-FINDER", "anchor": "degree-finder", "scrollMargin": "scroll-mt-20" },
-    { "order": 9, "moduleId": "HUB-JOURNEY", "anchor": "journey", "scrollMargin": "scroll-mt-20" },
-    { "order": 10, "moduleId": "FAQ-01", "anchor": "faq", "scrollMargin": "scroll-mt-20" },
-    { "order": 11, "moduleId": "ACCR-01", "anchor": null, "scrollMargin": null },
-    { "order": 12, "moduleId": "CTA-01", "anchor": null, "scrollMargin": null },
-    { "order": 13, "moduleId": "FOOT-01", "anchor": null, "scrollMargin": null },
-    { "order": 14, "moduleId": "FORM-05", "anchor": null, "scrollMargin": null }
+    { "order": 3, "moduleId": "HUB-POPULAR", "anchor": null, "scrollMargin": null },
+    { "order": 4, "moduleId": "PERSONA-PATHS", "anchor": "paths", "scrollMargin": "scroll-mt-28" },
+    { "order": 5, "moduleId": "PROG-01", "anchor": "programs", "scrollMargin": "scroll-mt-20" },
+    { "order": 6, "moduleId": "TUITION-BAND", "anchor": "tuition", "scrollMargin": "scroll-mt-20" },
+    { "order": 7, "moduleId": "WAYS-TO-SAVE", "anchor": "ways-to-save", "scrollMargin": "scroll-mt-28" },
+    { "order": 8, "moduleId": "AREAS", "anchor": "areas", "scrollMargin": "scroll-mt-20" },
+    { "order": 9, "moduleId": "TRUST-01", "anchor": "stories", "scrollMargin": "scroll-mt-20" },
+    { "order": 10, "moduleId": "CAREER-01", "anchor": "outcomes", "scrollMargin": "scroll-mt-20" },
+    { "order": 11, "moduleId": "HUB-JOURNEY", "anchor": "journey", "scrollMargin": "scroll-mt-20" },
+    { "order": 12, "moduleId": "CTA-01", "anchor": "next-steps", "scrollMargin": "scroll-mt-20" },
+    { "order": 13, "moduleId": "ACCR-01", "anchor": null, "scrollMargin": null },
+    { "order": 14, "moduleId": "FORM-02", "anchor": "rfi", "scrollMargin": "scroll-mt-24" },
+    { "order": 15, "moduleId": "FAQ-01", "anchor": "faq", "scrollMargin": "scroll-mt-20" },
+    { "order": 16, "moduleId": "FOOT-01", "anchor": null, "scrollMargin": null },
+    { "order": 17, "moduleId": "FORM-05", "anchor": null, "scrollMargin": null }
   ],
   "modules": [
     {
@@ -45,7 +48,7 @@
       "reactPath": "src/components/organic/SiteHeader.tsx",
       "props": { "variant": "full" },
       "background": "#FFFFFF",
-      "notes": "Full mega-menu nav — NOT paid NAV-01 reduced. Desktop mega-menus; mobile drawer. Request Info + Apply in utility bar."
+      "notes": "Request Info → #rfi closing form. Apply Now in utility bar."
     },
     {
       "id": "HERO-ORG",
@@ -54,117 +57,104 @@
       "reactComponent": "OrganicHomeHero",
       "reactPath": "src/components/organic/OrganicHomeHero.tsx",
       "props": {
-        "eyebrow": "Find the Program That's Right for You",
-        "headline": "Online Degrees",
-        "subheadline": "Study something you love in an environment designed for busy adults.",
-        "showBreadcrumb": true,
-        "breadcrumb": ["Home", "Online Degrees"]
+        "eyebrow": "University of Arizona Global Campus",
+        "headline": "Your Degree, Your Schedule",
+        "subheadline": "50+ programs from associate to doctoral — 100% online, one 5-week class at a time."
       },
-      "layout": {
-        "desktop": "Full-width hero image + headline overlay; RFI in separate band below",
-        "mobile": "Image band + headline stack; no form in hero image area"
-      },
-      "doNot": ["Embed RFI inside hero image column (live pattern — keep band separation)", "Cover faces with form on mobile"]
+      "doNot": ["Embed RFI in hero", "Cover faces with form on mobile"]
     },
     {
-      "id": "RFI-HERO",
-      "name": "RFI band below hero",
-      "category": "form",
-      "reactComponent": "RFIForm",
-      "reactPath": "src/components/shared/RFIForm.tsx",
-      "props": { "variant": "mini", "heroFormRef": "required for sticky bar", "sectionTitle": "Request More Information" },
-      "fields": ["college_of_interest", "degree_level", "firstname", "lastname", "email", "phone", "state", "tcpa_checkbox"],
+      "id": "HUB-POPULAR",
+      "name": "Popular programs quick links",
+      "category": "discovery",
+      "reactComponent": "HubPopularPrograms",
+      "reactPath": "src/components/organic/HubPopularPrograms.tsx",
       "background": "#FFFFFF",
-      "notes": "Two-step mini. Trust line: 'It only takes a minute. No obligation.' Program routing via area + degree level — not full 50+ degree dropdown on step 1."
+      "notes": "Top 3 requested degrees as inline links + View all 50+ — fast lane for program hunters."
     },
     {
-      "id": "HUB-INTRO",
-      "name": "Hub value intro",
-      "category": "content",
-      "reactComponent": "HubIntroSection",
-      "reactPath": "src/components/organic/HubIntroSection.tsx",
-      "props": {
-        "heading": "Flexible Online College Degrees to Fit Your Life",
-        "body": "At UAGC, online degrees provide a flexible way for busy adults to fit college into their lives…"
-      },
-      "background": "#FFFFFF"
-    },
-    {
-      "id": "HUB-TOP3",
-      "name": "Top 3 requested degrees",
+      "id": "PERSONA-PATHS",
+      "name": "Persona path cards",
       "category": "discovery",
-      "reactComponent": "TopDegreesSection",
-      "reactPath": "src/components/organic/TopDegreesSection.tsx",
+      "reactComponent": "PersonaPathSection",
+      "reactPath": "src/components/organic/PersonaPathSection.tsx",
       "props": {
-        "heading": "Top Three Requested Degrees",
-        "subheading": "Find many competitive and valuable educational disciplines among UAGC online bachelor's degree programs, including the three most popular degrees.",
-        "cards": [
-          {
-            "title": "Bachelor of Arts in Business Administration",
-            "description": "Study the keys to a successful business and take your career to the next level.",
-            "href": "/online-degrees/bachelors/business-administration"
-          },
-          {
-            "title": "Bachelor of Arts in Organizational Management",
-            "description": "Examine the human side of managing organizations.",
-            "href": "/online-degrees/bachelors/organizational-management"
-          },
-          {
-            "title": "Bachelor of Arts in Early Childhood Education",
-            "description": "Amplify your impact and empower future learners.",
-            "href": "/online-degrees/bachelors/early-childhood-education"
-          }
-        ]
+        "paths": "HUB_PERSONA_PATHS",
+        "heading": "Start With Your Situation"
       },
-      "layout": "3-col desktop / stacked mobile; image + title + Learn More link per card",
-      "background": "#faf9f7"
-    },
-    {
-      "id": "HUB-CATALOG",
-      "name": "Filterable program catalog",
-      "category": "discovery",
-      "reactComponent": "ProgramCatalogSection",
-      "reactPath": "src/components/organic/ProgramCatalogSection.tsx",
-      "props": {
-        "heading": "Do You Know Which Degree You Want?",
-        "subheading": "Choose an online degree program that aligns with your goals…",
-        "initialVisible": 6,
-        "filters": ["degreeLevel", "areaOfInterest", "college"]
-      },
-      "behavior": "Native select filters (no horizontal pill scroll trap). ~6 programs visible in page flow + Show All expand. Each row: title, college, short blurb, View Details link — NO per-row RFI.",
-      "copy": "50+ programs across associate, bachelor's, master's, and doctoral levels",
       "background": "#FFFFFF",
-      "doNot": ["Nested scroll containers (max-h + overflow-y-auto)", "Per-program Request Info buttons", "200+ programs copy"]
+      "notes": "Transfer / military / graduate / career-changer routing — simulation program-specific entry."
     },
     {
-      "id": "HUB-FINDER",
-      "name": "Degree finder CTA",
-      "category": "discovery",
-      "reactComponent": "DegreeFinderCTA",
-      "reactPath": "src/components/organic/DegreeFinderCTA.tsx",
+      "id": "WAYS-TO-SAVE",
+      "name": "Ways to make it affordable",
+      "category": "financial",
+      "reactComponent": "WaysToSaveSection",
+      "reactPath": "src/components/organic/WaysToSaveSection.tsx",
+      "background": "#FFFFFF",
+      "notes": "Expandable FAFSA, military, employer, scholarship cards — monthly-cost framing; on-page only."
+    },
+    {
+      "id": "CAREER-01",
+      "name": "Career outcomes (hub-lite)",
+      "category": "career",
+      "reactComponent": "CareerOutcomesSection",
+      "reactPath": "src/components/sections/CareerOutcomesSection.tsx",
       "props": {
-        "heading": "Not Sure What You Want to Study?",
-        "body": "Whether you're a natural born leader or excel at educating others, our Degree Finder tool can help you find the path that aligns with your individual skills and strengths.",
-        "ctaLabel": "Take the Degree Finder Quiz",
-        "ctaHref": "/degree-finder"
+        "outcomes": "HUB_CAREER_OUTCOMES",
+        "heading": "Where UAGC Graduates Go"
       },
       "background": "#0C234B",
-      "textOnDark": "#FFFFFF, muted #b8c5d9"
+      "notes": "4-area outcomes table + Handshake — addresses employer-respect simulation theme."
+    },
+    {
+      "id": "AREAS",
+      "name": "Areas of Study grid",
+      "category": "discovery",
+      "reactComponent": "AreasOfStudyGrid",
+      "reactPath": "src/components/organic/AreasOfStudyGrid.tsx",
+      "background": "#FFFFFF",
+      "notes": "Category-level browse — Business, Education, IT, CJ, etc. Replaces HUB-TOP3 + partial HUB-CATALOG entry."
+    },
+    {
+      "id": "TUITION-BAND",
+      "name": "Tuition highlight band",
+      "category": "financial",
+      "reactComponent": "TuitionHighlightBand",
+      "reactPath": "src/components/organic/TuitionHighlightBand.tsx",
+      "background": "#0C234B",
+      "notes": "$485/credit, 86% aid, GI Bill, $0 apply — inline cost transparency."
+    },
+    {
+      "id": "PROG-01",
+      "name": "Program Explorer",
+      "category": "discovery",
+      "reactComponent": "ProgramExplorer",
+      "reactPath": "src/components/sections/ProgramExplorer.tsx",
+      "props": { "heading": "Find Your Program" },
+      "behavior": "Native select filters; ~6 programs + Show All; no per-row RFI.",
+      "background": "#FFFFFF",
+      "notes": "Shared paid module — supersedes HUB-CATALOG for prototype."
     },
     {
       "id": "TRUST-01",
-      "name": "Peer Testimonials (3-card grid)",
+      "name": "Student Experience video testimonials",
       "category": "trust",
-      "reactComponent": "TestimonialSection",
-      "reactPath": "src/components/sections/TestimonialSection.tsx",
-      "props": { "heading": "What Our Students Think" },
+      "reactComponent": "VideoTestimonialSection",
+      "reactPath": "src/components/organic/VideoTestimonialSection.tsx",
+      "props": {
+        "eyebrow": "Student Experience",
+        "heading": "In Their Own Words",
+        "subheading": "Our students are tenacious and inspiring.",
+        "anchor": "stories"
+      },
       "hubTestimonials": [
-        { "tag": "Working Parent", "name": "Stacey Metzler", "credential": "Master of Arts in Psychology" },
-        { "tag": "Military Veteran", "name": "Timothy Cathey", "credential": "BA in Social and Criminal Justice" },
-        { "tag": "Working Professional", "name": "Tyler Barnett", "credential": "BA in Organizational Management" }
+        { "tag": "Military Veteran", "name": "Vincent \"Rocco\" Vargas" },
+        { "tag": "Working Parent", "name": "Jessica Smith" },
+        { "tag": "Career Changer", "name": "Wendy Bosquez" }
       ],
-      "background": "#faf9f7",
-      "notes": "3 of 4 live hub voices retained; Flory Seidel dropped for consistent 3-card layout across all templates"
+      "background": "#0C234B",
+      "notes": "Live uagc.edu success_video_3_column thumbnails + YouTube modal — not text quote cards."
     },
     {
       "id": "HUB-JOURNEY",
@@ -174,14 +164,8 @@
       "reactPath": "src/components/organic/EnrollmentJourneySection.tsx",
       "props": {
         "heading": "Start Your Journey",
-        "subheading": "Prepare yourself to begin your enrollment process by reviewing some basic information before you get started.",
-        "steps": [
-          { "title": "Transfer Credits", "description": "Decrease your time to completion by transferring your past credits.", "linkLabel": "Learn More" },
-          { "title": "Application", "description": "Gather documents and work with your Admission Specialist through the process.", "linkLabel": "Learn More" },
-          { "title": "Funding Options", "description": "Explore flexible tuition options and payment plans.", "linkLabel": "Learn More" }
-        ]
+        "steps": ["Transfer Credits", "Application", "Funding Options"]
       },
-      "layout": "3-card row desktop / stacked mobile",
       "background": "#FFFFFF"
     },
     {
@@ -190,15 +174,9 @@
       "category": "content",
       "reactComponent": "FAQSection",
       "reactPath": "src/components/sections/FAQSection.tsx",
-      "props": {
-        "heading": "Frequently Asked Questions About Online Degrees",
-        "categories": ["online-worth", "advantages"]
-      },
-      "hubTopics": [
-        "Are Online Degrees Worth it?",
-        "What Are the Advantages of an Online Degree?"
-      ],
-      "background": "#FFFFFF"
+      "props": { "heading": "Frequently Asked Questions About Online Degrees" },
+      "background": "#FFFFFF",
+      "notes": "Employer respect, cost, transfer, 5-week format, military, grad programs, support."
     },
     {
       "id": "ACCR-01",
@@ -206,28 +184,35 @@
       "category": "trust",
       "reactComponent": "AccreditationBand",
       "reactPath": "src/components/organic/AccreditationBand.tsx",
-      "props": {
-        "wscucCopy": "The University of Arizona Global Campus is accredited by WASC Senior College and University Commission (WSCUC)…",
-        "uaAffiliation": true
-      },
       "background": "#faf9f7",
-      "notes": "Defensible UA enterprise / WSCUC language — no overreaching superlatives."
+      "notes": "WSCUC + programmatic accreditations + UA affiliation. No peer-university name-drops."
     },
     {
       "id": "CTA-01",
       "name": "Bottom CTA (multi-path)",
       "category": "cta",
-      "reactComponent": "inline in page.tsx",
-      "paths": ["Chat with Advisor", "Call +1 866 711 1700", "Request Information #hero-rfi", "Apply Now"],
-      "background": "#0C234B"
+      "reactComponent": "HubBottomCTA",
+      "reactPath": "src/components/organic/HubBottomCTA.tsx",
+      "paths": ["Chat with Advisor", "Call +1 866 711 1700", "Request Information #rfi", "Apply Now"],
+      "background": "#0C234B",
+      "notes": "Separate from FORM-02 — Accreditation band provides visual break between navy CTA and navy RFI."
+    },
+    {
+      "id": "FORM-02",
+      "name": "RFI: Closing (full)",
+      "category": "form",
+      "reactComponent": "RFIForm",
+      "reactPath": "src/components/shared/RFIForm.tsx",
+      "props": { "variant": "full", "anchor": "rfi" },
+      "background": "#0C234B",
+      "notes": "After Accreditation, before FAQ. Header + sticky target #rfi."
     },
     {
       "id": "FOOT-01",
       "name": "Site footer",
       "category": "foot",
-      "reactComponent": "Footer",
-      "reactPath": "src/components/shared/Footer.tsx",
-      "notes": "Full site footer — same as live organic pages."
+      "reactComponent": "SiteFooter",
+      "reactPath": "src/components/organic/SiteFooter.tsx"
     },
     {
       "id": "FORM-05",
@@ -235,18 +220,52 @@
       "category": "form",
       "reactComponent": "RFIStickyBar",
       "reactPath": "src/components/shared/RFIForm.tsx",
-      "behavior": "Hidden on initial hero RFI view; visible after scroll past hero RFI band",
-      "notes": "Prototype should reduce rage clicks vs live (Contentsquare 2.41× sticky recurrence) — clear label, single target #hero-rfi"
+      "behavior": "Hidden while hero intersects viewport; visible after scroll; links to #rfi",
+      "notes": "No hero RFI — observes hero section ref instead of hero form."
+    }
+  ],
+  "deprecatedModules": [
+    {
+      "id": "HOME-PATH",
+      "reason": "Tabbed Find Your Path duplicated site nav and generic brochure cards — replaced by program-first catalog."
+    },
+    {
+      "id": "HUB-PATHS",
+      "reason": "Redundant with PROG-01 area filters + Areas grid + section nav; removed to shorten page for CS 33% scroll depth."
+    },
+    {
+      "id": "CTA+FORM-02",
+      "reason": "Split back into CTA-01 + FORM-02 — same navy bg needed Accreditation/FAQ separator."
+    },
+    {
+      "id": "RFI-HERO",
+      "reason": "Discovery-first hub — no hero RFI band; Contentsquare sticky rage on live duplication."
+    },
+    {
+      "id": "HUB-INTRO",
+      "reason": "Generic flex copy rejected in persona simulations; routing components convey the same job."
+    },
+    {
+      "id": "HUB-TOP3",
+      "reason": "Folded into AREAS featured row + PROG-01 catalog."
+    },
+    {
+      "id": "HUB-CATALOG",
+      "reason": "Superseded by shared PROG-01 ProgramExplorer."
+    },
+    {
+      "id": "HUB-FINDER",
+      "reason": "Overlaps HOME-PATH tabs; defer unless A/B testing undecided-explorer variant."
     }
   ],
   "omittedVsLive": [
     {
-      "livePattern": "Multiple mid-page RFI blocks (generic + stepped duplicates)",
-      "prototypeRule": "Single hero RFI band + sticky bar only — no FORM-02 mid-page on hub v1"
+      "livePattern": "4+ RFI form instances on page",
+      "prototypeRule": "Single closing FORM-02 + header Request Info + sticky bar only"
     },
     {
       "livePattern": "Explore accredited degrees inline form block",
-      "prototypeRule": "Fold discovery into HUB-CATALOG filters; no duplicate form"
+      "prototypeRule": "Discovery via AREAS + PROG-01 filters; no duplicate mid-page form"
     },
     {
       "livePattern": "Pagination-only catalog on mobile",
@@ -254,25 +273,27 @@
     }
   ],
   "sharedFromPaid": [
-    "RFIForm (mini two-step)",
+    "ProgramExplorer (PROG-01)",
+    "CareerOutcomesSection (CAREER-01 hub-lite)",
+    "RFIForm (full closing)",
     "RFIStickyBar",
     "FAQSection",
-    "TestimonialSection",
-    "Footer",
-    "CTA-01 multi-path pattern"
+    "VideoTestimonialSection (TRUST-01)"
   ],
   "organicOnly": [
     "NAV-00",
     "HERO-ORG",
-    "RFI-HERO",
-    "HUB-INTRO",
-    "HUB-TOP3",
-    "HUB-CATALOG",
-    "HUB-FINDER",
+    "HUB-POPULAR",
+    "PERSONA-PATHS",
+    "AREAS",
+    "HubBottomCTA",
+    "TUITION-BAND",
+    "WAYS-TO-SAVE",
     "HUB-JOURNEY",
-    "ACCR-01"
+    "ACCR-01",
+    "SiteFooter"
   ],
-  "targetMobileScreens": "10–12 iPhone screens",
+  "targetMobileScreens": "12–13 iPhone screens",
   "rfiIntegration": {
     "postSubmitUrl": "/request-information/thank-you",
     "postSubmitSpec": "design-system/pages/request-information-thank-you.md",

@@ -42,7 +42,7 @@ export function HomeNewsSection() {
     >
       <div className="mx-auto w-full max-w-[1440px] px-4 sm:px-6 lg:px-8">
         <div className={cn("reveal-section", isVisible && "is-visible")}>
-          <span aria-hidden className="mb-3 block h-[3px] w-10 bg-uagc-gold" />
+          <span aria-hidden className="mb-3 block h-0.75 w-10 bg-uagc-gold" />
           <h2
             id="home-achievements-heading"
             className="type-h2 text-white"
@@ -58,7 +58,7 @@ export function HomeNewsSection() {
               <article
                 key={item.title}
                 className={cn(
-                  "reveal-section group flex h-full cursor-default flex-col rounded-2xl border border-white/10 bg-white/[0.06] p-6 transition-all duration-300 hover:border-uagc-gold/30 hover:bg-white/[0.1]",
+                  "reveal-section group flex h-full cursor-default flex-col rounded-2xl border border-white/10 bg-white/6 p-6 transition-[border-color,background-color] duration-300 hover:border-uagc-gold/30 hover:bg-white/10",
                   `stagger-${i + 1}`,
                   isVisible && "is-visible",
                 )}

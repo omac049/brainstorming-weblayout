@@ -4,6 +4,7 @@ import { useEffect, useRef, useState, useCallback } from "react";
 import { TrendingUp, ArrowRight } from "lucide-react";
 
 import { cn } from "@/lib/utils";
+import { getPrefersReducedMotion } from "@/hooks/useScrollReveal";
 
 /* ─── Types ─────────────────────────────────────────────────────── */
 
@@ -74,19 +75,13 @@ function formatSalary(amount: number): string {
 /* ─── Sub-module: Animated Counter ──────────────────────────────── */
 
 function AnimatedValue({ value, prefix = "", suffix = "" }: { value: number; prefix?: string; suffix?: string }) {
-  const [displayed, setDisplayed] = useState(0);
+  const prefersReduced = getPrefersReducedMotion();
+  const [displayed, setDisplayed] = useState(() => (prefersReduced ? value : 0));
   const ref = useRef<HTMLSpanElement>(null);
   const hasAnimated = useRef(false);
 
   useEffect(() => {
-    if (!ref.current || hasAnimated.current) return;
-
-    const mq = window.matchMedia("(prefers-reduced-motion: reduce)");
-    if (mq.matches) {
-      setDisplayed(value);
-      hasAnimated.current = true;
-      return;
-    }
+    if (!ref.current || hasAnimated.current || prefersReduced) return;
 
     const observer = new IntersectionObserver(
       ([entry]) => {
@@ -108,11 +103,13 @@ function AnimatedValue({ value, prefix = "", suffix = "" }: { value: number; pre
     );
     observer.observe(ref.current);
     return () => observer.disconnect();
-  }, [value]);
+  }, [value, prefersReduced]);
+
+  const shown = prefersReduced ? value : displayed;
 
   return (
     <span ref={ref}>
-      {prefix}{displayed.toLocaleString("en-US")}{suffix}
+      {prefix}{shown.toLocaleString("en-US")}{suffix}
     </span>
   );
 }
@@ -154,21 +151,22 @@ function DegreeCardCarousel({ tiers }: { tiers: SalaryTier[] }) {
       <div className="mt-4 flex items-center justify-center gap-2 sm:hidden" role="tablist" aria-label="Degree level cards">
         {tiers.map((tier, i) => (
           <button
+            type="button"
             key={i}
             role="tab"
             aria-selected={i === activeIndex}
             aria-label={`${tier.level} degree`}
             onClick={() => scrollTo(i)}
             className={cn(
-              "flex items-center justify-center rounded-full transition-all duration-300 ease-out",
-              "min-h-[44px] min-w-[44px]",
+              "flex items-center justify-center rounded-full transition-[background-color] duration-300 ease-out",
+              "min-h-11 min-w-11",
               i === activeIndex ? "bg-uagc-navy/5" : "bg-transparent"
             )}
             style={{ touchAction: "manipulation" }}
           >
             <span
               className={cn(
-                "block h-1.5 rounded-full transition-all duration-300 ease-out",
+                "block h-1.5 rounded-full transition-[width,background-color] duration-300 ease-out",
                 i === activeIndex ? "w-6 bg-uagc-navy" : "w-1.5 bg-uagc-navy/20"
               )}
             />
@@ -187,9 +185,9 @@ function DegreeCard({ tier, index, isActive }: { tier: SalaryTier; index: number
   return (
     <div
       className={cn(
-        "w-[82vw] min-w-[82vw] snap-center rounded-2xl border bg-white p-5 transition-all duration-300 ease-out",
+        "w-[82vw] min-w-[82vw] snap-center rounded-2xl border bg-white p-5 transition-[border-color,box-shadow,transform] duration-300 ease-out",
         "sm:w-auto sm:min-w-0",
-        "active:scale-[0.97] active:transition-none",
+        "active:scale-97 active:transition-none",
         isActive ? "border-uagc-navy/15 shadow-sm" : "border-uagc-border"
       )}
       style={{ touchAction: "manipulation" }}
@@ -261,7 +259,7 @@ function FieldSelector({ fields }: { fields: FieldHighlight[] }) {
     <div className="overflow-hidden rounded-2xl border border-uagc-border bg-white">
       {/* Section label */}
       <div className="border-b border-uagc-border px-5 pb-3 pt-5 sm:px-6">
-        <p className="text-xs font-semibold uppercase tracking-[0.1em] text-uagc-gray">
+        <p className="text-xs font-semibold uppercase tracking-widest text-uagc-gray">
           What could you earn in your field?
         </p>
       </div>
@@ -275,6 +273,7 @@ function FieldSelector({ fields }: { fields: FieldHighlight[] }) {
       >
         {fields.map((f, i) => (
           <button
+            type="button"
             key={f.field}
             role="tab"
             aria-selected={i === active}
@@ -282,7 +281,7 @@ function FieldSelector({ fields }: { fields: FieldHighlight[] }) {
             id={`field-tab-${i}`}
             onClick={() => setActive(i)}
             className={cn(
-              "relative min-h-[44px] shrink-0 cursor-pointer whitespace-nowrap px-4 text-sm font-medium transition-colors duration-200",
+              "relative min-h-11 shrink-0 cursor-pointer whitespace-nowrap px-4 text-sm font-medium transition-colors duration-200",
               "active:bg-uagc-navy/5 active:transition-none",
               i === active
                 ? "text-uagc-navy"
@@ -336,7 +335,7 @@ function FieldSelector({ fields }: { fields: FieldHighlight[] }) {
 function LifetimeImpact({ gain, context }: { gain: string; context: string }) {
   return (
     <div className="relative overflow-hidden rounded-2xl bg-uagc-navy p-6 sm:p-8">
-      <div className="absolute -bottom-6 -left-6 size-24 rounded-full bg-white/[0.03]" aria-hidden />
+      <div className="absolute -bottom-6 -left-6 size-24 rounded-full bg-white/3" aria-hidden />
 
       <div className="relative">
         <p className="text-xs font-semibold uppercase tracking-[0.12em] text-white/80">
@@ -394,7 +393,7 @@ export function SalaryGrowthSection({
         {/* CTA — full-width, thumb-zone, 48px tall, always visible */}
         <a
           href="#rfi"
-          className="mt-5 flex min-h-[48px] items-center justify-center gap-2 rounded-xl bg-uagc-gold px-5 py-3.5 text-[0.9375rem] font-semibold text-uagc-navy transition-colors duration-200 hover:bg-[#f5a623] active:scale-[0.98] active:transition-none sm:mt-6 sm:inline-flex sm:w-auto sm:rounded-lg"
+          className="mt-5 flex min-h-12 items-center justify-center gap-2 rounded-xl bg-uagc-gold px-5 py-3.5 text-[0.9375rem] font-semibold text-uagc-navy transition-colors duration-200 hover:bg-uagc-gold-hover active:scale-98 active:transition-none sm:mt-6 sm:inline-flex sm:w-auto sm:rounded-lg"
           style={{ touchAction: "manipulation" }}
         >
           Take the Next Step

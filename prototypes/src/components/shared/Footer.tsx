@@ -19,19 +19,22 @@ const LEGAL_LINKS = [
 ] as const;
 
 const legalLinkClass =
-  "text-[var(--color-uagc-navy)] underline-offset-2 hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--color-uagc-navy)]";
+  "text-(--color-uagc-navy) underline-offset-2 hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-(--color-uagc-navy)";
 
 const bodyLinkClass =
-  "font-medium text-[var(--color-uagc-navy)] underline-offset-2 hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--color-uagc-navy)]";
+  "font-medium text-(--color-uagc-navy) underline-offset-2 hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-(--color-uagc-navy)";
 
 export function Footer() {
   return (
-    <footer role="contentinfo" className="bg-white text-[var(--color-uagc-gray)]">
+    <footer
+      role="contentinfo"
+      className="mobile-sticky-offset bg-white text-(--color-uagc-gray) md:pb-0"
+    >
       <div className="mx-auto w-full max-w-[1920px] px-4 py-8 sm:px-6 md:px-10 md:py-10">
         <div className="grid grid-cols-1 gap-8 md:grid-cols-[auto_1fr_auto] md:items-start md:gap-10">
           <Link
             href="/"
-            className="flex shrink-0 items-center justify-self-start focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--color-uagc-navy)]"
+            className="flex shrink-0 items-center justify-self-start focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-(--color-uagc-navy)"
             aria-label="University of Arizona Global Campus home"
           >
             <AssetImage
@@ -46,7 +49,7 @@ export function Footer() {
           <div className="space-y-4 text-xs leading-relaxed sm:text-sm">
             <p>{WSCUC_ACCREDITATION}</p>
 
-            <ul className="list-disc space-y-1.5 pl-4 marker:text-[var(--color-uagc-gray)]/60">
+            <ul className="list-disc space-y-1.5 pl-4 marker:text-(--color-uagc-gray)/60">
               {FOOTNOTES.map((note) => (
                 <li key={note}>{note}</li>
               ))}
@@ -77,7 +80,7 @@ export function Footer() {
       </div>
 
       <div className="border-t border-gray-200 bg-gray-100">
-        <div className="mx-auto flex w-full max-w-[1920px] flex-col gap-2 px-4 py-4 text-xs leading-relaxed text-[var(--color-uagc-gray)] sm:px-6 md:flex-row md:items-center md:justify-between md:px-10">
+        <div className="mx-auto flex w-full max-w-[1920px] flex-col gap-2 px-4 py-4 text-xs leading-relaxed text-(--color-uagc-gray) sm:px-6 md:flex-row md:items-center md:justify-between md:px-10">
           <p>
             The University of Arizona Global Campus, 180 South Arizona Avenue,
             Suite #301 Chandler, AZ 85225
@@ -87,7 +90,7 @@ export function Footer() {
             {LEGAL_LINKS.map((item, index) => (
               <span key={item.href} className="inline-flex items-center">
                 {index > 0 && (
-                  <span className="mx-2 text-[var(--color-uagc-gray)]/40" aria-hidden>
+                  <span className="mx-2 text-(--color-uagc-gray)/40" aria-hidden>
                     |
                   </span>
                 )}

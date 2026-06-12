@@ -8,25 +8,31 @@ interface UseScrollRevealOptions {
   once?: boolean;
 }
 
+function shouldRevealImmediately(): boolean {
+  if (typeof window === "undefined") return false;
+
+  return (
+    window.matchMedia("(prefers-reduced-motion: reduce)").matches ||
+    window.matchMedia("(hover: none) and (pointer: coarse)").matches
+  );
+}
+
+export function getPrefersReducedMotion(): boolean {
+  if (typeof window === "undefined") return false;
+  return window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+}
+
 export function useScrollReveal<T extends HTMLElement = HTMLDivElement>({
   threshold = 0.15,
   rootMargin = "0px 0px -60px 0px",
   once = true,
 }: UseScrollRevealOptions = {}) {
   const ref = useRef<T>(null);
-  const [isVisible, setIsVisible] = useState(false);
+  const [isVisible, setIsVisible] = useState(() => shouldRevealImmediately());
 
   useEffect(() => {
     const el = ref.current;
-    if (!el) return;
-
-    const prefersReduced = window.matchMedia(
-      "(prefers-reduced-motion: reduce)",
-    ).matches;
-    if (prefersReduced) {
-      setIsVisible(true);
-      return;
-    }
+    if (!el || shouldRevealImmediately()) return;
 
     const observer = new IntersectionObserver(
       ([entry]) => {
@@ -41,6 +47,17 @@ export function useScrollReveal<T extends HTMLElement = HTMLDivElement>({
     );
 
     observer.observe(el);
+
+    const rect = el.getBoundingClientRect();
+    const initiallyVisible =
+      rect.top < window.innerHeight && rect.bottom > 0 && rect.height > 0;
+    if (initiallyVisible) {
+      requestAnimationFrame(() => {
+        setIsVisible(true);
+        if (once) observer.unobserve(el);
+      });
+    }
+
     return () => observer.disconnect();
   }, [threshold, rootMargin, once]);
 
@@ -54,18 +71,11 @@ export function useAnimatedCounter(
 ) {
   const [count, setCount] = useState(0);
   const hasRun = useRef(false);
+  const prefersReduced = getPrefersReducedMotion();
 
   useEffect(() => {
-    if (!isVisible || hasRun.current) return;
+    if (!isVisible || hasRun.current || prefersReduced) return;
     hasRun.current = true;
-
-    const prefersReduced = window.matchMedia(
-      "(prefers-reduced-motion: reduce)",
-    ).matches;
-    if (prefersReduced) {
-      setCount(end);
-      return;
-    }
 
     const start = performance.now();
     const easeOutQuart = (t: number) => 1 - Math.pow(1 - t, 4);
@@ -78,7 +88,9 @@ export function useAnimatedCounter(
     }
 
     requestAnimationFrame(tick);
-  }, [isVisible, end, duration]);
+  }, [isVisible, end, duration, prefersReduced]);
 
+  if (!isVisible) return 0;
+  if (prefersReduced) return end;
   return count;
 }

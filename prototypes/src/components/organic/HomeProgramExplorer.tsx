@@ -137,7 +137,7 @@ export function HomeProgramExplorer() {
                     aria-pressed={isActive}
                     onClick={() => handleLevelChange(value)}
                     className={cn(
-                      "inline-flex min-h-11 cursor-pointer items-center justify-center rounded-full border px-4 py-2 text-sm font-semibold transition-all duration-200",
+                      "inline-flex min-h-11 cursor-pointer items-center justify-center rounded-full border px-4 py-2 text-sm font-semibold transition-[border-color,background-color,color] duration-200",
                       levelChipStyles(value, isActive),
                     )}
                   >
@@ -184,7 +184,7 @@ export function HomeProgramExplorer() {
                     aria-pressed={isActive}
                     onClick={() => handleAreaChange(value)}
                     className={cn(
-                      "inline-flex min-h-11 cursor-pointer items-center justify-center rounded-full border px-4 py-2 text-sm font-semibold transition-all duration-200",
+                      "inline-flex min-h-11 cursor-pointer items-center justify-center rounded-full border px-4 py-2 text-sm font-semibold transition-[border-color,background-color,color] duration-200",
                       isActive
                         ? "border-uagc-navy bg-uagc-navy text-white"
                         : "border-gray-200 bg-white text-uagc-navy hover:border-gray-300",
@@ -198,7 +198,7 @@ export function HomeProgramExplorer() {
           </div>
         </div>
 
-        <div className="mt-8 space-y-3 transition-all duration-200">
+        <div className="mt-8 space-y-3">
           {visiblePrograms.length > 0 ? (
             visiblePrograms.map((program) => (
               <Link
@@ -206,7 +206,7 @@ export function HomeProgramExplorer() {
                 href={`https://www.uagc.edu${program.href}`}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group flex min-h-11 cursor-pointer items-center justify-between gap-4 rounded-xl border border-gray-100 bg-white px-5 py-4 shadow-sm transition-all duration-200 hover:-translate-y-0.5 hover:shadow-md focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-uagc-navy"
+                className="group flex min-h-11 cursor-pointer items-center justify-between gap-4 rounded-xl border border-gray-100 bg-white px-5 py-4 shadow-sm transition-[transform,box-shadow] duration-200 hover:-translate-y-0.5 hover:shadow-md focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-uagc-navy"
               >
                 <div className="flex min-w-0 flex-1 flex-wrap items-center gap-2 sm:gap-3">
                   <span className="text-[0.9375rem] font-bold leading-snug text-uagc-navy group-hover:text-uagc-red sm:text-base">
@@ -222,7 +222,7 @@ export function HomeProgramExplorer() {
                   </span>
                 </div>
                 <ArrowRight
-                  className="size-4 shrink-0 text-gray-300 transition-all duration-200 group-hover:translate-x-0.5 group-hover:text-uagc-red"
+                  className="size-4 shrink-0 text-gray-300 transition-[transform,color] duration-200 group-hover:translate-x-0.5 group-hover:text-uagc-red"
                   aria-hidden
                 />
               </Link>

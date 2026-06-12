@@ -15,6 +15,8 @@ import { useScrollReveal } from "@/hooks/useScrollReveal";
 export interface PersonalizedEducationSectionProps {
   id?: string;
   className?: string;
+  heading?: string;
+  subheading?: string;
   posts?: UagcBlogPost[];
   viewAllHref?: string;
 }
@@ -22,6 +24,8 @@ export interface PersonalizedEducationSectionProps {
 export function PersonalizedEducationSection({
   id = "personalized-education",
   className,
+  heading = "Latest Stories & Insights",
+  subheading = "Student success stories, faculty perspectives, and practical tips for online learners — from the Forward Thinking Blog.",
   posts = LATEST_UAGC_BLOG_POSTS,
   viewAllHref = UAGC_BLOG_URL,
 }: PersonalizedEducationSectionProps) {
@@ -48,11 +52,10 @@ export function PersonalizedEducationSection({
           <div className="max-w-2xl">
             <span aria-hidden className="mb-3 accent-bar" />
             <h2 id={`${id}-heading`} className="type-h2 text-uagc-navy">
-              Latest Stories &amp; Insights
+              {heading}
             </h2>
             <p className="mt-3 text-[0.9375rem] leading-relaxed text-uagc-gray sm:text-sm">
-              Student success stories, faculty perspectives, and practical tips
-              for online learners — from the Forward Thinking Blog.
+              {subheading}
             </p>
           </div>
           <Link
@@ -80,7 +83,7 @@ export function PersonalizedEducationSection({
               target="_blank"
               rel="noopener noreferrer"
               className={cn(
-                "group flex cursor-pointer flex-col overflow-hidden rounded-2xl border border-uagc-border bg-white no-underline transition-all duration-200",
+                "group flex cursor-pointer flex-col overflow-hidden rounded-2xl border border-uagc-border bg-white no-underline transition-[border-color,box-shadow] duration-200",
                 "hover:border-uagc-gold hover:shadow-[0_4px_20px_rgba(12,35,75,0.08)]",
               )}
             >
@@ -96,15 +99,15 @@ export function PersonalizedEducationSection({
 
               <div className="flex flex-1 flex-col px-5 pb-5 pt-5">
                 <div className="flex flex-wrap items-center gap-2">
-                  <span className="text-[11px] font-bold uppercase tracking-wide text-uagc-gold">
+                  <span className="text-xs font-bold uppercase tracking-wide text-uagc-gold">
                     {post.category}
                   </span>
-                  <span className="text-[11px] text-uagc-gray/70" aria-hidden>
+                  <span className="text-xs text-uagc-gray/70" aria-hidden>
                     ·
                   </span>
                   <time
                     dateTime={post.date}
-                    className="text-[11px] font-medium text-uagc-gray"
+                    className="text-xs font-medium text-uagc-gray"
                   >
                     {post.date}
                   </time>
@@ -115,7 +118,7 @@ export function PersonalizedEducationSection({
                 <p className="mt-2 flex-1 text-sm leading-relaxed text-uagc-gray">
                   {post.description}
                 </p>
-                <span className="mt-4 inline-flex min-h-11 items-center gap-1.5 text-sm font-semibold text-uagc-red transition-all duration-200 group-hover:gap-2.5">
+                <span className="mt-4 inline-flex min-h-11 items-center gap-1.5 text-sm font-semibold text-uagc-red transition-[gap] duration-200 group-hover:gap-2.5">
                   Read Article
                   <ArrowRight className="size-4" strokeWidth={2.5} aria-hidden />
                 </span>

@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useEffect, useMemo, useState } from "react";
+import { useMemo, useState } from "react";
 
 import { cn } from "@/lib/utils";
 
@@ -244,9 +244,20 @@ export function ProgramListingSection({
   const [collegeFilter, setCollegeFilter] = useState<(typeof COLLEGES)[number]>("All");
   const [showAll, setShowAll] = useState(false);
 
-  useEffect(() => {
+  const handleLevelFilter = (value: (typeof DEGREE_LEVELS)[number]) => {
+    setLevelFilter(value);
     setShowAll(false);
-  }, [levelFilter, areaFilter, collegeFilter]);
+  };
+
+  const handleAreaFilter = (value: (typeof AREAS)[number]) => {
+    setAreaFilter(value);
+    setShowAll(false);
+  };
+
+  const handleCollegeFilter = (value: (typeof COLLEGES)[number]) => {
+    setCollegeFilter(value);
+    setShowAll(false);
+  };
 
   const filteredPrograms = useMemo(() => {
     return programs.filter((program) => {
@@ -288,19 +299,19 @@ export function ProgramListingSection({
             label="Degree Level"
             value={levelFilter}
             options={DEGREE_LEVELS}
-            onChange={setLevelFilter}
+            onChange={handleLevelFilter}
           />
           <FilterSelect
             label="Area of Interest"
             value={areaFilter}
             options={AREAS}
-            onChange={setAreaFilter}
+            onChange={handleAreaFilter}
           />
           <FilterSelect
             label="College"
             value={collegeFilter}
             options={COLLEGES}
-            onChange={setCollegeFilter}
+            onChange={handleCollegeFilter}
           />
         </div>
 

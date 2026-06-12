@@ -94,7 +94,7 @@ export function AccreditationSection({
               return (
                 <div
                   key={pillar.title}
-                  className="rounded-xl border border-white/10 bg-white/[0.06] p-5"
+                  className="rounded-xl border border-white/10 bg-white/6 p-5"
                 >
                   <span className="mb-3 flex size-10 items-center justify-center rounded-lg bg-uagc-gold/20 text-uagc-gold">
                     <Icon className="size-5" strokeWidth={1.75} />
@@ -111,7 +111,7 @@ export function AccreditationSection({
           </div>
         </div>
 
-        <div className="mt-10 rounded-xl border border-white/10 bg-white/[0.04] px-6 py-5">
+        <div className="mt-10 rounded-xl border border-white/10 bg-white/4 px-6 py-5">
           <h3 className="mb-4 text-center text-xs font-bold uppercase tracking-widest text-white/50">
             Accredited &amp; Recognized
           </h3>
@@ -119,7 +119,7 @@ export function AccreditationSection({
             {ACCREDITATION_BADGES.map((badge) => (
               <div
                 key={badge}
-                className="flex size-14 items-center justify-center rounded-full border border-white/15 bg-white/[0.06] text-[0.6875rem] font-bold tracking-wide text-white/80 sm:size-16 sm:text-xs"
+                className="flex size-14 items-center justify-center rounded-full border border-white/15 bg-white/6 text-[0.6875rem] font-bold tracking-wide text-white/80 sm:size-16 sm:text-xs"
               >
                 {badge}
               </div>

@@ -157,7 +157,7 @@ export function TuitionTable({
                         "border-b border-uagc-border last:border-b-0 transition-colors duration-200",
                         row.highlight
                           ? "bg-uagc-gold/10"
-                          : "hover:bg-uagc-navy/[0.03]",
+                          : "hover:bg-uagc-navy/3",
                       )}
                     >
                       <td className="px-4 py-3 font-semibold text-uagc-navy">
@@ -224,7 +224,7 @@ export function TuitionTable({
               ))}
             </div>
 
-            <p className="mt-3 text-[11px] leading-relaxed text-uagc-gray/70">
+            <p className="mt-3 text-xs leading-relaxed text-uagc-gray/70">
               * Totals reflect standard credit hours without transfer credits.
               Technology and materials fees not included. Military rate requires
               TA verification.
@@ -250,9 +250,9 @@ export function TuitionTable({
                 return (
                   <div
                     key={option.title}
-                    className="group flex items-start gap-3 rounded-2xl border border-uagc-border bg-white p-3.5 transition-all duration-200 hover:border-uagc-gold hover:shadow-[0_4px_20px_rgba(12,35,75,0.08)]"
+                    className="group flex items-start gap-3 rounded-2xl border border-uagc-border bg-white p-3.5 transition-[border-color,box-shadow] duration-200 hover:border-uagc-gold hover:shadow-[0_4px_20px_rgba(12,35,75,0.08)]"
                   >
-                    <span className="flex size-8 shrink-0 items-center justify-center rounded-xl bg-uagc-surface text-uagc-navy transition-colors duration-200 group-hover:bg-[#fdf3e0] group-hover:text-uagc-gold">
+                    <span className="flex size-8 shrink-0 items-center justify-center rounded-xl bg-uagc-surface text-uagc-navy transition-colors duration-200 group-hover:bg-uagc-gold-tint group-hover:text-uagc-gold">
                       <Icon className="size-[15px]" strokeWidth={1.75} />
                     </span>
                     <div className="min-w-0">
@@ -272,7 +272,7 @@ export function TuitionTable({
               <button
                 type="button"
                 onClick={onExploreAid}
-                className="mt-7 inline-flex min-h-11 cursor-pointer items-center gap-2 rounded-lg bg-uagc-gold px-5 py-2.5 text-sm font-semibold text-uagc-navy transition-colors duration-200 hover:bg-[#d4870a] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-uagc-navy"
+                className="mt-7 inline-flex min-h-11 cursor-pointer items-center gap-2 rounded-lg bg-uagc-gold px-5 py-2.5 text-sm font-semibold text-uagc-navy transition-colors duration-200 hover:bg-uagc-gold-dark focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-uagc-navy"
               >
                 Estimate Your Cost
                 <ArrowRight className="size-4" aria-hidden />
@@ -282,7 +282,7 @@ export function TuitionTable({
                 href={exploreAidHref}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="mt-7 inline-flex min-h-11 items-center gap-2 rounded-lg bg-uagc-gold px-5 py-2.5 text-sm font-semibold text-uagc-navy transition-colors duration-200 hover:bg-[#d4870a] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-uagc-navy"
+                className="mt-7 inline-flex min-h-11 items-center gap-2 rounded-lg bg-uagc-gold px-5 py-2.5 text-sm font-semibold text-uagc-navy transition-colors duration-200 hover:bg-uagc-gold-dark focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-uagc-navy"
               >
                 Explore All Aid Options
                 <ArrowRight className="size-4" aria-hidden />

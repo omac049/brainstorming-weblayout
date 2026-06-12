@@ -1,10 +1,11 @@
 "use client";
 
-import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { useCallback, useMemo, useRef, useState } from "react";
 import {
   BookOpen,
   Briefcase,
   Calculator,
+  CalendarDays,
   ChevronDown,
   Clock,
   ExternalLink,
@@ -18,6 +19,12 @@ import {
   type LucideIcon,
 } from "lucide-react";
 
+import {
+  DEFAULT_START_DATES,
+  UpcomingStartDates,
+  daysUntilStartDate,
+  type StartDateEntry,
+} from "@/components/sections/UpcomingStartDates";
 import { cn } from "@/lib/utils";
 import {
   ENRICHED_PROGRAMS,
@@ -38,6 +45,8 @@ export interface ProgramExplorerProps {
   showTransferCallout?: boolean;
   ctaTarget?: string;
   className?: string;
+  startDates?: StartDateEntry[];
+  /** @deprecated Inline accordion is the default; avoid overriding with modals. */
   onProgramSelect?: (program: ProgramDetail) => void;
 }
 
@@ -95,7 +104,16 @@ const AREAS: AreaMeta[] = [
 /*  Expanded Detail Panel                                              */
 /* ------------------------------------------------------------------ */
 
-function ProgramDetailPanel({ program }: { program: ProgramDetail }) {
+function ProgramDetailPanel({
+  program,
+  startDates,
+}: {
+  program: ProgramDetail;
+  startDates: StartDateEntry[];
+}) {
+  const nextStart = startDates[0];
+  const daysLeft = nextStart ? daysUntilStartDate(nextStart.date) : null;
+
   return (
     <div className="border-t border-uagc-border bg-white px-5 pb-5 pt-4 sm:px-6">
       <div className="grid gap-5 sm:grid-cols-3">
@@ -106,6 +124,26 @@ function ProgramDetailPanel({ program }: { program: ProgramDetail }) {
             Quick Facts
           </h4>
           <dl className="space-y-2 text-sm">
+            <div>
+              <dt className="flex items-center gap-1 text-xs font-medium text-uagc-gray/60">
+                <CalendarDays className="size-3" aria-hidden />
+                Upcoming Starts
+              </dt>
+              <dd className="font-semibold text-uagc-navy">
+                {startDates.map((entry) => entry.date).join(" · ")}
+              </dd>
+              {daysLeft !== null && daysLeft <= 21 && (
+                <dd className="mt-1">
+                  <span className="inline-flex rounded-full bg-uagc-gold/15 px-2 py-0.5 text-xs font-semibold text-uagc-navy">
+                    {daysLeft === 0
+                      ? "Next class starts today"
+                      : daysLeft === 1
+                        ? "Next class starts tomorrow"
+                        : `Next class starts in ${daysLeft} days`}
+                  </span>
+                </dd>
+              )}
+            </div>
             <div>
               <dt className="text-xs font-medium text-uagc-gray/60">Credits</dt>
               <dd className="font-semibold text-uagc-navy">{program.credits}</dd>
@@ -164,7 +202,7 @@ function ProgramDetailPanel({ program }: { program: ProgramDetail }) {
               </li>
             ))}
           </ul>
-          <p className="text-[10px] leading-tight text-uagc-gray/50">
+          <p className="text-xs leading-tight text-uagc-gray/50">
             Salary ranges are national medians and vary by location and experience.
           </p>
         </div>
@@ -219,14 +257,17 @@ function ProgramRow({
   areaFilter,
   compact,
   isExpanded,
+  startDates,
   onToggle,
 }: {
   program: ProgramDetail;
   areaFilter: string;
   compact: boolean;
   isExpanded: boolean;
+  startDates: StartDateEntry[];
   onToggle: () => void;
 }) {
+  const nextStart = startDates[0];
   const areaMeta = AREAS.find((a) => a.id === program.area);
 
   return (
@@ -244,14 +285,14 @@ function ProgramRow({
             </h3>
             <span
               className={cn(
-                "inline-flex items-center rounded-full px-2 py-0.5 text-[11px] font-bold leading-none",
+                "inline-flex items-center rounded-full px-2 py-0.5 text-xs font-bold leading-none",
                 LEVEL_COLORS[program.level] ?? "bg-gray-100 text-gray-600",
               )}
             >
               {levelAbbr(program.level)}
             </span>
             {areaFilter === "all" && areaMeta && (
-              <span className="hidden text-[11px] font-medium text-uagc-gray/60 sm:inline">
+              <span className="hidden text-xs font-medium text-uagc-gray/60 sm:inline">
                 {areaMeta.label}
               </span>
             )}
@@ -264,7 +305,7 @@ function ProgramRow({
               {program.focusAreas.map((area) => (
                 <span
                   key={area}
-                  className="rounded-md bg-uagc-navy/[0.04] px-2 py-0.5 text-[11px] font-medium text-uagc-navy/70"
+                  className="rounded-md bg-uagc-navy/4 px-2 py-0.5 text-xs font-medium text-uagc-navy/70"
                 >
                   {area}
                 </span>
@@ -274,10 +315,16 @@ function ProgramRow({
 
           {/* Inline quick stats when collapsed */}
           {!isExpanded && (
-            <div className="mt-2 flex flex-wrap items-center gap-x-3 gap-y-1 text-[11px] font-medium text-uagc-gray/60">
+            <div className="mt-2 flex flex-wrap items-center gap-x-3 gap-y-1 text-xs font-medium text-uagc-gray/60">
               <span>{program.credits} credits</span>
               <span aria-hidden>·</span>
               <span>{program.duration}</span>
+              {nextStart ? (
+                <>
+                  <span aria-hidden>·</span>
+                  <span>Starts {nextStart.date}</span>
+                </>
+              ) : null}
               <span aria-hidden>·</span>
               <span>
                 {program.careerPaths.length} career path
@@ -306,7 +353,9 @@ function ProgramRow({
       </button>
 
       {/* Expanded detail */}
-      {isExpanded && <ProgramDetailPanel program={program} />}
+      {isExpanded && (
+        <ProgramDetailPanel program={program} startDates={startDates} />
+      )}
     </div>
   );
 }
@@ -319,9 +368,8 @@ export function ProgramExplorer({
   heading = "Discover the Program That\u2019s Right for You",
   programs = ENRICHED_PROGRAMS,
   compact = false,
-  showTransferCallout: _showTransferCallout = false,
-  ctaTarget: _ctaTarget = "#rfi",
   className,
+  startDates = DEFAULT_START_DATES,
   onProgramSelect,
 }: ProgramExplorerProps) {
   const MOBILE_INITIAL_COUNT = 6;
@@ -335,10 +383,6 @@ export function ProgramExplorer({
   const resetScroll = useCallback(() => {
     contentRef.current?.scrollTo({ top: 0, behavior: "smooth" });
   }, []);
-
-  useEffect(() => {
-    setShowAllMobile(false);
-  }, [areaFilter, levelFilter, query]);
 
   const filtered = useMemo(() => {
     const q = query.toLowerCase().trim();
@@ -395,6 +439,11 @@ export function ProgramExplorer({
             {programs.length}+ programs across {AREAS.length} areas of study
             &mdash; click any program for career paths, courses, and details.
           </p>
+          <UpcomingStartDates
+            dates={startDates}
+            variant="inline"
+            className="mt-4 justify-start"
+          />
         </div>
 
         {/* Search input */}
@@ -410,6 +459,7 @@ export function ProgramExplorer({
             onChange={(e) => {
               setQuery(e.target.value);
               setExpandedProgram(null);
+              setShowAllMobile(false);
               resetScroll();
             }}
             className="w-full rounded-lg border border-uagc-border bg-white py-3 pr-4 pl-10 text-sm text-uagc-navy outline-none placeholder:text-uagc-gray/50 focus:border-uagc-gold focus:ring-1 focus:ring-uagc-gold"
@@ -429,7 +479,7 @@ export function ProgramExplorer({
               setExpandedProgram(null);
               setShowAllMobile(false);
             }}
-            className="w-full min-h-[44px] rounded-lg border border-uagc-border bg-white px-3 py-2.5 text-sm font-semibold text-uagc-navy focus:border-uagc-gold focus:outline-none focus:ring-1 focus:ring-uagc-gold"
+            className="w-full min-h-11 rounded-lg border border-uagc-border bg-white px-3 py-2.5 text-sm font-semibold text-uagc-navy focus:border-uagc-gold focus:outline-none focus:ring-1 focus:ring-uagc-gold"
           >
             <option value="all">All Areas ({programs.length})</option>
             {AREAS.map((a) => (
@@ -452,12 +502,13 @@ export function ProgramExplorer({
             onClick={() => {
               setAreaFilter("all");
               setExpandedProgram(null);
+              setShowAllMobile(false);
             }}
             className={cn(
-              "flex shrink-0 cursor-pointer items-center gap-1.5 rounded-full px-3.5 py-2 text-sm font-semibold whitespace-nowrap transition-all duration-200",
+              "flex shrink-0 cursor-pointer items-center gap-1.5 rounded-full px-3.5 py-2 text-sm font-semibold whitespace-nowrap transition-[background-color,color,box-shadow] duration-200",
               areaFilter === "all"
                 ? "bg-uagc-navy text-white shadow-sm"
-                : "bg-white text-uagc-navy ring-1 ring-inset ring-uagc-navy/10 hover:bg-uagc-red/[0.04] hover:text-uagc-red hover:ring-uagc-red/20",
+                : "bg-white text-uagc-navy ring-1 ring-inset ring-uagc-navy/10 hover:bg-uagc-red/4 hover:text-uagc-red hover:ring-uagc-red/20",
             )}
           >
             All Areas
@@ -466,7 +517,7 @@ export function ProgramExplorer({
                 "flex size-5 items-center justify-center rounded-full text-[11px] font-bold leading-none",
                 areaFilter === "all"
                   ? "bg-white/20 text-white"
-                  : "bg-uagc-navy/[0.06] text-uagc-navy/60",
+                  : "bg-uagc-navy/6 text-uagc-navy/60",
               )}
             >
               {programs.length}
@@ -484,12 +535,13 @@ export function ProgramExplorer({
                 onClick={() => {
                   setAreaFilter(a.id);
                   setExpandedProgram(null);
+                  setShowAllMobile(false);
                 }}
                 className={cn(
-                  "flex shrink-0 cursor-pointer items-center gap-1.5 rounded-full px-3.5 py-2 text-sm font-semibold whitespace-nowrap transition-all duration-200",
+                  "flex shrink-0 cursor-pointer items-center gap-1.5 rounded-full px-3.5 py-2 text-sm font-semibold whitespace-nowrap transition-[background-color,color,box-shadow] duration-200",
                   isActive
                     ? "bg-uagc-navy text-white shadow-sm"
-                    : "bg-white text-uagc-navy ring-1 ring-inset ring-uagc-navy/10 hover:bg-uagc-red/[0.04] hover:text-uagc-red hover:ring-uagc-red/20",
+                    : "bg-white text-uagc-navy ring-1 ring-inset ring-uagc-navy/10 hover:bg-uagc-red/4 hover:text-uagc-red hover:ring-uagc-red/20",
                 )}
               >
                 <Icon className="size-4" strokeWidth={1.75} aria-hidden />
@@ -499,7 +551,7 @@ export function ProgramExplorer({
                     "flex size-5 items-center justify-center rounded-full text-[11px] font-bold leading-none",
                     isActive
                       ? "bg-white/20 text-white"
-                      : "bg-uagc-navy/[0.06] text-uagc-navy/60",
+                      : "bg-uagc-navy/6 text-uagc-navy/60",
                   )}
                 >
                   {areaCounts[a.id] ?? 0}
@@ -523,10 +575,11 @@ export function ProgramExplorer({
               onClick={() => {
                 setLevelFilter("all");
                 setExpandedProgram(null);
+                setShowAllMobile(false);
                 resetScroll();
               }}
               className={cn(
-                "cursor-pointer rounded-full px-3.5 py-2.5 text-xs font-semibold transition-all duration-200",
+                "cursor-pointer rounded-full px-3.5 py-2.5 text-xs font-semibold transition-[background-color,color,box-shadow] duration-200 min-h-11 inline-flex items-center",
                 levelFilter === "all"
                   ? "bg-uagc-gold text-uagc-navy"
                   : "bg-white text-uagc-navy ring-1 ring-inset ring-uagc-navy/10 hover:ring-uagc-red/20 hover:text-uagc-red",
@@ -546,10 +599,11 @@ export function ProgramExplorer({
                   onClick={() => {
                     setLevelFilter(level);
                     setExpandedProgram(null);
+                    setShowAllMobile(false);
                     resetScroll();
                   }}
                   className={cn(
-                    "cursor-pointer rounded-full px-3.5 py-2.5 text-xs font-semibold transition-all duration-200",
+                    "cursor-pointer rounded-full px-3.5 py-2.5 text-xs font-semibold transition-[background-color,color,box-shadow] duration-200 min-h-11 inline-flex items-center",
                     isActive
                       ? "bg-uagc-gold text-uagc-navy"
                       : "bg-white text-uagc-navy ring-1 ring-inset ring-uagc-navy/10 hover:ring-uagc-red/20 hover:text-uagc-red",
@@ -604,6 +658,7 @@ export function ProgramExplorer({
                   areaFilter={areaFilter}
                   compact={compact}
                   isExpanded={!onProgramSelect && expandedProgram === program.name}
+                  startDates={startDates}
                   onToggle={() => handleToggle(program)}
                 />
               </div>
@@ -616,7 +671,7 @@ export function ProgramExplorer({
           <button
             type="button"
             onClick={() => setShowAllMobile(true)}
-            className="mt-3 flex w-full min-h-[44px] items-center justify-center gap-2 rounded-xl border border-uagc-border bg-white py-3 text-sm font-semibold text-uagc-navy transition-colors hover:bg-uagc-navy/5 sm:hidden"
+            className="mt-3 flex w-full min-h-11 items-center justify-center gap-2 rounded-xl border border-uagc-border bg-white py-3 text-sm font-semibold text-uagc-navy transition-colors hover:bg-uagc-navy/5 sm:hidden"
           >
             Show All {filtered.length} Programs
             <ChevronDown className="size-4" aria-hidden />

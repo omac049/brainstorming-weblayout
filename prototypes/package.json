@@ -2,7 +2,7 @@
   "name": "uagc-prototypes",
   "version": "0.3.1",
   "private": true,
-  "description": "UAGC Phase 2 landing page prototypes \u2014 interactive reference for Drupal implementation",
+  "description": "UAGC Phase 2 landing page prototypes — interactive reference for Drupal implementation",
   "author": "JCodesMore",
   "license": "MIT",
   "engines": {
@@ -14,10 +14,13 @@
     "start": "next start",
     "lint": "eslint",
     "typecheck": "tsc --noEmit",
-    "check": "npm run lint && npm run typecheck && npm run build"
+    "check": "npm run lint && npm run typecheck && npm run build",
+    "test:mobile": "playwright test",
+    "test:mobile:install": "playwright install --with-deps chromium webkit"
   },
   "dependencies": {
     "@base-ui/react": "^1.3.0",
+    "canvas-confetti": "^1.9.4",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "framer-motion": "^12.40.0",
@@ -32,6 +35,7 @@
   "devDependencies": {
     "@playwright/test": "^1.60.0",
     "@tailwindcss/postcss": "^4",
+    "@types/canvas-confetti": "^1.9.0",
     "@types/node": "^24",
     "@types/react": "^19",
     "@types/react-dom": "^19",

@@ -1,0 +1,49 @@
+name: Prototypes mobile smoke
+
+on:
+  pull_request:
+    paths:
+      - "prototypes/**"
+      - "design-system/**"
+      - ".github/workflows/prototypes-mobile.yml"
+  push:
+    branches: [main]
+    paths:
+      - "prototypes/**"
+      - "design-system/**"
+      - ".github/workflows/prototypes-mobile.yml"
+  workflow_dispatch:
+
+defaults:
+  run:
+    working-directory: prototypes
+
+jobs:
+  mobile-smoke:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "24"
+          cache: npm
+          cache-dependency-path: prototypes/package-lock.json
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Typecheck
+        run: npm run typecheck
+
+      - name: Build for production
+        run: npm run build
+
+      - name: Install Playwright browsers
+        run: npx playwright install --with-deps chromium webkit
+
+      - name: Mobile smoke tests
+        run: npm run test:mobile
+        env:
+          CI: true
+          PORT: "3000"

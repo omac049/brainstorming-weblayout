@@ -48,13 +48,13 @@ export function EmotionalMotivationSection({
                 heading
               )}
             </h2>
-            <p className="mt-5 max-w-lg text-[0.9375rem] leading-relaxed text-[#b8c5d9] sm:text-base">
+            <p className="mt-5 max-w-lg text-[0.9375rem] leading-relaxed text-uagc-navy-muted sm:text-base">
               {body}
             </p>
             {ctaLabel && ctaHref && (
               <a
                 href={ctaHref}
-                className="mt-6 inline-flex min-h-11 items-center gap-2 rounded-full bg-uagc-gold px-6 py-2.5 font-heading text-sm font-semibold uppercase tracking-wider text-uagc-navy transition-colors duration-200 hover:bg-[#d4870a] sm:mt-8"
+                className="mt-6 inline-flex min-h-11 items-center gap-2 rounded-full bg-uagc-gold px-6 py-2.5 font-heading text-sm font-semibold uppercase tracking-wider text-uagc-navy transition-colors duration-200 hover:bg-uagc-gold-dark sm:mt-8"
               >
                 {ctaLabel}
                 <ArrowRight className="size-4" aria-hidden />
@@ -63,7 +63,7 @@ export function EmotionalMotivationSection({
           </div>
 
           <div className="mt-10 lg:mt-0">
-            <div className="rounded-2xl border border-[#1a3a6b] bg-[#0a1c3d] p-6 sm:p-8">
+            <div className="rounded-2xl border border-uagc-navy-card-border bg-uagc-navy-card p-6 sm:p-8">
               <Quote
                 className="mb-4 size-8 text-uagc-gold"
                 strokeWidth={1.5}
@@ -73,7 +73,7 @@ export function EmotionalMotivationSection({
                 &ldquo;{pullQuote}&rdquo;
               </blockquote>
               {pullQuoteAttribution && (
-                <p className="mt-4 text-sm font-medium text-[#8a9bb5]">
+                <p className="mt-4 text-sm font-medium text-uagc-navy-card-muted">
                   — {pullQuoteAttribution}
                 </p>
               )}
@@ -87,16 +87,16 @@ export function EmotionalMotivationSection({
               ].map((item) => (
                 <div
                   key={item.label}
-                  className="relative overflow-hidden rounded-xl border border-[#1a3a6b] bg-[#0a1c3d] px-3 py-4 text-center sm:px-4"
+                  className="relative overflow-hidden rounded-xl border border-uagc-navy-card-border bg-uagc-navy-card px-3 py-4 text-center sm:px-4"
                 >
                   <span
                     aria-hidden
-                    className="absolute inset-x-0 top-0 h-[3px] bg-uagc-gold"
+                    className="absolute inset-x-0 top-0 h-0.75 bg-uagc-gold"
                   />
                   <p className="type-stat pt-1 text-lg text-uagc-gold sm:text-xl lg:text-2xl">
                     {item.stat}
                   </p>
-                  <p className="mt-1 text-[0.625rem] leading-snug text-[#8a9bb5] sm:text-xs">
+                  <p className="mt-1 text-[0.625rem] leading-snug text-uagc-navy-card-muted sm:text-xs">
                     {item.label}
                   </p>
                 </div>

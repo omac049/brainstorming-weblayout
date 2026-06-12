@@ -48,12 +48,12 @@ export function Header({ variant = "default", hideRequestInfo = false }: HeaderP
     <header
       role="banner"
       className={cn(
-        "fixed top-0 right-0 left-0 z-[100] transition-[background-color,box-shadow,border-color] duration-300",
+        "fixed top-0 right-0 left-0 z-100 pt-[env(safe-area-inset-top,0px)] transition-[background-color,box-shadow,border-color] duration-300",
         isHeroOverlay
           ? scrolled
             ? "border-b border-uagc-red/80 bg-white/92 shadow-sm backdrop-blur-md"
             : "border-b border-transparent bg-transparent"
-          : "border-b-2 border-[var(--color-uagc-red)] bg-white shadow-sm",
+          : "border-b-2 border-(--color-uagc-red) bg-white shadow-sm",
       )}
     >
       <div className="mx-auto flex h-16 w-full max-w-[1920px] items-center justify-between gap-3 px-4 sm:h-[72px] sm:gap-4 sm:px-6 lg:h-20 lg:px-10">
@@ -63,7 +63,7 @@ export function Header({ variant = "default", hideRequestInfo = false }: HeaderP
             "flex shrink-0 items-center focus-visible:outline-2 focus-visible:outline-offset-2",
             useLightChrome
               ? "focus-visible:outline-white"
-              : "focus-visible:outline-[var(--color-uagc-navy)]",
+              : "focus-visible:outline-(--color-uagc-navy)",
           )}
           aria-label="University of Arizona Global Campus home"
         >
@@ -90,7 +90,7 @@ export function Header({ variant = "default", hideRequestInfo = false }: HeaderP
                 <Link
                   key={link.href}
                   href={link.href}
-                  className="text-sm font-medium text-[var(--color-uagc-navy)] transition-colors hover:text-[var(--color-uagc-red)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--color-uagc-navy)]"
+                  className="text-sm font-medium text-(--color-uagc-navy) transition-colors hover:text-(--color-uagc-red) focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-(--color-uagc-navy)"
                 >
                   {link.label}
                 </Link>
@@ -101,7 +101,7 @@ export function Header({ variant = "default", hideRequestInfo = false }: HeaderP
           {showFullNav ? (
             <a
               href="https://cloud.mail.uagc.edu/apply"
-              className="hidden min-h-9 items-center rounded-full bg-uagc-red px-4 py-2 text-xs font-semibold uppercase tracking-wide text-white transition-colors hover:bg-[#8a0418] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-uagc-red lg:inline-flex lg:text-sm"
+              className="hidden min-h-9 items-center rounded-full bg-uagc-red px-4 py-2 text-xs font-semibold uppercase tracking-wide text-white transition-colors hover:bg-uagc-red-hover focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-uagc-red lg:inline-flex lg:text-sm"
             >
               Apply Now
             </a>
@@ -110,7 +110,7 @@ export function Header({ variant = "default", hideRequestInfo = false }: HeaderP
           {showRequestInfo && !isHeroOverlay ? (
             <a
               href="#rfi"
-              className="hidden min-h-9 items-center rounded-full bg-uagc-gold px-3.5 text-xs font-bold uppercase tracking-[0.06em] text-uagc-navy transition-colors hover:bg-[#f5a623] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-uagc-navy sm:inline-flex sm:px-4 sm:text-sm"
+              className="hidden min-h-9 items-center rounded-full bg-uagc-gold px-3.5 text-xs font-bold uppercase tracking-[0.06em] text-uagc-navy transition-colors hover:bg-uagc-gold-hover focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-uagc-navy sm:inline-flex sm:px-4 sm:text-sm"
             >
               Request Info
             </a>
@@ -122,8 +122,8 @@ export function Header({ variant = "default", hideRequestInfo = false }: HeaderP
               className={cn(
                 "hidden min-h-9 items-center rounded-full px-3.5 text-xs font-bold uppercase tracking-[0.06em] transition-[background-color,transform,box-shadow] sm:inline-flex sm:px-4 sm:text-sm",
                 useLightChrome
-                  ? "bg-uagc-gold text-uagc-navy hover:bg-[#f5a623]"
-                  : "bg-uagc-gold text-uagc-navy hover:bg-[#f5a623]",
+                  ? "bg-uagc-gold text-uagc-navy hover:bg-uagc-gold-hover"
+                  : "bg-uagc-gold text-uagc-navy hover:bg-uagc-gold-hover",
               )}
             >
               Request Info
@@ -137,10 +137,10 @@ export function Header({ variant = "default", hideRequestInfo = false }: HeaderP
               "inline-flex min-h-11 min-w-11 items-center justify-center rounded-full transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 sm:min-w-0 sm:justify-start sm:rounded-none sm:px-0",
               useLightChrome
                 ? "text-white hover:text-uagc-gold focus-visible:outline-white"
-                : "text-[var(--color-uagc-navy)] hover:text-[var(--color-uagc-red)] focus-visible:outline-[var(--color-uagc-navy)]",
+                : "text-(--color-uagc-navy) hover:text-(--color-uagc-red) focus-visible:outline-(--color-uagc-navy)",
               isHeroOverlay &&
                 !useLightChrome &&
-                "hover:text-[var(--color-uagc-red)]",
+                "hover:text-(--color-uagc-red)",
             )}
           >
             <Phone className="size-5 shrink-0 sm:hidden" strokeWidth={2} aria-hidden />

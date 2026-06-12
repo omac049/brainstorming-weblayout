@@ -1,37 +1,59 @@
 "use client";
 
 /**
- * Organic online-degrees hub — competitor-informed navigational redesign.
+ * Organic online-degrees hub — data-optimized discovery stack.
  *
- * Module stack: NAV-00 · HERO-ORG · FIND-YOUR-PATH · AREAS · CTA-01 ·
- * TUITION-BAND · PROG-01 · TRUST-01 · FAQ-01 · SITE-FOOTER · FORM-05
+ * Module stack: NAV-00 · HERO-ORG · PERSONA-PATHS · PROG-01 ·
+ * TUITION-BAND · WAYS-TO-SAVE · AREAS · TRUST-01 · CAREER-01 · HUB-JOURNEY ·
+ * CTA-01 · ACCR-01 · FORM-02 · FAQ-01 · FOOT-01 · FORM-05
  *
- * Design rationale (SNHU / WGU / Phoenix / Liberty competitive audit):
- * – No competitor embeds an RFI form on the degree hub; header CTA +
- *   sticky bar handle conversion. Hub is navigational, not persuasion.
- * – Category-level browse (areas of study) before individual programs.
- * – Inline tuition transparency (cost band, not a buried bullet).
- * – Shorter page: routing > convincing. ~6-7 sections, not 10+.
+ * Simulation-informed adds: persona routing, cost disclosures, outcomes proof.
  */
 
 import { useRef } from "react";
 
+import { AccreditationBand } from "@/components/organic/AccreditationBand";
 import { AreasOfStudyGrid } from "@/components/organic/AreasOfStudyGrid";
-import { HomeDifferentiatorPathSection } from "@/components/organic/HomeDifferentiatorPathSection";
+import { EnrollmentJourneySection } from "@/components/organic/EnrollmentJourneySection";
+import { HubBottomCTA } from "@/components/organic/HubBottomCTA";
+import { HeroSectionNav } from "@/components/organic/HeroV2";
 import { OrganicHomeHero } from "@/components/organic/OrganicHomeHero";
+import { PersonaPathSection } from "@/components/organic/PersonaPathSection";
 import { SiteFooter } from "@/components/organic/SiteFooter";
 import { SiteHeader } from "@/components/organic/SiteHeader";
 import { TuitionHighlightBand } from "@/components/organic/TuitionHighlightBand";
+import { VideoTestimonialSection } from "@/components/organic/VideoTestimonialSection";
+import { WaysToSaveSection } from "@/components/organic/WaysToSaveSection";
+import { CareerOutcomesSection } from "@/components/sections/CareerOutcomesSection";
 import { FAQSection } from "@/components/sections/FAQSection";
 import { ProgramExplorer } from "@/components/sections/ProgramExplorer";
-import { TestimonialSection } from "@/components/sections/TestimonialSection";
-import { RFIStickyBar } from "@/components/shared/RFIForm";
+import { PageMain } from "@/components/shared/PageMain";
+import { RFIForm, RFIStickyBar } from "@/components/shared/RFIForm";
+import { useScrollReveal } from "@/hooks/useScrollReveal";
 import { ONLINE_DEGREES_CLONE } from "@/lib/clones/online-degrees-clone";
-import { HUB_FAQ_ITEMS } from "@/lib/organic-online-degrees-data";
+import {
+  HUB_CAREER_OUTCOMES,
+  HUB_FAQ_ITEMS,
+  HUB_PERSONA_PATHS,
+  HUB_VIDEO_TESTIMONIALS,
+} from "@/lib/organic-online-degrees-data";
+
+const HUB_SECTION_NAV = [
+  { id: "paths", label: "Your Path" },
+  { id: "programs", label: "Programs" },
+  { id: "tuition", label: "Tuition" },
+  { id: "areas", label: "Areas" },
+  { id: "stories", label: "Stories" },
+  { id: "outcomes", label: "Careers" },
+  { id: "journey", label: "Get Started" },
+  { id: "faq", label: "FAQ" },
+] as const;
 
 export default function OrganicOnlineDegreesPage() {
   const heroRef = useRef<HTMLElement>(null);
-  const heroFormRef = useRef<HTMLDivElement>(null);
+  const rfiRef = useRef<HTMLDivElement>(null);
+  const { ref: progRevealRef, isVisible: progVisible } = useScrollReveal<HTMLDivElement>();
+  const { ref: faqRevealRef, isVisible: faqVisible } = useScrollReveal<HTMLDivElement>();
 
   return (
     <>
@@ -39,12 +61,7 @@ export default function OrganicOnlineDegreesPage() {
         Skip to main content
       </a>
       <SiteHeader />
-      <main
-        id="main-content"
-        role="main"
-        className="flex-1 pt-16 sm:pt-[72px] lg:pt-[108px]"
-      >
-        {/* 1 — Hero: sets the scene */}
+      <PageMain variant="hub">
         <OrganicHomeHero
           heroRef={heroRef}
           eyebrow="University of Arizona Global Campus"
@@ -59,71 +76,91 @@ export default function OrganicOnlineDegreesPage() {
           imageSrc={ONLINE_DEGREES_CLONE.hero.images.desktop}
           imageAlt={ONLINE_DEGREES_CLONE.hero.images.alt}
           imagePosition="center 20%"
-          sectionNavItems={[
-            { id: "degree-path", label: "Find Your Path" },
-            { id: "areas", label: "Areas of Study" },
-            { id: "programs", label: "All Programs" },
-            { id: "stories", label: "Student Stories" },
-            { id: "faq", label: "FAQ" },
-          ]}
+          sectionNavItems={[]}
         />
 
-        {/* 2 — Find Your Path: immediate navigational routing */}
-        <HomeDifferentiatorPathSection show="tabs" />
+        <HeroSectionNav items={[...HUB_SECTION_NAV]} variant="light" />
 
-        {/* 3 — Areas of Study: category-level browse */}
-        <AreasOfStudyGrid />
-
-        {/* 4 — TRUST-01: persona-matched proof (simulation-informed) */}
-        <TestimonialSection
-          id="stories"
-          heading="People Like You Are Already Here"
-          subheading="Real students. Real schedules. Real results."
-          testimonials={[
-            {
-              quote: "I juggle two kids and a full-time job. The 5-week courses meant I only focused on one subject at a time — I graduated in 18 months without ever missing a school pickup.",
-              name: "Maria T.",
-              credential: "B.A. in Business Administration · Now a regional operations manager",
-              tag: "Working Parent",
-            },
-            {
-              quote: "My military credits transferred on day one — no runaround. I used my GI Bill and finished my degree while transitioning out of active duty. My advisor understood military life.",
-              name: "James R.",
-              credential: "B.S. in Information Technology · Hired at a defense contractor within 3 months",
-              tag: "Military Veteran",
-            },
-            {
-              quote: "At 42, I was terrified to start over. My advisor helped me get credit for my work experience, and the online format let me study after the kids went to bed. I landed a promotion before I even finished.",
-              name: "Priya K.",
-              credential: "M.A. in Organizational Leadership · Promoted to director-level",
-              tag: "Career Changer",
-            },
-          ]}
+        <PersonaPathSection
+          paths={HUB_PERSONA_PATHS}
+          heading="Start With Your Situation"
+          subheading="Transfer credits, military benefits, graduate programs, or a new career field — pick the path that matches why you're here."
+          viewAllHref="#areas"
+          variant="surface"
         />
 
-        {/* 5 — Tuition Band: inline cost transparency */}
+        <div
+          ref={progRevealRef}
+          className={`reveal-section ${progVisible ? "is-visible" : ""}`}
+        >
+          <ProgramExplorer heading="Search Online Degree Programs" />
+        </div>
+
         <TuitionHighlightBand />
 
-        {/* 6 — PROG-01: searchable program catalog */}
-        <ProgramExplorer
-          heading="Find Your Program"
-          ctaTarget="#degree-path"
+        <WaysToSaveSection />
+
+        <AreasOfStudyGrid />
+
+        <VideoTestimonialSection
+          id="stories"
+          testimonials={[...HUB_VIDEO_TESTIMONIALS]}
         />
 
-        {/* 7 — CTA-01: Ready to Start (after program browse) */}
-        <HomeDifferentiatorPathSection show="cta" />
+        <CareerOutcomesSection
+          id="outcomes"
+          variant="surface"
+          className="scroll-mt-20"
+          heading="Where UAGC Graduates Go"
+          intro="Salary ranges and common job titles by field — plus lifetime career services and Handshake employer access from day one."
+          outcomes={[...HUB_CAREER_OUTCOMES]}
+          exploreProgramsLabel="Browse Programs"
+          exploreProgramsHref="#programs"
+        />
 
-        {/* 8 — FAQ: objection handler */}
-        <div id="faq" className="scroll-mt-20">
+        <EnrollmentJourneySection />
+
+        <HubBottomCTA />
+
+        <AccreditationBand />
+
+        <section
+          id="rfi"
+          className="scroll-mt-24 section-pad bg-uagc-navy lg:scroll-mt-36"
+          aria-labelledby="hub-rfi-heading"
+        >
+          <div className="mx-auto w-full max-w-[880px] px-4 sm:px-6 lg:px-8">
+            <div className="mb-8 text-center sm:mb-10">
+              <span aria-hidden className="mx-auto mb-3 accent-bar" />
+              <h2 id="hub-rfi-heading" className="type-h2 text-white">
+                Or Request Information{" "}
+                <span className="text-uagc-gold">Here</span>
+              </h2>
+              <p className="mx-auto mt-3 max-w-lg text-sm leading-relaxed text-[#b8c5d9] sm:text-base">
+                Get paired with an enrollment advisor who can help you find the
+                right program, transfer credits, and understand your cost.
+              </p>
+            </div>
+            <RFIForm variant="full" heroFormRef={rfiRef} />
+            <p className="mt-3 text-center text-sm text-[#b8c5d9]">
+              It only takes a minute. No obligation.
+            </p>
+          </div>
+        </section>
+
+        <div
+          ref={faqRevealRef}
+          id="faq"
+          className={`scroll-mt-20 reveal-section ${faqVisible ? "is-visible" : ""}`}
+        >
           <FAQSection
             heading="Frequently Asked Questions About Online Degrees"
             items={HUB_FAQ_ITEMS}
           />
         </div>
-
-      </main>
+      </PageMain>
       <SiteFooter />
-      <RFIStickyBar heroFormRef={heroFormRef} />
+      <RFIStickyBar heroFormRef={heroRef} />
     </>
   );
 }

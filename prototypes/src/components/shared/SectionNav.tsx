@@ -48,13 +48,13 @@ export function SectionNav({ sections }: SectionNavProps) {
           <a
             key={id}
             href={`#${id}`}
-            className="group flex min-h-[44px] min-w-[44px] items-center justify-end gap-2.5"
+            className="group flex min-h-11 min-w-11 items-center justify-end gap-2.5"
             aria-current={isActive ? "true" : undefined}
             aria-label={label}
           >
             <span
               className={cn(
-                "pointer-events-none max-w-0 overflow-hidden whitespace-nowrap rounded-full bg-uagc-navy px-0 py-1 text-xs font-medium text-white opacity-0 transition-all duration-200 group-hover:max-w-[160px] group-hover:px-3 group-hover:opacity-100",
+                "pointer-events-none max-w-0 overflow-hidden whitespace-nowrap rounded-full bg-uagc-navy px-0 py-1 text-xs font-medium text-white opacity-0 transition-[max-width,padding,opacity] duration-200 group-hover:max-w-[160px] group-hover:px-3 group-hover:opacity-100",
                 isActive && "max-w-[160px] px-3 opacity-100",
               )}
             >
@@ -62,7 +62,7 @@ export function SectionNav({ sections }: SectionNavProps) {
             </span>
             <span
               className={cn(
-                "flex size-2.5 shrink-0 items-center justify-center rounded-full border-2 transition-all duration-200",
+                "flex size-2.5 shrink-0 items-center justify-center rounded-full border-2 transition-[border-color,transform,background-color] duration-200",
                 isActive
                   ? "scale-125 border-uagc-gold bg-uagc-gold"
                   : "border-uagc-navy/30 bg-transparent group-hover:border-uagc-navy/60",

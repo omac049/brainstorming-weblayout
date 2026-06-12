@@ -4,7 +4,6 @@ import { AssetImage } from "@/components/shared/AssetImage";
 import Link from "next/link";
 
 import {
-  Award,
   Building2,
   GraduationCap,
   Handshake,
@@ -163,7 +162,7 @@ export function AccreditationBand() {
                   {accr.programs.map((p) => (
                     <span
                       key={p}
-                      className="rounded-full border border-gray-200 bg-[#f5f5f4] px-2.5 py-0.5 text-xs font-medium text-uagc-navy"
+                      className="rounded-full border border-gray-200 bg-uagc-surface px-2.5 py-0.5 text-xs font-medium text-uagc-navy"
                     >
                       {p}
                     </span>
@@ -217,7 +216,7 @@ export function AccreditationBand() {
         </div>
 
         {/* ── UA Enterprise Callout ── */}
-        <div className="mt-6 flex items-start gap-4 rounded-lg border border-uagc-gold/30 bg-uagc-gold/[0.08] px-5 py-5 sm:mt-8 sm:items-center sm:gap-5 sm:px-6">
+        <div className="mt-6 flex items-start gap-4 rounded-lg border border-uagc-gold/30 bg-uagc-gold/8 px-5 py-5 sm:mt-8 sm:items-center sm:gap-5 sm:px-6">
           <AssetImage
             src="/images/ua_horiz_rgb_4.svg"
             alt="University of Arizona"

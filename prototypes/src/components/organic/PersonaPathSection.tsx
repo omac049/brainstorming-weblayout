@@ -5,7 +5,7 @@ import { ArrowRight } from "lucide-react";
 import { AssetImage } from "@/components/shared/AssetImage";
 import { cn } from "@/lib/utils";
 
-interface PersonaPath {
+export interface PersonaPath {
   title: string;
   description: string;
   imageSrc: string;
@@ -13,11 +13,11 @@ interface PersonaPath {
   href: string;
 }
 
-const PATHS: PersonaPath[] = [
+const DEFAULT_PATHS: PersonaPath[] = [
   {
     title: "Working Adults",
     description:
-      "Advance your career with in-demand skills and a schedule that works around your life.",
+      "In-demand skills on a schedule that works around your life.",
     imageSrc: "/images/path-working-adults.jpg",
     imageAlt: "Working adult student",
     href: "#programs",
@@ -25,7 +25,7 @@ const PATHS: PersonaPath[] = [
   {
     title: "Military & Veterans",
     description:
-      "We proudly support those who serve and their families — with education benefits and flexible scheduling.",
+      "Education benefits and flexible scheduling for those who serve.",
     imageSrc: "/images/path-military.jpg",
     imageAlt: "Military student",
     href: "#programs",
@@ -33,7 +33,7 @@ const PATHS: PersonaPath[] = [
   {
     title: "Transfer Students",
     description:
-      "Transfer credits that count — get closer to your degree, faster. Free evaluation before you apply.",
+      "Your credits count — free evaluation before you apply.",
     imageSrc: "/images/path-transfer.jpg",
     imageAlt: "Transfer student",
     href: "#programs",
@@ -41,85 +41,174 @@ const PATHS: PersonaPath[] = [
   {
     title: "Career Advancement",
     description:
-      "Choose programs aligned with professional growth and in-demand skills employers value.",
+      "Programs aligned with professional growth employers value.",
     imageSrc: "/images/path-career.jpg",
     imageAlt: "Career advancement student",
     href: "#programs",
   },
 ];
 
+export type PersonaPathSectionVariant = "light" | "surface" | "inverted";
+
 export interface PersonaPathSectionProps {
   id?: string;
   className?: string;
   viewAllHref?: string;
+  viewAllLabel?: string;
+  paths?: readonly PersonaPath[];
+  heading?: string;
+  subheading?: string;
+  variant?: PersonaPathSectionVariant;
+  /** Removes top border/padding when stacked directly under inverted HUB-POPULAR. */
+  joinedTop?: boolean;
+}
+
+function personaPathSectionShellClass(variant: PersonaPathSectionVariant): string {
+  switch (variant) {
+    case "light":
+      return "border-t border-uagc-border bg-white";
+    case "surface":
+      return "border-t border-uagc-border bg-uagc-surface";
+    case "inverted":
+      return "border-t border-white/10 bg-uagc-navy";
+    default: {
+      const _exhaustive: never = variant;
+      return _exhaustive;
+    }
+  }
+}
+
+function personaPathHeaderClass(variant: PersonaPathSectionVariant): {
+  heading: string;
+  subheading: string;
+  viewAll: string;
+} {
+  switch (variant) {
+    case "light":
+    case "surface":
+      return {
+        heading: "text-uagc-navy",
+        subheading: "text-uagc-gray",
+        viewAll:
+          "text-uagc-red transition-colors hover:underline focus-visible:outline-uagc-navy",
+      };
+    case "inverted":
+      return {
+        heading: "text-white",
+        subheading: "text-uagc-navy-muted",
+        viewAll:
+          "text-uagc-gold transition-colors hover:text-white hover:underline focus-visible:outline-uagc-gold",
+      };
+    default: {
+      const _exhaustive: never = variant;
+      return _exhaustive;
+    }
+  }
 }
 
 export function PersonaPathSection({
   id = "paths",
   className,
   viewAllHref = "#programs",
+  viewAllLabel = "View All Paths",
+  paths = DEFAULT_PATHS,
+  heading = "Find the Path That Fits You",
+  subheading = "Explore paths built for where you are now.",
+  variant = "light",
+  joinedTop = false,
 }: PersonaPathSectionProps) {
+  const headerClass = personaPathHeaderClass(variant);
+
   return (
     <section
       id={id}
       className={cn(
-        "scroll-mt-28 border-t border-uagc-border bg-white section-pad lg:scroll-mt-36",
+        "scroll-mt-28 py-14 sm:py-16 lg:scroll-mt-36 lg:py-20",
+        personaPathSectionShellClass(variant),
+        joinedTop && variant === "inverted" && "border-t-0 pt-0!",
         className,
       )}
+      aria-labelledby={`${id}-heading`}
     >
       <div className="mx-auto w-full max-w-[1440px] px-4 sm:px-6 lg:px-8">
-        <div className="mb-10 flex flex-col gap-4 sm:mb-12 lg:flex-row lg:items-end lg:justify-between lg:gap-6">
+        <div className="mb-8 flex items-end justify-between gap-4 sm:mb-10">
           <div>
             <span aria-hidden className="mb-3 accent-bar" />
-            <h2 className="type-h2 text-uagc-navy">Find the Path That Fits You</h2>
-            <p className="mt-3 max-w-2xl text-[0.9375rem] leading-relaxed text-uagc-gray sm:text-base">
-              Whether you&rsquo;re balancing work, military service, or transfer credits — explore paths built for where you are now.
+            <h2 id={`${id}-heading`} className={cn("type-h2", headerClass.heading)}>
+              {heading}
+            </h2>
+            <p
+              className={cn(
+                "mt-2 max-w-lg text-[0.875rem] leading-relaxed sm:text-[0.9375rem]",
+                headerClass.subheading,
+              )}
+            >
+              {subheading}
             </p>
           </div>
           <a
             href={viewAllHref}
-            className="inline-flex shrink-0 items-center gap-1.5 text-sm font-semibold text-uagc-red transition-colors hover:underline"
+            className={cn(
+              "hidden shrink-0 items-center gap-1.5 text-sm font-semibold focus-visible:outline-2 focus-visible:outline-offset-2 sm:inline-flex",
+              headerClass.viewAll,
+            )}
           >
-            View All Paths
+            {viewAllLabel}
             <ArrowRight className="size-3.5" strokeWidth={2.5} aria-hidden />
           </a>
         </div>
 
-        <div className="grid gap-[18px] sm:grid-cols-2 lg:grid-cols-4">
-          {PATHS.map((path) => (
+        <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+          {paths.map((path) => (
             <a
               key={path.title}
               href={path.href}
               className={cn(
-                "group relative block cursor-pointer overflow-hidden rounded-2xl border border-uagc-border bg-white no-underline transition-all duration-200",
-                "hover:border-uagc-gold hover:shadow-[0_4px_20px_rgba(12,35,75,0.08)]",
+                "group relative block cursor-pointer overflow-hidden rounded-xl border bg-white no-underline",
+                "transition-[border-color,box-shadow,transform] duration-200 ease-[cubic-bezier(0.23,1,0.32,1)]",
+                "hover:border-uagc-gold/60 hover:shadow-[0_2px_12px_rgba(12,35,75,0.06)] active:scale-[0.98]",
+                "focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-uagc-navy",
+                variant === "inverted" && "border-white/15",
+                (variant === "light" || variant === "surface") && "border-uagc-border",
               )}
             >
-              <div className="relative h-40 overflow-hidden sm:h-[175px]">
+              <div className="relative h-28 overflow-hidden sm:h-32">
                 <AssetImage
                   src={path.imageSrc}
                   alt={path.imageAlt}
                   fill
                   sizes="(min-width: 1024px) 320px, 75vw"
-                  className="object-cover object-[center_20%] transition-transform duration-300 group-hover:scale-105"
+                  className="object-cover object-[center_20%] transition-transform duration-300 ease-out group-hover:scale-[1.03]"
                 />
               </div>
 
-              <div className="px-[18px] pb-[18px] pt-5">
-                <h3 className="type-h5 text-uagc-navy">
-                  {path.title}
-                </h3>
-                <p className="mb-3.5 mt-1.5 text-[13px] leading-relaxed text-uagc-gray">
-                  {path.description}
-                </p>
-                <span className="inline-flex items-center gap-1 text-[13px] font-semibold text-uagc-red transition-all duration-200 group-hover:gap-2">
-                  Explore Your Path
-                  <ArrowRight className="size-3" strokeWidth={2.5} aria-hidden />
+              <div className="flex items-center justify-between gap-3 px-4 py-3.5">
+                <div className="min-w-0">
+                  <h3 className="text-[0.9375rem] font-semibold leading-tight text-uagc-navy">
+                    {path.title}
+                  </h3>
+                  <p className="mt-1 truncate text-[0.8125rem] leading-snug text-uagc-gray">
+                    {path.description}
+                  </p>
+                </div>
+                <span className="flex size-7 shrink-0 items-center justify-center rounded-full bg-uagc-navy/5 transition-[background-color,transform] duration-200 group-hover:bg-uagc-gold/15 group-hover:translate-x-0.5">
+                  <ArrowRight className="size-3.5 text-uagc-navy transition-colors duration-200 group-hover:text-uagc-gold" strokeWidth={2} aria-hidden />
                 </span>
               </div>
             </a>
           ))}
         </div>
+
+        <a
+          href={viewAllHref}
+          className={cn(
+            "mt-6 inline-flex items-center gap-1.5 text-sm font-semibold focus-visible:outline-2 focus-visible:outline-offset-2 sm:hidden",
+            headerClass.viewAll,
+          )}
+        >
+          {viewAllLabel}
+          <ArrowRight className="size-3.5" strokeWidth={2.5} aria-hidden />
+        </a>
       </div>
     </section>
   );

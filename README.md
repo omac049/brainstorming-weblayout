@@ -54,7 +54,7 @@ cd prototypes && npm install && npm run dev
 | `/request-info-v5` | Paid — full ~16 module stack with hero RFI |
 | `/degree-programs-v7` | Paid — full stack with ProgramExplorer |
 | `/online-college-courses-v5` | Paid — lean ~10 module OCC variant |
-| `/organic/homepage` | Organic — empathy-first arc |
+| `/organic/homepage` | Organic — conversion architecture (primary) |
 | `/organic/online-degrees` | Organic — discovery hub |
 | `/organic/request-information/thank-you` | Organic — post-submission |
 

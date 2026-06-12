@@ -50,7 +50,7 @@ function VideoCard({
       >
         {/* Loading skeleton */}
         {!imgLoaded && (
-          <span className="absolute inset-0 animate-pulse bg-white/5" />
+          <span className="absolute inset-0 animate-pulse motion-reduce:animate-none bg-white/5" />
         )}
 
         <AssetImage
@@ -79,7 +79,7 @@ function VideoCard({
         </span>
 
         {/* Persona tag — top-left trust signal */}
-        <span className="absolute left-3 top-3 rounded-full bg-black/40 px-2.5 py-1 text-[0.625rem] font-medium uppercase tracking-wider text-white/90 backdrop-blur-sm sm:left-4 sm:top-4 sm:text-[0.6875rem]">
+        <span className="absolute left-3 top-3 rounded-full bg-black/40 px-2.5 py-1 text-xs font-medium uppercase tracking-wider text-white/90 sm:left-4 sm:top-4">
           {testimonial.tag}
         </span>
 
@@ -125,7 +125,7 @@ function VideoModal({
 
   return (
     <div
-      className="video-modal-backdrop fixed inset-0 z-[200] flex items-center justify-center p-4 sm:p-8"
+      className="video-modal-backdrop fixed inset-0 z-200 flex items-center justify-center p-4 sm:p-8"
       role="dialog"
       aria-modal="true"
       aria-label={`Video testimonial from ${testimonial.name}`}
@@ -198,7 +198,10 @@ export function VideoTestimonialSection({
       <section
         ref={ref}
         id={id}
-        className={cn("scroll-mt-28 overflow-hidden bg-uagc-navy lg:scroll-mt-36", className)}
+        className={cn(
+          "scroll-mt-28 overflow-hidden border-b border-white/10 bg-uagc-navy lg:scroll-mt-36",
+          className,
+        )}
         aria-labelledby={id ? `${id}-heading` : undefined}
       >
         <div className="mx-auto w-full max-w-[1440px] lg:flex lg:items-stretch">
@@ -219,7 +222,7 @@ export function VideoTestimonialSection({
               {heading}
             </h2>
             {subheading && (
-              <p className="mt-3 text-sm leading-relaxed text-white/50 sm:text-[0.9375rem]">
+              <p className="mt-3 text-sm leading-relaxed text-uagc-navy-muted sm:text-[0.9375rem]">
                 {subheading}
               </p>
             )}

@@ -7,7 +7,7 @@ export function TopDegreesSection() {
   return (
     <section
       id="top-degrees"
-      className="scroll-mt-20 section-pad bg-[#faf9f7]"
+      className="scroll-mt-20 section-pad bg-uagc-cream"
       aria-labelledby="top-degrees-heading"
     >
       <div className="mx-auto w-full max-w-[1440px] px-4 sm:px-6 lg:px-8">

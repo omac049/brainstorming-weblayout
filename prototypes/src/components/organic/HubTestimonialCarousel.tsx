@@ -30,7 +30,7 @@ export function HubTestimonialCarousel({
   return (
     <section
       id={id}
-      className={cn("scroll-mt-20 section-pad bg-[#faf9f7]", className)}
+      className={cn("scroll-mt-20 section-pad bg-uagc-cream", className)}
       aria-labelledby="hub-testimonials-heading"
     >
       <div className="mx-auto w-full max-w-[1440px] px-4 sm:px-6 lg:px-8">

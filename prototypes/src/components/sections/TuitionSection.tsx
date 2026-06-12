@@ -121,7 +121,7 @@ function SavingsCard({ item }: { item: SavingsOption }) {
   return (
     <div
       className={cn(
-        "rounded-xl border bg-white transition-all duration-200",
+        "rounded-xl border bg-white transition-[border-color,box-shadow] duration-200",
         open
           ? "border-uagc-navy ring-1 ring-uagc-navy/10"
           : "border-uagc-border hover:border-uagc-navy/30",
@@ -213,16 +213,18 @@ function SavingsCard({ item }: { item: SavingsOption }) {
 }
 
 export interface TuitionSectionProps {
+  id?: string;
   heading?: string;
   className?: string;
 }
 
 export function TuitionSection({
+  id,
   heading = "Tuition & Financial Aid",
   className,
 }: TuitionSectionProps) {
   return (
-    <section className={cn("section-pad bg-[#faf9f7]", className)}>
+    <section id={id} className={cn("section-pad bg-uagc-cream", className)}>
       <div className="mx-auto w-full max-w-[1440px] px-4 sm:px-6 lg:px-8">
         {/* Section header — centered for unified vertical flow */}
         <div className="mb-8 text-center lg:mb-10">
@@ -247,12 +249,12 @@ export function TuitionSection({
                 "flex items-center justify-between px-4 py-3.5",
                 "sm:flex-col sm:items-center sm:justify-center sm:px-5 sm:py-6 sm:text-center",
                 tier.accent
-                  ? "border-uagc-gold bg-[#fdf8ef]"
+                  ? "border-uagc-gold bg-uagc-cream-warm"
                   : "border-uagc-border bg-white",
               )}
             >
               <div className="flex items-center gap-2 sm:flex-col sm:gap-0">
-                <p className="text-[0.6875rem] font-semibold uppercase tracking-[0.1em] text-uagc-gray">
+                <p className="text-[0.6875rem] font-semibold uppercase tracking-widest text-uagc-gray">
                   {tier.label}
                 </p>
                 {tier.accent && (

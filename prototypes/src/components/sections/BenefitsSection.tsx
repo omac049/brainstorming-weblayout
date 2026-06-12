@@ -131,7 +131,7 @@ export function BenefitsSection({
         <div className="mb-8 sm:mb-10">
           <span
             aria-hidden
-            className={cn("mb-3 block h-[3px] w-10", accentBar[bg])}
+            className={cn("mb-3 block h-0.75 w-10", accentBar[bg])}
           />
           <h2 className={cn("type-h2", headingColor[bg])}>
             {heading}

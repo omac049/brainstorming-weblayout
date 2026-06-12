@@ -25,8 +25,11 @@ export function ScrollReveal({
     const prefersReduced = window.matchMedia(
       "(prefers-reduced-motion: reduce)",
     ).matches;
+    const coarsePointer = window.matchMedia(
+      "(hover: none) and (pointer: coarse)",
+    ).matches;
 
-    if (prefersReduced) {
+    if (prefersReduced || coarsePointer) {
       element.classList.add("is-visible");
       return;
     }
@@ -42,6 +45,13 @@ export function ScrollReveal({
     );
 
     observer.observe(element);
+
+    const rect = element.getBoundingClientRect();
+    if (rect.top < window.innerHeight && rect.bottom > 0) {
+      element.classList.add("is-visible");
+      observer.disconnect();
+    }
+
     return () => observer.disconnect();
   }, []);
 

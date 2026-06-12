@@ -1,4 +1,178 @@
+import type { PersonaPath } from "@/components/organic/PersonaPathSection";
+import type { CareerOutcomeItem } from "@/components/sections/CareerOutcomesSection";
 import type { FAQItem } from "@/components/sections/FAQSection";
+
+export interface AreaOfStudy {
+  id: string;
+  label: string;
+  href: string;
+  programCount: number;
+  tagline: string;
+  imageSrc: string;
+  imageAlt: string;
+  imagePosition?: string;
+}
+
+export const HUB_PERSONA_PATHS: readonly PersonaPath[] = [
+  {
+    title: "Transfer Students",
+    description:
+      "Free transcript evaluation — see how many credits count before you apply.",
+    imageSrc: "/images/path-transfer.jpg",
+    imageAlt: "Transfer student reviewing credits",
+    href: "#journey",
+  },
+  {
+    title: "Military & Spouses",
+    description:
+      "GI Bill, TA, MyCAA, and PCS-friendly enrollment — benefits that follow you.",
+    imageSrc: "/images/path-military.jpg",
+    imageAlt: "Military family student",
+    href: "#ways-to-save",
+  },
+  {
+    title: "Graduate Programs",
+    description:
+      "Master's and doctoral degrees online — same flexible format, advanced credentials.",
+    imageSrc: "/images/path-career.jpg",
+    imageAlt: "Graduate student",
+    href: "#programs",
+  },
+  {
+    title: "Career Changers",
+    description:
+      "Browse accounting, IT, healthcare, criminal justice, and more — match your next role.",
+    imageSrc: "/images/path-working-adults.jpg",
+    imageAlt: "Career changer exploring programs",
+    href: "#areas",
+  },
+] as const;
+
+export const HUB_AREAS_OF_STUDY: readonly AreaOfStudy[] = [
+  {
+    id: "business",
+    label: "Business",
+    href: "https://www.uagc.edu/online-degrees/business",
+    programCount: 19,
+    tagline:
+      "Accounting, management, leadership, HR, and more — from associate to MBA.",
+    imageSrc: "/images/interest-business.jpg",
+    imageAlt: "Business programs at UAGC",
+  },
+  {
+    id: "education",
+    label: "Education",
+    href: "https://www.uagc.edu/online-degrees/education",
+    programCount: 13,
+    tagline:
+      "Teaching, curriculum design, and ed leadership — bachelor's through doctoral.",
+    imageSrc: "/images/interest-education.jpg",
+    imageAlt: "Education programs at UAGC",
+  },
+  {
+    id: "health-care",
+    label: "Health Care",
+    href: "https://www.uagc.edu/online-degrees/health-care",
+    programCount: 7,
+    tagline: "Health administration and informatics pathways.",
+    imageSrc: "/images/interest-health-care.jpg",
+    imageAlt: "Health care programs at UAGC",
+  },
+  {
+    id: "information-technology",
+    label: "Information Technology",
+    href: "https://www.uagc.edu/online-degrees/information-technology",
+    programCount: 6,
+    tagline: "Cybersecurity, networking, and IT management.",
+    imageSrc: "/images/interest-information-technology.jpg",
+    imageAlt: "Information technology programs at UAGC",
+  },
+  {
+    id: "criminal-justice",
+    label: "Criminal Justice",
+    href: "https://www.uagc.edu/online-degrees/criminal-justice",
+    programCount: 3,
+    tagline: "Law enforcement, homeland security, and legal studies.",
+    imageSrc: "/images/interest-criminal-justice.jpg",
+    imageAlt: "Criminal justice programs at UAGC",
+  },
+  {
+    id: "liberal-arts",
+    label: "Liberal Arts",
+    href: "https://www.uagc.edu/online-degrees/liberal-arts",
+    programCount: 4,
+    tagline: "English, history, humanities, and communication.",
+    imageSrc: "/images/interest-liberal-arts.jpg",
+    imageAlt: "Liberal arts programs at UAGC",
+  },
+  {
+    id: "social-behavioral",
+    label: "Social & Behavioral Science",
+    href: "https://www.uagc.edu/online-degrees/social-behavioral-science",
+    programCount: 6,
+    tagline: "Psychology, sociology, and applied behavior analysis.",
+    imageSrc: "/images/interest-social-behavioral.jpg",
+    imageAlt: "Social and behavioral science programs at UAGC",
+  },
+  {
+    id: "accounting-finance",
+    label: "Accounting & Finance",
+    href: "https://www.uagc.edu/online-degrees/business",
+    programCount: 3,
+    tagline: "CPA-track and financial planning programs.",
+    imageSrc: "/images/interest-business.jpg",
+    imageAlt: "Accounting and finance programs at UAGC",
+    imagePosition: "center 35%",
+  },
+] as const;
+
+/** Hub-lite subset — addresses simulation career/outcomes and program-vertical themes. */
+export const HUB_CAREER_OUTCOMES: readonly CareerOutcomeItem[] = [
+  {
+    area: "Business & Management",
+    degrees: "AA, BA, MBA",
+    salary: "$55K – $95K",
+    growthPct: "8%",
+    jobTitles: [
+      "Operations Manager",
+      "Business Analyst",
+      "Project Manager",
+    ],
+  },
+  {
+    area: "Health Care Administration",
+    degrees: "BA, MA",
+    salary: "$60K – $110K",
+    growthPct: "28%",
+    jobTitles: [
+      "Health Services Manager",
+      "Clinical Coordinator",
+      "Practice Administrator",
+    ],
+  },
+  {
+    area: "Information Technology",
+    degrees: "BS, MISM",
+    salary: "$65K – $115K",
+    growthPct: "15%",
+    jobTitles: [
+      "Systems Administrator",
+      "Cybersecurity Analyst",
+      "IT Project Manager",
+    ],
+  },
+  {
+    area: "Criminal Justice & Public Safety",
+    degrees: "AA, BA",
+    salary: "$48K – $85K",
+    growthPct: "5%",
+    jobTitles: [
+      "Federal Agent",
+      "Probation Officer",
+      "Crime Analyst",
+    ],
+  },
+] as const;
 
 export const HUB_INTRO = {
   heading: "Flexible Online College Degrees to Fit Your Life",
@@ -70,6 +244,7 @@ export const DEGREE_LEVEL_OPTIONS = [
   { value: "Doctoral", label: "Doctoral Degrees" },
 ] as const;
 
+/** Text quotes — legacy carousel only; hub page uses HUB_VIDEO_TESTIMONIALS. */
 export const HUB_TESTIMONIALS = [
   {
     tag: "Working Parent",
@@ -91,6 +266,40 @@ export const HUB_TESTIMONIALS = [
       "I knew I needed to find a school that fit my schedule and would still allow me to spend time with my family. Everyone I talked to said it was very flexible.",
     name: "Tyler Barnett",
     credential: "BA in Organizational Management",
+  },
+] as const;
+
+/** Live-site video testimonials — same CDN thumbnails as organic homepage TRUST-01. */
+export const HUB_VIDEO_TESTIMONIALS = [
+  {
+    name: 'Vincent "Rocco" Vargas',
+    credential: "BA in Social and Criminal Justice, 2023",
+    tag: "Military Veteran",
+    youtubeId: "0VMp3-mmD9I",
+    thumbnailUrl:
+      "https://www.uagc.edu/sites/default/files/styles/success_video_3_column_387x650/public/Photo%20Nov%2005%202022%2C%2023%2054%2018%20%281%29.jpg.webp?itok=u-a5-xGF",
+    quote:
+      "UAGC gave me the structure I needed to balance acting, advocacy, and finishing my degree.",
+  },
+  {
+    name: "Jessica Smith",
+    credential: "Master of Arts in Psychology, 2023",
+    tag: "Working Parent",
+    youtubeId: "sM_7isP33Os",
+    thumbnailUrl:
+      "https://www.uagc.edu/sites/default/files/styles/success_video_3_column_387x650/public/Jessica_2_Thumbnail.png.webp?itok=9IOAQuzT",
+    quote:
+      "I wanted to go further in my career — UAGC made the master's feel achievable.",
+  },
+  {
+    name: "Wendy Bosquez",
+    credential: "BA in Communication Studies, 2024",
+    tag: "Career Changer",
+    youtubeId: "jTqRNXIkg38",
+    thumbnailUrl:
+      "https://www.uagc.edu/sites/default/files/styles/success_video_3_column_387x650/public/Wendy_Bosquez_1.png.webp?itok=m5T-Xgsm",
+    quote:
+      "Being the first in my family to graduate — that moment changed everything.",
   },
 ] as const;
 
@@ -125,7 +334,7 @@ export const HUB_FAQ_ITEMS: FAQItem[] = [
     category: "credibility",
     question: "Will employers respect a UAGC degree?",
     answer:
-      "UAGC is part of the University of Arizona enterprise and accredited by WSCUC — the same regional accreditor that accredits Stanford, USC, and UCLA. Your diploma comes from an accredited, nonprofit university. Our career services team provides résumé support, interview coaching, and access to Handshake's employer network to help graduates connect with hiring managers who value online credentials.",
+      "UAGC is part of the University of Arizona enterprise and regionally accredited by WSCUC — a recognized accreditor held to rigorous standards for academic quality, student learning, and institutional integrity. Your diploma comes from an accredited, nonprofit university. Career services provides résumé support, interview coaching, and access to Handshake's employer network to help graduates connect with hiring managers who value online credentials.",
   },
   {
     category: "cost",

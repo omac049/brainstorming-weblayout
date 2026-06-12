@@ -6,7 +6,7 @@ import {
   Shield,
 } from "lucide-react";
 
-import { assetPath } from "@/lib/asset-path";
+import { AssetImage } from "@/components/shared/AssetImage";
 import { cn } from "@/lib/utils";
 
 export interface EmployerCredentialSectionProps {
@@ -50,7 +50,7 @@ export function EmployerCredentialSection({
   className,
 }: EmployerCredentialSectionProps) {
   return (
-    <section className={cn("section-pad bg-[#fdf8ef]", className)}>
+    <section className={cn("section-pad bg-uagc-cream-warm", className)}>
       <div className="mx-auto w-full max-w-[1440px] px-4 sm:px-6 lg:px-8">
         {/* ── Header — peer comparison elevated to headline ── */}
         <div className="mb-8 sm:mb-10 lg:mb-12">
@@ -71,9 +71,11 @@ export function EmployerCredentialSection({
           <div className="flex flex-col items-center text-center sm:flex-row sm:items-start sm:gap-8 sm:text-left">
             <div className="mb-6 shrink-0 sm:mb-0">
               <div className="rounded-xl border-2 border-uagc-gold p-1.5">
-                <img
-                  src={assetPath("/images/WSCUC-Logo-Square.jpg")}
+                <AssetImage
+                  src="/images/WSCUC-Logo-Square.jpg"
                   alt="WSCUC — Institutional Accreditation"
+                  width={112}
+                  height={112}
                   className="size-24 rounded-lg sm:size-28"
                   loading="lazy"
                 />
@@ -135,9 +137,11 @@ export function EmployerCredentialSection({
                 className="rounded-xl border border-uagc-border bg-white p-5 sm:p-6"
               >
                 <div className="flex items-start gap-4">
-                  <img
-                    src={assetPath(accr.src)}
+                  <AssetImage
+                    src={accr.src}
                     alt={`${accr.name} — ${accr.label}`}
+                    width={72}
+                    height={72}
                     className="size-16 shrink-0 rounded-lg sm:size-[72px]"
                     loading="lazy"
                   />
@@ -211,7 +215,7 @@ export function EmployerCredentialSection({
         </div>
 
         {/* ── UA Enterprise Callout ── */}
-        <div className="mt-6 flex items-start gap-3 rounded-lg border border-uagc-gold/30 bg-uagc-gold/[0.08] px-4 py-4 sm:mt-8 sm:items-center sm:px-5">
+        <div className="mt-6 flex items-start gap-3 rounded-lg border border-uagc-gold/30 bg-uagc-gold/8 px-4 py-4 sm:mt-8 sm:items-center sm:px-5">
           <Award
             className="mt-0.5 size-5 shrink-0 text-uagc-gold sm:mt-0"
             strokeWidth={1.75}

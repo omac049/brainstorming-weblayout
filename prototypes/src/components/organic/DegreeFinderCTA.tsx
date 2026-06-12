@@ -12,7 +12,7 @@ export function DegreeFinderCTA() {
         <h2 id="degree-finder-heading" className="type-h2 text-white">
           Not Sure What You Want to Study?
         </h2>
-        <p className="mx-auto mt-4 max-w-2xl text-sm leading-relaxed text-[#b8c5d9] sm:text-base">
+        <p className="mx-auto mt-4 max-w-2xl text-sm leading-relaxed text-uagc-navy-muted sm:text-base">
           Whether you&apos;re a natural born leader or excel at educating others, our
           Degree Finder tool can help you find the path that aligns with your
           individual skills and strengths.
@@ -21,7 +21,7 @@ export function DegreeFinderCTA() {
           href="https://www.uagc.edu/online-degrees/find-your-degree"
           target="_blank"
           rel="noopener noreferrer"
-          className="mt-8 inline-flex min-h-11 items-center justify-center gap-2 rounded-full bg-uagc-gold px-8 py-3 text-sm font-bold uppercase tracking-wide text-uagc-navy transition-colors hover:bg-[#f5a623]"
+          className="mt-8 inline-flex min-h-11 items-center justify-center gap-2 rounded-full bg-uagc-gold px-8 py-3 text-sm font-bold uppercase tracking-wide text-uagc-navy transition-colors hover:bg-uagc-gold-hover"
         >
           Take the Degree Finder Quiz
           <ArrowRight className="size-4" aria-hidden />

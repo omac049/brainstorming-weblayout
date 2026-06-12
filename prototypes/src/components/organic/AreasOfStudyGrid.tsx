@@ -1,120 +1,69 @@
-import Link from "next/link";
+"use client";
+
 import {
-  Briefcase,
-  Scale,
-  Shield,
-  GraduationCap,
-  HeartPulse,
-  Monitor,
-  BookOpen,
-  Users,
-} from "lucide-react";
+  DEFAULT_INTEREST_AREAS,
+  InterestAreaGrid,
+  type InterestArea,
+  type InterestAreaGridProps,
+} from "@/components/organic/InterestAreaGrid";
+import { HUB_AREAS_OF_STUDY } from "@/lib/organic-online-degrees-data";
 
-const AREAS = [
-  {
-    label: "Business",
-    href: "https://www.uagc.edu/online-degrees/business",
-    icon: Briefcase,
-    programCount: "12+",
-    color: "#0C234B",
-  },
-  {
-    label: "Education",
-    href: "https://www.uagc.edu/online-degrees/education",
-    icon: GraduationCap,
-    programCount: "8+",
-    color: "#0C234B",
-  },
-  {
-    label: "Health Care",
-    href: "https://www.uagc.edu/online-degrees/health-care",
-    icon: HeartPulse,
-    programCount: "6+",
-    color: "#0C234B",
-  },
-  {
-    label: "Information Technology",
-    href: "https://www.uagc.edu/online-degrees/information-technology",
-    icon: Monitor,
-    programCount: "5+",
-    color: "#0C234B",
-  },
-  {
-    label: "Criminal Justice",
-    href: "https://www.uagc.edu/online-degrees/criminal-justice",
-    icon: Shield,
-    programCount: "4+",
-    color: "#0C234B",
-  },
-  {
-    label: "Liberal Arts",
-    href: "https://www.uagc.edu/online-degrees/liberal-arts",
-    icon: BookOpen,
-    programCount: "5+",
-    color: "#0C234B",
-  },
-  {
-    label: "Social & Behavioral Science",
-    href: "https://www.uagc.edu/online-degrees/social-behavioral-science",
-    icon: Users,
-    programCount: "4+",
-    color: "#0C234B",
-  },
-  {
-    label: "Accounting & Finance",
-    href: "https://www.uagc.edu/online-degrees/business",
-    icon: Scale,
-    programCount: "3+",
-    color: "#0C234B",
-  },
-] as const;
+export type { AreaOfStudy } from "@/lib/organic-online-degrees-data";
 
-export function AreasOfStudyGrid() {
+function normalizeAreaName(name: string): string {
+  return name.replace(/\sSciences$/, " Science").toLowerCase();
+}
+
+function findHubArea(homeAreaName: string) {
+  const normalizedHome = normalizeAreaName(homeAreaName);
+
+  return HUB_AREAS_OF_STUDY.find(
+    (area) => normalizeAreaName(area.label) === normalizedHome,
+  );
+}
+
+/** Same 7-area grid as homepage — hub live URLs and counts only. */
+const HUB_INTEREST_AREAS: InterestArea[] = DEFAULT_INTEREST_AREAS.map(
+  (homeArea) => {
+    const hubArea = findHubArea(homeArea.name);
+
+    return {
+      name: homeArea.name,
+      programCount: hubArea?.programCount ?? homeArea.programCount,
+      imageSrc: hubArea?.imageSrc ?? homeArea.imageSrc,
+      imageAlt: hubArea?.imageAlt ?? homeArea.imageAlt,
+      href: hubArea?.href ?? homeArea.href,
+      imagePosition: hubArea?.imagePosition,
+    };
+  },
+);
+
+export type AreasOfStudyGridProps = Omit<
+  InterestAreaGridProps,
+  "areas" | "heading" | "subheading" | "id"
+> &
+  Partial<Pick<InterestAreaGridProps, "heading" | "subheading" | "id">>;
+
+export function AreasOfStudyGrid({
+  id = "areas",
+  className,
+  heading = "What Do You Want to Study?",
+  subheading =
+    "Whether you're advancing in your field or changing direction entirely, browse by area — then explore programs that match your goals.",
+  finderHref = "#programs",
+  reveal = true,
+  ...props
+}: AreasOfStudyGridProps) {
   return (
-    <section
-      id="areas"
-      className="scroll-mt-20 section-pad bg-white"
-      aria-labelledby="areas-heading"
-    >
-      <div className="mx-auto w-full max-w-[1440px] px-4 sm:px-6 lg:px-8">
-        <div className="mx-auto max-w-2xl text-center">
-          <span aria-hidden className="mx-auto mb-3 accent-bar" />
-          <h2 id="areas-heading" className="type-h2 text-uagc-navy">
-            What Do You Want to Study?
-          </h2>
-          <p className="mt-3 text-[0.9375rem] leading-relaxed text-uagc-gray sm:text-base">
-            Whether you&apos;re advancing in your field or changing direction
-            entirely, find the program that fits your goals. Associate through
-            doctoral — all 100% online.
-          </p>
-        </div>
-
-        <div className="mx-auto mt-10 grid max-w-5xl gap-4 sm:grid-cols-2 lg:grid-cols-4">
-          {AREAS.map(({ label, href, icon: Icon, programCount }) => (
-            <Link
-              key={label}
-              href={href}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="group flex flex-col items-center gap-3 rounded-2xl border border-[#e8e6e3] bg-white px-5 py-7 text-center transition-all duration-200 hover:border-uagc-navy/20 hover:shadow-[0_4px_16px_rgba(12,35,75,0.08)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-uagc-navy"
-            >
-              <span className="flex size-12 items-center justify-center rounded-xl bg-[#f3f1ee] transition-colors duration-150 group-hover:bg-[#fdf8ef]">
-                <Icon
-                  className="size-6 text-uagc-navy transition-colors duration-150 group-hover:text-uagc-gold"
-                  strokeWidth={1.5}
-                  aria-hidden
-                />
-              </span>
-              <span className="text-[0.9375rem] font-semibold text-uagc-navy">
-                {label}
-              </span>
-              <span className="text-xs font-medium text-uagc-gray">
-                {programCount} programs
-              </span>
-            </Link>
-          ))}
-        </div>
-      </div>
-    </section>
+    <InterestAreaGrid
+      id={id}
+      className={className ?? "bg-uagc-surface"}
+      areas={HUB_INTEREST_AREAS}
+      heading={heading}
+      subheading={subheading}
+      finderHref={finderHref}
+      reveal={reveal}
+      {...props}
+    />
   );
 }

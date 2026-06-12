@@ -52,7 +52,7 @@ function SkeptCardItem({ card }: { card: SkeptCard }) {
         )}
       </p>
 
-      <p className="text-[0.9375rem] leading-relaxed text-uagc-gray-700">
+      <p className="text-[0.9375rem] leading-relaxed text-uagc-gray">
         {card.answer}
       </p>
 
@@ -61,7 +61,7 @@ function SkeptCardItem({ card }: { card: SkeptCard }) {
           type="button"
           onClick={() => setExpanded(!expanded)}
           aria-expanded={expanded}
-          className="flex min-h-[44px] items-center gap-2 text-sm font-semibold text-uagc-navy transition-colors hover:text-uagc-red"
+          className="flex min-h-11 items-center gap-2 text-sm font-semibold text-uagc-navy transition-colors hover:text-uagc-red"
         >
           {expanded ? "Show less" : "See the evidence"}
           <ChevronDown
@@ -75,7 +75,7 @@ function SkeptCardItem({ card }: { card: SkeptCard }) {
         {expanded && (
           <ul className="mt-3 flex flex-col gap-2.5">
             {card.expandedBullets.map((bullet) => (
-              <li key={bullet} className="flex items-start gap-2.5 text-sm leading-relaxed text-uagc-gray-700">
+              <li key={bullet} className="flex items-start gap-2.5 text-sm leading-relaxed text-uagc-gray">
                 <Check className="mt-0.5 size-4 shrink-0 text-green-600" />
                 <span>{bullet}</span>
               </li>
@@ -126,14 +126,14 @@ export function SkepticismBusterSection({
               href={softCta.chatHref}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex min-h-[44px] items-center gap-2 rounded-lg border border-uagc-navy/15 bg-white px-5 py-2.5 text-sm font-semibold text-uagc-navy transition-colors hover:border-uagc-navy/30 hover:bg-uagc-navy/[0.03]"
+              className="inline-flex min-h-11 items-center gap-2 rounded-lg border border-uagc-navy/15 bg-white px-5 py-2.5 text-sm font-semibold text-uagc-navy transition-colors hover:border-uagc-navy/30 hover:bg-uagc-navy/3"
             >
               <MessageCircle className="size-4" />
               Chat with an Advisor
             </a>
             <a
               href={softCta.phoneHref}
-              className="inline-flex min-h-[44px] items-center gap-2 rounded-lg border border-uagc-navy/15 bg-white px-5 py-2.5 text-sm font-semibold text-uagc-navy transition-colors hover:border-uagc-navy/30 hover:bg-uagc-navy/[0.03]"
+              className="inline-flex min-h-11 items-center gap-2 rounded-lg border border-uagc-navy/15 bg-white px-5 py-2.5 text-sm font-semibold text-uagc-navy transition-colors hover:border-uagc-navy/30 hover:bg-uagc-navy/3"
             >
               <Phone className="size-4" />
               Call (855) 210-4959

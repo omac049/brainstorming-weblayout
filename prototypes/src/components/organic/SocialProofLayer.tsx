@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Image from "next/image";
 import { Play, X } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { HOME_VIDEO_TESTIMONIALS } from "@/lib/organic-homepage-data";
@@ -60,7 +61,7 @@ function VideoLightbox({
   onClose: () => void;
 }) {
   return (
-    <div className="fixed inset-0 z-[110] flex items-center justify-center" role="dialog" aria-modal="true">
+    <div className="fixed inset-0 z-110 flex items-center justify-center" role="dialog" aria-modal="true">
       <div className="absolute inset-0 bg-black/80" onClick={onClose} aria-hidden="true" />
       <div className="relative z-10 w-full max-w-3xl px-4">
         <button
@@ -104,7 +105,7 @@ export function SocialProofLayer({
             <h2 className="type-h2 text-uagc-navy">Hear From Students Like You</h2>
           </div>
 
-          <div className="flex gap-5 overflow-x-auto pb-2 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden lg:grid lg:grid-cols-3 lg:overflow-visible lg:pb-0">
+          <div className="flex gap-5 overflow-x-auto pb-2 scrollbar-none lg:grid lg:grid-cols-3 lg:overflow-visible lg:pb-0">
             {CURATED_VIDEOS.map((video) => (
               <button
                 key={video.name}
@@ -113,10 +114,12 @@ export function SocialProofLayer({
                 className="motion-hover-lift group relative min-w-[280px] cursor-pointer overflow-hidden rounded-xl bg-uagc-surface lg:min-w-0"
               >
                 <div className="relative aspect-video">
-                  <img
+                  <Image
                     src={video.thumbnailUrl}
                     alt={`${video.name} testimonial`}
-                    className="size-full object-cover transition-transform duration-300 group-hover:scale-105"
+                    fill
+                    sizes="(max-width: 1024px) 280px, 33vw"
+                    className="object-cover transition-transform duration-300 group-hover:scale-105"
                   />
                   <div className="absolute inset-0 flex items-center justify-center bg-black/20 transition-colors group-hover:bg-black/30">
                     <span className="flex size-14 items-center justify-center rounded-full bg-white/90 text-uagc-navy shadow-lg transition-transform group-hover:scale-110">
@@ -211,7 +214,7 @@ export function SocialProofLayer({
           variant="accordion"
           heading=""
           items={PROOF_FAQS}
-          className="!bg-transparent !py-0 [&>div]:!px-0"
+          className="bg-transparent! py-0! [&>div]:px-0!"
         />
       </div>
 

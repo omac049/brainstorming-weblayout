@@ -34,7 +34,7 @@ export function HomeDifferentiatorSection() {
   return (
     <section
       id="differentiators"
-      className="scroll-mt-28 section-pad bg-[#faf9f7] lg:scroll-mt-36"
+      className="scroll-mt-28 section-pad bg-uagc-cream lg:scroll-mt-36"
       aria-labelledby="home-differentiators-heading"
     >
       <div className="mx-auto w-full max-w-[1440px] px-4 sm:px-6 lg:px-8">
@@ -92,7 +92,7 @@ export function HomeDifferentiatorSection() {
                 {COMPARISON_ROWS.map(({ feature, uagc, traditional }, index) => (
                   <tr
                     key={feature}
-                    className={index % 2 === 0 ? "bg-white" : "bg-[#faf9f7]"}
+                    className={index % 2 === 0 ? "bg-white" : "bg-uagc-cream"}
                   >
                     <th
                       scope="row"

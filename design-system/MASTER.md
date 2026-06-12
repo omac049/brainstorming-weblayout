@@ -4,7 +4,8 @@
 > **Last verified:** 2026-06-01 — desktop + mobile ramps match wireframes local text styles. See [`RESKIN-ALIGNMENT.md`](./RESKIN-ALIGNMENT.md).
 > Figma Libraries: **UAGC DESIGN SYSTEM**, **UAGC Library**
 >
-> **Figma file registry:** [FIGMA-FILES.md](./FIGMA-FILES.md) — paid wireframes (`HoSMZOSnKSVgUXlskHv9tS`) in [team project 598288008](https://www.figma.com/files/team/954051891409200881/project/598288008?fuid=1052358699765663783). **Paid wireframes alignment:** [RESKIN-ALIGNMENT.md](./RESKIN-ALIGNMENT.md).
+> **Figma file registry:** [FIGMA-FILES.md](./FIGMA-FILES.md) — paid wireframes (`HoSMZOSnKSVgUXlskHv9tS`) in [team project 598288008](https://www.figma.com/files/team/954051891409200881/project/598288008?fuid=1052358699765663783). **Paid wireframes alignment:** [RESKIN-ALIGNMENT.md](./RESKIN-ALIGNMENT.md).  
+> **Mobile UX contract:** [MOBILE.md](./MOBILE.md) — page shell, sticky stack, touch/type floors, Playwright CI.
 
 ---
 

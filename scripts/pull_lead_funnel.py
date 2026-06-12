@@ -83,7 +83,7 @@ def window_metrics(row: dict | None) -> dict:
 
 
 def sum_metrics(programs: list[dict], window_key: str) -> dict:
-    totals = {
+    counts = {
         "leads": 0,
         "app_starts": 0,
         "app_submitted": 0,
@@ -92,11 +92,13 @@ def sum_metrics(programs: list[dict], window_key: str) -> dict:
     }
     for program in programs:
         window = program[window_key]
-        for key in totals:
-            totals[key] += window[key]
-    totals["decision_pct"] = pct(totals["decisions"], totals["leads"])
-    totals["enrollment_pct"] = pct(totals["enrollments"], totals["leads"])
-    return totals
+        for key in counts:
+            counts[key] += window[key]
+    return {
+        **counts,
+        "decision_pct": pct(counts["decisions"], counts["leads"]),
+        "enrollment_pct": pct(counts["enrollments"], counts["leads"]),
+    }
 
 
 def build_level_payload(rows: list[dict], degree_level: str) -> dict:

@@ -35,7 +35,7 @@ export function HomePathSection() {
           <h2 id="home-path-heading" className="type-h2 text-white">
             Find Your Path
           </h2>
-          <p className="mt-4 text-sm leading-relaxed text-[#b8c5d9] sm:text-base">
+          <p className="mt-4 text-sm leading-relaxed text-uagc-navy-muted sm:text-base">
             Whether you are advancing in your career or changing fields entirely,
             UAGC online degrees are designed to meet you where you are.
           </p>
@@ -50,7 +50,7 @@ export function HomePathSection() {
             >
               <Icon className="size-6 text-uagc-gold" strokeWidth={1.75} aria-hidden />
               <h3 className="mt-3 font-heading text-lg font-semibold text-white">{label}</h3>
-              <p className="mt-2 text-sm text-[#b8c5d9]">{description}</p>
+              <p className="mt-2 text-sm text-uagc-navy-muted">{description}</p>
               <span className="mt-4 inline-flex items-center gap-1 text-xs font-semibold uppercase tracking-wide text-uagc-gold">
                 Explore
                 <ArrowRight className="size-3.5 transition-transform group-hover:translate-x-0.5" aria-hidden />
@@ -62,14 +62,14 @@ export function HomePathSection() {
         <div className="mt-10 flex flex-col items-center justify-center gap-3 sm:flex-row">
           <Link
             href="/organic/online-degrees"
-            className="inline-flex min-h-11 items-center gap-2 rounded-full bg-uagc-gold px-6 py-3 text-sm font-bold uppercase tracking-wide text-uagc-navy hover:bg-[#f5a623]"
+            className="inline-flex min-h-11 items-center gap-2 rounded-full bg-uagc-gold px-6 py-3 text-sm font-bold uppercase tracking-wide text-uagc-navy hover:bg-uagc-gold-hover"
           >
             View Online Degrees
             <ArrowRight className="size-4" aria-hidden />
           </Link>
           <a
             href="https://cloud.mail.uagc.edu/apply"
-            className="inline-flex min-h-11 items-center rounded-full bg-uagc-red px-6 py-3 text-sm font-bold uppercase tracking-wide text-white hover:bg-[#8a0418]"
+            className="inline-flex min-h-11 items-center rounded-full bg-uagc-red px-6 py-3 text-sm font-bold uppercase tracking-wide text-white hover:bg-uagc-red-hover"
           >
             Apply Now
           </a>

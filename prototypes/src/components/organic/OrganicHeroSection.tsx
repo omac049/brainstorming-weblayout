@@ -54,7 +54,7 @@ export function OrganicHeroSection({ heroRef, className }: OrganicHeroSectionPro
           <div className="relative z-10 flex flex-col justify-end bg-uagc-navy px-4 py-8 sm:px-6 sm:py-10 lg:justify-center lg:px-12 lg:py-16">
             <p className="type-eyebrow text-uagc-gold">{HERO.eyebrow}</p>
             <h1 className="type-h1 mt-2 text-white">{HERO.headline}</h1>
-            <p className="mt-4 max-w-xl text-base leading-relaxed text-[#e8edf5] sm:text-lg">
+            <p className="mt-4 max-w-xl text-base leading-relaxed text-uagc-hero-sub sm:text-lg">
               {HERO.subheadline}
             </p>
           </div>
@@ -89,14 +89,14 @@ function HubSectionNav() {
   return (
     <nav
       aria-label="Page sections"
-      className="border-t border-[#2a4068] bg-[#132a52]"
+      className="border-t border-uagc-border-navy bg-uagc-navy-deep"
     >
-      <div className="mx-auto flex w-full max-w-[1440px] gap-2 overflow-x-auto px-4 py-3 sm:px-6 lg:px-8 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+      <div className="mx-auto flex w-full max-w-[1440px] gap-2 overflow-x-auto px-4 py-3 mobile-nav-scroll sm:px-6 lg:px-8">
         {SECTION_NAV.map((item) => (
           <a
             key={item.id}
             href={`#${item.id}`}
-            className="inline-flex min-h-10 shrink-0 items-center rounded-full border border-[#2a4068] bg-uagc-navy px-4 text-xs font-semibold uppercase tracking-wide text-white transition-colors hover:border-uagc-gold hover:text-uagc-gold focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white sm:text-sm"
+            className="inline-flex min-h-10 shrink-0 items-center rounded-full border border-uagc-border-navy bg-uagc-navy px-4 text-xs font-semibold uppercase tracking-wide text-white transition-colors hover:border-uagc-gold hover:text-uagc-gold focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white sm:text-sm"
           >
             {item.label}
           </a>

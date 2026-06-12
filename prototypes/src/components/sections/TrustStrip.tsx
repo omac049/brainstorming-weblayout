@@ -62,7 +62,7 @@ function Badge({
           compact ? "size-8" : "size-9 sm:size-10",
           onDark
             ? "bg-white/10 text-white ring-1 ring-white/20"
-            : "bg-uagc-navy/[0.06] text-uagc-navy",
+            : "bg-uagc-navy/6 text-uagc-navy",
         )}
         aria-hidden
       >

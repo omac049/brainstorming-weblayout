@@ -18,6 +18,7 @@
 import { useRef } from "react";
 
 import { Footer } from "@/components/shared/Footer";
+import { PageMain } from "@/components/shared/PageMain";
 import { Header } from "@/components/shared/Header";
 import { NextStepBridge } from "@/components/shared/NextStepBridge";
 import { RFIForm, RFIStickyBar } from "@/components/shared/RFIForm";
@@ -57,7 +58,7 @@ export default function RequestInfoV5() {
       </a>
       <Header variant="reduced" />
       <SectionNav sections={PAGE_SECTIONS} />
-      <main id="main-content" role="main" className="flex-1 pt-16 sm:pt-[72px] lg:pt-20">
+      <PageMain variant="paid">
         <HeroSection
           headline="Earn Your Degree 100% Online at UAGC"
           subheadline="Part of the University of Arizona enterprise. Flexible 5-week courses built for working adults — no SAT or GRE required, and your transfer credits count from day one."
@@ -259,7 +260,7 @@ export default function RequestInfoV5() {
                   href="https://www.uagc.edu/chat"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="group flex flex-col items-center gap-3 rounded-2xl border border-white/10 bg-white/[0.06] px-5 py-6 transition-all hover:border-uagc-gold/40 hover:bg-white/[0.1] sm:py-8"
+                  className="group flex flex-col items-center gap-3 rounded-2xl border border-white/10 bg-white/6 px-5 py-6 transition-[border-color,background-color] hover:border-uagc-gold/40 hover:bg-white/10 sm:py-8"
                 >
                   <span className="flex size-12 items-center justify-center rounded-full bg-uagc-gold/15 text-uagc-gold transition-colors group-hover:bg-uagc-gold/25">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-6">
@@ -275,7 +276,7 @@ export default function RequestInfoV5() {
                 {/* Call an Advisor */}
                 <a
                   href="tel:+18552104959"
-                  className="group flex flex-col items-center gap-3 rounded-2xl border border-white/10 bg-white/[0.06] px-5 py-6 transition-all hover:border-uagc-gold/40 hover:bg-white/[0.1] sm:py-8"
+                  className="group flex flex-col items-center gap-3 rounded-2xl border border-white/10 bg-white/6 px-5 py-6 transition-[border-color,background-color] hover:border-uagc-gold/40 hover:bg-white/10 sm:py-8"
                 >
                   <span className="flex size-12 items-center justify-center rounded-full bg-uagc-gold/15 text-uagc-gold transition-colors group-hover:bg-uagc-gold/25">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-6">
@@ -291,7 +292,7 @@ export default function RequestInfoV5() {
                 {/* Request Information */}
                 <a
                   href="#rfi"
-                  className="group flex flex-col items-center gap-3 rounded-2xl border border-uagc-gold/30 bg-uagc-gold/[0.08] px-5 py-6 transition-all hover:border-uagc-gold/50 hover:bg-uagc-gold/[0.14] sm:py-8"
+                  className="group flex flex-col items-center gap-3 rounded-2xl border border-uagc-gold/30 bg-uagc-gold/8 px-5 py-6 transition-[border-color,background-color] hover:border-uagc-gold/50 hover:bg-uagc-gold/14 sm:py-8"
                 >
                   <span className="flex size-12 items-center justify-center rounded-full bg-uagc-gold/20 text-uagc-gold transition-colors group-hover:bg-uagc-gold/30">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-6">
@@ -309,7 +310,7 @@ export default function RequestInfoV5() {
                   href="https://cloud.mail.uagc.edu/apply"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="group flex flex-col items-center gap-3 rounded-2xl border border-uagc-red/30 bg-uagc-red/[0.08] px-5 py-6 transition-all hover:border-uagc-red/50 hover:bg-uagc-red/[0.14] sm:py-8"
+                  className="group flex flex-col items-center gap-3 rounded-2xl border border-uagc-red/30 bg-uagc-red/8 px-5 py-6 transition-[border-color,background-color] hover:border-uagc-red/50 hover:bg-uagc-red/14 sm:py-8"
                 >
                   <span className="flex size-12 items-center justify-center rounded-full bg-uagc-red/15 text-uagc-red transition-colors group-hover:bg-uagc-red/25">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-6">
@@ -333,7 +334,7 @@ export default function RequestInfoV5() {
             </div>
           </section>
         </ScrollReveal>
-      </main>
+      </PageMain>
       <Footer />
       <RFIStickyBar heroFormRef={heroFormRef} />
     </>

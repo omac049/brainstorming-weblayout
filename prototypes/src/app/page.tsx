@@ -5,15 +5,8 @@ const pages = [
     slug: "organic/homepage",
     title: "Homepage (Organic)",
     description:
-      "Wayfinding-first homepage — hero pathing CTAs, interest grid, single mid-page RFI, sticky bar after scroll. Fixes low scroll-depth pattern from Phase 1 audit.",
-    tag: "Organic · New",
-  },
-  {
-    slug: "organic/homepage-v2",
-    title: "Homepage v2 (Conversion Architecture)",
-    description:
-      "Reimagined homepage — micro-RFI hero, competitive comparison strip, interactive cost estimator, multi-CTA placement. ~7 sections vs 13. Targets bounce, RFI conversion, and competitive differentiation.",
-    tag: "Organic · v2",
+      "Conversion architecture homepage — hero trust pills, cost estimator, program explorer with start dates, interest grid, closing RFI + FAQ. Sticky bar after scroll.",
+    tag: "Organic · Primary",
   },
   {
     slug: "organic/online-degrees",
@@ -40,6 +33,13 @@ const pages = [
     description: "Course-focused v5 landing page — programs grid, flexible online learning narrative.",
     tag: "Course Variant",
   },
+  {
+    slug: "organic/request-information/thank-you",
+    title: "Thank You (Organic)",
+    description:
+      "Post-RFI confirmation page — confetti celebration, advisor team intro, countdown to next start, tuition info, and testimonials.",
+    tag: "Organic · Thank You",
+  },
 ];
 
 export default function Home() {
@@ -47,7 +47,7 @@ export default function Home() {
     <main className="flex min-h-screen flex-col items-center bg-uagc-navy px-4 py-20">
       <div className="mx-auto w-full max-w-4xl">
         <div className="mb-12 text-center">
-          <div className="mb-4 h-1 w-12 mx-auto bg-[#AB0520]" />
+          <div className="mb-4 h-1 w-12 mx-auto bg-uagc-gold" />
           <h1 className="text-3xl font-semibold text-white sm:text-4xl">
             UAGC Page Prototypes
           </h1>
@@ -61,18 +61,18 @@ export default function Home() {
             <Link
               key={page.slug}
               href={`/${page.slug}`}
-              className="group rounded-lg border border-white/10 bg-white/5 p-6 transition-all hover:border-uagc-red/50 hover:bg-white/10"
+              className="group rounded-lg border border-white/10 bg-white/5 p-6 transition-[border-color,background-color] hover:border-uagc-gold/50 hover:bg-white/10"
             >
               <div className="flex items-start justify-between gap-4">
                 <div>
-                  <h2 className="text-xl font-semibold text-white group-hover:text-uagc-red transition-colors">
+                  <h2 className="text-xl font-semibold text-white group-hover:text-uagc-gold transition-colors">
                     {page.title}
                   </h2>
                   <p className="mt-2 text-sm text-white/60">
                     {page.description}
                   </p>
                 </div>
-                <span className="shrink-0 rounded-full bg-uagc-red/20 px-3 py-1 text-xs font-medium text-uagc-red">
+                <span className="shrink-0 rounded-full bg-uagc-gold/20 px-3 py-1 text-xs font-medium text-uagc-gold">
                   {page.tag}
                 </span>
               </div>

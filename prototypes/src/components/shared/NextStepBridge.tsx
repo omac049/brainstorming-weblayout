@@ -28,7 +28,7 @@ export function NextStepBridge({
       <a
         href={href}
         className={cn(
-          "group flex items-center gap-2 rounded-full px-5 py-2 text-xs font-semibold uppercase tracking-wider transition-all duration-200",
+          "group flex items-center gap-2 rounded-full px-5 py-2 text-xs font-semibold uppercase tracking-wider transition-[border-color,color] duration-200",
           isDark
             ? "border border-white/20 text-white/80 hover:border-uagc-gold/40 hover:text-white"
             : "border border-uagc-navy/10 text-uagc-gray hover:border-uagc-navy/25 hover:text-uagc-navy",

@@ -155,7 +155,7 @@ export function ProgramCategoryCards({
               <>
                 <div className="flex items-start gap-4">
                   <span
-                    className="flex size-11 shrink-0 items-center justify-center rounded-lg bg-uagc-navy/[0.04] text-uagc-navy ring-1 ring-uagc-navy/[0.08] transition-colors group-hover:bg-uagc-red/[0.06] group-hover:text-uagc-red group-hover:ring-uagc-red/20"
+                    className="flex size-11 shrink-0 items-center justify-center rounded-lg bg-uagc-navy/4 text-uagc-navy ring-1 ring-uagc-navy/8 transition-colors group-hover:bg-uagc-red/6 group-hover:text-uagc-red group-hover:ring-uagc-red/20"
                     aria-hidden
                   >
                     <Icon className="size-5" strokeWidth={1.75} />
@@ -187,8 +187,8 @@ export function ProgramCategoryCards({
             );
 
             const cardClassName = cn(
-              "group relative flex cursor-pointer flex-col rounded-xl border border-transparent bg-white p-4 transition-all duration-200 sm:p-5",
-              "hover:border-uagc-red/20 hover:bg-white hover:shadow-[0_2px_12px_rgba(171,5,32,0.06)]",
+              "group relative flex cursor-pointer flex-col rounded-xl border border-transparent bg-white p-4 transition-[border-color,box-shadow] duration-200 sm:p-5",
+              "hover:border-uagc-red/20 hover:shadow-[0_2px_12px_rgba(171,5,32,0.06)]",
               "focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-uagc-navy",
             );
 
