@@ -1,6 +1,6 @@
 "use client";
 
-import { CalendarDays } from "lucide-react";
+import { CalendarDays, Clock } from "lucide-react";
 
 import { cn } from "@/lib/utils";
 
@@ -15,13 +15,18 @@ export interface UpcomingStartDatesProps {
   variant?: "inline" | "card";
 }
 
-export const DEFAULT_START_DATES: StartDateEntry[] = [
-  { date: "June 16", label: "Next class" },
-  { date: "July 7", label: "Following" },
-];
+/**
+ * Minimum days before a start date for it to be shown.
+ * Dates closer than this are hidden so students have adequate
+ * onboarding time — admissions, financial aid, orientation, etc.
+ */
+const MIN_ENROLLMENT_WINDOW_DAYS = 14;
 
-/** @deprecated Use DEFAULT_START_DATES */
-const DEFAULT_DATES = DEFAULT_START_DATES;
+const ALL_START_DATES: StartDateEntry[] = [
+  { date: "June 16" },
+  { date: "July 7" },
+  { date: "July 28" },
+];
 
 export function daysUntilStartDate(dateStr: string): number {
   const currentYear = new Date().getFullYear();
@@ -34,14 +39,45 @@ export function daysUntilStartDate(dateStr: string): number {
   return diff > 0 ? diff : diff + 365;
 }
 
+function filterEnrollableDates(entries: StartDateEntry[]): StartDateEntry[] {
+  const enrollable = entries.filter(
+    (e) => daysUntilStartDate(e.date) >= MIN_ENROLLMENT_WINDOW_DAYS,
+  );
+  return enrollable.slice(0, 2).map((e, i) => ({
+    ...e,
+    label: i === 0 ? "Next class" : "Following",
+  }));
+}
+
+export const DEFAULT_START_DATES: StartDateEntry[] =
+  filterEnrollableDates(ALL_START_DATES);
+
+/** @deprecated Use DEFAULT_START_DATES */
+const DEFAULT_DATES = DEFAULT_START_DATES;
+
+/**
+ * Returns start dates that are at least {@link MIN_ENROLLMENT_WINDOW_DAYS}
+ * away, giving students time for admissions, financial aid, and orientation.
+ */
+export function getEnrollableStartDates(): StartDateEntry[] {
+  return filterEnrollableDates(ALL_START_DATES);
+}
+
+function enrollmentDeadlineLabel(daysLeft: number): string | null {
+  if (daysLeft <= 21) return "Enroll this week to secure your spot";
+  if (daysLeft <= 30) return "Enrollment closing soon";
+  return null;
+}
+
 export function UpcomingStartDates({
   dates = DEFAULT_DATES,
   className,
   variant = "card",
 }: UpcomingStartDatesProps) {
   const nextDate = dates[0];
-  // Compute during render so SSR and hydration match (avoid useEffect-only badge).
   const daysLeft = nextDate ? daysUntilStartDate(nextDate.date) : null;
+  const deadlineHint =
+    daysLeft !== null ? enrollmentDeadlineLabel(daysLeft) : null;
 
   if (variant === "inline") {
     return (
@@ -58,13 +94,9 @@ export function UpcomingStartDates({
         <span className="font-medium text-uagc-navy">
           New classes begin {nextDate?.date}
         </span>
-        {daysLeft !== null && daysLeft <= 14 && (
+        {daysLeft !== null && daysLeft <= 30 && (
           <span className="rounded-full bg-uagc-gold/15 px-2.5 py-0.5 text-xs font-semibold text-uagc-navy">
-            {daysLeft === 0
-              ? "Today"
-              : daysLeft === 1
-                ? "Tomorrow"
-                : `${daysLeft} days`}
+            {`${daysLeft} days`}
           </span>
         )}
       </div>
@@ -80,63 +112,68 @@ export function UpcomingStartDates({
       aria-label="Upcoming class start dates"
     >
       <div className="mx-auto flex w-full max-w-[1440px] items-center justify-center px-4 py-4 sm:px-6 lg:px-8">
-        <div className="flex items-center gap-4 sm:gap-6">
-          <div className="hidden items-center gap-2 sm:flex">
-            <CalendarDays
-              className="size-5 text-uagc-gold"
-              strokeWidth={1.75}
-              aria-hidden
-            />
-            <span className="text-sm font-medium uppercase tracking-wide text-white/80">
-              Upcoming starts
-            </span>
-          </div>
+        <div className="flex flex-col items-center gap-2 sm:flex-row sm:gap-6">
+          <div className="flex items-center gap-4 sm:gap-6">
+            <div className="hidden items-center gap-2 sm:flex">
+              <CalendarDays
+                className="size-5 text-uagc-gold"
+                strokeWidth={1.75}
+                aria-hidden
+              />
+              <span className="text-sm font-medium uppercase tracking-wide text-white/80">
+                Upcoming starts
+              </span>
+            </div>
 
-          <div className="flex items-center gap-3 sm:gap-5">
-            {dates.map((entry, i) => (
-              <div key={entry.date} className="flex items-center gap-3">
-                {i > 0 && (
-                  <span
-                    className="hidden h-5 w-px bg-white/20 sm:block"
-                    aria-hidden
-                  />
-                )}
-                <div className="flex items-center gap-2">
-                  {i === 0 && (
-                    <span className="relative flex size-2">
-                      <span className="absolute inline-flex size-full animate-ping motion-reduce:animate-none rounded-full bg-green-400 opacity-60" />
-                      <span className="relative inline-flex size-2 rounded-full bg-green-400" />
-                    </span>
+            <div className="flex items-center gap-3 sm:gap-5">
+              {dates.map((entry, i) => (
+                <div key={entry.date} className="flex items-center gap-3">
+                  {i > 0 && (
+                    <span
+                      className="hidden h-5 w-px bg-white/20 sm:block"
+                      aria-hidden
+                    />
                   )}
-                  <div>
-                    {entry.label && (
-                      <p className="text-xs font-medium uppercase tracking-wider text-white/80">
-                        {entry.label}
-                      </p>
+                  <div className="flex items-center gap-2">
+                    {i === 0 && (
+                      <span className="relative flex size-2">
+                        <span className="absolute inline-flex size-full animate-ping motion-reduce:animate-none rounded-full bg-green-400 opacity-60" />
+                        <span className="relative inline-flex size-2 rounded-full bg-green-400" />
+                      </span>
                     )}
-                    <p
-                      className={cn(
-                        "font-heading text-sm font-bold leading-tight",
-                        i === 0 ? "text-white" : "text-white/70",
+                    <div>
+                      {entry.label && (
+                        <p className="text-xs font-medium uppercase tracking-wider text-white/80">
+                          {entry.label}
+                        </p>
                       )}
-                    >
-                      {entry.date}
-                    </p>
+                      <p
+                        className={cn(
+                          "font-heading text-sm font-bold leading-tight",
+                          i === 0 ? "text-white" : "text-white/70",
+                        )}
+                      >
+                        {entry.date}
+                      </p>
+                    </div>
                   </div>
                 </div>
-              </div>
-            ))}
+              ))}
 
-            {daysLeft !== null && daysLeft <= 21 && (
-              <span className="rounded-full bg-white/10 px-3 py-1 text-xs font-semibold text-uagc-gold ring-1 ring-white/10">
-                {daysLeft === 0
-                  ? "Starts today"
-                  : daysLeft === 1
-                    ? "Starts tomorrow"
-                    : `Starts in ${daysLeft} days`}
-              </span>
-            )}
+              {daysLeft !== null && daysLeft <= 30 && (
+                <span className="rounded-full bg-white/10 px-3 py-1 text-xs font-semibold text-uagc-gold ring-1 ring-white/10">
+                  {`Starts in ${daysLeft} days`}
+                </span>
+              )}
+            </div>
           </div>
+
+          {deadlineHint && (
+            <div className="flex items-center gap-1.5 text-xs text-white/80">
+              <Clock className="size-3.5" strokeWidth={2} aria-hidden />
+              <span>{deadlineHint}</span>
+            </div>
+          )}
         </div>
       </div>
     </section>

@@ -21,7 +21,9 @@ import { SiteFooter } from "@/components/organic/SiteFooter";
 import { VideoTestimonialSection } from "@/components/organic/VideoTestimonialSection";
 import { ThankYouNextStepsSection } from "@/components/organic/ThankYouNextStepsSection";
 import { PersonalizedEducationSection } from "@/components/organic/PersonalizedEducationSection";
-import { TuitionSection } from "@/components/sections/TuitionSection";
+import { ProgramDetailsSection } from "@/components/organic/ProgramDetailsSection";
+import { ProgramsConsideredSection } from "@/components/organic/ProgramsConsideredSection";
+import { TimeToGraduationCalculator } from "@/components/organic/TimeToGraduationCalculator";
 import { AssetImage } from "@/components/shared/AssetImage";
 import { HOME_VIDEO_TESTIMONIALS } from "@/lib/organic-homepage-data";
 import { cn } from "@/lib/utils";
@@ -35,7 +37,8 @@ import confetti from "canvas-confetti";
 const SECTION_NAV = [
   { id: "next-steps", label: "Next Steps" },
   { id: "what-to-expect", label: "What to Expect" },
-  { id: "tuition", label: "Tuition and Financial Aid" },
+  { id: "your-program", label: "Your Program" },
+  { id: "time-to-graduation", label: "Your Timeline" },
   { id: "testimonials", label: "What Students Are Saying" },
 ] as const;
 
@@ -622,8 +625,19 @@ function ThankYouContent() {
         {/* ─── ADVISOR SUPPORT TEAM ───────────────────────────── */}
         <AdvisorSupportTeam />
 
-        {/* ─── TUITION & FINANCIAL AID ────────────────────────── */}
-        <TuitionSection id="tuition" className="scroll-mt-32" />
+        {/* ─── YOUR PROGRAM: Careers, Faculty, Student Stories ── */}
+        <ProgramDetailsSection
+          programName={program}
+          id="your-program"
+          className="scroll-mt-32"
+        />
+
+        {/* ─── PROGRAMS OTHER STUDENTS CONSIDERED ──────────────── */}
+        <ProgramsConsideredSection programName={program} />
+
+        {/* ─── TIME TO GRADUATION CALCULATOR ──────────────────── */}
+        <TimeToGraduationCalculator className="bg-uagc-surface" />
+
 
         {/* ─── READY TO START CTA ─────────────────────────────── */}
         <section className="bg-white py-12 sm:py-14">
