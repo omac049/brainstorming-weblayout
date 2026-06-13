@@ -20,9 +20,9 @@ import {
 } from "lucide-react";
 
 import {
-  DEFAULT_START_DATES,
   UpcomingStartDates,
   daysUntilStartDate,
+  getEnrollableStartDates,
   type StartDateEntry,
 } from "@/components/sections/UpcomingStartDates";
 import { cn } from "@/lib/utils";
@@ -369,7 +369,7 @@ export function ProgramExplorer({
   programs = ENRICHED_PROGRAMS,
   compact = false,
   className,
-  startDates = DEFAULT_START_DATES,
+  startDates = getEnrollableStartDates(),
   onProgramSelect,
 }: ProgramExplorerProps) {
   const MOBILE_INITIAL_COUNT = 6;
