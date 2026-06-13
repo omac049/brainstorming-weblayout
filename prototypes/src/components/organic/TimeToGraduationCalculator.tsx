@@ -183,7 +183,7 @@ export function TimeToGraduationCalculator({
   const [transferCredits, setTransferCredits] = useState(30);
   const [pace, setPace] = useState<EnrollmentPace>("full-time");
   const [isTransitioning, setIsTransitioning] = useState(false);
-  const transitionTimer = useRef<ReturnType<typeof setTimeout>>();
+  const transitionTimer = useRef<ReturnType<typeof setTimeout>>(undefined);
 
   const degreeConfig = DEGREES.find((d) => d.id === degree)!;
   const maxTransfer = Math.floor(degreeConfig.credits * 0.75);
