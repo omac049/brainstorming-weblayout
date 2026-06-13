@@ -120,12 +120,12 @@ function MobileStep({ step, isVisible }: { step: Step; isVisible: boolean }) {
         transitionProperty: "opacity, transform",
       }}
     >
-      <div className="flex items-start gap-3.5">
+      <div className="flex items-start gap-4">
         {/* Indicator column */}
         <div className="flex flex-col items-center pt-0.5">
           <div
             className={cn(
-              "flex size-9 shrink-0 items-center justify-center rounded-full text-sm font-bold",
+              "flex size-8 shrink-0 items-center justify-center rounded-full text-xs font-bold",
               step.active
                 ? "bg-uagc-gold text-uagc-navy"
                 : "bg-gray-100 text-gray-500",
@@ -139,15 +139,15 @@ function MobileStep({ step, isVisible }: { step: Step; isVisible: boolean }) {
         </div>
 
         {/* Content */}
-        <div className="flex-1 pb-6 last:pb-0">
-          <h3 className="pt-1 text-[0.9375rem] font-bold text-uagc-navy">{step.title}</h3>
-          <p className="mt-1.5 text-[0.8125rem] leading-relaxed text-uagc-gray">
+        <div className="flex-1 pb-8 last:pb-0">
+          <h3 className="text-base font-bold text-uagc-navy">{step.title}</h3>
+          <p className="mt-1.5 text-sm leading-relaxed text-uagc-gray">
             {step.description}
           </p>
           <a
             href={step.href}
             className={cn(
-              "group/link mt-3 inline-flex min-h-[44px] items-center gap-1.5 text-sm font-bold transition-colors duration-200",
+              "group/link mt-3 inline-flex items-center gap-1.5 text-sm font-bold transition-colors duration-200",
               step.active
                 ? "text-uagc-navy hover:text-uagc-navy/70"
                 : "text-uagc-navy/60 hover:text-uagc-navy",
@@ -200,12 +200,12 @@ export function ThankYouNextStepsSection({
     <section
       ref={sectionRef}
       id="next-steps"
-      className={cn("scroll-mt-20 bg-white py-10 sm:py-20", className)}
+      className={cn("scroll-mt-20 bg-white py-14 sm:py-20", className)}
       aria-labelledby="next-steps-heading"
     >
-      <div className="mx-auto w-full max-w-4xl px-5 sm:px-6">
+      <div className="mx-auto w-full max-w-4xl px-4 sm:px-6">
         {/* Section header */}
-        <div className="mb-8 sm:mb-12">
+        <div className="mb-10 sm:mb-12">
           <span className="accent-bar" />
           <h2
             id="next-steps-heading"
@@ -213,7 +213,7 @@ export function ThankYouNextStepsSection({
           >
             Your Path Forward
           </h2>
-          <p className="mt-2 max-w-md text-[0.9375rem] leading-relaxed text-uagc-gray sm:mt-3 sm:text-base">
+          <p className="mt-3 max-w-md text-[0.9375rem] leading-relaxed text-uagc-gray sm:text-base">
             Three clear steps from here to your first class. Your advisor
             will guide you through each one.
           </p>

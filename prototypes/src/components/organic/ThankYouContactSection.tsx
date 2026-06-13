@@ -24,34 +24,34 @@ export function ThankYouContactSection({
     <section
       id="contact"
       className={cn(
-        "scroll-mt-20 bg-uagc-navy py-10 sm:py-16",
+        "scroll-mt-20 bg-uagc-navy py-12 sm:py-16",
         className,
       )}
       aria-labelledby="contact-heading"
     >
-      <div className="mx-auto w-full max-w-3xl px-5 text-center sm:px-6">
+      <div className="mx-auto w-full max-w-3xl px-4 text-center sm:px-6">
         <h2
           id="contact-heading"
           className="type-h2 text-white"
         >
           Have Questions that Can&apos;t Wait?
         </h2>
-        <p className="mt-2 text-[0.9375rem] text-white/80 sm:text-base">
+        <p className="mt-2 text-base text-white/80">
           You&apos;ve got help when you need it
         </p>
 
-        {/* Contact actions — full-width on mobile for easy tapping */}
-        <div className="mt-6 flex flex-col gap-3 sm:mt-8 sm:flex-row sm:items-center sm:justify-center sm:gap-4">
+        {/* Contact actions */}
+        <div className="mt-8 flex flex-col items-center justify-center gap-4 sm:flex-row">
           <a
             href={PHONE_HREF}
-            className="inline-flex min-h-[48px] w-full items-center justify-center gap-2 rounded-full bg-white px-6 py-3.5 text-sm font-bold text-uagc-navy shadow-sm transition-colors hover:bg-gray-100 active:scale-[0.97] sm:min-h-11 sm:w-auto sm:py-3"
+            className="inline-flex min-h-11 items-center gap-2 rounded-full bg-white px-6 py-3 text-sm font-bold text-uagc-navy shadow-sm transition-colors hover:bg-gray-100"
           >
             <Phone className="size-4" aria-hidden />
             {PHONE_DISPLAY}
           </a>
           <button
             type="button"
-            className="inline-flex min-h-[48px] w-full items-center justify-center gap-2 rounded-full border-2 border-white px-6 py-3.5 text-sm font-bold text-white transition-colors hover:bg-white/10 active:scale-[0.97] sm:min-h-11 sm:w-auto sm:py-3"
+            className="inline-flex min-h-11 items-center gap-2 rounded-full border-2 border-white px-6 py-3 text-sm font-bold text-white transition-colors hover:bg-white/10"
           >
             <MessageCircle className="size-4" aria-hidden />
             Let&apos;s Chat
@@ -59,13 +59,13 @@ export function ThankYouContactSection({
         </div>
 
         {/* Advisor hours */}
-        <div className="mt-6 rounded-xl bg-white/10 px-5 py-4 sm:mt-8 sm:p-5">
+        <div className="mt-8 rounded-xl bg-white/10 p-5">
           <p className="text-sm font-semibold text-white">
             Advisor Support Team Hours
           </p>
-          <ul className="mt-2.5 space-y-1 sm:mt-3">
+          <ul className="mt-3 space-y-1">
             {ADVISOR_HOURS.map((line) => (
-              <li key={line} className="text-[0.8125rem] text-white/80 sm:text-sm">
+              <li key={line} className="text-sm text-white/80">
                 {line}
               </li>
             ))}
