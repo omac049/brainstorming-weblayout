@@ -23,5 +23,20 @@ prototypes/tsconfig.tsbuildinfo
 
 # Internal AI agent tooling (not for dev handoff)
 AGENTS.md
-.cursor/skills/
-.cursor/hooks/
+.cursor/
+.github/skills/
+.firecrawl/
+.vscode/
+
+# Local editor / type-check configs
+jsconfig.json
+pyrightconfig.json
+
+# Local test scripts
+test_*.py
+
+# Product docs (internal only)
+PRODUCT.md
+
+# Playwright CLI snapshots
+prototypes/.playwright-cli/

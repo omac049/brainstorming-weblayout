@@ -1,28 +1,51 @@
 "use client";
 
 import { useEffect, useMemo, useRef, useState, useCallback } from "react";
-import { GraduationCap } from "lucide-react";
+import { GraduationCap, Sparkles } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useScrollReveal, getPrefersReducedMotion } from "@/hooks/useScrollReveal";
+import { AssetImage } from "@/components/shared/AssetImage";
 
 /* ─── Types & Config ─────────────────────────────────────────────── */
+/*
+ * UAGC Academic Structure (verified sources: uagc.edu/admissions/faq,
+ * uagc.edu/about/why-uagc/flexibility, 2025-2026 Academic Catalog):
+ *
+ * - Continuous (non-term) calendar, courses run back-to-back
+ * - Students take 1 course at a time (this IS full-time enrollment)
+ * - Undergraduate courses: 5 weeks | Graduate courses: 6 weeks
+ * - Annual 2-week winter break (late Dec–early Jan)
+ * - Available instructional weeks/year: 52 − 2 = 50
+ * - All courses are 3 credit hours
+ *
+ * Pace differences come from breaks BETWEEN courses, not simultaneous
+ * courses. UAGC allows up to 45-day approved breaks without withdrawal.
+ */
 
 type DegreeLevel = "associate" | "bachelor" | "master";
-type EnrollmentPace = "accelerated" | "full-time" | "part-time";
+type EnrollmentPace = "continuous" | "steady" | "flexible";
 
-const DEGREES: { id: DegreeLevel; label: string; credits: number }[] = [
-  { id: "associate", label: "Associate", credits: 60 },
-  { id: "bachelor", label: "Bachelor's", credits: 120 },
-  { id: "master", label: "Master's", credits: 36 },
+interface DegreeConfig {
+  id: DegreeLevel;
+  label: string;
+  credits: number;
+  maxTransfer: number;
+  weeksPerCourse: number;
+}
+
+const DEGREES: DegreeConfig[] = [
+  { id: "associate", label: "Associate", credits: 64, maxTransfer: 46, weeksPerCourse: 5 },
+  { id: "bachelor", label: "Bachelor's", credits: 120, maxTransfer: 90, weeksPerCourse: 5 },
+  { id: "master", label: "Master's", credits: 36, maxTransfer: 9, weeksPerCourse: 6 },
 ];
 
-const PACES: { id: EnrollmentPace; label: string; courses: number }[] = [
-  { id: "part-time", label: "Part-Time", courses: 1 },
-  { id: "full-time", label: "Full-Time", courses: 2 },
-  { id: "accelerated", label: "Accelerated", courses: 3 },
+const PACES: { id: EnrollmentPace; label: string; detail: string; multiplier: number }[] = [
+  { id: "continuous", label: "Continuous", detail: "No breaks", multiplier: 1.0 },
+  { id: "steady", label: "Steady", detail: "Some breaks", multiplier: 1.25 },
+  { id: "flexible", label: "Flexible", detail: "Regular breaks", multiplier: 1.6 },
 ];
 
-const BLOCKS_PER_YEAR = 10;
+const INSTRUCTIONAL_WEEKS_PER_YEAR = 50;
 const CREDITS_PER_COURSE = 3;
 
 /* ─── Animated Number ────────────────────────────────────────────── */
@@ -181,20 +204,28 @@ export function TimeToGraduationCalculator({
 
   const [degree, setDegree] = useState<DegreeLevel>("bachelor");
   const [transferCredits, setTransferCredits] = useState(30);
-  const [pace, setPace] = useState<EnrollmentPace>("full-time");
+  const [pace, setPace] = useState<EnrollmentPace>("continuous");
   const [isTransitioning, setIsTransitioning] = useState(false);
   const transitionTimer = useRef<ReturnType<typeof setTimeout>>(undefined);
 
   const degreeConfig = DEGREES.find((d) => d.id === degree)!;
-  const maxTransfer = Math.floor(degreeConfig.credits * 0.75);
+  const maxTransfer = degreeConfig.maxTransfer;
   const clamped = Math.min(transferCredits, maxTransfer);
 
   const { months, remaining } = useMemo(() => {
     const rem = degreeConfig.credits - clamped;
+    const coursesNeeded = Math.ceil(rem / CREDITS_PER_COURSE);
     const paceConfig = PACES.find((p) => p.id === pace)!;
-    const perYear = paceConfig.courses * CREDITS_PER_COURSE * BLOCKS_PER_YEAR;
+
+    // Base formula: (courses × weeksPerCourse) / (50 weeks/year) × 12 months/year
+    // Then multiply by pace factor for students taking breaks between courses
+    const baseMonths =
+      (coursesNeeded * degreeConfig.weeksPerCourse * 12) /
+      INSTRUCTIONAL_WEEKS_PER_YEAR;
+    const adjustedMonths = Math.ceil(baseMonths * paceConfig.multiplier);
+
     return {
-      months: Math.max(Math.ceil((rem / perYear) * 12), 1),
+      months: Math.max(adjustedMonths, 1),
       remaining: rem,
     };
   }, [degreeConfig, clamped, pace]);
@@ -225,7 +256,9 @@ export function TimeToGraduationCalculator({
   const animatedMonths = useAnimatedNumber(months);
   const sliderPct = maxTransfer > 0 ? (clamped / maxTransfer) * 100 : 0;
   const coursesLeft = Math.ceil(remaining / CREDITS_PER_COURSE);
-  const progressPct = Math.round((clamped / degreeConfig.credits) * 100);
+  const progressPct = Math.round(
+    ((degreeConfig.credits - remaining) / degreeConfig.credits) * 100,
+  );
 
   const graduationDate = useMemo(() => {
     const d = new Date();
@@ -246,28 +279,63 @@ export function TimeToGraduationCalculator({
       ref={sectionRef}
       id={id}
       className={cn(
-        "reveal-section scroll-mt-28 lg:scroll-mt-36 py-14 sm:py-20",
+        "reveal-section scroll-mt-28 lg:scroll-mt-36",
         isVisible && "is-visible",
         className,
       )}
     >
-      <div className="mx-auto max-w-2xl px-4 sm:px-6">
-        {/* Header */}
-        <div className="text-center mb-10">
-          <span aria-hidden className="accent-bar mx-auto" />
-          <h2
-            className="type-h2 text-uagc-navy mt-4"
-            style={{ textWrap: "balance" }}
-          >
-            How Quickly Could You Graduate?
-          </h2>
-          <p className="mt-2 text-[0.9375rem] text-uagc-gray max-w-md mx-auto">
-            Adjust the options below — your timeline updates instantly.
-          </p>
+      {/* ─── Hero Band: immersive image + headline overlay ─── */}
+      <div className="relative overflow-hidden bg-uagc-navy">
+        {/* Background image with creative diagonal clip */}
+        <div className="absolute inset-0" aria-hidden>
+          <AssetImage
+            src="/images/graduation-celebration.png"
+            alt=""
+            width={1024}
+            height={682}
+            className="h-full w-full object-cover object-top"
+            sizes="100vw"
+          />
+          <div className="absolute inset-0 bg-linear-to-br from-uagc-navy/90 via-uagc-navy/75 to-uagc-navy/60" />
+          <div className="absolute inset-0 bg-linear-to-t from-uagc-navy via-transparent to-transparent" />
         </div>
 
-        {/* Calculator card */}
-        <div className="rounded-2xl border border-uagc-border bg-white shadow-[0_1px_3px_rgba(12,35,75,0.04),0_16px_48px_rgba(12,35,75,0.06)] overflow-hidden">
+        {/* Decorative geometric accent */}
+        <div className="absolute -right-20 -top-20 size-72 rounded-full bg-uagc-gold/5 blur-3xl" aria-hidden />
+        <div className="absolute -left-10 bottom-0 size-56 rounded-full bg-uagc-gold/5 blur-3xl" aria-hidden />
+
+        {/* Hero content */}
+        <div className="relative z-10 mx-auto max-w-4xl px-4 pb-24 pt-14 text-center sm:px-6 sm:pb-28 sm:pt-20 lg:pb-32 lg:pt-24">
+          <div className="inline-flex items-center gap-2 rounded-full border border-uagc-gold/30 bg-uagc-gold/10 px-4 py-2 backdrop-blur-sm">
+            <Sparkles className="size-3.5 text-uagc-gold" aria-hidden />
+            <span className="text-xs font-bold uppercase tracking-wider text-uagc-gold">
+              Interactive Timeline Tool
+            </span>
+          </div>
+
+          <h2
+            className="mt-5 font-heading text-3xl font-extrabold tracking-tight text-white sm:text-4xl lg:text-5xl"
+            style={{ textWrap: "balance" }}
+          >
+            How Quickly Could You{" "}
+            <span className="relative inline-block text-uagc-gold">
+              Graduate?
+              <span
+                aria-hidden
+                className="absolute inset-x-0 -bottom-1 h-1 rounded-full bg-uagc-gold/40"
+              />
+            </span>
+          </h2>
+          <p className="mx-auto mt-4 max-w-lg text-base leading-relaxed text-white/80 sm:text-lg">
+            See your personalized finish line — adjust your degree, credits,
+            and pace below.
+          </p>
+        </div>
+      </div>
+
+      {/* ─── Calculator Card: elevated, overlapping the hero ─── */}
+      <div className="relative z-20 mx-auto -mt-16 max-w-2xl px-4 sm:-mt-20 sm:px-6 lg:-mt-24">
+        <div className="rounded-2xl border border-uagc-border bg-white shadow-[0_4px_6px_rgba(12,35,75,0.03),0_24px_64px_rgba(12,35,75,0.1)] overflow-hidden ring-1 ring-black/2">
           {/* Controls */}
           <div className="p-5 sm:p-7 space-y-6">
             <PillGroup
@@ -275,7 +343,7 @@ export function TimeToGraduationCalculator({
               options={DEGREES.map((d) => ({
                 id: d.id,
                 label: d.label,
-                detail: `${d.credits} credits`,
+                detail: `${d.credits} cr · ${d.weeksPerCourse}-wk courses`,
               }))}
               value={degree}
               onChange={handleDegreeChange}
@@ -356,11 +424,11 @@ export function TimeToGraduationCalculator({
             </div>
 
             <PillGroup
-              label="Course Load"
+              label="Enrollment Pace"
               options={PACES.map((p) => ({
                 id: p.id,
                 label: p.label,
-                detail: `${p.courses} course${p.courses > 1 ? "s" : ""}/block`,
+                detail: `${p.detail} · ~${Math.round(INSTRUCTIONAL_WEEKS_PER_YEAR / degreeConfig.weeksPerCourse / p.multiplier)}/yr`,
               }))}
               value={pace}
               onChange={handlePaceChange}
@@ -368,78 +436,76 @@ export function TimeToGraduationCalculator({
           </div>
 
           {/* Result band */}
-          <div className="border-t border-uagc-border bg-uagc-navy px-5 py-7 sm:px-7 sm:py-8">
-            <div className="flex items-center gap-5 sm:gap-7">
-              {/* Progress arc with months inside */}
-              <div className="relative shrink-0">
-                <ProgressArc
-                  percentage={progressPct}
-                  size={112}
-                  strokeWidth={5}
-                />
-                <div
-                  className={cn(
-                    "absolute inset-0 flex flex-col items-center justify-center",
-                    "transition-[filter,opacity] duration-200",
-                    isTransitioning && "blur-[2px] opacity-70",
-                  )}
-                  style={{
-                    transitionTimingFunction:
-                      "cubic-bezier(0.23, 1, 0.32, 1)",
-                  }}
-                >
-                  <span className="text-3xl font-extrabold text-white tabular-nums tracking-tight leading-none sm:text-4xl">
-                    {animatedMonths}
-                  </span>
-                  <span className="text-[11px] font-semibold uppercase tracking-wider text-white/70 mt-0.5">
-                    months
-                  </span>
-                </div>
-              </div>
-
-              {/* Details column */}
-              <div
-                className={cn(
-                  "flex-1 min-w-0 space-y-3",
-                  "transition-[filter,opacity] duration-200",
-                  isTransitioning && "blur-[2px] opacity-70",
-                )}
-                style={{
-                  transitionTimingFunction: "cubic-bezier(0.23, 1, 0.32, 1)",
-                }}
-              >
-                {/* Graduation projection */}
-                <div className="flex items-center gap-2">
+          <div className="border-t border-white/5 bg-uagc-navy px-5 py-8 sm:px-7 sm:py-10">
+            <div
+              className={cn(
+                "transition-[filter,opacity] duration-300",
+                isTransitioning && "blur-[2px] opacity-70",
+              )}
+              style={{
+                transitionTimingFunction: "cubic-bezier(0.23, 1, 0.32, 1)",
+              }}
+            >
+              {/* Graduation headline */}
+              <div className="text-center mb-6">
+                <div className="inline-flex items-center justify-center gap-3 mb-2">
                   <GraduationCap
-                    className="size-4 text-uagc-gold shrink-0"
-                    strokeWidth={2}
+                    className="size-7 text-uagc-gold shrink-0 sm:size-8"
+                    strokeWidth={1.8}
                     aria-hidden
                   />
-                  <p className="text-sm font-bold text-white">
-                    Graduate by{" "}
-                    <span className="text-uagc-gold">{graduationDate}</span>
+                  <p className="text-sm font-semibold uppercase tracking-wider text-white/70">
+                    Your projected graduation
+                  </p>
+                </div>
+                <p
+                  className="text-[1.75rem] font-extrabold text-uagc-gold leading-none sm:text-4xl"
+                  aria-live="polite"
+                >
+                  {graduationDate}
+                </p>
+              </div>
+
+              <div className="mx-auto mb-6 h-px w-16 bg-white/10" aria-hidden />
+
+              {/* Stats trio */}
+              <div className="flex items-center justify-center gap-6 sm:gap-10">
+                <div className="text-center">
+                  <div className="relative inline-block">
+                    <ProgressArc
+                      percentage={progressPct}
+                      size={72}
+                      strokeWidth={4}
+                    />
+                    <span className="absolute inset-0 flex items-center justify-center text-xl font-extrabold text-white tabular-nums sm:text-2xl">
+                      {animatedMonths}
+                    </span>
+                  </div>
+                  <p className="text-[11px] font-semibold uppercase tracking-wider text-white/60 mt-1.5">
+                    Months
                   </p>
                 </div>
 
-                {/* Stats row */}
-                <div className="flex items-center gap-4 sm:gap-6">
-                  <div>
-                    <p className="text-lg font-bold text-white tabular-nums sm:text-xl">
-                      {coursesLeft}
-                    </p>
-                    <p className="text-[11px] font-medium uppercase tracking-wider text-white/70">
-                      Courses left
-                    </p>
-                  </div>
-                  <span className="h-8 w-px bg-white/15" aria-hidden />
-                  <div>
-                    <p className="text-lg font-bold text-white tabular-nums sm:text-xl">
-                      {remaining}
-                    </p>
-                    <p className="text-[11px] font-medium uppercase tracking-wider text-white/70">
-                      Credits left
-                    </p>
-                  </div>
+                <span className="h-12 w-px bg-white/10" aria-hidden />
+
+                <div className="text-center">
+                  <p className="text-2xl font-extrabold text-white tabular-nums sm:text-3xl">
+                    {coursesLeft}
+                  </p>
+                  <p className="text-[11px] font-semibold uppercase tracking-wider text-white/60 mt-1.5">
+                    Courses
+                  </p>
+                </div>
+
+                <span className="h-12 w-px bg-white/10" aria-hidden />
+
+                <div className="text-center">
+                  <p className="text-2xl font-extrabold text-white tabular-nums sm:text-3xl">
+                    {remaining}
+                  </p>
+                  <p className="text-[11px] font-semibold uppercase tracking-wider text-white/60 mt-1.5">
+                    Credits
+                  </p>
                 </div>
               </div>
             </div>
@@ -447,11 +513,15 @@ export function TimeToGraduationCalculator({
         </div>
 
         <p className="mt-5 text-center text-xs text-uagc-gray leading-relaxed">
-          Estimates based on UAGC&apos;s 5-week course blocks (10 blocks/year, 3
-          credits/course). Actual time may vary. Transfer credit evaluation is
-          free.
+          Estimates based on UAGC&apos;s continuous calendar (5-week undergrad /
+          6-week graduate courses, 3 credits each, ~50 instructional weeks/year).
+          Actual timelines depend on program, transfer evaluation, and course
+          availability. Transfer credit evaluation is free.
         </p>
       </div>
+
+      {/* Bottom spacing to account for negative margin pull */}
+      <div className="h-8 sm:h-12" aria-hidden />
     </section>
   );
 }

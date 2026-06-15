@@ -1,0 +1,148 @@
+{
+  "sourceUrl": "https://www.uagc.edu/blog/celebrating-united-states-armys-birthday",
+  "slug": "blog",
+  "templateType": "blog-article",
+  "extractedAt": "2026-06-15T17:30:00Z",
+  "nav": {
+    "utility": [
+      { "label": "Military", "href": "https://www.uagc.edu/military", "icon": "shield" },
+      { "label": "Partnerships", "href": "https://www.uagc.edu/partnerships", "icon": "handshake" },
+      { "label": "myUAGC", "href": "https://my.uagc.edu", "icon": "log-in" }
+    ],
+    "menus": ["Online Degrees", "Admission", "Tuition & Aid", "Student Experience", "About UAGC"],
+    "phone": "+1 866 711 1700",
+    "ctas": ["Apply Now", "Request Info", "Chat"]
+  },
+  "breadcrumb": [
+    { "label": "Home", "href": "https://www.uagc.edu/" },
+    { "label": "Blog", "href": "https://www.uagc.edu/blog" },
+    { "label": "Celebrating the United States Army's Birthday", "href": null }
+  ],
+  "hero": {
+    "type": "blog-featured-image",
+    "images": {
+      "desktop": "https://www.uagc.edu/sites/default/files/2026-06/celebrating-armys-birthday-hero.jpg",
+      "alt": "Celebrating the United States Army's Birthday (Getty Image)"
+    }
+  },
+  "article": {
+    "title": "Celebrating the United States Army's Birthday",
+    "category": "Military",
+    "author": {
+      "name": "Travis Burchett",
+      "slug": "cgomes",
+      "role": "Military Alliance Manager",
+      "organization": "University of Arizona Global Campus (UAGC)"
+    },
+    "publishedDate": "2026-06-02",
+    "lastUpdatedDate": "2026-06-02",
+    "readingTime": "5 min read",
+    "keyTakeaways": [
+      "The Army celebrates its birthday each year on June 14.",
+      "The U.S. Army was formed in 1775 when the Continental Congress authorized the enlistment of riflemen to serve for a period of one year.",
+      "The Army is the oldest uniformed service in the nation.",
+      "Celebrating the Army's birthday unites past and present.",
+      "Flag Day is celebrated on the same day.",
+      "Author Travis Burchett, a Military Alliance Manager at UAGC, reflects on the importance of the Army's Birthday and shares his connection and his family's history with the military, tracing its lineage to immigrants arriving in Virginia in 1607."
+    ],
+    "tags": ["Military", "Military Family"]
+  },
+  "sections": [
+    {
+      "id": "breadcrumb",
+      "type": "BREAD-01",
+      "heading": null,
+      "description": "Breadcrumb trail: Home > Blog > Article Title"
+    },
+    {
+      "id": "article-hero",
+      "type": "BLOG-HERO-01",
+      "heading": null,
+      "description": "Featured image spanning full width above article content"
+    },
+    {
+      "id": "article-meta",
+      "type": "BLOG-META-01",
+      "heading": "Celebrating the United States Army's Birthday",
+      "description": "Category tag, h1, author, dates, reading time, share/listen controls"
+    },
+    {
+      "id": "article-takeaways",
+      "type": "BLOG-KEY-01",
+      "heading": "Key Takeaways",
+      "description": "Bulleted summary of main article points"
+    },
+    {
+      "id": "article-body",
+      "type": "BLOG-BODY-01",
+      "heading": null,
+      "description": "Rich text article body with H2 section headings"
+    },
+    {
+      "id": "article-tags",
+      "type": "BLOG-TAGS-01",
+      "heading": null,
+      "description": "Category/tag pills below article body"
+    },
+    {
+      "id": "author-bio",
+      "type": "BLOG-AUTHOR-01",
+      "heading": "Author",
+      "description": "Author name and role attribution"
+    },
+    {
+      "id": "article-rfi",
+      "type": "FORM-02",
+      "heading": "Questions? Request More Information",
+      "description": "Two-step RFI form below article content"
+    },
+    {
+      "id": "related-articles",
+      "type": "BLOG-RELATED-01",
+      "heading": "Related Articles",
+      "description": "3-card grid of related blog posts with thumbnails, category, title, date, reading time"
+    },
+    {
+      "id": "admission-specialist",
+      "type": "BLOG-CTA-01",
+      "heading": "Partner with Your Admission Specialist",
+      "description": "Full-width CTA band with admission specialist photo, benefits list, talk/chat CTAs"
+    },
+    {
+      "id": "apply-band",
+      "type": "CTA-APPLY-01",
+      "heading": "Start Your Journey",
+      "description": "Apply Now CTA band with icon"
+    }
+  ],
+  "sectionNav": [],
+  "relatedArticles": [
+    {
+      "title": "How to Use AI Without Letting It Do the Thinking for You",
+      "category": "Industry Insights",
+      "date": "Jun 8, 2026",
+      "readingTime": "6 min read",
+      "href": "https://www.uagc.edu/blog/how-to-use-ai-without-letting-it-do-the-thinking-for-you",
+      "image": "https://www.uagc.edu/sites/default/files/2026-06/ai-thinking-hero.jpg",
+      "imageAlt": "How to Use AI Without Letting It Do the Thinking for You (Getty Image)"
+    },
+    {
+      "title": "Celebrating the United States Army's Birthday",
+      "category": "Military",
+      "date": "Jun 2, 2026",
+      "readingTime": "5 min read",
+      "href": "https://www.uagc.edu/blog/celebrating-united-states-armys-birthday",
+      "image": "https://www.uagc.edu/sites/default/files/2026-06/celebrating-armys-birthday-hero.jpg",
+      "imageAlt": "Celebrating the United States Army's Birthday (Getty Image)"
+    },
+    {
+      "title": "UAGC Student Simona Thomas Redefines What It Means to Live Simply",
+      "category": "Student Lifestyle and Success",
+      "date": "Jun 2, 2026",
+      "readingTime": "9 min read",
+      "href": "https://www.uagc.edu/blog/uagc-student-simona-thomas-redefines-what-it-means-to-live-simply",
+      "image": "https://www.uagc.edu/sites/default/files/2026-06/simona-thomas-hero.jpg",
+      "imageAlt": "UAGC Student Simona Thomas"
+    }
+  ]
+}

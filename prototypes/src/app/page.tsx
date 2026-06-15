@@ -34,6 +34,13 @@ const pages = [
     tag: "Course Variant",
   },
   {
+    slug: "organic/blog/what-difference-between-phd-and-doctorate",
+    title: "Blog Article Template (Organic)",
+    description:
+      "Top blog post — PhD vs DPS comparison sidebar (replaces aggressive RFI), FAQ accordion, contextual in-content DPS CTA. Research-stage conversion strategy. Phase 2 tasks 2.2/2.3.",
+    tag: "Organic · Blog",
+  },
+  {
     slug: "organic/request-information/thank-you",
     title: "Thank You (Organic)",
     description:

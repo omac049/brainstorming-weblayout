@@ -37,8 +37,8 @@ import confetti from "canvas-confetti";
 const SECTION_NAV = [
   { id: "next-steps", label: "Next Steps" },
   { id: "what-to-expect", label: "What to Expect" },
-  { id: "your-program", label: "Your Program" },
   { id: "time-to-graduation", label: "Your Timeline" },
+  { id: "your-program", label: "Your Program" },
   { id: "testimonials", label: "What Students Are Saying" },
 ] as const;
 
@@ -625,6 +625,9 @@ function ThankYouContent() {
         {/* ─── ADVISOR SUPPORT TEAM ───────────────────────────── */}
         <AdvisorSupportTeam />
 
+        {/* ─── TIME TO GRADUATION CALCULATOR ──────────────────── */}
+        <TimeToGraduationCalculator className="bg-uagc-surface" />
+
         {/* ─── YOUR PROGRAM: Careers, Faculty, Student Stories ── */}
         <ProgramDetailsSection
           programName={program}
@@ -634,9 +637,6 @@ function ThankYouContent() {
 
         {/* ─── PROGRAMS OTHER STUDENTS CONSIDERED ──────────────── */}
         <ProgramsConsideredSection programName={program} />
-
-        {/* ─── TIME TO GRADUATION CALCULATOR ──────────────────── */}
-        <TimeToGraduationCalculator className="bg-uagc-surface" />
 
 
         {/* ─── READY TO START CTA ─────────────────────────────── */}

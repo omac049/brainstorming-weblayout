@@ -23,9 +23,13 @@ const DEFAULT_TRUST_PILLS: TrustPill[] = [
   { label: "$0 to Apply" },
 ];
 
+export type HeroVariant = "landing" | "editorial";
+
 export interface OrganicHomeHeroProps {
   heroRef?: RefObject<HTMLElement | null>;
   className?: string;
+  /** "landing" = uppercase condensed (homepage/hub), "editorial" = sentence-case readable (blog) */
+  variant?: HeroVariant;
   eyebrow?: string;
   headline?: ReactNode;
   subheadline?: string;
@@ -39,6 +43,7 @@ export interface OrganicHomeHeroProps {
 export function OrganicHomeHero({
   heroRef,
   className,
+  variant = "landing",
   eyebrow = "University of Arizona Global Campus",
   headline,
   subheadline = "54+ accredited programs — one class at a time, in 5-week courses that fit around your job, your family, and your life.",
@@ -48,6 +53,7 @@ export function OrganicHomeHero({
   trustPills = DEFAULT_TRUST_PILLS,
   sectionNavItems = HOMEPAGE_CLONE.sectionNav as unknown as SectionNavItem[],
 }: OrganicHomeHeroProps) {
+  const isEditorial = variant === "editorial";
   const sectionRef = useRef<HTMLElement>(null);
   const imageWrapRef = useRef<HTMLDivElement>(null);
 
@@ -107,6 +113,71 @@ export function OrganicHomeHero({
     };
   }, []);
 
+  if (isEditorial) {
+    return (
+      <div className={cn("w-full", className)}>
+        <section
+          ref={setSectionRef}
+          className="relative w-full overflow-hidden"
+          aria-label="Hero"
+        >
+          {/* Full-bleed editorial hero — height-driven to guarantee full width */}
+          <div className="relative h-[320px] w-full sm:h-[380px] lg:h-[440px] xl:h-[540px]">
+            <div
+              ref={imageWrapRef}
+              className="absolute inset-0 will-change-transform"
+            >
+              <AssetImage
+                src={imageSrc}
+                alt={imageAlt}
+                fill
+                priority
+                sizes="100vw"
+                className="object-cover object-center"
+                style={{ objectPosition: imagePosition }}
+              />
+            </div>
+
+            {/* Gradient overlay — bottom-heavy for text legibility */}
+            <div
+              className="absolute inset-0"
+              aria-hidden
+              style={{
+                background:
+                  "linear-gradient(to top, rgba(12,35,75,0.92) 0%, rgba(12,35,75,0.68) 30%, rgba(12,35,75,0.2) 55%, rgba(12,35,75,0.05) 75%, transparent 100%)",
+              }}
+            />
+
+            {/* Content positioned at bottom */}
+            <div className="relative z-10 flex h-full min-h-[inherit] flex-col justify-end">
+              <div className="mx-auto w-full max-w-7xl px-4 pb-8 sm:px-6 sm:pb-10 lg:px-10 lg:pb-12">
+                <div className="hero-enter-headline max-w-3xl">
+                  {/* Category badge */}
+                  <span className="inline-flex items-center rounded-full border border-uagc-gold/40 bg-uagc-gold/15 px-3 py-1 text-[0.6875rem] font-bold uppercase tracking-[0.12em] text-uagc-gold backdrop-blur-sm">
+                    {eyebrow}
+                  </span>
+
+                  <h1
+                    className="mt-4 font-['Fira_Sans',sans-serif] text-[clamp(1.625rem,4.5vw,3rem)] font-bold leading-[1.15] text-white sm:mt-5"
+                    style={{ textWrap: "balance" }}
+                  >
+                    {resolvedHeadline}
+                  </h1>
+
+                  {subheadline && (
+                    <p className="hero-enter-sub mt-3 text-[0.875rem] leading-relaxed text-white/80 sm:mt-4 sm:text-base">
+                      {subheadline}
+                    </p>
+                  )}
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+    );
+  }
+
   return (
     <div className={cn("w-full", className)}>
       <section
@@ -114,7 +185,7 @@ export function OrganicHomeHero({
         className="relative flex w-full flex-col overflow-hidden"
         aria-label="Hero"
       >
-        {/* === MOBILE === */}
+        {/* === MOBILE (landing only) === */}
         <div className="relative flex h-[480px] flex-col justify-end sm:h-[520px] lg:hidden">
           <AssetImage
             src={imageSrc}
@@ -136,9 +207,11 @@ export function OrganicHomeHero({
                 {resolvedHeadline}
               </h1>
             </div>
-            <p className="hero-enter-sub mt-3 max-w-[340px] text-[0.9375rem] leading-relaxed text-white/90">
-              {subheadline}
-            </p>
+            {subheadline && (
+              <p className="hero-enter-sub mt-3 max-w-[340px] text-[0.9375rem] leading-relaxed text-white/90">
+                {subheadline}
+              </p>
+            )}
 
             {trustPills.length > 0 && (
               <div className="hero-enter-pills mt-6 flex flex-wrap items-center gap-2">
@@ -164,7 +237,7 @@ export function OrganicHomeHero({
           )}
         </div>
 
-        {/* === DESKTOP === */}
+        {/* === DESKTOP (landing only) === */}
         <div className="relative hidden h-[600px] lg:flex lg:flex-col xl:h-[660px]">
           <div
             ref={imageWrapRef}
@@ -195,9 +268,11 @@ export function OrganicHomeHero({
                   {resolvedHeadline}
                 </h1>
               </div>
-              <p className="hero-enter-sub mt-5 max-w-[480px] text-[1.0625rem] leading-relaxed text-white/90">
-                {subheadline}
-              </p>
+              {subheadline && (
+                <p className="hero-enter-sub mt-5 max-w-[480px] text-[1.0625rem] leading-relaxed text-white/90">
+                  {subheadline}
+                </p>
+              )}
 
               {trustPills.length > 0 && (
                 <div className="hero-enter-pills mt-8 flex flex-wrap items-center gap-2.5">

@@ -43,6 +43,9 @@
   --color-uagc-navy-card: #0a1c3d;
   --color-uagc-navy-card-border: #1a3a6b;
   --color-uagc-navy-card-muted: #8a9bb5;
+  --color-uagc-teal: #1b6e6e;
+  --color-uagc-teal-dark: #155a5a;
+  --color-uagc-teal-light: #238383;
 
   /* Shadcn token mapping */
   --color-primary: var(--primary);
@@ -760,6 +763,26 @@
     animation: none;
   }
   .video-card .play-btn::after {
+    transition: none;
+  }
+}
+
+/* ── Article TOC stagger ─────────────────────────────────────── */
+.toc-item {
+  opacity: 0;
+  transform: translateY(6px);
+  transition:
+    opacity 280ms cubic-bezier(0.23, 1, 0.32, 1),
+    transform 280ms cubic-bezier(0.23, 1, 0.32, 1);
+}
+.toc-item-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+@media (prefers-reduced-motion: reduce) {
+  .toc-item {
+    opacity: 1;
+    transform: none;
     transition: none;
   }
 }
