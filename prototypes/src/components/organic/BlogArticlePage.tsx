@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useRef } from "react";
 import { Calendar, Clock, ChevronRight } from "lucide-react";
 
+import { useRfiRedirect } from "@/hooks/useRfiRedirect";
 import { SiteHeader } from "@/components/organic/SiteHeader";
 import { SiteFooter } from "@/components/organic/SiteFooter";
 import { OrganicHomeHero } from "@/components/organic/OrganicHomeHero";
@@ -65,25 +66,76 @@ function ArticleMeta({ article }: { article: BlogArticle }) {
 
   return (
     <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-10">
-      <div className="flex flex-wrap items-center gap-x-4 gap-y-2 border-b border-gray-200 py-4 text-sm text-uagc-navy/70">
-        <span className="font-semibold text-uagc-navy">
-          {article.author.name}
-        </span>
-        <span className="size-1 rounded-full bg-uagc-navy/20" aria-hidden />
-        <span className="flex items-center gap-1.5">
-          <Calendar className="size-3.5" aria-hidden />
-          {article.publishedDate}
-        </span>
-        {hasBeenUpdated && (
-          <span className="flex items-center gap-1.5 rounded-full bg-green-50 px-2.5 py-0.5 text-[0.6875rem] font-medium text-green-700">
-            Updated {article.lastUpdatedDate}
+      <div className="border-b border-gray-200 py-4 sm:py-4">
+        {/* Desktop: single inline row */}
+        <div className="hidden items-center gap-x-4 text-sm text-uagc-navy/70 sm:flex sm:flex-wrap">
+          {article.author.photo && (
+            /* eslint-disable-next-line @next/next/no-img-element */
+            <img
+              src={article.author.photo}
+              alt={article.author.name}
+              width={36}
+              height={36}
+              className="size-9 shrink-0 rounded-full object-cover ring-2 ring-gray-100"
+            />
+          )}
+          <span className="font-semibold text-uagc-navy">
+            {article.author.name}
           </span>
-        )}
-        <span className="size-1 rounded-full bg-uagc-navy/20" aria-hidden />
-        <span className="flex items-center gap-1.5">
-          <Clock className="size-3.5" aria-hidden />
-          {article.readingTime}
-        </span>
+          <span className="size-1 rounded-full bg-uagc-navy/20" aria-hidden />
+          <span className="flex items-center gap-1.5">
+            <Calendar className="size-3.5" aria-hidden />
+            {article.publishedDate}
+          </span>
+          {hasBeenUpdated && (
+            <span className="flex items-center gap-1.5 rounded-full bg-green-50 px-2.5 py-0.5 text-[0.6875rem] font-medium text-green-700">
+              Updated {article.lastUpdatedDate}
+            </span>
+          )}
+          <span className="size-1 rounded-full bg-uagc-navy/20" aria-hidden />
+          <span className="flex items-center gap-1.5">
+            <Clock className="size-3.5" aria-hidden />
+            {article.readingTime}
+          </span>
+        </div>
+
+        {/* Mobile: structured two-row block with avatar left-aligned */}
+        <div className="flex items-start gap-3 sm:hidden">
+          {article.author.photo && (
+            /* eslint-disable-next-line @next/next/no-img-element */
+            <img
+              src={article.author.photo}
+              alt={article.author.name}
+              width={40}
+              height={40}
+              className="size-10 shrink-0 rounded-full object-cover ring-2 ring-gray-100"
+            />
+          )}
+          <div className="min-w-0 flex-1">
+            <span className="block text-[0.9375rem] font-semibold leading-tight text-uagc-navy">
+              {article.author.name}
+            </span>
+            <div className="mt-1 flex flex-wrap items-center gap-x-2 gap-y-0.5 text-[0.8125rem] text-uagc-navy/55">
+              <span className="flex items-center gap-1">
+                <Calendar className="size-3" aria-hidden />
+                {article.publishedDate}
+              </span>
+              <span className="text-uagc-navy/25">&middot;</span>
+              <span className="flex items-center gap-1">
+                <Clock className="size-3" aria-hidden />
+                {article.readingTime}
+              </span>
+              {hasBeenUpdated && (
+                <>
+                  <span className="text-uagc-navy/25">&middot;</span>
+                  <span className="rounded-full bg-green-50 px-2 py-0.5 text-[0.6875rem] font-medium text-green-700">
+                    Updated {article.lastUpdatedDate}
+                  </span>
+                </>
+              )}
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   );
@@ -97,6 +149,7 @@ export function BlogArticlePage({
 }: BlogArticlePageProps) {
   const contentRef = useRef<HTMLDivElement>(null);
   const sidebarRef = useRef<HTMLDivElement>(null);
+  const handleRfiSubmit = useRfiRedirect();
 
   return (
     <>
@@ -117,14 +170,12 @@ export function BlogArticlePage({
           sectionNavItems={[]}
         />
 
-        <div className="bg-white">
-          <ArticleMeta article={article} />
-        </div>
-
+        {/* Unified white content zone — meta + toolbar + TOC + body flush together */}
         <div className="bg-white" ref={contentRef}>
+          <ArticleMeta article={article} />
           <div
             ref={sidebarRef}
-            className="mx-auto w-full max-w-7xl px-4 py-8 sm:px-6 lg:flex lg:gap-10 lg:px-10 lg:py-12"
+            className="mx-auto w-full max-w-7xl px-4 pt-3 pb-5 sm:px-6 sm:pt-5 sm:pb-8 lg:flex lg:gap-10 lg:px-10 lg:pt-6 lg:pb-12"
           >
             <div className="min-w-0 flex-1">
               <BlogArticleToolbar title={article.title} />
@@ -138,12 +189,13 @@ export function BlogArticlePage({
               />
             </div>
 
-            <div className="mt-10 lg:mt-0 lg:w-[360px] lg:shrink-0">
+            <div className="mt-10 border-t border-gray-200 pt-8 lg:mt-0 lg:w-[360px] lg:shrink-0 lg:border-t-0 lg:pt-0">
               <div className="lg:sticky lg:top-28">
                 <BlogSidebar
                   article={article}
                   relatedArticles={relatedArticles}
                   middleContent={sidebarContent}
+                  onRfiSubmit={handleRfiSubmit}
                 />
               </div>
             </div>

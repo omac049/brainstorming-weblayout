@@ -17,8 +17,20 @@ export function BlogAdmissionCTA({ className }: BlogAdmissionCTAProps) {
         <div className="mx-auto w-full max-w-5xl px-4 sm:px-6">
           <div className="overflow-hidden rounded-2xl bg-uagc-teal">
             <div className="flex flex-col items-center lg:flex-row lg:items-center">
+              {/* Portrait — shown first on mobile (image on top), right side on desktop */}
+              <div className="flex shrink-0 items-center justify-center px-8 pt-8 sm:px-10 lg:order-2 lg:px-0 lg:pb-0 lg:pr-12 lg:pt-0">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src={ADMISSION_SPECIALIST_IMAGE}
+                  alt="UAGC Admission Specialist"
+                  width={200}
+                  height={200}
+                  className="size-40 rounded-2xl object-cover sm:size-44 lg:size-[200px]"
+                />
+              </div>
+
               {/* Content */}
-              <div className="flex-1 px-8 py-10 sm:px-10 sm:py-12 lg:py-14">
+              <div className="flex-1 px-8 py-8 sm:px-10 sm:py-12 lg:order-1 lg:py-14">
                 <p className="text-[0.6875rem] font-bold uppercase tracking-[0.15em] text-white/50">
                   Personalized Admission Support
                 </p>
@@ -64,18 +76,6 @@ export function BlogAdmissionCTA({ className }: BlogAdmissionCTAProps) {
                     Chat Now
                   </button>
                 </div>
-              </div>
-
-              {/* Portrait — 443×443 source, sized to stay crisp at 2x retina */}
-              <div className="flex shrink-0 items-center justify-center px-8 pb-8 sm:px-10 lg:px-0 lg:pb-0 lg:pr-12">
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img
-                  src={ADMISSION_SPECIALIST_IMAGE}
-                  alt="UAGC Admission Specialist"
-                  width={200}
-                  height={200}
-                  className="size-40 rounded-2xl object-cover sm:size-44 lg:size-[200px]"
-                />
               </div>
             </div>
           </div>

@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { Share2, Link2, Check, Mail } from "lucide-react";
+import { Share2, Link2, Check } from "lucide-react";
 
 import { cn } from "@/lib/utils";
 
@@ -57,13 +57,6 @@ const SHARE_NETWORKS = [
     icon: LinkedInIcon,
     getUrl: (url: string, _title: string) =>
       `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(url)}`,
-  },
-  {
-    id: "email",
-    label: "Email this article",
-    icon: Mail,
-    getUrl: (url: string, title: string) =>
-      `mailto:?subject=${encodeURIComponent(title)}&body=${encodeURIComponent(`Check out this article: ${url}`)}`,
   },
 ] as const;
 
@@ -135,11 +128,11 @@ export function BlogShareButtons({
 
   return (
     <div
-      className={cn("flex items-center gap-2", className)}
+      className={cn("flex items-center gap-[calc(var(--spacing)*6.5)] sm:gap-1", className)}
       aria-label="Share this article"
     >
-      <Share2 className="size-3.5 text-uagc-navy/40" aria-hidden />
-      <span className="text-[11px] font-semibold uppercase tracking-wider text-uagc-navy/40">
+      <Share2 className="size-3.5 text-uagc-navy/40 sm:size-3.5" aria-hidden />
+      <span className="mr-1 text-[0.6875rem] font-semibold uppercase tracking-wider text-uagc-navy/40 sm:mr-0.5 sm:text-[11px]">
         Share
       </span>
       {SHARE_NETWORKS.map(({ id, label, icon: Icon, getUrl }) => (
@@ -149,9 +142,9 @@ export function BlogShareButtons({
           target="_blank"
           rel="noopener noreferrer"
           aria-label={label}
-          className="flex size-8 items-center justify-center rounded-full text-uagc-navy/50 transition-colors hover:bg-uagc-navy/5 hover:text-uagc-navy"
+          className="flex size-11 items-center justify-center rounded-full text-uagc-navy/50 transition-colors active:bg-uagc-navy/8 sm:size-9 sm:hover:bg-uagc-navy/5 sm:hover:text-uagc-navy"
         >
-          <Icon className="size-3.5" />
+          <Icon className="size-[18px] sm:size-4" />
         </a>
       ))}
       <button
@@ -159,13 +152,13 @@ export function BlogShareButtons({
         onClick={handleCopyLink}
         aria-label={copied ? "Link copied" : "Copy link"}
         className={cn(
-          "flex size-8 items-center justify-center rounded-full transition-colors",
+          "flex size-11 items-center justify-center rounded-full transition-colors sm:size-9",
           copied
             ? "bg-green-50 text-green-600"
-            : "text-uagc-navy/50 hover:bg-uagc-navy/5 hover:text-uagc-navy",
+            : "text-uagc-navy/50 active:bg-uagc-navy/8 sm:hover:bg-uagc-navy/5 sm:hover:text-uagc-navy",
         )}
       >
-        {copied ? <Check className="size-3.5" /> : <Link2 className="size-3.5" />}
+        {copied ? <Check className="size-[18px] sm:size-4" /> : <Link2 className="size-[18px] sm:size-4" />}
       </button>
     </div>
   );

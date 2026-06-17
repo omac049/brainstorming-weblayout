@@ -10,7 +10,8 @@
  */
 
 import { useCallback, useRef, useState } from "react";
-import { useRouter } from "next/navigation";
+
+import { useRfiRedirect } from "@/hooks/useRfiRedirect";
 
 import { HeroV2, HeroSectionNav } from "@/components/organic/HeroV2";
 import { ImpactStrip } from "@/components/organic/ImpactStrip";
@@ -97,7 +98,7 @@ const ADDITIONAL_FAQS = [
 ];
 
 export default function OrganicHomepage() {
-  const router = useRouter();
+  const handleRfiSubmit = useRfiRedirect();
   const heroRef = useRef<HTMLElement>(null);
   const [rfiPreFill, setRfiPreFill] = useState<Partial<RFIFormData>>({});
   const [showAllFaq, setShowAllFaq] = useState(false);
@@ -126,22 +127,6 @@ export default function OrganicHomepage() {
   const handleShowAllFaq = useCallback(() => {
     setShowAllFaq(true);
   }, []);
-
-  const handleRfiSubmit = useCallback(
-    (data: Record<string, string>) => {
-      const params = new URLSearchParams();
-      if (data.firstname) params.set("firstName", data.firstname);
-      if (data.college_of_interest) params.set("area", data.college_of_interest);
-      params.set(
-        "confirmationId",
-        String(Math.floor(7700000 + Math.random() * 99999)),
-      );
-      router.push(
-        `/organic/request-information/thank-you?${params.toString()}`,
-      );
-    },
-    [router],
-  );
 
   return (
     <>

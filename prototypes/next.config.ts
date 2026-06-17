@@ -12,7 +12,7 @@ const nextConfig: NextConfig = {
     NEXT_PUBLIC_BASE_PATH: basePath,
   },
   turbopack: { root: "." },
-  allowedDevOrigins: ["192.168.68.55"],
+  allowedDevOrigins: ["192.168.68.55", "192.168.68.66"],
   images: {
     unoptimized: isGitHubPages,
     remotePatterns: [

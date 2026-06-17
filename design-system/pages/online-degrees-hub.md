@@ -1,6 +1,6 @@
 # online-degrees-hub — Dev Handoff & Component Spec
 
-> **Figma wireframes + componentry:** [UAGC Paid page templates 3 — Wireframe](https://www.figma.com/design/HoSMZOSnKSVgUXlskHv9tS) (`HoSMZOSnKSVgUXlskHv9tS`) — pages **`online-degrees-hub — Wireframes`** / **`online-degrees-hub — Componentry`** (to be created).  
+> **Figma wireframes + componentry:** [UAGC Paid page templates 3 — Wireframe](https://www.figma.com/design/HoSMZOSnKSVgUXlskHv9tS) (`HoSMZOSnKSVgUXlskHv9tS`) — pages **`50 · online-degrees-hub / Desktop 1440`**, **`51 · online-degrees-hub / Mobile 375`**, **`52 · online-degrees-hub / Componentry`** (16 promoted components).  
 > **Figma build guide:** [componentry/online-degrees-hub-figma-build-guide.md](../componentry/online-degrees-hub-figma-build-guide.md) · **JSON manifest:** [componentry/online-degrees-hub-modules.json](../componentry/online-degrees-hub-modules.json)  
 > **Foundation tokens:** [MASTER.md](../MASTER.md)  
 > **Live baseline capture:** `output/playwright/screenshots/organic-02-online-degrees_{desktop-1440,mobile-375}.png`

@@ -25,6 +25,7 @@ import { ProgramDetailsSection } from "@/components/organic/ProgramDetailsSectio
 import { ProgramsConsideredSection } from "@/components/organic/ProgramsConsideredSection";
 import { TimeToGraduationCalculator } from "@/components/organic/TimeToGraduationCalculator";
 import { AssetImage } from "@/components/shared/AssetImage";
+import { getEnrollableStartDates } from "@/components/sections/UpcomingStartDates";
 import { HOME_VIDEO_TESTIMONIALS } from "@/lib/organic-homepage-data";
 import { cn } from "@/lib/utils";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
@@ -131,6 +132,18 @@ function StickyNav() {
   );
 }
 
+function getNextEnrollableDateDisplay(): string {
+  const enrollable = getEnrollableStartDates();
+  if (enrollable.length === 0) return "Coming Soon";
+  const dateStr = enrollable[0].date;
+  const year = new Date().getFullYear();
+  const target = new Date(`${dateStr}, ${year}`);
+  if (target.getTime() <= Date.now()) {
+    return `${dateStr}, ${year + 1}`;
+  }
+  return `${dateStr}, ${year}`;
+}
+
 function CountdownTimer() {
   const [timeLeft, setTimeLeft] = useState({ days: 0, hours: 0, minutes: 0, seconds: 0 });
   const [mounted, setMounted] = useState(false);
@@ -138,13 +151,17 @@ function CountdownTimer() {
   useEffect(() => {
     function calcNext() {
       const now = new Date();
-      const targets = [
-        new Date("2026-06-16T00:00:00"),
-        new Date("2026-07-07T00:00:00"),
-        new Date("2026-07-28T00:00:00"),
-      ];
-      const next = targets.find((t) => t.getTime() > now.getTime()) ?? targets[targets.length - 1];
-      const diff = Math.max(0, next.getTime() - now.getTime());
+      const enrollable = getEnrollableStartDates();
+      if (enrollable.length === 0) {
+        return { days: 0, hours: 0, minutes: 0, seconds: 0 };
+      }
+      const dateStr = enrollable[0].date;
+      const year = now.getFullYear();
+      let target = new Date(`${dateStr}, ${year}`);
+      if (target.getTime() <= now.getTime()) {
+        target = new Date(`${dateStr}, ${year + 1}`);
+      }
+      const diff = Math.max(0, target.getTime() - now.getTime());
       return {
         days: Math.floor(diff / 86400000),
         hours: Math.floor((diff % 86400000) / 3600000),
@@ -514,7 +531,7 @@ function ThankYouContent() {
                       Next Start
                     </p>
                   </div>
-                  <p className="mt-2 text-lg font-semibold text-white">June 16, 2026</p>
+                  <p className="mt-2 text-lg font-semibold text-white">{getNextEnrollableDateDisplay()}</p>
                   <CountdownTimer />
                 </div>
               </div>
@@ -555,7 +572,7 @@ function ThankYouContent() {
                       Next Start
                     </p>
                   </div>
-                  <p className="mt-2 text-base font-semibold text-white">June 16, 2026</p>
+                  <p className="mt-2 text-base font-semibold text-white">{getNextEnrollableDateDisplay()}</p>
                   <CountdownTimer />
                 </div>
               </div>

@@ -2,7 +2,7 @@
 
 > **Primary Figma file:** [UAGC Paid page templates 3 — Wireframe](https://www.figma.com/design/HoSMZOSnKSVgUXlskHv9tS/UAGC-Paid-page-templates-3--%E2%80%94-Wireframe?node-id=0-1) (`fileKey: HoSMZOSnKSVgUXlskHv9tS`) · [team project 598288008](https://www.figma.com/files/team/954051891409200881/project/598288008) · [`FIGMA-FILES.md`](../FIGMA-FILES.md)  
 > **Tokens (repo):** [`MASTER.md`](../MASTER.md) — external Reskin Figma (`c4O4uPeilJDBZFjARNnt65`) is **not accessible** to this team  
-> **Page name:** `02 — Componentry`  
+> **Page name:** `13 · request-info-v5 / Componentry`  
 > **Skill (componentry rebuilds):** [`.cursor/skills/figma-landing-componentry/SKILL.md`](../../.cursor/skills/figma-landing-componentry/SKILL.md) — load before any Figma MCP componentry work.
 
 ---
@@ -11,9 +11,11 @@
 
 | Page | Purpose |
 |------|---------|
-| `01 — Wireframes` | Template assembly — Desktop **1440** + Mobile **375** (instances only) |
-| `02 - Componentry` | **01 Desktop Module Catalog** + **02 Mobile Module Catalog** + **03 Landing Components Library** |
-| `00 — Index` *(optional)* | Cover + module table linking to handoff doc |
+| `10 · request-info-v5 / Wireframes` | Source captures from live Drupal pages |
+| `11 · request-info-v5 / Desktop 1440` | Full-page desktop wireframe |
+| `12 · request-info-v5 / Mobile 375` | Full-page mobile wireframe |
+| `13 · request-info-v5 / Componentry` | **01 Desktop Module Catalog** + **02 Mobile Module Catalog** + **03 Landing Components Library** + **20 promoted `Landing /` components** |
+| `00 · Index & Tokens` | Cover, color/spacing/radius swatches, template index |
 
 All landing componentry lives in **`HoSMZOSnKSVgUXlskHv9tS`** only. The external Reskin file is out of scope (no access).
 
@@ -35,7 +37,7 @@ Dev handoff: [request-info-v5.md](../pages/request-info-v5.md). **Spec sidebar +
 
 ---
 
-## Page structure (`02 — Componentry`)
+## Page structure (`13 · request-info-v5 / Componentry`)
 
 ```
 ┌─ 00 — Cover & Index ─────────────────────────────┐
@@ -77,7 +79,7 @@ After validation, promote preview to **main component:** `Landing / {ID} · {Sho
 
 ## Source mapping (wireframe → catalog ID)
 
-Extract from page `01 — Wireframes` (prototype capture). Known layer names:
+Extract from page `10 · request-info-v5 / Wireframes` (prototype capture). Known layer names:
 
 | Catalog ID | Wireframe layer | React |
 |------------|-----------------|-------|
@@ -138,7 +140,7 @@ Use `generate_figma_design` at `http://localhost:3000/request-info-v5` viewport 
 
 | Object | Pattern | Example |
 |--------|---------|---------|
-| Componentry page | `02 — Componentry` | |
+| Componentry page | `13 · request-info-v5 / Componentry` | |
 | Module card frame | `Module / {ID} — {Name}` | `Module / VP-01 — Value Props` |
 | Main component | `Landing / {ID} · {ShortName}` | `Landing / VP-01 · ValueProps` |
 | Wireframe desktop | `request-info-v5 · Desktop 1440` | |
@@ -177,7 +179,7 @@ Set **component description** to: `Catalog: {ID} · Handoff: design-system/pages
 
 For `degree-programs-v7` / `online-college-courses-v5`:
 
-1. Duplicate `02 — Componentry` page → rename route
+1. Duplicate `13 · request-info-v5 / Componentry` page → rename route
 2. Update module order per that template's `page.tsx`
 3. Reuse `Landing /` components — swap props/copy only
 4. Copy JSON manifest: `{route}-modules.json`

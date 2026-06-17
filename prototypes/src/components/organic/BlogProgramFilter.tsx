@@ -29,17 +29,62 @@ export interface BlogProgramFilterProps {
   programs: ProgramFilterItem[];
   heading?: string;
   className?: string;
-  /** Highlight this program as contextually relevant to the article */
   recommendedId?: string;
-  /** Goal tags relevant to this article — shown first in goal filter */
   relevantGoals?: ProgramGoal[];
 }
 
 type TypeFilter = "all" | "research" | "applied";
 
-/* ─── Expanded Program Card ─────────────────────────────────────── */
+/* ─── Shared filter logic ───────────────────────────────────────── */
 
-function ProgramCard({
+function useFilteredPrograms(
+  programs: ProgramFilterItem[],
+  recommendedId?: string,
+) {
+  const [typeFilter, setTypeFilter] = useState<TypeFilter>("all");
+  const [expandedId, setExpandedId] = useState<string | null>(
+    recommendedId ?? null,
+  );
+
+  const filtered = useMemo(() => {
+    let result = programs;
+    if (typeFilter !== "all") {
+      result = result.filter((p) => p.type === typeFilter);
+    }
+    if (recommendedId) {
+      result.sort((a, b) => {
+        if (a.id === recommendedId) return -1;
+        if (b.id === recommendedId) return 1;
+        return 0;
+      });
+    }
+    return result;
+  }, [programs, typeFilter, recommendedId]);
+
+  const toggleExpand = useCallback((id: string) => {
+    setExpandedId((prev) => (prev === id ? null : id));
+  }, []);
+
+  const hasActiveFilters = typeFilter !== "all";
+
+  const clearFilters = useCallback(() => {
+    setTypeFilter("all");
+  }, []);
+
+  return {
+    typeFilter,
+    setTypeFilter,
+    expandedId,
+    toggleExpand,
+    filtered,
+    hasActiveFilters,
+    clearFilters,
+  };
+}
+
+/* ─── Desktop Expanded Card (sidebar) ───────────────────────────── */
+
+function DesktopProgramCard({
   program,
   isRecommended,
   isExpanded,
@@ -62,17 +107,15 @@ function ProgramCard({
       data-ga4-event="blog_program_filter_interact"
       data-ga4-program={program.shortName}
     >
-      {/* Recommended badge */}
       {isRecommended && (
         <div className="flex items-center gap-1.5 rounded-t-lg bg-uagc-gold/10 px-3 py-1.5">
           <Sparkles className="size-3 text-uagc-gold" aria-hidden />
-          <span className="text-[0.625rem] font-bold uppercase tracking-wider text-uagc-gold">
+          <span className="text-[0.6875rem] font-bold uppercase tracking-wider text-uagc-gold">
             Relevant to this article
           </span>
         </div>
       )}
 
-      {/* Card header — always visible, acts as toggle */}
       <button
         type="button"
         onClick={onToggle}
@@ -86,7 +129,7 @@ function ProgramCard({
           <div className="mt-1.5 flex flex-wrap items-center gap-1.5">
             <span
               className={cn(
-                "inline-block rounded-full px-2 py-0.5 text-[0.625rem] font-bold uppercase tracking-wider",
+                "inline-block rounded-full px-2 py-0.5 text-[0.6875rem] font-bold uppercase tracking-wider",
                 program.type === "research"
                   ? "bg-blue-50 text-blue-700"
                   : "bg-amber-50 text-amber-700",
@@ -101,26 +144,16 @@ function ProgramCard({
           </div>
         </div>
         {isExpanded ? (
-          <ChevronUp
-            className="mt-0.5 size-4 shrink-0 text-uagc-navy/40"
-            aria-hidden
-          />
+          <ChevronUp className="mt-0.5 size-4 shrink-0 text-uagc-navy/40" aria-hidden />
         ) : (
-          <ChevronDown
-            className="mt-0.5 size-4 shrink-0 text-uagc-navy/40"
-            aria-hidden
-          />
+          <ChevronDown className="mt-0.5 size-4 shrink-0 text-uagc-navy/40" aria-hidden />
         )}
       </button>
 
-      {/* Collapsed preview — quick facts row */}
       {!isExpanded && (
         <div className="border-t border-gray-50 px-3.5 pb-3 pt-2">
           <div className="flex items-center gap-1.5">
-            <Briefcase
-              className="size-3 shrink-0 text-uagc-navy/40"
-              aria-hidden
-            />
+            <Briefcase className="size-3 shrink-0 text-uagc-navy/40" aria-hidden />
             <span className="text-[0.6875rem] text-uagc-navy/70 line-clamp-1">
               {program.bestFor}
             </span>
@@ -128,10 +161,8 @@ function ProgramCard({
         </div>
       )}
 
-      {/* Expanded detail panel */}
       {isExpanded && (
         <div className="border-t border-gray-100 px-3.5 pb-4 pt-3">
-          {/* Quick facts grid */}
           <div className="grid grid-cols-2 gap-x-3 gap-y-2">
             <div className="flex items-center gap-1.5">
               <BookOpen className="size-3 text-uagc-navy/40" aria-hidden />
@@ -147,10 +178,7 @@ function ProgramCard({
             </div>
             {program.costHint && (
               <div className="col-span-2 flex items-center gap-1.5">
-                <DollarSign
-                  className="size-3 shrink-0 text-uagc-gold"
-                  aria-hidden
-                />
+                <DollarSign className="size-3 shrink-0 text-uagc-gold" aria-hidden />
                 <span className="text-[0.6875rem] font-medium text-uagc-navy/70">
                   {program.costHint}
                 </span>
@@ -158,19 +186,15 @@ function ProgramCard({
             )}
           </div>
 
-          {/* Outcomes */}
           {program.outcomes.length > 0 && (
             <div className="mt-3">
-              <p className="mb-1.5 text-[0.625rem] font-bold uppercase tracking-wider text-uagc-navy/50">
+              <p className="mb-1.5 text-[0.6875rem] font-bold uppercase tracking-wider text-uagc-navy/50">
                 What you&rsquo;ll be prepared to do
               </p>
               <ul className="space-y-1">
                 {program.outcomes.map((outcome) => (
                   <li key={outcome} className="flex items-start gap-1.5">
-                    <CheckCircle2
-                      className="mt-0.5 size-3 shrink-0 text-green-500"
-                      aria-hidden
-                    />
+                    <CheckCircle2 className="mt-0.5 size-3 shrink-0 text-green-500" aria-hidden />
                     <span className="text-[0.6875rem] leading-snug text-uagc-navy/75">
                       {outcome}
                     </span>
@@ -180,7 +204,6 @@ function ProgramCard({
             </div>
           )}
 
-          {/* Action buttons */}
           <div className="mt-3.5 flex gap-2">
             <Link
               href={program.href}
@@ -210,7 +233,7 @@ function ProgramCard({
   );
 }
 
-/* ─── Goal Filter Pills ─────────────────────────────────────────── */
+/* ─── Goal Filter Pills (desktop only) ──────────────────────────── */
 
 function GoalFilterPills({
   availableGoals,
@@ -231,10 +254,10 @@ function GoalFilterPills({
           type="button"
           onClick={() => onSelect(activeGoal === goal ? null : goal)}
           className={cn(
-            "rounded-full px-2.5 py-1 text-[0.625rem] font-semibold transition-colors duration-100",
+            "rounded-full px-3 py-1.5 text-[0.6875rem] font-semibold transition-colors duration-100",
             activeGoal === goal
               ? "bg-uagc-gold text-white"
-              : "bg-uagc-gold/10 text-uagc-navy/70 hover:bg-uagc-gold/20 hover:text-uagc-navy",
+              : "bg-uagc-gold/10 text-uagc-navy/70 hover:bg-uagc-gold/20 hover:text-uagc-navy active:bg-uagc-gold/25",
           )}
           aria-pressed={activeGoal === goal}
         >
@@ -247,33 +270,41 @@ function GoalFilterPills({
 
 /* ─── Advisor Help CTA ──────────────────────────────────────────── */
 
-function AdvisorHelpCTA() {
+function AdvisorHelpCTA({ compact = false }: { compact?: boolean }) {
   return (
-    <div className="space-y-2 rounded-lg bg-uagc-navy/3 px-3.5 py-3">
-      <p className="text-[0.75rem] font-bold text-uagc-navy">
+    <div className={cn("rounded-lg bg-uagc-navy/3", compact ? "px-4 py-3" : "space-y-2 px-3.5 py-3")}>
+      <p className={cn("font-bold text-uagc-navy", compact ? "text-[0.8125rem]" : "text-[0.75rem]")}>
         Not sure which program fits?
       </p>
-      <p className="text-[0.6875rem] leading-snug text-uagc-navy/65">
-        An enrollment advisor can help you find the right doctoral program for
-        your goals and background.
-      </p>
-      <div className="flex gap-2">
+      {!compact && (
+        <p className="text-[0.6875rem] leading-snug text-uagc-navy/65">
+          An enrollment advisor can help you find the right doctoral program for
+          your goals and background.
+        </p>
+      )}
+      <div className={cn("flex gap-2", compact && "mt-2")}>
         <Link
           href="/organic/request-information"
-          className="flex flex-1 items-center justify-center gap-1.5 rounded-lg bg-uagc-red px-3 py-2 text-[0.6875rem] font-bold text-white transition-colors hover:bg-uagc-red/90"
+          className={cn(
+            "flex flex-1 items-center justify-center gap-1.5 rounded-lg bg-uagc-red font-bold text-white transition-colors hover:bg-uagc-red/90 active:bg-uagc-red/80",
+            compact ? "px-4 py-2.5 text-[0.8125rem]" : "px-3 py-2 text-[0.6875rem]",
+          )}
           data-ga4-event="blog_program_filter_advisor_click"
           data-ga4-action="request_info"
         >
-          <MessageCircle className="size-3" aria-hidden />
+          <MessageCircle className="size-3.5" aria-hidden />
           Get Guidance
         </Link>
         <a
           href="tel:+18667115959"
-          className="flex items-center gap-1.5 rounded-lg border border-gray-200 bg-white px-3 py-2 text-[0.6875rem] font-bold text-uagc-navy transition-colors hover:bg-gray-50"
+          className={cn(
+            "flex items-center gap-1.5 rounded-lg border border-gray-200 bg-white font-bold text-uagc-navy transition-colors hover:bg-gray-50 active:bg-gray-100",
+            compact ? "px-4 py-2.5 text-[0.8125rem]" : "px-3 py-2 text-[0.6875rem]",
+          )}
           data-ga4-event="blog_program_filter_advisor_click"
           data-ga4-action="call"
         >
-          <Phone className="size-3" aria-hidden />
+          <Phone className="size-3.5" aria-hidden />
           Call
         </a>
       </div>
@@ -281,18 +312,25 @@ function AdvisorHelpCTA() {
   );
 }
 
-/* ─── Shared filter + list logic ────────────────────────────────── */
+/* ─── Desktop Sidebar Filter ────────────────────────────────────── */
 
-function useFilteredPrograms(
-  programs: ProgramFilterItem[],
-  recommendedId?: string,
-  relevantGoals?: ProgramGoal[],
-) {
-  const [typeFilter, setTypeFilter] = useState<TypeFilter>("all");
+function DesktopProgramFilter({
+  programs,
+  heading,
+  className,
+  recommendedId,
+  relevantGoals,
+}: BlogProgramFilterProps) {
   const [goalFilter, setGoalFilter] = useState<ProgramGoal | null>(null);
-  const [expandedId, setExpandedId] = useState<string | null>(
-    recommendedId ?? null,
-  );
+  const {
+    typeFilter,
+    setTypeFilter,
+    expandedId,
+    toggleExpand,
+    filtered: typeFiltered,
+    hasActiveFilters: hasTypeFilter,
+    clearFilters: clearTypeFilter,
+  } = useFilteredPrograms(programs, recommendedId);
 
   const availableGoals = useMemo(() => {
     const goalSet = new Set<ProgramGoal>();
@@ -310,79 +348,21 @@ function useFilteredPrograms(
   }, [programs, relevantGoals]);
 
   const filtered = useMemo(() => {
-    let result = programs;
-    if (typeFilter !== "all") {
-      result = result.filter((p) => p.type === typeFilter);
-    }
-    if (goalFilter) {
-      result = result.filter((p) => p.goalTags.includes(goalFilter));
-    }
-    if (recommendedId) {
-      result.sort((a, b) => {
-        if (a.id === recommendedId) return -1;
-        if (b.id === recommendedId) return 1;
-        return 0;
-      });
-    }
-    return result;
-  }, [programs, typeFilter, goalFilter, recommendedId]);
+    if (!goalFilter) return typeFiltered;
+    return typeFiltered.filter((p) => p.goalTags.includes(goalFilter));
+  }, [typeFiltered, goalFilter]);
 
-  const toggleExpand = useCallback((id: string) => {
-    setExpandedId((prev) => (prev === id ? null : id));
-  }, []);
-
-  const hasActiveFilters = typeFilter !== "all" || goalFilter !== null;
-
-  const clearFilters = useCallback(() => {
-    setTypeFilter("all");
+  const hasActiveFilters = hasTypeFilter || goalFilter !== null;
+  const clearAll = useCallback(() => {
+    clearTypeFilter();
     setGoalFilter(null);
-  }, []);
-
-  return {
-    typeFilter,
-    setTypeFilter,
-    goalFilter,
-    setGoalFilter,
-    expandedId,
-    toggleExpand,
-    filtered,
-    availableGoals,
-    hasActiveFilters,
-    clearFilters,
-  };
-}
-
-/* ─── Desktop Sidebar Filter ────────────────────────────────────── */
-
-function DesktopProgramFilter({
-  programs,
-  heading,
-  className,
-  recommendedId,
-  relevantGoals,
-}: BlogProgramFilterProps) {
-  const {
-    typeFilter,
-    setTypeFilter,
-    goalFilter,
-    setGoalFilter,
-    expandedId,
-    toggleExpand,
-    filtered,
-    availableGoals,
-    hasActiveFilters,
-    clearFilters,
-  } = useFilteredPrograms(programs, recommendedId, relevantGoals);
+  }, [clearTypeFilter]);
 
   return (
     <div
-      className={cn(
-        "overflow-hidden rounded-xl border border-uagc-gold/30 bg-white",
-        className,
-      )}
+      className={cn("overflow-hidden rounded-xl border border-uagc-gold/30 bg-white", className)}
       data-module="blog-program-filter"
     >
-      {/* Header */}
       <div className="flex items-center gap-2 border-b border-uagc-gold/20 bg-uagc-cream-warm px-4 py-3.5">
         <Filter className="size-4 text-uagc-gold" aria-hidden />
         <h3 className="text-sm font-bold text-uagc-navy">
@@ -390,16 +370,13 @@ function DesktopProgramFilter({
         </h3>
       </div>
 
-      {/* Type filter chips */}
       <div className="border-b border-gray-100 px-4 py-3">
         <div className="flex gap-1.5">
-          {(
-            [
-              { id: "all", label: "All" },
-              { id: "research", label: "Research" },
-              { id: "applied", label: "Applied" },
-            ] as const
-          ).map((chip) => (
+          {([
+            { id: "all", label: "All" },
+            { id: "research", label: "Research" },
+            { id: "applied", label: "Applied" },
+          ] as const).map((chip) => (
             <button
               key={chip.id}
               type="button"
@@ -417,10 +394,9 @@ function DesktopProgramFilter({
           ))}
         </div>
 
-        {/* Goal filter */}
         {availableGoals.length > 0 && (
           <div className="mt-2.5">
-            <p className="mb-1.5 text-[0.5625rem] font-bold uppercase tracking-wider text-uagc-navy/40">
+            <p className="mb-1.5 text-[0.6875rem] font-bold uppercase tracking-wider text-uagc-navy/40">
               Filter by goal
             </p>
             <GoalFilterPills
@@ -434,19 +410,18 @@ function DesktopProgramFilter({
         {hasActiveFilters && (
           <button
             type="button"
-            onClick={clearFilters}
-            className="mt-2 text-[0.625rem] font-semibold text-uagc-red underline-offset-2 hover:underline"
+            onClick={clearAll}
+            className="mt-2 text-[0.6875rem] font-semibold text-uagc-red underline-offset-2 hover:underline"
           >
             Clear all filters
           </button>
         )}
       </div>
 
-      {/* Program list */}
       <div className="space-y-2 px-3 py-3">
         {filtered.length > 0 ? (
           filtered.map((p) => (
-            <ProgramCard
+            <DesktopProgramCard
               key={p.id}
               program={p}
               isRecommended={p.id === recommendedId}
@@ -456,37 +431,23 @@ function DesktopProgramFilter({
           ))
         ) : (
           <div className="py-4 text-center">
-            <p className="text-xs text-uagc-navy/50">
-              No programs match these filters.
-            </p>
-            <button
-              type="button"
-              onClick={clearFilters}
-              className="mt-1.5 text-[0.6875rem] font-semibold text-uagc-red underline-offset-2 hover:underline"
-            >
+            <p className="text-xs text-uagc-navy/50">No programs match.</p>
+            <button type="button" onClick={clearAll} className="mt-1.5 text-[0.6875rem] font-semibold text-uagc-red underline-offset-2 hover:underline">
               Show all programs
             </button>
           </div>
         )}
       </div>
 
-      {/* Advisor help CTA */}
       <div className="border-t border-gray-100 px-3 py-3">
         <AdvisorHelpCTA />
       </div>
 
-      {/* Footer */}
       <div className="border-t border-uagc-gold/20 bg-uagc-cream-warm px-4 py-3">
         <p className="text-center text-[0.6875rem] text-uagc-navy/60">
-          <span className="font-semibold text-uagc-navy/80">
-            {filtered.length}
-          </span>{" "}
+          <span className="font-semibold text-uagc-navy/80">{filtered.length}</span>{" "}
           program{filtered.length !== 1 ? "s" : ""} &middot;{" "}
-          <Link
-            href="https://www.uagc.edu/online-degrees/doctoral"
-            className="font-semibold text-uagc-red underline-offset-2 hover:underline"
-            data-ga4-event="blog_program_filter_browse_all"
-          >
+          <Link href="https://www.uagc.edu/online-degrees/doctoral" className="font-semibold text-uagc-red underline-offset-2 hover:underline" data-ga4-event="blog_program_filter_browse_all">
             Browse all doctoral programs
           </Link>
         </p>
@@ -495,201 +456,151 @@ function DesktopProgramFilter({
   );
 }
 
-/* ─── Mobile Program Filter (Bottom drawer) ─────────────────────── */
+/* ─── Mobile: Flat program row (single-tap navigation) ──────────── */
+
+function MobileProgramRow({
+  program,
+  isRecommended,
+}: {
+  program: ProgramFilterItem;
+  isRecommended: boolean;
+}) {
+  return (
+    <Link
+      href={program.href}
+      className={cn(
+        "group flex items-center gap-3.5 rounded-xl border p-4 transition-colors active:bg-gray-50",
+        isRecommended
+          ? "border-uagc-gold/50 bg-uagc-cream-warm/50"
+          : "border-gray-150 bg-white",
+      )}
+      data-ga4-event="blog_program_filter_click"
+      data-ga4-program={program.shortName}
+      data-ga4-action="learn_more"
+    >
+      <div className="min-w-0 flex-1">
+        <div className="flex items-center gap-2">
+          {isRecommended && (
+            <Sparkles className="size-3.5 shrink-0 text-uagc-gold" aria-hidden />
+          )}
+          <p className="text-[0.9375rem] font-bold leading-snug text-uagc-navy">
+            {program.shortName}
+          </p>
+        </div>
+        <div className="mt-1.5 flex items-center gap-2">
+          <span
+            className={cn(
+              "inline-block rounded-full px-2 py-0.5 text-[0.6875rem] font-bold uppercase tracking-wider",
+              program.type === "research"
+                ? "bg-blue-50 text-blue-700"
+                : "bg-amber-50 text-amber-700",
+            )}
+          >
+            {program.type === "research" ? "Research" : "Applied"}
+          </span>
+          <span className="flex items-center gap-1 text-[0.75rem] text-uagc-navy/55">
+            <Clock className="size-3" aria-hidden />
+            {program.duration}
+          </span>
+        </div>
+        <p className="mt-1.5 text-[0.8125rem] leading-snug text-uagc-navy/60 line-clamp-1">
+          {program.bestFor}
+        </p>
+      </div>
+      <ArrowRight
+        className="size-5 shrink-0 text-uagc-navy/30 transition-transform group-active:translate-x-0.5"
+        aria-hidden
+      />
+    </Link>
+  );
+}
+
+/* ─── Mobile: Inline program list (no drawer, no fixed bar) ────── */
 
 function MobileProgramFilter({
   programs,
   heading,
   recommendedId,
-  relevantGoals,
 }: BlogProgramFilterProps) {
-  const [isOpen, setIsOpen] = useState(false);
   const {
     typeFilter,
     setTypeFilter,
-    goalFilter,
-    setGoalFilter,
-    expandedId,
-    toggleExpand,
     filtered,
-    availableGoals,
-    hasActiveFilters,
-    clearFilters,
-  } = useFilteredPrograms(programs, recommendedId, relevantGoals);
-
-  const toggle = useCallback(() => setIsOpen((o) => !o), []);
+  } = useFilteredPrograms(programs, recommendedId);
 
   return (
-    <>
-      {/* Trigger bar */}
-      <div
-        className={cn(
-          "fixed inset-x-0 bottom-[60px] z-40 border-t border-gray-200 bg-white/95 px-4 py-3 backdrop-blur-sm shadow-[0_-4px_12px_rgba(0,0,0,0.06)] transition-transform duration-200 md:bottom-0 lg:hidden",
-          isOpen && "translate-y-full",
-        )}
-      >
-        <button
-          type="button"
-          onClick={toggle}
-          className="flex w-full items-center justify-between rounded-xl bg-uagc-cream-warm px-4 py-3 active:scale-[0.98] transition-transform"
-        >
-          <div className="flex items-center gap-2.5">
-            <GraduationCap className="size-5 text-uagc-gold" aria-hidden />
-            <span className="text-sm font-bold text-uagc-navy">
-              {heading ?? "Find Your Program"}
-            </span>
-            <span className="rounded-full bg-uagc-navy px-1.5 py-0.5 text-[0.5625rem] font-bold tabular-nums text-white">
-              {programs.length}
-            </span>
-          </div>
-          <ChevronDown className="size-4 text-uagc-navy/50" aria-hidden />
-        </button>
+    <div
+      className="overflow-hidden rounded-xl border border-uagc-gold/30 bg-white lg:hidden"
+      data-module="blog-program-filter-mobile"
+    >
+      {/* Header + inline filter */}
+      <div className="flex items-center justify-between gap-3 border-b border-uagc-gold/20 bg-uagc-cream-warm px-4 py-3">
+        <div className="flex items-center gap-2">
+          <GraduationCap className="size-5 text-uagc-gold" aria-hidden />
+          <h3 className="text-[0.9375rem] font-bold text-uagc-navy">
+            {heading ?? "Find Your Program"}
+          </h3>
+        </div>
+        {/* Native select for filter — avoids chip clutter */}
+        <div className="relative">
+          <select
+            value={typeFilter}
+            onChange={(e) => setTypeFilter(e.target.value as TypeFilter)}
+            className="appearance-none rounded-lg border border-gray-200 bg-white py-2 pl-3 pr-8 text-[0.8125rem] font-semibold text-uagc-navy focus:border-uagc-gold focus:outline-none focus:ring-2 focus:ring-uagc-gold/20"
+            aria-label="Filter by type"
+          >
+            <option value="all">All types</option>
+            <option value="research">Research</option>
+            <option value="applied">Applied</option>
+          </select>
+          <ChevronDown
+            className="pointer-events-none absolute right-2 top-1/2 size-4 -translate-y-1/2 text-uagc-navy/40"
+            aria-hidden
+          />
+        </div>
       </div>
 
-      {/* Drawer overlay */}
-      {isOpen && (
-        <div
-          className="fixed inset-0 z-50 bg-black/30 backdrop-blur-[2px] lg:hidden"
-          onClick={toggle}
-          aria-hidden
-        />
-      )}
-
-      {/* Drawer panel */}
-      <div
-        className={cn(
-          "fixed inset-x-0 bottom-0 z-50 max-h-[85vh] overflow-y-auto rounded-t-2xl bg-white shadow-[0_-8px_40px_rgba(0,0,0,0.15)] transition-transform duration-300 lg:hidden",
-          isOpen ? "translate-y-0" : "translate-y-full",
-        )}
-        role="dialog"
-        aria-modal={isOpen}
-        aria-label="Program filter"
-      >
-        {/* Drag handle */}
-        <div className="sticky top-0 z-10 bg-white pb-2 pt-3">
-          <div className="mx-auto h-1 w-10 rounded-full bg-gray-300" />
-        </div>
-
-        {/* Header */}
-        <div className="flex items-center justify-between border-b border-gray-100 px-5 pb-4">
-          <div className="flex items-center gap-2">
-            <Filter className="size-4 text-uagc-gold" aria-hidden />
-            <h3 className="text-base font-bold text-uagc-navy">
-              {heading ?? "Find Your Program"}
-            </h3>
-          </div>
-          <button
-            type="button"
-            onClick={toggle}
-            className="rounded-full p-2 text-uagc-navy/50 hover:bg-gray-100 hover:text-uagc-navy"
-            aria-label="Close"
-          >
-            <X className="size-5" />
-          </button>
-        </div>
-
-        {/* Filter section */}
-        <div className="border-b border-gray-100 px-5 py-4">
-          {/* Type chips */}
-          <div className="flex gap-2">
-            {(
-              [
-                { id: "all", label: "All" },
-                { id: "research", label: "Research" },
-                { id: "applied", label: "Applied" },
-              ] as const
-            ).map((chip) => (
-              <button
-                key={chip.id}
-                type="button"
-                onClick={() => setTypeFilter(chip.id)}
-                className={cn(
-                  "rounded-full px-4 py-2 text-xs font-semibold transition-colors duration-100",
-                  typeFilter === chip.id
-                    ? "bg-uagc-navy text-white"
-                    : "bg-gray-100 text-uagc-navy/70 hover:bg-gray-200",
-                )}
-                aria-pressed={typeFilter === chip.id}
-              >
-                {chip.label}
-              </button>
-            ))}
-          </div>
-
-          {/* Goal filter */}
-          {availableGoals.length > 0 && (
-            <div className="mt-3">
-              <p className="mb-1.5 text-[0.625rem] font-bold uppercase tracking-wider text-uagc-navy/40">
-                By goal
-              </p>
-              <GoalFilterPills
-                availableGoals={availableGoals}
-                activeGoal={goalFilter}
-                onSelect={setGoalFilter}
-              />
-            </div>
-          )}
-
-          {hasActiveFilters && (
-            <button
-              type="button"
-              onClick={clearFilters}
-              className="mt-2.5 text-xs font-semibold text-uagc-red underline-offset-2 hover:underline"
-            >
-              Clear all filters
-            </button>
-          )}
-        </div>
-
-        {/* Program list */}
-        <div className="space-y-2.5 px-5 py-4">
-          {filtered.map((p) => (
-            <ProgramCard
+      {/* Program list — flat, single-tap rows */}
+      <div className="space-y-2.5 px-3 py-3">
+        {filtered.length > 0 ? (
+          filtered.map((p) => (
+            <MobileProgramRow
               key={p.id}
               program={p}
               isRecommended={p.id === recommendedId}
-              isExpanded={expandedId === p.id}
-              onToggle={() => toggleExpand(p.id)}
             />
-          ))}
-          {filtered.length === 0 && (
-            <div className="py-6 text-center">
-              <p className="text-sm text-uagc-navy/50">
-                No programs match these filters.
-              </p>
-              <button
-                type="button"
-                onClick={clearFilters}
-                className="mt-2 text-sm font-semibold text-uagc-red underline-offset-2 hover:underline"
-              >
-                Show all programs
-              </button>
-            </div>
-          )}
-        </div>
-
-        {/* Advisor CTA */}
-        <div className="border-t border-gray-100 px-5 py-4">
-          <AdvisorHelpCTA />
-        </div>
-
-        {/* Browse all link */}
-        <div className="border-t border-uagc-gold/20 bg-uagc-cream-warm px-5 py-4 text-center">
-          <Link
-            href="https://www.uagc.edu/online-degrees/doctoral"
-            className="inline-flex items-center gap-1.5 text-sm font-bold text-uagc-red transition-colors hover:text-uagc-red/80"
-            onClick={toggle}
-            data-ga4-event="blog_program_filter_browse_all"
-          >
-            Browse all doctoral programs
-            <ArrowRight className="size-3.5" aria-hidden />
-          </Link>
-        </div>
+          ))
+        ) : (
+          <div className="py-6 text-center">
+            <p className="text-sm text-uagc-navy/50">No programs match this filter.</p>
+            <button
+              type="button"
+              onClick={() => setTypeFilter("all")}
+              className="mt-2 text-sm font-semibold text-uagc-red underline-offset-2 hover:underline"
+            >
+              Show all programs
+            </button>
+          </div>
+        )}
       </div>
 
-      {/* Spacer to prevent content from hiding behind fixed bar */}
-      <div className="h-[72px] lg:hidden" aria-hidden />
-    </>
+      {/* Advisor CTA — compact for mobile */}
+      <div className="border-t border-gray-100 px-3 py-3">
+        <AdvisorHelpCTA compact />
+      </div>
+
+      {/* Footer */}
+      <div className="border-t border-uagc-gold/20 bg-uagc-cream-warm px-4 py-3.5">
+        <Link
+          href="https://www.uagc.edu/online-degrees/doctoral"
+          className="flex items-center justify-center gap-1.5 text-[0.8125rem] font-bold text-uagc-red transition-colors active:text-uagc-red/70"
+          data-ga4-event="blog_program_filter_browse_all"
+        >
+          Browse all doctoral programs
+          <ArrowRight className="size-3.5" aria-hidden />
+        </Link>
+      </div>
+    </div>
   );
 }
 
@@ -698,12 +609,12 @@ function MobileProgramFilter({
 export function BlogProgramFilter(props: BlogProgramFilterProps) {
   return (
     <>
-      {/* Desktop: inline sidebar card */}
+      {/* Desktop: sidebar card with expandable program details */}
       <div className="hidden lg:block">
         <DesktopProgramFilter {...props} />
       </div>
 
-      {/* Mobile: bottom-anchored drawer */}
+      {/* Mobile: inline flat list — no drawer, no fixed bars */}
       <MobileProgramFilter {...props} />
     </>
   );

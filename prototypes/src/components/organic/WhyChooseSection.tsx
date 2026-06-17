@@ -93,7 +93,7 @@ export function WhyChooseSection({
                 src="/images/why-choose-graduate.jpg"
                 alt="UAGC graduate smiling in cap and gown"
                 fill
-                sizes="100vw"
+                sizes="(min-width: 1024px) 0px, 100vw"
                 className="object-cover object-top"
               />
             </div>

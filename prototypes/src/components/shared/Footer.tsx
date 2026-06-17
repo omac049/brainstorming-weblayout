@@ -62,7 +62,8 @@ export function Footer() {
               alt="The University of Arizona"
               width={160}
               height={38}
-              className="h-9 w-auto"
+              style={{ width: "auto" }}
+              className="h-9"
             />
             <p className="text-xs leading-relaxed sm:text-sm">
               We are affiliated with the{" "}

@@ -1,6 +1,6 @@
 # request-information-thank-you — Dev Handoff & Component Spec
 
-> **Figma wireframes + componentry:** [`HoSMZOSnKSVgUXlskHv9tS`](https://www.figma.com/design/HoSMZOSnKSVgUXlskHv9tS) — pages **`request-information-thank-you — Wireframes`** / **Componentry** (to be created).  
+> **Figma wireframes + componentry:** [`HoSMZOSnKSVgUXlskHv9tS`](https://www.figma.com/design/HoSMZOSnKSVgUXlskHv9tS) — pages **`70 · thank-you / Desktop 1440`**, **`71 · thank-you / Mobile 375`**, **`72 · thank-you / Componentry`** (7 promoted components).  
 > **Figma build guide:** [componentry/request-information-thank-you-figma-build-guide.md](../componentry/request-information-thank-you-figma-build-guide.md) · **JSON manifest:** [componentry/request-information-thank-you-modules.json](../componentry/request-information-thank-you-modules.json)  
 > **Phase 1 audit:** [Task 1.10 — Post-RFI](../../output/playwright/screenshots/1-6-external-validation.html#post-rfi) · **Foundation tokens:** [MASTER.md](../MASTER.md)
 

@@ -17,7 +17,7 @@ interface BlogBodyProps {
 
 function PullQuoteBlock({ pullQuote }: { pullQuote: BlogPullQuote }) {
   return (
-    <blockquote className="relative my-8 border-l-4 border-uagc-gold bg-uagc-cream-warm/50 py-5 pl-6 pr-5">
+    <blockquote className="relative my-8 border-l-4 border-uagc-gold bg-uagc-cream-warm/50 py-5 pl-4 pr-4 sm:pl-6 sm:pr-5">
       <Quote
         className="absolute -left-0.5 -top-3 size-6 text-uagc-gold/40"
         aria-hidden
@@ -56,7 +56,7 @@ function FAQAccordion({ faqs }: { faqs: BlogFAQ[] }) {
   return (
     <div className="space-y-3">
       <h2
-        className="mb-4 font-['Fira_Sans',sans-serif] text-[1.25em] font-bold text-uagc-navy sm:text-[1.5em]"
+        className="mb-3 font-['Fira_Sans',sans-serif] text-[1.25em] font-bold leading-tight text-uagc-navy sm:text-[1.5em]"
         style={{ textWrap: "balance" }}
       >
         Frequently Asked Questions
@@ -71,15 +71,15 @@ function FAQAccordion({ faqs }: { faqs: BlogFAQ[] }) {
             <button
               type="button"
               onClick={() => toggle(i)}
-              className="flex w-full items-center justify-between gap-4 px-5 py-4 text-left transition-colors hover:bg-gray-50"
+              className="flex w-full items-center justify-between gap-4 px-5 py-4 text-left transition-colors hover:bg-gray-50 active:bg-gray-100"
               aria-expanded={isOpen}
             >
-              <span className="text-[0.9375em] font-semibold text-uagc-navy">
+              <span className="text-[0.9375em] font-semibold leading-snug text-uagc-navy">
                 {faq.question}
               </span>
               <ChevronDown
                 className={cn(
-                  "size-4 shrink-0 text-uagc-navy/50 transition-transform duration-200",
+                  "size-5 shrink-0 text-uagc-navy/50 transition-transform duration-200",
                   isOpen && "rotate-180",
                 )}
                 aria-hidden
@@ -110,16 +110,16 @@ export function BlogBody({ article, className, contextualCTA, midArticleSlot }: 
   return (
     <article className={cn("max-w-prose text-[1em]", className)}>
       {/* Article Body Sections — starts immediately, no preamble */}
-      <div className="pb-8 pt-2 sm:pb-10">
+      <div className="space-y-10 pb-8 pt-5 sm:space-y-14 sm:pb-10 sm:pt-6">
         {article.sections.map((section, i) => (
           <ScrollReveal key={section.heading} delay={i * 40}>
             {/* Mid-article engagement slot */}
             {i === midInsertIdx && midArticleSlot && (
-              <div className="mb-10">{midArticleSlot}</div>
+              <div className="mb-10 sm:mb-14">{midArticleSlot}</div>
             )}
-            <section id={`section-${i}`} className="mb-10 scroll-mt-28 last:mb-0">
+            <section id={`section-${i}`} className="scroll-mt-28">
               <h2
-                className="mb-4 font-['Fira_Sans',sans-serif] text-[1.25em] font-bold text-uagc-navy sm:text-[1.5em]"
+                className="mb-5 font-['Fira_Sans',sans-serif] text-[1.25em] font-bold leading-tight text-uagc-navy sm:mb-6 sm:text-[1.5em]"
                 style={{ textWrap: "balance" }}
               >
                 {section.heading}
@@ -127,14 +127,14 @@ export function BlogBody({ article, className, contextualCTA, midArticleSlot }: 
               {section.paragraphs.map((para, pi) => (
                 <p
                   key={`${section.heading}-p${pi}`}
-                  className="mb-4 text-[0.9375em] leading-relaxed text-uagc-navy/85 last:mb-0 sm:text-[1em]"
+                  className="mb-4 text-[0.9375em] leading-relaxed text-uagc-navy/85 last:mb-0 sm:mb-5 sm:text-[1em]"
                   style={{ textWrap: "pretty" }}
                 >
                   {para}
                 </p>
               ))}
               {section.bullets && (
-                <ul className="mb-4 ml-6 list-disc space-y-1.5 text-[0.9375em] leading-relaxed text-uagc-navy/85 marker:text-uagc-gold sm:text-[1em]">
+                <ul className="mb-4 ml-5 list-disc space-y-1.5 text-[0.9375em] leading-relaxed text-uagc-navy/85 marker:text-uagc-gold sm:ml-6 sm:text-[1em]">
                   {section.bullets.map((b) => (
                     <li key={b.slice(0, 30)}>{b}</li>
                   ))}
@@ -169,7 +169,7 @@ export function BlogBody({ article, className, contextualCTA, midArticleSlot }: 
         <ScrollReveal>
           <section className="border-t border-gray-200 py-8 sm:py-10">
             <h2
-              className="mb-4 font-['Fira_Sans',sans-serif] text-[1.25em] font-bold text-uagc-navy sm:text-[1.5em]"
+              className="mb-5 font-['Fira_Sans',sans-serif] text-[1.25em] font-bold leading-tight text-uagc-navy sm:mb-6 sm:text-[1.5em]"
               style={{ textWrap: "balance" }}
             >
               {article.closingSection.heading}
@@ -177,7 +177,7 @@ export function BlogBody({ article, className, contextualCTA, midArticleSlot }: 
             {article.closingSection.paragraphs.map((para, pi) => (
               <p
                 key={`closing-p${pi}`}
-                className="mb-4 text-[0.9375em] leading-relaxed text-uagc-navy/85 last:mb-0 sm:text-[1em]"
+                className="mb-4 text-[0.9375em] leading-relaxed text-uagc-navy/85 last:mb-0 sm:mb-5 sm:text-[1em]"
                 style={{ textWrap: "pretty" }}
               >
                 {para}

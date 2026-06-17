@@ -17,6 +17,7 @@
 
 import { useRef } from "react";
 
+import { useRfiRedirect } from "@/hooks/useRfiRedirect";
 import { Footer } from "@/components/shared/Footer";
 import { PageMain } from "@/components/shared/PageMain";
 import { Header } from "@/components/shared/Header";
@@ -50,6 +51,7 @@ const PAGE_SECTIONS = [
 
 export default function RequestInfoV5() {
   const heroFormRef = useRef<HTMLDivElement>(null);
+  const handleRfiSubmit = useRfiRedirect();
 
   return (
     <>
@@ -77,7 +79,7 @@ export default function RequestInfoV5() {
             <p className="text-center text-xs leading-relaxed text-uagc-gray">
               See programs, costs, and transfer credit options tailored to you — no commitment required.
             </p>
-            <RFIForm variant="mini" heroFormRef={heroFormRef} />
+            <RFIForm variant="mini" heroFormRef={heroFormRef} onSubmit={handleRfiSubmit} />
             <p className="text-center text-[0.6875rem] text-uagc-gray/80">
               Takes under 60 seconds. No obligation. No spam.
             </p>
@@ -230,7 +232,7 @@ export default function RequestInfoV5() {
                   </span>
                 </div>
               </div>
-              <RFIForm variant="full" />
+              <RFIForm variant="full" onSubmit={handleRfiSubmit} />
             </div>
           </section>
         </ScrollReveal>

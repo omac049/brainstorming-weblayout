@@ -12,6 +12,7 @@
 
 import { useRef } from "react";
 
+import { useRfiRedirect } from "@/hooks/useRfiRedirect";
 import { Footer } from "@/components/shared/Footer";
 import { PageMain } from "@/components/shared/PageMain";
 import { Header } from "@/components/shared/Header";
@@ -158,6 +159,7 @@ const OCC_FAQ_ITEMS: FAQItem[] = [
 
 export default function OnlineCollegeCoursesV5() {
   const heroFormRef = useRef<HTMLDivElement>(null);
+  const handleRfiSubmit = useRfiRedirect();
 
   return (
     <>
@@ -191,7 +193,7 @@ export default function OnlineCollegeCoursesV5() {
             <p className="text-center text-xs leading-relaxed text-uagc-gray">
               Get a personalized guide with programs, costs, and transfer credit options — no commitment required.
             </p>
-            <RFIForm variant="mini" heroFormRef={heroFormRef} />
+            <RFIForm variant="mini" heroFormRef={heroFormRef} onSubmit={handleRfiSubmit} />
             <p className="text-center text-[0.6875rem] text-uagc-gray/80">
               It only takes a minute. No obligation.
             </p>
@@ -340,7 +342,7 @@ export default function OnlineCollegeCoursesV5() {
                   </span>
                 </div>
               </div>
-              <RFIForm variant="full" />
+              <RFIForm variant="full" onSubmit={handleRfiSubmit} />
             </div>
           </section>
         </ScrollReveal>

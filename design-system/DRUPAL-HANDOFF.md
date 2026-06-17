@@ -1,33 +1,56 @@
-# Drupal Handoff — Paid Landing Module Library
+# Drupal Handoff — UAGC Template Implementation Guide
 
-**Purpose:** Map Phase 2 **26-module catalog IDs** to Drupal **paragraph types**, **fields**, and **JavaScript behaviors** for production implementation on `uagc.edu`.
+**Purpose:** Production implementation guide for all **7 Phase 2 templates** — map catalog module IDs to Drupal **content types**, **paragraph stacks**, **theme regions**, and **RFI integration**. Field-level specs, Twig patterns, and JavaScript behaviors live in the global component library.
 
 **Audience:** Drupal theme developers, back-end engineers, content editors, QA.
 
-**This document is the production handoff layer.** Visual specs live in Figma; interaction reference in `~/uagc-prototypes`; copy/props in `design-system/pages/*.md` and `componentry/*-modules.json`. **Do not treat the Next.js repo as shippable code.**
+**This document is the assembly and integration layer.** Component specifications are authoritative in [`GLOBAL-COMPONENTS.md`](./GLOBAL-COMPONENTS.md). Visual specs in Figma; interaction reference in `prototypes/` Next.js app. **Do not treat the Next.js repo as shippable code.**
+
+**Catalog version:** 49-module global component library · **Last updated:** 2026-06-15
 
 ---
 
 ## How to use this doc
 
-1. **Implement paragraph types once** from [Module registry](#module-registry) — reuse across all three paid templates.
+1. **Implement paragraph types once** from [`GLOBAL-COMPONENTS.md`](./GLOBAL-COMPONENTS.md) — reuse across all seven templates.
 2. **Assemble pages** from [Per-template section order](#per-template-section-order) — each row is one paragraph instance (or theme region for global chrome).
 3. **Wire RFI forms** per [RFI integration](#rfi-integration-shared) — reuse live Lead API / existing form handlers; restyle wrappers only unless Phase 2 A/B requires variant tagging.
-4. **Load JS** per module from [JavaScript requirements](#javascript-requirements) — one behavior file per interactive paragraph where possible.
+4. **Load CSS** from [`drupal-theme.css`](./drupal-theme.css) and attach JS libraries named in `GLOBAL-COMPONENTS.md` per module.
 5. **Fill Drupal-specific columns** marked `TBD — Drupal team` before sprint planning.
 
 ### Related files
 
 | Asset | Path |
 |-------|------|
+| **Component specs (primary)** | [`GLOBAL-COMPONENTS.md`](./GLOBAL-COMPONENTS.md) |
+| **Drupal-ready CSS** | [`drupal-theme.css`](./drupal-theme.css) |
 | Design tokens | [`MASTER.md`](./MASTER.md) |
 | Reskin alignment | [`RESKIN-ALIGNMENT.md`](./RESKIN-ALIGNMENT.md) |
-| v5 page spec | [`pages/request-info-v5.md`](./pages/request-info-v5.md) |
-| v7 page spec | [`pages/degree-programs-v7.md`](./pages/degree-programs-v7.md) |
-| OCC page spec | [`pages/online-college-courses-v5.md`](./pages/online-college-courses-v5.md) |
-| Module manifests | [`componentry/*-modules.json`](./componentry/) |
+| Paid — v5 page spec | [`pages/request-info-v5.md`](./pages/request-info-v5.md) |
+| Paid — v7 page spec | [`pages/degree-programs-v7.md`](./pages/degree-programs-v7.md) |
+| Paid — OCC page spec | [`pages/online-college-courses-v5.md`](./pages/online-college-courses-v5.md) |
+| Organic — hub spec | [`pages/online-degrees-hub.md`](./pages/online-degrees-hub.md) |
+| Organic — thank-you spec | [`pages/request-information-thank-you.md`](./pages/request-information-thank-you.md) |
+| Module manifests (JSON) | [`componentry/request-info-v5-modules.json`](./componentry/request-info-v5-modules.json) |
+| | [`componentry/degree-programs-v7-modules.json`](./componentry/degree-programs-v7-modules.json) |
+| | [`componentry/online-college-courses-v5-modules.json`](./componentry/online-college-courses-v5-modules.json) |
+| | [`componentry/online-degrees-hub-modules.json`](./componentry/online-degrees-hub-modules.json) |
+| | [`componentry/request-information-thank-you-modules.json`](./componentry/request-information-thank-you-modules.json) |
 | Figma componentry | [`FIGMA-FILES.md`](./FIGMA-FILES.md) |
-| Interactive reference | `~/uagc-prototypes` (not production) |
+| Component registry CLI | `.cursor/skills/uagc-component-manager/scripts/registry.py` (`page`, `drupal`, `diff`) |
+| Interactive reference | `prototypes/` (not production) |
+
+### Template index
+
+| Key | Template | Live URL pattern | Content type (recommended) |
+|-----|----------|------------------|----------------------------|
+| v5 | `request-info-v5` | `/success/request-info-v5` | `paid_landing_page` |
+| v7 | `degree-programs-v7` | `/success/degree-programs-v7` | `paid_landing_page` |
+| occ | `online-college-courses-v5` | `/success/online-college-courses-v5` | `paid_landing_page` |
+| homepage | `organic-homepage` | `/` | `organic_page` |
+| hub | `online-degrees-hub` | `/online-degrees/` | `organic_page` |
+| blog | `blog-article` | `/blog/*` | `blog_article` |
+| ty | `request-information-thank-you` | `/request-information/thank-you` | `thank_you_page` |
 
 ---
 
@@ -37,15 +60,66 @@
 
 | Layer | Recommended pattern | Notes |
 |-------|---------------------|-------|
-| **Content type** | `paid_landing_page` (or extend existing `/success/*` type) | One node per paid URL; paragraphs field for module stack |
-| **Module field** | `field_landing_sections` → Entity reference revisions → Paragraphs | Ordered; each paragraph = one catalog module |
-| **Global chrome** | Theme regions or fixed paragraphs | `NAV-01`, `FOOT-01` may be theme-level on `/success/*` |
+| **Paid content type** | `paid_landing_page` (or extend existing `/success/*` type) | One node per paid URL; paragraphs field for module stack |
+| **Organic content type** | `organic_page` (or extend homepage/hub node types) | Homepage and hub share paragraph library; hero variant differs (`HERO-V2` vs `HERO-ORG`) |
+| **Blog content type** | `blog_article` | Long-text **body** field (WYSIWYG or structured paragraphs); optional `field_contextual_cta`, `field_sidebar_blocks` |
+| **Thank-you content type** | `thank_you_page` (or route-only template) | Personalized variant driven by query params / session token — not a separate node per submission |
+| **Module field** | `field_landing_sections` / `field_organic_sections` → Entity reference revisions → Paragraphs | Ordered; each paragraph = one catalog module |
+| **Paid global chrome** | Theme regions or fixed paragraphs | `NAV-01` (reduced header), `FOOT-01` (paid footer variant) on `/success/*` |
+| **Organic global chrome** | Theme regions | `NAV-00` (`SiteHeader` — full nav with Military / Partnerships dropdowns), `FOOT-01` (`SiteFooter` — live `uagc.edu` structure, text affiliation only) |
+| **Thank-you chrome** | Theme region variant | `NAV-00-TY` — full header but **hide Request Info**; footer may also suppress RFI links |
 | **Forms** | Existing RFI webform / custom form plugin | **Do not rebuild** submission pipeline for layout Phase 2 |
-| **Program data** | Taxonomy / JSON feed / existing program API | `PROG-01` consumes same source as live program pages |
-| **Start dates** | Computed at render (CMS field or API) | `START-01`: next two dates only; `daysLeft` at render time |
+| **Program data** | Taxonomy / JSON feed / existing program API | `PROG-01`, hub popular links, blog program filter consume same source as live program pages |
+| **Start dates** | Computed at render (CMS field or API) | `START-01`: next two dates on paid; single populated card on thank-you; `daysLeft` at render time |
 | **A/B variants** | Cookie + variant ID on form hidden field + GA4 | Phase 2 validation on **Drupal staging**, not Next.js |
-| **CSS** | Theme SCSS + CSS custom properties from `MASTER.md` | Map tokens to `:root` / `.paid-landing` scope |
-| **Twig** | One template per paragraph type | e.g. `paragraph--landing-hero-rfi.html.twig` |
+| **CSS** | Include `drupal-theme.css` in theme pipeline | Custom properties, typography utilities, layout classes — values align with `MASTER.md` |
+| **Twig** | One template per paragraph type | e.g. `paragraph--landing-hero-rfi.html.twig`, `paragraph--organic-hero-v2.html.twig` |
+
+### Organic-specific content model
+
+| Entity / field | Recommended pattern | Notes |
+|----------------|---------------------|-------|
+| **Blog author** | User reference or `field_author` (name, photo, title) | Displayed in `BLOG-HERO` meta row |
+| **Publish date** | `field_published_date` (datetime) | Formatted in article meta |
+| **Last updated** | `field_last_updated` (datetime) | Show "Updated" badge when different from publish date |
+| **Reading time** | Computed at render or `field_reading_time` (integer, minutes) | Shown in hero subhead and meta |
+| **Categories / tags** | Taxonomy terms | Eyebrow on `BLOG-HERO`; related-article filtering |
+| **Related articles** | Entity reference or views block | `BLOG-SIDEBAR` related list |
+| **Featured image** | Media reference | `BLOG-HERO` editorial hero image |
+| **Table of contents** | Computed from H2/H3 in body | `BLOG-TOC` — no separate editorial field |
+| **Newsletter** | Webform or external endpoint | `BLOG-NEWSLETTER` — endpoint TBD (see Open items) |
+| **Thank-you personalization** | Query params (`sid`, `token`, `submissionID`) or session | `firstName`, `program`, `confirmationId`, masked email — see thank-you spec |
+| **Video testimonials** | Media entities or oEmbed URLs | `TRUST-01` organic variant — CDN embed from `uagc.edu` |
+
+---
+
+## Component library reference
+
+**Do not duplicate field lists here.** All paragraph types, editorial fields, Twig template names, JavaScript library keys, CSS class hooks, responsive rules, and accessibility notes are documented in:
+
+**[GLOBAL-COMPONENTS.md](./GLOBAL-COMPONENTS.md)**
+
+Use the [Component Inventory](./GLOBAL-COMPONENTS.md#component-inventory) and [Cross-Template Usage Matrix](./GLOBAL-COMPONENTS.md#cross-template-usage-matrix) to see which modules apply to each template. Run `python registry.py page <key>` for ordered stacks (`v5`, `v7`, `occ`, `hub`, `homepage`, `blog`, `ty`).
+
+### JavaScript requirements
+
+Interactive behaviors (section nav scroll-spy, RFI stepper, program explorer, FAQ accordion, blog TOC, video modal, cost estimator, graduation calculator, etc.) are specified per module in `GLOBAL-COMPONENTS.md`.
+
+Load behaviors via Drupal `libraries.yml` — **one library per interactive paragraph** where possible. Do **not** port React state, Tailwind class strings, Next `Image`, or `"use client"` boundaries — reimplement in vanilla JS or existing Drupal patterns.
+
+**Global page attach (paid templates):**
+
+```yaml
+# Example — TBD: Drupal team
+landing-page-base:
+  js:
+    js/landing-rfi-sticky-bar.js: {}
+  dependencies:
+    - core/drupal
+    - core/once
+```
+
+**Global page attach (organic templates):** See `GLOBAL-COMPONENTS.md` for `organic/*`, `blog/*`, and `thankyou/*` library keys.
 
 ---
 
@@ -60,6 +134,16 @@ All **`FORM-01`**, **`FORM-02`**, and **`FORM-05`** instances must use the **liv
 | **FORM-01** | Embedded in **HERO-01** paragraph | Two-step **mini** | Same endpoint as live `/success/request-info-v5` hero RFI |
 | **FORM-02** | Standalone mid-page paragraph | **Full** (single or two-step per live) | Same endpoint; optional section heading wrapper |
 | **FORM-05** | Theme attach (mobile) | Sticky CTA bar → scroll to `#rfi` or expand mini | No separate submit — navigation only |
+
+### Organic RFI placement rules
+
+| Template | FORM-01 (hero) | FORM-02 (mid-page) | FORM-05 (sticky) |
+|----------|----------------|--------------------|------------------|
+| Paid (v5, v7, OCC) | Yes — in HERO-01 | Yes — closing band | Yes — after scroll past hero |
+| Organic homepage | **No** | Yes — navy closing band (`#rfi`) | Yes |
+| Online-degrees hub | **No** | Yes — closing band only | Yes |
+| Blog article | **No** | **No** — sidebar may link to program pages | Yes — scroll target is sidebar, not hero |
+| Thank-you | **No** | **No** — user already converted | **No** |
 
 ### Field mapping (prototype → Drupal)
 
@@ -97,93 +181,15 @@ Static text below hero form (not a separate paragraph):
 - [ ] Document Lead API payload shape and required hidden fields
 - [ ] Twig partials: `rfi-form--mini.html.twig`, `rfi-form--full.html.twig`
 - [ ] JS: two-step stepper, validation mirroring live rules
-- [ ] JS: `landing-rfi-sticky-bar.js` (see **FORM-05**)
-
----
-
-## Module registry
-
-One row per **catalog ID**. Paragraph machine names are **recommended** — align to existing Drupal paragraph types where they already exist.
-
-**Legend:** 🟢 v1 required · 🟡 v1 optional · ⚪ theme/global · 🔵 page-specific override
-
-### Navigation & chrome
-
-| ID | Paragraph type (recommended) | Fields (editorial) | JS | v1 |
-|----|------------------------------|-------------------|-----|-----|
-| **NAV-01** | `landing_header_reduced` ⚪ | Logo (default theme), phone CTA, Apply link (optional) | Fixed header on scroll; reduced nav (hide full menu links) | 🟢 |
-| **NAV-UX-01** | `landing_section_nav` 🟡 | `field_nav_items` (repeat: label, anchor_id) — **or** computed from page sections | `landing-section-nav.js`: sticky pills, scroll-spy active state, smooth scroll to `#anchor`, `scroll-margin-top` offset for fixed header | 🟡 |
-| **FOOT-01** | `landing_footer` ⚪ | Standard site footer fields | None (or existing footer JS) | 🟢 |
-
-### Hero & forms
-
-| ID | Paragraph type (recommended) | Fields (editorial) | JS | v1 |
-|----|------------------------------|-------------------|-----|-----|
-| **HERO-01** | `landing_hero_rfi` | `field_headline` (plain), `field_subheadline` (long text), `field_brand_label` (optional), `field_bg_image_desktop` (media), `field_bg_image_mobile` (media), `field_highlights` (repeat: text, max 3), `field_form_intro_title`, `field_form_intro_body` | Optional subtle parallax on hero image (respect `prefers-reduced-motion`); **must not** cover faces with form on mobile | 🟢 |
-| **FORM-01** | *(child of HERO-01 or embedded form block)* | See [RFI integration](#rfi-integration-shared) | Two-step mini stepper; `data-hero-form` root for sticky bar intersection | 🟢 |
-| **FORM-02** | `landing_rfi_section` | `field_heading`, `field_subhead` (long text), `field_trust_chips` (repeat, optional), `field_form_variant` (list: full) | Full form validation; focus management on step change | 🟢 |
-| **FORM-05** | *(theme library attach)* | Sticky label (default: "Request Information"), target anchor (default: `#rfi`) | `landing-rfi-sticky-bar.js`: hidden when `[data-hero-form]` intersects viewport; visible after scroll past hero; mobile-only or mobile-first; `padding-bottom: env(safe-area-inset-bottom)` | 🟢 |
-
-### Trust & value
-
-| ID | Paragraph type (recommended) | Fields (editorial) | JS | v1 |
-|----|------------------------------|-------------------|-----|-----|
-| **START-01** | `landing_start_dates` | `field_heading` (optional), `field_dates` (repeat: date, label) **or** computed next 2 start dates from API | Compute `daysLeft` **at render** in PHP/Twig (not client-only) to avoid hydration mismatch | 🟢 |
-| **TRUST-02** | `landing_trust_strip` | `field_variant` (list: banner \| sidebar), `field_badges` (repeat: icon, label) — default 3 badges | None | 🟢 |
-| **VP-01** | `landing_value_props` | `field_heading`, `field_subheading` (optional), `field_cards` (repeat: title, description, stat optional, icon optional), `field_experience_title`, `field_experience_body`, `field_experience_cta` (link, optional) | None | 🟢 |
-| **TRUST-01** | `landing_testimonial` | `field_heading`, `field_subheading` (optional), `field_testimonials` (repeat: `field_tag` (optional, e.g. "Working Parent"), `field_quote` (long text), `field_name`, `field_credential`) | None — CSS grid handles 1→2→3 col responsive layout | 🟢 |
-
-### Content & proof
-
-| ID | Paragraph type (recommended) | Fields (editorial) | JS | v1 |
-|----|------------------------------|-------------------|-----|-----|
-| **BRIDGE-01** | `landing_section_bridge` 🟡 | `field_variant` (light \| dark), `field_text`, `field_target_anchor` (link to #id) | Smooth scroll on click (optional) | 🟡 |
-| **PROG-01** | `landing_program_explorer` | `field_heading`, `field_subheading`, `field_compact` (bool), `field_programs` (entity ref or JSON view), `field_show_transfer_callout` (bool, default false) | `landing-program-explorer.js`: search/filter, expandable rows (details/summary or ARIA accordion), **no** per-program RFI buttons; mobile: ~6 visible + "Show all" expand; **native `<select>`** for area filter (no horizontal pill scroll trap) | 🟢 on v5/v7 |
-| **SKEPT-01** | `landing_skepticism_buster` 🔵 | `field_heading`, `field_subheading`, `field_soft_cta`, `field_cards` (repeat: question, proof_stat, proof_stat_label, answer, expanded_bullets[]) | `landing-skept-buster.js`: independent disclosure (multiple open OK); chevron ≥44px touch target | 🟢 on OCC only |
-| **CAREER-01** | `landing_career_outcomes` | `field_heading`, `field_subheading`, `field_comparison_rows` (repeat: program, salary, growth, titles), `field_handshake_stat`, `field_handshake_body` | Optional tab/filter if multiple program columns; table responsive scroll **or** stacked cards on mobile | 🟢 on v5/v7 |
-| **SALARY-01** | `landing_salary_growth` | `field_heading`, `field_degree_tiers` (repeat), `field_source_url`, `field_source_label` (default: BLS) | `landing-salary-tabs.js`: field/degree tab switch (if tabs used) | 🟢 on v5/v7 |
-| **FIN-01** | `landing_tuition_aid` | `field_heading`, `field_pricing_tiers` (repeat: label, amount, accent bool), `field_bridge_stat`, `field_savings_cards` (repeat: id, label, stat, stat_label, bullets[]) | `landing-fin-disclosure.js`: expandable disclosure cards; stats always visible; **no outbound links** off page | 🟢 |
-| **CRED-01** | `landing_employer_credentials` | `field_heading`, `field_stats` (repeat: value, label), `field_body`, `field_badges` (media/icons, optional) | None | 🟢 on v5/v7 |
-| **EMOT-01** | `landing_emotional_motivation` | `field_heading`, `field_body`, `field_pull_quote`, `field_stats` (repeat) | None | 🟢 on v5/v7 |
-| **FAQ-01** | `landing_faq` | `field_heading`, `field_categories` (repeat: category label, items[]: question, answer) | `landing-faq-accordion.js`: one or multi-expand per design; category filters optional | 🟢 |
-| **CTA-01** | `landing_bottom_cta` | `field_heading`, `field_paths` (repeat: type [chat \| phone \| anchor \| link], label, url/tel) | Chat widget trigger hook if type=chat | 🟢 |
-
----
-
-## JavaScript requirements
-
-Load behaviors via Drupal `libraries.yml` — **one library per interactive module** for maintainability.
-
-| Library key | Attached to | Behavior | Breakpoints | A11y |
-|-------------|-------------|----------|-------------|------|
-| `landing/section-nav` | NAV-UX-01 | Sticky horizontal nav; IntersectionObserver or scroll listener for active pill; click → `scrollIntoView` with header offset | All; hide or simplify if `<768px` and too many pills | Keyboard focus visible; `aria-current="true"` on active pill |
-| `landing/rfi-mini` | FORM-01 | Step 1 → Step 2; client validation before advance | All | Announce step change; error `aria-describedby` |
-| `landing/rfi-sticky-bar` | FORM-05 (page attach) | Show when hero form leaves viewport; hide when hero form visible | `<1024px` primary | Bar does not trap focus; CTA min 44px height |
-| `landing/program-explorer` | PROG-01 | Search debounce; filter by area; row expand/collapse; mobile show-all | Mobile: no nested scroll containers | Expand button `aria-expanded`; list `role="list"` |
-| `landing/skept-buster` | SKEPT-01 | Toggle card body; multiple open | 3-col desktop / 1-col mobile | Button per card; 44px min target |
-| `landing/fin-disclosure` | FIN-01 | Independent `<details>` or accordion panels | 3-col → 2-col → 1-col grid | Focus management on open |
-| `landing/faq` | FAQ-01 | Accordion per item or per category | All | Standard accordion ARIA pattern |
-| `landing/salary-tabs` | SALARY-01 | Tab panel switch | Optional desktop only | `role="tablist"` / `aria-selected` |
-
-**Global page attach (all three templates):**
-
-```yaml
-# Example — TBD: Drupal team
-landing-page-base:
-  js:
-    js/landing-rfi-sticky-bar.js: {}
-  dependencies:
-    - core/drupal
-    - core/once
-```
-
-**Do not port from Next.js:** React state, Tailwind class strings, Next `Image`, or `"use client"` boundaries — reimplement behaviors in vanilla JS or existing Drupal patterns.
+- [ ] JS: `landing-rfi-sticky-bar.js` (see **FORM-05** in `GLOBAL-COMPONENTS.md`)
 
 ---
 
 ## Per-template section order
 
-Each table = paragraph order on the node. **Shared** modules use identical paragraph types; copy differs per [Page overrides](#page-specific-overrides).
+Each table = paragraph order on the node (or theme attach). **Shared** modules use identical paragraph types; copy differs per [Page overrides](#page-specific-overrides). Paragraph machine names and fields: `GLOBAL-COMPONENTS.md`.
+
+---
 
 ### `request-info-v5`
 
@@ -210,7 +216,7 @@ Each table = paragraph order on the node. **Shared** modules use identical parag
 | 14 | FORM-02 | `#rfi` | `landing_rfi_section` | Full RFI |
 | 15 | FAQ-01 | `#faq` | `landing_faq` | 4 categories |
 | 16 | CTA-01 | — | `landing_bottom_cta` | 4 paths: chat, phone, #rfi, apply |
-| — | FOOT-01 | — | theme region | |
+| — | FOOT-01 | — | theme region | Paid footer variant |
 | — | FORM-05 | — | theme attach | Mobile sticky bar |
 
 ---
@@ -257,9 +263,115 @@ Same stack as **request-info-v5** with these overrides:
 
 ---
 
+### `organic-homepage`
+
+**Live URL:** `https://www.uagc.edu/`  
+**Prototype route:** `/organic/homepage`  
+**Substantive modules:** ~14 · **Target height:** conversion-aware discovery hub (not paid-length)
+
+| Order | ID | Anchor ID | Paragraph type | Notes |
+|------:|-----|-----------|----------------|-------|
+| — | NAV-00 | — | theme region | Full `SiteHeader`; Military / Partnerships dropdowns |
+| 1 | HERO-V2 | — | `organic_hero_v2` | *"Finish Your Degree / On Your Schedule"* — **no in-hero RFI**; 4 trust pills only |
+| 2 | IMPACT | `#impact` | `organic_impact_strip` | 5-stat flat band immediately after hero |
+| — | *(section nav)* | — | inline / hero attach | Sticky pills: At a Glance, Why UAGC, Stories, Your Path, Programs, Tuition, Request Info |
+| 3 | WHY-CHOOSE | `#why-uagc` | `organic_why_choose` | Brandy-style 2-col photo + stats — not paid VP-01 |
+| 4 | TRUST-01 | `#social-proof` | `organic_video_testimonial` | Video thumbnails + modal — not text quote cards |
+| 5 | PERSONA-PATHS | `#paths` | `organic_persona_paths` | Online Degrees / Admission / Financial Aid tabs |
+| 6 | ACCR-01 | — | `organic_accreditation` | UA horizontal logo band |
+| 7 | PROG-01 | `#programs` | `landing_program_explorer` | `compact=false`; CTA scrolls to `#rfi` — no per-program RFI |
+| 8 | COST-EST | `#cost-estimator` | `organic_cost_estimator` | Two-column estimator; "Request plan" pre-fills closing RFI |
+| 9 | INTEREST-GRID | — | `organic_interest_grid` | Flat navy discovery cards by area of study |
+| 10 | FORM-02 | `#rfi` | `landing_rfi_section` | Navy full-width band; white form card; optional cost-plan context |
+| 11 | FAQ-01 | `#faq` | `landing_faq` | Accordion; "See all" expand for additional items |
+| — | FOOT-01 | — | theme region | Organic `SiteFooter` — live structure |
+| — | FORM-05 | — | theme attach | Sticky bar; no hero form to intersect — targets `#rfi` |
+
+**Omitted:** HERO-01, FORM-01, VP-01, FIN-01, WAYS-TO-SAVE, standalone CTA-01.
+
+---
+
+### `online-degrees-hub`
+
+**Live URL:** `https://www.uagc.edu/online-degrees/`  
+**Prototype route:** `/organic/online-degrees`  
+**Substantive modules:** ~16 · **Discovery-first** — no hero or mid-page RFI except closing band
+
+| Order | ID | Anchor ID | Paragraph type | Notes |
+|------:|-----|-----------|----------------|-------|
+| — | NAV-00 | — | theme region | Header Request Info → `#rfi` |
+| 1 | HERO-ORG | — | `organic_hero` | *"Your Degree, Your Schedule"* — trust pills only; **no embedded RFI** |
+| — | *(section nav)* | — | inline attach | Pills: Your Path, Programs, Tuition, Areas, Stories, Careers, Get Started, FAQ |
+| 2 | HUB-POPULAR | — | `organic_popular_programs` | Top 3 degree quick links + View all 50+ |
+| 3 | PERSONA-PATHS | `#paths` | `organic_persona_paths` | `show=tabs` — transfer / military / graduate / career-changer routing |
+| 4 | PROG-01 | `#programs` | `landing_program_explorer` | Searchable catalog — centerpiece |
+| 5 | TUITION-BAND | `#tuition` | `organic_tuition_band` | Highlight band — not full FIN-01 |
+| 6 | WAYS-TO-SAVE | `#ways-to-save` | `organic_ways_to_save` | Expandable on-page cards; no outbound links |
+| 7 | AREAS | `#areas` | `organic_areas_of_study` | Category browse grid |
+| 8 | TRUST-01 | `#stories` | `organic_video_testimonial` | Hub-specific video set |
+| 9 | CAREER-01 | `#outcomes` | `landing_career_outcomes` | Hub-lite outcomes + Handshake |
+| 10 | HUB-JOURNEY | `#journey` | `organic_journey` | Enrollment journey steps |
+| 11 | CTA-01 | `#next-steps` | `landing_bottom_cta` | Multi-path: chat, call, #rfi, apply |
+| 12 | ACCR-01 | — | `organic_accreditation` | WSCUC / UA band before closing RFI |
+| 13 | FORM-02 | `#rfi` | `landing_rfi_section` | **Only** mid-page RFI on hub |
+| 14 | FAQ-01 | `#faq` | `landing_faq` | Hub-specific FAQ set |
+| — | FOOT-01 | — | theme region | Organic footer |
+| — | FORM-05 | — | theme attach | Mobile sticky bar |
+
+---
+
+### `blog-article`
+
+**Live URL:** `https://www.uagc.edu/blog/*`  
+**Prototype route:** `/organic/blog/*`  
+**Substantive modules:** ~10 · **Editorial** — no mid-page RFI
+
+| Order | ID | Anchor ID | Paragraph type | Notes |
+|------:|-----|-----------|----------------|-------|
+| — | BLOG-PROGRESS | — | theme/page attach | Reading progress bar — top of viewport |
+| — | NAV-00 | — | theme region | Full header |
+| — | *(breadcrumb)* | — | node / theme | Home → Blog → Article title |
+| 1 | BLOG-HERO | — | `blog_hero` | Editorial variant of organic hero; category eyebrow; featured image |
+| — | *(article meta)* | — | node fields | Author photo, publish date, reading time, updated badge |
+| 2 | BLOG-TOC | — | `blog_toc` (computed) | In main column above body; scroll-spy active heading |
+| 3 | BLOG-BODY | — | `blog_body` (node field) | WYSIWYG + optional inline `BLOG-NEWSLETTER`; contextual CTA mid-article |
+| 4 | BLOG-SIDEBAR | — | `blog_sidebar` (region) | Sticky sidebar: program filter, related articles, admission mini-CTA |
+| — | BLOG-NEWSLETTER | — | `blog_newsletter` | Inline in body + optional sidebar slot |
+| 5 | BLOG-SHARE | — | `blog_share` | Floating share buttons (desktop); toolbar share on mobile |
+| 6 | BLOG-CTA | — | `blog_admission_cta` | Full-width closing admission band |
+| — | FOOT-01 | — | theme region | Organic footer |
+| — | FORM-05 | — | theme attach | Sticky Request Info — **no hero form**; targets sidebar or scroll |
+
+**Node fields:** author, publish/updated dates, reading time, category, featured image, body, related articles, optional contextual CTA — see [Architecture assumptions](#architecture-assumptions).
+
+---
+
+### `request-information-thank-you`
+
+**Live URL:** `https://www.uagc.edu/request-information/thank-you`  
+**Prototype route:** `/organic/request-information/thank-you`  
+**Substantive modules:** ~8–10 · **Post-conversion** — no RFI anywhere
+
+| Order | ID | Anchor ID | Paragraph type | Notes |
+|------:|-----|-----------|----------------|-------|
+| — | NAV-00-TY | — | theme region | `hideRequestInfo=true`; Apply Now primary |
+| 1 | TY-HERO | `#confirmation` | `thankyou_hero` | Personalized: *"Congratulations {firstName},"* + program pill; base variant when name missing |
+| 2 | TY-RECEIPT | — | `thankyou_receipt` | Confirmation ID, masked email, program recap, response SLA |
+| — | *(section nav)* | — | inline attach | Next Steps, What to Expect, Your Timeline, Your Program, Testimonials |
+| 3 | START-01 | `#start-date` | `landing_start_dates` | Populated next start + countdown in hero (desktop card) |
+| 4 | TY-NEXT | `#next-steps` | `thankyou_next_steps` | 3-step admissions process cards |
+| 5 | TY-CONTACT | — | `thankyou_contact` | Phone + chat; advisor hours band |
+| 6 | TY-CALC | `#time-to-graduation` | `thankyou_graduation_calc` | Time-to-graduation calculator — transfer credits input |
+| 7 | TRUST-01 | `#testimonials` | `organic_video_testimonial` | Optional program-matched or general student videos |
+| — | FOOT-01 | — | theme region | Organic footer; `hideRequestInfo` on footer links |
+
+**Variants:** **Personalized** (`sid` / `token` / `submissionID`) injects first name + program + portal URL. **Base** (no params) uses generic copy — no trailing comma. **No RFI** (FORM-01/02/05) on this template.
+
+---
+
 ## Page-specific overrides
 
-### NAV-UX-01 — section pills by template
+### NAV-UX-01 — section pills by template (paid only)
 
 | Template | `field_nav_items` |
 |----------|-------------------|
@@ -267,78 +379,113 @@ Same stack as **request-info-v5** with these overrides:
 | degree-programs-v7 | Same as v5 |
 | online-college-courses-v5 | why-uagc, **proof**, tuition, stories, rfi, faq |
 
-### HERO-01 — copy matrix
+Organic homepage and hub use inline `HeroSectionNav` / hub section nav — anchors documented in section order tables above. Blog and thank-you use article-specific or post-submit nav pills.
 
-| Field | request-info-v5 | degree-programs-v7 | online-college-courses-v5 |
-|-------|-----------------|--------------------|-----------------------------|
-| Headline | Earn Your Degree 100% Online at UAGC | Find the Right Degree for Your Career | Explore Flexible Online Courses at UAGC |
-| Highlight 1 | 5-Week Courses | WSCUC Accredited | Try a Course Free |
-| Highlight 2 | Transfer Up to 75% of Credits | 50+ Programs | 5-Week Classes |
-| Highlight 3 | $0 to Apply | $0 to Apply | $0 to Apply |
-| Hero image | hero-v5 assets | Page_6 | Page_9 (live OCC asset) |
+### HERO — copy matrix (paid vs organic)
 
-### VP-01 — card 2 differentiator
+| Field | request-info-v5 | degree-programs-v7 | online-college-courses-v5 | organic-homepage (HERO-V2) | online-degrees-hub (HERO-ORG) |
+|-------|-----------------|--------------------|-----------------------------|----------------------------|-------------------------------|
+| Headline | Earn Your Degree 100% Online at UAGC | Find the Right Degree for Your Career | Explore Flexible Online Courses at UAGC | Finish Your Degree / On Your Schedule | Your Degree, Your Schedule |
+| Trust / highlights | 5-Week Courses, Transfer, $0 Apply | WSCUC, 50+ Programs, $0 Apply | Try a Course Free, 5-Week, $0 Apply | $485/credit, 5-Week, WSCUC, $0 Apply | Same pill pattern — no in-hero CTA |
+| In-hero RFI | **Yes** (FORM-01) | **Yes** | **Yes** | **No** | **No** |
+| Hero image | hero-v5 assets | Page_6 | Page_9 (live OCC) | `homepage-mock-hero.mp4` + photo fallback | `hero.webp` / clone JSON |
+
+### VP-01 — card 2 differentiator (paid)
 
 | Template | Card 2 title |
 |----------|--------------|
 | v5 / v7 | No Standardized Tests Required (or spec default) |
 | OCC | **Try Your First Course Free** (stat: 3 wk) |
 
-### FORM-02 — section wrapper
+Organic homepage uses **WHY-CHOOSE** (`organic_why_choose`) instead of VP-01.
+
+### FORM-02 — section wrapper (paid + organic)
 
 | Template | Heading |
 |----------|---------|
-| v5 | Take the Next Step Toward Your Degree (or program-specific variant in spec) |
+| v5 | Take the Next Step Toward Your Degree |
 | v7 | Get Program Details Tailored to Your Goals |
 | OCC | Your Future Starts with One Course |
+| organic-homepage | Ready to Take the Next Step? / Confirm Your Cost Plan (when COST-EST context present) |
+| online-degrees-hub | Or Request Information Here |
+
+### Organic-specific overrides
+
+| Concern | Rule |
+|---------|------|
+| **Blog RFI** | No FORM-02; sticky FORM-05 only; sidebar program filter links to program pages |
+| **Hub RFI** | No hero-embedded RFI; header Request Info + closing FORM-02 + FORM-05 only |
+| **Thank-you personalization** | `firstName`, `program`, `confirmationId` from Lead API redirect — base fallback when params absent |
+| **TRUST-01 variant** | Paid: 3-card text grid with persona tags; Organic: `VideoTestimonialSection` with modal playback |
+| **FOOT-01 variant** | Paid: `Footer.tsx` pattern; Organic: `SiteFooter` — compact contact band, degree-area row, legal baseline; no logo images |
 
 ---
 
-## CSS & tokens (Drupal theme)
+## CSS and tokens (Drupal theme)
 
-Map from [`MASTER.md`](./MASTER.md) — do not hardcode one-off hex in Twig.
+Include **`drupal-theme.css`** in your theme — it provides all custom properties, typography utilities (`.type-h1` through `.type-micro`), layout classes (`.section-pad`, `.page-main`), form styling (`.rfi-input`, `.cta-primary`), interactive components, motion (scroll reveal, hero entrance), and reduced-motion fallbacks.
 
-| Token | CSS variable (recommended) | Use |
-|-------|---------------------------|-----|
-| `#0C234B` | `--uagc-navy` | Navy sections, header text |
-| `#EF9600` | `--uagc-gold` | Primary CTA, checkmarks, START-01 accents (**paid landing** — not strict Reskin red until brand sign-off) |
-| `#faf9f7` | `--uagc-surface-warm` | VP-01, FORM-02 bg |
-| `#fdf8ef` | `--uagc-surface-cred` | CRED-01 bg |
-| `#111111` / `#53565A` | `--text-primary` / `--text-muted` | Body copy |
-| Headlines | `--font-heading-condensed` | Fira Sans Extra Condensed 800 (web stand-in for Proxima Extra Condensed) |
-| H3–H5 | `--font-heading` | Montserrat 600 |
-| Body | `--font-body` | Fira Sans 16/24 desktop, 14/18 micro |
+Token values align with [`MASTER.md`](./MASTER.md). Do not hardcode one-off hex in Twig.
 
-**Layout:**
+**Layout conventions (all templates):**
 
 - Max width `1440px` centered
 - Section horizontal padding: 16px mobile → 32px desktop
-- Fixed header offset: `scroll-margin-top` on anchored sections (`80px` typical)
-- Flat colors only — no gradients, alpha overlays, or decorative shadows
+- Fixed header offset: `scroll-margin-top` on anchored sections (`80px` typical; organic headers may need `108px` on large breakpoints)
+- Paid landing: flat colors only — no gradients, alpha overlays, or decorative shadows unless module spec allows
+- Organic navy sections: maintain contrast — avoid faint `text-white/50`–`/70` on body copy; use `#b8c5d9` (`--uagc-navy-muted`) for subcopy on dark bands
+
+**Scope classes (recommended):**
+
+| Scope | Use |
+|-------|-----|
+| `.paid-landing` | `/success/*` paragraph wrappers |
+| `.organic-page` | Homepage, hub |
+| `.blog-article` | Blog node template |
+| `.thank-you-page` | Post-RFI confirmation |
 
 ---
 
 ## Build phases (recommended)
 
-### v1 — Layout parity (Phase 2 exit)
+### v1 — Paid landing layout parity
 
-- [ ] Paragraph types for all 🟢 modules used on target template
+- [ ] Paragraph types for all paid modules used on v5, v7, OCC (see `GLOBAL-COMPONENTS.md`)
+- [ ] `drupal-theme.css` integrated; paid scope classes applied
 - [ ] RFI mini + full + sticky bar wired to live Lead API
-- [ ] Three template nodes assemble from section order tables
+- [ ] Three paid template nodes assemble from section order tables
 - [ ] Mobile-first QA against acceptance checklists in page specs
-- [ ] Staging URL for stakeholder sign-off
+- [ ] Staging URLs for stakeholder sign-off
 
-### v1.1 — Interaction polish
+### v1.1 — Paid interaction polish
 
 - [ ] NAV-UX-01 scroll-spy
-- [ ] PROG-01 mobile show-all + native select filter
-- [ ] FIN-01 / SKEPT-01 disclosure animations (respect reduced motion)
+- [ ] PROG-01 mobile show-all + native `<select>` area filter
+- [ ] FIN-01 / SKEPT-01 disclosure panels (respect `prefers-reduced-motion`)
+- [ ] FAQ accordion ARIA patterns
 
-### v2 — Test & learn
+### v1.5 — Organic core (homepage + hub)
 
-- [ ] A/B `variant_id` hidden field + GA4
+- [ ] `organic_page` content type + `NAV-00` / organic `FOOT-01` theme regions
+- [ ] HERO-V2, HERO-ORG, IMPACT, WHY-CHOOSE, video TRUST-01, PERSONA-PATHS, ACCR-01
+- [ ] PROG-01 on homepage and hub (shared program data source)
+- [ ] COST-EST on homepage; TUITION-BAND + WAYS-TO-SAVE on hub
+- [ ] Closing FORM-02 + FORM-05 on homepage and hub — **no hero RFI**
+- [ ] SiteHeader Military / Partnerships dropdowns functional
+
+### v2 — Blog template + thank-you improvements
+
+- [ ] `blog_article` content type with author, dates, reading time, categories, related articles
+- [ ] BLOG-HERO, BLOG-BODY, BLOG-TOC, BLOG-SIDEBAR, BLOG-NEWSLETTER, BLOG-CTA, BLOG-PROGRESS, BLOG-SHARE
+- [ ] Thank-you: TY-HERO, TY-RECEIPT, TY-NEXT, TY-CONTACT, TY-CALC; personalized vs base variants
+- [ ] START-01 populated on thank-you (fix live empty start-date widget)
+- [ ] Post-submit redirect passes personalization params
+
+### v2.5 — Test and learn (A/B variant infrastructure)
+
+- [ ] A/B `variant_id` hidden field + GA4 on paid RFIs
 - [ ] Cookie-based variant assignment on `/success/request-info-v5`
-- [ ] Thank-you page next-step improvements (Phase 1 Task 1.10 gaps)
+- [ ] Staging validation before production traffic split
 
 ---
 
@@ -346,16 +493,24 @@ Map from [`MASTER.md`](./MASTER.md) — do not hardcode one-off hex in Twig.
 
 Before launch on each template:
 
+### All templates
+
 - [ ] Module order matches [Per-template section order](#per-template-section-order)
-- [ ] Hero RFI two-step; trust line below form
-- [ ] FORM-05 hidden on initial hero view; appears after scroll (mobile)
-- [ ] VP-01: no section-level RFI; no bulletPoints duplicating TRUST-02
-- [ ] PROG-01 (v5/v7): no per-program Request Info CTA; 50+ programs copy
-- [ ] FIN-01: no outbound links; disclosures stay on-page
-- [ ] CTA-01: chat, phone, #rfi, apply-now all functional
+- [ ] `drupal-theme.css` loaded; typography uses `.type-*` utilities
 - [ ] Touch targets ≥44px on mobile form and disclosure controls
-- [ ] Typography matches token ramp (headlines Extra Condensed, body 16/24)
-- [ ] Lead submission succeeds on staging with production-equivalent payload
+- [ ] Lead submission succeeds on staging with production-equivalent payload (paid + organic FORM-02)
+- [ ] `scroll-margin-top` offsets account for fixed header height
+
+### Paid (v5, v7, OCC)
+
+- [ ] Hero RFI two-step; FORM-05 after scroll only; VP-01 / FIN-01 / PROG-01 rules per spec; CTA-01 paths work; OCC has SKEPT-01 only (no CAREER/SALARY/CRED/EMOT)
+
+### Organic (homepage, hub, blog, thank-you)
+
+- [ ] Homepage: HERO-V2 trust pills only; video modal on TRUST-01; COST-EST → FORM-02 pre-fill; SiteHeader dropdowns; organic footer matches live structure
+- [ ] Hub: no hero RFI; closing FORM-02 only; WAYS-TO-SAVE on-page; FORM-05 after scroll
+- [ ] Blog: progress bar + TOC scroll-spy; no mid-page RFI; sidebar sticky; author/meta correct; share buttons work
+- [ ] Thank-you: personalized vs base variants; TY-RECEIPT + TY-CALC valid; no RFI; START-01 populated; NAV-00-TY hides Request Info
 
 ---
 
@@ -363,13 +518,19 @@ Before launch on each template:
 
 | # | Item | Owner | Status |
 |---|------|-------|--------|
-| 1 | Confirm existing paragraph type names vs this doc | TBD — Drupal team | ☐ |
+| 1 | Confirm existing paragraph type names vs `GLOBAL-COMPONENTS.md` | TBD — Drupal team | ☐ |
 | 2 | Live RFI webform / form plugin ID + Lead API schema | TBD — Drupal team | ☐ |
-| 3 | Program data source for PROG-01 | TBD — Drupal team | ☐ |
+| 3 | Program data source for PROG-01 (paid + organic hub/homepage) | TBD — Drupal team | ☐ |
 | 4 | Start date computation source for START-01 | TBD — Drupal team | ☐ |
 | 5 | Chat widget integration for CTA-01 | TBD — Drupal team | ☐ |
 | 6 | A/B variant mechanism (cookie + hidden field) | TBD — Dev / Analytics | ☐ |
-| 7 | Map Lightcast embed codes if CAREER-01 uses widget | TBD — see `EmbedCodes-LightcastWidget(Sheet1).csv` | ☐ |
+| 7 | Map Lightcast embed codes if CAREER-01 uses widget | TBD — see `data/lightcast-embed-codes.csv` | ☐ |
+| 8 | **Blog** content type fields, workflow, and related-article sourcing | TBD — Content / Drupal | ☐ |
+| 9 | **Video** hosting / embed URLs for organic `TRUST-01` (`VideoTestimonialSection`) | TBD — Content / Media | ☐ |
+| 10 | **Thank-you** personalization data source (`sid` / `token` / Lead API redirect shape) | TBD — Dev / CRM | ☐ |
+| 11 | **Hub** program data feed for `HUB-POPULAR` quick links + `PROG-01` filter options | TBD — Drupal team | ☐ |
+| 12 | **Newsletter** signup endpoint for `BLOG-NEWSLETTER` | TBD — Marketing / Dev | ☐ |
+| 13 | Organic `SiteHeader` nav items — confirm GA4/GSC priority for utility labels | TBD — SEO / Content | ☐ |
 
 ---
 
@@ -378,7 +539,11 @@ Before launch on each template:
 When prototype or Figma changes:
 
 1. Update `design-system/pages/<template>.md` and `componentry/*-modules.json` first.
-2. Sync **Page-specific overrides** and **section order** tables in this file.
-3. Do **not** duplicate full field lists — link to JSON manifest for prop/detail changes.
+2. Update field-level specs in **`GLOBAL-COMPONENTS.md`**.
+3. Sync **Page-specific overrides** and **section order** tables in this file only.
+4. Re-sync `drupal-theme.css` when `prototypes/src/app/globals.css` token or utility changes.
+5. Run `python registry.py diff <a> <b>` to verify stack parity after module moves.
 
-**Last updated:** 2026-06-02 · **Catalog version:** 26-module Layout Score Builder set
+**Do not** duplicate full field lists in this file — link to `GLOBAL-COMPONENTS.md` and JSON manifests for prop/detail changes.
+
+**Last updated:** 2026-06-15 · **Catalog version:** 49-module global component library

@@ -222,7 +222,8 @@ export function AccreditationBand() {
             alt="University of Arizona"
             width={160}
             height={48}
-            className="mt-0.5 h-10 w-auto shrink-0 sm:mt-0 sm:h-12"
+            style={{ width: "auto" }}
+            className="mt-0.5 h-10 shrink-0 sm:mt-0 sm:h-12"
           />
           <p className="text-[0.8125rem] leading-relaxed text-uagc-navy sm:text-sm">
             <span className="font-semibold">

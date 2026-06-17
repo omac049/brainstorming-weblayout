@@ -24,7 +24,7 @@
 
 **Rule:** Extra Condensed is **headlines only** — never body copy.
 
-### Freshness check (2026-06-01)
+### Freshness check (2026-06-16)
 
 | Source | Result |
 |--------|--------|
@@ -84,14 +84,18 @@
 | `surface-light` | `#F1F1F0` | Tables, light panels |
 | `border-light` | `#D0D0CE` | Rules, card strokes |
 
-### Wireframes file — current state
+### Wireframes file — current state (updated 2026-06-16)
 
 | Item | Status |
 |------|--------|
-| **`UAGC Tokens`** variable collection (9 colors + spacing) | ✅ Present in `HoSMZOSnKSVgUXlskHv9tS` |
+| **`UAGC Tokens`** variable collection | ✅ **33 variables** (15 color, 12 spacing, 6 radius) in `HoSMZOSnKSVgUXlskHv9tS` |
+| **Color tokens** | ✅ `uagc-navy`, `uagc-red`, `uagc-crimson`, `uagc-gold`, `uagc-sky`, `uagc-surface`, `uagc-light-gray-30`, `uagc-visited`, `text-primary`, `text-dark`, `text-muted`, `border-light`, `surface-light`, `white`, `black` |
+| **Spacing tokens** | ✅ 12 values: 4, 8, 12, 16, 20, 24, 32, 40, 48, 64, 80, 96 (scopes: WIDTH_HEIGHT, GAP) |
+| **Radius tokens** | ✅ `radius/sm` (6), `radius/md` (8), `radius/lg` (12), `radius/xl` (16), `radius/2xl` (24), `radius/full` (9999) |
+| **Effect styles** | ✅ `shadow/sm`, `shadow/md` |
 | Layers **bound** to color variables | ⚠️ Many fills still hard-coded hex from HTML capture |
 | Navy `#0C234B`, muted `#53565A`, white | ✅ Dominant on wireframes |
-| **`#EF9600`** (gold/orange) on RFI/CTAs | ❌ Wrong — orange is **warning labels only** |
+| **`#EF9600`** (gold/orange) on RFI/CTAs | ✅ Token `uagc-gold` added — used for paid CTA accents |
 | Capture artifacts (`#faf9f7`, `#f0eeeb`, `#1a3a6b`, …) | ⚠️ Replace with token variables where possible |
 
 ### Actions
@@ -135,9 +139,11 @@
 ```text
 MASTER.md (in-repo tokens)  ──────────►  Wireframes (HoSMZOSnKSVgUXlskHv9tS)
          │                                  │ 24 local text styles (Desktop + Mobile)
-         │                                  │ UAGC Tokens variables
-         │                                  │ 01–03 catalogs + componentry
-         └──────────────────────────────────────────►  ~/uagc-prototypes
+         │                                  │ 33 UAGC Tokens variables (color/spacing/radius)
+         │                                  │ 2 effect styles (shadow/sm, shadow/md)
+         │                                  │ 68+ promoted components with descriptions
+         │                                  │ 26 numbered pages (00–72)
+         └──────────────────────────────────────────►  prototypes/ (canonical)
 ```
 
 External Reskin Figma (`c4O4uPeilJDBZFjARNnt65`) — reference link only; **no team access**.
@@ -160,7 +166,7 @@ Use before sign-off on `request-info-v5`, `degree-programs-v7`, or `online-colle
 - [ ] Primary CTA color matches **documented** choice (red vs gold)
 - [ ] Icons 24px; correct contrast on navy vs light
 - [ ] `03` library previews are **rescaled editable clones** (not flattened PNG/SVG)
-- [ ] Componentry matches **`request-info-v5 - Componentry`** layout patterns for v5/v7
+- [ ] Componentry matches **`13 · request-info-v5 / Componentry`** layout patterns for v5/v7
 
 ---
 

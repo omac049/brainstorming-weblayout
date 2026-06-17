@@ -2,7 +2,7 @@
 
 > **Primary Figma file:** [UAGC Paid page templates 3 — Wireframe](https://www.figma.com/design/HoSMZOSnKSVgUXlskHv9tS/UAGC-Paid-page-templates-3--%E2%80%94-Wireframe?node-id=0-1) (`fileKey: HoSMZOSnKSVgUXlskHv9tS`) · [`FIGMA-FILES.md`](../FIGMA-FILES.md)  
 > **Tokens (repo):** [`MASTER.md`](../MASTER.md)  
-> **Componentry page:** `online-degrees-hub — Componentry` *(create — organic section, separate from paid v5/v7/OCC)*  
+> **Componentry page:** `52 · online-degrees-hub / Componentry`  
 > **Skill (componentry rebuilds):** [`.cursor/skills/figma-landing-componentry/SKILL.md`](../../.cursor/skills/figma-landing-componentry/SKILL.md)
 
 ---
@@ -11,10 +11,11 @@
 
 | Page | Purpose |
 |------|---------|
-| `online-degrees-hub — Wireframes` | Full-page desktop **1440** + mobile **375** prototype targets |
-| `online-degrees-hub — Componentry` | **00 Cover & Index** + **01 Desktop Module Catalog** + **02 Mobile Module Catalog** + **03 Organic Components Library** |
+| `50 · online-degrees-hub / Desktop 1440` | Full-page desktop wireframe |
+| `51 · online-degrees-hub / Mobile 375` | Full-page mobile wireframe |
+| `52 · online-degrees-hub / Componentry` | **00 Cover & Index** + **01 Desktop Module Catalog** + **02 Mobile Module Catalog** + **03 Organic Components Library** + **16 promoted `Organic /` components** |
 
-Organic pages live in the **same Figma file** as paid templates but on **dedicated pages** — do not overwrite `request-info-v5 - Componentry` or v7/OCC catalogs.
+Organic pages live in the **same Figma file** as paid templates but on **dedicated pages** — do not overwrite `13 · request-info-v5 / Componentry` or v7/OCC catalogs.
 
 ---
 
@@ -134,8 +135,8 @@ Set **component description:** `Catalog: {ID} · Handoff: design-system/pages/on
 
 | Object | Pattern | Example |
 |--------|---------|---------|
-| Wireframes page | `online-degrees-hub — Wireframes` | |
-| Componentry page | `online-degrees-hub — Componentry` | |
+| Wireframes page | `50 · online-degrees-hub / Desktop 1440` | |
+| Componentry page | `52 · online-degrees-hub / Componentry` | |
 | Wireframe desktop | `online-degrees-hub · Desktop 1440` | |
 | Wireframe mobile | `online-degrees-hub · Mobile 375` | |
 | Module card | `Module / {ID} — {Name}` | `Module / HUB-CATALOG — Program Catalog` |
@@ -160,7 +161,7 @@ Clone and relabel — do not instance paid components with wrong organic IDs in 
 
 ## Handoff checklist (design QA)
 
-- [ ] Pages `online-degrees-hub — Wireframes` and `online-degrees-hub — Componentry` created
+- [x] Pages `50 · online-degrees-hub / Desktop 1440`, `51 · online-degrees-hub / Mobile 375`, `52 · online-degrees-hub / Componentry` created (16 promoted components)
 - [ ] **11** desktop catalog cards at full height (1440-wide cards)
 - [ ] Mobile catalog covers HUB-CATALOG, RFI-HERO, FORM-05
 - [ ] **03** library uses editable clones scaled to 448px — not PNG imports

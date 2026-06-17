@@ -66,10 +66,10 @@ export function BlogNewsletterSignup({
           <form onSubmit={handleSubmit} className="mt-6">
             <div
               className={cn(
-                "flex rounded-xl border transition-[border-color,box-shadow] duration-200 ease-out",
+                "flex flex-col gap-2.5 sm:flex-row sm:gap-0 sm:rounded-xl sm:border sm:transition-[border-color,box-shadow] sm:duration-200 sm:ease-out",
                 focused
-                  ? "border-uagc-gold/50 ring-2 ring-uagc-gold/20"
-                  : "border-white/15",
+                  ? "sm:border-uagc-gold/50 sm:ring-2 sm:ring-uagc-gold/20"
+                  : "sm:border-white/15",
               )}
             >
               <input
@@ -80,15 +80,15 @@ export function BlogNewsletterSignup({
                 onBlur={() => setFocused(false)}
                 placeholder="Email address"
                 required
-                className="min-w-0 flex-1 rounded-l-xl bg-white/[0.07] px-4 py-3 text-sm text-white placeholder:text-white/35 focus:outline-none"
+                className="min-w-0 flex-1 rounded-xl border border-white/15 bg-white/[0.07] px-4 py-3.5 text-base text-white placeholder:text-white/35 focus:border-uagc-gold/50 focus:outline-none focus:ring-2 focus:ring-uagc-gold/20 sm:rounded-none sm:rounded-l-xl sm:border-0 sm:py-3 sm:text-sm sm:focus:ring-0"
               />
               <button
                 type="submit"
-                className="group flex shrink-0 items-center gap-1.5 rounded-r-xl bg-uagc-gold px-5 py-3 text-sm font-bold text-uagc-navy transition-[background-color,transform] duration-160 ease-out hover:bg-uagc-gold-hover active:scale-[0.97]"
+                className="group flex shrink-0 items-center justify-center gap-1.5 rounded-xl bg-uagc-gold px-5 py-3.5 text-base font-bold text-uagc-navy transition-[background-color,transform] duration-160 ease-out hover:bg-uagc-gold-hover active:scale-[0.97] sm:rounded-none sm:rounded-r-xl sm:py-3 sm:text-sm"
               >
                 Subscribe
                 <ArrowRight
-                  className="size-3.5 transition-transform duration-200 ease-out group-hover:translate-x-0.5 group-active:translate-x-1"
+                  className="size-4 transition-transform duration-200 ease-out group-hover:translate-x-0.5 group-active:translate-x-1 sm:size-3.5"
                   aria-hidden
                 />
               </button>
@@ -123,15 +123,15 @@ export function BlogNewsletterSignup({
           onChange={(e) => setEmail(e.target.value)}
           placeholder="Your email address"
           required
-          className="w-full rounded-xl border border-white/15 bg-white/[0.07] px-4 py-3 text-sm text-white placeholder:text-white/35 transition-[border-color,box-shadow] duration-200 ease-out focus:border-uagc-gold/50 focus:outline-none focus:ring-2 focus:ring-uagc-gold/20"
+          className="w-full rounded-xl border border-white/15 bg-white/[0.07] px-4 py-3.5 text-base text-white placeholder:text-white/35 transition-[border-color,box-shadow] duration-200 ease-out focus:border-uagc-gold/50 focus:outline-none focus:ring-2 focus:ring-uagc-gold/20 sm:py-3 sm:text-sm"
         />
         <button
           type="submit"
-          className="group flex w-full items-center justify-center gap-2 rounded-xl bg-uagc-gold px-4 py-3 text-sm font-bold text-uagc-navy transition-[background-color,transform] duration-160 ease-out hover:bg-uagc-gold-hover active:scale-[0.97]"
+          className="group flex w-full items-center justify-center gap-2 rounded-xl bg-uagc-gold px-4 py-3.5 text-base font-bold text-uagc-navy transition-[background-color,transform] duration-160 ease-out hover:bg-uagc-gold-hover active:scale-[0.97] sm:py-3 sm:text-sm"
         >
           Subscribe
           <ArrowRight
-            className="size-3.5 transition-transform duration-200 ease-out group-hover:translate-x-0.5 group-active:translate-x-1"
+            className="size-4 transition-transform duration-200 ease-out group-hover:translate-x-0.5 group-active:translate-x-1 sm:size-3.5"
             aria-hidden
           />
         </button>

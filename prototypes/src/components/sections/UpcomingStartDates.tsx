@@ -22,21 +22,56 @@ export interface UpcomingStartDatesProps {
  */
 const MIN_ENROLLMENT_WINDOW_DAYS = 14;
 
-const ALL_START_DATES: StartDateEntry[] = [
-  { date: "June 16" },
-  { date: "July 7" },
-  { date: "July 28" },
-];
+/**
+ * UAGC starts new classes every 3 weeks. Given an anchor date
+ * (a known valid start date), we generate a rolling set of dates
+ * so the component never runs out of future dates to display.
+ */
+const START_CYCLE_DAYS = 21;
+const ANCHOR_DATE = new Date(2026, 5, 16); // June 16 2026, known start
+
+function generateRollingStartDates(): StartDateEntry[] {
+  const now = new Date();
+  now.setHours(0, 0, 0, 0);
+
+  const entries: StartDateEntry[] = [];
+  const msPerDay = 24 * 60 * 60 * 1000;
+  const cycleMs = START_CYCLE_DAYS * msPerDay;
+
+  const elapsedMs = now.getTime() - ANCHOR_DATE.getTime();
+  const cyclesSinceAnchor = Math.floor(elapsedMs / cycleMs);
+  const firstCycleIndex = cyclesSinceAnchor - 1;
+
+  for (let i = firstCycleIndex; i < firstCycleIndex + 12; i++) {
+    const d = new Date(ANCHOR_DATE.getTime() + i * cycleMs);
+    if (d.getTime() >= now.getTime()) {
+      const month = d.toLocaleString("en-US", { month: "long" });
+      const day = d.getDate();
+      entries.push({ date: `${month} ${day}` });
+    }
+    if (entries.length >= 6) break;
+  }
+
+  return entries;
+}
+
+const ALL_START_DATES: StartDateEntry[] = generateRollingStartDates();
 
 export function daysUntilStartDate(dateStr: string): number {
   const currentYear = new Date().getFullYear();
   const target = new Date(`${dateStr}, ${currentYear}`);
   const now = new Date();
   now.setHours(0, 0, 0, 0);
+  target.setHours(0, 0, 0, 0);
   const diff = Math.ceil(
     (target.getTime() - now.getTime()) / (1000 * 60 * 60 * 24),
   );
-  return diff > 0 ? diff : diff + 365;
+  if (diff >= 0) return diff;
+  const nextYear = new Date(`${dateStr}, ${currentYear + 1}`);
+  nextYear.setHours(0, 0, 0, 0);
+  return Math.ceil(
+    (nextYear.getTime() - now.getTime()) / (1000 * 60 * 60 * 24),
+  );
 }
 
 function filterEnrollableDates(entries: StartDateEntry[]): StartDateEntry[] {

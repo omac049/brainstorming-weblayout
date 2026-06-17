@@ -1,0 +1,898 @@
+/**
+ * UAGC Drupal Theme — Design Token Stylesheet
+ *
+ * Extracted from Next.js prototype (prototypes/src/app/globals.css)
+ * for Drupal theme integration. No Tailwind or React dependency.
+ *
+ * Usage: Include in your Drupal theme's CSS pipeline.
+ * Token values align with design-system/MASTER.md.
+ *
+ * Sections:
+ *   1. Custom Properties (colors, fonts, spacing)
+ *   2. Base Styles (typography, focus, touch)
+ *   3. Typography Scale (.type-h1 through .type-micro)
+ *   4. Layout Utilities (.section-pad, .page-main, etc.)
+ *   5. Interactive Components (.cta-primary, .rfi-input, etc.)
+ *   6. Motion & Animation (scroll reveal, hero entrance)
+ *   7. Reduced Motion Fallbacks
+ *
+ * Last synced: 2026-06-15
+ * Source: prototypes/src/app/globals.css
+ */
+
+/* ==========================================================================
+   1. Custom Properties
+   ========================================================================== */
+
+:root {
+  /* Font families */
+  --font-sans: "Fira Sans", Arial, sans-serif;
+  --font-heading: "Montserrat", "Fira Sans", sans-serif;
+  --font-heading-condensed: "Fira Sans Extra Condensed", "Montserrat", sans-serif;
+
+  /* UAGC brand colors — design-system/MASTER.md */
+  --uagc-navy: #0C234B;
+  --uagc-red: #AB0520;
+  --uagc-crimson: #C10121;
+  --uagc-gold: #EF9600;
+  --uagc-beige: #D6D2C4;
+  --uagc-gray: #53565A;
+  --uagc-dark: #111111;
+  --uagc-light: #FEFEFE;
+  --uagc-surface: #F1F1F0;
+  --uagc-border: #D0D0CE;
+  --uagc-navy-muted: #b8c5d9;
+  --uagc-cream: #faf9f7;
+  --uagc-cream-warm: #fdf8ef;
+  --uagc-gold-hover: #f5a623;
+  --uagc-gold-dark: #d4870a;
+  --uagc-gold-tint: #fdf3e0;
+  --uagc-gold-tint-hover: #fcefd4;
+  --uagc-red-hover: #8a0418;
+  --uagc-accent: #2a4a7b;
+  --uagc-navy-hover: #1a3566;
+  --uagc-navy-panel: #0a1d3f;
+  --uagc-navy-deep: #132a52;
+  --uagc-border-light: #e8e6e3;
+  --uagc-border-light-hover: #d4cfc9;
+  --uagc-border-navy: #2a4068;
+  --uagc-tab-track: #f7f6f5;
+  --uagc-hero-sub: #e8edf5;
+  --uagc-navy-card: #0a1c3d;
+  --uagc-navy-card-border: #1a3a6b;
+  --uagc-navy-card-muted: #8a9bb5;
+  --uagc-teal: #1b6e6e;
+  --uagc-teal-dark: #155a5a;
+  --uagc-teal-light: #238383;
+
+  /* Semantic aliases */
+  --uagc-background: #ffffff;
+  --uagc-foreground: #111111;
+
+  /* Border radius scale */
+  --radius: 0.375rem;
+  --radius-sm: calc(var(--radius) * 0.6);
+  --radius-md: calc(var(--radius) * 0.8);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) * 1.4);
+  --radius-2xl: calc(var(--radius) * 1.8);
+  --radius-3xl: calc(var(--radius) * 2.2);
+  --radius-4xl: calc(var(--radius) * 2.6);
+
+  /* Mobile sticky RFI bar clearance (measured at runtime; fallback for SSR) */
+  --uagc-sticky-rfi-height: 6.25rem;
+  /* Optional second fixed bar (e.g. Cost Estimator mobile estimate) */
+  --uagc-sticky-secondary-height: 0px;
+  /* Fixed SiteHeader clearance incl. notch */
+  --uagc-header-offset: calc(3.5rem + env(safe-area-inset-top, 0px));
+}
+
+@media (min-width: 640px) {
+  :root {
+    --uagc-header-offset: calc(4rem + env(safe-area-inset-top, 0px));
+  }
+}
+
+@media (min-width: 1024px) {
+  :root {
+    --uagc-header-offset: 6rem;
+  }
+}
+
+/* ==========================================================================
+   2. Base Styles
+   ========================================================================== */
+
+html {
+  font-family: var(--font-sans);
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  background: var(--uagc-background);
+  color: var(--uagc-foreground);
+  font-size: 1rem;
+  line-height: 1.6;
+}
+
+@media (min-width: 1024px) {
+  body {
+    font-size: 1.125rem;
+  }
+}
+
+h1,
+h2 {
+  font-family: var(--font-heading-condensed);
+  font-weight: 800;
+}
+
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-heading);
+}
+
+:focus-visible {
+  outline: 2px solid var(--uagc-navy);
+  outline-offset: 2px;
+}
+
+a,
+button,
+[role="button"],
+input,
+select,
+textarea,
+label[for] {
+  touch-action: manipulation;
+}
+
+@media (hover: none) and (pointer: coarse) {
+  a,
+  button,
+  [role="button"],
+  input,
+  select,
+  textarea,
+  summary {
+    -webkit-tap-highlight-color: rgba(12, 35, 75, 0.1);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+/* ==========================================================================
+   3. Typography Scale
+   ========================================================================== */
+
+/* H1 Default: Condensed Extrabold — mobile 32/40, desktop 48/56 */
+.type-h1 {
+  font-family: var(--font-heading-condensed);
+  font-size: 2rem;
+  font-weight: 800;
+  letter-spacing: -0.01em;
+  line-height: 1.25;
+}
+
+@media (min-width: 1024px) {
+  .type-h1 {
+    font-size: 3rem;
+    line-height: 1.167;
+  }
+}
+
+/* H1 Small: Condensed Extrabold — mobile 24/32, desktop 32/40 */
+.type-h1-sm {
+  font-family: var(--font-heading-condensed);
+  font-size: 1.5rem;
+  font-weight: 800;
+  letter-spacing: -0.01em;
+  line-height: 1.333;
+}
+
+@media (min-width: 1024px) {
+  .type-h1-sm {
+    font-size: 2rem;
+    line-height: 1.25;
+  }
+}
+
+/* H2: Condensed Extrabold — mobile 28/32, desktop 36/48 */
+.type-h2 {
+  font-family: var(--font-heading-condensed);
+  font-size: 1.75rem;
+  font-weight: 800;
+  letter-spacing: -0.01em;
+  line-height: 1.143;
+}
+
+@media (min-width: 1024px) {
+  .type-h2 {
+    font-size: 2.25rem;
+    line-height: 1.333;
+  }
+}
+
+/* H3: Semibold — mobile 26/32, desktop 32/40 */
+.type-h3 {
+  font-family: var(--font-heading);
+  font-size: 1.625rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  line-height: 1.231;
+}
+
+@media (min-width: 1024px) {
+  .type-h3 {
+    font-size: 2rem;
+    line-height: 1.25;
+  }
+}
+
+/* H4: Semibold — mobile 24/32, desktop 28/40 */
+.type-h4 {
+  font-family: var(--font-heading);
+  font-size: 1.5rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  line-height: 1.333;
+}
+
+@media (min-width: 1024px) {
+  .type-h4 {
+    font-size: 1.75rem;
+    line-height: 1.429;
+  }
+}
+
+/* H5: Semibold — mobile 20/24, desktop 24/32 */
+.type-h5 {
+  font-family: var(--font-heading);
+  font-size: 1.25rem;
+  font-weight: 600;
+  line-height: 1.2;
+}
+
+@media (min-width: 1024px) {
+  .type-h5 {
+    font-size: 1.5rem;
+    line-height: 1.333;
+  }
+}
+
+/* Eyebrow: Semibold uppercase — 16/24 both breakpoints */
+.type-eyebrow {
+  font-family: var(--font-sans);
+  font-size: 1rem;
+  font-weight: 600;
+  line-height: 1.5;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+/* P Quote: Regular — mobile 24/32, desktop 32/40 */
+.type-quote {
+  font-family: var(--font-sans);
+  font-size: 1.5rem;
+  font-weight: 400;
+  line-height: 1.333;
+}
+
+@media (min-width: 1024px) {
+  .type-quote {
+    font-size: 2rem;
+    line-height: 1.25;
+  }
+}
+
+/* P Small (default body): 16/24 at all breakpoints */
+.type-body {
+  font-size: 1rem;
+  line-height: 1.5;
+}
+
+/* P Meta / P Micro: 14/18 */
+.type-meta {
+  font-size: 0.875rem;
+  font-weight: 400;
+  line-height: 1.286;
+}
+
+/* Stat display: Condensed Extrabold for large numbers */
+.type-stat {
+  font-family: var(--font-heading-condensed);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  line-height: 1;
+}
+
+/* Readable micro-copy floor (12px) */
+.type-micro {
+  font-size: 0.75rem;
+  line-height: 1.333;
+}
+
+/* ==========================================================================
+   4. Layout Utilities
+   ========================================================================== */
+
+.section-pad {
+  padding-block: 3rem;
+}
+
+@media (min-width: 640px) {
+  .section-pad {
+    padding-block: 4rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .section-pad {
+    padding-block: 6rem;
+  }
+}
+
+.section-pad-lg {
+  padding-block: 3.5rem;
+}
+
+@media (min-width: 640px) {
+  .section-pad-lg {
+    padding-block: 4.5rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .section-pad-lg {
+    padding-block: 5.5rem;
+  }
+}
+
+.mobile-sticky-offset {
+  padding-bottom: calc(
+    var(--uagc-sticky-rfi-height)
+    + var(--uagc-sticky-secondary-height)
+    + env(safe-area-inset-bottom, 0px)
+  );
+}
+
+@media (min-width: 768px) {
+  .mobile-sticky-offset {
+    padding-bottom: 0;
+  }
+}
+
+.page-main {
+  padding-top: var(--uagc-header-offset);
+  overflow-x: clip;
+}
+
+@media (min-width: 1024px) {
+  .page-main--paid {
+    padding-top: 5rem;
+  }
+}
+
+@media (max-width: 1023px) {
+  .page-main--paid {
+    padding-top: calc(4rem + env(safe-area-inset-top, 0px));
+  }
+}
+
+@media (min-width: 640px) and (max-width: 1023px) {
+  .page-main--paid {
+    padding-top: calc(4.5rem + env(safe-area-inset-top, 0px));
+  }
+}
+
+.page-main--hub {
+  padding-top: calc(4rem + env(safe-area-inset-top, 0px));
+}
+
+@media (min-width: 640px) {
+  .page-main--hub {
+    padding-top: calc(4.5rem + env(safe-area-inset-top, 0px));
+  }
+}
+
+@media (min-width: 1024px) {
+  .page-main--hub {
+    padding-top: 6.75rem;
+  }
+}
+
+.safe-area-bottom {
+  padding-bottom: max(0.75rem, env(safe-area-inset-bottom, 0px));
+}
+
+/* ==========================================================================
+   Touch / Accessibility
+   ========================================================================== */
+
+.skip-link {
+  position: absolute;
+  left: 1rem;
+  top: 1rem;
+  z-index: 200;
+  transform: translateY(-200%);
+  border-radius: 9999px;
+  background: var(--uagc-navy);
+  color: #ffffff;
+  font-size: 0.875rem;
+  font-weight: 600;
+  padding: 0.625rem 1.25rem;
+  text-decoration: none;
+  transition: transform 0.2s ease;
+}
+
+.skip-link:focus {
+  transform: translateY(0);
+}
+
+.touch-target {
+  min-height: 2.75rem;
+  min-width: 2.75rem;
+}
+
+.touch-target-inline {
+  min-height: 2.75rem;
+  display: inline-flex;
+  align-items: center;
+}
+
+/* ==========================================================================
+   Mobile Nav Scroll
+   ========================================================================== */
+
+.mobile-nav-scroll {
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior-x: contain;
+  scroll-snap-type: x proximity;
+  scroll-padding-inline: 1.25rem;
+  scrollbar-width: none;
+}
+
+.mobile-nav-scroll::-webkit-scrollbar {
+  display: none;
+}
+
+.mobile-nav-scroll > a,
+.mobile-nav-scroll > button,
+.mobile-nav-scroll > li > button {
+  scroll-snap-align: start;
+}
+
+.scrollbar-none {
+  scrollbar-width: none;
+}
+
+.scrollbar-none::-webkit-scrollbar {
+  display: none;
+}
+
+/* ==========================================================================
+   5. Interactive Components
+   ========================================================================== */
+
+.accent-bar {
+  display: block;
+  height: 3px;
+  width: 2.5rem;
+  background: var(--uagc-gold);
+}
+
+.cta-primary {
+  display: inline-flex;
+  min-height: 3.25rem;
+  align-items: center;
+  justify-content: center;
+  border-radius: 9999px;
+  background: var(--uagc-gold);
+  padding-inline: 2.25rem;
+  padding-block: 0.875rem;
+  font-size: 0.875rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--uagc-navy);
+  transition:
+    background-color 0.2s ease,
+    transform 0.2s ease;
+}
+
+.cta-primary:hover {
+  background: var(--uagc-gold-hover);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .cta-primary:hover {
+    transform: scale(1.02);
+  }
+
+  .cta-primary:active {
+    transform: scale(0.98);
+  }
+}
+
+.cta-primary:focus-visible {
+  outline: 2px solid var(--uagc-navy);
+  outline-offset: 2px;
+}
+
+.link-underline {
+  text-decoration: underline;
+  text-decoration-color: transparent;
+  text-underline-offset: 0.2em;
+  transition:
+    color 0.2s ease,
+    text-decoration-color 0.2s ease;
+}
+
+.link-underline:hover {
+  text-decoration-color: currentColor;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .motion-hover-lift {
+    transition:
+      transform 0.2s ease,
+      background-color 0.2s ease,
+      box-shadow 0.2s ease;
+  }
+
+  .motion-hover-lift:hover {
+    transform: scale(1.02);
+    box-shadow: 0 10px 28px rgba(12, 35, 75, 0.1);
+  }
+
+  .motion-hover-lift:active {
+    transform: scale(0.98);
+  }
+}
+
+.rfi-input {
+  min-height: 3.25rem;
+  width: 100%;
+  border-radius: 0.625rem;
+  border: 1px solid #d1d5db;
+  background: #ffffff;
+  padding: 0.875rem 1rem;
+  font-size: 1rem;
+  line-height: 1.4;
+  color: var(--uagc-dark);
+  outline: none;
+  -webkit-appearance: none;
+  appearance: none;
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.rfi-input:focus {
+  border-color: var(--uagc-gold);
+  box-shadow: 0 0 0 3px rgba(239, 150, 0, 0.15);
+}
+
+@media (min-width: 640px) {
+  .rfi-input {
+    min-height: 3rem;
+    border-radius: 0.5rem;
+  }
+}
+
+.rfi-button-primary {
+  display: inline-flex;
+  min-height: 3.5rem;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  border-radius: 9999px;
+  background: var(--uagc-gold);
+  padding-inline: 1.5rem;
+  padding-block: 1rem;
+  font-size: 0.875rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--uagc-navy);
+  text-decoration: none;
+  transition:
+    background-color 0.2s ease,
+    transform 0.2s ease;
+}
+
+@media (min-width: 640px) {
+  .rfi-button-primary {
+    min-height: 3.25rem;
+    padding-block: 0.875rem;
+  }
+}
+
+.rfi-button-primary:hover {
+  background: var(--uagc-gold-hover);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .rfi-button-primary:hover {
+    transform: scale(1.02);
+  }
+
+  .rfi-button-primary:active {
+    transform: scale(0.98);
+  }
+}
+
+.rfi-button-primary:focus-visible {
+  outline: 2px solid var(--uagc-navy);
+  outline-offset: 2px;
+}
+
+.rfi-button-primary:disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+/* ==========================================================================
+   6. Motion & Animation
+   ========================================================================== */
+
+@media (prefers-reduced-motion: no-preference) {
+  @keyframes fadeSlideUp {
+    from {
+      opacity: 0;
+      transform: translateY(1.5rem);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes fadeSlideLeft {
+    from {
+      opacity: 0;
+      transform: translateX(2rem) scale(0.97);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0) scale(1);
+    }
+  }
+
+  .reveal-section {
+    opacity: 0;
+    transform: translateY(2rem);
+    transition:
+      opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1),
+      transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .reveal-section.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .reveal-section.stagger-1 { transition-delay: 0.08s; }
+  .reveal-section.stagger-2 { transition-delay: 0.16s; }
+  .reveal-section.stagger-3 { transition-delay: 0.24s; }
+  .reveal-section.stagger-4 { transition-delay: 0.32s; }
+  .reveal-section.stagger-5 { transition-delay: 0.38s; }
+  .reveal-section.stagger-6 { transition-delay: 0.44s; }
+  .reveal-section.stagger-7 { transition-delay: 0.50s; }
+  .reveal-section.stagger-8 { transition-delay: 0.56s; }
+
+  @media (hover: none) and (pointer: coarse) {
+    .reveal-section {
+      opacity: 1;
+      transform: none;
+      transition: none;
+    }
+  }
+
+  .scroll-reveal {
+    transform: translateY(1rem);
+    transition: transform 0.55s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .scroll-reveal.is-visible {
+    transform: translateY(0);
+  }
+
+  @keyframes hero-text-reveal {
+    from {
+      opacity: 0;
+      transform: translateY(1.25rem);
+      filter: blur(4px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+      filter: blur(0);
+    }
+  }
+
+  .hero-enter-headline {
+    animation: hero-text-reveal 0.8s cubic-bezier(0.22, 1, 0.36, 1) 0.1s both;
+  }
+
+  .hero-enter-sub {
+    animation: hero-text-reveal 0.8s cubic-bezier(0.22, 1, 0.36, 1) 0.25s both;
+  }
+
+  .hero-enter-pills {
+    animation: hero-text-reveal 0.8s cubic-bezier(0.22, 1, 0.36, 1) 0.45s both;
+  }
+
+  .hero-enter-form {
+    animation: hero-text-reveal 0.8s cubic-bezier(0.22, 1, 0.36, 1) 0.3s both;
+  }
+
+  .hero-enter-nav {
+    animation: hero-text-reveal 0.6s cubic-bezier(0.22, 1, 0.36, 1) 0.6s both;
+  }
+
+  @keyframes pill-glow {
+    0%, 100% {
+      box-shadow: 0 0 0 0 rgba(239, 150, 0, 0);
+    }
+    50% {
+      box-shadow: 0 0 12px 2px rgba(239, 150, 0, 0.25);
+    }
+  }
+
+  .trust-pill-accent {
+    animation: pill-glow 3s ease-in-out 1.2s 3;
+  }
+
+  @keyframes cost-tick {
+    0% {
+      transform: scale(1);
+    }
+    45% {
+      transform: scale(1.04);
+    }
+    100% {
+      transform: scale(1);
+    }
+  }
+
+  .cost-tick {
+    animation: cost-tick 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  @keyframes live-pulse {
+    0%, 100% {
+      opacity: 1;
+      transform: scale(1);
+    }
+    50% {
+      opacity: 0.45;
+      transform: scale(0.85);
+    }
+  }
+
+  .live-dot {
+    animation: live-pulse 2.4s ease-in-out infinite;
+  }
+}
+
+/* Video cards */
+.video-card .play-btn::after {
+  content: "";
+  position: absolute;
+  inset: -4px;
+  border-radius: 9999px;
+  border: 2px solid rgba(255, 255, 255, 0.35);
+  opacity: 0;
+  transform: scale(0.85);
+  transition: opacity 200ms ease-out, transform 200ms ease-out;
+}
+
+.video-card:hover .play-btn::after,
+.video-card:focus-visible .play-btn::after {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* Video modal */
+.video-modal-backdrop {
+  background: rgba(0, 0, 0, 0.88);
+  animation: backdropIn 200ms ease-out both;
+}
+
+.video-modal-content {
+  animation: modalSlideUp 300ms cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+@keyframes backdropIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes modalSlideUp {
+  from {
+    opacity: 0;
+    transform: translateY(16px) scale(0.97);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* Article TOC stagger */
+.toc-item {
+  opacity: 0;
+  transform: translateY(6px);
+  transition:
+    opacity 280ms cubic-bezier(0.23, 1, 0.32, 1),
+    transform 280ms cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.toc-item-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ==========================================================================
+   7. Reduced Motion Fallbacks
+   ========================================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal-section {
+    opacity: 1;
+    transform: none;
+  }
+
+  .scroll-reveal {
+    transform: none;
+    transition: none;
+  }
+
+  .hero-enter-headline,
+  .hero-enter-sub,
+  .hero-enter-pills,
+  .hero-enter-nav,
+  .hero-enter-form {
+    animation: none;
+    opacity: 1;
+  }
+
+  .trust-pill-accent {
+    animation: none;
+  }
+
+  .cost-tick {
+    animation: none;
+  }
+
+  .live-dot {
+    animation: none;
+  }
+
+  .video-modal-backdrop,
+  .video-modal-content {
+    animation: none;
+  }
+
+  .video-card .play-btn::after {
+    transition: none;
+  }
+
+  .toc-item {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}

@@ -27,10 +27,10 @@ interface BlogSidebarProps {
 function SidebarKeyTakeaways({ items }: { items: string[] }) {
   return (
     <div className="rounded-xl border border-uagc-gold/30 bg-uagc-cream-warm px-4 py-4">
-      <h3 className="mb-2 text-xs font-bold uppercase tracking-wider text-uagc-navy/60">
+      <h3 className="mb-2 text-[0.8125rem] font-bold uppercase tracking-wider text-uagc-navy/60">
         Key Takeaways
       </h3>
-      <ul className="space-y-1.5">
+      <ul className="space-y-2">
         {items.map((item) => {
           const dotIdx = item.indexOf(". ");
           const lead = dotIdx > 0 ? item.slice(0, dotIdx + 1) : item;
@@ -71,7 +71,7 @@ function AuthorCard({ article }: { article: BlogArticle }) {
           </a>
         )}
         <div>
-          <p className="text-[0.6875rem] font-semibold uppercase tracking-wider text-uagc-navy/45">
+          <p className="text-[0.75rem] font-semibold uppercase tracking-wider text-uagc-navy/45">
             Author
           </p>
           {author.profileHref ? (
@@ -117,12 +117,12 @@ function SidebarRelatedArticles({
       <h3 className="mb-4 text-sm font-bold text-uagc-navy">
         Related Articles
       </h3>
-      <div className="space-y-4">
+      <div className="space-y-3">
         {articles.map((article) => (
           <Link
             key={article.title}
             href={article.href}
-            className="group flex gap-3"
+            className="group flex gap-3 rounded-lg p-1.5 -mx-1.5 transition-colors active:bg-gray-50"
           >
             <div className="relative size-16 shrink-0 overflow-hidden rounded-lg bg-gray-100">
               {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -136,10 +136,10 @@ function SidebarRelatedArticles({
               <span className="text-[0.6875rem] font-bold uppercase tracking-wider text-uagc-red">
                 {article.category}
               </span>
-              <p className="mt-0.5 line-clamp-2 text-xs font-semibold leading-snug text-uagc-navy transition-colors group-hover:text-uagc-red">
+              <p className="mt-0.5 line-clamp-2 text-[0.8125rem] font-semibold leading-snug text-uagc-navy transition-colors group-hover:text-uagc-red">
                 {article.title}
               </p>
-              <div className="mt-1 flex items-center gap-2 text-[0.6875rem] text-uagc-navy/55">
+              <div className="mt-1 flex items-center gap-2 text-[0.75rem] text-uagc-navy/55">
                 <span>{article.date}</span>
                 <span className="flex items-center gap-0.5">
                   <Clock className="size-2.5" aria-hidden />

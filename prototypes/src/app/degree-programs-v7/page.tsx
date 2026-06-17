@@ -21,6 +21,7 @@
 
 import { useRef } from "react";
 
+import { useRfiRedirect } from "@/hooks/useRfiRedirect";
 import { Footer } from "@/components/shared/Footer";
 import { PageMain } from "@/components/shared/PageMain";
 import { Header } from "@/components/shared/Header";
@@ -130,6 +131,7 @@ const V7_FAQ_ITEMS: FAQItem[] = [
 
 export default function DegreeProgramsV7() {
   const heroFormRef = useRef<HTMLDivElement>(null);
+  const handleRfiSubmit = useRfiRedirect();
 
   return (
     <>
@@ -157,7 +159,7 @@ export default function DegreeProgramsV7() {
           ]}
         >
           <div id="hero-rfi" className="flex w-full scroll-mt-24 flex-col gap-2">
-            <RFIForm variant="mini" heroFormRef={heroFormRef} />
+            <RFIForm variant="mini" heroFormRef={heroFormRef} onSubmit={handleRfiSubmit} />
             <p className="text-center text-[0.6875rem] text-uagc-gray/80">
               It only takes a minute. No obligation.
             </p>
@@ -328,7 +330,7 @@ export default function DegreeProgramsV7() {
                   </span>
                 </div>
               </div>
-              <RFIForm variant="full" />
+              <RFIForm variant="full" onSubmit={handleRfiSubmit} />
             </div>
           </section>
         </ScrollReveal>

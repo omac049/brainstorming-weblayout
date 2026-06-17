@@ -53,6 +53,17 @@ export default function RootLayout({
       className={`${firaSans.variable} ${firaSansCondensed.variable} ${montserrat.variable} h-full antialiased`}
       suppressHydrationWarning
     >
+      <head>
+        <script
+          src="https://mcp.figma.com/mcp/html-to-design/capture.js"
+          async
+        />
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `(function(){if(!location.hash.includes('figmacapture'))return;document.documentElement.classList.add('figma-capture');function revealAll(){document.querySelectorAll('.reveal-section,.scroll-reveal').forEach(function(el){el.classList.add('is-visible');});document.querySelectorAll('img').forEach(function(img){img.style.opacity='1';img.style.visibility='visible';});document.querySelectorAll('video').forEach(function(v){v.pause();v.style.display='none';});document.querySelectorAll('[aria-hidden="true"]').forEach(function(el){if(el.querySelector('img')){el.style.opacity='1';el.removeAttribute('aria-hidden');}});}function waitForImages(){return Promise.all(Array.from(document.images).map(function(img){if(img.complete&&img.naturalWidth>0)return Promise.resolve();return new Promise(function(res){img.addEventListener('load',res,{once:true});img.addEventListener('error',res,{once:true});setTimeout(res,8000);});}));}if(document.readyState==='loading'){document.addEventListener('DOMContentLoaded',revealAll);}else{revealAll();}window.addEventListener('load',function(){revealAll();waitForImages().then(function(){var y=0;var step=Math.max(400,window.innerHeight*0.8);var id=setInterval(function(){y+=step;window.scrollTo(0,y);revealAll();if(y>=document.body.scrollHeight){clearInterval(id);window.scrollTo(0,0);revealAll();}},120);});});})();`,
+          }}
+        />
+      </head>
       <body className="min-h-full flex flex-col font-sans" suppressHydrationWarning>{children}</body>
     </html>
   );

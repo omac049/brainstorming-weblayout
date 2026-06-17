@@ -20,7 +20,7 @@
 
 ## Componentry page structure (`v7 - Componentry`)
 
-Matches **request-info-v5 - Componentry** page style exactly (all FRAMEs, same fills, spacing, and card format).
+Matches **13 · request-info-v5 / Componentry** page style exactly (all FRAMEs, same fills, spacing, and card format).
 
 ```
 ┌─ 00 - Cover and Index (FRAME, white, NONE, 1440×720) ┐

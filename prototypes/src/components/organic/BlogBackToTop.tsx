@@ -36,14 +36,14 @@ export function BlogBackToTop({
       onClick={scrollToTop}
       aria-label="Back to top"
       className={cn(
-        "fixed bottom-20 right-4 z-40 flex size-10 items-center justify-center rounded-full border border-gray-200 bg-white shadow-lg transition-all duration-300 hover:bg-uagc-navy hover:text-white sm:bottom-24 sm:right-6",
+        "fixed bottom-24 right-4 z-40 flex size-11 items-center justify-center rounded-full border border-gray-200 bg-white shadow-lg transition-all duration-300 hover:bg-uagc-navy hover:text-white active:scale-95 sm:right-6",
         visible
           ? "translate-y-0 opacity-100"
           : "pointer-events-none translate-y-4 opacity-0",
         className,
       )}
     >
-      <ArrowUp className="size-4" />
+      <ArrowUp className="size-[18px]" />
     </button>
   );
 }

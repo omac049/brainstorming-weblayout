@@ -12,6 +12,7 @@
 
 import { useRef } from "react";
 
+import { useRfiRedirect } from "@/hooks/useRfiRedirect";
 import { AccreditationBand } from "@/components/organic/AccreditationBand";
 import { AreasOfStudyGrid } from "@/components/organic/AreasOfStudyGrid";
 import { EnrollmentJourneySection } from "@/components/organic/EnrollmentJourneySection";
@@ -52,6 +53,7 @@ const HUB_SECTION_NAV = [
 export default function OrganicOnlineDegreesPage() {
   const heroRef = useRef<HTMLElement>(null);
   const rfiRef = useRef<HTMLDivElement>(null);
+  const handleRfiSubmit = useRfiRedirect();
   const { ref: progRevealRef, isVisible: progVisible } = useScrollReveal<HTMLDivElement>();
   const { ref: faqRevealRef, isVisible: faqVisible } = useScrollReveal<HTMLDivElement>();
 
@@ -141,7 +143,7 @@ export default function OrganicOnlineDegreesPage() {
                 right program, transfer credits, and understand your cost.
               </p>
             </div>
-            <RFIForm variant="full" heroFormRef={rfiRef} />
+            <RFIForm variant="full" heroFormRef={rfiRef} onSubmit={handleRfiSubmit} />
             <p className="mt-3 text-center text-sm text-[#b8c5d9]">
               It only takes a minute. No obligation.
             </p>

@@ -1,7 +1,7 @@
 # Figma Build Guide — request-information-thank-you Componentry
 
 > **Primary Figma file:** [`HoSMZOSnKSVgUXlskHv9tS`](https://www.figma.com/design/HoSMZOSnKSVgUXlskHv9tS) · [`FIGMA-FILES.md`](../FIGMA-FILES.md)  
-> **Componentry page:** `request-information-thank-you — Componentry` *(create in organic section)*  
+> **Componentry page:** `72 · thank-you / Componentry`  
 > **Skill:** [`.cursor/skills/figma-landing-componentry/SKILL.md`](../../.cursor/skills/figma-landing-componentry/SKILL.md)
 
 ---
@@ -13,7 +13,7 @@ Live thank-you is a **13+ module mini-site** with **RFI forms still visible afte
 Dev handoff: [request-information-thank-you.md](../pages/request-information-thank-you.md). **Spec wins over live capture.**
 
 **Before captures:** `thank-you-base_*.jpg`, `thank-you-personalized_*.jpg`  
-**After (prototype):** wireframes on `request-information-thank-you — Wireframes`
+**After (prototype):** wireframes on `70 · thank-you / Desktop 1440`
 
 ---
 

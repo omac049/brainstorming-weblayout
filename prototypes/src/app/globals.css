@@ -567,6 +567,30 @@
   }
 }
 
+/* Figma html-to-design capture: force all scroll-reveal content visible */
+html.figma-capture .reveal-section,
+html.figma-capture .scroll-reveal {
+  opacity: 1 !important;
+  transform: none !important;
+  transition: none !important;
+  filter: none !important;
+}
+
+/* Figma capture: rasterize photos — hide video, force img visibility */
+html.figma-capture video {
+  display: none !important;
+}
+
+html.figma-capture img {
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+
+html.figma-capture [class*="opacity-0"] img,
+html.figma-capture img[class*="opacity-0"] {
+  opacity: 1 !important;
+}
+
 @media (prefers-reduced-motion: reduce) {
   .reveal-section { opacity: 1; transform: none; }
   .scroll-reveal { transform: none; transition: none; }
