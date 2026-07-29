@@ -1,7 +1,6 @@
 "use client";
 
 import { useCallback, useEffect, useState } from "react";
-import { useSearchParams } from "next/navigation";
 
 const COOKIE_NAME = "RFIsubmited";
 const PORTAL_COOKIE = "uagc_portal_url";
@@ -39,14 +38,14 @@ function clearCookie(name: string) {
  * Append `?resetRfi=true` to any URL to clear both cookies (demo use).
  */
 export function useRfiSubmitted(): [RfiState, (portalUrl?: string) => void] {
-  const searchParams = useSearchParams();
   const [state, setState] = useState<RfiState>({
     submitted: false,
     portalUrl: DEFAULT_PORTAL,
   });
 
   useEffect(() => {
-    if (searchParams.get("resetRfi") === "true") {
+    const params = new URLSearchParams(window.location.search);
+    if (params.get("resetRfi") === "true") {
       clearCookie(COOKIE_NAME);
       clearCookie(PORTAL_COOKIE);
       setState({ submitted: false, portalUrl: DEFAULT_PORTAL });
@@ -56,7 +55,7 @@ export function useRfiSubmitted(): [RfiState, (portalUrl?: string) => void] {
     const submitted = getCookie(COOKIE_NAME) === "true";
     const portalUrl = getCookie(PORTAL_COOKIE) || DEFAULT_PORTAL;
     setState({ submitted, portalUrl });
-  }, [searchParams]);
+  }, []);
 
   const setSubmitted = useCallback((portalUrl?: string) => {
     setCookie(COOKIE_NAME, "true");
