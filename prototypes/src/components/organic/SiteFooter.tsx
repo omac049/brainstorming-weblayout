@@ -29,7 +29,7 @@ const PHONE_DISPLAY = "+1 866 711 1700";
 const PHONE_HREF = "tel:+18667111700";
 
 const focusRing =
-  "focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-uagc-gold/60 focus-visible:rounded-sm";
+  "focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-uagc-sky/60 focus-visible:rounded-sm";
 
 export function SiteFooter({ className, hideRequestInfo }: { className?: string; hideRequestInfo?: boolean }) {
   return (
@@ -63,7 +63,7 @@ export function SiteFooter({ className, hideRequestInfo }: { className?: string;
             {!hideRequestInfo && (
               <a
                 href="#rfi"
-                className={`group inline-flex min-h-11 items-center justify-center gap-2 rounded-full bg-uagc-gold px-6 text-sm font-bold uppercase tracking-wide text-uagc-navy transition-colors hover:bg-uagc-gold-hover ${focusRing}`}
+                className={`group inline-flex min-h-11 items-center justify-center gap-2 rounded-full bg-uagc-navy px-6 text-sm font-bold uppercase tracking-wide text-white transition-colors hover:bg-uagc-navy-dark ${focusRing}`}
               >
                 Request Info
                 <Mail className="size-4 transition-transform group-hover:translate-x-0.5" strokeWidth={2} aria-hidden />
@@ -93,7 +93,7 @@ export function SiteFooter({ className, hideRequestInfo }: { className?: string;
       <div className="border-t border-white/10">
         <div className="mx-auto w-full max-w-[1440px] px-4 py-5 sm:px-6 lg:px-10">
           <nav aria-label="Degree Programs" className="flex flex-wrap items-center gap-x-2 gap-y-0">
-            <span className="mr-1 py-3 text-xs font-bold uppercase tracking-[0.12em] text-uagc-gold">
+            <span className="mr-1 py-3 text-xs font-bold uppercase tracking-[0.12em] text-uagc-sky">
               Degrees
             </span>
             {DEGREE_AREAS.map((area, i) => (

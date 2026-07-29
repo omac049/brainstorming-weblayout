@@ -84,7 +84,7 @@ export function PersonalizedEducationSection({
               rel="noopener noreferrer"
               className={cn(
                 "group flex cursor-pointer flex-col overflow-hidden rounded-2xl border border-uagc-border bg-white no-underline transition-[border-color,box-shadow] duration-200",
-                "hover:border-uagc-gold hover:shadow-[0_4px_20px_rgba(12,35,75,0.08)]",
+                "hover:border-uagc-navy/40 hover:shadow-[0_4px_20px_rgba(12,35,75,0.08)]",
               )}
             >
               <div className="relative aspect-[590/330] overflow-hidden bg-uagc-surface">
@@ -99,7 +99,7 @@ export function PersonalizedEducationSection({
 
               <div className="flex flex-1 flex-col px-5 pb-5 pt-5">
                 <div className="flex flex-wrap items-center gap-2">
-                  <span className="text-xs font-bold uppercase tracking-wide text-uagc-gold">
+                  <span className="text-xs font-bold uppercase tracking-wide text-uagc-red">
                     {post.category}
                   </span>
                   <span className="text-xs text-uagc-gray/70" aria-hidden>

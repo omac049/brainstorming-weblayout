@@ -73,7 +73,7 @@ export function AccreditationBand() {
         <div className="rounded-2xl bg-uagc-navy p-6 sm:p-8 lg:p-10">
           <div className="flex flex-col items-center text-center sm:flex-row sm:items-start sm:gap-8 sm:text-left">
             <div className="mb-6 shrink-0 sm:mb-0">
-              <div className="rounded-xl border-2 border-uagc-gold p-1.5">
+              <div className="rounded-xl border-2 border-uagc-navy/40 p-1.5">
                 <AssetImage
                   src="/images/WSCUC-Logo-Square.jpg"
                   alt="WSCUC — Institutional Accreditation"
@@ -87,11 +87,11 @@ export function AccreditationBand() {
             <div className="flex-1">
               <div className="flex items-center justify-center gap-2 sm:justify-start">
                 <Shield
-                  className="size-4 text-uagc-gold"
+                  className="size-4 text-uagc-sky"
                   strokeWidth={2}
                   aria-hidden
                 />
-                <span className="text-xs font-bold uppercase tracking-widest text-uagc-gold">
+                <span className="text-xs font-bold uppercase tracking-widest text-uagc-red">
                   Institutional Accreditation
                 </span>
               </div>
@@ -216,7 +216,7 @@ export function AccreditationBand() {
         </div>
 
         {/* ── UA Enterprise Callout ── */}
-        <div className="mt-6 flex items-start gap-4 rounded-lg border border-uagc-gold/30 bg-uagc-gold/8 px-5 py-5 sm:mt-8 sm:items-center sm:gap-5 sm:px-6">
+        <div className="mt-6 flex items-start gap-4 rounded-lg border border-uagc-navy/40 bg-uagc-sky/10 px-5 py-5 sm:mt-8 sm:items-center sm:gap-5 sm:px-6">
           <AssetImage
             src="/images/ua_horiz_rgb_4.svg"
             alt="University of Arizona"

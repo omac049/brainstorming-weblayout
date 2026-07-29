@@ -17,9 +17,9 @@ interface BlogBodyProps {
 
 function PullQuoteBlock({ pullQuote }: { pullQuote: BlogPullQuote }) {
   return (
-    <blockquote className="relative my-8 border-l-4 border-uagc-gold bg-uagc-cream-warm/50 py-5 pl-4 pr-4 sm:pl-6 sm:pr-5">
+    <blockquote className="relative my-8 border-l-4 border-uagc-navy/40 bg-uagc-cream-warm/50 py-5 pl-4 pr-4 sm:pl-6 sm:pr-5">
       <Quote
-        className="absolute -left-0.5 -top-3 size-6 text-uagc-gold/40"
+        className="absolute -left-0.5 -top-3 size-6 text-uagc-navy/40"
         aria-hidden
       />
       <p className="text-[1em] font-medium italic leading-relaxed text-uagc-navy sm:text-[1.125em]">
@@ -134,7 +134,7 @@ export function BlogBody({ article, className, contextualCTA, midArticleSlot }: 
                 </p>
               ))}
               {section.bullets && (
-                <ul className="mb-4 ml-5 list-disc space-y-1.5 text-[0.9375em] leading-relaxed text-uagc-navy/85 marker:text-uagc-gold sm:ml-6 sm:text-[1em]">
+                <ul className="mb-4 ml-5 list-disc space-y-1.5 text-[0.9375em] leading-relaxed text-uagc-navy/85 marker:text-uagc-navy sm:ml-6 sm:text-[1em]">
                   {section.bullets.map((b) => (
                     <li key={b.slice(0, 30)}>{b}</li>
                   ))}

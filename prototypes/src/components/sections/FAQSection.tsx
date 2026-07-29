@@ -207,7 +207,7 @@ function renderAnswer(text: string, highlights?: string[]) {
     return isHL ? (
       <span
         key={i}
-        className="inline-block rounded bg-uagc-gold/15 px-1 font-semibold text-uagc-navy"
+        className="inline-block rounded bg-uagc-navy/10 px-1 font-semibold text-uagc-navy"
       >
         {part}
       </span>
@@ -257,8 +257,8 @@ function AccordionItem({
             className={cn(
               "mt-0.5 flex size-7 shrink-0 items-center justify-center rounded-lg text-xs font-bold transition-[background-color,color] duration-300",
               isOpen
-                ? "bg-uagc-gold text-uagc-navy"
-                : "bg-uagc-surface text-uagc-gray group-hover/item:bg-uagc-gold/15 group-hover/item:text-uagc-navy",
+                ? "bg-uagc-navy text-white"
+                : "bg-uagc-surface text-uagc-gray group-hover/item:bg-uagc-navy/10 group-hover/item:text-uagc-navy",
             )}
           >
             {isOpen ? (
@@ -578,14 +578,14 @@ function FAQSectionDefault({
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               placeholder="Type a keyword — tuition, transfer, aid…"
-              className="w-full rounded-xl border border-uagc-border bg-white py-3.5 pl-11 pr-10 text-sm text-uagc-navy placeholder:text-uagc-gray/50 focus:border-uagc-gold focus:outline-none focus:ring-2 focus:ring-uagc-gold/20 sm:text-[0.9375rem]"
+              className="w-full rounded-xl border border-uagc-border bg-white py-3.5 pl-11 pr-10 text-sm text-uagc-navy placeholder:text-uagc-gray/50 focus:border-uagc-navy focus:outline-none focus:ring-2 focus:ring-uagc-navy/20 sm:text-[0.9375rem]"
               aria-label="Search frequently asked questions"
             />
             {searchQuery && (
               <button
                 type="button"
                 onClick={clearSearch}
-                className="absolute right-3 top-1/2 flex size-6 -translate-y-1/2 items-center justify-center rounded-full bg-uagc-surface text-uagc-gray transition-colors hover:bg-uagc-gold/15 hover:text-uagc-navy"
+                className="absolute right-3 top-1/2 flex size-6 -translate-y-1/2 items-center justify-center rounded-full bg-uagc-surface text-uagc-gray transition-colors hover:bg-uagc-navy/10 hover:text-uagc-navy"
                 aria-label="Clear search"
               >
                 <X className="size-3.5" strokeWidth={2} />

@@ -16,7 +16,7 @@ export function WaysToSaveLeadStat({
   return (
     <div
       className={cn(
-        "rounded-2xl border border-uagc-gold/30 bg-uagc-cream px-5 py-4 sm:px-6 sm:py-5",
+        "rounded-2xl border border-uagc-navy/40 bg-uagc-cream px-5 py-4 sm:px-6 sm:py-5",
         className,
       )}
     >

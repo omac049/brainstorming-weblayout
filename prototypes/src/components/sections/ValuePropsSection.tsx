@@ -113,17 +113,17 @@ export function ValuePropsSection({
                 <article
                   key={card.title}
                   className={cn(
-                    "reveal-section group relative flex flex-col overflow-hidden rounded-2xl border border-uagc-border bg-white p-4 transition-[border-color,box-shadow] duration-200 hover:border-uagc-gold hover:shadow-[0_4px_20px_rgba(12,35,75,0.08)] sm:p-6",
+                    "reveal-section group relative flex flex-col overflow-hidden rounded-2xl border border-uagc-border bg-white p-4 transition-[border-color,box-shadow] duration-200 hover:border-uagc-navy/40 hover:shadow-[0_4px_20px_rgba(12,35,75,0.08)] sm:p-6",
                     `stagger-${index + 1}`,
                     isVisible && "is-visible",
                   )}
                 >
                   <span
                     aria-hidden
-                    className="absolute inset-x-0 top-0 h-0.75 origin-left scale-x-0 bg-uagc-gold transition-transform duration-300 group-hover:scale-x-100"
+                    className="absolute inset-x-0 top-0 h-0.75 origin-left scale-x-0 bg-uagc-red transition-transform duration-300 group-hover:scale-x-100"
                   />
                   <span
-                    className="mb-3 flex size-9 shrink-0 items-center justify-center rounded-xl bg-uagc-surface text-uagc-navy transition-colors duration-200 group-hover:bg-uagc-gold-tint group-hover:text-uagc-gold sm:mb-4 sm:size-11"
+                    className="mb-3 flex size-9 shrink-0 items-center justify-center rounded-xl bg-uagc-surface text-uagc-navy transition-colors duration-200 group-hover:bg-uagc-sky/15 group-hover:text-uagc-navy sm:mb-4 sm:size-11"
                     aria-hidden
                   >
                     <Icon className="size-4 sm:size-5" strokeWidth={1.75} />
@@ -165,7 +165,7 @@ export function ValuePropsSection({
               {experienceCallout.ctaLabel && experienceCallout.ctaHref && (
                 <a
                   href={experienceCallout.ctaHref}
-                  className="mt-4 inline-flex min-h-11 items-center gap-2 rounded-lg bg-uagc-gold px-5 text-sm font-semibold text-uagc-navy transition-colors duration-200 hover:bg-uagc-gold-dark sm:mt-6"
+                  className="mt-4 inline-flex min-h-11 items-center gap-2 rounded-lg bg-uagc-navy px-5 text-sm font-semibold text-white transition-colors duration-200 hover:bg-uagc-navy-dark sm:mt-6"
                 >
                   {experienceCallout.ctaLabel}
                   <ArrowRight className="size-4 transition-transform duration-200 group-hover/callout:translate-x-0.5" strokeWidth={2.5} aria-hidden />
@@ -178,7 +178,7 @@ export function ValuePropsSection({
                     key={outcome.label}
                     className="rounded-xl border border-white/15 bg-white/10 px-3 py-4 text-center sm:px-6 sm:py-6 sm:text-left"
                   >
-                    <p className="type-stat text-lg text-uagc-gold sm:text-xl lg:text-2xl">
+                    <p className="type-stat text-lg text-uagc-sky sm:text-xl lg:text-2xl">
                       {outcome.stat}
                     </p>
                     <p className="mt-1 text-xs font-medium leading-snug text-white/80 sm:mt-2 sm:text-sm">

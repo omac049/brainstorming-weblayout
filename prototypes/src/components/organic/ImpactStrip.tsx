@@ -18,7 +18,7 @@ const STATS: StatItem[] = [
 function StatCell({ item }: { item: StatItem }) {
   return (
     <div className="flex min-w-0 flex-col items-center justify-center bg-uagc-navy px-2 py-4 text-center sm:px-3 sm:py-5 lg:px-4 lg:py-6">
-      <p className="font-heading-condensed text-[1.25rem] font-extrabold leading-none text-uagc-gold sm:text-[1.5rem] lg:text-[1.875rem]">
+      <p className="font-heading-condensed text-[1.25rem] font-extrabold leading-none text-uagc-sky sm:text-[1.5rem] lg:text-[1.875rem]">
         {item.value}
       </p>
       <p className="mt-1.5 text-xs font-medium uppercase leading-snug tracking-[0.06em] text-white/70 sm:mt-2 lg:text-[0.6875rem]">

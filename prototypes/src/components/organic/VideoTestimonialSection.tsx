@@ -45,7 +45,7 @@ function VideoCard({
       <button
         type="button"
         onClick={() => onPlay(testimonial.youtubeId)}
-        className="video-card group relative aspect-[3/4] w-full cursor-pointer overflow-hidden bg-uagc-navy focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-uagc-gold"
+        className="video-card group relative aspect-[3/4] w-full cursor-pointer overflow-hidden bg-uagc-navy focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-uagc-sky"
         aria-label={`Play video testimonial from ${testimonial.name}`}
       >
         {/* Loading skeleton */}
@@ -212,7 +212,7 @@ export function VideoTestimonialSection({
               isVisible && "is-visible",
             )}
           >
-            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-uagc-gold">
+            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-uagc-sky">
               {eyebrow}
             </p>
             <h2

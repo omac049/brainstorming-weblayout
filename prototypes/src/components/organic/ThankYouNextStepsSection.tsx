@@ -62,7 +62,7 @@ function StepCard({ step, isVisible }: { step: Step; isVisible: boolean }) {
       <div
         className={cn(
           "mb-6 h-0.5 w-full rounded-full transition-colors duration-300",
-          step.active ? "bg-uagc-gold" : "bg-gray-200",
+          step.active ? "bg-uagc-navy" : "bg-gray-200",
         )}
         aria-hidden
       />
@@ -71,7 +71,7 @@ function StepCard({ step, isVisible }: { step: Step; isVisible: boolean }) {
       <span
         className={cn(
           "font-heading text-sm font-bold tracking-wide",
-          step.active ? "text-uagc-gold" : "text-gray-400",
+          step.active ? "text-uagc-navy" : "text-gray-400",
         )}
       >
         Step {step.number}
@@ -127,7 +127,7 @@ function MobileStep({ step, isVisible }: { step: Step; isVisible: boolean }) {
             className={cn(
               "flex size-8 shrink-0 items-center justify-center rounded-full text-xs font-bold",
               step.active
-                ? "bg-uagc-gold text-uagc-navy"
+                ? "bg-uagc-navy text-white"
                 : "bg-gray-100 text-gray-500",
             )}
           >

@@ -108,10 +108,10 @@ function SaveOptionDetails({
             {item.details.map((detail) => (
               <li key={detail} className="flex gap-2.5">
                 <span
-                  className="mt-0.5 flex size-4 shrink-0 items-center justify-center rounded-full bg-uagc-gold/15"
+                  className="mt-0.5 flex size-4 shrink-0 items-center justify-center rounded-full bg-uagc-sky/10"
                   aria-hidden
                 >
-                  <Check className="size-2.5 text-uagc-gold" strokeWidth={3} />
+                  <Check className="size-2.5 text-uagc-navy" strokeWidth={3} />
                 </span>
                 <span className="text-[0.8125rem] leading-relaxed text-uagc-gray">
                   {detail}

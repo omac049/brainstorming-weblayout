@@ -100,17 +100,17 @@ function DesktopProgramCard({
       className={cn(
         "group rounded-lg border bg-white transition-all duration-150",
         isRecommended
-          ? "border-uagc-gold/60 ring-1 ring-uagc-gold/20"
-          : "border-gray-100 hover:border-uagc-gold/40",
+          ? "border-uagc-navy/40 ring-1 ring-uagc-navy/20"
+          : "border-gray-100 hover:border-uagc-navy/40",
         isExpanded && "shadow-sm",
       )}
       data-ga4-event="blog_program_filter_interact"
       data-ga4-program={program.shortName}
     >
       {isRecommended && (
-        <div className="flex items-center gap-1.5 rounded-t-lg bg-uagc-gold/10 px-3 py-1.5">
-          <Sparkles className="size-3 text-uagc-gold" aria-hidden />
-          <span className="text-[0.6875rem] font-bold uppercase tracking-wider text-uagc-gold">
+        <div className="flex items-center gap-1.5 rounded-t-lg bg-uagc-sky/10 px-3 py-1.5">
+          <Sparkles className="size-3 text-uagc-navy" aria-hidden />
+          <span className="text-[0.6875rem] font-bold uppercase tracking-wider text-uagc-red">
             Relevant to this article
           </span>
         </div>
@@ -178,7 +178,7 @@ function DesktopProgramCard({
             </div>
             {program.costHint && (
               <div className="col-span-2 flex items-center gap-1.5">
-                <DollarSign className="size-3 shrink-0 text-uagc-gold" aria-hidden />
+                <DollarSign className="size-3 shrink-0 text-uagc-navy" aria-hidden />
                 <span className="text-[0.6875rem] font-medium text-uagc-navy/70">
                   {program.costHint}
                 </span>
@@ -256,8 +256,8 @@ function GoalFilterPills({
           className={cn(
             "rounded-full px-3 py-1.5 text-[0.6875rem] font-semibold transition-colors duration-100",
             activeGoal === goal
-              ? "bg-uagc-gold text-white"
-              : "bg-uagc-gold/10 text-uagc-navy/70 hover:bg-uagc-gold/20 hover:text-uagc-navy active:bg-uagc-gold/25",
+              ? "bg-uagc-navy text-white"
+              : "bg-uagc-sky/10 text-uagc-navy/70 hover:bg-uagc-sky/15 hover:text-uagc-navy active:bg-uagc-sky/20",
           )}
           aria-pressed={activeGoal === goal}
         >
@@ -286,7 +286,7 @@ function AdvisorHelpCTA({ compact = false }: { compact?: boolean }) {
         <Link
           href="/organic/request-information"
           className={cn(
-            "flex flex-1 items-center justify-center gap-1.5 rounded-lg bg-uagc-red font-bold text-white transition-colors hover:bg-uagc-red/90 active:bg-uagc-red/80",
+            "flex flex-1 items-center justify-center gap-1.5 rounded-lg bg-uagc-navy font-bold text-white transition-colors hover:bg-uagc-navy-dark active:bg-uagc-navy-dark",
             compact ? "px-4 py-2.5 text-[0.8125rem]" : "px-3 py-2 text-[0.6875rem]",
           )}
           data-ga4-event="blog_program_filter_advisor_click"
@@ -360,11 +360,11 @@ function DesktopProgramFilter({
 
   return (
     <div
-      className={cn("overflow-hidden rounded-xl border border-uagc-gold/30 bg-white", className)}
+      className={cn("overflow-hidden rounded-xl border border-uagc-navy/40 bg-white", className)}
       data-module="blog-program-filter"
     >
-      <div className="flex items-center gap-2 border-b border-uagc-gold/20 bg-uagc-cream-warm px-4 py-3.5">
-        <Filter className="size-4 text-uagc-gold" aria-hidden />
+      <div className="flex items-center gap-2 border-b border-uagc-navy/20 bg-uagc-cream-warm px-4 py-3.5">
+        <Filter className="size-4 text-uagc-navy" aria-hidden />
         <h3 className="text-sm font-bold text-uagc-navy">
           {heading ?? "Find Your Program"}
         </h3>
@@ -443,7 +443,7 @@ function DesktopProgramFilter({
         <AdvisorHelpCTA />
       </div>
 
-      <div className="border-t border-uagc-gold/20 bg-uagc-cream-warm px-4 py-3">
+      <div className="border-t border-uagc-navy/20 bg-uagc-cream-warm px-4 py-3">
         <p className="text-center text-[0.6875rem] text-uagc-navy/60">
           <span className="font-semibold text-uagc-navy/80">{filtered.length}</span>{" "}
           program{filtered.length !== 1 ? "s" : ""} &middot;{" "}
@@ -471,7 +471,7 @@ function MobileProgramRow({
       className={cn(
         "group flex items-center gap-3.5 rounded-xl border p-4 transition-colors active:bg-gray-50",
         isRecommended
-          ? "border-uagc-gold/50 bg-uagc-cream-warm/50"
+          ? "border-uagc-navy/40 bg-uagc-cream-warm/50"
           : "border-gray-150 bg-white",
       )}
       data-ga4-event="blog_program_filter_click"
@@ -481,7 +481,7 @@ function MobileProgramRow({
       <div className="min-w-0 flex-1">
         <div className="flex items-center gap-2">
           {isRecommended && (
-            <Sparkles className="size-3.5 shrink-0 text-uagc-gold" aria-hidden />
+            <Sparkles className="size-3.5 shrink-0 text-uagc-navy" aria-hidden />
           )}
           <p className="text-[0.9375rem] font-bold leading-snug text-uagc-navy">
             {program.shortName}
@@ -530,13 +530,13 @@ function MobileProgramFilter({
 
   return (
     <div
-      className="overflow-hidden rounded-xl border border-uagc-gold/30 bg-white lg:hidden"
+      className="overflow-hidden rounded-xl border border-uagc-navy/40 bg-white lg:hidden"
       data-module="blog-program-filter-mobile"
     >
       {/* Header + inline filter */}
-      <div className="flex items-center justify-between gap-3 border-b border-uagc-gold/20 bg-uagc-cream-warm px-4 py-3">
+      <div className="flex items-center justify-between gap-3 border-b border-uagc-navy/20 bg-uagc-cream-warm px-4 py-3">
         <div className="flex items-center gap-2">
-          <GraduationCap className="size-5 text-uagc-gold" aria-hidden />
+          <GraduationCap className="size-5 text-uagc-navy" aria-hidden />
           <h3 className="text-[0.9375rem] font-bold text-uagc-navy">
             {heading ?? "Find Your Program"}
           </h3>
@@ -546,7 +546,7 @@ function MobileProgramFilter({
           <select
             value={typeFilter}
             onChange={(e) => setTypeFilter(e.target.value as TypeFilter)}
-            className="appearance-none rounded-lg border border-gray-200 bg-white py-2 pl-3 pr-8 text-[0.8125rem] font-semibold text-uagc-navy focus:border-uagc-gold focus:outline-none focus:ring-2 focus:ring-uagc-gold/20"
+            className="appearance-none rounded-lg border border-gray-200 bg-white py-2 pl-3 pr-8 text-[0.8125rem] font-semibold text-uagc-navy focus:border-uagc-navy focus:outline-none focus:ring-2 focus:ring-uagc-navy/20"
             aria-label="Filter by type"
           >
             <option value="all">All types</option>
@@ -590,7 +590,7 @@ function MobileProgramFilter({
       </div>
 
       {/* Footer */}
-      <div className="border-t border-uagc-gold/20 bg-uagc-cream-warm px-4 py-3.5">
+      <div className="border-t border-uagc-navy/20 bg-uagc-cream-warm px-4 py-3.5">
         <Link
           href="https://www.uagc.edu/online-degrees/doctoral"
           className="flex items-center justify-center gap-1.5 text-[0.8125rem] font-bold text-uagc-red transition-colors active:text-uagc-red/70"

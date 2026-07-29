@@ -163,7 +163,7 @@ export function InterestAreaGrid({
                   : {})}
                 className={cn(
                   "group block cursor-pointer overflow-hidden rounded-2xl border border-uagc-border bg-white no-underline transition-[border-color,box-shadow] duration-200",
-                  "hover:border-uagc-gold hover:shadow-[0_4px_20px_rgba(12,35,75,0.08)]",
+                  "hover:border-uagc-navy/40 hover:shadow-[0_4px_20px_rgba(12,35,75,0.08)]",
                   "focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-uagc-navy",
                   areaGridItemClass(index, areaCount),
                   reveal && "reveal-section",
@@ -211,8 +211,8 @@ export function InterestAreaGrid({
               href={finderHref}
               className={cn(
                 "group relative col-span-1 flex cursor-pointer overflow-hidden rounded-2xl border border-white/15 bg-uagc-navy no-underline transition-[border-color,box-shadow] duration-200 sm:col-span-2 lg:col-span-1 lg:col-start-4 lg:row-start-2",
-                "hover:border-uagc-gold/40 hover:shadow-[0_4px_20px_rgba(12,35,75,0.2)]",
-                "focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-uagc-gold",
+                "hover:border-uagc-navy/40 hover:shadow-[0_4px_20px_rgba(12,35,75,0.2)]",
+                "focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-uagc-sky",
                 reveal && "reveal-section stagger-8",
                 reveal && isVisible && "is-visible",
               )}
@@ -227,7 +227,7 @@ export function InterestAreaGrid({
                     {discoveryHeading}
                   </p>
                 </div>
-                <span className="inline-flex w-fit items-center gap-2 rounded-lg bg-uagc-gold px-4.5 py-2.5 text-[13px] font-semibold text-uagc-navy transition-colors duration-200 group-hover:bg-uagc-gold-dark">
+                <span className="inline-flex w-fit items-center gap-2 rounded-lg bg-uagc-navy px-4.5 py-2.5 text-[13px] font-semibold text-white transition-colors duration-200 group-hover:bg-uagc-navy-dark">
                   {discoveryCta}
                   <ArrowRight className="size-3" strokeWidth={2.5} aria-hidden />
                 </span>

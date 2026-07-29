@@ -136,7 +136,7 @@ export default function OrganicOnlineDegreesPage() {
               <span aria-hidden className="mx-auto mb-3 accent-bar" />
               <h2 id="hub-rfi-heading" className="type-h2 text-white">
                 Or Request Information{" "}
-                <span className="text-uagc-gold">Here</span>
+                <span className="text-uagc-sky">Here</span>
               </h2>
               <p className="mx-auto mt-3 max-w-lg text-sm leading-relaxed text-[#b8c5d9] sm:text-base">
                 Get paired with an enrollment advisor who can help you find the

@@ -55,7 +55,7 @@ export function BlogNewsletterSignup({
         data-module="blog-newsletter-inline"
       >
         <div className="mx-auto max-w-md text-center">
-          <h3 className="border-l-[3px] border-uagc-gold pl-3.5 text-left font-['Fira_Sans',sans-serif] text-lg font-bold tracking-tight text-white sm:text-xl">
+          <h3 className="border-l-[3px] border-uagc-red pl-3.5 text-left font-['Fira_Sans',sans-serif] text-lg font-bold tracking-tight text-white sm:text-xl">
             Get Career &amp; Education Insights
           </h3>
           <p className="mt-3 text-left text-sm leading-relaxed text-white/55">
@@ -68,7 +68,7 @@ export function BlogNewsletterSignup({
               className={cn(
                 "flex flex-col gap-2.5 sm:flex-row sm:gap-0 sm:rounded-xl sm:border sm:transition-[border-color,box-shadow] sm:duration-200 sm:ease-out",
                 focused
-                  ? "sm:border-uagc-gold/50 sm:ring-2 sm:ring-uagc-gold/20"
+                  ? "sm:border-uagc-navy/40 sm:ring-2 sm:ring-uagc-navy/20"
                   : "sm:border-white/15",
               )}
             >
@@ -80,11 +80,11 @@ export function BlogNewsletterSignup({
                 onBlur={() => setFocused(false)}
                 placeholder="Email address"
                 required
-                className="min-w-0 flex-1 rounded-xl border border-white/15 bg-white/[0.07] px-4 py-3.5 text-base text-white placeholder:text-white/35 focus:border-uagc-gold/50 focus:outline-none focus:ring-2 focus:ring-uagc-gold/20 sm:rounded-none sm:rounded-l-xl sm:border-0 sm:py-3 sm:text-sm sm:focus:ring-0"
+                className="min-w-0 flex-1 rounded-xl border border-white/15 bg-white/[0.07] px-4 py-3.5 text-base text-white placeholder:text-white/35 focus:border-uagc-navy focus:outline-none focus:ring-2 focus:ring-uagc-navy/20 sm:rounded-none sm:rounded-l-xl sm:border-0 sm:py-3 sm:text-sm sm:focus:ring-0"
               />
               <button
                 type="submit"
-                className="group flex shrink-0 items-center justify-center gap-1.5 rounded-xl bg-uagc-gold px-5 py-3.5 text-base font-bold text-uagc-navy transition-[background-color,transform] duration-160 ease-out hover:bg-uagc-gold-hover active:scale-[0.97] sm:rounded-none sm:rounded-r-xl sm:py-3 sm:text-sm"
+                className="group flex shrink-0 items-center justify-center gap-1.5 rounded-xl bg-uagc-navy px-5 py-3.5 text-base font-bold text-white transition-[background-color,transform] duration-160 ease-out hover:bg-uagc-navy-dark active:scale-[0.97] sm:rounded-none sm:rounded-r-xl sm:py-3 sm:text-sm"
               >
                 Subscribe
                 <ArrowRight
@@ -107,7 +107,7 @@ export function BlogNewsletterSignup({
       className={cn("overflow-hidden rounded-2xl bg-uagc-navy p-5", className)}
       data-module="blog-newsletter-sidebar"
     >
-      <div className="mb-5 h-0.5 w-8 rounded-full bg-uagc-gold" />
+      <div className="mb-5 h-0.5 w-8 rounded-full bg-uagc-navy" />
 
       <h3 className="text-sm font-bold tracking-tight text-white">
         Stay Informed
@@ -123,11 +123,11 @@ export function BlogNewsletterSignup({
           onChange={(e) => setEmail(e.target.value)}
           placeholder="Your email address"
           required
-          className="w-full rounded-xl border border-white/15 bg-white/[0.07] px-4 py-3.5 text-base text-white placeholder:text-white/35 transition-[border-color,box-shadow] duration-200 ease-out focus:border-uagc-gold/50 focus:outline-none focus:ring-2 focus:ring-uagc-gold/20 sm:py-3 sm:text-sm"
+          className="w-full rounded-xl border border-white/15 bg-white/[0.07] px-4 py-3.5 text-base text-white placeholder:text-white/35 transition-[border-color,box-shadow] duration-200 ease-out focus:border-uagc-navy focus:outline-none focus:ring-2 focus:ring-uagc-navy/20 sm:py-3 sm:text-sm"
         />
         <button
           type="submit"
-          className="group flex w-full items-center justify-center gap-2 rounded-xl bg-uagc-gold px-4 py-3.5 text-base font-bold text-uagc-navy transition-[background-color,transform] duration-160 ease-out hover:bg-uagc-gold-hover active:scale-[0.97] sm:py-3 sm:text-sm"
+          className="group flex w-full items-center justify-center gap-2 rounded-xl bg-uagc-navy px-4 py-3.5 text-base font-bold text-white transition-[background-color,transform] duration-160 ease-out hover:bg-uagc-navy-dark active:scale-[0.97] sm:py-3 sm:text-sm"
         >
           Subscribe
           <ArrowRight

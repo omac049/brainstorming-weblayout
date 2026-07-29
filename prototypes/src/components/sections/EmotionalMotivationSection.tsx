@@ -42,7 +42,7 @@ export function EmotionalMotivationSection({
               {showGoldReason ? (
                 <>
                   You&apos;ve Been Thinking About This for a{" "}
-                  <span className="text-uagc-gold">Reason</span>
+                  <span className="text-uagc-sky">Reason</span>
                 </>
               ) : (
                 heading
@@ -54,7 +54,7 @@ export function EmotionalMotivationSection({
             {ctaLabel && ctaHref && (
               <a
                 href={ctaHref}
-                className="mt-6 inline-flex min-h-11 items-center gap-2 rounded-full bg-uagc-gold px-6 py-2.5 font-heading text-sm font-semibold uppercase tracking-wider text-uagc-navy transition-colors duration-200 hover:bg-uagc-gold-dark sm:mt-8"
+                className="mt-6 inline-flex min-h-11 items-center gap-2 rounded-full bg-uagc-sky px-6 py-2.5 font-heading text-sm font-semibold uppercase tracking-wider text-uagc-navy transition-colors duration-200 hover:bg-uagc-sky-hover sm:mt-8"
               >
                 {ctaLabel}
                 <ArrowRight className="size-4" aria-hidden />
@@ -65,7 +65,7 @@ export function EmotionalMotivationSection({
           <div className="mt-10 lg:mt-0">
             <div className="rounded-2xl border border-uagc-navy-card-border bg-uagc-navy-card p-6 sm:p-8">
               <Quote
-                className="mb-4 size-8 text-uagc-gold"
+                className="mb-4 size-8 text-uagc-sky"
                 strokeWidth={1.5}
                 aria-hidden
               />
@@ -91,9 +91,9 @@ export function EmotionalMotivationSection({
                 >
                   <span
                     aria-hidden
-                    className="absolute inset-x-0 top-0 h-0.75 bg-uagc-gold"
+                    className="absolute inset-x-0 top-0 h-0.75 bg-uagc-red"
                   />
-                  <p className="type-stat pt-1 text-lg text-uagc-gold sm:text-xl lg:text-2xl">
+                  <p className="type-stat pt-1 text-lg text-uagc-sky sm:text-xl lg:text-2xl">
                     {item.stat}
                   </p>
                   <p className="mt-1 text-[0.625rem] leading-snug text-uagc-navy-card-muted sm:text-xs">

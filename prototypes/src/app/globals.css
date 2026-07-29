@@ -12,17 +12,29 @@
   --font-heading: "Montserrat", var(--font-montserrat), "Fira Sans", sans-serif;
   --font-heading-condensed: "Fira Sans Extra Condensed", var(--font-fira-condensed), "Montserrat", sans-serif;
 
-  /* UAGC Brand Colors — design-system/MASTER.md + paid-landing gold CTAs */
+  /* UAGC Brand Colors — design-system/MASTER.md (aligned to Reskin c4O4uPeilJDBZFjARNnt65) */
   --color-uagc-navy: #0C234B;
+  --color-uagc-navy-dark: #05193C;
+  --color-uagc-navy-light: #092E6C;
   --color-uagc-red: #AB0520;
+  --color-uagc-red-dark: #990019;
   --color-uagc-crimson: #C10121;
+  --color-uagc-sky: #81D3EB;
+  --color-uagc-sky-hover: #43A9C8;
   --color-uagc-gold: #EF9600;
   --color-uagc-beige: #D6D2C4;
   --color-uagc-gray: #53565A;
+  --color-uagc-silver: #98A4AE;
   --color-uagc-dark: #111111;
   --color-uagc-light: #FEFEFE;
   --color-uagc-surface: #F1F1F0;
   --color-uagc-border: #D0D0CE;
+  --color-uagc-visited: #621244;
+  --color-uagc-blue: #0076A8;
+  --color-uagc-cta-blue: #2375A7;
+  --color-uagc-cta-blue-hover: #092E6C;
+  --color-uagc-river: #007D8A;
+  --color-uagc-yellow: #F9E17D;
   --color-uagc-navy-muted: #b8c5d9;
   --color-uagc-cream: #faf9f7;
   --color-uagc-cream-warm: #fdf8ef;
@@ -633,12 +645,12 @@ html.figma-capture img[class*="opacity-0"] {
   text-decoration-color: currentColor;
 }
 
-/* Section accent bar — paid-landing gold */
+/* Section accent bar — Arizona Red for visual hierarchy */
 .accent-bar {
   display: block;
   height: 3px;
   width: 2.5rem;
-  background: var(--color-uagc-gold);
+  background: var(--color-uagc-red);
 }
 
 .cta-primary {
@@ -647,7 +659,42 @@ html.figma-capture img[class*="opacity-0"] {
   align-items: center;
   justify-content: center;
   border-radius: 9999px;
-  background: var(--color-uagc-gold);
+  background: var(--color-uagc-navy);
+  padding-inline: 2.25rem;
+  padding-block: 0.875rem;
+  font-size: 0.875rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: #ffffff;
+  transition:
+    background-color 0.2s ease,
+    transform 0.2s ease;
+}
+.cta-primary:hover {
+  background: var(--color-uagc-navy-dark);
+}
+@media (prefers-reduced-motion: no-preference) {
+  .cta-primary:hover {
+    transform: scale(1.02);
+  }
+  .cta-primary:active {
+    transform: scale(0.98);
+  }
+}
+.cta-primary:focus-visible {
+  outline: 2px solid var(--color-uagc-sky);
+  outline-offset: 2px;
+}
+
+/* Apply Now — Sky bg + navy text (Reskin rule) */
+.cta-apply {
+  display: inline-flex;
+  min-height: 3.25rem;
+  align-items: center;
+  justify-content: center;
+  border-radius: 9999px;
+  background: var(--color-uagc-sky);
   padding-inline: 2.25rem;
   padding-block: 0.875rem;
   font-size: 0.875rem;
@@ -659,18 +706,18 @@ html.figma-capture img[class*="opacity-0"] {
     background-color 0.2s ease,
     transform 0.2s ease;
 }
-.cta-primary:hover {
-  background: #f5a623;
+.cta-apply:hover {
+  background: var(--color-uagc-sky-hover);
 }
 @media (prefers-reduced-motion: no-preference) {
-  .cta-primary:hover {
+  .cta-apply:hover {
     transform: scale(1.02);
   }
-  .cta-primary:active {
+  .cta-apply:active {
     transform: scale(0.98);
   }
 }
-.cta-primary:focus-visible {
+.cta-apply:focus-visible {
   outline: 2px solid var(--color-uagc-navy);
   outline-offset: 2px;
 }
@@ -692,8 +739,8 @@ html.figma-capture img[class*="opacity-0"] {
     box-shadow 0.2s ease;
 }
 .rfi-input:focus {
-  border-color: var(--color-uagc-gold);
-  box-shadow: 0 0 0 3px rgba(239, 150, 0, 0.15);
+  border-color: var(--color-uagc-navy);
+  box-shadow: 0 0 0 3px rgba(12, 35, 75, 0.15);
 }
 @media (min-width: 640px) {
   .rfi-input {
@@ -709,14 +756,14 @@ html.figma-capture img[class*="opacity-0"] {
   justify-content: center;
   gap: 0.5rem;
   border-radius: 9999px;
-  background: var(--color-uagc-gold);
+  background: var(--color-uagc-navy);
   padding-inline: 1.5rem;
   padding-block: 1rem;
   font-size: 0.875rem;
   font-weight: 700;
   letter-spacing: 0.04em;
   text-transform: uppercase;
-  color: var(--color-uagc-navy);
+  color: #ffffff;
   text-decoration: none;
   transition:
     background-color 0.2s ease,
@@ -729,7 +776,7 @@ html.figma-capture img[class*="opacity-0"] {
   }
 }
 .rfi-button-primary:hover {
-  background: #f5a623;
+  background: var(--color-uagc-navy-dark);
 }
 @media (prefers-reduced-motion: no-preference) {
   .rfi-button-primary:hover {
@@ -740,7 +787,7 @@ html.figma-capture img[class*="opacity-0"] {
   }
 }
 .rfi-button-primary:focus-visible {
-  outline: 2px solid var(--color-uagc-navy);
+  outline: 2px solid var(--color-uagc-sky);
   outline-offset: 2px;
 }
 .rfi-button-primary:disabled {

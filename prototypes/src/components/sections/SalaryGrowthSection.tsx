@@ -202,7 +202,7 @@ function DegreeCard({ tier, index, isActive }: { tier: SalaryTier; index: number
             {tier.level}
           </h3>
         </div>
-        <span className="inline-flex items-center gap-1 rounded-full bg-uagc-gold/15 px-2.5 py-1 text-xs font-bold text-uagc-navy">
+        <span className="inline-flex items-center gap-1 rounded-full bg-uagc-navy/10 px-2.5 py-1 text-xs font-bold text-uagc-navy">
           <TrendingUp className="size-3" strokeWidth={2.5} aria-hidden />
           {tier.growthLabel}
         </span>
@@ -228,7 +228,7 @@ function DegreeCard({ tier, index, isActive }: { tier: SalaryTier; index: number
             <span className="text-xs font-medium text-uagc-navy">With degree</span>
             <span className="text-sm font-bold tabular-nums text-uagc-navy">{formatSalary(tier.withDegree)}</span>
           </div>
-          <div className="h-3 w-full overflow-hidden rounded-full bg-uagc-gold/15">
+          <div className="h-3 w-full overflow-hidden rounded-full bg-uagc-navy/10">
             <div
               className="h-full rounded-full bg-uagc-navy"
               style={{ width: `${barPct}%` }}
@@ -393,7 +393,7 @@ export function SalaryGrowthSection({
         {/* CTA — full-width, thumb-zone, 48px tall, always visible */}
         <a
           href="#rfi"
-          className="mt-5 flex min-h-12 items-center justify-center gap-2 rounded-xl bg-uagc-gold px-5 py-3.5 text-[0.9375rem] font-semibold text-uagc-navy transition-colors duration-200 hover:bg-uagc-gold-hover active:scale-98 active:transition-none sm:mt-6 sm:inline-flex sm:w-auto sm:rounded-lg"
+          className="mt-5 flex min-h-12 items-center justify-center gap-2 rounded-xl bg-uagc-navy px-5 py-3.5 text-[0.9375rem] font-semibold text-white transition-colors duration-200 hover:bg-uagc-navy-dark active:scale-98 active:transition-none sm:mt-6 sm:inline-flex sm:w-auto sm:rounded-lg"
           style={{ touchAction: "manipulation" }}
         >
           Take the Next Step

@@ -64,7 +64,7 @@ function HeroTrustPills({
           className={cn(
             "inline-flex items-center rounded-full px-3.5 py-2 text-[0.8125rem] font-medium tracking-wide sm:px-4 sm:text-[0.8125rem]",
             pill.accent
-              ? "trust-pill-accent border border-uagc-gold/50 bg-uagc-gold/20 font-semibold text-white"
+              ? "trust-pill-accent border border-uagc-navy/40 bg-uagc-sky/15 font-semibold text-white"
               : "border border-white/25 bg-white/10 text-white/95 sm:font-medium sm:hover:bg-white/15",
           )}
         >
@@ -209,7 +209,7 @@ function HeroCopyBlock({
       <div className="max-w-[560px]">
         <div className="hero-enter-headline">
           {eyebrow ? (
-            <p className="text-[0.8125rem] font-semibold uppercase tracking-[0.2em] text-uagc-gold">
+            <p className="text-[0.8125rem] font-semibold uppercase tracking-[0.2em] text-uagc-red">
               {eyebrow}
             </p>
           ) : null}
@@ -232,7 +232,7 @@ function HeroCopyBlock({
   return (
     <div className="hero-enter-headline">
       {eyebrow ? (
-        <p className="text-xs font-semibold uppercase tracking-[0.15em] text-uagc-gold sm:text-[0.8125rem] sm:tracking-[0.2em] lg:text-[0.875rem]">
+        <p className="text-xs font-semibold uppercase tracking-[0.15em] text-uagc-sky sm:text-[0.8125rem] sm:tracking-[0.2em] lg:text-[0.875rem]">
           {eyebrow}
         </p>
       ) : null}
@@ -274,13 +274,13 @@ export function HeroV2({
 
   const defaultHeadline = (
     <>
-      <span className="block text-xs font-semibold uppercase tracking-[0.15em] text-uagc-gold sm:text-[0.8125rem] sm:tracking-[0.2em] lg:text-[0.875rem]">
+      <span className="block text-xs font-semibold uppercase tracking-[0.15em] text-uagc-sky sm:text-[0.8125rem] sm:tracking-[0.2em] lg:text-[0.875rem]">
         University of Arizona Global Campus
       </span>
       <span className="mt-2 block sm:mt-3">
         Finish Your Degree
         <br />
-        <span className="text-uagc-gold">On Your Schedule</span>
+        <span className="text-uagc-sky">On Your Schedule</span>
       </span>
     </>
   );

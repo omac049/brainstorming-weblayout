@@ -73,7 +73,7 @@ function Badge({
           <p
             className={cn(
               "text-[0.6875rem] font-bold uppercase tracking-[0.08em]",
-              onDark ? "text-uagc-gold" : "text-uagc-red",
+              onDark ? "text-white" : "text-uagc-red",
             )}
           >
             {item.sublabel}

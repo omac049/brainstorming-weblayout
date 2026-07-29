@@ -13,12 +13,12 @@ export interface EmployerCredentialSectionProps {
   className?: string;
 }
 
-const WSCUC_PEERS = [
-  "Stanford University",
-  "UCLA",
-  "USC",
-  "UC Berkeley",
-  "Caltech",
+const WSCUC_HIGHLIGHTS = [
+  "Rigorous Academic Standards",
+  "Student Learning Outcomes",
+  "Institutional Integrity",
+  "Continuous Improvement",
+  "Quality Assurance",
 ];
 
 const PROGRAMMATIC_ACCREDITATIONS = [
@@ -56,13 +56,14 @@ export function EmployerCredentialSection({
         <div className="mb-8 sm:mb-10 lg:mb-12">
           <span aria-hidden className="mb-3 accent-bar" />
           <h2 className="type-h2 text-uagc-navy">
-            The Same Accreditation as
-            <br className="hidden sm:block" /> Stanford, UCLA, and USC
+            Accreditation That
+            <br className="hidden sm:block" /> Employers Trust
           </h2>
           <p className="mt-3 max-w-2xl text-[0.9375rem] leading-relaxed text-uagc-gray sm:text-base">
-            UAGC is regionally accredited by WSCUC — the same body that
-            oversees some of the most prestigious universities on the West
-            Coast. Your degree carries real weight with employers.
+            UAGC holds regional accreditation from WSCUC — one of the most
+            respected accrediting bodies in the United States. Your degree
+            meets the same rigorous standards that employers evaluate when
+            hiring, promoting, and approving tuition reimbursement.
           </p>
         </div>
 
@@ -70,7 +71,7 @@ export function EmployerCredentialSection({
         <div className="rounded-2xl bg-uagc-navy p-6 sm:p-8 lg:p-10">
           <div className="flex flex-col items-center text-center sm:flex-row sm:items-start sm:gap-8 sm:text-left">
             <div className="mb-6 shrink-0 sm:mb-0">
-              <div className="rounded-xl border-2 border-uagc-gold p-1.5">
+              <div className="rounded-xl border-2 border-white/40 p-1.5">
                 <AssetImage
                   src="/images/WSCUC-Logo-Square.jpg"
                   alt="WSCUC — Institutional Accreditation"
@@ -85,11 +86,11 @@ export function EmployerCredentialSection({
             <div className="flex-1">
               <div className="flex items-center justify-center gap-2 sm:justify-start">
                 <Shield
-                  className="size-4 text-uagc-gold"
+                  className="size-4 text-uagc-sky"
                   strokeWidth={2}
                   aria-hidden
                 />
-                <span className="text-xs font-bold uppercase tracking-widest text-uagc-gold">
+                <span className="text-xs font-bold uppercase tracking-widest text-uagc-sky">
                   Institutional Accreditation
                 </span>
               </div>
@@ -104,15 +105,15 @@ export function EmployerCredentialSection({
 
               <div className="mt-6 border-t border-white/20 pt-5">
                 <p className="text-xs font-semibold uppercase tracking-wider text-uagc-beige">
-                  Also accredited by WSCUC
+                  WSCUC Standards of Excellence
                 </p>
                 <div className="mt-3 flex flex-wrap items-center justify-center gap-x-2 gap-y-2 sm:justify-start">
-                  {WSCUC_PEERS.map((name, i) => (
-                    <span key={name} className="flex items-center gap-2">
+                  {WSCUC_HIGHLIGHTS.map((item, i) => (
+                    <span key={item} className="flex items-center gap-2">
                       <span className="text-sm font-medium text-white">
-                        {name}
+                        {item}
                       </span>
-                      {i < WSCUC_PEERS.length - 1 && (
+                      {i < WSCUC_HIGHLIGHTS.length - 1 && (
                         <span className="text-white/40" aria-hidden>
                           ·
                         </span>
@@ -215,9 +216,9 @@ export function EmployerCredentialSection({
         </div>
 
         {/* ── UA Enterprise Callout ── */}
-        <div className="mt-6 flex items-start gap-3 rounded-lg border border-uagc-gold/30 bg-uagc-gold/8 px-4 py-4 sm:mt-8 sm:items-center sm:px-5">
+        <div className="mt-6 flex items-start gap-3 rounded-lg border border-uagc-navy/20 bg-uagc-navy/5 px-4 py-4 sm:mt-8 sm:items-center sm:px-5">
           <Award
-            className="mt-0.5 size-5 shrink-0 text-uagc-gold sm:mt-0"
+            className="mt-0.5 size-5 shrink-0 text-uagc-navy sm:mt-0"
             strokeWidth={1.75}
             aria-hidden
           />

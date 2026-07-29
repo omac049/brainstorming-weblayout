@@ -130,7 +130,7 @@ export function UpcomingStartDates({
           New classes begin {nextDate?.date}
         </span>
         {daysLeft !== null && daysLeft <= 30 && (
-          <span className="rounded-full bg-uagc-gold/15 px-2.5 py-0.5 text-xs font-semibold text-uagc-navy">
+          <span className="rounded-full bg-uagc-navy/10 px-2.5 py-0.5 text-xs font-semibold text-uagc-navy">
             {`${daysLeft} days`}
           </span>
         )}
@@ -151,7 +151,7 @@ export function UpcomingStartDates({
           <div className="flex items-center gap-4 sm:gap-6">
             <div className="hidden items-center gap-2 sm:flex">
               <CalendarDays
-                className="size-5 text-uagc-gold"
+                className="size-5 text-uagc-navy"
                 strokeWidth={1.75}
                 aria-hidden
               />
@@ -196,7 +196,7 @@ export function UpcomingStartDates({
               ))}
 
               {daysLeft !== null && daysLeft <= 30 && (
-                <span className="rounded-full bg-white/10 px-3 py-1 text-xs font-semibold text-uagc-gold ring-1 ring-white/10">
+                <span className="rounded-full bg-white/10 px-3 py-1 text-xs font-semibold text-uagc-sky ring-1 ring-white/10">
                   {`Starts in ${daysLeft} days`}
                 </span>
               )}

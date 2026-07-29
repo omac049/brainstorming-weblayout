@@ -60,7 +60,7 @@ function UtilityDropdown({ link }: { link: UtilityLinkItem }) {
         className="group inline-flex items-center gap-1.5 rounded-sm px-2 py-0.5 text-[11px] font-semibold uppercase tracking-[0.08em] text-white/85 transition-colors hover:bg-white/10 hover:text-white"
       >
         <Icon
-          className="size-3 text-white/50 transition-colors group-hover:text-uagc-gold"
+          className="size-3 text-white/50 transition-colors group-hover:text-uagc-sky"
           strokeWidth={1.8}
           aria-hidden
         />
@@ -76,7 +76,7 @@ function UtilityDropdown({ link }: { link: UtilityLinkItem }) {
         className="inline-flex items-center gap-1.5 rounded-sm px-2 py-0.5 text-[11px] font-semibold uppercase tracking-[0.08em] text-white/85 transition-colors hover:bg-white/10 hover:text-white group-hover/util:bg-white/10 group-hover/util:text-white"
       >
         <Icon
-          className="size-3 text-white/50 transition-colors group-hover/util:text-uagc-gold"
+          className="size-3 text-white/50 transition-colors group-hover/util:text-uagc-sky"
           strokeWidth={1.8}
           aria-hidden
         />
@@ -91,7 +91,7 @@ function UtilityDropdown({ link }: { link: UtilityLinkItem }) {
         <div className="min-w-[200px] rounded-lg border border-white/10 bg-uagc-navy-panel py-1 shadow-xl">
           <Link
             href={link.href}
-            className="block px-4 py-2 text-[11px] font-bold uppercase tracking-[0.08em] text-uagc-gold/80 transition-colors hover:bg-white/10 hover:text-uagc-gold"
+            className="block px-4 py-2 text-[11px] font-bold uppercase tracking-[0.08em] text-uagc-red/80 transition-colors hover:bg-white/10 hover:text-uagc-sky"
           >
             All {link.label}
           </Link>
@@ -178,7 +178,7 @@ function MegaMenuPanel({
 
         {menu.featured ? (
           <div className="rounded-xl border border-uagc-border bg-uagc-cream p-5">
-            <p className="text-[10px] font-bold uppercase tracking-[0.12em] text-uagc-gold">
+            <p className="text-[10px] font-bold uppercase tracking-[0.12em] text-uagc-red">
               Recommended
             </p>
             <Link
@@ -269,7 +269,7 @@ function MobileNavSection({
             <Link
               href={menu.featured.href}
               onClick={onNavigate}
-              className="inline-flex min-h-9 items-center rounded-full bg-uagc-gold px-4 text-xs font-bold uppercase tracking-wide text-uagc-navy"
+              className="inline-flex min-h-9 items-center rounded-full bg-uagc-navy px-4 text-xs font-bold uppercase tracking-wide text-white"
             >
               {menu.featured.label}
             </Link>
@@ -303,7 +303,7 @@ function MobileUtilitySection({
           className="flex flex-1 items-center gap-3 px-5 py-3 transition-colors hover:bg-uagc-navy/5"
         >
           <Icon
-            className="size-4 text-uagc-gold"
+            className="size-4 text-uagc-navy"
             strokeWidth={1.8}
             aria-hidden
           />
@@ -456,7 +456,7 @@ export function SiteHeader({ hideRequestInfo = false }: SiteHeaderProps) {
               className="group inline-flex items-center gap-1.5 rounded-sm px-2 py-0.5 text-[11px] font-semibold tracking-[0.04em] text-white/85 transition-colors hover:bg-white/10 hover:text-white"
             >
               <Phone
-                className="size-3 text-white/50 transition-colors group-hover:text-uagc-gold"
+                className="size-3 text-white/50 transition-colors group-hover:text-uagc-sky"
                 strokeWidth={1.8}
                 aria-hidden
               />
@@ -471,7 +471,7 @@ export function SiteHeader({ hideRequestInfo = false }: SiteHeaderProps) {
               aria-label="Search UAGC"
             >
               <Search
-                className="size-3 text-white/50 transition-colors group-hover:text-uagc-gold"
+                className="size-3 text-white/50 transition-colors group-hover:text-uagc-sky"
                 strokeWidth={1.8}
                 aria-hidden
               />
@@ -547,7 +547,7 @@ export function SiteHeader({ hideRequestInfo = false }: SiteHeaderProps) {
           {!hideRequestInfo ? (
             <a
               href="#rfi"
-              className="hidden min-h-9 items-center rounded-full bg-uagc-gold px-5 text-xs font-bold uppercase tracking-wide text-uagc-navy transition-colors hover:bg-uagc-gold-hover focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-uagc-navy sm:inline-flex"
+              className="hidden min-h-9 items-center rounded-full bg-uagc-navy px-5 text-xs font-bold uppercase tracking-wide text-white transition-colors hover:bg-uagc-navy-dark focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-uagc-navy sm:inline-flex"
               onClick={closeAll}
             >
               Request Info
@@ -607,7 +607,7 @@ export function SiteHeader({ hideRequestInfo = false }: SiteHeaderProps) {
                 <a
                   href="#rfi"
                   onClick={closeAll}
-                  className="flex flex-1 min-h-11 items-center justify-center rounded-full bg-uagc-gold text-xs font-bold uppercase tracking-wide text-uagc-navy"
+                  className="flex flex-1 min-h-11 items-center justify-center rounded-full bg-uagc-navy text-xs font-bold uppercase tracking-wide text-white"
                 >
                   Request Info
                 </a>
@@ -636,7 +636,7 @@ export function SiteHeader({ hideRequestInfo = false }: SiteHeaderProps) {
                       className="flex items-center gap-3 border-b border-uagc-border/50 px-5 py-3 transition-colors hover:bg-uagc-navy/5"
                     >
                       <Icon
-                        className="size-4 text-uagc-gold"
+                        className="size-4 text-uagc-navy"
                         strokeWidth={1.8}
                         aria-hidden
                       />
@@ -660,7 +660,7 @@ export function SiteHeader({ hideRequestInfo = false }: SiteHeaderProps) {
                 className="flex items-center gap-3 px-5 py-3 transition-colors hover:bg-uagc-navy/5"
               >
                 <Phone
-                  className="size-4 text-uagc-gold"
+                  className="size-4 text-uagc-navy"
                   strokeWidth={1.8}
                   aria-hidden
                 />

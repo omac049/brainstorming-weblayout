@@ -72,19 +72,46 @@
 
 ## Colors
 
-### Reskin spec
+### Reskin spec (verified from `c4O4uPeilJDBZFjARNnt65` node `7081:31`)
 
-| Token | Hex | Use |
-|-------|-----|-----|
-| `uagc-navy` | `#0C234B` | Brand sections, headers, dark UI |
-| `uagc-red` | `#AB0520` | Primary CTA, links (Arizona Red) |
-| `uagc-crimson` | `#C10121` | Accent / dividers |
-| `text-primary` | `#111111` | Body on light |
-| `text-muted` | `#53565A` | Secondary copy |
-| `surface-light` | `#F1F1F0` | Tables, light panels |
-| `border-light` | `#D0D0CE` | Rules, card strokes |
+#### Primary
 
-### Wireframes file — current state (updated 2026-06-16)
+| Token | Hex | Reskin Name | Use |
+|-------|-----|-------------|-----|
+| `uagc-navy` | `#0C234B` | `arizona_blue` | RFI button bg, headlines, emphasis sections |
+| `uagc-navy-dark` | `#05193C` | `arizona_blue_dark` | Hover states on navy |
+| `uagc-navy-light` | `#092E6C` | `arizona_blue_light` | Light accent variant |
+| `uagc-red` | `#AB0520` | `arizona_red` | Links (default), courtesy nav, error |
+| `uagc-red-dark` | `#990019` | `arizona_red_dark` | Link hover |
+| `uagc-crimson` | `#C10121` | `arizona_red_light` | Dividers / accents |
+| `uagc-sky` | `#81D3EB` | `sky` | Apply Now button bg |
+| `uagc-sky-hover` | `#43A9C8` | `sky_tint` | Apply hover state |
+| `uagc-gold` | `#EF9600` | `orange` | **Warning labels only** (Reskin) |
+
+#### Neutrals
+
+| Token | Hex | Reskin Name | Use |
+|-------|-----|-------------|-----|
+| `black` | `#111111` | `black` | Primary text |
+| `text-muted` | `#53565A` | `dark_gray` | Secondary text |
+| `silver` | `#98A4AE` | `silver` | Disabled / placeholders |
+| `border-light` | `#D0D0CE` | `light_gray` | Borders, dividers |
+| `tan` | `#D6D2C4` | `tan` | Warm neutral |
+| `surface-light` | `#F1F1F0` | `light_gray_30` | Module backgrounds |
+| `white` | `#FFFFFF` | `white` | Page / card backgrounds |
+
+#### Secondary + Semantic
+
+| Token | Hex | Reskin Name | Semantic Role |
+|-------|-----|-------------|---------------|
+| `purple` | `#621244` | `purple` | Visited links |
+| `blue` | `#0076A8` | `blue` | Info |
+| `river` | `#007D8A` | `river` | Success |
+| `yellow` | `#F9E17D` | `yellow` | Highlights |
+| `error` | `#AB0520` | — | Error (= Arizona Red) |
+| `warning` | `#EF9600` | `orange` | Warning labels |
+
+### Wireframes file — current state (updated 2026-07-29)
 
 | Item | Status |
 |------|--------|
@@ -95,18 +122,26 @@
 | **Effect styles** | ✅ `shadow/sm`, `shadow/md` |
 | Layers **bound** to color variables | ⚠️ Many fills still hard-coded hex from HTML capture |
 | Navy `#0C234B`, muted `#53565A`, white | ✅ Dominant on wireframes |
-| **`#EF9600`** (gold/orange) on RFI/CTAs | ✅ Token `uagc-gold` added — used for paid CTA accents |
+| **`#EF9600`** (gold/orange) on RFI/CTAs | ✅ Token `uagc-gold` — Reskin reserves for **warning only**; paid protos keep gold CTAs pending sign-off |
+| **`#621244`** (purple) visited links | ⚠️ Token `uagc-visited` to be bound on wireframes (was incorrect `#533566`) |
+| **`#81D3EB`** (sky) Apply Now | ⚠️ Token `uagc-sky` exists — not yet applied to Apply buttons (pending CTA rule sign-off) |
 | Capture artifacts (`#faf9f7`, `#f0eeeb`, `#1a3a6b`, …) | ⚠️ Replace with token variables where possible |
 
 ### Actions
 
 1. Bind section fills, text, and strokes to **`UAGC Tokens`** (or publish Reskin library variables into wireframes file when available).
-2. **Paid prototypes (`~/uagc-prototypes`) — current (Jun 2026):**
+2. **Reskin CTA rules (target):**
+   - **RFI:** Navy `#0C234B` bg + white text
+   - **Apply Now:** Sky `#81D3EB` bg + navy `#0C234B` text
+   - **Links:** Arizona Red `#AB0520`; visited `#621244`
+   - **Orange `#EF9600`:** Warning labels only — not for CTAs or highlights
+3. **Paid prototypes (`~/uagc-prototypes`) — current (Jul 2026):**
    - **Typography:** Fira Sans + Fira Sans Extra Condensed + Montserrat (`.type-h1`, `.type-h1-sm`, body scale in `globals.css`) — aligned to Reskin scale via web fonts.
    - **Color / CTAs:** Reverted to **paid-landing gold** (`#EF9600` on RFI, Apply, and primary CTAs; navy text on gold) — **not** the strict Reskin navy/sky/red split (deferred until brand sign-off).
-   - **Module backgrounds:** white + `#F1F1F0` (`uagc-surface`); navy bands for emphasis.
-3. When brand approves Reskin CTA rules, update prototypes and Figma together (RFI navy, Apply sky, links red — see `MASTER.md` target palette).
-4. No gradients, alpha overlays, or decorative shadows unless requested (project rule).
+   - **New tokens added:** `--color-uagc-sky`, `--color-uagc-sky-hover`, `--color-uagc-visited`, `--color-uagc-blue`, `--color-uagc-river`, `--color-uagc-navy-dark`, `--color-uagc-red-dark`, `--color-uagc-silver`, `--color-uagc-yellow` — ready for Reskin CTA switch.
+   - **Module backgrounds:** white + `#F1F1F0` (`uagc-surface` = Reskin `light_gray_30`); navy bands for emphasis.
+4. When brand approves Reskin CTA rules, switch: RFI → `bg-uagc-navy text-white`, Apply → `bg-uagc-sky text-uagc-navy`.
+5. No gradients, alpha overlays, or decorative shadows unless requested (project rule).
 
 ---
 
@@ -114,23 +149,33 @@
 
 ### Reskin / UAGC libraries ([`MASTER.md` → Icons](./MASTER.md#icons))
 
-- **UAGC DESIGN SYSTEM:** arrows, close, minus, social set (component keys in `MASTER.md`).
-- **UAGC Library:** `Main Icons`, `small_button_icon`, icon+text blocks.
-- **Guidelines:** SVG only, **24×24** default; navy or near-black on light; white on navy sections.
+**Functional Icons:** [Feather Icons](https://feathericons.com/) by Cole Bemis — 24×24, 2px stroke, NOT CHANGING.
+- Navigation: arrows, chevrons, x, check
+- UI: user, play, phone, search, menu, etc.
+- Social: facebook, twitter, instagram, linkedin, youtube
+- **Nav-specific:** chat, ShieldCheck (Military), Partnerships, SignIn, Apply, Phone, search
+
+**Illustrative Icons:** UAGC branded set — multi-size (XL 128px, L 56px, M 24px, S 16px), Arizona Red fill.
+- Multi-size: Online Learning, Find Degree, Stories, Credit, Military variants, Aid, Calendar, Education, Process, Online Education
+- Main Icons (56px): 30+ variants including Faculty, 24/7 Support, Degree Programs, Transfer, Accreditation, Career Services, etc.
+- Numbers (56px): One through Five
 
 ### Wireframes + prototypes — current state
 
 | Item | Status |
 |------|--------|
-| Lucide / custom vectors in Next.js prototypes | ✅ Functional — **not** Reskin library components |
+| Lucide / custom vectors in Next.js prototypes | ✅ Functional — match Feather stroke weight (2px) and size (24px) |
 | Figma wireframes use captured icons | ⚠️ Not consistently swapped to published UAGC icon components |
 | Accordion chevrons, trust badges, social | ⚠️ Audit per module; map to closest Reskin key |
+| Illustrative icons in prototypes | ⚠️ Not yet using UAGC illustrative SVGs — use Lucide approximations |
 
 ### Actions
 
 1. For **Figma componentry** handoff: prefer **UAGC Library** instances for repeated UI (chevron, close, trust, social) where a match exists.
-2. For **code**: keep Lucide if faster, but match **stroke weight, size (24px), and fill color** to Reskin rules.
-3. Do not use emoji as icons in Figma or production UI.
+2. For **code**: keep Lucide if faster, but match **stroke weight (2px), size (24px), and fill color** to Reskin rules.
+3. For **illustrative icons**: where possible use UAGC branded SVG exports (Arizona Red fill) from the `Main Icons` component set.
+4. Do not use emoji as icons in Figma or production UI.
+5. **Nav icons** in prototypes: align to Reskin Functional Nav set (ShieldCheck for Military, etc.).
 
 ---
 
@@ -163,8 +208,11 @@ Use before sign-off on `request-info-v5`, `degree-programs-v7`, or `online-colle
 - [ ] H3–H5 use **Semibold** (Montserrat 600 on web)
 - [ ] Body default **16/24** desktop, **14/18** mobile micro copy
 - [ ] Section navy = `#0C234B`; body text `#111111` / `#53565A` on light
-- [ ] Primary CTA color matches **documented** choice (red vs gold)
-- [ ] Icons 24px; correct contrast on navy vs light
+- [ ] Links: `#AB0520` default, `#621244` visited (not `#011D27` or `#533566`)
+- [ ] Module backgrounds alternate between `#FFFFFF` and `#F1F1F0` (`light_gray_30`)
+- [ ] Primary CTA color matches documented choice (Reskin target: navy/sky; current paid: gold)
+- [ ] Orange `#EF9600` not used decoratively (warning labels only per Reskin)
+- [ ] Icons 24px functional (Feather/Lucide), 2px stroke; correct contrast on navy vs light
 - [ ] `03` library previews are **rescaled editable clones** (not flattened PNG/SVG)
 - [ ] Componentry matches **`13 · request-info-v5 / Componentry`** layout patterns for v5/v7
 

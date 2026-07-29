@@ -26,7 +26,7 @@ interface BlogSidebarProps {
 
 function SidebarKeyTakeaways({ items }: { items: string[] }) {
   return (
-    <div className="rounded-xl border border-uagc-gold/30 bg-uagc-cream-warm px-4 py-4">
+    <div className="rounded-xl border border-uagc-navy/40 bg-uagc-cream-warm px-4 py-4">
       <h3 className="mb-2 text-[0.8125rem] font-bold uppercase tracking-wider text-uagc-navy/60">
         Key Takeaways
       </h3>
@@ -39,7 +39,7 @@ function SidebarKeyTakeaways({ items }: { items: string[] }) {
               key={item.slice(0, 40)}
               className="flex gap-2 text-[0.8125rem] leading-snug text-uagc-navy/80"
             >
-              <span className="mt-[0.35rem] block size-1 shrink-0 rounded-full bg-uagc-gold" />
+              <span className="mt-[0.35rem] block size-1 shrink-0 rounded-full bg-uagc-navy" />
               <strong className="font-semibold text-uagc-navy">{lead}</strong>
             </li>
           );
@@ -169,11 +169,11 @@ export function ProgramComparisonCard({
 }: ProgramComparisonCardProps) {
   return (
     <div
-      className="overflow-hidden rounded-xl border border-uagc-gold/30 bg-white"
+      className="overflow-hidden rounded-xl border border-uagc-navy/40 bg-white"
       data-module="blog-program-comparison"
     >
-      <div className="flex items-center gap-2 border-b border-uagc-gold/20 bg-uagc-cream-warm px-5 py-4">
-        <GraduationCap className="size-5 text-uagc-gold" aria-hidden />
+      <div className="flex items-center gap-2 border-b border-uagc-navy/20 bg-uagc-cream-warm px-5 py-4">
+        <GraduationCap className="size-5 text-uagc-navy" aria-hidden />
         <h3 className="text-sm font-bold text-uagc-navy">
           PhD vs. DPS at a Glance
         </h3>
@@ -202,7 +202,7 @@ export function ProgramComparisonCard({
         </table>
       </div>
 
-      <div className="border-t border-uagc-gold/20 bg-uagc-cream-warm px-5 py-4">
+      <div className="border-t border-uagc-navy/20 bg-uagc-cream-warm px-5 py-4">
         <Link
           href={programHref}
           className="flex items-center justify-center gap-2 rounded-lg bg-uagc-red px-4 py-2.5 text-sm font-bold text-white transition-colors hover:bg-uagc-red/90"

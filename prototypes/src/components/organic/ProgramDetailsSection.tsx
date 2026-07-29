@@ -221,7 +221,7 @@ export function ProgramDetailsSection({
                       <p className="text-sm font-bold text-uagc-navy">
                         {member.name}
                       </p>
-                      <p className="mt-0.5 text-xs font-medium text-uagc-gold">
+                      <p className="mt-0.5 text-xs font-medium text-uagc-navy">
                         {member.role}
                       </p>
                       <p className="mt-1 text-xs text-uagc-gray">
@@ -244,7 +244,7 @@ export function ProgramDetailsSection({
                     key={h}
                     className="flex items-center gap-2 text-sm text-uagc-navy"
                   >
-                    <span className="size-1.5 shrink-0 rounded-full bg-uagc-gold" aria-hidden />
+                    <span className="size-1.5 shrink-0 rounded-full bg-uagc-navy" aria-hidden />
                     {h}
                   </li>
                 ))}
@@ -277,7 +277,7 @@ export function ProgramDetailsSection({
                   {student.quote && (
                     <div className="mb-3 flex items-start gap-2">
                       <Quote
-                        className="mt-0.5 size-3.5 shrink-0 text-uagc-gold"
+                        className="mt-0.5 size-3.5 shrink-0 text-uagc-navy"
                         aria-hidden
                       />
                       <p className="text-[13px] italic leading-relaxed text-uagc-gray">

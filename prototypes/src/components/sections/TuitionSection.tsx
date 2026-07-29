@@ -186,11 +186,11 @@ function SavingsCard({ item }: { item: SavingsOption }) {
             {item.details.map((detail, idx) => (
               <li key={idx} className="flex gap-2.5">
                 <span
-                  className="mt-0.5 flex size-4 shrink-0 items-center justify-center rounded-full bg-uagc-gold/15"
+                  className="mt-0.5 flex size-4 shrink-0 items-center justify-center rounded-full bg-uagc-navy/10"
                   aria-hidden
                 >
                   <Check
-                    className="size-2.5 text-uagc-gold"
+                    className="size-2.5 text-uagc-navy"
                     strokeWidth={3}
                     aria-hidden
                   />
@@ -249,7 +249,7 @@ export function TuitionSection({
                 "flex items-center justify-between px-4 py-3.5",
                 "sm:flex-col sm:items-center sm:justify-center sm:px-5 sm:py-6 sm:text-center",
                 tier.accent
-                  ? "border-uagc-gold bg-uagc-cream-warm"
+                  ? "border-uagc-red bg-uagc-cream-warm"
                   : "border-uagc-border bg-white",
               )}
             >
@@ -258,7 +258,7 @@ export function TuitionSection({
                   {tier.label}
                 </p>
                 {tier.accent && (
-                  <p className="text-[0.625rem] font-semibold text-uagc-gold sm:mt-1">
+                  <p className="text-[0.625rem] font-semibold text-uagc-red sm:mt-1">
                     No cost to apply
                   </p>
                 )}

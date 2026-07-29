@@ -20,7 +20,7 @@ const VARIANT_CONFIG: Record<
 > = {
   default: {
     gradient: "from-uagc-navy via-uagc-navy to-[#162d5a]",
-    iconBg: "bg-uagc-gold/15",
+    iconBg: "bg-uagc-sky/10",
     btn: "bg-uagc-red hover:bg-uagc-red/90 text-white",
     icon: GraduationCap,
   },
@@ -32,7 +32,7 @@ const VARIANT_CONFIG: Record<
   },
   business: {
     gradient: "from-uagc-navy via-uagc-navy to-[#162d5a]",
-    iconBg: "bg-uagc-gold/15",
+    iconBg: "bg-uagc-sky/10",
     btn: "bg-uagc-red hover:bg-uagc-red/90 text-white",
     icon: Briefcase,
   },
@@ -73,7 +73,7 @@ export function BlogContextualCTA({
       />
 
       {/* Subtle decorative accent */}
-      <div className="absolute -right-8 -top-8 size-40 rounded-full bg-uagc-gold/[0.04]" />
+      <div className="absolute -right-8 -top-8 size-40 rounded-full bg-uagc-sky/10" />
       <div className="absolute -bottom-6 -left-6 size-32 rounded-full bg-white/[0.03]" />
 
       {/* Content */}
@@ -86,7 +86,7 @@ export function BlogContextualCTA({
               config.iconBg,
             )}
           >
-            <Icon className="size-5 text-uagc-gold" aria-hidden />
+            <Icon className="size-5 text-uagc-navy" aria-hidden />
           </div>
 
           <div className="min-w-0 flex-1">
@@ -120,7 +120,7 @@ export function BlogContextualCTA({
       </div>
 
       {/* Top accent bar */}
-      <div className="absolute left-0 right-0 top-0 h-[3px] bg-gradient-to-r from-uagc-gold via-uagc-gold/60 to-transparent" />
+      <div className="absolute left-0 right-0 top-0 h-[3px] bg-gradient-to-r from-uagc-red via-uagc-red/60 to-transparent" />
     </aside>
   );
 }

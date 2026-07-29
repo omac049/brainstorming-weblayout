@@ -121,7 +121,7 @@ function ProgressArc({
         strokeLinecap="round"
         strokeDasharray={circumference}
         strokeDashoffset={offset}
-        className="text-uagc-gold transition-[stroke-dashoffset] duration-700"
+        className="text-uagc-sky transition-[stroke-dashoffset] duration-700"
         style={{
           transitionTimingFunction: "cubic-bezier(0.23, 1, 0.32, 1)",
         }}
@@ -159,7 +159,7 @@ function PillGroup<T extends string>({
               className={cn(
                 "flex-1 rounded-xl px-3 py-3 text-center text-sm font-medium min-h-12",
                 "transition-[transform,background-color,color,box-shadow] duration-150",
-                "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-uagc-gold/50 focus-visible:ring-offset-2",
+                "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-uagc-navy/50 focus-visible:ring-offset-2",
                 "active:scale-[0.97]",
                 active
                   ? "bg-uagc-navy text-white shadow-[0_2px_8px_rgba(12,35,75,0.2)]"
@@ -301,14 +301,14 @@ export function TimeToGraduationCalculator({
         </div>
 
         {/* Decorative geometric accent */}
-        <div className="absolute -right-20 -top-20 size-72 rounded-full bg-uagc-gold/5 blur-3xl" aria-hidden />
-        <div className="absolute -left-10 bottom-0 size-56 rounded-full bg-uagc-gold/5 blur-3xl" aria-hidden />
+        <div className="absolute -right-20 -top-20 size-72 rounded-full bg-uagc-navy/5 blur-3xl" aria-hidden />
+        <div className="absolute -left-10 bottom-0 size-56 rounded-full bg-uagc-navy/5 blur-3xl" aria-hidden />
 
         {/* Hero content */}
         <div className="relative z-10 mx-auto max-w-4xl px-4 pb-24 pt-14 text-center sm:px-6 sm:pb-28 sm:pt-20 lg:pb-32 lg:pt-24">
-          <div className="inline-flex items-center gap-2 rounded-full border border-uagc-gold/30 bg-uagc-gold/10 px-4 py-2 backdrop-blur-sm">
-            <Sparkles className="size-3.5 text-uagc-gold" aria-hidden />
-            <span className="text-xs font-bold uppercase tracking-wider text-uagc-gold">
+          <div className="inline-flex items-center gap-2 rounded-full border border-uagc-navy/40 bg-uagc-sky/10 px-4 py-2 backdrop-blur-sm">
+            <Sparkles className="size-3.5 text-uagc-navy" aria-hidden />
+            <span className="text-xs font-bold uppercase tracking-wider text-uagc-red">
               Interactive Timeline Tool
             </span>
           </div>
@@ -318,11 +318,11 @@ export function TimeToGraduationCalculator({
             style={{ textWrap: "balance" }}
           >
             How Quickly Could You{" "}
-            <span className="relative inline-block text-uagc-gold">
+            <span className="relative inline-block text-uagc-sky">
               Graduate?
               <span
                 aria-hidden
-                className="absolute inset-x-0 -bottom-1 h-1 rounded-full bg-uagc-gold/40"
+                className="absolute inset-x-0 -bottom-1 h-1 rounded-full bg-uagc-sky/20"
               />
             </span>
           </h2>
@@ -380,20 +380,20 @@ export function TimeToGraduationCalculator({
                   className="w-full h-2 appearance-none rounded-full bg-gray-200 cursor-pointer
                     [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:w-5
                     [&::-webkit-slider-thumb]:h-5 [&::-webkit-slider-thumb]:rounded-full
-                    [&::-webkit-slider-thumb]:bg-uagc-gold [&::-webkit-slider-thumb]:shadow-[0_1px_4px_rgba(0,0,0,0.2)]
+                    [&::-webkit-slider-thumb]:bg-uagc-navy [&::-webkit-slider-thumb]:shadow-[0_1px_4px_rgba(0,0,0,0.2)]
                     [&::-webkit-slider-thumb]:border-2 [&::-webkit-slider-thumb]:border-white
                     [&::-webkit-slider-thumb]:cursor-grab [&::-webkit-slider-thumb]:active:cursor-grabbing
                     [&::-webkit-slider-thumb]:active:scale-110 [&::-webkit-slider-thumb]:transition-transform
                     [&::-moz-range-thumb]:w-5 [&::-moz-range-thumb]:h-5
-                    [&::-moz-range-thumb]:rounded-full [&::-moz-range-thumb]:bg-uagc-gold
+                    [&::-moz-range-thumb]:rounded-full [&::-moz-range-thumb]:bg-uagc-navy
                     [&::-moz-range-thumb]:border-2 [&::-moz-range-thumb]:border-white
                     [&::-moz-range-thumb]:shadow-[0_1px_4px_rgba(0,0,0,0.2)] [&::-moz-range-thumb]:cursor-grab
-                    focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-uagc-gold/40 focus-visible:ring-offset-2"
+                    focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-uagc-navy/40 focus-visible:ring-offset-2"
                   aria-label="Transfer credits"
                   aria-valuetext={`${clamped} of ${degreeConfig.credits} credits`}
                 />
                 <div
-                  className="absolute left-0 top-0 h-2 rounded-full bg-uagc-gold pointer-events-none transition-[width] duration-100"
+                  className="absolute left-0 top-0 h-2 rounded-full bg-uagc-navy pointer-events-none transition-[width] duration-100"
                   style={{ width: `${sliderPct}%` }}
                 />
               </div>
@@ -404,10 +404,10 @@ export function TimeToGraduationCalculator({
                 )}
                 aria-live="polite"
               >
-                <span className="inline-flex size-4 items-center justify-center rounded-full bg-uagc-gold/15">
+                <span className="inline-flex size-4 items-center justify-center rounded-full bg-uagc-sky/10">
                   <svg
                     viewBox="0 0 12 12"
-                    className="size-2.5 text-uagc-gold"
+                    className="size-2.5 text-uagc-navy"
                     fill="none"
                     stroke="currentColor"
                     strokeWidth={2}
@@ -417,7 +417,7 @@ export function TimeToGraduationCalculator({
                     <path d="M2 6.5L5 9.5L10 3" />
                   </svg>
                 </span>
-                <p className="text-xs font-semibold text-uagc-gold">
+                <p className="text-xs font-semibold text-uagc-navy">
                   {progressPct}% of your degree — already done
                 </p>
               </div>
@@ -450,7 +450,7 @@ export function TimeToGraduationCalculator({
               <div className="text-center mb-6">
                 <div className="inline-flex items-center justify-center gap-3 mb-2">
                   <GraduationCap
-                    className="size-7 text-uagc-gold shrink-0 sm:size-8"
+                    className="size-7 text-uagc-sky shrink-0 sm:size-8"
                     strokeWidth={1.8}
                     aria-hidden
                   />
@@ -459,7 +459,7 @@ export function TimeToGraduationCalculator({
                   </p>
                 </div>
                 <p
-                  className="text-[1.75rem] font-extrabold text-uagc-gold leading-none sm:text-4xl"
+                  className="text-[1.75rem] font-extrabold text-uagc-sky leading-none sm:text-4xl"
                   aria-live="polite"
                 >
                   {graduationDate}

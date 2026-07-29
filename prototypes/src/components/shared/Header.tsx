@@ -101,7 +101,7 @@ export function Header({ variant = "default", hideRequestInfo = false }: HeaderP
           {showFullNav ? (
             <a
               href="https://cloud.mail.uagc.edu/apply"
-              className="hidden min-h-9 items-center rounded-full bg-uagc-red px-4 py-2 text-xs font-semibold uppercase tracking-wide text-white transition-colors hover:bg-uagc-red-hover focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-uagc-red lg:inline-flex lg:text-sm"
+              className="hidden min-h-9 items-center rounded-full bg-uagc-sky px-4 py-2 text-xs font-semibold uppercase tracking-wide text-uagc-navy transition-colors hover:bg-uagc-sky-hover focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-uagc-navy lg:inline-flex lg:text-sm"
             >
               Apply Now
             </a>
@@ -110,7 +110,7 @@ export function Header({ variant = "default", hideRequestInfo = false }: HeaderP
           {showRequestInfo && !isHeroOverlay ? (
             <a
               href="#rfi"
-              className="hidden min-h-9 items-center rounded-full bg-uagc-gold px-3.5 text-xs font-bold uppercase tracking-[0.06em] text-uagc-navy transition-colors hover:bg-uagc-gold-hover focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-uagc-navy sm:inline-flex sm:px-4 sm:text-sm"
+              className="hidden min-h-9 items-center rounded-full bg-uagc-navy px-3.5 text-xs font-bold uppercase tracking-[0.06em] text-white transition-colors hover:bg-uagc-navy-dark focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-uagc-sky sm:inline-flex sm:px-4 sm:text-sm"
             >
               Request Info
             </a>
@@ -122,8 +122,8 @@ export function Header({ variant = "default", hideRequestInfo = false }: HeaderP
               className={cn(
                 "hidden min-h-9 items-center rounded-full px-3.5 text-xs font-bold uppercase tracking-[0.06em] transition-[background-color,transform,box-shadow] sm:inline-flex sm:px-4 sm:text-sm",
                 useLightChrome
-                  ? "bg-uagc-gold text-uagc-navy hover:bg-uagc-gold-hover"
-                  : "bg-uagc-gold text-uagc-navy hover:bg-uagc-gold-hover",
+                  ? "bg-white/90 text-uagc-navy hover:bg-white"
+                  : "bg-uagc-navy text-white hover:bg-uagc-navy-dark",
               )}
             >
               Request Info
@@ -136,7 +136,7 @@ export function Header({ variant = "default", hideRequestInfo = false }: HeaderP
             className={cn(
               "inline-flex min-h-11 min-w-11 items-center justify-center rounded-full transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 sm:min-w-0 sm:justify-start sm:rounded-none sm:px-0",
               useLightChrome
-                ? "text-white hover:text-uagc-gold focus-visible:outline-white"
+                ? "text-white hover:text-uagc-sky focus-visible:outline-white"
                 : "text-(--color-uagc-navy) hover:text-(--color-uagc-red) focus-visible:outline-(--color-uagc-navy)",
               isHeroOverlay &&
                 !useLightChrome &&

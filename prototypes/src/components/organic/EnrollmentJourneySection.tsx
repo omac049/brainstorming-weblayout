@@ -31,7 +31,7 @@ export function EnrollmentJourneySection() {
                 key={step.title}
                 className="flex flex-col rounded-2xl border border-uagc-border bg-uagc-cream p-6"
               >
-                <span className="inline-flex size-12 items-center justify-center rounded-full bg-uagc-navy text-uagc-gold">
+                <span className="inline-flex size-12 items-center justify-center rounded-full bg-uagc-navy text-uagc-sky">
                   <Icon className="size-6" aria-hidden />
                 </span>
                 <h3 className="type-h4 mt-4 text-uagc-navy">{step.title}</h3>

@@ -58,7 +58,7 @@ export function ProgramQuickView({
       >
         <div className="sticky top-0 z-10 flex items-start justify-between border-b border-uagc-border bg-white px-5 py-4 sm:px-6">
           <div className="min-w-0 flex-1">
-            <p className="text-xs font-bold uppercase tracking-wide text-uagc-gold">
+            <p className="text-xs font-bold uppercase tracking-wide text-uagc-red">
               {program.level}
             </p>
             <h2 className="mt-1 font-heading text-lg font-semibold leading-snug text-uagc-navy sm:text-xl">
@@ -150,7 +150,7 @@ export function ProgramQuickView({
           <button
             type="button"
             onClick={() => onRequestInfo?.(program.area)}
-            className="inline-flex min-h-12 w-full items-center justify-center gap-2 rounded-full bg-uagc-gold px-6 py-3 text-sm font-bold uppercase tracking-wide text-uagc-navy transition-colors hover:bg-uagc-gold/90 focus-visible:ring-2 focus-visible:ring-uagc-gold focus-visible:ring-offset-2"
+            className="inline-flex min-h-12 w-full items-center justify-center gap-2 rounded-full bg-uagc-red px-6 py-3 text-sm font-bold uppercase tracking-wide text-uagc-navy transition-colors hover:bg-uagc-red/90 focus-visible:ring-2 focus-visible:ring-uagc-navy focus-visible:ring-offset-2"
           >
             Request Info for This Program
             <ArrowRight className="size-4" aria-hidden />

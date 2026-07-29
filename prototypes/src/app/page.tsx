@@ -183,18 +183,18 @@ function PrototypeCard({
   return (
     <Link
       href={`/${slug}`}
-      className="group rounded-lg border border-white/10 bg-white/5 px-5 py-4 transition-[border-color,background-color] hover:border-uagc-gold/50 hover:bg-white/10"
+      className="group rounded-lg border border-white/10 bg-white/5 px-5 py-4 transition-[border-color,background-color] hover:border-uagc-navy/40 hover:bg-white/10"
     >
       <div className="flex items-start justify-between gap-4">
         <div className="min-w-0">
-          <h3 className="text-base font-semibold text-white transition-colors group-hover:text-uagc-gold sm:text-lg">
+          <h3 className="text-base font-semibold text-white transition-colors group-hover:text-uagc-sky sm:text-lg">
             {title}
           </h3>
           <p className="mt-1 text-sm leading-relaxed text-white/55">
             {description}
           </p>
         </div>
-        <span className="shrink-0 rounded-full bg-uagc-gold/15 px-2.5 py-0.5 text-[11px] font-medium text-uagc-gold">
+        <span className="shrink-0 rounded-full bg-uagc-sky/10 px-2.5 py-0.5 text-[11px] font-medium text-uagc-navy">
           {tag}
         </span>
       </div>
@@ -218,11 +218,11 @@ function StaticCard({
   return (
     <a
       href={assetPath(path)}
-      className="group rounded-lg border border-white/10 bg-white/5 px-5 py-4 transition-[border-color,background-color] hover:border-uagc-gold/50 hover:bg-white/10"
+      className="group rounded-lg border border-white/10 bg-white/5 px-5 py-4 transition-[border-color,background-color] hover:border-uagc-navy/40 hover:bg-white/10"
     >
       <div className="flex items-start justify-between gap-4">
         <div className="min-w-0">
-          <h3 className="text-base font-semibold text-white transition-colors group-hover:text-uagc-gold sm:text-lg">
+          <h3 className="text-base font-semibold text-white transition-colors group-hover:text-uagc-sky sm:text-lg">
             {title}
           </h3>
           <p className="mt-1 text-sm leading-relaxed text-white/55">
@@ -244,7 +244,7 @@ export default function Home() {
       <div className="mx-auto w-full max-w-4xl">
         {/* ── Header ── */}
         <header className="mb-14 text-center">
-          <div className="mb-4 mx-auto h-1 w-12 bg-uagc-gold" />
+          <div className="mb-4 mx-auto h-1 w-12 bg-uagc-navy" />
           <h1 className="text-3xl font-semibold text-white sm:text-4xl">
             Project Groundwork
           </h1>
@@ -269,7 +269,7 @@ export default function Home() {
         <Section
           title="Page Prototypes"
           subtitle="Interactive Next.js pages — organic and paid landing templates with modular components"
-          accent="bg-uagc-gold"
+          accent="bg-uagc-navy"
         >
           {prototypes.map((p) => (
             <PrototypeCard key={p.slug} {...p} />

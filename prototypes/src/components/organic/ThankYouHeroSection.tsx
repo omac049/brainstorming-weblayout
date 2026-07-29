@@ -91,7 +91,7 @@ export function ThankYouHeroSection({
           {BADGES.map((badge) => (
             <span
               key={badge}
-              className="rounded-full bg-uagc-gold/15 px-3 py-1.5 text-xs font-semibold text-uagc-navy sm:text-sm"
+              className="rounded-full bg-uagc-sky/10 px-3 py-1.5 text-xs font-semibold text-uagc-navy sm:text-sm"
             >
               {badge}
             </span>
@@ -102,7 +102,7 @@ export function ThankYouHeroSection({
         <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
           <a
             href={applicationPortalUrl}
-            className="inline-flex min-h-11 items-center justify-center rounded-full bg-uagc-gold px-8 py-3 text-sm font-bold uppercase tracking-wide text-uagc-navy shadow-sm transition-colors hover:bg-[#d68500]"
+            className="inline-flex min-h-11 items-center justify-center rounded-full bg-uagc-navy px-8 py-3 text-sm font-bold uppercase tracking-wide text-white shadow-sm transition-colors hover:bg-[#d68500]"
           >
             Start Application
           </a>

@@ -64,7 +64,7 @@ export function SectionNav({ sections }: SectionNavProps) {
               className={cn(
                 "flex size-2.5 shrink-0 items-center justify-center rounded-full border-2 transition-[border-color,transform,background-color] duration-200",
                 isActive
-                  ? "scale-125 border-uagc-gold bg-uagc-gold"
+                  ? "scale-125 border-uagc-red bg-uagc-red"
                   : "border-uagc-navy/30 bg-transparent group-hover:border-uagc-navy/60",
               )}
             />

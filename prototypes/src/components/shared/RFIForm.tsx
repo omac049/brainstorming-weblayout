@@ -497,7 +497,7 @@ function MilitaryField({
             value="yes"
             checked={value === "yes"}
             onChange={() => onChange("yes")}
-            className="size-4 accent-uagc-gold"
+            className="size-4 accent-uagc-navy"
           />
           Yes
         </label>
@@ -508,7 +508,7 @@ function MilitaryField({
             value="no"
             checked={value === "no"}
             onChange={() => onChange("no")}
-            className="size-4 accent-uagc-gold"
+            className="size-4 accent-uagc-navy"
           />
           No
         </label>
@@ -533,7 +533,7 @@ function TcpaField({ checked, onChange, id = "rfi-tcpa" }: TcpaFieldProps) {
         checked={checked}
         onChange={(e) => onChange(e.target.checked)}
         required
-        className="mt-1 size-4 shrink-0 accent-uagc-gold"
+        className="mt-1 size-4 shrink-0 accent-uagc-navy"
       />
       <label htmlFor={id} className="text-xs leading-relaxed text-uagc-gray">
         {TCPA_CONSENT_TEXT}
@@ -563,14 +563,14 @@ function StepHeader({ step }: StepHeaderProps) {
         <span
           className={cn(
             "size-1.5 rounded-full transition-colors sm:size-2",
-            step === 1 ? "bg-uagc-gold" : "bg-uagc-border",
+            step === 1 ? "bg-uagc-navy" : "bg-uagc-border",
           )}
           aria-hidden
         />
         <span
           className={cn(
             "size-1.5 rounded-full transition-colors sm:size-2",
-            step === 2 ? "bg-uagc-gold" : "bg-uagc-border",
+            step === 2 ? "bg-uagc-navy" : "bg-uagc-border",
           )}
           aria-hidden
         />
@@ -755,8 +755,8 @@ function FullStepIndicator({ step }: { step: 1 | 2 }) {
           className={cn(
             "flex size-7 items-center justify-center rounded-full text-xs font-bold transition-colors",
             step === 1
-              ? "bg-uagc-gold text-uagc-navy"
-              : "bg-uagc-gold/20 text-uagc-navy",
+              ? "bg-uagc-navy text-white"
+              : "bg-uagc-navy/20 text-uagc-navy",
           )}
         >
           1
@@ -776,7 +776,7 @@ function FullStepIndicator({ step }: { step: 1 | 2 }) {
           className={cn(
             "flex size-7 items-center justify-center rounded-full text-xs font-bold transition-colors",
             step === 2
-              ? "bg-uagc-gold text-uagc-navy"
+              ? "bg-uagc-navy text-white"
               : "bg-gray-200 text-uagc-gray",
           )}
         >

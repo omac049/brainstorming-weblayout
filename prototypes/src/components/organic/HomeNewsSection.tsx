@@ -42,7 +42,7 @@ export function HomeNewsSection() {
     >
       <div className="mx-auto w-full max-w-[1440px] px-4 sm:px-6 lg:px-8">
         <div className={cn("reveal-section", isVisible && "is-visible")}>
-          <span aria-hidden className="mb-3 block h-0.75 w-10 bg-uagc-gold" />
+          <span aria-hidden className="mb-3 block h-0.75 w-10 bg-uagc-navy" />
           <h2
             id="home-achievements-heading"
             className="type-h2 text-white"
@@ -58,16 +58,16 @@ export function HomeNewsSection() {
               <article
                 key={item.title}
                 className={cn(
-                  "reveal-section group flex h-full cursor-default flex-col rounded-2xl border border-white/10 bg-white/6 p-6 transition-[border-color,background-color] duration-300 hover:border-uagc-gold/30 hover:bg-white/10",
+                  "reveal-section group flex h-full cursor-default flex-col rounded-2xl border border-white/10 bg-white/6 p-6 transition-[border-color,background-color] duration-300 hover:border-uagc-navy/40 hover:bg-white/10",
                   `stagger-${i + 1}`,
                   isVisible && "is-visible",
                 )}
               >
                 <span
-                  className="flex size-11 items-center justify-center rounded-xl bg-uagc-gold/15 transition-colors duration-200 group-hover:bg-uagc-gold/25"
+                  className="flex size-11 items-center justify-center rounded-xl bg-uagc-sky/10 transition-colors duration-200 group-hover:bg-uagc-sky/20"
                   aria-hidden
                 >
-                  <Icon className="size-5 text-uagc-gold" strokeWidth={1.75} />
+                  <Icon className="size-5 text-uagc-sky" strokeWidth={1.75} />
                 </span>
                 <h3 className="mt-4 font-heading text-base font-semibold leading-snug text-white">
                   {item.title}

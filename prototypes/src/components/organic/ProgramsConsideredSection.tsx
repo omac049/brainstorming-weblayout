@@ -136,7 +136,7 @@ export function ProgramsConsideredSection({
                 "group relative flex flex-col overflow-hidden rounded-2xl",
                 "bg-[#122d54] ring-1 ring-white/10",
                 "transition-all duration-300 ease-out",
-                "hover:ring-uagc-gold/40 hover:shadow-lg hover:shadow-black/20",
+                "hover:ring-uagc-navy/40 hover:shadow-lg hover:shadow-black/20",
                 "reveal-section",
                 `stagger-${index + 1}`,
                 isVisible && "is-visible",
@@ -172,11 +172,11 @@ export function ProgramsConsideredSection({
                   {program.description}
                 </p>
 
-                <p className="mt-3 text-xs font-medium text-uagc-gold">
+                <p className="mt-3 text-xs font-medium text-uagc-navy">
                   {program.matchReason}
                 </p>
 
-                <span className="mt-4 inline-flex items-center gap-1.5 text-sm font-semibold text-uagc-gold transition-colors group-hover:text-white">
+                <span className="mt-4 inline-flex items-center gap-1.5 text-sm font-semibold text-uagc-sky transition-colors group-hover:text-white">
                   Explore Program
                   <ArrowRight className="size-3.5 transition-transform duration-200 group-hover:translate-x-0.5" />
                 </span>

@@ -135,7 +135,7 @@ export const HeroSection = forwardRef<HTMLElement, HeroSectionProps>(
               key={item}
               className="inline-flex items-center gap-2 rounded-full bg-white/15 px-3.5 py-1.5 text-[0.8125rem] font-semibold leading-tight text-white ring-1 ring-white/25"
             >
-              <span className="size-1.5 rounded-full bg-uagc-gold" aria-hidden />
+              <span className="size-1.5 rounded-full bg-white" aria-hidden />
               {item}
             </span>
           ))}
@@ -197,7 +197,7 @@ export const HeroSection = forwardRef<HTMLElement, HeroSectionProps>(
                     key={item}
                     className="inline-flex items-center gap-2 rounded-full bg-white/15 px-4 py-2 text-sm font-semibold text-white ring-1 ring-white/25"
                   >
-                    <span className="size-1.5 rounded-full bg-uagc-gold" aria-hidden />
+                    <span className="size-1.5 rounded-full bg-white" aria-hidden />
                     {item}
                   </span>
                 ))}

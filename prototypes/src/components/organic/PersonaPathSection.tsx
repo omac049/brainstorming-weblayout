@@ -97,7 +97,7 @@ function personaPathHeaderClass(variant: PersonaPathSectionVariant): {
         heading: "text-white",
         subheading: "text-uagc-navy-muted",
         viewAll:
-          "text-uagc-gold transition-colors hover:text-white hover:underline focus-visible:outline-uagc-gold",
+          "text-uagc-sky transition-colors hover:text-white hover:underline focus-visible:outline-uagc-sky",
       };
     default: {
       const _exhaustive: never = variant;
@@ -166,7 +166,7 @@ export function PersonaPathSection({
               className={cn(
                 "group relative block cursor-pointer overflow-hidden rounded-xl border bg-white no-underline",
                 "transition-[border-color,box-shadow,transform] duration-200 ease-[cubic-bezier(0.23,1,0.32,1)]",
-                "hover:border-uagc-gold/60 hover:shadow-[0_2px_12px_rgba(12,35,75,0.06)] active:scale-[0.98]",
+                "hover:border-uagc-navy/40/60 hover:shadow-[0_2px_12px_rgba(12,35,75,0.06)] active:scale-[0.98]",
                 "focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-uagc-navy",
                 variant === "inverted" && "border-white/15",
                 (variant === "light" || variant === "surface") && "border-uagc-border",
@@ -191,8 +191,8 @@ export function PersonaPathSection({
                     {path.description}
                   </p>
                 </div>
-                <span className="flex size-7 shrink-0 items-center justify-center rounded-full bg-uagc-navy/5 transition-[background-color,transform] duration-200 group-hover:bg-uagc-gold/15 group-hover:translate-x-0.5">
-                  <ArrowRight className="size-3.5 text-uagc-navy transition-colors duration-200 group-hover:text-uagc-gold" strokeWidth={2} aria-hidden />
+                <span className="flex size-7 shrink-0 items-center justify-center rounded-full bg-uagc-navy/5 transition-[background-color,transform] duration-200 group-hover:bg-uagc-navy/15 group-hover:translate-x-0.5">
+                  <ArrowRight className="size-3.5 text-uagc-navy transition-colors duration-200 group-hover:text-uagc-sky" strokeWidth={2} aria-hidden />
                 </span>
               </div>
             </a>

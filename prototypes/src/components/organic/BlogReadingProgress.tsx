@@ -43,7 +43,7 @@ export function BlogReadingProgress({ contentRef }: BlogReadingProgressProps) {
       aria-label="Reading progress"
     >
       <div
-        className="h-full bg-uagc-gold transition-[width] duration-150 ease-out"
+        className="h-full bg-uagc-navy transition-[width] duration-150 ease-out"
         style={{ width: `${progress}%` }}
       />
     </div>

@@ -57,9 +57,9 @@ export function TuitionHighlightBand({ id = "tuition" }: TuitionHighlightBandPro
                 isVisible && "is-visible",
               )}
             >
-              <span className="flex size-10 shrink-0 items-center justify-center rounded-lg bg-uagc-gold/15">
+              <span className="flex size-10 shrink-0 items-center justify-center rounded-lg bg-uagc-sky/10">
                 <Icon
-                  className="size-5 text-uagc-gold"
+                  className="size-5 text-uagc-sky"
                   strokeWidth={1.75}
                   aria-hidden
                 />

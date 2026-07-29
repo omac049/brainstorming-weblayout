@@ -153,7 +153,7 @@ export function OrganicHomeHero({
               <div className="mx-auto w-full max-w-7xl px-4 pb-8 sm:px-6 sm:pb-10 lg:px-10 lg:pb-12">
                 <div className="hero-enter-headline max-w-3xl">
                   {/* Category badge */}
-                  <span className="inline-flex items-center rounded-full border border-uagc-gold/40 bg-uagc-gold/15 px-3 py-1 text-[0.6875rem] font-bold uppercase tracking-[0.12em] text-uagc-gold backdrop-blur-sm">
+                  <span className="inline-flex items-center rounded-full border border-uagc-navy/40 bg-uagc-sky/10 px-3 py-1 text-[0.6875rem] font-bold uppercase tracking-[0.12em] text-uagc-red backdrop-blur-sm">
                     {eyebrow}
                   </span>
 
@@ -200,7 +200,7 @@ export function OrganicHomeHero({
 
           <div className="relative z-10 px-5 pb-5 sm:px-8">
             <div className="hero-enter-headline">
-              <p className="text-[0.6875rem] font-semibold uppercase tracking-[0.15em] text-uagc-gold">
+              <p className="text-[0.6875rem] font-semibold uppercase tracking-[0.15em] text-uagc-red">
                 {eyebrow}
               </p>
               <h1 className="mt-2 font-heading-condensed text-[clamp(2.25rem,10vw,3.5rem)] font-extrabold uppercase leading-[0.92] tracking-[-0.01em] text-white">
@@ -221,7 +221,7 @@ export function OrganicHomeHero({
                     className={cn(
                       "inline-flex items-center rounded-full px-3 py-1.5 text-[0.75rem] font-medium tracking-wide",
                       pill.accent
-                        ? "trust-pill-accent border border-uagc-gold/50 bg-uagc-gold/20 font-semibold text-white"
+                        ? "trust-pill-accent border border-uagc-navy/40 bg-uagc-sky/15 font-semibold text-white"
                         : "border border-white/25 bg-white/10 text-white/95",
                     )}
                   >
@@ -261,7 +261,7 @@ export function OrganicHomeHero({
           <div className="relative z-10 mx-auto flex w-full max-w-[1440px] flex-1 flex-col justify-center px-10 xl:px-14">
             <div className="max-w-[560px]">
               <div className="hero-enter-headline">
-                <p className="text-[0.8125rem] font-semibold uppercase tracking-[0.2em] text-uagc-gold">
+                <p className="text-[0.8125rem] font-semibold uppercase tracking-[0.2em] text-uagc-red">
                   {eyebrow}
                 </p>
                 <h1 className="mt-3 font-heading-condensed text-[clamp(3.25rem,4.5vw,5rem)] font-extrabold uppercase leading-[0.88] tracking-[-0.02em] text-white">
@@ -282,7 +282,7 @@ export function OrganicHomeHero({
                       className={cn(
                         "inline-flex items-center rounded-full px-4 py-1.5 text-[0.8125rem] tracking-wide transition-colors duration-200",
                         pill.accent
-                          ? "trust-pill-accent border border-uagc-gold/50 bg-uagc-gold/20 font-semibold text-white"
+                          ? "trust-pill-accent border border-uagc-navy/40 bg-uagc-sky/15 font-semibold text-white"
                           : "border border-white/25 bg-white/10 font-medium text-white hover:bg-white/15",
                       )}
                     >

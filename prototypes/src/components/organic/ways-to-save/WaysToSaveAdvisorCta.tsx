@@ -18,7 +18,7 @@ export function WaysToSaveAdvisorCta({
   return (
     <div
       className={cn(
-        "rounded-2xl border border-uagc-gold/30 bg-uagc-cream p-5 sm:p-6",
+        "rounded-2xl border border-uagc-navy/40 bg-uagc-cream p-5 sm:p-6",
         "text-center lg:text-left",
         className,
       )}

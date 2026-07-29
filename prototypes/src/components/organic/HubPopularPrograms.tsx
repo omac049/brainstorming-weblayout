@@ -47,10 +47,10 @@ function hubPopularTextClass(variant: HubPopularProgramsVariant): {
       return {
         body: "text-uagc-navy-muted",
         label: "font-semibold text-white",
-        link: "font-medium text-white underline-offset-2 transition-colors duration-150 hover:text-uagc-gold hover:underline active:scale-99",
+        link: "font-medium text-white underline-offset-2 transition-colors duration-150 hover:text-uagc-sky hover:underline active:scale-99",
         separator: "text-white/25",
         viewAll:
-          "font-semibold text-uagc-gold underline-offset-2 transition-colors duration-150 hover:text-white hover:underline",
+          "font-semibold text-uagc-sky underline-offset-2 transition-colors duration-150 hover:text-white hover:underline",
       };
     default: {
       const _exhaustive: never = variant;

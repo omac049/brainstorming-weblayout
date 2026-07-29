@@ -43,7 +43,7 @@ function StarRating() {
       {Array.from({ length: 5 }).map((_, i) => (
         <Star
           key={i}
-          className="size-3.5 fill-uagc-gold text-uagc-gold"
+          className="size-3.5 fill-uagc-yellow text-uagc-yellow"
           strokeWidth={0}
           aria-hidden
         />
@@ -70,12 +70,12 @@ function TestimonialCard({
       className={cn(
         "group relative flex h-full flex-col rounded-xl border bg-white p-5 transition-shadow duration-200 sm:p-6",
         featured
-          ? "border-uagc-gold/40 shadow-sm"
+          ? "border-uagc-sky/40 shadow-sm"
           : "border-gray-200 hover:shadow-md",
       )}
     >
       {tag && (
-        <span className="mb-4 inline-flex w-fit items-center gap-1.5 rounded-full bg-uagc-gold/10 px-3 py-1 text-xs font-semibold text-uagc-navy">
+        <span className="mb-4 inline-flex w-fit items-center gap-1.5 rounded-full bg-uagc-sky/10 px-3 py-1 text-xs font-semibold text-uagc-navy">
           {tag}
         </span>
       )}

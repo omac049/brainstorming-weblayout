@@ -52,9 +52,9 @@ export function BlogAdmissionCTA({ className }: BlogAdmissionCTAProps) {
                   <a
                     href="tel:+18667111700"
                     className={cn(
-                      "inline-flex items-center gap-2 rounded-full bg-uagc-gold px-6 py-3 text-sm font-bold text-uagc-navy",
+                      "inline-flex items-center gap-2 rounded-full bg-uagc-navy px-6 py-3 text-sm font-bold text-white",
                       "transition-[background-color,transform] duration-150 ease-[cubic-bezier(0.23,1,0.32,1)]",
-                      "hover:bg-uagc-gold-hover active:scale-[0.97]",
+                      "hover:bg-uagc-navy-dark active:scale-[0.97]",
                     )}
                     data-ga4-event="blog_admission_cta_click"
                     data-ga4-action="call"

@@ -11,40 +11,77 @@
 
 ## Color Palette
 
-### Brand Colors
+### Primary Colors
 
-| Token               | Hex       | RGB             | Usage                                      |
-|---------------------|-----------|-----------------|--------------------------------------------|
-| `uagc-navy`         | `#0C234B` | 12, 35, 75      | **Arizona Blue** — headlines on light, emphasis sections |
-| `uagc-red`          | `#AB0520` | 171, 5, 32      | **Arizona Red** — Apply Now buttons (always red), links (Reskin target) |
-| `uagc-gold`         | `#EF9600` | 239, 150, 0     | **RFI / Request Info CTAs only** — all Request Info buttons use gold `#EF9600` |
-| `uagc-crimson`      | `#C10121` | 193, 1, 33      | Accent red — dividers (sparingly)           |
-| `uagc-sky`          | `#81D3EB` | 129, 211, 235   | **Sky Blue** — Reskin target for Apply Now (not in prototypes yet) |
-| `uagc-light-gray-30`| `#E2E9EB` | 226, 233, 235   | **Light_Gray_30** (UA Cool Gray) — alternating module backgrounds (Reskin) |
-| `uagc-visited`      | `#533566` | 83, 53, 102     | Visited link text (Reskin target)           |
-| `uagc-warning`      | `#EF9600` | 239, 150, 0     | Warning labels (Reskin); same hex as paid gold — context distinguishes use |
+| Token               | Hex       | RGB             | Reskin Name       | Usage                                      |
+|---------------------|-----------|-----------------|-------------------|--------------------------------------------|
+| `uagc-navy`         | `#0C234B` | 12, 35, 75      | `arizona_blue`    | **Arizona Blue** — headlines on light, emphasis sections, RFI button bg |
+| `uagc-navy-dark`    | `#05193C` | 5, 25, 60       | `arizona_blue_dark` | Dark variant — hover states on navy        |
+| `uagc-navy-light`   | `#092E6C` | 9, 46, 108      | `arizona_blue_light` | Light variant — accents                   |
+| `uagc-red`          | `#AB0520` | 171, 5, 32      | `arizona_red`     | **Arizona Red** — links (default), courtesy nav |
+| `uagc-red-dark`     | `#990019` | 153, 0, 25      | `arizona_red_dark` | Dark variant — link hover states           |
+| `uagc-crimson`      | `#C10121` | 193, 1, 33      | `arizona_red_light` | Light variant — dividers (sparingly)      |
+| `uagc-sky`          | `#81D3EB` | 129, 211, 235   | `sky`             | **Sky Blue** — Apply Now button background |
+| `uagc-sky-hover`    | `#43A9C8` | 67, 169, 200    | `sky_tint`        | Sky hover/pressed state                    |
+| `uagc-gold`         | `#EF9600` | 239, 150, 0     | `orange`          | **Warning labels only** (Reskin); paid prototypes use for CTAs pending brand sign-off |
 
 ### Neutral Palette
 
-| Token               | Hex       | RGB             | Usage                                      |
-|---------------------|-----------|-----------------|--------------------------------------------|
-| `text-primary`      | `#111111` | 17, 17, 17      | Primary body text, headings                 |
-| `text-dark`         | `#011D27` | 1, 29, 39       | Link text, dark headings                    |
-| `text-muted`        | `#53565A` | 83, 86, 90      | Secondary text, descriptions, captions      |
-| `border-light`      | `#D0D0CE` | 208, 208, 206   | Dividers, borders, rules                    |
-| `surface-light`     | `#F1F1F0` | 241, 241, 240   | Table rows, light backgrounds, badges       |
-| `white`             | `#FFFFFF` | 255, 255, 255   | Page backgrounds, card surfaces             |
-| `black`             | `#000000` | 0, 0, 0         | Icons, strokes, bullet points               |
+| Token               | Hex       | RGB             | Reskin Name       | Usage                                      |
+|---------------------|-----------|-----------------|-------------------|--------------------------------------------|
+| `black`             | `#111111` | 17, 17, 17      | `black`           | Primary body text, headings                 |
+| `text-muted`        | `#53565A` | 83, 86, 90      | `dark_gray`       | Secondary text, descriptions, captions      |
+| `silver`            | `#98A4AE` | 152, 164, 174   | `silver`          | Disabled states, placeholder text           |
+| `border-light`      | `#D0D0CE` | 208, 208, 206   | `light_gray`      | Dividers, borders, rules                    |
+| `tan`               | `#D6D2C4` | 214, 210, 196   | `tan`             | Warm neutral accents                        |
+| `surface-light`     | `#F1F1F0` | 241, 241, 240   | `light_gray_30`   | **Module backgrounds** — alternating with white |
+| `white`             | `#FFFFFF` | 255, 255, 255   | `white`           | Page backgrounds, card surfaces             |
+
+### Secondary Colors
+
+| Token               | Hex       | RGB             | Reskin Name       | Usage                                      |
+|---------------------|-----------|-----------------|-------------------|--------------------------------------------|
+| `purple`            | `#621244` | 98, 18, 68      | `purple`          | **Visited link text only**                  |
+| `blue`              | `#0076A8` | 0, 118, 168     | `blue`            | Info semantic, informational callouts        |
+| `river`             | `#007D8A` | 0, 125, 138     | `river`           | Success semantic, confirmations              |
+| `yellow`            | `#F9E17D` | 249, 225, 125   | `yellow`          | Highlight accents (sparingly)               |
+
+### Semantic Colors
+
+| Token               | Hex       | Reskin Role     | Usage                                      |
+|---------------------|-----------|------------------|--------------------------------------------|
+| `error`             | `#AB0520` | Error            | Form validation errors, destructive actions |
+| `info`              | `#0076A8` | Info             | Informational messages, hints               |
+| `warning`           | `#EF9600` | Warning          | Warning labels, caution states              |
+| `success`           | `#007D8A` | Success          | Success confirmations, positive feedback    |
+
+### Reskin CTA Rules (from Figma `c4O4uPeilJDBZFjARNnt65`)
+
+| Element            | Background       | Text Color       | Notes |
+|--------------------|------------------|------------------|-------|
+| **RFI button**     | Arizona Blue `#0C234B` | White `#FFFFFF` | "Blue with White text" |
+| **Apply Now button** | Sky `#81D3EB`  | Arizona Blue `#0C234B` | "Sky Blue with Arizona Blue text" |
+| **Links**          | —                | Arizona Red `#AB0520` | Default inline links |
+| **Visited links**  | —                | Purple `#621244` | Visited state only |
+| **Headlines**      | —                | Arizona Blue or White | Dependent on background color |
+| **Module backgrounds** | White `#FFFFFF` or Light_Gray_30 `#F1F1F0` | — | Arizona Blue for emphasis bands |
+| **Courtesy Nav**   | —                | Arizona Red `#AB0520` | Active state dot/indicator |
+| **Orange `#EF9600`** | —              | —                | **Warning labels only** — not for highlight or CTA use |
+| **Purple `#621244`** | —              | —                | **Visited link text only** |
+
+> **Paid prototype deviation (current):** Gold `#EF9600` is used for RFI/Apply CTAs + accent bars in `~/uagc-prototypes` pending brand sign-off on the strict Reskin navy/sky split. When approved, RFI → navy bg + white text, Apply → sky bg + navy text.
 
 ### Usage Guidelines
 
 - **Dark sections** (`uagc-navy` background): use `#FFFFFF` text, avoid faint `text-white/50`–`text-white/70`
 - **Light sections** (`#FFFFFF` or `#F1F1F0` background): use `#111111` primary text, `#53565A` muted
-- **Links** (Reskin target): `#AB0520` default; **visited** `#533566`
-- **RFI / Apply / primary CTAs** (Reskin target): navy + white (RFI), sky + navy text (Apply)
-- **Paid prototypes** (`~/uagc-prototypes`): **gold** `#EF9600` CTAs + navy text — typography uses Fira/Montserrat scale; color split deferred
-- **Module backgrounds**: `#FFFFFF` and `#F1F1F0` (`surface-light`); `#0C234B` for emphasis bands
-- **Courtesy nav** (section rail): gold active dot in prototypes; Reskin may use Arizona Red when approved
+- **Links** (Reskin): `#AB0520` default; **visited** `#621244` (purple)
+- **RFI buttons** (Reskin target): navy `#0C234B` background + white text
+- **Apply Now buttons** (Reskin target): sky `#81D3EB` background + navy text
+- **Paid prototypes** (`~/uagc-prototypes`): **gold** `#EF9600` CTAs + navy text — deferred until brand sign-off
+- **Module backgrounds**: `#FFFFFF` and `#F1F1F0` (`light_gray_30`); `#0C234B` for emphasis bands
+- **Courtesy nav** (section rail): Arizona Red `#AB0520`
+- **Orange / Gold** (`#EF9600`): Reskin reserves for **warning labels only** — not highlight color
 - **Minimum contrast**: 4.5:1 for body text (WCAG AA)
 
 ---
@@ -117,10 +154,10 @@ Typography scale follows the **8pt rule** — not strictly in font size, but in 
 
 | State        | Style                                     |
 |--------------|-------------------------------------------|
-| **Default** (`a:link`)     | `#AB0520`, underline                |
-| **Hover** (`a:hover`)      | `#AB0520`, underline + cursor pointer |
+| **Default** (`a:link`)     | `#AB0520` (Arizona Red), underline  |
+| **Hover** (`a:hover`)      | `#990019` (Arizona Red Dark), underline + cursor pointer |
 | **Active** (`a:active`)    | `#AB0520`, underline                |
-| **Visited** (`a:visited`)  | `#011D27` (dark teal)               |
+| **Visited** (`a:visited`)  | `#621244` (Purple)                  |
 
 ---
 
@@ -128,19 +165,36 @@ Typography scale follows the **8pt rule** — not strictly in font size, but in 
 
 ```css
 :root {
-  /* Brand */
+  /* Brand — Primary */
   --uagc-navy: #0C234B;
+  --uagc-navy-dark: #05193C;
+  --uagc-navy-light: #092E6C;
   --uagc-red: #AB0520;
+  --uagc-red-dark: #990019;
   --uagc-crimson: #C10121;
+  --uagc-sky: #81D3EB;
+  --uagc-sky-hover: #43A9C8;
+  --uagc-gold: #EF9600; /* warning only in Reskin; CTAs in paid prototypes */
 
-  /* Text */
+  /* Neutrals */
   --text-primary: #111111;
-  --text-dark: #011D27;
   --text-muted: #53565A;
-
-  /* Surfaces & Borders */
-  --surface-light: #F1F1F0;
+  --silver: #98A4AE;
   --border-light: #D0D0CE;
+  --tan: #D6D2C4;
+  --surface-light: #F1F1F0;
+
+  /* Secondary */
+  --purple: #621244; /* visited links */
+  --blue: #0076A8;   /* info */
+  --river: #007D8A;  /* success */
+  --yellow: #F9E17D;
+
+  /* Semantic */
+  --semantic-error: #AB0520;
+  --semantic-info: #0076A8;
+  --semantic-warning: #EF9600;
+  --semantic-success: #007D8A;
 
   /* Typography — maps Figma Proxima Nova → Google Fonts equivalents */
   --font-heading-condensed: 'Fira Sans Extra Condensed', 'Proxima Nova Extra Condensed', sans-serif;
@@ -156,13 +210,24 @@ Typography scale follows the **8pt rule** — not strictly in font size, but in 
 {
   colors: {
     'uagc-navy': '#0C234B',
+    'uagc-navy-dark': '#05193C',
+    'uagc-navy-light': '#092E6C',
     'uagc-red': '#AB0520',
+    'uagc-red-dark': '#990019',
     'uagc-crimson': '#C10121',
+    'uagc-sky': '#81D3EB',
+    'uagc-sky-hover': '#43A9C8',
+    'uagc-gold': '#EF9600',
     'uagc-text': '#111111',
-    'uagc-dark': '#011D27',
     'uagc-muted': '#53565A',
+    'uagc-silver': '#98A4AE',
     'uagc-border': '#D0D0CE',
+    'uagc-tan': '#D6D2C4',
     'uagc-surface': '#F1F1F0',
+    'uagc-purple': '#621244',
+    'uagc-blue': '#0076A8',
+    'uagc-river': '#007D8A',
+    'uagc-yellow': '#F9E17D',
   },
   fontFamily: {
     'heading-condensed': ['"Fira Sans Extra Condensed"', '"Proxima Nova Extra Condensed"', 'sans-serif'],
@@ -176,7 +241,108 @@ Typography scale follows the **8pt rule** — not strictly in font size, but in 
 
 ## Icons
 
-### UAGC DESIGN SYSTEM Icons
+### Icon System Overview
+
+The Reskin icon system is divided into **two categories**: Functional and Illustrative. Both can be used as SVG icons.
+
+### Functional Icons — Feather Icons (NOT CHANGING)
+
+**Source:** [Feather Icons](https://feathericons.com/) by Cole Bemis  
+**Size:** 24×24 default viewBox, rendered at `w-6 h-6`  
+**Stroke:** 2px stroke-width, `currentColor`
+
+| Row | Icons |
+|-----|-------|
+| Navigation | `arrow-left`, `arrow-right`, `arrow-down`, `arrow-up`, `arrow-up-right`, `minimize-2`, `chevron-down`, `chevron-up`, `chevron-left`, `chevron-right`, `x`, `check` |
+| UI | `user`, `play`, `phone`, `search`, `menu`, `sun`, `alert-circle`, `eye`, `eye-off`, `book-open`, `star`, `heart` |
+| Actions | `message-circle`, `thumbs-up`, `trash-2`, `slash`, `printer`, `trending-up`, `lock`, `time` |
+| Social | `facebook`, `twitter`, `instagram`, `linkedin`, `youtube` |
+
+### Functional Nav Icons (Blue Nav Bar)
+
+| Icon Name       | Purpose                       | Size  |
+|-----------------|-------------------------------|-------|
+| `chat`          | Chat / message circle         | 24×24 |
+| `ShieldCheck`   | Military for Blue Nav Bar     | 24×24 |
+| `Partnerships`  | Partnerships for Blue Nav Bar | 24×24 |
+| `SignIn`        | Student Login for Blue Nav Bar | 24×24 |
+| `Apply`         | Apply for Blue Nav Bar        | 24×24 |
+| `Phone`         | Phone for Blue Nav Bar        | 24×24 |
+| `search`        | Search for Blue Nav Bar       | 24×24 |
+
+### Illustrative Icons (UPDATED)
+
+Multi-size system — each illustrative icon ships in four sizes:
+
+| Size Label | Dimensions | Use Case |
+|------------|-----------|----------|
+| **XL** | 128×128 (approx) | Hero / feature sections |
+| **L** | 56×56 | Cards, list items |
+| **M** | 24×24 | Inline with text |
+| **S** | 16×16 | Compact / badge use |
+
+#### Multi-Size Illustrative Set
+
+| Icon Name | Sizes Available | Category |
+|-----------|----------------|----------|
+| Online Learning | XL, L, M, S | Education |
+| Find Degree | XL, L, M, S | Discovery |
+| Stories | XL, L, M, S | Testimonials |
+| Credit | XL, L, M, S | Financial |
+| Active Military | XL, L, M, S | Military |
+| Military Family | XL, L, M, S | Military |
+| Veteran | XL, L, M, S | Military |
+| Aid | XL (128), L (56), M (24), S (16) | Financial |
+| Calendar | XL (128), L (56), M (24), S (16) | Scheduling |
+| Education | XL (128), L (56), M (24), S (16) | Education |
+| Process | XL, L, M, S | Steps |
+| Online Education | XL, L, M, S | Education |
+
+#### Main Icons Set (56×56 standard)
+
+| Icon Name | Token / Variant |
+|-----------|----------------|
+| Faculty | `faculty` |
+| 24/7 Support (CHAMPS) | `Support-CHAMPS` |
+| Study at Your Own Pace | `Convenient Flexible` |
+| Tech Support | `Tech Support` |
+| Flexible / Your Own Pace | `flexible-your-own-pace` |
+| Degree Programs | `Degree Programs` |
+| 24/7 Tutoring | `247-tutoring` |
+| UAGC Promise | `uagc-promise` |
+| Transfer-Friendly | `transfer` |
+| Light Bulb | `Light Blub` |
+| Celebrate | `Celebrate` |
+| Check Mark | `Check Mark` |
+| Work Life Credit | `work-life-credit` |
+| Quality Value | `quality-value` |
+| No Test | `no-test` |
+| Military | `military` |
+| Innovative Tech | `innovative-tech` |
+| 100% Online | `All Online` |
+| Accelerated Courses | `accelerated-coursees` |
+| Library / Writing | `library-writing` |
+| Net Price Calculator | `net price calc` |
+| No Fee | `No Fee` |
+| One Class at a Time | `one-class-at-a-time` |
+| Services Included | `services-included` |
+| Career Services | `career-services` |
+| Graduation | `Graduation` |
+| Accreditation | `accreditation` |
+| Step 1–4 | `Step 1` … `Step 4` |
+| Equality | `Equality` |
+
+#### Number Icons (56×56)
+
+| Number | Variant |
+|--------|---------|
+| 1 | `Number=One` |
+| 2 | `Number=Two` |
+| 3 | `Number=Three` |
+| 4 | `Number=Four` |
+| 5 | `Number=Five` |
+
+### UAGC DESIGN SYSTEM Icons (Component Keys)
 
 | Icon Name        | Component Key                              | Description              |
 |------------------|--------------------------------------------|--------------------------|
@@ -189,7 +355,7 @@ Typography scale follows the **8pt rule** — not strictly in font size, but in 
 | Youtube Icon     | `b7bc18bfddcd43a6cae1cdda1346bded4ed2e3a1` | Social — YouTube         |
 | Linkedin Icon    | `44131c1133817fa3d03341a8d38e829cd73eb760` | Social — LinkedIn        |
 
-### UAGC Library Icons
+### UAGC Library Icons (Component Keys)
 
 | Icon Name         | Component Key                              | Description              |
 |-------------------|--------------------------------------------|--------------------------|
@@ -200,11 +366,14 @@ Typography scale follows the **8pt rule** — not strictly in font size, but in 
 
 ### Icon Guidelines
 
-- Use **SVG** icons from the Figma component library — no emoji icons
-- Consistent sizing: **24x24** default viewBox, rendered at `w-6 h-6`
+- **Source:** Feather Icons for functional; UAGC illustrative set for branded/category icons
+- Use **SVG** format — no emoji icons in production UI
+- Functional icons: **24×24** viewBox, 2px stroke, `currentColor`
+- Illustrative icons: **XL** (128), **L** (56), **M** (24), **S** (16) — use Arizona Red `#AB0520` fill
+- On dark backgrounds (`uagc-navy`): white icon fill/stroke
+- On light backgrounds: `#0C234B` (navy) or `#111111` (near-black) fill/stroke
 - Social icons: use official brand SVGs from Simple Icons or the UAGC library
-- On dark backgrounds (`uagc-navy`): white icon fill
-- On light backgrounds: `#0C234B` (navy) or `#111111` (near-black) fill
+- **Prototypes:** Lucide React icons acceptable if matching stroke weight (2px), size (24px), and fill color rules
 
 ---
 

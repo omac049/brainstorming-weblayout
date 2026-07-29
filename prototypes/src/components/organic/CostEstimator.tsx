@@ -153,7 +153,7 @@ function RangeSlider({
     <div className="relative h-11 w-full">
       <div className="absolute left-0 top-1/2 h-2 w-full -translate-y-1/2 overflow-hidden rounded-full bg-uagc-navy/10">
         <div
-          className="h-full rounded-full bg-uagc-gold transition-[width] duration-150 ease-out"
+          className="h-full rounded-full bg-uagc-navy transition-[width] duration-150 ease-out"
           style={{ width: `${pct}%` }}
         />
       </div>
@@ -171,7 +171,7 @@ function RangeSlider({
         className="absolute inset-0 z-10 w-full cursor-pointer opacity-0"
       />
       <span
-        className="pointer-events-none absolute top-1/2 z-5 size-5 -translate-x-1/2 -translate-y-1/2 rounded-full border-2 border-uagc-gold bg-white shadow-[0_1px_6px_rgba(12,35,75,0.18)] transition-[left] duration-150 ease-out"
+        className="pointer-events-none absolute top-1/2 z-5 size-5 -translate-x-1/2 -translate-y-1/2 rounded-full border-2 border-uagc-navy/40 bg-white shadow-[0_1px_6px_rgba(12,35,75,0.18)] transition-[left] duration-150 ease-out"
         style={{ left: `${pct}%` }}
       />
     </div>
@@ -229,7 +229,7 @@ function PlanNextSteps({
         <ul className="mt-2.5 space-y-1.5 text-sm text-uagc-navy-muted">
           <li className="flex items-start gap-2">
             <CheckCircle2
-              className="mt-0.5 size-3.5 shrink-0 text-uagc-gold"
+              className="mt-0.5 size-3.5 shrink-0 text-uagc-sky"
               aria-hidden
             />
             <span>
@@ -240,7 +240,7 @@ function PlanNextSteps({
                 <>
                   {" "}
                   · est.{" "}
-                  <span className="font-semibold tabular-nums text-uagc-gold">
+                  <span className="font-semibold tabular-nums text-uagc-sky">
                     {formatCurrency(context.estimatedCost)}
                   </span>
                 </>
@@ -249,7 +249,7 @@ function PlanNextSteps({
           </li>
           <li className="flex items-start gap-2">
             <CheckCircle2
-              className="mt-0.5 size-3.5 shrink-0 text-uagc-gold"
+              className="mt-0.5 size-3.5 shrink-0 text-uagc-sky"
               aria-hidden
             />
             <span>
@@ -261,7 +261,7 @@ function PlanNextSteps({
           </li>
           <li className="flex items-start gap-2">
             <CheckCircle2
-              className="mt-0.5 size-3.5 shrink-0 text-uagc-gold"
+              className="mt-0.5 size-3.5 shrink-0 text-uagc-sky"
               aria-hidden
             />
             <span>
@@ -282,7 +282,7 @@ function PlanNextSteps({
         <button
           type="button"
           onClick={onRequestPlan}
-          className="group inline-flex min-h-11 w-full cursor-pointer items-center justify-center gap-2 rounded-xl bg-uagc-gold px-5 py-3 text-sm font-bold text-uagc-navy transition-[transform,background-color] duration-200 hover:bg-uagc-gold-dark active:scale-97 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
+          className="group inline-flex min-h-11 w-full cursor-pointer items-center justify-center gap-2 rounded-xl bg-uagc-navy px-5 py-3 text-sm font-bold text-white transition-[transform,background-color] duration-200 hover:bg-uagc-navy-dark active:scale-97 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
         >
           Request information
           <ArrowRight
@@ -294,7 +294,7 @@ function PlanNextSteps({
           href={PHONE_HREF}
           className="inline-flex min-h-11 w-full items-center justify-center gap-2 rounded-xl border border-white/20 px-5 py-3 text-sm font-semibold text-white transition-[transform,background-color,border-color] duration-200 hover:border-white/35 hover:bg-white/5 active:scale-97 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
         >
-          <Phone className="size-4 text-uagc-gold" aria-hidden />
+          <Phone className="size-4 text-uagc-sky" aria-hidden />
           {context.hasMilitary ? "Talk to an advisor" : "Call an advisor"}
         </a>
         <button
@@ -619,7 +619,7 @@ export function CostEstimator({
 
   const breakdownHighlight = (source: ChangeSource) =>
     highlightSource === source
-      ? "rounded bg-white/10 ring-1 ring-uagc-gold/35 transition-[background-color,box-shadow] duration-200"
+      ? "rounded bg-white/10 ring-1 ring-uagc-navy/35 transition-[background-color,box-shadow] duration-200"
       : "transition-[background-color,box-shadow] duration-200";
 
   return (
@@ -655,8 +655,8 @@ export function CostEstimator({
                 plan at no cost.
               </p>
             </div>
-            <div className="mt-6 hidden shrink-0 border-l-2 border-uagc-gold pl-6 lg:block">
-              <p className="font-heading text-5xl font-bold leading-none tabular-nums text-uagc-gold">
+            <div className="mt-6 hidden shrink-0 border-l-2 border-uagc-red pl-6 lg:block">
+              <p className="font-heading text-5xl font-bold leading-none tabular-nums text-uagc-navy">
                 86%
               </p>
               <p className="mt-1 max-w-40 text-sm leading-snug text-uagc-gray">
@@ -683,7 +683,7 @@ export function CostEstimator({
 
         <div
           className={cn(
-            "reveal-section stagger-2 overflow-hidden rounded-2xl border border-uagc-border border-t-4 border-t-uagc-gold bg-white shadow-[0_24px_64px_rgba(12,35,75,0.09)] lg:grid lg:grid-cols-[minmax(0,1fr)_minmax(360px,400px)] lg:items-stretch",
+            "reveal-section stagger-2 overflow-hidden rounded-2xl border border-uagc-border border-t-4 border-t-uagc-red bg-white shadow-[0_24px_64px_rgba(12,35,75,0.09)] lg:grid lg:grid-cols-[minmax(0,1fr)_minmax(360px,400px)] lg:items-stretch",
             isVisible && "is-visible",
           )}
         >
@@ -702,7 +702,7 @@ export function CostEstimator({
                 aria-label="Estimator progress"
               >
                 <div
-                  className="h-full rounded-full bg-uagc-gold transition-[width] duration-300 ease-out"
+                  className="h-full rounded-full bg-uagc-navy transition-[width] duration-300 ease-out"
                   style={{ width: `${progressPct}%` }}
                 />
               </div>
@@ -727,7 +727,7 @@ export function CostEstimator({
                         <span
                           className={cn(
                             "flex size-7 shrink-0 items-center justify-center rounded-full text-xs font-bold transition-colors duration-200",
-                            step.complete && "bg-uagc-gold text-uagc-navy",
+                            step.complete && "bg-uagc-navy text-white",
                             isFocus &&
                               !step.complete &&
                               "bg-uagc-navy text-white",
@@ -815,7 +815,7 @@ export function CostEstimator({
                     <span
                       className={cn(
                         "mt-1 block text-xs tabular-nums",
-                        degreeLevel === key ? "text-uagc-gold" : "text-uagc-gray",
+                        degreeLevel === key ? "text-uagc-navy" : "text-uagc-gray",
                       )}
                     >
                       ${val.rate}/cr
@@ -862,9 +862,9 @@ export function CostEstimator({
                 {showTransferNudge ? (
                   <div
                     role="status"
-                    className="mb-4 flex items-center gap-2 rounded-lg border border-uagc-gold/30 bg-uagc-gold/10 px-3 py-2"
+                    className="mb-4 flex items-center gap-2 rounded-lg border border-uagc-navy/40 bg-uagc-sky/10 px-3 py-2"
                   >
-                    <Sparkles className="size-3.5 shrink-0 text-uagc-gold" aria-hidden />
+                    <Sparkles className="size-3.5 shrink-0 text-uagc-sky" aria-hidden />
                     <p className="flex-1 text-xs leading-snug text-uagc-navy">
                       Drag the slider — prior learning and certs count.
                     </p>
@@ -903,7 +903,7 @@ export function CostEstimator({
                     </span>
                   ) : (
                     <span className="flex items-center gap-1 text-uagc-gray">
-                      <Info className="size-3.5 text-uagc-gold" aria-hidden />
+                      <Info className="size-3.5 text-uagc-navy" aria-hidden />
                       PLA eligible
                     </span>
                   )}
@@ -962,7 +962,7 @@ export function CostEstimator({
                           <span
                             className={cn(
                               "block text-xs tabular-nums",
-                              active ? "text-uagc-gold" : "text-uagc-gray",
+                              active ? "text-uagc-navy" : "text-uagc-gray",
                             )}
                           >
                             {option.savings}
@@ -996,8 +996,8 @@ export function CostEstimator({
             <div className="relative flex items-center justify-between border-b border-white/10 px-5 py-4 sm:px-6">
               <p className="flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-white/50">
                 <span className="relative flex size-2">
-                  <span className="live-dot absolute inset-0 rounded-full bg-uagc-gold" />
-                  <span className="relative m-auto size-1.5 rounded-full bg-uagc-gold" />
+                  <span className="live-dot absolute inset-0 rounded-full bg-uagc-sky" />
+                  <span className="relative m-auto size-1.5 rounded-full bg-uagc-sky" />
                 </span>
                 Live estimate
               </p>
@@ -1012,7 +1012,7 @@ export function CostEstimator({
             <div className="relative flex flex-1 flex-col justify-center px-5 py-6 text-center sm:px-6 sm:py-8">
               {calc.hasMilitary ? (
                 <>
-                  <p className="text-xl font-bold text-uagc-gold">
+                  <p className="text-xl font-bold text-uagc-sky">
                     Contact an Advisor
                   </p>
                   <p className="mt-2 text-sm text-uagc-navy-muted">
@@ -1024,7 +1024,7 @@ export function CostEstimator({
                 <>
                   <p
                     className={cn(
-                      "font-heading text-[2.75rem] font-bold leading-none tabular-nums text-uagc-gold sm:text-[3.25rem]",
+                      "font-heading text-[2.75rem] font-bold leading-none tabular-nums text-uagc-sky sm:text-[3.25rem]",
                       costTick && "cost-tick",
                     )}
                   >
@@ -1047,12 +1047,12 @@ export function CostEstimator({
               <div className="relative mx-5 mb-4 sm:mx-6">
                 <div className="h-1.5 w-full overflow-hidden rounded-full bg-white/10">
                   <div
-                    className="h-full rounded-full bg-uagc-gold transition-[width] duration-500 ease-out"
+                    className="h-full rounded-full bg-uagc-sky transition-[width] duration-500 ease-out"
                     style={{ width: `${Math.min(calc.savingsPct, 100)}%` }}
                   />
                 </div>
                 <p className="mt-2 flex items-center justify-between text-xs text-uagc-navy-muted">
-                  <span className="flex items-center gap-1 font-semibold text-uagc-gold">
+                  <span className="flex items-center gap-1 font-semibold text-uagc-sky">
                     <Sparkles className="size-3.5" aria-hidden />
                     {calc.savingsPct}% savings applied
                   </span>
@@ -1081,7 +1081,7 @@ export function CostEstimator({
                     )}
                   >
                     <span className="text-white/55">Transfer ({calc.transfer} cr)</span>
-                    <span className="font-semibold tabular-nums text-uagc-gold">
+                    <span className="font-semibold tabular-nums text-uagc-sky">
                       −{formatCurrency(calc.transferSavings)}
                     </span>
                   </div>
@@ -1107,7 +1107,7 @@ export function CostEstimator({
                     )}
                   >
                     <span className="text-white/55">Est. aid</span>
-                    <span className="font-semibold tabular-nums text-uagc-gold">
+                    <span className="font-semibold tabular-nums text-uagc-sky">
                       −{formatCurrency(calc.aidReduction)}
                     </span>
                   </div>
@@ -1126,7 +1126,7 @@ export function CostEstimator({
                     <button
                       type="button"
                       onClick={openNextSteps}
-                      className="group inline-flex min-h-11 w-full cursor-pointer items-center justify-center gap-2 rounded-xl bg-uagc-gold px-5 py-3 text-sm font-bold text-uagc-navy transition-[transform,background-color] duration-200 hover:bg-uagc-gold-dark active:scale-97 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
+                      className="group inline-flex min-h-11 w-full cursor-pointer items-center justify-center gap-2 rounded-xl bg-uagc-navy px-5 py-3 text-sm font-bold text-white transition-[transform,background-color] duration-200 hover:bg-uagc-navy-dark active:scale-97 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
                     >
                       See your next steps
                       <ArrowRight
@@ -1159,11 +1159,11 @@ export function CostEstimator({
           <div className="mx-auto flex max-w-lg items-center gap-3">
             <div className="min-w-0 flex-1">
               {calc.hasMilitary ? (
-                <p className="truncate text-sm font-bold text-uagc-gold">
+                <p className="truncate text-sm font-bold text-uagc-sky">
                   Contact an advisor
                 </p>
               ) : (
-                <p className="font-heading text-lg font-bold tabular-nums text-uagc-gold">
+                <p className="font-heading text-lg font-bold tabular-nums text-uagc-sky">
                   {formatCurrency(animatedCost)}
                 </p>
               )}
@@ -1171,7 +1171,7 @@ export function CostEstimator({
             <button
               type="button"
               onClick={planReady ? handleRequestPlan : openNextSteps}
-              className="inline-flex min-h-11 shrink-0 cursor-pointer items-center justify-center gap-1 rounded-lg bg-uagc-gold px-3.5 py-2 text-sm font-bold text-uagc-navy transition-[transform,background-color] duration-200 active:scale-97"
+              className="inline-flex min-h-11 shrink-0 cursor-pointer items-center justify-center gap-1 rounded-lg bg-uagc-navy px-3.5 py-2 text-sm font-bold text-white transition-[transform,background-color] duration-200 active:scale-97"
             >
               {planReady ? "Request info" : "Next steps"}
               <ArrowRight className="size-3.5" aria-hidden />

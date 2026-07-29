@@ -192,12 +192,12 @@ export default function OrganicHomepage() {
                 {costPlanContext ? (
                   <>
                     Confirm Your{" "}
-                    <span className="text-uagc-gold">Cost Plan</span>
+                    <span className="text-uagc-sky">Cost Plan</span>
                   </>
                 ) : (
                   <>
                     Ready to Take the{" "}
-                    <span className="text-uagc-gold">Next Step?</span>
+                    <span className="text-uagc-sky">Next Step?</span>
                   </>
                 )}
               </h2>
@@ -233,21 +233,21 @@ export default function OrganicHomepage() {
               <div className="mt-5 flex flex-wrap items-center justify-center gap-x-5 gap-y-2 text-xs text-uagc-navy-muted">
                 <span className="flex items-center gap-1.5">
                   <span
-                    className="size-1.5 rounded-full bg-uagc-gold"
+                    className="size-1.5 rounded-full bg-uagc-navy"
                     aria-hidden
                   />
                   No obligation
                 </span>
                 <span className="flex items-center gap-1.5">
                   <span
-                    className="size-1.5 rounded-full bg-uagc-gold"
+                    className="size-1.5 rounded-full bg-uagc-navy"
                     aria-hidden
                   />
                   Response within 1 business day
                 </span>
                 <span className="flex items-center gap-1.5">
                   <span
-                    className="size-1.5 rounded-full bg-uagc-gold"
+                    className="size-1.5 rounded-full bg-uagc-navy"
                     aria-hidden
                   />
                   $0 application fee

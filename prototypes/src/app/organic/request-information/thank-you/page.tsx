@@ -195,14 +195,14 @@ function CountdownTimer() {
             <span className={cn(
               "flex size-12 items-center justify-center rounded-xl font-heading text-xl font-bold tabular-nums sm:size-14 sm:text-2xl",
               highlight
-                ? "bg-uagc-gold/20 text-uagc-gold ring-2 ring-uagc-gold/40"
+                ? "bg-uagc-sky/15 text-uagc-navy ring-2 ring-uagc-navy/40"
                 : "bg-white/10 text-white ring-1 ring-white/10",
             )}>
               {String(value).padStart(2, "0")}
             </span>
             <span className={cn(
               "mt-2 text-[10px] font-bold uppercase tracking-wider",
-              highlight ? "text-uagc-gold" : "text-white/60",
+              highlight ? "text-uagc-sky" : "text-white/60",
             )}>
               {label}
             </span>
@@ -259,7 +259,7 @@ function AdvisorSupportTeam() {
                 className={cn(
                   "group relative cursor-default overflow-hidden rounded-2xl border border-uagc-border bg-uagc-surface px-5 pb-6 pt-7",
                   "transition-[border-color,box-shadow] duration-200 ease-[cubic-bezier(0.23,1,0.32,1)]",
-                  "hover:border-uagc-gold hover:shadow-[0_4px_20px_rgba(12,35,75,0.08)]",
+                  "hover:border-uagc-navy/40 hover:shadow-[0_4px_20px_rgba(12,35,75,0.08)]",
                   "reveal-section",
                   `stagger-${index + 1}`,
                   isVisible && "is-visible",
@@ -268,9 +268,9 @@ function AdvisorSupportTeam() {
                 {/* Gold top accent — reveals on hover */}
                 <span
                   aria-hidden
-                  className="absolute inset-x-0 top-0 h-0.75 origin-left scale-x-0 bg-uagc-gold transition-transform duration-300 ease-[cubic-bezier(0.23,1,0.32,1)] group-hover:scale-x-100"
+                  className="absolute inset-x-0 top-0 h-0.75 origin-left scale-x-0 bg-uagc-navy transition-transform duration-300 ease-[cubic-bezier(0.23,1,0.32,1)] group-hover:scale-x-100"
                 />
-                <span className="flex size-11 items-center justify-center rounded-xl bg-uagc-navy text-white transition-[background-color,color] duration-200 ease-[cubic-bezier(0.23,1,0.32,1)] group-hover:bg-uagc-gold sm:size-12">
+                <span className="flex size-11 items-center justify-center rounded-xl bg-uagc-navy text-white transition-[background-color,color] duration-200 ease-[cubic-bezier(0.23,1,0.32,1)] group-hover:bg-uagc-navy sm:size-12">
                   <Icon className="size-5 sm:size-[22px]" strokeWidth={1.75} />
                 </span>
                 <h3 className="mt-4 font-heading text-base font-bold leading-snug text-uagc-navy sm:text-[1.0625rem]">
@@ -296,8 +296,8 @@ function AdvisorSupportTeam() {
             <div className="px-5 py-5 sm:px-8 sm:py-5">
               {/* Header row */}
               <div className="flex items-center gap-3">
-                <span className="flex size-10 shrink-0 items-center justify-center rounded-xl bg-uagc-gold/15">
-                  <Headphones className="size-[18px] text-uagc-gold" strokeWidth={1.75} aria-hidden />
+                <span className="flex size-10 shrink-0 items-center justify-center rounded-xl bg-uagc-sky/10">
+                  <Headphones className="size-[18px] text-uagc-sky" strokeWidth={1.75} aria-hidden />
                 </span>
                 <div className="min-w-0">
                   <p className="text-sm font-bold text-white sm:text-[0.9375rem]">
@@ -316,7 +316,7 @@ function AdvisorSupportTeam() {
                     key={slot.day}
                     className="flex items-center justify-between gap-3 rounded-lg bg-white/8 px-3.5 py-2.5 text-[0.8125rem] ring-1 ring-white/10 sm:justify-center sm:gap-2 sm:py-2 sm:text-sm"
                   >
-                    <span className="font-semibold text-uagc-gold">
+                    <span className="font-semibold text-uagc-sky">
                       {slot.day}
                     </span>
                     <span className="text-white/80">{slot.hours}</span>
@@ -415,19 +415,19 @@ function ThankYouContent() {
 
                 <h1 className="font-heading text-3xl font-extrabold tracking-tight text-white sm:text-4xl lg:text-5xl" style={{ textWrap: "balance" }}>
                   {headline}{" "}
-                  <span className="text-uagc-gold">{firstName}</span>,
+                  <span className="text-uagc-sky">{firstName}</span>,
                 </h1>
                 <p className="mt-3 text-2xl font-bold text-white sm:text-3xl lg:text-[2.25rem]">
                   <span className="relative inline-block">
                     Your future starts now.
-                    <span aria-hidden className="absolute inset-x-0 -bottom-1 h-1 rounded-full bg-uagc-gold" />
+                    <span aria-hidden className="absolute inset-x-0 -bottom-1 h-1 rounded-full bg-uagc-navy" />
                   </span>
                 </p>
 
                 {program && (
-                  <div className="mt-4 inline-flex items-center gap-2 rounded-lg border border-uagc-gold/30 bg-uagc-gold/10 px-4 py-2.5">
-                    <GraduationCap className="size-4 text-uagc-gold" aria-hidden />
-                    <span className="text-sm font-semibold text-uagc-gold sm:text-base">
+                  <div className="mt-4 inline-flex items-center gap-2 rounded-lg border border-uagc-navy/40 bg-uagc-sky/10 px-4 py-2.5">
+                    <GraduationCap className="size-4 text-uagc-sky" aria-hidden />
+                    <span className="text-sm font-semibold text-uagc-sky sm:text-base">
                       {program}
                     </span>
                   </div>
@@ -450,8 +450,8 @@ function ThankYouContent() {
                           <CheckCircle2 className="mt-0.5 size-4 shrink-0 text-green-400" aria-hidden />
                         ) : step.status === "active" ? (
                           <span className="mt-1 flex size-4 shrink-0 items-center justify-center">
-                            <span className="absolute size-3 animate-ping rounded-full bg-uagc-gold/40" />
-                            <span className="relative size-2 rounded-full bg-uagc-gold" />
+                            <span className="absolute size-3 animate-ping rounded-full bg-uagc-sky/20" />
+                            <span className="relative size-2 rounded-full bg-uagc-navy" />
                           </span>
                         ) : (
                           <span className="mt-1.5 size-2 shrink-0 rounded-full bg-white/25" aria-hidden />
@@ -486,10 +486,10 @@ function ThankYouContent() {
 
                 {/* Badges */}
                 <div className="mt-6 flex flex-wrap items-center gap-3">
-                  <span className="rounded-full border border-uagc-gold/30 bg-uagc-gold/10 px-4 py-1.5 text-xs font-bold text-uagc-gold">
+                  <span className="rounded-full border border-uagc-navy/40 bg-uagc-sky/10 px-4 py-1.5 text-xs font-bold text-uagc-navy">
                     $0 Application Fee
                   </span>
-                  <span className="rounded-full border border-uagc-gold/30 bg-uagc-gold/10 px-4 py-1.5 text-xs font-bold text-uagc-gold">
+                  <span className="rounded-full border border-uagc-navy/40 bg-uagc-sky/10 px-4 py-1.5 text-xs font-bold text-uagc-navy">
                     No Standardized Test Required
                   </span>
                 </div>
@@ -524,10 +524,10 @@ function ThankYouContent() {
                 <div className="rounded-xl border border-white/10 bg-uagc-navy/80 px-6 py-6 text-center backdrop-blur-md">
                   <div className="flex items-center justify-center gap-2">
                     <span className="relative flex size-2.5">
-                      <span className="absolute inline-flex size-full animate-ping motion-reduce:animate-none rounded-full bg-uagc-gold opacity-60" />
-                      <span className="relative inline-flex size-2.5 rounded-full bg-uagc-gold" />
+                      <span className="absolute inline-flex size-full animate-ping motion-reduce:animate-none rounded-full bg-uagc-navy opacity-60" />
+                      <span className="relative inline-flex size-2.5 rounded-full bg-uagc-navy" />
                     </span>
-                    <p className="text-xs font-bold uppercase tracking-widest text-uagc-gold">
+                    <p className="text-xs font-bold uppercase tracking-widest text-uagc-sky">
                       Next Start
                     </p>
                   </div>
@@ -565,10 +565,10 @@ function ThankYouContent() {
                 <div className="rounded-xl border border-white/10 bg-uagc-navy/80 px-5 py-5 text-center backdrop-blur-md">
                   <div className="flex items-center justify-center gap-2">
                     <span className="relative flex size-2.5">
-                      <span className="absolute inline-flex size-full animate-ping motion-reduce:animate-none rounded-full bg-uagc-gold opacity-60" />
-                      <span className="relative inline-flex size-2.5 rounded-full bg-uagc-gold" />
+                      <span className="absolute inline-flex size-full animate-ping motion-reduce:animate-none rounded-full bg-uagc-navy opacity-60" />
+                      <span className="relative inline-flex size-2.5 rounded-full bg-uagc-navy" />
                     </span>
-                    <p className="text-xs font-bold uppercase tracking-widest text-uagc-gold">
+                    <p className="text-xs font-bold uppercase tracking-widest text-uagc-sky">
                       Next Start
                     </p>
                   </div>

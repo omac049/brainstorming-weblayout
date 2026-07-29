@@ -63,7 +63,7 @@ const DEGREE_LEVELS: DegreeLevel[] = [
 
 const LEVEL_COLORS: Record<string, string> = {
   "Associate's": "bg-uagc-navy/8 text-uagc-navy",
-  "Bachelor's": "bg-uagc-gold/15 text-uagc-navy",
+  "Bachelor's": "bg-uagc-sky/15 text-uagc-navy",
   "Master's": "bg-uagc-red/10 text-uagc-red",
   Doctoral: "bg-uagc-red/10 text-uagc-red",
 };
@@ -134,7 +134,7 @@ function ProgramDetailPanel({
               </dd>
               {daysLeft !== null && daysLeft <= 21 && (
                 <dd className="mt-1">
-                  <span className="inline-flex rounded-full bg-uagc-gold/15 px-2 py-0.5 text-xs font-semibold text-uagc-navy">
+                  <span className="inline-flex rounded-full bg-uagc-navy/10 px-2 py-0.5 text-xs font-semibold text-uagc-navy">
                     {daysLeft === 0
                       ? "Next class starts today"
                       : daysLeft === 1
@@ -462,7 +462,7 @@ export function ProgramExplorer({
               setShowAllMobile(false);
               resetScroll();
             }}
-            className="w-full rounded-lg border border-uagc-border bg-white py-3 pr-4 pl-10 text-sm text-uagc-navy outline-none placeholder:text-uagc-gray/50 focus:border-uagc-gold focus:ring-1 focus:ring-uagc-gold"
+            className="w-full rounded-lg border border-uagc-border bg-white py-3 pr-4 pl-10 text-sm text-uagc-navy outline-none placeholder:text-uagc-gray/50 focus:border-uagc-navy focus:ring-1 focus:ring-uagc-navy"
           />
         </div>
 
@@ -479,7 +479,7 @@ export function ProgramExplorer({
               setExpandedProgram(null);
               setShowAllMobile(false);
             }}
-            className="w-full min-h-11 rounded-lg border border-uagc-border bg-white px-3 py-2.5 text-sm font-semibold text-uagc-navy focus:border-uagc-gold focus:outline-none focus:ring-1 focus:ring-uagc-gold"
+            className="w-full min-h-11 rounded-lg border border-uagc-border bg-white px-3 py-2.5 text-sm font-semibold text-uagc-navy focus:border-uagc-navy focus:outline-none focus:ring-1 focus:ring-uagc-navy"
           >
             <option value="all">All Areas ({programs.length})</option>
             {AREAS.map((a) => (
@@ -581,7 +581,7 @@ export function ProgramExplorer({
               className={cn(
                 "cursor-pointer rounded-full px-3.5 py-2.5 text-xs font-semibold transition-[background-color,color,box-shadow] duration-200 min-h-11 inline-flex items-center",
                 levelFilter === "all"
-                  ? "bg-uagc-gold text-uagc-navy"
+                  ? "bg-uagc-navy text-white"
                   : "bg-white text-uagc-navy ring-1 ring-inset ring-uagc-navy/10 hover:ring-uagc-red/20 hover:text-uagc-red",
               )}
             >
@@ -605,7 +605,7 @@ export function ProgramExplorer({
                   className={cn(
                     "cursor-pointer rounded-full px-3.5 py-2.5 text-xs font-semibold transition-[background-color,color,box-shadow] duration-200 min-h-11 inline-flex items-center",
                     isActive
-                      ? "bg-uagc-gold text-uagc-navy"
+                      ? "bg-uagc-navy text-white"
                       : "bg-white text-uagc-navy ring-1 ring-inset ring-uagc-navy/10 hover:ring-uagc-red/20 hover:text-uagc-red",
                   )}
                 >

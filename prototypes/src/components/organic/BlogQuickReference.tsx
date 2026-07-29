@@ -170,15 +170,15 @@ export function BlogQuickReference({
   return (
     <div
       className={cn(
-        "overflow-hidden rounded-xl border border-uagc-gold/30 bg-white",
+        "overflow-hidden rounded-xl border border-uagc-navy/40 bg-white",
         className,
       )}
       data-module="blog-quick-reference"
       data-variant={config.variant}
     >
       {/* Header */}
-      <div className="flex items-center gap-2 border-b border-uagc-gold/20 bg-uagc-cream-warm px-5 py-4">
-        <IconComponent className="size-5 text-uagc-gold" aria-hidden />
+      <div className="flex items-center gap-2 border-b border-uagc-navy/20 bg-uagc-cream-warm px-5 py-4">
+        <IconComponent className="size-5 text-uagc-navy" aria-hidden />
         <h3 className="text-sm font-bold text-uagc-navy">{config.title}</h3>
       </div>
 
@@ -202,7 +202,7 @@ export function BlogQuickReference({
 
       {/* CTA Footer */}
       {config.cta && (
-        <div className="border-t border-uagc-gold/20 bg-uagc-cream-warm px-5 py-4">
+        <div className="border-t border-uagc-navy/20 bg-uagc-cream-warm px-5 py-4">
           <Link
             href={config.cta.href}
             className="flex items-center justify-center gap-2 rounded-lg bg-uagc-red px-4 py-2.5 text-sm font-bold text-white transition-colors hover:bg-uagc-red/90"
