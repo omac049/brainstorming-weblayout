@@ -52,13 +52,11 @@ async function assertRevealSectionsReadable(page: Page) {
 
 async function assertStickyBarAfterScroll(page: Page) {
   await page.evaluate(() =>
-    window.scrollTo(0, Math.min(1200, document.body.scrollHeight * 0.45)),
+    window.scrollTo(0, Math.min(2500, document.body.scrollHeight * 0.5)),
   );
-  await page.waitForTimeout(500);
   const bar = page.locator("[data-rfi-sticky-bar]");
   await expect(bar).toHaveCount(1);
-  const classes = await bar.getAttribute("class");
-  expect(classes ?? "").toContain("translate-y-0");
+  await expect(bar).toHaveClass(/translate-y-0/, { timeout: 3000 });
 }
 
 async function assertFooterTextClearOfStickyBar(page: Page) {
