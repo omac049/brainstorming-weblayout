@@ -7,6 +7,7 @@ on:
       - "prototypes/**"
       - "decks/**"
       - "output/playwright/screenshots/**"
+      - "output/briefs/**"
       - ".github/workflows/deploy-pages.yml"
   workflow_dispatch:
 
@@ -39,11 +40,13 @@ jobs:
         env:
           GITHUB_PAGES: "true"
 
-      - name: Copy decks and audit pages into build output
+      - name: Copy decks, briefs, and audit pages into build output
         run: |
           cp -r decks prototypes/out/decks
           mkdir -p prototypes/out/output/playwright
           cp -r output/playwright/screenshots prototypes/out/output/playwright/screenshots
+          mkdir -p prototypes/out/output
+          cp -r output/briefs prototypes/out/output/briefs
 
       - name: Create deck screenshot aliases
         run: |

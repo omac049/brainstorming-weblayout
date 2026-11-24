@@ -87,6 +87,17 @@ const decks = [
   },
 ];
 
+/* ─── Briefs (static HTML in /output/briefs/, copied at Pages build) ─── */
+const briefs = [
+  {
+    path: "/output/briefs/2026-11-16-omar-landing-page-test-brief.html",
+    title: "Omar Landing Page Test Brief",
+    description:
+      "Developer setup for three channel A/Bs — control (original V8 / V5 / V7) vs variation (/success/request-info-optimized). Optimizely, Google Ads, affiliate, form parity, QA, measurement, calendar.",
+    tag: "Test Setup",
+  },
+];
+
 /* ─── Audit & research pages (static HTML in /output/playwright/screenshots/) ─── */
 const auditPages = [
   {
@@ -260,6 +271,9 @@ export default function Home() {
               {decks.length} Decks
             </span>
             <span className="rounded-full border border-white/10 px-3 py-1">
+              {briefs.length} Briefs
+            </span>
+            <span className="rounded-full border border-white/10 px-3 py-1">
               {auditPages.length} Audit Pages
             </span>
           </div>
@@ -273,6 +287,17 @@ export default function Home() {
         >
           {prototypes.map((p) => (
             <PrototypeCard key={p.slug} {...p} />
+          ))}
+        </Section>
+
+        {/* ── Briefs ── */}
+        <Section
+          title="Test Briefs"
+          subtitle="Setup one-pagers for landing page experiments — URLs, platforms, QA, and measurement"
+          accent="bg-uagc-gold"
+        >
+          {briefs.map((b) => (
+            <StaticCard key={b.path} {...b} />
           ))}
         </Section>
 
