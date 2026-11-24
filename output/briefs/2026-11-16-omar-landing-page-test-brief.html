@@ -3,15 +3,15 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Omar Request Info Landing Page Test — Developer Setup Brief | UAGC</title>
-<meta name="description" content="Developer setup brief for three Omar landing page tests (op = optimized): V8 and V7 vs online-programs-op; request-info-v5 vs request-info-op. URLs, form parity, Optimizely, Google Ads, publishers, measurement, QA, calendar.">
+<title>Omar Project (OP) Landing Page Test — Developer Setup Brief | UAGC</title>
+<meta name="description" content="Developer setup brief for the Omar Project landing page test: request-info-v5, degree-programs-v7, and online-college-courses-v5 each vs their own -op (optimized) version. URLs, baseline, page build, Optimizely, measurement, QA, calendar.">
 <meta name="robots" content="noindex, nofollow">
 <meta name="author" content="UAGC Project Groundwork">
 <meta name="theme-color" content="#0C234B">
 <link rel="canonical" href="https://omac049.github.io/brainstorming-weblayout/output/briefs/2026-11-16-omar-landing-page-test-brief.html">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Omar Request Info Landing Page Test — Developer Setup Brief">
-<meta property="og:description" content="Full setup details for control vs optimized Request Info landing page tests across affiliate, Facebook, and paid search.">
+<meta property="og:title" content="Omar Project (OP) Landing Page Test — Developer Setup Brief">
+<meta property="og:description" content="Three Omar Project pages, each tested against its own -op (optimized) version.">
 <meta property="og:url" content="https://omac049.github.io/brainstorming-weblayout/output/briefs/2026-11-16-omar-landing-page-test-brief.html">
 <meta property="og:site_name" content="Project Groundwork">
 <meta name="twitter:card" content="summary">
@@ -19,16 +19,17 @@
 {
   "@context": "https://schema.org",
   "@type": "TechArticle",
-  "headline": "Omar optimized Request Info — developer landing page test setup",
+  "headline": "Omar Project (OP) landing page test — developer setup",
   "datePublished": "2026-11-16",
   "dateModified": "2026-11-24",
   "author": { "@type": "Organization", "name": "UAGC Project Groundwork" },
   "about": [
-    "https://www.uagc.edu/success/online-programs-v8",
     "https://www.uagc.edu/success/request-info-v5",
-    "https://www.uagc.edu/success/online-programs-v7",
+    "https://www.uagc.edu/success/degree-programs-v7",
+    "https://www.uagc.edu/success/online-college-courses-v5",
     "https://www.uagc.edu/success/request-info-op",
-    "https://www.uagc.edu/success/online-programs-op"
+    "https://www.uagc.edu/success/degree-programs-op",
+    "https://www.uagc.edu/success/online-college-courses-op"
   ],
   "inLanguage": "en-US"
 }
@@ -216,16 +217,17 @@
   <article class="page">
     <header>
       <p class="eyebrow">Project Groundwork · Developer Setup Brief</p>
-      <h1>Omar optimized Request Info — three channel landing page tests</h1>
+      <h1>Omar Project (OP) — three landing page tests</h1>
       <p class="subhead">
-        Full setup for web, Optimizely, Google Ads, affiliate publishers, and measurement.
-        Control = original live page. Variation = the <code>-op</code> (optimized) page.
-        Kevin/Omar own traffic; Eric locks measurement.
+        Each Omar Project page is tested against its own optimized version.
+        Control = the original live page. Variation = the same page with the version number dropped and
+        <code>-op</code> added (<code>op</code> = optimized).
+        Omar owns pages + Optimizely; Kevin owns traffic; Eric locks measurement.
       </p>
       <div class="meta" aria-label="Brief summary">
-        <span class="chip"><strong>Controls</strong> V8 · V5 · online-programs-v7</span>
-        <span class="chip"><strong>Variations</strong> online-programs-op · request-info-op</span>
-        <span class="chip"><strong>Duration</strong> ~28 days each</span>
+        <span class="chip"><strong>Controls</strong> request-info-v5 · degree-programs-v7 · online-college-courses-v5</span>
+        <span class="chip"><strong>Variations</strong> request-info-op · degree-programs-op · online-college-courses-op</span>
+        <span class="chip"><strong>Duration</strong> ~28 days</span>
         <span class="chip"><strong>Settle</strong> 5 days</span>
         <span class="chip"><strong>Earliest live</strong> Tue Dec 1</span>
       </div>
@@ -237,12 +239,10 @@
         <a href="#urls">URLs</a> ·
         <a href="#win">Win condition</a> ·
         <a href="#baseline">Baseline</a> ·
+        <a href="#traffic">Traffic decision</a> ·
         <a href="#page-build">Page build</a> ·
         <a href="#form">Form parity</a> ·
-        <a href="#tests">Three tests</a> ·
-        <a href="#optimizely">Optimizely (FB)</a> ·
-        <a href="#google-ads">Google Ads</a> ·
-        <a href="#affiliate">Affiliate</a> ·
+        <a href="#optimizely">Optimizely</a> ·
         <a href="#qa">QA checklist</a> ·
         <a href="#measurement">Measurement</a> ·
         <a href="#calendar">Calendar</a> ·
@@ -253,75 +253,60 @@
       <section id="urls" aria-labelledby="urls-heading">
         <h2 id="urls-heading">1. Control and variation URLs</h2>
         <div class="callout">
-          <strong>Control = original. Variation = the <code class="path">-op</code> version of the same page family</strong>
-          (<code class="path">op</code> = optimized, shortened).
-          Two variation URLs cover all three tests:
-          <br>
-          <span class="path">/success/request-info-op</span> (vs <span class="path">request-info-v5</span>) and
-          <span class="path">/success/online-programs-op</span> (vs <span class="path">online-programs-v8</span> and <span class="path">online-programs-v7</span>).
-          <br>
-          No <code class="path">omarproject</code>, no version number, no channel/source in the path.
-          Rename <span class="path">/success/request-info-v5-omarproject</span> → <span class="path">/success/request-info-op</span> before launch.
+          <strong>URL rule:</strong> take the original path, drop the version number (<code class="path">-v5</code>, <code class="path">-v7</code>), add <code class="path">-op</code>.
+          Each page keeps its own name and its own variation — no shared variation URL.
+          No <code class="path">omarproject</code> and no channel/source in the path.
         </div>
         <table>
           <thead>
             <tr>
-              <th scope="col">Test</th>
+              <th scope="col">Page</th>
               <th scope="col">Control (original)</th>
-              <th scope="col">Variation (optimized)</th>
-              <th scope="col">Undecided on form?</th>
-              <th scope="col">Where it runs</th>
+              <th scope="col">Variation (-op)</th>
+              <th scope="col">Preview today (rename)</th>
             </tr>
           </thead>
           <tbody>
             <tr>
-              <td><strong>Affiliate</strong><br><span class="muted">Wave 4</span></td>
-              <td>
-                <a class="path" href="https://www.uagc.edu/success/online-programs-v8" rel="noopener noreferrer">https://www.uagc.edu/success/online-programs-v8</a>
-                <span class="badge live">Live</span>
-              </td>
-              <td>
-                <a class="path" href="https://www.uagc.edu/success/online-programs-op" rel="noopener noreferrer">https://www.uagc.edu/success/online-programs-op</a>
-                <span class="badge tbd">Ship</span>
-              </td>
-              <td><strong>No</strong> on both arms</td>
-              <td>Publishers (Zeta)</td>
-            </tr>
-            <tr>
-              <td><strong>Facebook</strong><br><span class="muted">Wave 1</span></td>
+              <td><strong>Request Info</strong></td>
               <td>
                 <a class="path" href="https://www.uagc.edu/success/request-info-v5" rel="noopener noreferrer">https://www.uagc.edu/success/request-info-v5</a>
                 <span class="badge live">Live</span>
               </td>
               <td>
-                <a class="path" href="https://www.uagc.edu/success/request-info-op" rel="noopener noreferrer">https://www.uagc.edu/success/request-info-op</a>
+                <span class="path">https://www.uagc.edu/success/request-info-op</span>
                 <span class="badge tbd">Ship</span>
               </td>
-              <td><strong>Yes</strong> OK (content test)</td>
-              <td>Optimizely only</td>
+              <td><a class="path" href="https://www.uagc.edu/success/request-info-v5-omarproject" rel="noopener noreferrer">/success/request-info-v5-omarproject</a></td>
             </tr>
             <tr>
-              <td><strong>Paid search</strong><br><span class="muted">Waves 2–3</span></td>
+              <td><strong>Degree Programs</strong></td>
               <td>
-                <a class="path" href="https://www.uagc.edu/success/online-programs-v7" rel="noopener noreferrer">https://www.uagc.edu/success/online-programs-v7</a>
+                <a class="path" href="https://www.uagc.edu/success/degree-programs-v7" rel="noopener noreferrer">https://www.uagc.edu/success/degree-programs-v7</a>
                 <span class="badge live">Live</span>
               </td>
               <td>
-                <a class="path" href="https://www.uagc.edu/success/online-programs-op" rel="noopener noreferrer">https://www.uagc.edu/success/online-programs-op</a>
+                <span class="path">https://www.uagc.edu/success/degree-programs-op</span>
                 <span class="badge tbd">Ship</span>
-                <br>
-                <span class="muted">Same URL as the affiliate variation</span>
               </td>
-              <td><strong>Yes</strong> OK (match V7)</td>
-              <td>Google Ads Experiments<br>Account <span class="path">6571302591</span></td>
+              <td><a class="path" href="https://www.uagc.edu/success/degree-programs-v7-omarproject" rel="noopener noreferrer">/success/degree-programs-v7-omarproject</a></td>
+            </tr>
+            <tr>
+              <td><strong>Online College Courses</strong></td>
+              <td>
+                <a class="path" href="https://www.uagc.edu/success/online-college-courses-v5" rel="noopener noreferrer">https://www.uagc.edu/success/online-college-courses-v5</a>
+                <span class="badge live">Live</span>
+              </td>
+              <td>
+                <span class="path">https://www.uagc.edu/success/online-college-courses-op</span>
+                <span class="badge tbd">Ship</span>
+              </td>
+              <td><a class="path" href="https://www.uagc.edu/success/online-college-courses-v5-omarproject" rel="noopener noreferrer">/success/online-college-courses-v5-omarproject</a></td>
             </tr>
           </tbody>
         </table>
-        <div class="warn">
-          <strong>Form conflict on <span class="path">online-programs-op</span>:</strong>
-          affiliate and search share this URL. Search wants Undecided (to match V7); affiliate needs <strong>no Undecided</strong> (to match V8).
-          Use a Lead Flow / webform mode (or Anthony RFI variant) on the same URL — not a second source-named path.
-          Confirm with Mitch/Anthony before Wave 4.
+        <div class="note">
+          <strong>Out of scope:</strong> <span class="path">online-programs-v8</span> and <span class="path">online-programs-v7</span> are not part of this test.
         </div>
       </section>
 
@@ -329,9 +314,9 @@
       <section id="win" aria-labelledby="win-heading">
         <h2 id="win-heading">2. Win condition</h2>
         <div class="callout">
-          Optimized page is information-dense on purpose. It may <strong>lower lead conversion</strong> and
+          The -op pages are information-dense on purpose. They may <strong>lower lead conversion</strong> and
           <strong>raise lead → application / 14-day decision</strong>. Judge on
-          <strong>net applications and decisions</strong> — not CPL alone (especially affiliate).
+          <strong>net applications and decisions</strong> — not CPL alone.
         </div>
         <div class="kpi-row">
           <div class="kpi primary">
@@ -353,7 +338,7 @@
       <section id="baseline" aria-labelledby="baseline-heading">
         <h2 id="baseline-heading">3. Baseline — Oct 2026 (approx)</h2>
         <p class="muted" style="font-size:12.5px;margin-bottom:10px;">
-          Source: BigQuery <span class="path">vw_lead_extract_details</span>, Oct 1–31, spam excluded. Rounded — briefing only.
+          Source: BigQuery <span class="path">vw_lead_extract_details</span>, Oct 1–31, spam excluded, matched on landing / origin / signup page. Rounded — briefing only.
         </p>
         <table>
           <thead>
@@ -365,283 +350,128 @@
               <th scope="col">~14d decisions</th>
               <th scope="col">~14d rate</th>
               <th scope="col">~Enrolls</th>
-              <th scope="col">Main traffic</th>
+              <th scope="col">Main traffic (Aug–Oct)</th>
             </tr>
           </thead>
           <tbody>
             <tr>
-              <td><a class="path" href="https://www.uagc.edu/success/online-programs-v8" rel="noopener noreferrer">/success/online-programs-v8</a><br><span class="muted">Affiliate control</span></td>
-              <td class="num">~12,500</td><td class="num">~2,200</td><td class="num">~18%</td>
-              <td class="num">~460</td><td class="num">~4%</td><td class="num">~70</td>
-              <td>Affiliate (~99%)</td>
-            </tr>
-            <tr>
-              <td><a class="path" href="https://www.uagc.edu/success/request-info-v5" rel="noopener noreferrer">/success/request-info-v5</a><br><span class="muted">FB control</span></td>
+              <td><a class="path" href="https://www.uagc.edu/success/request-info-v5" rel="noopener noreferrer">/success/request-info-v5</a></td>
               <td class="num">~1,600</td><td class="num">~140</td><td class="num">~9%</td>
-              <td class="num">~20</td><td class="num">~1%</td><td class="num">~4</td>
-              <td>Paid social (FB)</td>
+              <td class="num">~18</td><td class="num">~1%</td><td class="num">~4</td>
+              <td>Facebook (~3,100) + Google Display (~1,900)</td>
             </tr>
             <tr>
-              <td><a class="path" href="https://www.uagc.edu/success/online-programs-v7" rel="noopener noreferrer">/success/online-programs-v7</a><br><span class="muted">Search control</span></td>
-              <td class="num">~1,000</td><td class="num">~270</td><td class="num">~26%</td>
-              <td class="num">~115</td><td class="num">~11%</td><td class="num">~70</td>
-              <td>Brand + Non-Brand Search</td>
+              <td><a class="path" href="https://www.uagc.edu/success/degree-programs-v7" rel="noopener noreferrer">/success/degree-programs-v7</a></td>
+              <td class="num">~6</td><td class="num">0</td><td class="num">—</td>
+              <td class="num">0</td><td class="num">—</td><td class="num">0</td>
+              <td>Affiliate search (~23)</td>
+            </tr>
+            <tr>
+              <td><a class="path" href="https://www.uagc.edu/success/online-college-courses-v5" rel="noopener noreferrer">/success/online-college-courses-v5</a></td>
+              <td class="num">~23</td><td class="num">~10</td><td class="num">~43%</td>
+              <td class="num">~2</td><td class="num">~9%</td><td class="num">0</td>
+              <td>Non-brand search (~110)</td>
             </tr>
           </tbody>
         </table>
-        <p class="muted" style="font-size:12px;margin-top:8px;">
-          <span class="path">online-programs-op</span> is scored separately for each test — against V8 for affiliate traffic and against V7 for search traffic. Never pool the two.
-        </p>
+      </section>
+
+      <!-- TRAFFIC -->
+      <section id="traffic" aria-labelledby="traffic-heading">
+        <h2 id="traffic-heading">4. Traffic decision (open — Kevin)</h2>
+        <div class="warn">
+          <strong><span class="path">degree-programs-v7</span> (~6 leads in Oct) and <span class="path">online-college-courses-v5</span> (~23) are too small to read in 28 days.</strong>
+          Only <span class="path">request-info-v5</span> has enough volume today.
+          Before launch, Kevin decides whether to point more paid traffic at the degree and OCC pages, or run them longer / read them as directional only.
+        </div>
       </section>
 
       <!-- PAGE BUILD -->
       <section id="page-build" aria-labelledby="page-build-heading">
-        <h2 id="page-build-heading">4. Page build — optimized variation</h2>
+        <h2 id="page-build-heading">5. Page build — -op variations</h2>
         <div class="panel">
           <h3>What to ship</h3>
           <ul class="checklist">
-            <li><strong>FB variation:</strong> <span class="path">/success/request-info-op</span> (rename from <span class="path">request-info-v5-omarproject</span>).</li>
-            <li><strong>Affiliate + search variation:</strong> <span class="path">/success/online-programs-op</span> — new page in the online-programs family. Confirm which Omar preview body it's built from.</li>
+            <li><strong>Rename</strong> each <span class="path">*-omarproject</span> preview to its <span class="path">-op</span> path (table above). 301 the old preview to the new path.</li>
+            <li><strong>Keep each page's own layout:</strong> Request Info keeps the full stack; Degree Programs keeps the program explorer; Online College Courses stays lean with the skepticism-buster section.</li>
             <li><strong>Treatment:</strong> content-rich Omar module stacks (FAQ / info density). That is the test — not a bare RFI.</li>
-            <li><strong>Keep working:</strong> Lead API submit, sourceID / UTM pass-through, consent, thank-you redirect, mobile layout, sticky RFI if present on control patterns.</li>
-            <li><strong>Do not change mid-test:</strong> path, major module order, or form field set once a wave is live.</li>
-            <li><strong>SEO:</strong> paid LP — typically <code>noindex</code>; confirm robots/canonical with SEO so test arms don’t create indexation noise.</li>
-            <li><strong>Reference preview (today):</strong>
-              <a class="path" href="https://www.uagc.edu/success/request-info-v5-omarproject" rel="noopener noreferrer">…/request-info-v5-omarproject</a>
-              <span class="badge live">Live preview</span>
-            </li>
+            <li><strong>Keep working:</strong> Lead API submit, sourceID / UTM pass-through, consent, thank-you redirect, mobile layout, sticky RFI.</li>
+            <li><strong>Do not change mid-test:</strong> path, major module order, or form field set.</li>
+            <li><strong>SEO:</strong> paid LPs — <code>noindex</code>; confirm robots/canonical with SEO so test arms don't create indexation noise.</li>
           </ul>
         </div>
       </section>
 
       <!-- FORM -->
       <section id="form" aria-labelledby="form-heading">
-        <h2 id="form-heading">5. Form parity rules (critical)</h2>
-        <table>
-          <thead>
-            <tr>
-              <th scope="col">Test</th>
-              <th scope="col">Control form behavior</th>
-              <th scope="col">Optimized form must</th>
-              <th scope="col">Owner</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>Affiliate vs V8</td>
-              <td>No Undecided; program list as live V8</td>
-              <td>Match V8 option set exactly (no Undecided). Side-by-side field list before publishers go.</td>
-              <td>Omar + Anthony / Mitch</td>
-            </tr>
-            <tr>
-              <td>FB vs V5</td>
-              <td>Undecided allowed</td>
-              <td>Undecided OK — content-only difference</td>
-              <td>Omar</td>
-            </tr>
-            <tr>
-              <td>Search vs online-programs-v7</td>
-              <td>Undecided / program choice as today on control</td>
-              <td>Undecided OK — content-only difference</td>
-              <td>Omar</td>
-            </tr>
-          </tbody>
-        </table>
-        <div class="note">
-          Affiliate and search share <span class="path">online-programs-op</span>. If Undecided can't be both on and off on one URL, use a Lead Flow / webform variant config on that same path — do not invent
-          <span class="path">*-affiliate</span> or <span class="path">*-omar</span> paths.
-        </div>
-      </section>
-
-      <!-- THREE TESTS -->
-      <section id="tests" aria-labelledby="tests-heading">
-        <h2 id="tests-heading">6. Three independent tests</h2>
-        <p class="muted" style="font-size:12.5px;margin-bottom:10px;">
-          Do <strong>not</strong> mix Optimizely and in-platform A/B on the same channel. Three separate tests — never pool arms.
+        <h2 id="form-heading">6. Form parity</h2>
+        <p style="font-size:12.5px;">
+          Each <span class="path">-op</span> page uses the <strong>same form fields and program options as its control</strong>
+          (including whether Undecided appears). Only the page content changes. Side-by-side field list before launch.
         </p>
-        <div class="grid-3">
-          <div class="channel">
-            <div class="label">Wave 1 · Facebook</div>
-            <h3 style="margin-top:0;">Request Info V5</h3>
-            <p>Stay out of Meta learning mode. Last in-platform FB A/B was unproductive.</p>
-            <dl class="url-block">
-              <dt>Control</dt>
-              <dd><a class="path" href="https://www.uagc.edu/success/request-info-v5" rel="noopener noreferrer">…/request-info-v5</a></dd>
-              <dt>Variation</dt>
-              <dd><span class="path">…/request-info-op</span></dd>
-              <dt>Platform</dt>
-              <dd>Optimizely 50/50</dd>
-            </dl>
-          </div>
-          <div class="channel">
-            <div class="label">Waves 2–3 · Search</div>
-            <h3 style="margin-top:0;">Online Programs V7</h3>
-            <p>Brand vs Non-Brand as <strong>separate</strong> experiments. Auction effects matter, not just form CVR.</p>
-            <dl class="url-block">
-              <dt>Control</dt>
-              <dd><a class="path" href="https://www.uagc.edu/success/online-programs-v7" rel="noopener noreferrer">…/online-programs-v7</a></dd>
-              <dt>Variation</dt>
-              <dd><span class="path">…/online-programs-op</span></dd>
-              <dt>Platform</dt>
-              <dd>Ads Drafts &amp; Experiments</dd>
-            </dl>
-          </div>
-          <div class="channel">
-            <div class="label">Wave 4 · Affiliate</div>
-            <h3 style="margin-top:0;">Online Programs V8</h3>
-            <p>Publishers get both URLs, split/rotate, report back. Watch CPL / lead-rate gaming.</p>
-            <dl class="url-block">
-              <dt>Control</dt>
-              <dd><a class="path" href="https://www.uagc.edu/success/online-programs-v8" rel="noopener noreferrer">…/online-programs-v8</a></dd>
-              <dt>Variation</dt>
-              <dd><span class="path">…/online-programs-op</span></dd>
-              <dt>Platform</dt>
-              <dd>Zeta → publishers</dd>
-            </dl>
-          </div>
-        </div>
       </section>
 
       <!-- OPTIMIZELY -->
       <section id="optimizely" aria-labelledby="optimizely-heading">
-        <h2 id="optimizely-heading">7. Facebook setup — Optimizely (Wave 1)</h2>
-        <div class="two-col">
-          <div class="panel">
-            <h3>Dev / Omar — build</h3>
-            <ol class="checklist">
-              <li>Experiment on path <span class="path">/success/request-info-v5</span>
-                → variation <span class="path">/success/request-info-op</span>
-                (today: <span class="path">request-info-v5-omarproject</span>).</li>
-              <li>The live Optimizely <em>OP Pages Reskin</em> redirect adds <span class="path">-omarproject</span> to the path.
-                Change it to send <span class="path">request-info-v5</span> to <span class="path">request-info-op</span>, and limit targeting to <span class="path">request-info-v5</span> (search and affiliate run outside Optimizely).</li>
-              <li>Arm A (control): original V5 page — no change.</li>
-              <li>Arm B (variation): redirect to <span class="path">/success/request-info-op</span>.</li>
-              <li>Split: <strong>50/50</strong>.</li>
-              <li>Do <strong>not</strong> A/B inside Meta Ads Manager.</li>
-              <li>Kevin confirms Kanahoma/Meta final URL stays
-                <span class="path">request-info-v5</span> so Meta does not relearn.</li>
-              <li>Soft-build Optimizely before Dec 1; go live only after freeze.</li>
-            </ol>
-          </div>
-          <div class="panel">
-            <h3>Campaigns to include (FB → V5, Oct)</h3>
-            <table>
-              <thead><tr><th>Campaign</th><th>~Inq</th><th>Note</th></tr></thead>
-              <tbody>
-                <tr><td>fbig_prospecting_SocialBehavioral_2023_5 (+ v2)</td><td class="num">~700</td><td>Core</td></tr>
-                <tr><td>fbig_prospecting_2023 (266, 169)</td><td class="num">~340</td><td>Second block</td></tr>
-                <tr><td>fbig_retargeting_lpv180_2023</td><td class="num">~40</td><td>Optional</td></tr>
-              </tbody>
-            </table>
-            <p class="muted" style="margin-top:8px;font-size:12px;">
-              <strong>Exclude:</strong> Google Discovery / Display on V5 (~400 inq, campaign 260) — not FB Optimizely.
-            </p>
-          </div>
-        </div>
-      </section>
-
-      <!-- GOOGLE ADS -->
-      <section id="google-ads" aria-labelledby="google-ads-heading">
-        <h2 id="google-ads-heading">8. Paid search setup — Google Ads (Waves 2–3)</h2>
+        <h2 id="optimizely-heading">7. Optimizely setup</h2>
         <div class="callout">
-          Account <span class="path">6571302591</span>. Use <strong>Search</strong> Drafts &amp; Experiments only.
-          <strong>PMax out of v1.</strong> Brand and Non-Brand = <strong>separate</strong> experiments (do not pool).
-          Control stays
-          <span class="path">https://www.uagc.edu/success/online-programs-v7</span>.
-          Experiment arm final URL =
-          <span class="path">https://www.uagc.edu/success/online-programs-op</span>.
+          Experiment <strong>OP Pages Reskin</strong> (project <span class="path">18792324065</span>, experiment <span class="path">4675402130522112</span>)
+          already targets all three control URLs, 50/50. Three fixes before real traffic sees it:
         </div>
         <div class="two-col">
           <div class="panel">
-            <h3>Brand experiment (Wave 2)</h3>
-            <table>
-              <thead><tr><th>SourceID / campaign</th><th>~Inq</th><th>Role</th></tr></thead>
-              <tbody>
-                <tr><td>18SGT Brand Search core (campaigns 136, 328, 135)</td><td class="num">~480</td><td>Primary</td></tr>
-                <tr><td>Bing brand (18SBT)</td><td class="num">~96</td><td><strong>Hold out of v1</strong></td></tr>
-              </tbody>
-            </table>
-          </div>
-          <div class="panel">
-            <h3>Non-Brand experiment (Wave 3)</h3>
-            <table>
-              <thead><tr><th>SourceID / campaign</th><th>~Inq</th><th>Role</th></tr></thead>
-              <tbody>
-                <tr><td>18SGB Non-Brand (~25212)</td><td class="num">~275</td><td>Primary</td></tr>
-                <tr><td>18SGG Non-Brand (321, 129)</td><td class="num">~100</td><td>Optional if 18SGB clean</td></tr>
-              </tbody>
-            </table>
-          </div>
-        </div>
-        <div class="note">
-          Start Non-Brand only after Brand experiment is healthy. Keep sourceID / tracking params identical on both arms.
-          Form: Undecided allowed on Omar variation templates (content/layout test vs online-programs-v7).
-        </div>
-      </section>
-
-      <!-- AFFILIATE -->
-      <section id="affiliate" aria-labelledby="affiliate-heading">
-        <h2 id="affiliate-heading">9. Affiliate setup — publishers (Wave 4)</h2>
-        <div class="two-col">
-          <div class="panel">
-            <h3>Publisher priority (Oct V8 volume)</h3>
-            <table>
-              <thead><tr><th>#</th><th>Publisher / slice</th><th>~Inq</th></tr></thead>
-              <tbody>
-                <tr><td>1</td><td>BannerEdge / Leadhoop24</td><td class="num">~3.8K</td></tr>
-                <tr><td>2</td><td>Ventrix 20</td><td class="num">~3.8K</td></tr>
-                <tr><td>3</td><td>MediaMatchers Tier2</td><td class="num">~1.1K</td></tr>
-                <tr><td>4</td><td>SeoLeadCo / Leadhoop24</td><td class="num">~0.8K</td></tr>
-                <tr><td>5</td><td>DMS (optional wave 2)</td><td class="num">~0.7K</td></tr>
-              </tbody>
-            </table>
-          </div>
-          <div class="panel">
-            <h3>Setup steps</h3>
+            <h3>Fixes before launch</h3>
             <ol class="checklist">
-              <li>Confirm V8 live form: no Undecided (screenshot).</li>
-              <li>Optimized page form matches V8 option set.</li>
-              <li>Kevin → Zeta (Madisyn): hand two absolute URLs — control V8 + optimized.</li>
-              <li>Publishers split / rotate and report; UAGC does not change destination mid-flight without a named window.</li>
-              <li>Call out CPL bias: report lead rate <em>and</em> app/decision rates.</li>
-              <li>If optimized URL / form not ready Dec 1 → start Wave 4 on Dec 8.</li>
+              <li><strong>Remove the audience gate.</strong> It's limited to the <em>Noble UTM Test 2</em> audience (<span class="path">?noble_test2=true</span>), so only test links see it today.</li>
+              <li><strong>Change the redirect</strong> from adding <span class="path">-omarproject</span> to swapping the version for <span class="path">-op</span> (only after the -op pages return 200):
+                <pre class="path" style="background:var(--surface);padding:8px;margin-top:6px;white-space:pre-wrap;">var path = window.location.pathname.replace(/\/+$/, "");
+return window.location.origin + path.replace(/-v\d+$/, "-op") +
+  window.location.search + window.location.hash;</pre>
+              </li>
+              <li><strong>Keep the split at 50/50</strong> and confirm the three control URLs in targeting.</li>
             </ol>
+          </div>
+          <div class="panel">
+            <h3>Rules</h3>
+            <ul class="checklist">
+              <li>Do <strong>not</strong> also A/B inside Meta Ads Manager or Google Ads — one split, in Optimizely.</li>
+              <li>Ad final URLs stay on the control paths (e.g. Meta stays on <span class="path">request-info-v5</span>) so platforms don't relearn.</li>
+              <li><span class="path">request-info-v5</span> gets Facebook <em>and</em> Google Display traffic — Eric reads results by channel; don't pool.</li>
+              <li>Optimizely metrics (primary: Mid-Page RFI Submit; plus thank-you views, form steps, header / sticky / apply clicks) are on-page signals only. The win call comes from BigQuery (section 2).</li>
+              <li>Soft-build before Dec 1; go live only after the freeze.</li>
+            </ul>
           </div>
         </div>
       </section>
 
       <!-- QA -->
       <section id="qa" aria-labelledby="qa-heading">
-        <h2 id="qa-heading">10. QA checklist (before any wave goes live)</h2>
+        <h2 id="qa-heading">8. QA checklist (before go-live)</h2>
         <div class="two-col">
           <div class="panel">
             <h3>Page &amp; form</h3>
             <ul class="checklist">
-              <li>□ <span class="path">/success/request-info-op</span> and
-                <span class="path">/success/online-programs-op</span> resolve 200</li>
-              <li>□ Old <span class="path">request-info-v5-omarproject</span> preview 301s to <span class="path">request-info-op</span></li>
+              <li>□ <span class="path">request-info-op</span>, <span class="path">degree-programs-op</span>, <span class="path">online-college-courses-op</span> resolve 200</li>
+              <li>□ Each <span class="path">*-omarproject</span> preview 301s to its <span class="path">-op</span> path</li>
               <li>□ Desktop + mobile layout OK on each variation</li>
               <li>□ Content-rich modules present (treatment intact)</li>
               <li>□ Consent / disclosures match production pattern</li>
               <li>□ RFI submit creates CRM / Lead API row</li>
               <li>□ Thank-you redirect works</li>
-              <li>□ sourceID + UTM preserved on submit</li>
-              <li>□ FB/Search: Undecided present if required</li>
-              <li>□ Affiliate: Undecided absent; field list matches V8</li>
+              <li>□ sourceID + UTM preserved through the redirect and on submit</li>
+              <li>□ Form fields match each control</li>
             </ul>
           </div>
           <div class="panel">
-            <h3>Platform &amp; tracking</h3>
+            <h3>Optimizely &amp; tracking</h3>
             <ul class="checklist">
-              <li>□ Optimizely: 50/50; Meta URL still V5</li>
-              <li>□ Google Brand experiment: final URL =
-                <span class="path">online-programs-op</span></li>
-              <li>□ Google Non-Brand: separate experiment</li>
-              <li>□ PMax not included in v1</li>
-              <li>□ Bing brand held out</li>
-              <li>□ BQ can distinguish control vs optimized landing URL</li>
+              <li>□ <em>Noble UTM Test 2</em> audience removed</li>
+              <li>□ Redirect sends each control to its own <span class="path">-op</span> page</li>
+              <li>□ 50/50 split</li>
+              <li>□ Ad final URLs unchanged (still control paths)</li>
+              <li>□ BQ can distinguish control vs <span class="path">-op</span> landing URL</li>
               <li>□ Contentsquare tagged for qualitative review</li>
-              <li>□ No mid-flight destination change without named window</li>
+              <li>□ No mid-flight destination change without a named window</li>
             </ul>
           </div>
         </div>
@@ -649,21 +479,21 @@
 
       <!-- MEASUREMENT -->
       <section id="measurement" aria-labelledby="measurement-heading">
-        <h2 id="measurement-heading">11. Measurement lock (Eric)</h2>
+        <h2 id="measurement-heading">9. Measurement lock (Eric)</h2>
         <table>
           <thead>
             <tr><th scope="col">Rule</th><th scope="col">Proposal</th></tr>
           </thead>
           <tbody>
-            <tr><td>Population</td><td>Spam excluded; <span class="path">rn = 1</span>; tagged by landing / origin / signup page = control or optimized URL</td></tr>
+            <tr><td>Population</td><td>Spam excluded; <span class="path">rn = 1</span>; tagged by landing / origin / signup page = control or <span class="path">-op</span> URL</td></tr>
             <tr><td>App started</td><td>BQ view definition (portal login AND app started)</td></tr>
             <tr><td>Decisions</td><td><span class="path">is_appin_14_days</span></td></tr>
             <tr><td>Settling window</td><td><strong>5 calendar days</strong> after test end before final pull</td></tr>
-            <tr><td>Duration</td><td><strong>~28 days</strong> live traffic per test</td></tr>
-            <tr><td>Arms</td><td>Control URL vs optimized URL — no pooled “all new pages”</td></tr>
-            <tr><td>Affiliate</td><td>Publisher-level lead rate <em>and</em> app/decision rates</td></tr>
+            <tr><td>Duration</td><td><strong>~28 days</strong> live traffic</td></tr>
+            <tr><td>Arms</td><td>Each control vs its own <span class="path">-op</span> page — never pool the three pages</td></tr>
+            <tr><td>Channel</td><td><span class="path">request-info-v5</span>: report Facebook and Google Display separately</td></tr>
             <tr><td>Contentsquare</td><td>Qualitative only — does not decide win/loss</td></tr>
-            <tr><td>Deliverable</td><td>One short scorecard template reused for all three tests</td></tr>
+            <tr><td>Deliverable</td><td>One short scorecard template reused for all three pages</td></tr>
           </tbody>
         </table>
         <div class="note">
@@ -674,11 +504,11 @@
 
       <!-- CALENDAR -->
       <section id="calendar" aria-labelledby="calendar-heading">
-        <h2 id="calendar-heading">12. Calendar</h2>
+        <h2 id="calendar-heading">10. Calendar</h2>
         <div class="timeline">
           <div class="tl-row freeze">
             <div class="tl-when">Through Sun 29 Nov</div>
-            <div class="tl-what"><strong>Freeze window.</strong> Kevin out Mon 23–Fri 27. No launches. Ship optimized URL + form QA offline. Soft Optimizely build only.</div>
+            <div class="tl-what"><strong>Freeze window.</strong> Kevin out Mon 23–Fri 27. No launches. Ship the three <span class="path">-op</span> pages + QA offline. Soft Optimizely build only.</div>
           </div>
           <div class="tl-row freeze">
             <div class="tl-when">Mon 30 Nov</div>
@@ -687,31 +517,25 @@
           <div class="tl-row go">
             <div class="tl-when">Tue 1 Dec (earliest)</div>
             <div class="tl-what">
-              <strong>Wave 1:</strong> FB Optimizely (request-info-v5 → request-info-op) ·
-              <strong>Wave 2:</strong> Google Brand (online-programs-v7 → online-programs-op) ·
-              <strong>Wave 3:</strong> Google Non-Brand after brand healthy ·
-              <strong>Wave 4:</strong> Affiliate (online-programs-v8 → online-programs-op) when form parity ready (else Dec 8)
+              Remove the audience gate, switch the redirect to <span class="path">-op</span>, go live on all three pages.
+              Degree / OCC traffic per Kevin's decision (section 4).
             </div>
           </div>
           <div class="tl-row">
             <div class="tl-when">~Early Jan</div>
-            <div class="tl-what">First tests hit ~28 days → 5-day settle → Eric scorecard</div>
+            <div class="tl-what">~28 days → 5-day settle → Eric scorecard</div>
           </div>
-        </div>
-        <div class="note">
-          If affiliate form/URL slips past Dec 1: still launch FB + search on Dec 1; affiliate follows Dec 8.
         </div>
       </section>
 
       <!-- OWNERS -->
       <section id="owners" aria-labelledby="owners-heading">
-        <h2 id="owners-heading">13. Owners</h2>
+        <h2 id="owners-heading">11. Owners</h2>
         <div class="owners">
-          <div><span>Optimized page path + content</span><span>Omar (+ web)</span></div>
-          <div><span>Form / Undecided variants</span><span>Omar + Anthony / Mitch</span></div>
-          <div><span>Optimizely FB experiment</span><span>Omar (+ web)</span></div>
-          <div><span>Google Ads experiments</span><span>Kevin / search ops (Zeta)</span></div>
-          <div><span>Publisher dual-URL brief</span><span>Kevin → Zeta (Madisyn)</span></div>
+          <div><span>-op pages (rename, build, 301s)</span><span>Omar (+ web)</span></div>
+          <div><span>Form parity</span><span>Omar</span></div>
+          <div><span>Optimizely experiment</span><span>Omar (+ web)</span></div>
+          <div><span>Traffic to degree / OCC pages</span><span>Kevin</span></div>
           <div><span>Measurement + scorecard</span><span>Eric</span></div>
           <div><span>Calendar / freeze</span><span>Kevin</span></div>
           <div><span>SEO robots / canonical check</span><span>Omar + SEO</span></div>
@@ -719,21 +543,22 @@
       </section>
 
       <section aria-labelledby="done-heading">
-        <h2 id="done-heading">14. Done when (per test)</h2>
+        <h2 id="done-heading">12. Done when</h2>
         <ul class="checklist">
-          <li>Both arms live on absolute URLs above; traffic assigned per platform rules</li>
+          <li>All three <span class="path">-op</span> pages live; Optimizely splitting 50/50 with no audience gate</li>
           <li>~28 days elapsed + 5-day settle</li>
-          <li>Eric scorecard: app-start rate + 14d decision rate by arm (affiliate also by publisher)</li>
+          <li>Eric scorecard: app-start rate + 14d decision rate, per page, control vs <span class="path">-op</span></li>
           <li>Contentsquare notes attached as qualitative only</li>
         </ul>
       </section>
     </main>
 
     <footer>
-      <span>Developer setup brief · Updated Nov 24, 2026 · Internal — <code>noindex</code> · PerkSpot out</span>
+      <span>Developer setup brief · Updated Nov 24, 2026 · Internal — <code>noindex</code></span>
       <span>Variations:
-        <span class="path">/online-programs-op</span> ·
-        <span class="path">/request-info-op</span>
+        <span class="path">/request-info-op</span> ·
+        <span class="path">/degree-programs-op</span> ·
+        <span class="path">/online-college-courses-op</span>
       </span>
     </footer>
   </article>
