@@ -35,144 +35,168 @@
 }
 </script>
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=Fira+Sans:wght@400;500;600;700;800&display=swap');
   :root {
-    --navy: #0C234B; --red: #AB0520; --gold: #EF9600;
-    --surface: #f7f6f3; --line: #d8dde6; --muted: #5a6578;
-    --ink: #1a2332; --white: #ffffff;
-    --soft-navy: #e8edf5; --soft-gold: #fdf4e3; --soft-red: #f8e8eb;
+    --arizona-red: #AB0520;
+    --arizona-red-dark: #990019;
+    --arizona-blue: #0C234B;
+    --arizona-blue-dark: #05193C;
+    --black: #111111;
+    --white: #FFFFFF;
+    --light-gray-30: #F1F1F0;
+    --light-gray: #D0D0CE;
+    --dark-gray: #53565A;
+    --sky: #81D3EB;
+    --river: #007D8A;
+    --orange: #EF9600;
+    --purple: #621244;
+    --navy: var(--arizona-blue);
+    --red: var(--arizona-red);
+    --surface: var(--light-gray-30);
+    --line: var(--light-gray);
+    --muted: var(--dark-gray);
+    --ink: var(--black);
   }
   * { box-sizing: border-box; margin: 0; padding: 0; }
   body {
-    font-family: 'Fira Sans', system-ui, sans-serif;
-    color: var(--ink); background: #e9ecef; line-height: 1.45;
+    font-family: 'Proxima Nova', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    color: var(--black); background: var(--light-gray-30); line-height: 24px;
+    font-size: 16px;
     -webkit-font-smoothing: antialiased;
   }
-  a { color: var(--red); text-decoration: underline; text-underline-offset: 2px; }
-  a:hover { color: var(--navy); }
-  a:focus-visible { outline: 2px solid var(--gold); outline-offset: 2px; }
+  a:link { color: var(--arizona-red); text-decoration: underline; text-underline-offset: 2px; }
+  a:hover, a:active { color: var(--arizona-red-dark); }
+  a:visited { color: var(--purple); }
+  a:focus-visible { outline: 2px solid var(--arizona-blue); outline-offset: 2px; }
   .page {
-    max-width: 980px; margin: 24px auto; background: var(--white);
-    box-shadow: 0 8px 32px rgba(12, 35, 75, 0.12);
+    max-width: 1040px; margin: 24px auto; background: var(--white);
+    border: 1px solid var(--line);
   }
   header {
     background: var(--navy); color: var(--white);
-    padding: 28px 36px 24px; position: relative;
+    padding: 24px 32px; position: relative;
   }
   header::after {
     content: ''; position: absolute; left: 0; right: 0; bottom: 0;
-    height: 4px; background: var(--gold);
+    height: 4px; background: var(--arizona-red);
   }
   .eyebrow {
-    font-size: 11px; font-weight: 700; letter-spacing: 0.12em;
-    text-transform: uppercase; color: var(--gold); margin-bottom: 8px;
+    font-size: 12px; font-weight: 600; letter-spacing: 0.04em;
+    text-transform: uppercase; color: var(--white); margin-bottom: 8px;
   }
   h1 {
-    font-size: 24px; font-weight: 800; letter-spacing: -0.02em;
-    line-height: 1.2; max-width: 36ch;
+    font-size: 28px; font-weight: 700; line-height: 32px; max-width: 22ch;
   }
-  .subhead { margin-top: 10px; font-size: 14px; color: #b8c5d9; max-width: 68ch; }
+  .asof { margin-top: 8px; font-size: 16px; line-height: 24px; color: var(--sky); }
+  .subhead { margin-top: 8px; font-size: 16px; line-height: 24px; color: var(--white); max-width: 62ch; }
+  .subhead code { color: var(--white); font-size: 0.92em; }
+  .facts { display: flex; flex-wrap: wrap; gap: 24px; margin-top: 24px; }
+  .fact .k {
+    display: block; font-size: 12px; font-weight: 600; letter-spacing: 0.04em;
+    text-transform: uppercase; color: var(--sky); margin-bottom: 2px;
+  }
+  .fact .v { font-size: 24px; font-weight: 700; line-height: 32px; color: var(--white); }
   .meta { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 16px; }
   .chip {
-    font-size: 11px; font-weight: 600; padding: 4px 10px; border-radius: 999px;
-    background: rgba(255,255,255,0.1); color: #d7e0ee;
-    border: 1px solid rgba(255,255,255,0.18);
+    font-size: 12px; font-weight: 600; padding: 4px 8px; border-radius: 8px;
+    background: transparent; color: var(--white);
+    border: 1px solid var(--sky);
   }
-  .chip strong { color: var(--gold); }
-  main { padding: 28px 36px 36px; }
-  section { margin-bottom: 28px; }
+  .chip strong { color: var(--sky); }
+  main { padding: 24px 32px 32px; }
+  section { margin-bottom: 32px; }
   h2 {
-    font-size: 13px; font-weight: 800; letter-spacing: 0.08em;
-    text-transform: uppercase; color: var(--navy);
-    display: flex; align-items: center; gap: 10px; margin-bottom: 12px;
+    font-size: 24px; font-weight: 700; line-height: 32px; color: var(--arizona-blue);
+    display: flex; align-items: center; gap: 16px; margin-bottom: 16px;
   }
   h2::before {
-    content: ''; width: 4px; height: 14px; background: var(--gold); flex-shrink: 0;
+    content: ''; width: 4px; height: 24px; background: var(--arizona-red); flex-shrink: 0;
   }
-  h3 { font-size: 14px; font-weight: 800; color: var(--navy); margin: 14px 0 8px; }
+  h3 { font-size: 20px; font-weight: 600; line-height: 24px; color: var(--arizona-blue); margin: 0 0 8px; }
   .callout {
-    background: var(--soft-gold); border-left: 3px solid var(--gold);
-    padding: 12px 14px; font-size: 13.5px; margin-bottom: 14px;
+    background: var(--light-gray-30); border-left: 4px solid var(--arizona-red);
+    padding: 16px; font-size: 16px; line-height: 24px; margin-bottom: 16px;
   }
   .callout strong { color: var(--navy); }
   .note {
-    background: var(--soft-navy); border-left: 3px solid var(--navy);
-    padding: 10px 14px; font-size: 12.5px; margin-top: 12px;
+    background: var(--light-gray-30); border-left: 4px solid var(--arizona-blue);
+    padding: 16px; font-size: 16px; line-height: 24px; margin-top: 16px;
   }
   .warn {
-    background: var(--soft-red); border-left: 3px solid var(--red);
-    padding: 10px 14px; font-size: 12.5px; margin-top: 12px;
+    background: var(--white); border: 1px solid var(--light-gray); border-left: 4px solid var(--orange);
+    padding: 16px; font-size: 16px; line-height: 24px; margin-top: 16px;
   }
-  table { width: 100%; border-collapse: collapse; font-size: 12.5px; }
+  table { width: 100%; border-collapse: collapse; font-size: 14px; line-height: 18px; border: 1px solid var(--light-gray); }
   th {
-    text-align: left; font-size: 10px; font-weight: 700; letter-spacing: 0.06em;
-    text-transform: uppercase; color: var(--muted); padding: 8px 10px;
-    border-bottom: 2px solid var(--navy); background: var(--soft-navy);
+    text-align: left; font-size: 14px; font-weight: 600; color: var(--white);
+    padding: 8px 12px; background: var(--arizona-blue); border: 1px solid var(--arizona-blue);
   }
-  td { padding: 9px 10px; border-bottom: 1px solid var(--line); vertical-align: top; }
-  tr:last-child td { border-bottom: none; }
-  .num { font-variant-numeric: tabular-nums; font-weight: 700; color: var(--navy); }
+  td { padding: 8px 12px; border-bottom: 1px solid var(--light-gray); vertical-align: top; background: var(--white); }
+  tbody tr:nth-child(even) td { background: var(--light-gray-30); }
+  .num, th.num { font-variant-numeric: tabular-nums; font-weight: 600; text-align: right; }
+  td.num { color: var(--arizona-blue); }
+  .source { margin-top: 8px; font-size: 12px; line-height: 16px; color: var(--dark-gray); }
   .muted { color: var(--muted); }
   .path {
     font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
-    font-size: 11.5px; word-break: break-all;
+    font-size: 12px; line-height: 16px; overflow-wrap: break-word;
   }
   .badge {
-    display: inline-block; font-size: 10px; font-weight: 800;
-    letter-spacing: 0.06em; text-transform: uppercase;
-    padding: 2px 7px; border-radius: 3px; margin-left: 6px; vertical-align: middle;
+    display: inline-block; font-size: 12px; font-weight: 700;
+    letter-spacing: 0.04em; text-transform: uppercase;
+    padding: 4px 8px; border-radius: 8px; margin-left: 8px; vertical-align: middle;
   }
-  .badge.live { background: #e6f4ea; color: #137333; }
-  .badge.tbd { background: var(--soft-red); color: var(--red); }
-  .badge.build { background: var(--soft-gold); color: #8a5a00; }
-  .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+  .badge.live { background: var(--white); color: var(--river); border: 1px solid var(--light-gray); }
+  .badge.tbd { background: var(--orange); color: var(--arizona-blue); }
+  .badge.build { background: var(--light-gray-30); color: var(--arizona-blue); }
+  .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
   .channel {
-    border: 1px solid var(--line); padding: 14px; background: var(--surface);
+    border: 1px solid var(--line); padding: 16px; background: var(--surface);
   }
   .channel .label {
-    font-size: 10px; font-weight: 800; letter-spacing: 0.1em;
-    text-transform: uppercase; color: var(--red); margin-bottom: 6px;
+    font-size: 12px; font-weight: 700; letter-spacing: 0.04em;
+    text-transform: uppercase; color: var(--red); margin-bottom: 8px;
   }
-  .channel p { font-size: 12.5px; color: var(--muted); margin-bottom: 8px; }
+  .channel p { font-size: 14px; line-height: 18px; color: var(--muted); margin-bottom: 8px; }
   .channel .url-block {
-    font-size: 11.5px; margin-top: 8px; padding-top: 8px;
+    font-size: 12px; margin-top: 8px; padding-top: 8px;
     border-top: 1px solid var(--line);
   }
   .channel .url-block dt { font-weight: 700; color: var(--navy); margin-top: 6px; }
   .channel .url-block dd { margin: 2px 0 0; }
-  .kpi-row { display: grid; grid-template-columns: 1.2fr 1fr 1fr; gap: 12px; }
-  .kpi { border: 1px solid var(--line); padding: 14px; }
-  .kpi .k {
-    font-size: 10px; font-weight: 800; letter-spacing: 0.08em;
-    text-transform: uppercase; color: var(--muted); margin-bottom: 6px;
+  .kpi-row { display: grid; grid-template-columns: 1.2fr 1fr 1fr; gap: 16px; }
+  .kpi {
+    background: var(--white); border: 1px solid var(--light-gray);
+    border-top: 4px solid var(--light-gray); border-radius: 8px; padding: 24px;
   }
-  .kpi .v { font-size: 14px; font-weight: 800; color: var(--navy); line-height: 1.3; }
-  .kpi.primary { background: var(--navy); border-color: var(--navy); }
-  .kpi.primary .k { color: var(--gold); }
-  .kpi.primary .v { color: var(--white); }
+  .kpi .k {
+    font-size: 12px; font-weight: 600; letter-spacing: 0.04em;
+    text-transform: uppercase; color: var(--dark-gray); margin-bottom: 8px;
+  }
+  .kpi .v { font-size: 16px; font-weight: 700; line-height: 24px; color: var(--arizona-blue); }
+  .kpi.primary { border-top-color: var(--arizona-red); }
   .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
-  .panel { border: 1px solid var(--line); padding: 14px; }
-  .panel h3 { margin-top: 0; font-size: 13px; }
-  ul, ol { padding-left: 18px; font-size: 12.5px; }
-  li { margin-bottom: 5px; }
+  .panel { border: 1px solid var(--line); padding: 16px; border-radius: 8px; }
+  .panel h3 { margin-top: 0; }
+  ul, ol { padding-left: 24px; font-size: 16px; line-height: 24px; }
+  li { margin-bottom: 8px; }
   li strong { color: var(--navy); }
-  .checklist li { margin-bottom: 7px; }
+  .checklist li { margin-bottom: 8px; }
   .timeline { display: grid; border: 1px solid var(--line); }
   .tl-row {
-    display: grid; grid-template-columns: 160px 1fr;
+    display: grid; grid-template-columns: 240px 1fr;
     border-bottom: 1px solid var(--line);
   }
   .tl-row:last-child { border-bottom: none; }
   .tl-when {
-    background: var(--soft-navy); padding: 10px 12px; font-size: 11.5px;
+    background: var(--light-gray-30); padding: 16px; font-size: 14px; line-height: 18px;
     font-weight: 700; color: var(--navy); border-right: 1px solid var(--line);
   }
-  .tl-what { padding: 10px 12px; font-size: 12.5px; }
-  .tl-row.freeze .tl-when { background: var(--soft-red); color: var(--red); }
-  .tl-row.go .tl-when { background: var(--soft-gold); }
+  .tl-what { padding: 16px; font-size: 16px; line-height: 24px; }
+  .tl-row.freeze .tl-when { background: var(--light-gray-30); color: var(--arizona-red); }
+  .tl-row.go .tl-when { background: var(--light-gray-30); color: var(--arizona-blue); }
   .owners {
     display: grid; grid-template-columns: repeat(2, 1fr);
-    gap: 8px 20px; font-size: 12.5px;
+    gap: 8px 24px; font-size: 16px; line-height: 24px;
   }
   .owners div {
     display: flex; justify-content: space-between; gap: 12px;
@@ -181,31 +205,93 @@
   .owners span:first-child { color: var(--muted); }
   .owners span:last-child { font-weight: 700; color: var(--navy); text-align: right; }
   footer {
-    border-top: 1px solid var(--line); padding: 14px 36px 20px;
-    font-size: 11.5px; color: var(--muted);
+    border-top: 1px solid var(--line); padding: 16px 32px 24px;
+    font-size: 12px; line-height: 16px; color: var(--muted);
     display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap;
   }
   .skip { position: absolute; left: -9999px; }
   .skip:focus {
-    left: 16px; top: 16px; z-index: 10; background: var(--gold);
-    color: var(--navy); padding: 8px 12px; font-weight: 700;
+    left: 16px; top: 16px; z-index: 10; background: var(--arizona-red);
+    color: var(--white); padding: 8px 12px; font-weight: 700; text-decoration: none;
   }
   .toc {
-    margin-bottom: 22px; font-size: 12.5px; line-height: 1.7;
-    padding: 12px 14px; background: var(--surface); border: 1px solid var(--line);
+    position: sticky; top: 0; z-index: 2;
+    display: flex; gap: 4px; flex-wrap: wrap;
+    margin: -24px -32px 32px; padding: 8px 32px;
+    background: var(--white); border-bottom: 1px solid var(--line);
   }
-  @media (max-width: 720px) {
+  .toc a:link, .toc a:visited {
+    color: var(--arizona-blue); text-decoration: none; font-size: 14px; font-weight: 600;
+    padding: 8px 12px; border-radius: 8px;
+  }
+  .toc a:hover, .toc a:active { background: var(--light-gray-30); color: var(--arizona-blue); }
+  .lead { font-size: 16px; line-height: 24px; max-width: 68ch; margin-bottom: 16px; }
+  .pair { border-top: 1px solid var(--line); padding: 16px 0; }
+  .pair:first-of-type { border-top: none; padding-top: 4px; }
+  .pair-head { display: flex; align-items: baseline; gap: 12px; flex-wrap: wrap; margin-bottom: 12px; }
+  .idx {
+    font-size: 14px; font-weight: 700; letter-spacing: 0.04em; color: var(--arizona-red);
+  }
+  .pair-head h3 { margin: 0; }
+  .status {
+    margin-left: auto; font-size: 12px; font-weight: 700; line-height: 16px;
+    padding: 4px 8px; border-radius: 8px;
+  }
+  .status.ok { background: var(--white); color: var(--river); border: 1px solid var(--light-gray); }
+  .status.low { background: var(--orange); color: var(--arizona-blue); }
+  .arms { display: grid; grid-template-columns: 1fr auto 1fr; gap: 16px; align-items: stretch; }
+  .arm { background: var(--white); padding: 16px; border-radius: 8px; border: 1px solid var(--light-gray); border-top: 4px solid var(--arizona-blue); }
+  .arm.variation { border-top-color: var(--arizona-red); background: var(--light-gray-30); }
+  .arm-k {
+    display: block; font-size: 12px; font-weight: 700; letter-spacing: 0.04em;
+    text-transform: uppercase; color: var(--muted); margin-bottom: 8px;
+  }
+  .slug { display: block; font-size: 14px; font-weight: 700; color: var(--navy); word-break: break-all; }
+  a.slug:link { color: var(--arizona-red); text-decoration: underline; font-weight: 700; }
+  a.slug:visited { color: var(--purple); }
+  a.slug:hover, a.slug:active { color: var(--arizona-red-dark); }
+  .arrow {
+    align-self: center; font-size: 20px; font-weight: 800; color: var(--navy);
+  }
+  .rename { margin-top: 8px; font-size: 14px; line-height: 18px; color: var(--muted); }
+  .choices { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .choice { border: 1px solid var(--light-gray); border-top: 4px solid var(--arizona-red); border-radius: 8px; padding: 24px; background: var(--white); }
+  .choice .k {
+    font-size: 12px; font-weight: 700; letter-spacing: 0.04em;
+    text-transform: uppercase; color: var(--red); margin-bottom: 8px;
+  }
+  .choice p { font-size: 16px; line-height: 24px; }
+  pre.code {
+    margin-top: 8px; padding: 16px; background: var(--navy); color: var(--white);
+    font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+    font-size: 14px; line-height: 24px; white-space: pre-wrap; overflow-x: auto;
+    max-width: 100%;
+  }
+  .lede { font-size: 14px; line-height: 18px; color: var(--muted); margin: 0 0 16px; }
+  @media (max-width: 767px) {
     .page { margin: 0; box-shadow: none; }
-    header, main, footer { padding-left: 20px; padding-right: 20px; }
-    .grid-3, .kpi-row, .two-col, .owners { grid-template-columns: 1fr; }
+    header, main, footer { padding-left: 16px; padding-right: 16px; }
+    .grid-3, .kpi-row, .two-col, .owners, .arms, .choices { grid-template-columns: 1fr; }
+    .two-col > *, .kpi, .choice, .arm, .panel, pre.code { min-width: 0; max-width: 100%; }
+    .facts { display: grid; grid-template-columns: 1fr 1fr; gap: 12px 16px; }
+    .pair-head { flex-direction: column; align-items: flex-start; gap: 6px; }
+    .status { margin-left: 0; }
+    h1 { font-size: 24px; line-height: 32px; }
+    h2 { font-size: 20px; line-height: 24px; }
+    .arrow { transform: rotate(90deg); justify-self: start; padding-left: 8px; }
+    .toc { margin-left: -16px; margin-right: -16px; padding-left: 16px; padding-right: 16px; }
     .tl-row { grid-template-columns: 1fr; }
     .tl-when { border-right: none; border-bottom: 1px solid var(--line); }
-    table { display: block; overflow-x: auto; }
+    .fact .v { font-size: 16px; line-height: 24px; }
+    .wide-scroll { overflow-x: auto; max-width: 100%; }
+    table.numbers { display: table; width: 760px; max-width: none; }
   }
   @media print {
+    @page { size: letter; margin: 0.5in; }
     body { background: white; }
-    .page { margin: 0; box-shadow: none; max-width: none; }
-    header, .kpi.primary, .tl-when, th, .callout, .channel, .badge, .note, .warn {
+    .page { margin: 0; box-shadow: none; max-width: none; border: none; }
+    .toc { position: static; }
+    header, .kpi.primary, .tl-when, th, .callout, .channel, .badge, .note, .warn, .status, .arm, pre.code {
       -webkit-print-color-adjust: exact; print-color-adjust: exact;
     }
     section { break-inside: avoid; }
@@ -216,108 +302,106 @@
   <a class="skip" href="#main">Skip to main content</a>
   <article class="page">
     <header>
-      <p class="eyebrow">Project Groundwork · Developer Setup Brief</p>
-      <h1>Omar Project (OP) — three landing page tests</h1>
+      <p class="eyebrow">University of Arizona Global Campus · Developer setup brief</p>
+      <h1>Three Pages, Each Against Its Own Optimized Version</h1>
+      <p class="asof">As of November 24, 2026 · Confidential</p>
       <p class="subhead">
-        Each Omar Project page is tested against its own optimized version.
-        Control = the original live page. Variation = the same page with the version number dropped and
-        <code>-op</code> added (<code>op</code> = optimized).
-        Omar owns pages + Optimizely; Kevin owns traffic; Eric locks measurement.
+        Drop the version number and add <code>-op</code> (<code>op</code> means optimized).
+        The original page stays the control. The <code>-op</code> page is the variation.
+        Omar owns the pages and Optimizely. Kevin owns traffic. Eric locks the scorecard.
       </p>
-      <div class="meta" aria-label="Brief summary">
-        <span class="chip"><strong>Controls</strong> request-info-v5 · degree-programs-v7 · online-college-courses-v5</span>
-        <span class="chip"><strong>Variations</strong> request-info-op · degree-programs-op · online-college-courses-op</span>
-        <span class="chip"><strong>Duration</strong> ~28 days</span>
-        <span class="chip"><strong>Settle</strong> 5 days</span>
-        <span class="chip"><strong>Earliest live</strong> Tue Dec 1</span>
+      <div class="facts" aria-label="Brief summary">
+        <div class="fact"><span class="k">How long</span><span class="v">About 28 days</span></div>
+        <div class="fact"><span class="k">Then wait</span><span class="v">Five days</span></div>
+        <div class="fact"><span class="k">Earliest start</span><span class="v">December 1, 2026</span></div>
+        <div class="fact"><span class="k">Optimizely split</span><span class="v">50 / 50</span></div>
       </div>
     </header>
 
     <main id="main">
       <nav class="toc" aria-label="On this page">
-        <strong style="color:var(--navy);">On this page:</strong>
-        <a href="#urls">URLs</a> ·
-        <a href="#win">Win condition</a> ·
-        <a href="#baseline">Baseline</a> ·
-        <a href="#traffic">Traffic decision</a> ·
-        <a href="#page-build">Page build</a> ·
-        <a href="#form">Form parity</a> ·
-        <a href="#optimizely">Optimizely</a> ·
-        <a href="#qa">QA checklist</a> ·
-        <a href="#measurement">Measurement</a> ·
-        <a href="#calendar">Calendar</a> ·
+        <a href="#urls">The three tests</a>
+        <a href="#win">How we win</a>
+        <a href="#baseline">October numbers</a>
+        <a href="#traffic">Open decision</a>
+        <a href="#page-build">What to build</a>
+        <a href="#optimizely">Optimizely</a>
+        <a href="#qa">QA</a>
+        <a href="#measurement">Scorecard</a>
+        <a href="#calendar">Calendar</a>
         <a href="#owners">Owners</a>
       </nav>
 
       <!-- URLS -->
       <section id="urls" aria-labelledby="urls-heading">
-        <h2 id="urls-heading">1. Control and variation URLs</h2>
-        <div class="callout">
-          <strong>URL rule:</strong> take the original path, drop the version number (<code class="path">-v5</code>, <code class="path">-v7</code>), add <code class="path">-op</code>.
-          Each page keeps its own name and its own variation — no shared variation URL.
-          No <code class="path">omarproject</code> and no channel/source in the path.
-        </div>
-        <table>
-          <thead>
-            <tr>
-              <th scope="col">Page</th>
-              <th scope="col">Control (original)</th>
-              <th scope="col">Variation (-op)</th>
-              <th scope="col">Preview today (rename)</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td><strong>Request Info</strong></td>
-              <td>
-                <a class="path" href="https://www.uagc.edu/success/request-info-v5" rel="noopener noreferrer">https://www.uagc.edu/success/request-info-v5</a>
-                <span class="badge live">Live</span>
-              </td>
-              <td>
-                <span class="path">https://www.uagc.edu/success/request-info-op</span>
-                <span class="badge tbd">Ship</span>
-              </td>
-              <td><a class="path" href="https://www.uagc.edu/success/request-info-v5-omarproject" rel="noopener noreferrer">/success/request-info-v5-omarproject</a></td>
-            </tr>
-            <tr>
-              <td><strong>Degree Programs</strong></td>
-              <td>
-                <a class="path" href="https://www.uagc.edu/success/degree-programs-v7" rel="noopener noreferrer">https://www.uagc.edu/success/degree-programs-v7</a>
-                <span class="badge live">Live</span>
-              </td>
-              <td>
-                <span class="path">https://www.uagc.edu/success/degree-programs-op</span>
-                <span class="badge tbd">Ship</span>
-              </td>
-              <td><a class="path" href="https://www.uagc.edu/success/degree-programs-v7-omarproject" rel="noopener noreferrer">/success/degree-programs-v7-omarproject</a></td>
-            </tr>
-            <tr>
-              <td><strong>Online College Courses</strong></td>
-              <td>
-                <a class="path" href="https://www.uagc.edu/success/online-college-courses-v5" rel="noopener noreferrer">https://www.uagc.edu/success/online-college-courses-v5</a>
-                <span class="badge live">Live</span>
-              </td>
-              <td>
-                <span class="path">https://www.uagc.edu/success/online-college-courses-op</span>
-                <span class="badge tbd">Ship</span>
-              </td>
-              <td><a class="path" href="https://www.uagc.edu/success/online-college-courses-v5-omarproject" rel="noopener noreferrer">/success/online-college-courses-v5-omarproject</a></td>
-            </tr>
-          </tbody>
-        </table>
+        <h2 id="urls-heading">1. The Three Tests</h2>
+        <p class="lead">Read left to right. The live page is the control. The red side is the page we still have to ship. No shared variation URL, no <code class="path">omarproject</code>, and no channel name in the path.</p>
+        <article class="pair">
+          <div class="pair-head">
+            <span class="idx">01</span>
+            <h3>Request Info</h3>
+            <span class="status ok">Enough to read · ~1,600 inquiries in October</span>
+          </div>
+          <div class="arms">
+            <div class="arm">
+              <span class="arm-k">Control · live now</span>
+              <a class="slug" href="https://www.uagc.edu/success/request-info-v5" rel="noopener noreferrer">/success/request-info-v5</a>
+            </div>
+            <div class="arrow" aria-hidden="true">→</div>
+            <div class="arm variation">
+              <span class="arm-k">Variation · still to ship</span>
+              <span class="slug">/success/request-info-op</span>
+            </div>
+          </div>
+          <p class="rename">Rename today’s preview <a class="path" href="https://www.uagc.edu/success/request-info-v5-omarproject" rel="noopener noreferrer">/success/request-info-v5-omarproject</a> and permanently redirect it here.</p>
+        </article>
+        <article class="pair">
+          <div class="pair-head">
+            <span class="idx">02</span>
+            <h3>Degree Programs</h3>
+            <span class="status low">Too small to read · ~6 inquiries in October</span>
+          </div>
+          <div class="arms">
+            <div class="arm">
+              <span class="arm-k">Control · live now</span>
+              <a class="slug" href="https://www.uagc.edu/success/degree-programs-v7" rel="noopener noreferrer">/success/degree-programs-v7</a>
+            </div>
+            <div class="arrow" aria-hidden="true">→</div>
+            <div class="arm variation">
+              <span class="arm-k">Variation · still to ship</span>
+              <span class="slug">/success/degree-programs-op</span>
+            </div>
+          </div>
+          <p class="rename">Rename today’s preview <a class="path" href="https://www.uagc.edu/success/degree-programs-v7-omarproject" rel="noopener noreferrer">/success/degree-programs-v7-omarproject</a> and permanently redirect it here.</p>
+        </article>
+        <article class="pair">
+          <div class="pair-head">
+            <span class="idx">03</span>
+            <h3>Online College Courses</h3>
+            <span class="status low">Too small to read · ~23 inquiries in October</span>
+          </div>
+          <div class="arms">
+            <div class="arm">
+              <span class="arm-k">Control · live now</span>
+              <a class="slug" href="https://www.uagc.edu/success/online-college-courses-v5" rel="noopener noreferrer">/success/online-college-courses-v5</a>
+            </div>
+            <div class="arrow" aria-hidden="true">→</div>
+            <div class="arm variation">
+              <span class="arm-k">Variation · still to ship</span>
+              <span class="slug">/success/online-college-courses-op</span>
+            </div>
+          </div>
+          <p class="rename">Rename today’s preview <a class="path" href="https://www.uagc.edu/success/online-college-courses-v5-omarproject" rel="noopener noreferrer">/success/online-college-courses-v5-omarproject</a> and permanently redirect it here.</p>
+        </article>
         <div class="note">
-          <strong>Out of scope:</strong> <span class="path">online-programs-v8</span> and <span class="path">online-programs-v7</span> are not part of this test.
+          <strong>Not in this test:</strong> <span class="path">online-programs-v8</span> and <span class="path">online-programs-v7</span>.
         </div>
       </section>
 
       <!-- WIN -->
       <section id="win" aria-labelledby="win-heading">
-        <h2 id="win-heading">2. Win condition</h2>
-        <div class="callout">
-          The -op pages are information-dense on purpose. They may <strong>lower lead conversion</strong> and
-          <strong>raise lead → application / 14-day decision</strong>. Judge on
-          <strong>net applications and decisions</strong> — not CPL alone.
-        </div>
+        <h2 id="win-heading">2. How We Decide a Winner</h2>
+        <p class="lead">The <span class="path">-op</span> pages are fuller on purpose. They may get fewer inquiries and more applications. Judge the test on applications and decisions, not on CPL.</p>
         <div class="kpi-row">
           <div class="kpi primary">
             <div class="k">Primary KPI</div>
@@ -325,7 +409,7 @@
           </div>
           <div class="kpi">
             <div class="k">Secondary</div>
-            <div class="v">Lead volume / CPL — context only</div>
+            <div class="v">Inquiry volume and CPL — context only</div>
           </div>
           <div class="kpi">
             <div class="k">Not primary</div>
@@ -336,21 +420,20 @@
 
       <!-- BASELINE -->
       <section id="baseline" aria-labelledby="baseline-heading">
-        <h2 id="baseline-heading">3. Baseline — Oct 2026 (approx)</h2>
-        <p class="muted" style="font-size:12.5px;margin-bottom:10px;">
-          Source: BigQuery <span class="path">vw_lead_extract_details</span>, Oct 1–31, spam excluded, matched on landing / origin / signup page. Rounded — briefing only.
-        </p>
-        <table>
+        <h2 id="baseline-heading">3. October Numbers</h2>
+        <p class="lede">Rounded. The last column covers August through October, so you can see where the traffic actually comes from.</p>
+        <div class="wide-scroll">
+        <table class="numbers">
           <thead>
             <tr>
               <th scope="col">Control</th>
-              <th scope="col">~Inquiries</th>
-              <th scope="col">~App started</th>
-              <th scope="col">~App-start %</th>
-              <th scope="col">~14d decisions</th>
-              <th scope="col">~14d rate</th>
-              <th scope="col">~Enrolls</th>
-              <th scope="col">Main traffic (Aug–Oct)</th>
+              <th class="num" scope="col">Inquiry</th>
+              <th class="num" scope="col">App started</th>
+              <th class="num" scope="col">App-start %</th>
+              <th class="num" scope="col">14-day decisions</th>
+              <th class="num" scope="col">14-day rate</th>
+              <th class="num" scope="col">Enrolls</th>
+              <th scope="col">Main traffic (August–October)</th>
             </tr>
           </thead>
           <tbody>
@@ -374,21 +457,29 @@
             </tr>
           </tbody>
         </table>
+        </div>
+        <p class="source">Source: BigQuery vw_lead_extract_details · As of October 31, 2026 · Grain: one inquiry (spam excluded). Inquiry counts are October 1–31, 2026. Main traffic is August–October 2026. App started is the dictionary label. 14-day decision is is_appin_14_days. Enrolls is provisional is_new_enrollment, not New enrollment (final).</p>
       </section>
 
       <!-- TRAFFIC -->
       <section id="traffic" aria-labelledby="traffic-heading">
-        <h2 id="traffic-heading">4. Traffic decision (open — Kevin)</h2>
-        <div class="warn">
-          <strong><span class="path">degree-programs-v7</span> (~6 leads in Oct) and <span class="path">online-college-courses-v5</span> (~23) are too small to read in 28 days.</strong>
-          Only <span class="path">request-info-v5</span> has enough volume today.
-          Before launch, Kevin decides whether to point more paid traffic at the degree and OCC pages, or run them longer / read them as directional only.
+        <h2 id="traffic-heading">4. Open Decision for Kevin</h2>
+        <p class="lead">Only Request Info has enough visitors to call a winner in 28 days. Degree Programs (~6) and Online College Courses (~23) do not. Pick one of these before launch.</p>
+        <div class="choices">
+          <div class="choice">
+            <div class="k">Option A</div>
+            <p>Point more paid traffic at the degree and online-college-courses pages so all three tests can be read.</p>
+          </div>
+          <div class="choice">
+            <div class="k">Option B</div>
+            <p>Leave their traffic as it is. Run them longer, or treat their results as a hint rather than a decision.</p>
+          </div>
         </div>
       </section>
 
       <!-- PAGE BUILD -->
       <section id="page-build" aria-labelledby="page-build-heading">
-        <h2 id="page-build-heading">5. Page build — -op variations</h2>
+        <h2 id="page-build-heading">5. Page Build for the -op Variations</h2>
         <div class="panel">
           <h3>What to ship</h3>
           <ul class="checklist">
@@ -404,8 +495,8 @@
 
       <!-- FORM -->
       <section id="form" aria-labelledby="form-heading">
-        <h2 id="form-heading">6. Form parity</h2>
-        <p style="font-size:12.5px;">
+        <h2 id="form-heading">6. Form Parity</h2>
+        <p>
           Each <span class="path">-op</span> page uses the <strong>same form fields and program options as its control</strong>
           (including whether Undecided appears). Only the page content changes. Side-by-side field list before launch.
         </p>
@@ -413,7 +504,7 @@
 
       <!-- OPTIMIZELY -->
       <section id="optimizely" aria-labelledby="optimizely-heading">
-        <h2 id="optimizely-heading">7. Optimizely setup</h2>
+        <h2 id="optimizely-heading">7. Optimizely Setup</h2>
         <div class="callout">
           Experiment <strong>OP Pages Reskin</strong> (project <span class="path">18792324065</span>, experiment <span class="path">4675402130522112</span>)
           already targets all three control URLs, 50/50. Three fixes before real traffic sees it:
@@ -424,7 +515,7 @@
             <ol class="checklist">
               <li><strong>Remove the audience gate.</strong> It's limited to the <em>Noble UTM Test 2</em> audience (<span class="path">?noble_test2=true</span>), so only test links see it today.</li>
               <li><strong>Change the redirect</strong> from adding <span class="path">-omarproject</span> to swapping the version for <span class="path">-op</span> (only after the -op pages return 200):
-                <pre class="path" style="background:var(--surface);padding:8px;margin-top:6px;white-space:pre-wrap;">var path = window.location.pathname.replace(/\/+$/, "");
+                <pre class="code">var path = window.location.pathname.replace(/\/+$/, "");
 return window.location.origin + path.replace(/-v\d+$/, "-op") +
   window.location.search + window.location.hash;</pre>
               </li>
@@ -438,7 +529,7 @@ return window.location.origin + path.replace(/-v\d+$/, "-op") +
               <li>Ad final URLs stay on the control paths (e.g. Meta stays on <span class="path">request-info-v5</span>) so platforms don't relearn.</li>
               <li><span class="path">request-info-v5</span> gets Facebook <em>and</em> Google Display traffic — Eric reads results by channel; don't pool.</li>
               <li>Optimizely metrics (primary: Mid-Page RFI Submit; plus thank-you views, form steps, header / sticky / apply clicks) are on-page signals only. The win call comes from BigQuery (section 2).</li>
-              <li>Soft-build before Dec 1; go live only after the freeze.</li>
+              <li>Soft-build before December 1, 2026. Go live only after the freeze.</li>
             </ul>
           </div>
         </div>
@@ -446,7 +537,7 @@ return window.location.origin + path.replace(/-v\d+$/, "-op") +
 
       <!-- QA -->
       <section id="qa" aria-labelledby="qa-heading">
-        <h2 id="qa-heading">8. QA checklist (before go-live)</h2>
+        <h2 id="qa-heading">8. QA Checklist Before Go-Live</h2>
         <div class="two-col">
           <div class="panel">
             <h3>Page &amp; form</h3>
@@ -479,7 +570,7 @@ return window.location.origin + path.replace(/-v\d+$/, "-op") +
 
       <!-- MEASUREMENT -->
       <section id="measurement" aria-labelledby="measurement-heading">
-        <h2 id="measurement-heading">9. Measurement lock (Eric)</h2>
+        <h2 id="measurement-heading">9. Measurement Lock</h2>
         <table>
           <thead>
             <tr><th scope="col">Rule</th><th scope="col">Proposal</th></tr>
@@ -488,8 +579,8 @@ return window.location.origin + path.replace(/-v\d+$/, "-op") +
             <tr><td>Population</td><td>Spam excluded; <span class="path">rn = 1</span>; tagged by landing / origin / signup page = control or <span class="path">-op</span> URL</td></tr>
             <tr><td>App started</td><td>BQ view definition (portal login AND app started)</td></tr>
             <tr><td>Decisions</td><td><span class="path">is_appin_14_days</span></td></tr>
-            <tr><td>Settling window</td><td><strong>5 calendar days</strong> after test end before final pull</td></tr>
-            <tr><td>Duration</td><td><strong>~28 days</strong> live traffic</td></tr>
+            <tr><td>Settling window</td><td><strong>Five calendar days</strong> after the test ends, before the final pull</td></tr>
+            <tr><td>Duration</td><td><strong>About 28 days</strong> of live traffic</td></tr>
             <tr><td>Arms</td><td>Each control vs its own <span class="path">-op</span> page — never pool the three pages</td></tr>
             <tr><td>Channel</td><td><span class="path">request-info-v5</span>: report Facebook and Google Display separately</td></tr>
             <tr><td>Contentsquare</td><td>Qualitative only — does not decide win/loss</td></tr>
@@ -497,7 +588,7 @@ return window.location.origin + path.replace(/-v\d+$/, "-op") +
           </tbody>
         </table>
         <div class="note">
-          Eric to confirm KPI + 5-day settle + page-tagging method before launch.
+          Eric to confirm the KPI, the five-day settle, and the page-tagging method before launch.
           Source view: <span class="path">vw_lead_extract_details</span>.
         </div>
       </section>
@@ -507,23 +598,23 @@ return window.location.origin + path.replace(/-v\d+$/, "-op") +
         <h2 id="calendar-heading">10. Calendar</h2>
         <div class="timeline">
           <div class="tl-row freeze">
-            <div class="tl-when">Through Sun 29 Nov</div>
-            <div class="tl-what"><strong>Freeze window.</strong> Kevin out Mon 23–Fri 27. No launches. Ship the three <span class="path">-op</span> pages + QA offline. Soft Optimizely build only.</div>
+            <div class="tl-when">Through November 29, 2026</div>
+            <div class="tl-what"><strong>Freeze window.</strong> Kevin is out November 23–27, 2026. No launches. Ship the three <span class="path">-op</span> pages and finish QA offline. Soft Optimizely build only.</div>
           </div>
           <div class="tl-row freeze">
-            <div class="tl-when">Mon 30 Nov</div>
+            <div class="tl-when">November 30, 2026</div>
             <div class="tl-what">Christy Harper / agency meeting — <strong>no test start</strong>.</div>
           </div>
           <div class="tl-row go">
-            <div class="tl-when">Tue 1 Dec (earliest)</div>
+            <div class="tl-when">December 1, 2026</div>
             <div class="tl-what">
               Remove the audience gate, switch the redirect to <span class="path">-op</span>, go live on all three pages.
               Degree / OCC traffic per Kevin's decision (section 4).
             </div>
           </div>
           <div class="tl-row">
-            <div class="tl-when">~Early Jan</div>
-            <div class="tl-what">~28 days → 5-day settle → Eric scorecard</div>
+            <div class="tl-when">Early January 2027</div>
+            <div class="tl-what">About 28 days, then a five-day settle, then Eric’s scorecard</div>
           </div>
         </div>
       </section>
@@ -543,10 +634,10 @@ return window.location.origin + path.replace(/-v\d+$/, "-op") +
       </section>
 
       <section aria-labelledby="done-heading">
-        <h2 id="done-heading">12. Done when</h2>
+        <h2 id="done-heading">12. Done When</h2>
         <ul class="checklist">
           <li>All three <span class="path">-op</span> pages live; Optimizely splitting 50/50 with no audience gate</li>
-          <li>~28 days elapsed + 5-day settle</li>
+          <li>About 28 days elapsed, plus a five-day settle</li>
           <li>Eric scorecard: app-start rate + 14d decision rate, per page, control vs <span class="path">-op</span></li>
           <li>Contentsquare notes attached as qualitative only</li>
         </ul>
@@ -554,7 +645,7 @@ return window.location.origin + path.replace(/-v\d+$/, "-op") +
     </main>
 
     <footer>
-      <span>Developer setup brief · Updated Nov 24, 2026 · Internal — <code>noindex</code></span>
+      <span>UAGC confidential · November 24, 2026 · Internal, noindex</span>
       <span>Variations:
         <span class="path">/request-info-op</span> ·
         <span class="path">/degree-programs-op</span> ·
